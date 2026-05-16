@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Básico 1 — Apéndice · Apuntes Chino</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
   :root {
     --red: #c0392b; --dark: #1a1a2e; --gold: #d4820a;
     --green: #27ae60; --blue: #2980b9; --purple: #8e44ad;
@@ -89,6 +89,20 @@
     .no-print, .audio-btn { display: none !important; }
     body { background: #fff !important; padding: 10px 20px; font-size: 12px; }
     header { background: var(--dark) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  /* Inter para pinyin: mejor renderizado de diacríticos (ī, ǐ, ǎ, ò...). */
+  .pinyin-col,
+  .ex em,
+  .dialog em,
+  .dialog .da em,
+  .dialog .db em,
+  .box em,
+  em {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'ss01' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 </style>
 </head>
