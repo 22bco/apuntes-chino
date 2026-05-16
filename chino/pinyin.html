@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pizarra de Pinyin · Apuntes Chino — Basti</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+  :root {
+    --hz-size: 92px;
+    --py-size: 36px;
+    --input-size: 28px;
+    --gap: 24px;
+  }
+  :root[data-size="normal"] { --hz-size: 56px; --py-size: 22px; --input-size: 22px; --gap: 14px; }
+  :root[data-size="large"]  { --hz-size: 92px; --py-size: 36px; --input-size: 28px; --gap: 24px; }
+  :root[data-size="huge"]   { --hz-size: 144px; --py-size: 54px; --input-size: 34px; --gap: 36px; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Noto Sans SC', -apple-system, Arial, sans-serif;
+    background: #fafafa;
+    color: #1a1a2e;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  /* ─────── botones flotantes en las esquinas ─────── */
+  .back-link, .settings-btn {
+    position: fixed; top: 14px; z-index: 20;
+    background: rgba(255,255,255,.85);
+    border: 1px solid #e0e0e0;
+    border-radius: 22px;
+    padding: 7px 14px;
+    font: inherit; font-size: 0.88rem;
+    color: #555; text-decoration: none;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: all .2s;
+  }
+  .back-link { left: 14px; }
+  .settings-btn { right: 14px; padding: 7px 12px; font-size: 1.1rem; line-height: 1; }
+  .back-link:hover, .settings-btn:hover { background: #fff; border-color: #c0392b; color: #c0392b; }
+
+  /* ─────── pizarra (vista principal) ─────── */
+  main.board {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 80px 32px 60px;
+    min-height: 100vh;
+  }
+  .input {
+    width: 100%; max-width: 1100px;
+    font-size: var(--input-size);
+    font-family: inherit;
+    border: none; outline: none; background: transparent;
+    text-align: center;
+    padding: 14px 16px;
+    color: #555;
+    resize: none;
+    line-height: 1.5;
+    min-height: 80px;
+    border-bottom: 1px dashed #d0d0d0;
+    transition: border-color .2s;
+  }
+  .input:focus { border-bottom-color: #c0392b; }
+  .input::placeholder { color: #bbb; font-style: italic; }
+
+  .karaoke {
+    margin-top: 56px;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 28px; width: 100%; max-width: 1500px;
+  }
+  .karaoke:empty::before {
+    content: "✍️";
+    font-size: 64px;
+    opacity: 0.18;
+    margin-top: 40px;
+  }
+  .line { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--gap); }
+  .char-col {
+    display: flex; flex-direction: column; align-items: center;
+    line-height: 1;
+  }
+  .char-col[data-position="above"] { flex-direction: column-reverse; }
+  .char-col .hanzi {
+    font-size: var(--hz-size);
+    font-weight: 500;
+    color: #1a1a2e;
+    line-height: 1.05;
+  }
+  .char-col .pinyin {
+    font-size: var(--py-size);
+    color: #c0392b;
+    margin-top: 10px;
+    font-family: 'Noto Sans SC', sans-serif;
+    letter-spacing: 0.5px;
+  }
+  .char-col[data-position="above"] .pinyin { margin-top: 0; margin-bottom: 10px; }
+  .char-col.punct { align-self: flex-end; }
+  .char-col.punct .pinyin { visibility: hidden; }
+  :root[data-position="hidden"] .char-col .pinyin { display: none; }
+
+  /* ─────── panel de ajustes lateral ─────── */
+  .settings-panel {
+    position: fixed; top: 0; right: -440px; height: 100%; width: 420px;
+    background: #fff; border-left: 1px solid #e0e0e0;
+    box-shadow: -8px 0 30px rgba(0,0,0,.08);
+    padding: 60px 24px 24px;
+    overflow-y: auto;
+    transition: right .3s ease;
+    z-index: 30;
+  }
+  .settings-panel.open { right: 0; }
+  .settings-panel h2 {
+    font-size: 1.1rem; color: #c0392b;
+    margin-bottom: 18px; padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+  }
+  .panel-close {
+    position: absolute; top: 14px; right: 14px;
+    background: none; border: none; cursor: pointer;
+    font-size: 1.4rem; color: #999; padding: 6px 10px;
+  }
+  .panel-close:hover { color: #c0392b; }
+
+  .control { margin-bottom: 22px; }
+  .control > label {
+    display: block; font-size: 0.75rem; font-weight: 700;
+    color: #888; text-transform: uppercase; letter-spacing: 1.2px;
+    margin-bottom: 8px;
+  }
+  .segmented {
+    display: flex; background: #f0f0f0; border-radius: 8px; padding: 3px;
+  }
+  .segmented button {
+    flex: 1; background: transparent; border: none; cursor: pointer;
+    padding: 8px 6px; font-size: 0.85rem; font-family: inherit;
+    color: #555; border-radius: 6px; transition: all .15s;
+  }
+  .segmented button.active {
+    background: #1a1a2e; color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,.12);
+  }
+  .segmented button:hover:not(.active) { color: #c0392b; }
+
+  .action-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .action-row button {
+    flex: 1 1 calc(50% - 4px);
+    background: #fff; border: 1.5px solid #e0e0e0; border-radius: 8px;
+    padding: 10px; font: inherit; font-size: 0.85rem; cursor: pointer;
+    transition: all .15s;
+  }
+  .action-row button:hover { border-color: #c0392b; color: #c0392b; }
+  .action-row button.success { border-color: #27ae60; color: #27ae60; }
+
+  .examples { display: flex; flex-direction: column; gap: 6px; }
+  .examples button {
+    background: #fafafa; border: 1px solid #e8e8e8; border-radius: 6px;
+    padding: 9px 12px; text-align: left; cursor: pointer;
+    font: inherit; font-size: 0.95rem; color: #1a1a2e;
+    transition: all .15s;
+  }
+  .examples button:hover { background: #fff5f5; border-color: #c0392b; }
+  .examples button .py { display: block; font-size: 0.75rem; color: #888; margin-top: 2px; }
+
+  /* backdrop al abrir panel */
+  .backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,.18);
+    opacity: 0; pointer-events: none; transition: opacity .3s;
+    z-index: 25;
+  }
+  .backdrop.open { opacity: 1; pointer-events: auto; }
+
+  /* responsive */
+  @media (max-width: 640px) {
+    :root { --hz-size: 56px; --py-size: 22px; }
+    :root[data-size="huge"] { --hz-size: 80px; --py-size: 30px; }
+    .settings-panel { width: 90%; right: -100%; }
+    .settings-panel.open { right: 0; }
+    main.board { padding: 70px 16px 40px; }
+  }
+
+  /* print: solo la pizarra, sin botones */
+  @media print {
+    body { background: #fff; }
+    .back-link, .settings-btn, .settings-panel, .backdrop { display: none !important; }
+    .input { display: none; }
+    main.board { padding: 0; }
+  }
+</style>
+</head>
+<body>
+
+<a class="back-link" href="/">← Apuntes</a>
+<button class="settings-btn" id="open-settings" title="Ajustes (Esc para cerrar)" aria-label="Ajustes">⚙️</button>
+
+<main class="board">
+  <textarea class="input" id="input"
+            placeholder="Tipea o pegá texto chino — el pinyin aparece debajo"
+            autofocus rows="2"></textarea>
+  <div class="karaoke" id="karaoke" aria-live="polite"></div>
+</main>
+
+<div class="backdrop" id="backdrop"></div>
+
+<aside class="settings-panel" id="settings" aria-hidden="true">
+  <button class="panel-close" id="close-settings" aria-label="Cerrar">✕</button>
+  <h2>⚙️ Ajustes de pizarra</h2>
+
+  <div class="control">
+    <label>Posición del pinyin</label>
+    <div class="segmented" data-control="position">
+      <button data-value="below" class="active">Abajo</button>
+      <button data-value="above">Arriba</button>
+      <button data-value="hidden">Sin pinyin</button>
+    </div>
+  </div>
+
+  <div class="control">
+    <label>Estilo de tono</label>
+    <div class="segmented" data-control="tone">
+      <button data-value="symbol" class="active">marcas (nǐ)</button>
+      <button data-value="num">números (ni3)</button>
+      <button data-value="none">sin tono</button>
+    </div>
+  </div>
+
+  <div class="control">
+    <label>Tamaño</label>
+    <div class="segmented" data-control="size">
+      <button data-value="normal">Normal</button>
+      <button data-value="large" class="active">Grande</button>
+      <button data-value="huge">Gigante</button>
+    </div>
+  </div>
+
+  <div class="control">
+    <label>Acciones</label>
+    <div class="action-row">
+      <button id="speak">🔊 Reproducir</button>
+      <button id="copy-py">📋 Copiar pinyin</button>
+      <button id="copy-hz">📋 Copiar chino</button>
+      <button id="clear">🗑️ Limpiar</button>
+    </div>
+  </div>
+
+  <div class="control">
+    <label>Ejemplos rápidos (clic para cargar)</label>
+    <div class="examples" id="examples">
+      <button data-text="你好，今天我去吃中国菜。">你好，今天我去吃中国菜。<span class="py">Nǐ hǎo, jīntiān wǒ qù chī Zhōngguó cài.</span></button>
+      <button data-text="前面那个人叫什么名字？">前面那个人叫什么名字？<span class="py">Qiánmiàn nàge rén jiào shénme míngzi?</span></button>
+      <button data-text="桌子上有很多书和一个电脑。">桌子上有很多书和一个电脑。<span class="py">Zhuōzi shàng yǒu hěn duō shū hé yí ge diànnǎo.</span></button>
+      <button data-text="我能坐这儿吗？">我能坐这儿吗？<span class="py">Wǒ néng zuò zhèr ma?</span></button>
+      <button data-text="请你出去！">请你出去！<span class="py">Qǐng nǐ chūqù! 😏</span></button>
+    </div>
+  </div>
+
+  <div class="control" style="font-size: 0.78rem; color: #999; line-height: 1.5;">
+    💡 Atajo: <kbd>Esc</kbd> cierra este panel. La pizarra es por defecto — los ajustes están escondidos para no distraer.
+  </div>
+</aside>
+
+<script src="https://unpkg.com/pinyin-pro"></script>
+<script>
+(function() {
+  'use strict';
+
+  const input    = document.getElementById('input');
+  const karaoke  = document.getElementById('karaoke');
+  const panel    = document.getElementById('settings');
+  const backdrop = document.getElementById('backdrop');
+  const root     = document.documentElement;
+
+  const state = { position: 'below', tone: 'symbol', size: 'large' };
+  root.dataset.position = state.position;
+  root.dataset.size     = state.size;
+
+  function render() {
+    const lib = window.pinyinPro;
+    if (!lib) { setTimeout(render, 120); return; }
+    const { pinyin } = lib;
+
+    const text = input.value;
+    karaoke.innerHTML = '';
+    if (!text.trim()) return;
+
+    text.split('\n').forEach(line => {
+      if (!line) return;
+      const lineEl = document.createElement('div');
+      lineEl.className = 'line';
+
+      // Array de pinyin para esta línea (sólo sílabas de hanzi)
+      const opts = state.tone === 'num'    ? { toneType: 'num',    type: 'array' }
+                 : state.tone === 'none'   ? { toneType: 'none',   type: 'array' }
+                 :                            { toneType: 'symbol', type: 'array' };
+      const pinyinArr = pinyin(line, opts);
+
+      let pyIdx = 0;
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === ' ') continue; // espacios entre hanzi: ignorar
+
+        const col = document.createElement('div');
+        col.className = 'char-col';
+        col.dataset.position = state.position;
+
+        const hz = document.createElement('div');
+        hz.className = 'hanzi';
+        hz.textContent = ch;
+
+        const py = document.createElement('div');
+        py.className = 'pinyin';
+
+        const isHan = /[㐀-鿿]/.test(ch);
+        if (isHan) {
+          py.textContent = pinyinArr[pyIdx] || '';
+          pyIdx++;
+        } else {
+          py.textContent = '';
+          col.classList.add('punct');
+        }
+
+        col.appendChild(hz);
+        col.appendChild(py);
+        lineEl.appendChild(col);
+      }
+      karaoke.appendChild(lineEl);
+    });
+  }
+
+  // Live update al tipear / pegar
+  input.addEventListener('input', render);
+
+  // Segmented controls
+  document.querySelectorAll('.segmented').forEach(group => {
+    const control = group.dataset.control;
+    group.addEventListener('click', e => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      group.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state[control] = btn.dataset.value;
+      if (control === 'size')     root.dataset.size     = state.size;
+      if (control === 'position') root.dataset.position = state.position;
+      render();
+    });
+  });
+
+  // Panel de ajustes
+  function openPanel() {
+    panel.classList.add('open');
+    backdrop.classList.add('open');
+    panel.setAttribute('aria-hidden', 'false');
+  }
+  function closePanel() {
+    panel.classList.remove('open');
+    backdrop.classList.remove('open');
+    panel.setAttribute('aria-hidden', 'true');
+  }
+  document.getElementById('open-settings').addEventListener('click', openPanel);
+  document.getElementById('close-settings').addEventListener('click', closePanel);
+  backdrop.addEventListener('click', closePanel);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closePanel();
+  });
+
+  // Acciones
+  document.getElementById('speak').addEventListener('click', () => {
+    const txt = input.value.trim();
+    if (!txt) return;
+    if ('speechSynthesis' in window) {
+      const u = new SpeechSynthesisUtterance(txt);
+      u.lang = 'zh-CN'; u.rate = 0.85;
+      speechSynthesis.cancel();
+      speechSynthesis.speak(u);
+    }
+  });
+
+  function copyFlash(btn, label) {
+    const original = btn.textContent;
+    btn.textContent = '✓ Copiado';
+    btn.classList.add('success');
+    setTimeout(() => { btn.textContent = original; btn.classList.remove('success'); }, 1200);
+  }
+
+  document.getElementById('copy-py').addEventListener('click', e => {
+    if (!window.pinyinPro) return;
+    const text = window.pinyinPro.pinyin(input.value, {
+      toneType: state.tone === 'num' ? 'num' : state.tone === 'none' ? 'none' : 'symbol'
+    });
+    navigator.clipboard.writeText(text).then(() => copyFlash(e.currentTarget));
+  });
+
+  document.getElementById('copy-hz').addEventListener('click', e => {
+    navigator.clipboard.writeText(input.value).then(() => copyFlash(e.currentTarget));
+  });
+
+  document.getElementById('clear').addEventListener('click', () => {
+    input.value = '';
+    render();
+    input.focus();
+  });
+
+  // Ejemplos
+  document.querySelectorAll('#examples button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      input.value = btn.dataset.text;
+      render();
+      closePanel();
+      input.focus();
+    });
+  });
+
+  // Render inicial (espera a que cargue pinyin-pro)
+  render();
+})();
+</script>
+</body>
+</html>
