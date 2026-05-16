@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pizarra de Pinyin · Apuntes Chino — Basti</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@400;500&display=swap');
 
   :root {
     --hz-size: 92px;
@@ -90,20 +90,32 @@
     font-size: var(--hz-size);
     font-weight: 500;
     color: #1a1a2e;
-    line-height: 1.05;
+    line-height: 1.1;
+    /* Fuerza Noto Sans SC pura para evitar caracteres extraños con
+       sustitución del navegador. */
+    font-family: 'Noto Sans SC', sans-serif;
   }
   .char-col .pinyin {
     font-size: var(--py-size);
     color: #c0392b;
-    margin-top: 10px;
-    /* Fuente latina dedicada para que los tonos (ī ǐ ǎ ò...) se vean bien.
-       Noto Sans SC distorsiona los diacríticos porque está optimizada para hanzi. */
-    font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    margin-top: 14px;
+    /* Inter es la fuente que mejor renderiza diacríticos del pinyin
+       (ī, ǐ, ǎ, ò, ǘ…). Los tonos sobre la "i" se ven prolijos en vez de
+       chocar con el punto natural. font-feature-settings activa kerning
+       y ligaduras para que las combinaciones se vean equilibradas. */
+    font-family: 'Inter', 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
     font-weight: 500;
-    letter-spacing: 0.5px;
-    line-height: 1.1;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'ss01' 1;
+    font-variant-ligatures: contextual;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0.3px;
+    line-height: 1.25;
+    /* Asegura espacio vertical suficiente para que el macron del tono 1 (ī)
+       y el caron del tono 3 (ǐ) no se vean recortados. */
+    padding-top: 0.15em;
   }
-  .char-col[data-position="above"] .pinyin { margin-top: 0; margin-bottom: 10px; }
+  .char-col[data-position="above"] .pinyin { margin-top: 0; margin-bottom: 14px; padding-top: 0; padding-bottom: 0.05em; }
   .char-col.punct { align-self: flex-end; }
   .char-col.punct .pinyin { visibility: hidden; }
   :root[data-position="hidden"] .char-col .pinyin { display: none; }
