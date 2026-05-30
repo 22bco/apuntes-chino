@@ -28,8 +28,12 @@
   .card-meta { margin-top: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
   .badge { display: inline-block; background: #f0f0f0; color: #555; border-radius: 20px; padding: 2px 10px; font-size: 0.73rem; }
   .badge.done { background: #d4edda; color: #155724; }
+  .badge.live { background: #fff3cd; color: #856404; }
   footer { text-align: center; color: var(--muted); font-size: 0.82rem; padding: 24px; }
   @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) {
+    table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  }
 </style>
 </head>
 <body>
@@ -37,85 +41,41 @@
   <div class="header-inner">
     <div class="breadcrumb"><a href="/">← Apuntes</a> / Chino Mandarín</div>
     <h1>🀄 Chino Mandarín</h1>
-    <p>Centro Cultural Chino · Básico 1 y Básico 2</p>
+    <p>Centro Cultural Chino · Básico 1, 2 y 3</p>
   </div>
 </header>
 <main>
 
-  <div class="section-title">Básico 1 — Diciembre 2025</div>
+  <div class="section-title">Niveles</div>
   <div class="grid">
     <a class="card" href="/basico1/">
-      <div class="card-tag">Básico 1 · Completo</div>
-      <h3>你好 → Conversación básica</h3>
-      <p>Saludos, números, familia, habilidades, descripciones físicas. 10+ clases.</p>
+      <div class="card-tag">Básico 1 · Diciembre 2025</div>
+      <h3>🀄 Básico 1</h3>
+      <p>Saludos, números, familia, habilidades y descripciones físicas. 10 capítulos + apéndice de gramática.</p>
       <div class="card-meta">
         <span class="badge done">✓ Completo</span>
+        <span class="badge">11 capítulos</span>
         <span class="badge">你好 谢谢 会 有</span>
       </div>
     </a>
-  </div>
-
-  <div class="section-title">Básico 2 — Marzo-Abril 2026</div>
-  <div class="grid">
-    <a class="card" href="/basico2/clase07.html">
-      <div class="card-tag">Clase 07 · 25 abr 2026</div>
-      <h3>在 + lugar · Posiciones · 正在 · Profesiones</h3>
-      <p>Estructura 在 + lugar + verbo, 这儿/那儿/哪儿, preposiciones 上下前后里外中旁, progresivo 正在, profesiones y lugares de trabajo.</p>
+    <a class="card" href="/basico2/">
+      <div class="card-tag">Básico 2 · Marzo-Mayo 2026</div>
+      <h3>🀄 Básico 2</h3>
+      <p>会/有/的, 怎么, fechas, 去 + verbo, 和/想, 多少 y dinero, 在 + posiciones + 正在, 能, 请 y radicales.</p>
       <div class="card-meta">
-        <span class="badge">在 哪儿 正在 工作</span>
-        <span class="badge">134 audios 🔊</span>
+        <span class="badge done">✓ Completo</span>
+        <span class="badge">9 clases</span>
+        <span class="badge">在 想 多少 请</span>
       </div>
     </a>
-    <a class="card" href="/basico2/clase06.html">
-      <div class="card-tag">Clase 06 · 18 abr 2026</div>
-      <h3>想 · 这/那 · 多少 · Números</h3>
-      <p>Clasificadores 个/条/只/件/口, demostrativos, 要 vs 想, 多少 cuánto cuesta, dinero y monedas, preguntar edad, repaso de números.</p>
+    <a class="card" href="/basico3/">
+      <div class="card-tag">Básico 3 · Mayo 2026</div>
+      <h3>🀄 Básico 3</h3>
+      <p>Decir la hora (点/分/半), preguntar a qué hora con 几点 + verbo y el orden del tiempo en la oración.</p>
       <div class="card-meta">
-        <span class="badge">想 要 多少 块</span>
-        <span class="badge">167 audios 🔊</span>
-      </div>
-    </a>
-    <a class="card" href="/basico2/clase05.html">
-      <div class="card-tag">Clase 05 · 11 abr 2026</div>
-      <h3>和 · 想 · 哪儿/做什么 · 杯子 vs 杯</h3>
-      <p>Conector 和, verbo modal 想, preguntas con 哪儿/做什么, tonos bisilábicos 2°, bebidas y comidas, clasificadores 个/杯.</p>
-      <div class="card-meta">
-        <span class="badge">和 想 喝 吃</span>
-        <span class="badge">136 audios 🔊</span>
-      </div>
-    </a>
-    <a class="card" href="/basico2/clase04.html">
-      <div class="card-tag">Clase 04 · 28 mar 2026</div>
-      <h3>几月几号 · 生日 · 去 · 呢</h3>
-      <p>Fechas completas, cumpleaños, ayer/mañana, verbo serial 去+lugar, partícula 呢.</p>
-      <div class="card-meta">
-        <span class="badge">几号 生日 去 呢</span>
-        <span class="badge">10 secciones</span>
-      </div>
-    </a>
-    <a class="card" href="/basico2/clase03.html">
-      <div class="card-tag">Clase 03 · 21 mar 2026</div>
-      <h3>今天几号 · 星期 · 去</h3>
-      <p>Fechas, meses, días de la semana, nombres chinos, tonos bisilábicos, radicales.</p>
-      <div class="card-meta">
-        <span class="badge">今天 星期 去</span>
-        <span class="badge">13 secciones</span>
-      </div>
-    </a>
-    <a class="card" href="/basico2/clase02.html">
-      <div class="card-tag">Clase 02 · 14 mar 2026</div>
-      <h3>怎么 · 好看 · 好吃</h3>
-      <p>怎么 (¿cómo?), adjetivos con 好/难, vocabulario de clase, diálogos.</p>
-      <div class="card-meta">
-        <span class="badge">怎么 好吃 难吃</span>
-      </div>
-    </a>
-    <a class="card" href="/basico2/clase01.html">
-      <div class="card-tag">Clase 01 · 7 mar 2026</div>
-      <h3>会 · 有 · 的</h3>
-      <p>Saber hacer, tener, posesión. Familia, adjetivos físicos, preguntas.</p>
-      <div class="card-meta">
-        <span class="badge">会 有 的 很</span>
+        <span class="badge live">● En curso</span>
+        <span class="badge">1 clase</span>
+        <span class="badge">点 分 半</span>
       </div>
     </a>
   </div>

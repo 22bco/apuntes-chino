@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Pizarra v2 · Apuntes Chino — Basti</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
+
+  :root { --hz: 52px; --py: 21px; }
+  :root[data-cardsize="small"] { --hz: 38px; --py: 16px; }
+  :root[data-cardsize="med"]   { --hz: 52px; --py: 21px; }
+  :root[data-cardsize="large"] { --hz: 80px; --py: 30px; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow: hidden; }
+  body {
+    font-family: 'Noto Sans SC', -apple-system, Arial, sans-serif;
+    background: #f7f7f5;
+    color: #1a1a2e;
+    -webkit-user-select: none; user-select: none;
+    touch-action: none;
+  }
+
+  /* ─── lienzo ─── */
+  #viewport {
+    position: fixed; inset: 0;
+    /* patrón de puntos tipo whiteboard */
+    background-image: radial-gradient(#d8d8d2 1px, transparent 1px);
+    background-size: 26px 26px;
+    cursor: grab;
+  }
+  #viewport.panning { cursor: grabbing; }
+  #viewport.tool-pen, #viewport.tool-eraser { cursor: crosshair; }
+  #viewport.tool-text { cursor: text; }
+
+  #world { position: absolute; top: 0; left: 0; transform-origin: 0 0; }
+  #ink { position: fixed; inset: 0; pointer-events: none; z-index: 5; }
+  #viewport.tool-pen #ink, #viewport.tool-eraser #ink { pointer-events: auto; }
+
+  /* ─── tarjetas ─── */
+  .card {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #e3e3df;
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    cursor: grab;
+    z-index: 10;
+    max-width: 80vw;
+  }
+  .card.dragging { cursor: grabbing; box-shadow: 0 8px 24px rgba(0,0,0,.16); z-index: 50; }
+  .card.selected { border-color: #c0392b; box-shadow: 0 0 0 2px rgba(192,57,43,.25), 0 4px 16px rgba(0,0,0,.1); }
+  .card .lines { display: flex; flex-direction: column; gap: 10px; pointer-events: none; width: max-content; }
+  .line { display: flex; flex-wrap: nowrap; gap: 12px; }
+  .char-col { display: flex; flex-direction: column; align-items: center; line-height: 1; }
+  .char-col .hanzi {
+    font-size: var(--hz); font-weight: 500; color: #1a1a2e; line-height: 1.1;
+    font-family: 'Noto Sans SC', sans-serif;
+  }
+  .char-col .pinyin {
+    font-size: var(--py); color: #c0392b; margin-top: 8px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 500; font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'ss01' 1;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    letter-spacing: .3px; padding-top: .12em;
+  }
+  :root[data-tone="hidden"] .char-col .pinyin { display: none; }
+  .char-col.punct .pinyin { visibility: hidden; }
+  .card .placeholder { color: #bbb; font-style: italic; font-size: 18px; font-family: 'Inter', sans-serif; }
+  /* línea de texto en español/latino: letra normal, mucho más chica que los hanzi */
+  .card .es-line {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: calc(var(--py) * 1.1);
+    color: #444; line-height: 1.35; max-width: 520px;
+    white-space: pre-wrap; word-break: break-word;
+  }
+
+  .card .card-tools {
+    position: absolute; top: -14px; right: -10px; display: none; gap: 4px;
+    z-index: 60;
+  }
+  .card:hover .card-tools, .card.selected .card-tools { display: flex; }
+  .card .card-tools button {
+    width: 28px; height: 28px; border-radius: 50%; border: 1px solid #e0e0e0;
+    background: #fff; cursor: pointer; font-size: 13px; line-height: 1;
+    box-shadow: 0 2px 6px rgba(0,0,0,.12); display: flex; align-items: center; justify-content: center;
+  }
+  .card .card-tools button:hover { border-color: #c0392b; color: #c0392b; }
+
+  .card textarea.editor {
+    font-family: 'Noto Sans SC', sans-serif; font-size: 26px;
+    border: none; outline: none; resize: none; background: #fffef8;
+    width: 320px; min-height: 44px; line-height: 1.4; color: #1a1a2e;
+  }
+
+  /* ─── barra de herramientas ─── */
+  .toolbar {
+    position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 4px; background: rgba(255,255,255,.92);
+    border: 1px solid #e6e6e2; border-radius: 14px; padding: 6px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.1); backdrop-filter: blur(8px); z-index: 100;
+  }
+  .toolbar button {
+    width: 42px; height: 42px; border: none; background: transparent; cursor: pointer;
+    border-radius: 10px; font-size: 1.15rem; color: #444; transition: all .12s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .toolbar button:hover { background: #f0f0ee; }
+  .toolbar button.active { background: #1a1a2e; color: #fff; }
+  .toolbar button:disabled { opacity: .28; cursor: default; }
+  .toolbar button:disabled:hover { background: transparent; }
+  .toolbar .sep { width: 1px; background: #e6e6e2; margin: 4px 2px; }
+
+  /* selector de color (solo visible en modo lápiz) */
+  .pen-opts {
+    position: fixed; top: 66px; left: 50%; transform: translateX(-50%);
+    display: none; gap: 6px; align-items: center; background: rgba(255,255,255,.92);
+    border: 1px solid #e6e6e2; border-radius: 12px; padding: 7px 10px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.1); backdrop-filter: blur(8px); z-index: 100;
+  }
+  .pen-opts.show { display: flex; }
+  .swatch { width: 24px; height: 24px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; }
+  .swatch.active { border-color: #1a1a2e; transform: scale(1.12); }
+  .pen-opts input[type=range] { width: 90px; }
+
+  /* botones esquinas */
+  .corner { position: fixed; z-index: 100; display: flex; gap: 6px; }
+  .corner.tl { top: 14px; left: 14px; }
+  .corner.br { bottom: 14px; right: 14px; flex-direction: column; align-items: flex-end; }
+  .corner.bl { bottom: 14px; left: 14px; align-items: center; }
+  .corner button, .corner a {
+    background: rgba(255,255,255,.9); border: 1px solid #e0e0e0; border-radius: 22px;
+    padding: 8px 13px; font: inherit; font-size: .85rem; color: #555; cursor: pointer;
+    text-decoration: none; backdrop-filter: blur(8px); transition: all .15s; line-height: 1;
+  }
+  .corner button:hover, .corner a:hover { background: #fff; border-color: #c0392b; color: #c0392b; }
+  .zoom-ind { font-variant-numeric: tabular-nums; min-width: 52px; text-align: center; }
+
+  /* menú de acciones (engranaje) */
+  .menu {
+    position: fixed; bottom: 58px; right: 14px; width: 240px;
+    background: #fff; border: 1px solid #e6e6e2; border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.14); padding: 8px; z-index: 110; display: none;
+  }
+  .menu.open { display: block; }
+  .menu .grp { padding: 6px 8px; }
+  .menu .grp-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 6px; }
+  .menu .seg { display: flex; background: #f0f0f0; border-radius: 8px; padding: 3px; }
+  .menu .seg button { flex: 1; border: none; background: transparent; cursor: pointer; padding: 7px 4px; font: inherit; font-size: .8rem; color: #555; border-radius: 6px; }
+  .menu .seg button.active { background: #1a1a2e; color: #fff; }
+  .menu .act { width: 100%; text-align: left; background: #fff; border: 1px solid #ececec; border-radius: 8px; padding: 9px 11px; font: inherit; font-size: .86rem; cursor: pointer; margin-top: 5px; }
+  .menu .act:hover { border-color: #c0392b; color: #c0392b; }
+  .menu .act.danger:hover { border-color: #e74c3c; color: #e74c3c; background: #fff5f5; }
+
+  .toast {
+    position: fixed; bottom: 70px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: #1a1a2e; color: #fff; padding: 10px 18px; border-radius: 10px; font-size: .85rem;
+    opacity: 0; pointer-events: none; transition: all .25s; z-index: 200;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  .hint { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); font-size: .76rem; color: #aaa; z-index: 90; pointer-events: none; }
+
+  @media (max-width: 640px) {
+    .hint { display: none; }
+    .toolbar button { width: 38px; height: 38px; font-size: 1.05rem; }
+  }
+  @media print {
+    .toolbar, .pen-opts, .corner, .menu, .hint, .card .card-tools { display: none !important; }
+    #viewport { background: #fff; }
+  }
+</style>
+</head>
+<body>
+
+<div id="viewport" class="tool-select">
+  <div id="world"></div>
+  <canvas id="ink"></canvas>
+</div>
+
+<!-- barra de herramientas central -->
+<div class="toolbar" id="toolbar">
+  <button data-tool="select" class="active" title="Seleccionar y mover (V)">🖱️</button>
+  <button data-tool="text" title="Agregar tarjeta de texto (T)">🔤</button>
+  <button data-tool="pen" title="Lápiz (P)">✏️</button>
+  <button data-tool="eraser" title="Borrador de trazos (E)">🧽</button>
+  <div class="sep"></div>
+  <button id="add-card" title="Nueva tarjeta al centro">➕</button>
+  <div class="sep"></div>
+  <button id="undo" title="Deshacer (Ctrl+Z)" disabled>↶</button>
+  <button id="redo" title="Rehacer (Ctrl+Shift+Z)" disabled>↷</button>
+</div>
+
+<!-- opciones de lápiz -->
+<div class="pen-opts" id="pen-opts">
+  <span class="swatch active" style="background:#1a1a2e" data-color="#1a1a2e"></span>
+  <span class="swatch" style="background:#c0392b" data-color="#c0392b"></span>
+  <span class="swatch" style="background:#2980b9" data-color="#2980b9"></span>
+  <span class="swatch" style="background:#27ae60" data-color="#27ae60"></span>
+  <span class="swatch" style="background:#d4820a" data-color="#d4820a"></span>
+  <input type="range" id="pen-width" min="2" max="18" value="4" title="Grosor">
+</div>
+
+<!-- esquinas -->
+<div class="corner tl">
+  <a href="/">← Apuntes</a>
+  <a href="/pinyin.html" title="Pizarra clásica">🔤 v1</a>
+</div>
+
+<div class="corner bl">
+  <button id="zoom-out" title="Alejar">−</button>
+  <button class="zoom-ind" id="zoom-reset" title="Restablecer zoom y centro">100%</button>
+  <button id="zoom-in" title="Acercar">+</button>
+</div>
+
+<div class="corner br">
+  <button id="menu-btn" title="Ajustes y guardado">⚙️ Menú</button>
+</div>
+
+<!-- menú -->
+<div class="menu" id="menu">
+  <div class="grp">
+    <div class="grp-label">Pinyin</div>
+    <div class="seg" data-control="tone">
+      <button data-value="symbol" class="active">nǐ</button>
+      <button data-value="num">ni3</button>
+      <button data-value="hidden">sin</button>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-label">Tamaño de tarjeta</div>
+    <div class="seg" data-control="cardsize">
+      <button data-value="small">S</button>
+      <button data-value="med" class="active">M</button>
+      <button data-value="large">L</button>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-label">Guardado (local, en este navegador)</div>
+    <button class="act" id="export-json">📤 Exportar pizarra (.json)</button>
+    <button class="act" id="import-json">📥 Importar pizarra (.json)</button>
+    <button class="act" id="export-png">🖼️ Descargar como imagen (PNG)</button>
+  </div>
+  <div class="grp">
+    <button class="act danger" id="clear-board">🗑️ Vaciar pizarra</button>
+  </div>
+</div>
+
+<input type="file" id="file-input" accept="application/json,.json" style="display:none">
+<div class="toast" id="toast"></div>
+<div class="hint">Arrastra el fondo para moverte · rueda para zoom · doble clic en una tarjeta para editar</div>
+
+<script src="https://unpkg.com/pinyin-pro"></script>
+<script>
+(function () {
+  'use strict';
+
+  const LS_KEY = 'pinyinv2-board';
+  const viewport = document.getElementById('viewport');
+  const world    = document.getElementById('world');
+  const ink      = document.getElementById('ink');
+  const ctx      = ink.getContext('2d');
+  const root      = document.documentElement;
+  const toastEl  = document.getElementById('toast');
+
+  let state = {
+    cam: { x: 0, y: 0, zoom: 1 },
+    cards: [],          // {id, x, y, text}
+    strokes: [],        // {points:[[x,y]...], color, width}
+    tone: 'symbol',     // symbol | num | hidden
+    cardsize: 'med'
+  };
+  let tool = 'select';
+  let penColor = '#1a1a2e';
+  let penWidth = 4;
+  let nextId = 1;
+
+  /* ───────── utilidades de cámara ───────── */
+  function applyCamera() {
+    const { x, y, zoom } = state.cam;
+    world.style.transform = `translate(${x}px, ${y}px) scale(${zoom})`;
+    document.getElementById('zoom-reset').textContent = Math.round(zoom * 100) + '%';
+    redrawInk();
+  }
+  const screenToWorld = (sx, sy) => ({ x: (sx - state.cam.x) / state.cam.zoom, y: (sy - state.cam.y) / state.cam.zoom });
+  const worldToScreen = (wx, wy) => ({ x: wx * state.cam.zoom + state.cam.x, y: wy * state.cam.zoom + state.cam.y });
+
+  /* ───────── lienzo de tinta (lápiz) ───────── */
+  function resizeInk() {
+    const dpr = window.devicePixelRatio || 1;
+    ink.width = innerWidth * dpr; ink.height = innerHeight * dpr;
+    ink.style.width = innerWidth + 'px'; ink.style.height = innerHeight + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    redrawInk();
+  }
+  function drawStroke(s) {
+    if (s.points.length < 1) return;
+    ctx.strokeStyle = s.color; ctx.lineWidth = s.width * state.cam.zoom;
+    ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+    ctx.beginPath();
+    s.points.forEach((p, i) => {
+      const sc = worldToScreen(p[0], p[1]);
+      i === 0 ? ctx.moveTo(sc.x, sc.y) : ctx.lineTo(sc.x, sc.y);
+    });
+    if (s.points.length === 1) { // punto
+      const sc = worldToScreen(s.points[0][0], s.points[0][1]);
+      ctx.lineTo(sc.x + 0.1, sc.y + 0.1);
+    }
+    ctx.stroke();
+  }
+  function redrawInk() {
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    state.strokes.forEach(drawStroke);
+  }
+
+  /* ───────── tarjetas ───────── */
+  function pinyinOf(text, perChar) {
+    const lib = window.pinyinPro;
+    if (!lib) return null;
+    const toneType = state.tone === 'num' ? 'num' : 'symbol';
+    return lib.pinyin(text, { toneType, type: 'array' });
+  }
+
+  // tamaño base de hanzi/pinyin por ajuste global; cada tarjeta lo multiplica por su escala
+  const SIZES = { small: [38, 16], med: [52, 21], large: [80, 30] };
+  function applyCardScale(card, el) {
+    const [bh, bp] = SIZES[state.cardsize] || SIZES.med;
+    const s = card.scale || 1;
+    el.style.setProperty('--hz', (bh * s) + 'px');
+    el.style.setProperty('--py', (bp * s) + 'px');
+  }
+
+  function buildCardContent(card, el) {
+    const wrap = document.createElement('div');
+    wrap.className = 'lines';
+    const text = card.text || '';
+    if (!text.trim()) {
+      const ph = document.createElement('div');
+      ph.className = 'placeholder';
+      ph.textContent = 'doble clic para escribir…';
+      wrap.appendChild(ph);
+      el.querySelector('.lines')?.remove();
+      el.insertBefore(wrap, el.firstChild);
+      return;
+    }
+    const hasHan = s => /[㐀-鿿]/.test(s);
+    text.split('\n').forEach(line => {
+      if (line === '') return;
+      // línea sin ningún hanzi → texto en español/latino, letra normal
+      if (!hasHan(line)) {
+        const es = document.createElement('div');
+        es.className = 'es-line';
+        es.textContent = line;
+        wrap.appendChild(es);
+        return;
+      }
+      const lineEl = document.createElement('div');
+      lineEl.className = 'line';
+      const arr = pinyinOf(line) || [];
+      let pi = 0;
+      for (const ch of line) {
+        if (ch === ' ') { pi++; continue; }
+        const col = document.createElement('div');
+        col.className = 'char-col';
+        const hz = document.createElement('div'); hz.className = 'hanzi'; hz.textContent = ch;
+        const py = document.createElement('div'); py.className = 'pinyin';
+        if (/[㐀-鿿]/.test(ch)) { py.textContent = arr[pi] || ''; pi++; }
+        else { col.classList.add('punct'); }
+        col.appendChild(hz); col.appendChild(py);
+        lineEl.appendChild(col);
+      }
+      wrap.appendChild(lineEl);
+    });
+    el.querySelector('.lines')?.remove();
+    el.insertBefore(wrap, el.firstChild);
+  }
+
+  function makeCardEl(card) {
+    const el = document.createElement('div');
+    el.className = 'card';
+    el.dataset.id = card.id;
+    el.style.left = card.x + 'px';
+    el.style.top  = card.y + 'px';
+
+    const tools = document.createElement('div');
+    tools.className = 'card-tools';
+    const bBig   = document.createElement('button'); bBig.textContent = '＋'; bBig.title = 'Agrandar tarjeta';
+    const bSmall = document.createElement('button'); bSmall.textContent = '－'; bSmall.title = 'Achicar tarjeta';
+    const bSpeak = document.createElement('button'); bSpeak.textContent = '🔊'; bSpeak.title = 'Escuchar';
+    const bDel   = document.createElement('button'); bDel.textContent = '✕'; bDel.title = 'Eliminar';
+    tools.appendChild(bBig); tools.appendChild(bSmall); tools.appendChild(bSpeak); tools.appendChild(bDel);
+    el.appendChild(tools);
+
+    buildCardContent(card, el);
+    applyCardScale(card, el);
+
+    bBig.addEventListener('click', e => {
+      e.stopPropagation(); card.scale = Math.min(4, (card.scale || 1) * 1.2);
+      applyCardScale(card, el); record(); save();
+    });
+    bSmall.addEventListener('click', e => {
+      e.stopPropagation(); card.scale = Math.max(0.4, (card.scale || 1) / 1.2);
+      applyCardScale(card, el); record(); save();
+    });
+    bSpeak.addEventListener('click', e => { e.stopPropagation(); speak(card.text); });
+    bDel.addEventListener('click', e => {
+      e.stopPropagation();
+      state.cards = state.cards.filter(c => c.id !== card.id);
+      el.remove(); record(); save();
+    });
+
+    // editar con doble clic
+    el.addEventListener('dblclick', e => { e.stopPropagation(); editCard(card, el); });
+
+    // arrastrar (modo seleccionar)
+    el.addEventListener('pointerdown', e => {
+      if (tool !== 'select' || el.classList.contains('editing')) return;
+      if (e.target.closest('.card-tools')) return;
+      e.stopPropagation();
+      selectCard(el);
+      el.setPointerCapture(e.pointerId);
+      el.classList.add('dragging');
+      const startWorld = screenToWorld(e.clientX, e.clientY);
+      const orig = { x: card.x, y: card.y };
+      const move = ev => {
+        const w = screenToWorld(ev.clientX, ev.clientY);
+        card.x = orig.x + (w.x - startWorld.x);
+        card.y = orig.y + (w.y - startWorld.y);
+        el.style.left = card.x + 'px'; el.style.top = card.y + 'px';
+      };
+      const up = ev => {
+        el.classList.remove('dragging');
+        el.releasePointerCapture(e.pointerId);
+        el.removeEventListener('pointermove', move);
+        el.removeEventListener('pointerup', up);
+        record(); save();
+      };
+      el.addEventListener('pointermove', move);
+      el.addEventListener('pointerup', up);
+    });
+
+    world.appendChild(el);
+    return el;
+  }
+
+  let selectedEl = null;
+  function selectCard(el) {
+    if (selectedEl) selectedEl.classList.remove('selected');
+    selectedEl = el;
+    if (el) el.classList.add('selected');
+  }
+
+  function editCard(card, el) {
+    el.classList.add('editing');
+    const ta = document.createElement('textarea');
+    ta.className = 'editor';
+    ta.value = card.text || '';
+    ta.placeholder = '你好\n谢谢';
+    el.querySelector('.lines')?.remove();
+    el.insertBefore(ta, el.firstChild);
+    ta.focus(); ta.select();
+    const finish = () => {
+      card.text = ta.value;
+      ta.remove();
+      el.classList.remove('editing');
+      buildCardContent(card, el);
+      applyCardScale(card, el);
+      record(); save();
+    };
+    ta.addEventListener('blur', finish);
+    ta.addEventListener('keydown', ev => {
+      if (ev.key === 'Enter' && (ev.ctrlKey || ev.metaKey)) { ev.preventDefault(); ta.blur(); }
+      if (ev.key === 'Escape') { ev.preventDefault(); ta.blur(); }
+      ev.stopPropagation();
+    });
+  }
+
+  function addCard(wx, wy, text) {
+    const card = { id: nextId++, x: wx, y: wy, text: text || '' };
+    state.cards.push(card);
+    const el = makeCardEl(card);
+    save();
+    return { card, el };
+  }
+
+  function renderAllCards() {
+    world.querySelectorAll('.card').forEach(c => c.remove());
+    state.cards.forEach(makeCardEl);
+  }
+
+  /* ───────── TTS ───────── */
+  function speak(text) {
+    if (!text || !('speechSynthesis' in window)) return;
+    const u = new SpeechSynthesisUtterance(text.replace(/\n/g, '，'));
+    u.lang = 'zh-CN'; u.rate = 0.85;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  }
+
+  /* ───────── pan / zoom ───────── */
+  viewport.addEventListener('pointerdown', e => {
+    if (e.target.closest('.card')) return;
+
+    if (tool === 'text') {
+      const w = screenToWorld(e.clientX, e.clientY);
+      const { card, el } = addCard(w.x, w.y, '');
+      setTool('select');
+      editCard(card, el);
+      return;
+    }
+    if (tool === 'pen' || tool === 'eraser') { startInk(e); return; }
+
+    // pan
+    selectCard(null);
+    viewport.classList.add('panning');
+    viewport.setPointerCapture(e.pointerId);
+    const orig = { x: state.cam.x, y: state.cam.y };
+    const start = { x: e.clientX, y: e.clientY };
+    const move = ev => {
+      state.cam.x = orig.x + (ev.clientX - start.x);
+      state.cam.y = orig.y + (ev.clientY - start.y);
+      applyCamera();
+    };
+    const up = () => {
+      viewport.classList.remove('panning');
+      viewport.removeEventListener('pointermove', move);
+      viewport.removeEventListener('pointerup', up);
+      save();
+    };
+    viewport.addEventListener('pointermove', move);
+    viewport.addEventListener('pointerup', up);
+  });
+
+  viewport.addEventListener('wheel', e => {
+    e.preventDefault();
+    const factor = e.deltaY < 0 ? 1.1 : 1 / 1.1;
+    zoomAt(e.clientX, e.clientY, factor);
+  }, { passive: false });
+
+  function zoomAt(sx, sy, factor) {
+    const before = screenToWorld(sx, sy);
+    state.cam.zoom = Math.min(4, Math.max(0.2, state.cam.zoom * factor));
+    // mantener el punto bajo el cursor fijo
+    state.cam.x = sx - before.x * state.cam.zoom;
+    state.cam.y = sy - before.y * state.cam.zoom;
+    applyCamera(); save();
+  }
+
+  /* ───────── dibujo a mano alzada ───────── */
+  function startInk(e) {
+    ink.setPointerCapture(e.pointerId);
+    if (tool === 'eraser') { eraseAt(e.clientX, e.clientY);
+      const em = ev => eraseAt(ev.clientX, ev.clientY);
+      const eu = () => { ink.removeEventListener('pointermove', em); ink.removeEventListener('pointerup', eu); record(); save(); };
+      ink.addEventListener('pointermove', em); ink.addEventListener('pointerup', eu);
+      return;
+    }
+    const stroke = { points: [], color: penColor, width: penWidth };
+    const w0 = screenToWorld(e.clientX, e.clientY);
+    stroke.points.push([w0.x, w0.y]);
+    state.strokes.push(stroke);
+    const move = ev => {
+      const w = screenToWorld(ev.clientX, ev.clientY);
+      stroke.points.push([w.x, w.y]);
+      redrawInk();
+    };
+    const up = () => {
+      ink.removeEventListener('pointermove', move);
+      ink.removeEventListener('pointerup', up);
+      record(); save();
+    };
+    ink.addEventListener('pointermove', move);
+    ink.addEventListener('pointerup', up);
+  }
+
+  function eraseAt(sx, sy) {
+    const w = screenToWorld(sx, sy);
+    const thr = 10 / state.cam.zoom;
+    const before = state.strokes.length;
+    state.strokes = state.strokes.filter(s => !strokeNear(s, w.x, w.y, thr));
+    if (state.strokes.length !== before) redrawInk();
+  }
+  function strokeNear(s, x, y, thr) {
+    for (let i = 0; i < s.points.length; i++) {
+      const a = s.points[i], b = s.points[i + 1] || a;
+      if (segDist(x, y, a[0], a[1], b[0], b[1]) < thr + s.width / 2) return true;
+    }
+    return false;
+  }
+  function segDist(px, py, x1, y1, x2, y2) {
+    const dx = x2 - x1, dy = y2 - y1;
+    const l2 = dx * dx + dy * dy;
+    let t = l2 ? ((px - x1) * dx + (py - y1) * dy) / l2 : 0;
+    t = Math.max(0, Math.min(1, t));
+    const cx = x1 + t * dx, cy = y1 + t * dy;
+    return Math.hypot(px - cx, py - cy);
+  }
+
+  /* ───────── herramientas / UI ───────── */
+  function setTool(t) {
+    tool = t;
+    document.querySelectorAll('.toolbar [data-tool]').forEach(b =>
+      b.classList.toggle('active', b.dataset.tool === t));
+    viewport.className = 'tool-' + t;
+    document.getElementById('pen-opts').classList.toggle('show', t === 'pen');
+  }
+  document.querySelectorAll('.toolbar [data-tool]').forEach(b =>
+    b.addEventListener('click', () => setTool(b.dataset.tool)));
+  document.getElementById('add-card').addEventListener('click', () => {
+    const c = screenToWorld(innerWidth / 2, innerHeight / 2);
+    const { card, el } = addCard(c.x - 60, c.y - 30, '');
+    setTool('select'); editCard(card, el);
+  });
+
+  // swatches y grosor
+  document.querySelectorAll('.swatch').forEach(s =>
+    s.addEventListener('click', () => {
+      document.querySelectorAll('.swatch').forEach(x => x.classList.remove('active'));
+      s.classList.add('active'); penColor = s.dataset.color;
+    }));
+  document.getElementById('pen-width').addEventListener('input', e => penWidth = +e.target.value);
+
+  // zoom botones
+  document.getElementById('zoom-in').addEventListener('click', () => zoomAt(innerWidth/2, innerHeight/2, 1.2));
+  document.getElementById('zoom-out').addEventListener('click', () => zoomAt(innerWidth/2, innerHeight/2, 1/1.2));
+  document.getElementById('zoom-reset').addEventListener('click', () => {
+    state.cam = { x: 0, y: 0, zoom: 1 }; applyCamera(); save();
+  });
+
+  // menú
+  const menu = document.getElementById('menu');
+  document.getElementById('menu-btn').addEventListener('click', e => { e.stopPropagation(); menu.classList.toggle('open'); });
+  document.addEventListener('click', e => {
+    if (!menu.contains(e.target) && e.target.id !== 'menu-btn') menu.classList.remove('open');
+  });
+  document.querySelectorAll('.menu .seg').forEach(seg => {
+    seg.addEventListener('click', e => {
+      const btn = e.target.closest('button'); if (!btn) return;
+      seg.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const ctrl = seg.dataset.control;
+      state[ctrl] = btn.dataset.value;
+      if (ctrl === 'cardsize') root.dataset.cardsize = state.cardsize;
+      if (ctrl === 'tone') root.dataset.tone = state.tone;
+      renderAllCards(); save();
+    });
+  });
+
+  // deshacer / rehacer
+  document.getElementById('undo').addEventListener('click', undo);
+  document.getElementById('redo').addEventListener('click', redo);
+
+  // atajos de teclado
+  document.addEventListener('keydown', e => {
+    if (document.querySelector('.card.editing')) return;
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'z' || e.key === 'Z')) { e.preventDefault(); e.shiftKey ? redo() : undo(); return; }
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || e.key === 'Y')) { e.preventDefault(); redo(); return; }
+    if (e.key === 'v' || e.key === 'V') setTool('select');
+    if (e.key === 't' || e.key === 'T') setTool('text');
+    if (e.key === 'p' || e.key === 'P') setTool('pen');
+    if (e.key === 'e' || e.key === 'E') setTool('eraser');
+    if ((e.key === 'Delete' || e.key === 'Backspace') && selectedEl) {
+      const id = +selectedEl.dataset.id;
+      state.cards = state.cards.filter(c => c.id !== id);
+      selectedEl.remove(); selectedEl = null; record(); save();
+    }
+  });
+
+  /* ───────── persistencia ───────── */
+  let saveTimer = null;
+  function save() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      try { localStorage.setItem(LS_KEY, JSON.stringify({ ...state, nextId })); } catch (e) {}
+    }, 200);
+  }
+  function load() {
+    try {
+      const raw = localStorage.getItem(LS_KEY);
+      if (!raw) return false;
+      const data = JSON.parse(raw);
+      state.cam = data.cam || state.cam;
+      state.cards = data.cards || [];
+      state.strokes = data.strokes || [];
+      state.tone = data.tone || 'symbol';
+      state.cardsize = data.cardsize || 'med';
+      nextId = data.nextId || (state.cards.reduce((m, c) => Math.max(m, c.id), 0) + 1);
+      return true;
+    } catch (e) { return false; }
+  }
+
+  /* ───────── deshacer / rehacer ───────── */
+  let history = [], hi = -1;
+  function snap() { return JSON.stringify({ cards: state.cards, strokes: state.strokes }); }
+  function record() {
+    const s = snap();
+    if (hi >= 0 && history[hi] === s) return;     // nada cambió
+    history = history.slice(0, hi + 1);
+    history.push(s);
+    if (history.length > 60) { history.shift(); }
+    hi = history.length - 1;
+    updateUndoButtons();
+  }
+  function applySnap(s) {
+    const d = JSON.parse(s);
+    state.cards = d.cards; state.strokes = d.strokes;
+    selectedEl = null;
+    renderAllCards(); redrawInk(); save();
+  }
+  function undo() { if (hi > 0) { hi--; applySnap(history[hi]); updateUndoButtons(); } }
+  function redo() { if (hi < history.length - 1) { hi++; applySnap(history[hi]); updateUndoButtons(); } }
+  function updateUndoButtons() {
+    document.getElementById('undo').disabled = hi <= 0;
+    document.getElementById('redo').disabled = hi >= history.length - 1;
+  }
+
+  function syncMenuUI() {
+    root.dataset.cardsize = state.cardsize;
+    root.dataset.tone = state.tone;
+    document.querySelectorAll('.menu .seg').forEach(seg => {
+      const ctrl = seg.dataset.control;
+      seg.querySelectorAll('button').forEach(b =>
+        b.classList.toggle('active', b.dataset.value === state[ctrl]));
+    });
+  }
+
+  function toast(msg) {
+    toastEl.textContent = msg; toastEl.classList.add('show');
+    setTimeout(() => toastEl.classList.remove('show'), 1800);
+  }
+
+  /* ───────── exportar / importar ───────── */
+  document.getElementById('export-json').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify({ ...state, nextId }, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'pizarra-chino-' + new Date().toISOString().slice(0, 10) + '.json';
+    a.click(); URL.revokeObjectURL(a.href);
+    menu.classList.remove('open'); toast('Pizarra exportada 📤');
+  });
+  document.getElementById('import-json').addEventListener('click', () => document.getElementById('file-input').click());
+  document.getElementById('file-input').addEventListener('change', e => {
+    const file = e.target.files[0]; if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const data = JSON.parse(reader.result);
+        state.cam = data.cam || { x: 0, y: 0, zoom: 1 };
+        state.cards = data.cards || [];
+        state.strokes = data.strokes || [];
+        state.tone = data.tone || 'symbol';
+        state.cardsize = data.cardsize || 'med';
+        nextId = data.nextId || (state.cards.reduce((m, c) => Math.max(m, c.id), 0) + 1);
+        syncMenuUI(); renderAllCards(); applyCamera(); save();
+        history = []; hi = -1; record();
+        menu.classList.remove('open'); toast('Pizarra importada 📥');
+      } catch (err) { toast('Archivo inválido ⚠️'); }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  });
+
+  document.getElementById('clear-board').addEventListener('click', () => {
+    if (!confirm('¿Vaciar toda la pizarra? Esto borra tarjetas y trazos.')) return;
+    state.cards = []; state.strokes = []; selectedEl = null;
+    renderAllCards(); redrawInk(); record(); save();
+    menu.classList.remove('open'); toast('Pizarra vaciada 🗑️');
+  });
+
+  /* ── export PNG: dibuja tarjetas + trazos en un canvas con bounding box ── */
+  document.getElementById('export-png').addEventListener('click', () => {
+    exportPNG(); menu.classList.remove('open');
+  });
+
+  function measureCardLayout(card) {
+    // reproduce el layout del DOM, respetando tamaño global + escala de la tarjeta
+    const [bh, bp] = SIZES[state.cardsize] || SIZES.med;
+    const s = card.scale || 1;
+    const hzPx = bh * s, pyPx = bp * s, esPx = bp * s * 1.1;
+    const pad = 16, lineGap = 10, colGap = 12, pyGap = 8;
+    const tmp = document.createElement('canvas').getContext('2d');
+    const lines = (card.text || '').split('\n').filter(l => l !== '');
+    const hasHan = str => /[㐀-鿿]/.test(str);
+    let maxW = 0, totalH = pad;
+    const layout = [];
+    lines.forEach((line, li) => {
+      if (!hasHan(line)) { // línea en español
+        tmp.font = `500 ${esPx}px Inter, sans-serif`;
+        maxW = Math.max(maxW, tmp.measureText(line).width);
+        const lineH = esPx * 1.35;
+        layout.push({ type: 'es', text: line, y: totalH, lineH, esPx });
+        totalH += lineH + (li < lines.length - 1 ? lineGap : 0);
+        return;
+      }
+      const arr = pinyinOf(line) || [];
+      let pi = 0, cols = [], x = 0;
+      for (const ch of line) {
+        if (ch === ' ') { pi++; continue; }
+        const isHan = /[㐀-鿿]/.test(ch);
+        const py = isHan ? (arr[pi] || '') : '';
+        if (isHan) pi++;
+        tmp.font = `500 ${hzPx}px 'Noto Sans SC', sans-serif`;
+        const hw = tmp.measureText(ch).width;
+        tmp.font = `500 ${pyPx}px Inter, sans-serif`;
+        const pw = state.tone === 'hidden' ? 0 : tmp.measureText(py).width;
+        const cw = Math.max(hw, pw);
+        cols.push({ ch, py, cw, x });
+        x += cw + colGap;
+      }
+      const lineW = Math.max(0, x - colGap);
+      maxW = Math.max(maxW, lineW);
+      const lineH = hzPx * 1.1 + (state.tone === 'hidden' ? 0 : pyGap + pyPx * 1.3);
+      layout.push({ type: 'cn', cols, y: totalH, lineH, hzPx, pyPx, pyGap });
+      totalH += lineH + (li < lines.length - 1 ? lineGap : 0);
+    });
+    totalH += pad;
+    return { layout, w: maxW + pad * 2, h: totalH, pad };
+  }
+
+  function exportPNG() {
+    // bounding box de todo el contenido en world coords
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity, has = false;
+    const cardLayouts = state.cards.map(c => {
+      const L = measureCardLayout(c);
+      minX = Math.min(minX, c.x); minY = Math.min(minY, c.y);
+      maxX = Math.max(maxX, c.x + L.w); maxY = Math.max(maxY, c.y + L.h);
+      has = true; return L;
+    });
+    state.strokes.forEach(s => s.points.forEach(p => {
+      minX = Math.min(minX, p[0]); minY = Math.min(minY, p[1]);
+      maxX = Math.max(maxX, p[0]); maxY = Math.max(maxY, p[1]); has = true;
+    }));
+    if (!has) { toast('La pizarra está vacía'); return; }
+
+    const margin = 40;
+    minX -= margin; minY -= margin; maxX += margin; maxY += margin;
+    const W = Math.ceil(maxX - minX), H = Math.ceil(maxY - minY);
+    const dpr = 2;
+    const cv = document.createElement('canvas');
+    cv.width = W * dpr; cv.height = H * dpr;
+    const c = cv.getContext('2d');
+    c.scale(dpr, dpr);
+    c.fillStyle = '#ffffff'; c.fillRect(0, 0, W, H);
+
+    // trazos
+    state.strokes.forEach(s => {
+      c.strokeStyle = s.color; c.lineWidth = s.width; c.lineJoin = 'round'; c.lineCap = 'round';
+      c.beginPath();
+      s.points.forEach((p, i) => {
+        const x = p[0] - minX, y = p[1] - minY;
+        i === 0 ? c.moveTo(x, y) : c.lineTo(x, y);
+      });
+      c.stroke();
+    });
+
+    // tarjetas
+    state.cards.forEach((card, idx) => {
+      const L = cardLayouts[idx];
+      const x0 = card.x - minX, y0 = card.y - minY;
+      // fondo tarjeta
+      c.fillStyle = '#fff'; c.strokeStyle = '#e3e3df'; c.lineWidth = 1;
+      roundRect(c, x0, y0, L.w, L.h, 12); c.fill(); c.stroke();
+      L.layout.forEach(line => {
+        if (line.type === 'es') {
+          c.fillStyle = '#444';
+          c.font = `500 ${line.esPx}px Inter, sans-serif`;
+          c.textAlign = 'left'; c.textBaseline = 'top';
+          c.fillText(line.text, x0 + L.pad, y0 + line.y);
+          return;
+        }
+        line.cols.forEach(col => {
+          const cx = x0 + L.pad + col.x + col.cw / 2;
+          // hanzi
+          c.fillStyle = '#1a1a2e';
+          c.font = `500 ${line.hzPx}px 'Noto Sans SC', sans-serif`;
+          c.textAlign = 'center'; c.textBaseline = 'top';
+          c.fillText(col.ch, cx, y0 + line.y);
+          // pinyin
+          if (state.tone !== 'hidden' && col.py) {
+            c.fillStyle = '#c0392b';
+            c.font = `500 ${line.pyPx}px Inter, sans-serif`;
+            c.fillText(col.py, cx, y0 + line.y + line.hzPx * 1.1 + line.pyGap);
+          }
+        });
+      });
+    });
+
+    cv.toBlob(blob => {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'pizarra-chino-' + new Date().toISOString().slice(0, 10) + '.png';
+      a.click(); URL.revokeObjectURL(a.href);
+      toast('Imagen descargada 🖼️');
+    });
+  }
+  function roundRect(c, x, y, w, h, r) {
+    c.beginPath();
+    c.moveTo(x + r, y);
+    c.arcTo(x + w, y, x + w, y + h, r);
+    c.arcTo(x + w, y + h, x, y + h, r);
+    c.arcTo(x, y + h, x, y, r);
+    c.arcTo(x, y, x + w, y, r);
+    c.closePath();
+  }
+
+  /* ───────── arranque ───────── */
+  window.addEventListener('resize', resizeInk);
+
+  function boot() {
+    if (!window.pinyinPro) { setTimeout(boot, 100); return; }
+    const had = load();
+    syncMenuUI();
+    resizeInk();
+    if (!had) {
+      // primera vez: centrar la cámara y dejar una pizarra de ejemplo
+      state.cam = { x: innerWidth / 2, y: innerHeight / 2 - 60, zoom: 1 };
+      addCard(-200, -40, '你好');
+      addCard(40, -40, '老师');
+      addCard(-90, 130, '现在几点？');
+    }
+    renderAllCards();
+    applyCamera();
+    setTool('select');
+    record(); updateUndoButtons();
+  }
+  boot();
+})();
+</script>
+</body>
+</html>

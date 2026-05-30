@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Básico 3 — Clase 01 · Apuntes Chino</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
+  body { font-family: 'Noto Sans SC', -apple-system, Arial, sans-serif; max-width: 860px; margin: 0 auto; padding: 20px 24px 60px; color: #222; font-size: 15px; background: #fafafa; }
+  header { background: #1a1a2e; color: #fff; padding: 28px 28px 22px; border-radius: 12px; margin-bottom: 28px; }
+  header h1 { font-size: 1.6em; margin: 0 0 4px; color: #e74c3c; }
+  header p { margin: 0; color: #aaa; font-size: 0.88em; }
+  nav { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 16px 20px; margin-bottom: 28px; }
+  nav h3 { margin: 0 0 10px; font-size: 0.82em; text-transform: uppercase; letter-spacing: 1px; color: #999; }
+  nav li { margin: 3px 0; font-size: 0.9em; }
+  nav a { color: #c0392b; text-decoration: none; }
+  nav a:hover { text-decoration: underline; }
+  h2 { font-size: 1.1em; color: #fff; background: #c0392b; padding: 9px 16px; border-radius: 8px; margin-top: 36px; margin-bottom: 14px; }
+  h2.green { background: #27ae60; }
+  h2.blue { background: #2980b9; }
+  h2.gold { background: #d4820a; }
+  h2.gray { background: #555; }
+  h2.purple { background: #8e44ad; }
+  h3 { color: #444; font-size: 0.95em; margin: 16px 0 8px; border-left: 3px solid #e74c3c; padding-left: 10px; }
+  .box { border-radius: 8px; padding: 12px 16px; margin: 10px 0; font-size: 0.92em; }
+  .box.grammar { background: #fff3e0; border: 1.5px solid #ff9800; }
+  .box.structure { background: #fdecea; border: 1.5px solid #c0392b; }
+  .box.note { background: #e8f5e9; border-left: 4px solid #27ae60; border-radius: 0 8px 8px 0; }
+  .box.warn { background: #fce4ec; border-left: 4px solid #e91e63; border-radius: 0 8px 8px 0; }
+  .box.tip { background: #e3f2fd; border-left: 4px solid #1976d2; border-radius: 0 8px 8px 0; }
+  code { background: #f0f0f0; padding: 2px 7px; border-radius: 4px; font-size: 0.88em; font-family: monospace; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em; background: #fff; border-radius: 8px; overflow: hidden; }
+  th { background: #c0392b; color: #fff; padding: 8px 12px; text-align: left; font-size: 0.85em; }
+  tr:nth-child(even) { background: #fafafa; }
+  td { padding: 7px 12px; border-bottom: 1px solid #f0f0f0; }
+  .hz { font-size: 1.15em; font-weight: bold; color: #c0392b; }
+  .hz a { color: #c0392b; text-decoration: none; border-bottom: 1px dotted #c0392b; }
+  .hz a:hover { color: #e74c3c; border-bottom: 1px solid #e74c3c; }
+  .dialog { background: #fff; border-radius: 10px; border: 1px solid #e5e5e5; padding: 14px 16px; margin: 10px 0; }
+  .da { background: #e3f2fd; padding: 8px 14px; border-radius: 8px; margin: 5px 0; }
+  .db { background: #f3e5f5; padding: 8px 14px; border-radius: 8px; margin: 5px 0; margin-left: 40px; }
+  .ex { background: #fffde7; border: 1px solid #f9a825; border-radius: 8px; padding: 14px 18px; margin: 10px 0; }
+  .ex ol { margin: 8px 0 0; padding-left: 22px; }
+  .ex li { margin: 7px 0; }
+  .pinyin-toggle { position: fixed; bottom: 20px; right: 20px; background: #1a1a2e; color: #fff; border: none; padding: 10px 16px; border-radius: 30px; cursor: pointer; font-size: 0.85em; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,.25); transition: background .2s; }
+  .pinyin-toggle:hover { background: #c0392b; }
+  .hide-pinyin .pinyin-col { visibility: hidden; }
+  @media print {
+    .no-print, .pinyin-toggle { display: none !important; }
+    body { background: #fff !important; padding: 10px 20px; font-size: 12px; max-width: 100%; }
+    header { background: #1a1a2e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 16px 20px 12px; margin-bottom: 16px; }
+    header h1 { font-size: 1.3em; }
+    nav { padding: 10px 14px; margin-bottom: 16px; page-break-after: avoid; }
+    h2 { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-size: 1em; padding: 6px 12px; margin-top: 20px; margin-bottom: 8px; page-break-after: avoid; }
+    h3 { font-size: 0.85em; margin: 10px 0 6px; page-break-after: avoid; }
+    .box { padding: 8px 12px; margin: 6px 0; font-size: 0.85em; page-break-inside: avoid; }
+    table { font-size: 0.82em; page-break-inside: avoid; margin: 6px 0; }
+    th { padding: 5px 8px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    td { padding: 4px 8px; }
+    .hz { font-size: 1em; }
+    .hz a { border-bottom: none !important; color: #c0392b !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .dialog { padding: 8px 12px; margin: 6px 0; page-break-inside: avoid; }
+    .da, .db { padding: 5px 10px; }
+    .db { margin-left: 20px; }
+    footer { font-size: 0.7em; margin-top: 16px; }
+  }
+  .key { text-decoration: underline; text-decoration-color: #e74c3c; text-underline-offset: 3px; text-decoration-thickness: 2px; }
+  footer { text-align: center; color: #bbb; font-size: 0.8em; margin-top: 40px; }
+  .stroke-box { display: inline-block; padding: 12px 20px; margin: 4px; background: #fff; border: 2px dashed #c0392b; border-radius: 8px; text-align: center; min-width: 60px; }
+  .stroke-box .num { display: block; font-size: 0.7em; color: #999; margin-bottom: 2px; }
+  .stroke-box .ch { font-size: 2em; color: #c0392b; font-weight: bold; }
+
+  /* Inter para pinyin: mejor renderizado de diacríticos (ī, ǐ, ǎ, ò...). */
+  .pinyin-col,
+  .ex em,
+  .dialog em,
+  .dialog .da em,
+  .dialog .db em,
+  .box em,
+  em {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'ss01' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .clock { font-size: 1.4em; letter-spacing: 2px; }
+  /* responsive-tables */
+  @media (max-width: 600px) {
+    table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    body { padding-left: 14px; padding-right: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Básico 3 — Clase 01</h1>
+  <p>30 de mayo, 2026 · Centro Cultural Chino · <a href="/" style="color:#e74c3c">← Volver al índice</a> · <a href="/pinyin.html" style="color:#e74c3c">🔤 Pizarra de Pinyin</a></p>
+</header>
+
+<div class="box note" style="margin-bottom: 24px;">
+  🚀 <strong>¡Arranca Básico 3!</strong> La primera clase (sábado <strong>23 de mayo</strong>) me la perdí, y por lo que me cuentan se centró en <strong>decir la hora</strong> ⏰. Hoy (30 de mayo) seguimos con el mismo tema, así que esta clase reconstruye y consolida todo lo de <strong>la hora</strong> en chino.
+</div>
+
+<nav>
+  <h3>Índice</h3>
+  <ol>
+    <li><a href="#s1">Decir la hora — 点 (diǎn), 分 (fēn), 半 (bàn) ⏰</a></li>
+    <li><a href="#s2">¿A qué hora…? — 几点 + verbo 🚪 (¿cuándo vuelve mamá?)</a></li>
+    <li><a href="#s3">El orden del tiempo — qué va primero y qué después 🔢</a></li>
+    <li><a href="#s4">以前 / 以后 — "antes de" y "después de" 📆 (voy a Santiago antes del lunes)</a></li>
+  </ol>
+</nav>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECCIÓN 1: Decir la hora                 -->
+<!-- ═══════════════════════════════════════ -->
+<h2 id="s1">1. Decir la hora — 点 (diǎn), 分 (fēn), 半 (bàn) ⏰</h2>
+
+<p>El gran tema de arranque de Básico 3 es <strong>decir la hora del reloj</strong>. La base es muy simple: el chino arma la hora con la pieza <span class="hz">点</span> (diǎn, "en punto / las…") y, si hace falta, los minutos con <span class="hz">分</span> (fēn).</p>
+
+<div class="box tip" id="live-clock" style="text-align:center; padding:18px 16px;">
+  <div id="lc-label" style="font-size:0.78em; color:#1976d2; text-transform:uppercase; letter-spacing:1.2px; font-weight:600;">⏰ Reloj en vivo · ¿qué hora es <em>ahora</em>?</div>
+  <div class="hz" id="lc-hanzi" style="font-size:2.1em; margin:12px 0 6px; line-height:1.2;">现在…</div>
+  <div id="lc-pinyin" style="font-family:'Inter',-apple-system,sans-serif; font-size:1.25em; color:#444;">cargando…</div>
+  <div id="lc-digital" style="font-size:1.1em; color:#777; margin-top:8px; font-variant-numeric:tabular-nums; letter-spacing:1px;">—</div>
+
+  <div style="display:flex; gap:18px; justify-content:center; flex-wrap:wrap; margin-top:14px;">
+    <div>
+      <div style="font-size:0.7em; color:#999; margin-bottom:4px;">HORA</div>
+      <button class="lc-btn" data-act="h-1">−1</button>
+      <button class="lc-btn" data-act="h+1">+1</button>
+    </div>
+    <div>
+      <div style="font-size:0.7em; color:#999; margin-bottom:4px;">MINUTOS</div>
+      <button class="lc-btn" data-act="m-5">−5</button>
+      <button class="lc-btn" data-act="m-1">−1</button>
+      <button class="lc-btn" data-act="m+1">+1</button>
+      <button class="lc-btn" data-act="m+5">+5</button>
+    </div>
+  </div>
+
+  <div style="margin-top:14px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+    <button id="lc-now" style="background:#fff; color:#1976d2; border:1.5px solid #1976d2; padding:7px 16px; border-radius:20px; cursor:pointer; font-size:0.88em;">⏱ Volver a ahora</button>
+    <button id="lc-speak" style="background:#1976d2; color:#fff; border:none; padding:7px 18px; border-radius:20px; cursor:pointer; font-size:0.88em;">🔊 Escuchar</button>
+  </div>
+</div>
+<style>
+  .lc-btn { background:#fff; color:#1976d2; border:1.5px solid #bbdefb; width:42px; height:36px; margin:0 2px; border-radius:8px; cursor:pointer; font-size:0.95em; font-weight:600; transition:background .12s; }
+  .lc-btn:hover { background:#e3f2fd; }
+  .lc-btn:active { background:#1976d2; color:#fff; }
+</style>
+
+<h3>Vocabulario base ⏱️</h3>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/现在" target="_blank">现在</a></td><td class="pinyin-col">xiànzài</td><td>⏳ ahora</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/点" target="_blank">点</a></td><td class="pinyin-col">diǎn</td><td>🕐 hora (en punto) / "las…"</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/分" target="_blank">分</a></td><td class="pinyin-col">fēn</td><td>⏱️ minuto</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/半" target="_blank">半</a></td><td class="pinyin-col">bàn</td><td>🌗 medio / y media (:30)</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/上午" target="_blank">上午</a></td><td class="pinyin-col">shàngwǔ</td><td>🌅 (por la) mañana / AM</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/中午" target="_blank">中午</a></td><td class="pinyin-col">zhōngwǔ</td><td>☀️ mediodía</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/下午" target="_blank">下午</a></td><td class="pinyin-col">xiàwǔ</td><td>🌇 (por la) tarde / PM</td></tr>
+</table>
+
+<div class="box structure">
+  <strong>Estructura para preguntar la hora:</strong><br>
+  <code>现在几点？</code> — <em>Xiànzài jǐ diǎn?</em> = ¿Qué hora es (ahora)?<br>
+  <small>Literalmente: "ahora — cuántas — horas".</small>
+</div>
+
+<div class="box structure">
+  <strong>Estructura para responder:</strong><br>
+  <code>现在 + [momento del día] + número + 点 + número + 分</code><br>
+  <small>El "momento del día" (上午 / 中午 / 下午) va <strong>antes</strong> de la hora. Los minutos con 分 solo si no es en punto.</small>
+</div>
+
+<h3>Ejemplos vistos en clase 📝</h3>
+
+<div class="box tip">
+  🕦 <span class="hz">现在上午十一点半。</span><br>
+  <em>Xiànzài shàngwǔ shíyī diǎn bàn.</em><br>
+  = Ahora son las <strong>11:30 de la mañana</strong>.
+</div>
+
+<div class="box tip">
+  🕦 <span class="hz">现在十一点三十分。</span><br>
+  <em>Xiànzài shíyī diǎn sānshí fēn.</em><br>
+  = Ahora son las <strong>11:30</strong> (la misma hora, pero dicha con minutos en vez de 半).
+</div>
+
+<div class="box tip">
+  🕛 <span class="hz">现在中午十二点。</span><br>
+  <em>Xiànzài zhōngwǔ shí'èr diǎn.</em><br>
+  = Ahora es <strong>mediodía, las doce</strong>.
+</div>
+
+<div class="box note">
+  🌗 <strong>半 (bàn) = "y media".</strong> En vez de decir 三十分 (treinta minutos) puedes usar <span class="hz">半</span>:<br>
+  <span class="hz">十一点半</span> = <span class="hz">十一点三十分</span> = las 11:30. Las dos formas son correctas; 半 es más coloquial.
+</div>
+
+<div class="box warn">
+  ⚠️ <strong>¡Las 2 en punto son 两点 (liǎng diǎn), no 二点!</strong> Cuando el "2" cuenta cosas (horas, objetos…), se usa <span class="hz">两</span> (liǎng), no <span class="hz">二</span> (èr).<br>
+  • 2:00 → <span class="hz">两点</span> (liǎng diǎn) ✅<br>
+  • Pero <strong>las 12</strong> son <span class="hz">十二点</span> (shí'èr diǎn) — aquí sí va 二, porque es parte del número "doce" (十二).
+</div>
+
+<h3>🕰️ Todos los tipos de hora — referencia completa</h3>
+
+<p>Estas son las distintas maneras de armar una hora en chino. Toma la base <span class="hz">点</span> y suma lo que necesites:</p>
+
+<table>
+  <tr><th>Tipo</th><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Hora</th></tr>
+  <tr><td>En punto</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/七点" target="_blank">七点</a></td><td class="pinyin-col">qī diǎn</td><td>🕖 7:00</td></tr>
+  <tr><td>Y media (con 半)</td><td class="hz">七点半</td><td class="pinyin-col">qī diǎn bàn</td><td>🕢 7:30</td></tr>
+  <tr><td>Media (con 分)</td><td class="hz">七点三十分</td><td class="pinyin-col">qī diǎn sānshí fēn</td><td>🕢 7:30</td></tr>
+  <tr><td>Con minutos</td><td class="hz">七点二十分</td><td class="pinyin-col">qī diǎn èrshí fēn</td><td>7:20</td></tr>
+  <tr><td>Minutos &lt; 10 (con 零)</td><td class="hz">七点零五分</td><td class="pinyin-col">qī diǎn líng wǔ fēn</td><td>7:05</td></tr>
+  <tr><td>Un cuarto (con 刻)</td><td class="hz">七点一刻</td><td class="pinyin-col">qī diǎn yí kè</td><td>7:15</td></tr>
+  <tr><td>Tres cuartos</td><td class="hz">七点三刻</td><td class="pinyin-col">qī diǎn sān kè</td><td>7:45</td></tr>
+  <tr><td>Faltan… para (con 差)</td><td class="hz">差五分七点</td><td class="pinyin-col">chà wǔ fēn qī diǎn</td><td>6:55 (faltan 5 para las 7)</td></tr>
+  <tr><td>Las 2 (¡con 两!)</td><td class="hz">两点</td><td class="pinyin-col">liǎng diǎn</td><td>🕑 2:00</td></tr>
+</table>
+
+<div class="box grammar">
+  <strong>Piezas nuevas que aparecen aquí:</strong><br>
+  • <span class="hz">刻</span> (kè) = "cuarto de hora" (15 min). <span class="hz">一刻</span> = :15, <span class="hz">三刻</span> = :45. (Para :30 casi siempre se usa 半, no 两刻.)<br>
+  • <span class="hz">零</span> (líng) = "cero". Se mete cuando los minutos son menores a 10: <span class="hz">两点零五分</span> = 2:05.<br>
+  • <span class="hz">差</span> (chà) = "faltar / quedar". Va <strong>al principio</strong>: <span class="hz">差 + [minutos] + 分 + [hora]</span> = "faltan X minutos para las Y".
+</div>
+
+<h3>🌅 Momentos del día — el "AM/PM" chino</h3>
+
+<p>El chino no usa AM/PM: pone la <strong>franja del día antes de la hora</strong>. Así no hace falta el reloj de 24 horas.</p>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Franja</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/凌晨" target="_blank">凌晨</a></td><td class="pinyin-col">língchén</td><td>🌌 madrugada (~00:00–05:00)</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/早上" target="_blank">早上</a></td><td class="pinyin-col">zǎoshang</td><td>🌄 temprano en la mañana</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/上午" target="_blank">上午</a></td><td class="pinyin-col">shàngwǔ</td><td>🌅 media mañana (AM)</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/中午" target="_blank">中午</a></td><td class="pinyin-col">zhōngwǔ</td><td>☀️ mediodía</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/下午" target="_blank">下午</a></td><td class="pinyin-col">xiàwǔ</td><td>🌇 tarde (PM)</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/晚上" target="_blank">晚上</a></td><td class="pinyin-col">wǎnshang</td><td>🌙 noche</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/半夜" target="_blank">半夜</a></td><td class="pinyin-col">bànyè</td><td>🌚 medianoche / plena noche</td></tr>
+</table>
+
+<div class="box tip">
+  💡 <strong>Combinándolo todo</strong> (franja + hora):<br>
+  • <span class="hz">早上七点</span> — <em>zǎoshang qī diǎn</em> = 7 de la mañana<br>
+  • <span class="hz">下午三点一刻</span> — <em>xiàwǔ sān diǎn yí kè</em> = 3:15 de la tarde<br>
+  • <span class="hz">晚上八点半</span> — <em>wǎnshang bā diǎn bàn</em> = 8:30 de la noche<br>
+  • <span class="hz">差十分晚上十一点</span> — <em>chà shí fēn wǎnshang shíyī diǎn</em> = 10:50 de la noche
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECCIÓN 2: ¿A qué hora…? 几点 + verbo     -->
+<!-- ═══════════════════════════════════════ -->
+<h2 id="s2" class="blue">2. ¿A qué hora…? — 几点 + verbo 🚪</h2>
+
+<p>Ya sabemos <em>decir</em> la hora; ahora aprendemos a <strong>preguntar a qué hora pasa algo</strong>. La pieza es <span class="hz">几点</span> (jǐ diǎn, "¿qué hora? / ¿a qué hora?") — la misma que usamos en <span class="hz">现在几点？</span>, pero ahora seguida de un verbo.</p>
+
+<div class="box structure">
+  <strong>Estructura de la pregunta:</strong><br>
+  <code>Sujeto + 几点 + verbo ?</code><br>
+  <small>⚠️ ¡Ojo! En chino la <strong>hora va ANTES del verbo</strong>, al revés que en español ("¿a qué hora <em>vuelve</em>?" → "mamá <em>a qué hora</em> vuelve").</small>
+</div>
+
+<div class="box grammar">
+  <strong>El verbo estrella: 回来 (huílái) = "volver / regresar (hacia aquí)".</strong><br>
+  • <span class="hz">回</span> (huí) = regresar &nbsp;·&nbsp; <span class="hz">来</span> (lái) = venir → <span class="hz">回来</span> = "volver para aquí".<br>
+  • <span class="hz">回去</span> (huíqù) = volver <em>hacia allá</em> (alejándose de quien habla).<br>
+  • <span class="hz">回家</span> (huí jiā) = volver <em>a casa</em>.
+</div>
+
+<h3>Vocabulario 👨‍👩‍👧</h3>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/几点" target="_blank">几点</a></td><td class="pinyin-col">jǐ diǎn</td><td>❓ ¿a qué hora? / ¿qué hora?</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/回来" target="_blank">回来</a></td><td class="pinyin-col">huílái</td><td>🔙 volver / regresar (hacia aquí)</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/回去" target="_blank">回去</a></td><td class="pinyin-col">huíqù</td><td>↩️ volver (hacia allá)</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/回家" target="_blank">回家</a></td><td class="pinyin-col">huí jiā</td><td>🏠 volver a casa</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/妈妈" target="_blank">妈妈</a></td><td class="pinyin-col">māma</td><td>👩 mamá</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/爸爸" target="_blank">爸爸</a></td><td class="pinyin-col">bàba</td><td>👨 papá</td></tr>
+</table>
+
+<h3>Preguntas y respuestas 💬</h3>
+
+<div class="box tip">
+  ❓ <span class="hz">妈妈几点回来？</span><br>
+  <em>Māma jǐ diǎn huílái?</em> = ¿A qué hora vuelve mamá?<br>
+  ✅ <span class="hz">妈妈下午六点回来。</span><br>
+  <em>Māma xiàwǔ liù diǎn huílái.</em> = Mamá vuelve a las 6 de la tarde.
+</div>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz">你几点回家？</span><br><em>Nǐ jǐ diǎn huí jiā? — ¿A qué hora vuelves a casa?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz">我晚上八点回家。</span><br><em>Wǒ wǎnshang bā diǎn huí jiā. — Vuelvo a casa a las 8 de la noche.</em></div>
+</div>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz">爸爸几点回来？</span><br><em>Bàba jǐ diǎn huílái? — ¿A qué hora vuelve papá?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz">爸爸中午十二点半回来。</span><br><em>Bàba zhōngwǔ shí'èr diǎn bàn huílái. — Papá vuelve a las 12:30 del mediodía.</em></div>
+</div>
+
+<div class="box note">
+  🔑 <strong>La fórmula sirve con cualquier persona y cualquier verbo.</strong> Cambia el sujeto y el verbo y listo:<br>
+  • <span class="hz">老师几点来？</span> — <em>Lǎoshī jǐ diǎn lái?</em> = ¿A qué hora viene el profe?<br>
+  • <span class="hz">你几点吃饭？</span> — <em>Nǐ jǐ diǎn chī fàn?</em> = ¿A qué hora comés?<br>
+  • <span class="hz">他几点去学校？</span> — <em>Tā jǐ diǎn qù xuéxiào?</em> = ¿A qué hora va a la escuela?
+</div>
+
+<h3>🏫 "¿A qué hora vas a la escuela / entras a clase?"</h3>
+
+<p>Aquí hay tres maneras parecidas pero con matiz distinto. La diferencia está en el <strong>verbo</strong>:</p>
+
+<table>
+  <tr><th>Pregunta</th><th class="pinyin-col">Pinyin</th><th>Matiz</th></tr>
+  <tr><td class="hz">你几点去学校？</td><td class="pinyin-col">Nǐ jǐ diǎn qù xuéxiào?</td><td>🚶 ir <em>físicamente</em> a la escuela (去 + lugar)</td></tr>
+  <tr><td class="hz">你几点上学？</td><td class="pinyin-col">Nǐ jǐ diǎn shàng xué?</td><td>🎒 ir a estudiar / asistir al colegio (la rutina)</td></tr>
+  <tr><td class="hz">你几点上课？</td><td class="pinyin-col">Nǐ jǐ diǎn shàng kè?</td><td>🔔 entrar / empezar <em>la clase</em></td></tr>
+</table>
+
+<div class="box tip">
+  💬 <strong>Pregunta y respuesta típica:</strong><br>
+  ❓ <span class="hz">你几点上课？</span> — <em>Nǐ jǐ diǎn shàng kè?</em> = ¿A qué hora entras a clase?<br>
+  ✅ <span class="hz">我上午八点上课。</span> — <em>Wǒ shàngwǔ bā diǎn shàng kè.</em> = Entro a clase a las 8 de la mañana.<br>
+  <br>
+  ❓ <span class="hz">你几点去学校？</span> — <em>Nǐ jǐ diǎn qù xuéxiào?</em> = ¿A qué hora vas a la escuela?<br>
+  ✅ <span class="hz">我早上七点半去学校。</span> — <em>Wǒ zǎoshang qī diǎn bàn qù xuéxiào.</em> = Voy a la escuela a las 7:30 de la mañana.
+</div>
+
+<div class="box note">
+  🔁 <strong>El par 上 / 下 con horarios.</strong> <span class="hz">上</span> (shàng, "subir / empezar") y <span class="hz">下</span> (xià, "bajar / terminar") arman opuestos muy útiles:<br>
+  • <span class="hz">上课</span> entrar a clase ↔ <span class="hz">下课</span> salir de clase<br>
+  • <span class="hz">上班</span> entrar al trabajo ↔ <span class="hz">下班</span> salir del trabajo
+</div>
+
+<h3>🎬 "¿A qué hora dan / empieza la película?"</h3>
+
+<p>Mismo molde 几点 + verbo, pero ahora el sujeto es una cosa (la película) y el verbo es <span class="hz">开始</span> (kāishǐ, "empezar") o <span class="hz">演</span> (yǎn, "proyectar / dar una función").</p>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/电影" target="_blank">电影</a></td><td class="pinyin-col">diànyǐng</td><td>🎬 película</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/开始" target="_blank">开始</a></td><td class="pinyin-col">kāishǐ</td><td>▶️ empezar / comenzar</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/结束" target="_blank">结束</a></td><td class="pinyin-col">jiéshù</td><td>⏹️ terminar / acabar</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/演" target="_blank">演</a></td><td class="pinyin-col">yǎn</td><td>🎭 proyectar / dar (una función) / actuar</td></tr>
+</table>
+
+<div class="box tip">
+  💬 <strong>Preguntas y respuestas:</strong><br>
+  ❓ <span class="hz">电影几点开始？</span> — <em>Diànyǐng jǐ diǎn kāishǐ?</em> = ¿A qué hora empieza la película?<br>
+  ✅ <span class="hz">电影晚上八点开始。</span> — <em>Diànyǐng wǎnshang bā diǎn kāishǐ.</em> = La película empieza a las 8 de la noche.<br>
+  <br>
+  ❓ <span class="hz">电影几点演？</span> — <em>Diànyǐng jǐ diǎn yǎn?</em> = ¿A qué hora dan la película?<br>
+  ❓ <span class="hz">电影几点结束？</span> — <em>Diànyǐng jǐ diǎn jiéshù?</em> = ¿A qué hora termina la película?
+</div>
+
+<div class="box note">
+  🎟️ <strong>Otra forma muy usada — "la película de qué hora":</strong> al comprar entradas se pregunta con <span class="hz">的</span>:<br>
+  <span class="hz">你看几点的电影？</span> — <em>Nǐ kàn jǐ diǎn de diànyǐng?</em> = ¿Qué función (la película de qué hora) vas a ver?<br>
+  Respuesta: <span class="hz">我看晚上七点半的电影。</span> — <em>Wǒ kàn wǎnshang qī diǎn bàn de diànyǐng.</em> = Voy a ver la de las 7:30 de la noche.<br>
+  <small>👉 Aquí la hora + 的 funciona como un adjetivo que describe a 电影: "la [de las 7:30] película".</small>
+</div>
+
+<h3>📋 Lista de práctica — pregunta y responde con horas distintas</h3>
+
+<p>Cada fila combina un sujeto + verbo distinto con un tipo de hora distinto. Tapa la columna de respuesta y practica. (Activa/desactiva el pinyin con el botón de abajo 👇)</p>
+
+<table>
+  <tr><th>Pregunta</th><th class="pinyin-col">Pinyin</th><th>Respuesta</th><th class="pinyin-col">Pinyin + hora</th></tr>
+  <tr>
+    <td class="hz">妈妈几点回来？</td><td class="pinyin-col">Māma jǐ diǎn huílái?</td>
+    <td class="hz">早上七点。</td><td class="pinyin-col">zǎoshang qī diǎn — 7:00 🌄</td>
+  </tr>
+  <tr>
+    <td class="hz">你几点回家？</td><td class="pinyin-col">Nǐ jǐ diǎn huí jiā?</td>
+    <td class="hz">晚上九点半。</td><td class="pinyin-col">wǎnshang jiǔ diǎn bàn — 9:30 🌙</td>
+  </tr>
+  <tr>
+    <td class="hz">老师几点来？</td><td class="pinyin-col">Lǎoshī jǐ diǎn lái?</td>
+    <td class="hz">上午八点一刻。</td><td class="pinyin-col">shàngwǔ bā diǎn yí kè — 8:15</td>
+  </tr>
+  <tr>
+    <td class="hz">爸爸几点吃饭？</td><td class="pinyin-col">Bàba jǐ diǎn chī fàn?</td>
+    <td class="hz">中午十二点。</td><td class="pinyin-col">zhōngwǔ shí'èr diǎn — 12:00 ☀️</td>
+  </tr>
+  <tr>
+    <td class="hz">他几点去学校？</td><td class="pinyin-col">Tā jǐ diǎn qù xuéxiào?</td>
+    <td class="hz">早上六点四十五分。</td><td class="pinyin-col">zǎoshang liù diǎn sìshíwǔ fēn — 6:45</td>
+  </tr>
+  <tr>
+    <td class="hz">你几点起床？</td><td class="pinyin-col">Nǐ jǐ diǎn qǐchuáng?</td>
+    <td class="hz">早上五点半。</td><td class="pinyin-col">zǎoshang wǔ diǎn bàn — 5:30 ⏰</td>
+  </tr>
+  <tr>
+    <td class="hz">我们几点上课？</td><td class="pinyin-col">Wǒmen jǐ diǎn shàng kè?</td>
+    <td class="hz">下午两点。</td><td class="pinyin-col">xiàwǔ liǎng diǎn — 2:00 (¡两!) 📚</td>
+  </tr>
+  <tr>
+    <td class="hz">火车几点到？</td><td class="pinyin-col">Huǒchē jǐ diǎn dào?</td>
+    <td class="hz">下午三点零五分。</td><td class="pinyin-col">xiàwǔ sān diǎn líng wǔ fēn — 3:05 (¡零!) 🚆</td>
+  </tr>
+  <tr>
+    <td class="hz">你几点下班？</td><td class="pinyin-col">Nǐ jǐ diǎn xià bān?</td>
+    <td class="hz">晚上七点。</td><td class="pinyin-col">wǎnshang qī diǎn — 7:00 🏢</td>
+  </tr>
+  <tr>
+    <td class="hz">你几点睡觉？</td><td class="pinyin-col">Nǐ jǐ diǎn shuìjiào?</td>
+    <td class="hz">晚上十一点半。</td><td class="pinyin-col">wǎnshang shíyī diǎn bàn — 11:30 😴</td>
+  </tr>
+</table>
+
+<div class="box tip">
+  📒 <strong>Verbos nuevos que aparecen aquí</strong> (todos van después de 几点):<br>
+  起床 <em>qǐchuáng</em> (levantarse) · 上课 <em>shàng kè</em> (entrar a clase) · 下课 <em>xià kè</em> (salir de clase) · 下班 <em>xià bān</em> (salir del trabajo) · 睡觉 <em>shuìjiào</em> (dormir/acostarse) · 到 <em>dào</em> (llegar) · 吃饭 <em>chī fàn</em> (comer).
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECCIÓN 3: El orden del tiempo           -->
+<!-- ═══════════════════════════════════════ -->
+<h2 id="s3" class="gold">3. El orden del tiempo — qué va primero y qué después 🔢</h2>
+
+<p>La profe insistió en <strong>el orden</strong> de las palabras cuando hay tiempo en la oración. Hay dos reglas de oro, y las dos van <em>al revés</em> del español.</p>
+
+<div class="box structure">
+  <strong>Regla 1 — El tiempo va ANTES del verbo.</strong><br>
+  <code>Sujeto + [TIEMPO] + verbo + …</code><br>
+  <small>En español decimos "vuelvo <em>a las 6</em>" (tiempo después del verbo). En chino es <span class="hz">我六点回来</span> = "yo / a las 6 / vuelvo" — el tiempo <strong>siempre</strong> antes del verbo.</small>
+</div>
+
+<div class="box warn">
+  ❌ <span class="hz">我回来六点。</span> &nbsp;(mal, "calco" del español)<br>
+  ✅ <span class="hz">我六点回来。</span> &nbsp;<em>Wǒ liù diǎn huílái.</em> = Vuelvo a las 6.
+</div>
+
+<div class="box note">
+  📍 <strong>El tiempo puede ir antes o después del sujeto</strong>, pero <u>nunca</u> después del verbo:<br>
+  • <span class="hz">我下午三点回家。</span> <em>(sujeto + tiempo + verbo — lo neutral)</em><br>
+  • <span class="hz">下午三点我回家。</span> <em>(tiempo + sujeto + verbo — resalta el "a las 3")</em><br>
+  Las dos son correctas; mover el tiempo al frente le da énfasis.
+</div>
+
+<div class="box structure">
+  <strong>Regla 2 — De lo MÁS GRANDE a lo MÁS CHICO.</strong><br>
+  <code>año 年 → mes 月 → día 号 → día de semana 星期 → franja del día → hora 点 → minuto 分</code><br>
+  <small>El español va de lo chico a lo grande ("las 3 de la tarde del 30 de mayo de 2026"). El chino es <strong>al revés</strong>: empieza por el año y termina en los minutos.</small>
+</div>
+
+<h3>🔭 De grande a chico — la escala completa</h3>
+
+<table>
+  <tr><th>Orden</th><th>Pieza</th><th class="pinyin-col">Pinyin</th><th>Ejemplo</th></tr>
+  <tr><td>1 · año</td><td class="hz">年</td><td class="pinyin-col">nián</td><td>2026年 (èr líng èr liù nián)</td></tr>
+  <tr><td>2 · mes</td><td class="hz">月</td><td class="pinyin-col">yuè</td><td>5月 (wǔ yuè)</td></tr>
+  <tr><td>3 · día</td><td class="hz">号</td><td class="pinyin-col">hào</td><td>30号 (sānshí hào)</td></tr>
+  <tr><td>4 · día de semana</td><td class="hz">星期</td><td class="pinyin-col">xīngqī</td><td>星期六 (xīngqīliù) sábado</td></tr>
+  <tr><td>5 · franja del día</td><td class="hz">下午</td><td class="pinyin-col">xiàwǔ</td><td>下午 (por la tarde)</td></tr>
+  <tr><td>6 · hora</td><td class="hz">点</td><td class="pinyin-col">diǎn</td><td>三点 (sān diǎn)</td></tr>
+  <tr><td>7 · minuto</td><td class="hz">分</td><td class="pinyin-col">fēn</td><td>三十分 / 半</td></tr>
+</table>
+
+<div class="box tip">
+  🧩 <strong>Todo junto, encadenado de grande a chico:</strong><br>
+  <span class="hz">2026年5月30号星期六下午三点半</span><br>
+  <em>èr líng èr liù nián wǔ yuè sānshí hào xīngqīliù xiàwǔ sān diǎn bàn</em><br>
+  = "sábado 30 de mayo de 2026, a las 3:30 de la tarde" 📅⏰<br>
+  <small>Fíjate cómo en español se lee <strong>de atrás para adelante</strong>.</small>
+</div>
+
+<div class="box tip">
+  💬 <strong>Y metido en una oración completa</strong> (tiempo antes del verbo):<br>
+  <span class="hz">妈妈明天下午六点半回家。</span><br>
+  <em>Māma míngtiān xiàwǔ liù diǎn bàn huí jiā.</em><br>
+  = Mamá vuelve a casa mañana a las 6:30 de la tarde.<br>
+  <small>Orden: sujeto (妈妈) → tiempo de grande a chico (明天 → 下午 → 六点半) → verbo (回家).</small>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SECCIÓN 4: 以前 / 以后 antes / después   -->
+<!-- ═══════════════════════════════════════ -->
+<h2 id="s4" class="green">4. 以前 / 以后 — "antes de" y "después de" 📆</h2>
+
+<p>Para situar algo <strong>antes</strong> o <strong>después</strong> de un momento se usan <span class="hz">以前</span> (yǐqián, "antes de") y <span class="hz">以后</span> (yǐhòu, "después de"). El detalle clave: en chino van <strong>después</strong> del punto de referencia (al revés del español, que dice "antes <em>del</em> lunes" con la preposición delante).</p>
+
+<div class="box structure">
+  <strong>Estructura:</strong><br>
+  <code>[punto de referencia] + 以前 / 以后</code><br>
+  <small>Español: "antes <u>del</u> lunes" → Chino: "lunes + antes" = <span class="hz">星期一以前</span>. La marca temporal va al final.</small>
+</div>
+
+<div class="box tip">
+  ✈️ <strong>La frase de hoy:</strong><br>
+  <span class="hz">我星期一以前去圣地亚哥。</span><br>
+  <em>Wǒ xīngqīyī yǐqián qù Shèngdìyàgē.</em><br>
+  = Voy a Santiago antes del lunes.<br>
+  <small>Orden: sujeto (我) → tiempo (星期一以前) → verbo + destino (去圣地亚哥). El tiempo va antes del verbo, igual que en la §3. ✅</small>
+</div>
+
+<h3>Vocabulario 🗺️</h3>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/以前" target="_blank">以前</a></td><td class="pinyin-col">yǐqián</td><td>⬅️ antes (de) / anteriormente</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/以后" target="_blank">以后</a></td><td class="pinyin-col">yǐhòu</td><td>➡️ después (de) / más adelante</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/圣地亚哥" target="_blank">圣地亚哥</a></td><td class="pinyin-col">Shèngdìyàgē</td><td>🇨🇱 Santiago (de Chile)</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/星期一" target="_blank">星期一</a></td><td class="pinyin-col">xīngqīyī</td><td>📅 lunes</td></tr>
+</table>
+
+<h3>Más ejemplos — antes / después de algo</h3>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz">三点以前</td><td class="pinyin-col">sān diǎn yǐqián</td><td>antes de las 3</td></tr>
+  <tr><td class="hz">下午以后</td><td class="pinyin-col">xiàwǔ yǐhòu</td><td>después del mediodía / por la tarde en adelante</td></tr>
+  <tr><td class="hz">吃饭以前</td><td class="pinyin-col">chī fàn yǐqián</td><td>antes de comer</td></tr>
+  <tr><td class="hz">下课以后</td><td class="pinyin-col">xià kè yǐhòu</td><td>después de clase</td></tr>
+  <tr><td class="hz">2026年以前</td><td class="pinyin-col">èr líng èr liù nián yǐqián</td><td>antes de 2026</td></tr>
+</table>
+
+<div class="box note">
+  🔁 <strong>以前 / 以后 también funcionan con verbos</strong>, no solo con horas o fechas: <span class="hz">吃饭以前</span> (antes de comer), <span class="hz">下课以后</span> (después de clase). La fórmula es idéntica: el evento primero, y <span class="hz">以前/以后</span> al final.
+</div>
+
+<div class="box warn">
+  ⚠️ <strong>No pongas 以前/以后 antes del punto de referencia.</strong><br>
+  ❌ <span class="hz">以前星期一</span> &nbsp;→&nbsp; ✅ <span class="hz">星期一以前</span> (antes del lunes).<br>
+  En chino la palabra "antes/después" siempre va <u>detrás</u> de aquello a lo que se refiere.
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<div style="display: flex; justify-content: space-between; margin-top: 40px; padding: 16px; background: #fff; border-radius: 10px; border: 1px solid #e5e5e5;">
+  <a href="/basico2/clase09.html" style="color: #c0392b; text-decoration: none;">← Básico 2 · Clase 09</a>
+  <a href="/" style="color: #c0392b; text-decoration: none;">↑ Índice</a>
+  <a href="clase02.html" style="color: #c0392b; text-decoration: none;">Clase 02 →</a>
+</div>
+
+<footer>Básico 3 · Clase 01 · 30 may 2026 · <a href="https://basti.cl" style="color:inherit">basti.cl</a></footer>
+
+<button class="pinyin-toggle" onclick="document.body.classList.toggle('hide-pinyin'); this.textContent = document.body.classList.contains('hide-pinyin') ? '👁 Mostrar pinyin' : '🙈 Ocultar pinyin';">🙈 Ocultar pinyin</button>
+
+<script>
+const AUDIO_BASE = '/audio/';
+const audioMap = {
+};
+
+function speak(text) {
+  const file = audioMap[text];
+  if (file) { new Audio(AUDIO_BASE + file).play(); return; }
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'zh-CN'; u.rate = 0.8;
+  speechSynthesis.speak(u);
+}
+
+document.querySelectorAll('td.hz, .dialog .hz').forEach(el => {
+  const text = el.textContent.trim();
+  if (!text) return;
+  const btn = document.createElement('button');
+  btn.textContent = '🔊';
+  btn.style.cssText = 'background:none;border:none;cursor:pointer;margin-left:6px;font-size:0.9em;opacity:0.5;';
+  btn.onmouseover = () => btn.style.opacity = '1';
+  btn.onmouseout = () => btn.style.opacity = '0.5';
+  btn.onclick = (e) => { e.preventDefault(); e.stopPropagation(); speak(text); };
+  el.appendChild(btn);
+});
+
+/* ═══════════════════════════════════════════════════════════
+   Reloj en vivo: convierte la hora actual a hanzi + pinyin
+   ═══════════════════════════════════════════════════════════ */
+(function () {
+  const HZ_DIGITS = ['零','一','二','三','四','五','六','七','八','九'];
+  const PY_DIGITS = ['líng','yī','èr','sān','sì','wǔ','liù','qī','bā','jiǔ'];
+
+  // Pega dos sílabas de pinyin, agregando apóstrofo si la 2ª empieza con vocal
+  // (evita ambigüedades como shí + èr → shí'èr).
+  function joinPy(a, b) {
+    return /^[aeiouāáǎàēéěèīíǐìōóǒòūúǔù]/i.test(b) ? a + "'" + b : a + b;
+  }
+
+  // Número 0–59 → hanzi
+  function numHz(n) {
+    if (n < 10) return HZ_DIGITS[n];
+    if (n === 10) return '十';
+    if (n < 20) return '十' + HZ_DIGITS[n - 10];
+    const t = Math.floor(n / 10), o = n % 10;
+    return HZ_DIGITS[t] + '十' + (o ? HZ_DIGITS[o] : '');
+  }
+
+  // Número 0–59 → pinyin (con tonos)
+  function numPy(n) {
+    if (n < 10) return PY_DIGITS[n];
+    if (n === 10) return 'shí';
+    if (n < 20) return joinPy('shí', PY_DIGITS[n - 10]);
+    const t = Math.floor(n / 10), o = n % 10;
+    let s = joinPy(PY_DIGITS[t], 'shí');
+    if (o) s = joinPy(s, PY_DIGITS[o]);
+    return s;
+  }
+
+  // Franja del día según hora 24h
+  function franja(h) {
+    if (h < 5)  return { hz: '凌晨', py: 'língchén' };
+    if (h < 9)  return { hz: '早上', py: 'zǎoshang' };
+    if (h < 12) return { hz: '上午', py: 'shàngwǔ' };
+    if (h < 13) return { hz: '中午', py: 'zhōngwǔ' };
+    if (h < 18) return { hz: '下午', py: 'xiàwǔ' };
+    return { hz: '晚上', py: 'wǎnshang' };
+  }
+
+  // Recibe hora 24h y minutos → arma {hz, py, digital}
+  function buildTime(h24, m) {
+    let h12 = h24 % 12; if (h12 === 0) h12 = 12;
+    const f = franja(h24);
+
+    // Hora: las 2 se dice 两 (liǎng), no 二. El 12 queda 十二 (numHz lo arma solo).
+    let hourHz, hourPy;
+    if (h12 === 2) { hourHz = '两'; hourPy = 'liǎng'; }
+    else { hourHz = numHz(h12); hourPy = numPy(h12); }
+
+    // Minutos
+    let minHz = '', minPy = '';
+    if (m === 0) {
+      // en punto: nada
+    } else if (m === 30) {
+      minHz = '半'; minPy = 'bàn';
+    } else if (m < 10) {
+      // con 零: X点零N分
+      minHz = '零' + numHz(m) + '分';
+      minPy = 'líng ' + numPy(m) + ' fēn';
+    } else {
+      minHz = numHz(m) + '分';
+      minPy = numPy(m) + ' fēn';
+    }
+
+    const hz = '现在' + f.hz + hourHz + '点' + minHz;
+    const py = 'xiànzài ' + f.py + ' ' + hourPy + ' diǎn' + (minPy ? ' ' + minPy : '');
+    const digital = String(h24).padStart(2, '0') + ':' + String(m).padStart(2, '0');
+    return { hz, py, digital };
+  }
+
+  const elHz = document.getElementById('lc-hanzi');
+  const elPy = document.getElementById('lc-pinyin');
+  const elDig = document.getElementById('lc-digital');
+  const elLbl = document.getElementById('lc-label');
+  const elSpeak = document.getElementById('lc-speak');
+  const elNow = document.getElementById('lc-now');
+  if (!elHz) return;
+
+  let manual = false;   // false = sigue la hora real; true = hora fijada por botones
+  let mh = 0, mm = 0;   // hora/min en modo manual
+  let current = '';
+
+  function render(h24, m, live) {
+    const t = buildTime(h24, m);
+    current = t.hz;
+    elHz.textContent = t.hz;
+    elPy.textContent = t.py;
+    elDig.textContent = '🕐 ' + t.digital;
+    elLbl.innerHTML = live
+      ? '⏰ Reloj en vivo · ¿qué hora es <em>ahora</em>?'
+      : '🔧 Modo manual · mueves el reloj con los botones';
+    elNow.style.display = live ? 'none' : '';
+  }
+
+  function tick() {
+    if (manual) { render(mh, mm, false); return; }
+    const now = new Date();
+    render(now.getHours(), now.getMinutes(), true);
+  }
+
+  // Al tocar un botón de ajuste, pasa a modo manual partiendo de la hora actual
+  function enterManual() {
+    if (!manual) {
+      const now = new Date();
+      mh = now.getHours(); mm = now.getMinutes();
+      manual = true;
+    }
+  }
+
+  document.querySelectorAll('.lc-btn').forEach(b => {
+    b.onclick = () => {
+      enterManual();
+      const act = b.dataset.act;
+      if (act === 'h+1') mh = (mh + 1) % 24;
+      else if (act === 'h-1') mh = (mh + 23) % 24;
+      else {
+        const delta = parseInt(act.slice(1), 10); // m+5, m-1, etc.
+        let total = mh * 60 + mm + delta;
+        total = ((total % 1440) + 1440) % 1440;   // envuelve en el día
+        mh = Math.floor(total / 60); mm = total % 60;
+      }
+      render(mh, mm, false);
+    };
+  });
+
+  elNow.onclick = () => { manual = false; tick(); };
+  elSpeak.onclick = () => speak(current);
+
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>
