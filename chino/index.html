@@ -3,122 +3,202 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chino Mandarín — Apuntes Basti</title>
+<title>chino.basti.cl — Apuntes de Chino</title>
 <style>
-  :root { --red: #c0392b; --dark: #1a1a2e; --border: #e5e5e5; --muted: #888; }
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, 'Segoe UI', Arial, sans-serif; background: #f5f5f7; color: #222; }
-  header { background: var(--dark); color: #fff; padding: 40px 24px 32px; }
-  .header-inner { max-width: 860px; margin: 0 auto; }
-  .breadcrumb { font-size: 0.82rem; color: #777; margin-bottom: 12px; }
-  .breadcrumb a { color: #e74c3c; text-decoration: none; }
-  .breadcrumb a:hover { text-decoration: underline; }
-  header h1 { font-size: 1.9rem; font-weight: 700; }
-  header p { color: #aaa; margin-top: 6px; font-size: 0.9rem; }
-  main { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
-  .section-title { font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 14px; margin-top: 36px; }
-  .section-title:first-child { margin-top: 0; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
-  .card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; text-decoration: none; color: inherit; display: block; transition: box-shadow .15s, transform .15s; }
-  .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.1); transform: translateY(-2px); }
-  .card.tool { border: 1.5px dashed var(--red); }
-  .card-tag { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--red); margin-bottom: 8px; }
-  .card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
-  .card p { font-size: 0.83rem; color: var(--muted); line-height: 1.45; }
-  .card-meta { margin-top: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
-  .badge { display: inline-block; background: #f0f0f0; color: #555; border-radius: 20px; padding: 2px 10px; font-size: 0.73rem; }
-  .badge.done { background: #d4edda; color: #155724; }
-  .badge.live { background: #fff3cd; color: #856404; }
-  footer { text-align: center; color: var(--muted); font-size: 0.82rem; padding: 24px; }
-  @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
-  @media (max-width: 600px) {
-    table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  :root {
+    --bg: #f7f2f0;
+    --paper: #fffdfc;
+    --ink: #1c1c1e;
+    --muted: #9a9a9e;
+    --faint: #d8d8d4;
+    --red: #c0392b;
+    --red-bright: #e74c3c;
+    --red-soft: #fdecea;
+    --red-tint: #f6d8d3;
+    --green: #2f8f4e;
+    --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: var(--mono); background: var(--bg); color: var(--ink);
+    font-size: 14.5px; line-height: 1.5; -webkit-font-smoothing: antialiased;
+    padding: 0 20px 80px;
+    background-image:
+      radial-gradient(60% 30% at 100% 0%, rgba(231,76,60,.08), transparent 70%),
+      radial-gradient(50% 25% at 0% 0%, rgba(192,57,43,.06), transparent 70%);
+    background-repeat: no-repeat;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; }
+  .zh { font-family: 'Noto Sans SC', var(--mono); }
+
+  /* ---------- HEADER ---------- */
+  .top-bar { height: 4px; background: linear-gradient(90deg, var(--red), var(--red-bright), #f0a39b); border-radius: 0 0 3px 3px; }
+  header { padding: 44px 0 0; }
+  .site-title { font-size: 1.7rem; font-weight: 700; letter-spacing: -.5px; display: inline-block; position: relative; }
+  .site-title .dot { color: var(--red); }
+  .site-title .cl { color: var(--red); }
+  .site-title::after {
+    content: ""; display: block; height: 7px; width: 62%;
+    background: var(--red-soft); border-radius: 3px;
+    margin-top: -8px; position: relative; z-index: -1;
+  }
+  .tagline { color: var(--muted); font-size: 0.86rem; margin-top: 12px; }
+  .tagline .zh { color: var(--red); font-weight: 500; }
+  .rule { border: 0; height: 1px; background: linear-gradient(90deg, var(--red-tint), transparent); margin: 26px 0; }
+
+  .label { color: var(--red); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; font-weight: 700; }
+  .label .count { color: var(--muted); font-weight: 400; }
+
+  /* ---------- LEVELS (details / summary) ---------- */
+  .lvl { background: var(--paper); border-radius: 8px; margin-bottom: 6px; border: 1px solid #f0e6e3; overflow: hidden; }
+  summary {
+    list-style: none; cursor: pointer; padding: 14px 14px;
+    display: grid; grid-template-columns: 1.4em auto 1fr auto; align-items: baseline; gap: 8px;
+    transition: background .12s;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { background: var(--red-soft); }
+  details[open] > summary { background: var(--red-soft); border-bottom: 1px solid var(--red-tint); }
+  .marker { color: var(--red-bright); transition: transform .18s; font-size: 0.9em; }
+  details[open] > summary .marker { transform: rotate(90deg); }
+  .path { font-weight: 700; color: var(--red); }
+  .path .zh { font-weight: 500; color: var(--muted); font-size: 0.92em; margin-left: 8px; }
+  .leader { border-bottom: 1px dotted var(--red-tint); transform: translateY(-4px); }
+  .meta { color: var(--muted); font-size: 0.84rem; white-space: nowrap; }
+  .meta .done { color: var(--green); font-weight: 500; }
+  .meta .live { color: var(--red); font-weight: 700; }
+  .meta .live::before { content: "● "; font-size: 0.7em; vertical-align: middle; }
+  .lvl-sub { padding: 14px 16px 6px 16px; color: var(--muted); font-size: 0.82rem; line-height: 1.55; }
+
+  /* expanded class list */
+  .classes { padding: 8px 8px 12px 1.8em; }
+  .classes a {
+    display: grid; grid-template-columns: 1.2em 6.6em 1fr; gap: 8px; align-items: start;
+    text-decoration: none; color: var(--ink); padding: 8px 8px; border-radius: 6px;
+    transition: background .12s;
+  }
+  .classes a + a { border-top: 1px solid #f4ebe9; }
+  .classes a:hover { background: var(--red-soft); }
+  .classes a:hover .id { color: var(--red); }
+  .classes .tree { color: var(--red-tint); }
+  .classes .id { color: var(--red-bright); transition: color .12s; padding-top: 1px; }
+  .classes .desc { display: flex; flex-direction: column; gap: 2px; }
+  .classes .concepts { font-size: 0.9rem; font-weight: 500; }
+  .classes .concepts .zh { color: var(--red); }
+  .classes .es { font-size: 0.8rem; color: var(--muted); line-height: 1.45; }
+
+  /* ---------- TOOLS (chips) ---------- */
+  .chips { display: flex; flex-wrap: wrap; gap: 9px; }
+  .chip {
+    text-decoration: none; color: var(--red); border: 1px solid var(--red-tint);
+    border-radius: 8px; padding: 9px 14px; font-size: 0.88rem; background: var(--red-soft);
+    font-weight: 500; transition: all .14s; line-height: 1.3;
+  }
+  .chip:hover { background: var(--red); color: #fff; border-color: var(--red); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(192,57,43,.25); }
+  .chip .ico { margin-right: 5px; }
+  .chip .ct { display: block; font-size: 0.72rem; font-weight: 400; opacity: .8; margin-top: 1px; }
+
+  footer { color: var(--muted); font-size: 0.78rem; margin-top: 40px; }
+  footer .hash { color: var(--red-tint); }
+  footer a { color: var(--red); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 560px) {
+    body { padding: 0 16px 64px; font-size: 14px; }
+    .site-title { font-size: 1.45rem; }
+    .classes a { grid-template-columns: 1.1em 5.6em 1fr; gap: 6px; }
+    .path .zh { display: none; }
   }
 </style>
 </head>
 <body>
-<header>
-  <div class="header-inner">
-    <div class="breadcrumb"><a href="/">← Apuntes</a> / Chino Mandarín</div>
-    <h1>🀄 Chino Mandarín</h1>
-    <p>Centro Cultural Chino · Básico 1, 2 y 3</p>
-  </div>
-</header>
-<main>
+<div class="top-bar"></div>
+<div class="wrap">
 
-  <div class="section-title">Niveles</div>
-  <div class="grid">
-    <a class="card" href="/basico1/">
-      <div class="card-tag">Básico 1 · Diciembre 2025</div>
-      <h3>🀄 Básico 1</h3>
-      <p>Saludos, números, familia, habilidades y descripciones físicas. 10 capítulos + apéndice de gramática.</p>
-      <div class="card-meta">
-        <span class="badge done">✓ Completo</span>
-        <span class="badge">11 capítulos</span>
-        <span class="badge">你好 谢谢 会 有</span>
-      </div>
-    </a>
-    <a class="card" href="/basico2/">
-      <div class="card-tag">Básico 2 · Marzo-Mayo 2026</div>
-      <h3>🀄 Básico 2</h3>
-      <p>会/有/的, 怎么, fechas, 去 + verbo, 和/想, 多少 y dinero, 在 + posiciones + 正在, 能, 请 y radicales.</p>
-      <div class="card-meta">
-        <span class="badge done">✓ Completo</span>
-        <span class="badge">9 clases</span>
-        <span class="badge">在 想 多少 请</span>
-      </div>
-    </a>
-    <a class="card" href="/basico3/">
-      <div class="card-tag">Básico 3 · Mayo 2026</div>
-      <h3>🀄 Básico 3</h3>
-      <p>Decir la hora (点/分/半), preguntar a qué hora con 几点 + verbo y el orden del tiempo en la oración.</p>
-      <div class="card-meta">
-        <span class="badge live">● En curso</span>
-        <span class="badge">1 clase</span>
-        <span class="badge">点 分 半</span>
-      </div>
-    </a>
+  <header>
+    <h1 class="site-title">chino<span class="dot">.</span>basti<span class="dot">.</span><span class="cl">cl</span></h1>
+    <p class="tagline"><span class="zh">中文</span> · apuntes de Basti · Centro Cultural Chino</p>
+  </header>
+
+  <hr class="rule">
+
+  <div class="label">Niveles <span class="count">· 22 clases</span></div>
+
+  <!-- BÁSICO 1 -->
+  <details class="lvl">
+    <summary>
+      <span class="marker">▸</span>
+      <span class="path">basico1/<span class="zh">基础一</span></span>
+      <span class="leader"></span>
+      <span class="meta"><span class="done">✓ completo</span> · 11 caps</span>
+    </summary>
+    <div class="lvl-sub">Fundamentos: fonética, tonos, saludos, números, familia y la gramática base del mandarín.</div>
+    <div class="classes">
+      <a href="/basico1/cap01.html"><span class="tree">└</span><span class="id">cap01</span><span class="desc"><span class="concepts">Introducción y Fonética</span><span class="es">Los 4 tonos, iniciales y finales del pinyin.</span></span></a>
+      <a href="/basico1/cap02.html"><span class="tree">└</span><span class="id">cap02</span><span class="desc"><span class="concepts">Iniciales y Cortesía</span><span class="es">Trazos, fórmulas de respeto y las formas de decir "no".</span></span></a>
+      <a href="/basico1/cap03.html"><span class="tree">└</span><span class="id">cap03</span><span class="desc"><span class="concepts">Gramática Básica</span><span class="es">Pronombres, <span class="zh">要</span>, preguntas con <span class="zh">吗/呢</span> y saludos.</span></span></a>
+      <a href="/basico1/cap04.html"><span class="tree">└</span><span class="id">cap04</span><span class="desc"><span class="concepts">Nombres y Nacionalidades</span><span class="es">Presentarse con <span class="zh">叫</span> y <span class="zh">是</span>, países y profesiones.</span></span></a>
+      <a href="/basico1/cap05.html"><span class="tree">└</span><span class="id">cap05</span><span class="desc"><span class="concepts">Demostrativos y Cantidad</span><span class="es"><span class="zh">这/那/哪</span>, clasificadores y la familia.</span></span></a>
+      <a href="/basico1/cap06.html"><span class="tree">└</span><span class="id">cap06</span><span class="desc"><span class="concepts">Identidad y Cultura</span><span class="es"><span class="zh">想</span>, el clasificador <span class="zh">本</span> y preguntar quién con <span class="zh">谁</span>.</span></span></a>
+      <a href="/basico1/cap07.html"><span class="tree">└</span><span class="id">cap07</span><span class="desc"><span class="concepts">Posesión y Verbos de Estado</span><span class="es"><span class="zh">的</span>, <span class="zh">很</span>, <span class="zh">在</span> y la partícula <span class="zh">了</span>.</span></span></a>
+      <a href="/basico1/cap08.html"><span class="tree">└</span><span class="id">cap08</span><span class="desc"><span class="concepts">Frases, Números y Cultura</span><span class="es">Números 0-99, <span class="zh">万/亿</span> y supersticiones.</span></span></a>
+      <a href="/basico1/cap09.html"><span class="tree">└</span><span class="id">cap09</span><span class="desc"><span class="concepts">La Gran Familia <span class="zh">大家族</span></span><span class="es">Árbol genealógico, la edad y el trato formal.</span></span></a>
+      <a href="/basico1/cap10.html"><span class="tree">└</span><span class="id">cap10</span><span class="desc"><span class="concepts">Repaso</span><span class="es">Repaso de iniciales y vocabulario.</span></span></a>
+      <a href="/basico1/capapendice.html"><span class="tree">└</span><span class="id">apéndice</span><span class="desc"><span class="concepts">Hoja de Trucos</span><span class="es">Estructuras, partículas y clasificadores esenciales.</span></span></a>
+    </div>
+  </details>
+
+  <!-- BÁSICO 2 -->
+  <details class="lvl">
+    <summary>
+      <span class="marker">▸</span>
+      <span class="path">basico2/<span class="zh">基础二</span></span>
+      <span class="leader"></span>
+      <span class="meta"><span class="done">✓ completo</span> · 9 clases</span>
+    </summary>
+    <div class="lvl-sub">Verbos modales, fechas, ir a lugares, dinero, ubicación y acciones en curso; primeras conversaciones.</div>
+    <div class="classes">
+      <a href="/basico2/clase01.html"><span class="tree">└</span><span class="id">clase01</span><span class="desc"><span class="concepts"><span class="zh">会 · 有 · 的</span></span><span class="es">Poder/saber, tener y posesión; familia y adjetivos.</span></span></a>
+      <a href="/basico2/clase02.html"><span class="tree">└</span><span class="id">clase02</span><span class="desc"><span class="concepts"><span class="zh">怎么 · 好看 · 好吃</span></span><span class="es">Preguntar "cómo", y bueno/lindo/rico de ver o comer.</span></span></a>
+      <a href="/basico2/clase03.html"><span class="tree">└</span><span class="id">clase03</span><span class="desc"><span class="concepts"><span class="zh">今天几号 · 星期 · 去</span></span><span class="es">Fechas, días de la semana e ir a un lugar.</span></span></a>
+      <a href="/basico2/clase04.html"><span class="tree">└</span><span class="id">clase04</span><span class="desc"><span class="concepts"><span class="zh">去</span>+lugar+verbo · <span class="zh">生日</span></span><span class="es">Ir a un lugar a hacer algo, el cumpleaños y tipos de lugares.</span></span></a>
+      <a href="/basico2/clase05.html"><span class="tree">└</span><span class="id">clase05</span><span class="desc"><span class="concepts"><span class="zh">和 · 想 · 哪儿/做什么</span></span><span class="es">Y/con, querer, dónde y qué hacer; bebidas.</span></span></a>
+      <a href="/basico2/clase06.html"><span class="tree">└</span><span class="id">clase06</span><span class="desc"><span class="concepts"><span class="zh">想 · 这/那 · 多少</span></span><span class="es">Querer vs necesitar, esto/eso, cuánto y el dinero.</span></span></a>
+      <a href="/basico2/clase07.html"><span class="tree">└</span><span class="id">clase07</span><span class="desc"><span class="concepts"><span class="zh">在</span>+lugar · <span class="zh">正在</span></span><span class="es">Estar en un lugar, posiciones (<span class="zh">上下里外</span>…) y acción en curso.</span></span></a>
+      <a href="/basico2/clase08.html"><span class="tree">└</span><span class="id">clase08</span><span class="desc"><span class="concepts"><span class="zh">不</span> (negación) · <span class="zh">一起</span></span><span class="es">Negar con <span class="zh">不</span>, hacer algo juntos y familias de caracteres.</span></span></a>
+      <a href="/basico2/clase09.html"><span class="tree">└</span><span class="id">clase09</span><span class="desc"><span class="concepts"><span class="zh">能 · 请</span></span><span class="es">Poder con <span class="zh">能</span>, cortesía con <span class="zh">请</span> y conversación.</span></span></a>
+    </div>
+  </details>
+
+  <!-- BÁSICO 3 (abierto: en curso) -->
+  <details class="lvl" open>
+    <summary>
+      <span class="marker">▸</span>
+      <span class="path">basico3/<span class="zh">基础三</span></span>
+      <span class="leader"></span>
+      <span class="meta"><span class="live">en curso</span> · 2 clases</span>
+    </summary>
+    <div class="lvl-sub">El reloj y la vida diaria: decir la hora, la rutina de la mañana a la noche y un poco de fonética avanzada.</div>
+    <div class="classes">
+      <a href="/basico3/clase01.html"><span class="tree">└</span><span class="id">clase01</span><span class="desc"><span class="concepts">La hora — <span class="zh">点 · 分 · 半</span></span><span class="es">Decir la hora del reloj y preguntar a qué hora con <span class="zh">几点</span>.</span></span></a>
+      <a href="/basico3/clase02.html"><span class="tree">└</span><span class="id">clase02</span><span class="desc"><span class="concepts">La rutina del día (<span class="zh">起床</span>→<span class="zh">睡觉</span>)</span><span class="es">La rutina de la mañana a la noche: comidas, trabajo/clase y el tono neutro.</span></span></a>
+    </div>
+  </details>
+
+  <hr class="rule">
+
+  <div class="label">Herramientas</div>
+  <div class="chips">
+    <a class="chip" href="/flashcards.html"><span class="ico">🃏</span>flashcards<span class="ct">vocabulario</span></a>
+    <a class="chip" href="/buscador.html"><span class="ico">🔍</span>buscador<span class="ct">hanzi · pinyin · es</span></a>
+    <a class="chip" href="/listening.html"><span class="ico">🎧</span>listening<span class="ct">audio → escribir</span></a>
+    <a class="chip" href="/pinyin.html"><span class="ico">🔤</span>pinyin<span class="ct">pizarra de tonos</span></a>
   </div>
 
-  <div class="section-title">Herramientas</div>
-  <div class="grid">
-    <a class="card tool" href="/flashcards.html">
-      <div class="card-tag">Interactivo</div>
-      <h3>🃏 Flashcards — Básico 2</h3>
-      <p>111 tarjetas de vocabulario. Modo interactivo + imprimible.</p>
-      <div class="card-meta">
-        <span class="badge">111 tarjetas</span>
-      </div>
-    </a>
-    <a class="card tool" href="/buscador.html">
-      <div class="card-tag">Búsqueda</div>
-      <h3>🔍 Buscador de Caracteres</h3>
-      <p>Busca por hanzi, pinyin o español en todo el vocabulario.</p>
-      <div class="card-meta">
-        <span class="badge">100+ caracteres</span>
-      </div>
-    </a>
-    <a class="card tool" href="/listening.html">
-      <div class="card-tag">Práctica</div>
-      <h3>🎧 Listening Practice</h3>
-      <p>Escucha audio en chino y escribe lo que oyes. Filtros por clase, palabras o frases.</p>
-      <div class="card-meta">
-        <span class="badge">Audio ElevenLabs</span>
-      </div>
-    </a>
-    <a class="card tool" href="/pinyin.html">
-      <div class="card-tag">Utilidad</div>
-      <h3>🔤 Pizarra de Pinyin</h3>
-      <p>Tipea texto chino y ve el pinyin alineado por carácter. Ideal para usar en clase o proyectar.</p>
-      <div class="card-meta">
-        <span class="badge">拼 → pīn</span>
-        <span class="badge">🔊 TTS</span>
-        <span class="badge">📐 modo pizarra</span>
-      </div>
-    </a>
-  </div>
+  <footer><span class="hash">#</span> <a href="https://basti.cl">basti.cl</a> · Chino Mandarín</footer>
 
-</main>
-<footer>Chino Mandarín · <a href="https://basti.cl" style="color:inherit">basti.cl</a></footer>
+</div>
 </body>
 </html>

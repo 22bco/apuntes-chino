@@ -5,96 +5,196 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Básico 3 · Apuntes Chino — Basti</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Sans SC', -apple-system, Arial, sans-serif; background: #f5f5f7; color: #222; }
-  header { background: #1a1a2e; color: #fff; padding: 36px 24px 28px; }
-  .header-inner { max-width: 860px; margin: 0 auto; }
-  header h1 { font-size: 1.8em; color: #e74c3c; }
-  header p { color: #aaa; margin-top: 6px; font-size: 0.9em; }
-  header a { color: #e74c3c; text-decoration: none; }
-  main { max-width: 860px; margin: 32px auto; padding: 0 24px 60px; }
-  .clase-card { background: #fff; border: 1px solid #e5e5e5; border-radius: 12px; padding: 22px 24px; margin-bottom: 14px; text-decoration: none; color: inherit; display: block; transition: box-shadow .15s, transform .15s; }
-  .clase-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.1); transform: translateY(-2px); }
-  .clase-num { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: #c0392b; margin-bottom: 6px; }
-  .clase-card h3 { font-size: 1.05em; margin-bottom: 4px; }
-  .clase-card p { font-size: 0.85em; color: #888; line-height: 1.4; }
-  .clase-meta { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
-  .badge { display: inline-block; background: #f0f0f0; color: #555; border-radius: 20px; padding: 2px 10px; font-size: 0.75rem; }
-  .tools-section { margin-top: 32px; }
-  .tools-section h2 { font-size: 0.85em; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
-  .tool-card { background: #fff; border: 1.5px dashed #c0392b; border-radius: 12px; padding: 22px 24px; margin-bottom: 14px; text-decoration: none; color: inherit; display: block; transition: box-shadow .15s; }
-  .tool-card:hover { box-shadow: 0 4px 20px rgba(192,57,43,.15); }
-  .tool-card h3 { color: #c0392b; font-size: 1.05em; margin-bottom: 4px; }
-  .tool-card p { font-size: 0.85em; color: #888; }
-  footer { text-align: center; color: #bbb; font-size: 0.82em; padding: 24px; }
-
-  /* Inter para pinyin: mejor renderizado de diacríticos (ī, ǐ, ǎ, ò...). */
-  .pinyin-col,
-  .ex em,
-  .dialog em,
-  .dialog .da em,
-  .dialog .db em,
-  .box em,
-  em {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'ss01' 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  :root {
+    --navy: #1a1a2e;
+    --red: #c0392b;
+    --red-bright: #e74c3c;
+    --bg: #f5f5f7;
+    --ink: #222;
+    --muted: #8a8a93;
   }
-  /* responsive-tables */
-  @media (max-width: 600px) {
-    table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  body { font-family: 'Inter', 'Noto Sans SC', -apple-system, Arial, sans-serif; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+  /* ---------- HERO ---------- */
+  header {
+    background: radial-gradient(120% 120% at 0% 0%, #2a2a4a 0%, var(--navy) 55%, #131322 100%);
+    color: #fff; padding: 48px 24px 56px; position: relative; overflow: hidden;
+  }
+  header::after {
+    content: "时间"; position: absolute; right: -10px; bottom: -34px;
+    font-family: 'Noto Sans SC', sans-serif; font-size: 9rem; font-weight: 700;
+    color: rgba(231,76,60,.08); letter-spacing: -8px; line-height: 1; pointer-events: none;
+  }
+  .header-inner { max-width: 880px; margin: 0 auto; position: relative; z-index: 1; }
+  .crumb { display: inline-flex; align-items: center; gap: 6px; color: #c9c9d6; text-decoration: none; font-size: 0.82em; opacity: .85; transition: opacity .15s; }
+  .crumb:hover { opacity: 1; }
+  header h1 { font-size: 2.1em; font-weight: 700; margin-top: 14px; letter-spacing: -.5px; }
+  header h1 .zh { color: var(--red-bright); }
+  header .subtitle { color: #b9b9c8; margin-top: 8px; font-size: 0.92em; }
+  .hero-stats { display: flex; gap: 22px; margin-top: 22px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .num { font-size: 1.5em; font-weight: 700; color: #fff; line-height: 1; }
+  .stat .lbl { font-size: 0.72em; color: #9a9ab0; text-transform: uppercase; letter-spacing: .6px; margin-top: 4px; }
+
+  /* ---------- MAIN ---------- */
+  main { max-width: 880px; margin: -28px auto 0; padding: 0 20px 60px; position: relative; z-index: 2; }
+  .section-label { font-size: 0.78em; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; margin: 30px 4px 14px; }
+
+  /* ---------- CLASE CARDS ---------- */
+  .clase-card {
+    background: #fff; border: 1px solid #ececf0; border-radius: 16px;
+    padding: 0; margin-bottom: 16px; text-decoration: none; color: inherit;
+    display: block; overflow: hidden; position: relative;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+    transition: box-shadow .2s, transform .2s, border-color .2s;
+  }
+  .clase-card:hover { box-shadow: 0 12px 32px rgba(26,26,46,.14); transform: translateY(-3px); border-color: #e0d2cf; }
+  .clase-card .accent { position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(var(--red), var(--red-bright)); }
+  .clase-body { padding: 22px 24px 22px 28px; }
+  .clase-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .clase-num { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .9px; color: var(--red); }
+  .clase-date { font-size: 0.74rem; color: var(--muted); white-space: nowrap; }
+  .clase-card h3 { font-size: 1.18em; margin: 8px 0 6px; font-weight: 600; letter-spacing: -.2px; }
+  .clase-card h3 .zh { font-family: 'Noto Sans SC', sans-serif; color: var(--red); font-weight: 700; }
+  .clase-card p { font-size: 0.88em; color: #6b6b73; line-height: 1.55; }
+  .clase-meta { margin-top: 14px; display: flex; gap: 7px; flex-wrap: wrap; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: #faf3f2; color: var(--red); border: 1px solid #f1ddda;
+    border-radius: 20px; padding: 3px 11px; font-size: 0.76rem; font-weight: 500;
+  }
+  .badge .zh { font-family: 'Noto Sans SC', sans-serif; }
+  .badge-soft { background: #f3f3f6; color: #777; border-color: #eaeaef; }
+  .latest-flag {
+    display: inline-block; background: var(--red-bright); color: #fff;
+    font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: .6px;
+    padding: 2px 9px; border-radius: 6px; margin-left: 8px; vertical-align: middle;
+  }
+
+  /* ---------- TOOLS ---------- */
+  .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .tool-card {
+    background: #fff; border: 1px solid #ececf0; border-radius: 14px;
+    padding: 18px 18px; text-decoration: none; color: inherit; display: flex;
+    align-items: flex-start; gap: 13px; transition: box-shadow .2s, transform .2s, border-color .2s;
+  }
+  .tool-card:hover { box-shadow: 0 8px 22px rgba(192,57,43,.12); transform: translateY(-2px); border-color: #f1ddda; }
+  .tool-ico {
+    flex-shrink: 0; width: 40px; height: 40px; border-radius: 11px;
+    background: linear-gradient(135deg, #fbe9e7, #fdecea); display: grid; place-items: center;
+    font-size: 1.25em;
+  }
+  .tool-card h3 { color: var(--red); font-size: 0.98em; margin-bottom: 3px; font-weight: 600; }
+  .tool-card p { font-size: 0.8em; color: #888; line-height: 1.4; }
+
+  footer { text-align: center; color: #b3b3bb; font-size: 0.82em; padding: 28px 24px 40px; }
+  footer a { color: inherit; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 640px) {
+    header { padding: 38px 20px 48px; }
+    header::after { font-size: 6rem; bottom: -20px; }
+    header h1 { font-size: 1.7em; }
+    .hero-stats { gap: 18px; }
+    main { padding: 0 14px 48px; }
+    .clase-body { padding: 18px 18px 18px 22px; }
+    .clase-card h3 { font-size: 1.06em; }
+    .clase-top { flex-direction: column; align-items: flex-start; gap: 2px; }
+    .tools-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 <header>
   <div class="header-inner">
-    <h1>🀄 Básico 3</h1>
-    <p>Chino Mandarín · Centro Cultural Chino · Mayo 2026 · <a href="/">← Todos los apuntes</a></p>
+    <a class="crumb" href="/">← Todos los apuntes</a>
+    <h1>🀄 Básico <span class="zh">三</span></h1>
+    <p class="subtitle">Chino Mandarín · Centro Cultural Chino · Mayo 2026</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="num">2</span><span class="lbl">Clases</span></div>
+      <div class="stat"><span class="num">11</span><span class="lbl">Secciones (Cl. 02)</span></div>
+      <div class="stat"><span class="num">⏰</span><span class="lbl">Tema: la hora + rutina</span></div>
+    </div>
   </div>
 </header>
+
 <main>
+  <div class="section-label">📚 Clases</div>
+
+  <!-- CLASE 02 -->
   <a class="clase-card" href="clase02.html">
-    <div class="clase-num">Clase 02 — 30 de mayo, 2026</div>
-    <h3>Repaso aplicado — frases completas con hora</h3>
-    <p>La hora dentro de frases completas: sujeto + tiempo + lugar + acción (王芳中午十二点去商店买水果), ejercicio de completar y la palabra 也 (también) antes del verbo.</p>
-    <div class="clase-meta">
-      <span class="badge">商店 买 水果</span>
-      <span class="badge">也 工作 忙</span>
-    </div>
-  </a>
-  <a class="clase-card" href="clase01.html">
-    <div class="clase-num">Clase 01 — 30 de mayo, 2026</div>
-    <h3>La hora — 点 · 分 · 半</h3>
-    <p>Decir la hora del reloj: 现在几点, número + 点 (en punto), minutos con 分, 半 (y media), momentos del día 上午/中午/下午, y la regla 两点 vs 二点.</p>
-    <div class="clase-meta">
-      <span class="badge">点 分 半</span>
-      <span class="badge">上午 中午 下午</span>
+    <span class="accent"></span>
+    <div class="clase-body">
+      <div class="clase-top">
+        <span class="clase-num">Clase 02 <span class="latest-flag">Más reciente</span></span>
+        <span class="clase-date">30 de mayo, 2026</span>
+      </div>
+      <h3>La rutina del día — de <span class="zh">起床</span> a <span class="zh">睡觉</span></h3>
+      <p>Repaso de la hora dentro de frases completas y toda la rutina diaria: despertarse y levantarse, las comidas (desayuno, almuerzo, cena, meriendas), ir al trabajo / a clase con el par 上/下, las partes del día, la siesta y dormir a medianoche. Incluye tabla de las horas para anotar y la regla 两点.</p>
+      <div class="clase-meta">
+        <span class="badge"><span class="zh">醒来 起床</span></span>
+        <span class="badge"><span class="zh">吃早饭 · 午饭 · 晚饭</span></span>
+        <span class="badge"><span class="zh">上班 上课</span></span>
+        <span class="badge"><span class="zh">上午 中午 下午</span></span>
+        <span class="badge"><span class="zh">睡觉 半夜</span></span>
+        <span class="badge badge-soft">了 · 也 · 两点</span>
+      </div>
     </div>
   </a>
 
-  <div class="tools-section">
-    <h2>🛠️ Herramientas</h2>
+  <!-- CLASE 01 -->
+  <a class="clase-card" href="clase01.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <div class="clase-top">
+        <span class="clase-num">Clase 01</span>
+        <span class="clase-date">30 de mayo, 2026</span>
+      </div>
+      <h3>La hora — <span class="zh">点 · 分 · 半</span></h3>
+      <p>Cómo decir la hora del reloj: 现在几点 (¿qué hora es?), número + 点 (en punto), los minutos con 分, 半 (y media), los momentos del día 上午/中午/下午, y la regla clave 两点 vs 二点.</p>
+      <div class="clase-meta">
+        <span class="badge"><span class="zh">点 分 半</span></span>
+        <span class="badge"><span class="zh">现在几点</span></span>
+        <span class="badge"><span class="zh">上午 中午 下午</span></span>
+      </div>
+    </div>
+  </a>
+
+  <div class="section-label">🛠️ Herramientas</div>
+  <div class="tools-grid">
     <a class="tool-card" href="/flashcards.html">
-      <h3>🃏 Flashcards</h3>
-      <p>Practica todo el vocabulario de las clases. Modo interactivo, audio, imprimible.</p>
+      <span class="tool-ico">🃏</span>
+      <div>
+        <h3>Flashcards</h3>
+        <p>Practica el vocabulario. Interactivo, con audio e imprimible.</p>
+      </div>
     </a>
     <a class="tool-card" href="/buscador.html">
-      <h3>🔍 Buscador de Caracteres</h3>
-      <p>Busca cualquier carácter por hanzi, pinyin o español en todo el vocabulario.</p>
+      <span class="tool-ico">🔍</span>
+      <div>
+        <h3>Buscador</h3>
+        <p>Busca cualquier carácter por hanzi, pinyin o español.</p>
+      </div>
     </a>
     <a class="tool-card" href="/listening.html">
-      <h3>🎧 Listening Practice</h3>
-      <p>Escucha audio en chino y escribe lo que oyes. Practica por clase, palabras o frases.</p>
+      <span class="tool-ico">🎧</span>
+      <div>
+        <h3>Listening</h3>
+        <p>Escucha audio en chino y escribe lo que oyes.</p>
+      </div>
     </a>
     <a class="tool-card" href="/pinyin.html">
-      <h3>🔤 Pizarra de Pinyin</h3>
-      <p>Tipea texto chino y ve el pinyin alineado por carácter. Ideal para clases.</p>
+      <span class="tool-ico">🔤</span>
+      <div>
+        <h3>Pizarra de Pinyin</h3>
+        <p>Tipea chino y ve el pinyin alineado por carácter.</p>
+      </div>
     </a>
   </div>
 </main>
-<footer>Básico 3 · Apuntes Chino · <a href="https://basti.cl" style="color:inherit">basti.cl</a></footer>
+
+<footer>Básico 3 · Apuntes Chino · <a href="https://basti.cl">basti.cl</a></footer>
 </body>
 </html>

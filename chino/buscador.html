@@ -5,34 +5,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Buscador de Caracteres · Apuntes Chino — Basti</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Sans SC', -apple-system, Arial, sans-serif; background: #f5f5f7; color: #222; min-height: 100vh; }
-  .header { background: #1a1a2e; color: #fff; padding: 28px 24px 22px; text-align: center; }
-  .header h1 { font-size: 1.5em; color: #e74c3c; }
-  .header p { color: #aaa; font-size: 0.88em; margin-top: 4px; }
-  .header a { color: #e74c3c; text-decoration: none; }
-  .search-area { max-width: 600px; margin: 24px auto; padding: 0 24px; }
-  .search-box { width: 100%; padding: 14px 20px; font-size: 1.1em; border: 2px solid #ddd; border-radius: 12px; outline: none; font-family: inherit; transition: border-color .2s; }
-  .search-box:focus { border-color: #c0392b; }
-  .search-hint { text-align: center; color: #aaa; font-size: 0.82em; margin-top: 8px; }
-  .results { max-width: 600px; margin: 16px auto; padding: 0 24px; }
-  .result-count { font-size: 0.85em; color: #888; margin-bottom: 12px; }
-  .result-card { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 14px 18px; margin-bottom: 10px; display: flex; align-items: center; gap: 16px; transition: box-shadow .15s; cursor: pointer; }
-  .result-card:hover { box-shadow: 0 3px 12px rgba(0,0,0,.08); }
-  .r-hz { font-size: 2rem; font-weight: 700; color: #c0392b; min-width: 50px; text-align: center; }
-  .r-hz a { color: #c0392b; text-decoration: none; border-bottom: 1px dotted #c0392b; }
-  .r-hz a:hover { color: #e74c3c; }
+  :root {
+    --bg: #f7f2f0; --paper: #fffdfc; --ink: #1c1c1e; --muted: #9a9a9e;
+    --red: #c0392b; --red-bright: #e74c3c; --red-soft: #fdecea; --red-tint: #f6d8d3;
+    --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  }
+  body {
+    font-family: 'Noto Sans SC', -apple-system, Arial, sans-serif; color: var(--ink); min-height: 100vh;
+    background: var(--bg);
+    background-image:
+      radial-gradient(60% 26% at 100% 0%, rgba(231,76,60,.08), transparent 70%),
+      radial-gradient(50% 22% at 0% 0%, rgba(192,57,43,.06), transparent 70%);
+    background-repeat: no-repeat;
+  }
+  .zh, .r-hz { font-family: 'Noto Sans SC', var(--mono); }
+  .top-bar { height: 4px; background: linear-gradient(90deg, var(--red), var(--red-bright), #f0a39b); }
+
+  .header { padding: 30px 24px 6px; max-width: 600px; margin: 0 auto; font-family: var(--mono); }
+  .header .back { color: var(--red); text-decoration: none; font-size: 0.8rem; }
+  .header .back:hover { text-decoration: underline; }
+  .header h1 { font-size: 1.45rem; font-weight: 700; margin-top: 12px; letter-spacing: -.3px; }
+  .header h1 .zh { color: var(--red); font-weight: 500; font-size: 0.78em; margin-left: 8px; }
+  .header p { color: var(--muted); font-size: 0.84rem; margin-top: 6px; }
+
+  .search-area { max-width: 600px; margin: 18px auto 0; padding: 0 24px; }
+  .search-box { width: 100%; padding: 14px 20px; font-size: 1.1em; border: 1.5px solid var(--red-tint); border-radius: 12px; outline: none; font-family: inherit; background: var(--paper); transition: border-color .2s, box-shadow .2s; }
+  .search-box:focus { border-color: var(--red); box-shadow: 0 0 0 3px var(--red-soft); }
+  .search-hint { text-align: center; color: var(--muted); font-size: 0.8em; margin-top: 10px; font-family: var(--mono); line-height: 1.6; }
+
+  .results { max-width: 600px; margin: 18px auto; padding: 0 24px; }
+  .result-count { font-size: 0.78rem; color: var(--red); margin-bottom: 12px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+  .result-card { background: var(--paper); border: 1px solid #f0e6e3; border-left: 3px solid var(--red-tint); border-radius: 10px; padding: 13px 18px; margin-bottom: 9px; display: flex; align-items: center; gap: 16px; transition: box-shadow .15s, border-left-color .15s, transform .12s; cursor: pointer; }
+  .result-card:hover { box-shadow: 0 6px 18px rgba(192,57,43,.1); border-left-color: var(--red); transform: translateY(-1px); }
+  .r-hz { font-size: 1.9rem; font-weight: 700; color: var(--red); min-width: 50px; text-align: center; }
+  .r-hz a { color: var(--red); text-decoration: none; border-bottom: 1px dotted var(--red-tint); }
+  .r-hz a:hover { color: var(--red-bright); }
   .r-info { flex: 1; }
-  .r-py { font-size: 1em; font-weight: 600; color: #333; }
-  .r-es { font-size: 0.85em; color: #888; }
-  .r-source { font-size: 0.72em; color: #888; margin-top: 4px; }
-  .r-source a { color: #c0392b; text-decoration: none; border-bottom: 1px dotted #c0392b; }
-  .r-source a:hover { color: #e74c3c; border-bottom: 1px solid #e74c3c; }
+  .r-py { font-size: 1em; font-weight: 600; color: var(--ink); }
+  .r-es { font-size: 0.85em; color: var(--muted); margin-top: 1px; }
+  .r-source { font-size: 0.72em; color: var(--muted); margin-top: 5px; font-family: var(--mono); }
+  .r-source a { color: var(--red); text-decoration: none; border-bottom: 1px dotted var(--red-tint); }
+  .r-source a:hover { color: var(--red-bright); border-bottom: 1px solid var(--red-bright); }
   .r-audio { background: none; border: none; font-size: 1.2em; cursor: pointer; opacity: 0.5; transition: opacity .2s; }
   .r-audio:hover { opacity: 1; }
-  .empty { text-align: center; color: #ccc; font-size: 1.1em; margin-top: 60px; }
-  footer { text-align: center; color: #bbb; font-size: 0.82em; padding: 30px 24px; }
+  .empty { text-align: center; color: var(--red-tint); font-size: 1.05em; margin-top: 60px; font-family: var(--mono); }
+  footer { text-align: center; color: var(--muted); font-size: 0.78rem; padding: 30px 24px; font-family: var(--mono); }
+  footer a { color: var(--red); }
   /* responsive-tables */
   @media (max-width: 600px) {
     table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
@@ -40,14 +60,16 @@
 </style>
 </head>
 <body>
+<div class="top-bar"></div>
 <div class="header">
-  <h1>🔍 Buscador de Caracteres</h1>
-  <p>Busca por hanzi, pinyin o español · <a href="/">← Apuntes</a></p>
+  <a class="back" href="/">← chino.basti.cl</a>
+  <h1>🔍 buscador<span class="zh">查找</span></h1>
+  <p>Busca por hanzi, pinyin o español en todo el vocabulario.</p>
 </div>
 
 <div class="search-area">
   <input type="text" class="search-box" id="searchInput" placeholder="Buscar: 你, ni, hao, tú, hablar..." autofocus>
-  <div class="search-hint">📝 No necesitas escribir tildes ni tonos · usa "v" para "ü" (ej: "lv" = lǜ) · click en "📖 Clase X →" para ir a la sección · 350+ palabras de Básico 2</div>
+  <div class="search-hint">📝 No necesitas tildes ni tonos · usa "v" para "ü" (ej: "lv" = lǜ) · click en "📖 Clase X →" para ir a la sección · 420+ palabras de Básico 2 y 3</div>
 </div>
 
 <div class="results" id="results">
@@ -430,6 +452,81 @@ const vocab = [
   {hz:"你现在在哪儿？",py:"Nǐ xiànzài zài nǎr?",es:"😡 ¿Tú AHORA dónde ESTÁS??? (frase enojada)",src:"Clase 07",anchor:"s5",section:"Frase enojada"},
   {hz:"电视在小猫和小狗中间",py:"Diànshì zài xiǎo māo hé xiǎo gǒu zhōngjiān",es:"📺 La televisión está entre el gatito y el perrito",src:"Clase 07",anchor:"s2",section:"Estructura A 和 B 中间"},
   {hz:"你在哪儿工作？",py:"Nǐ zài nǎr gōngzuò?",es:"💼 ¿Dónde trabajas?",src:"Clase 07",anchor:"s6",section:"¿Dónde trabajas?"},
+  // === Básico 3 (mayo 2026) ===
+  {hz:"现在",py:"xiànzài",es:"⏳ ahora",src:"B3 Clase 01",base:"basico3"},
+  {hz:"点",py:"diǎn",es:"🕐 hora (en punto) / 'las…'",src:"B3 Clase 01",base:"basico3"},
+  {hz:"分",py:"fēn",es:"⏱️ minuto",src:"B3 Clase 01",base:"basico3"},
+  {hz:"半",py:"bàn",es:"🌗 medio / y media (:30)",src:"B3 Clase 01",base:"basico3"},
+  {hz:"上午",py:"shàngwǔ",es:"🌅 (por la) mañana / AM",src:"B3 Clase 01",base:"basico3"},
+  {hz:"中午",py:"zhōngwǔ",es:"☀️ mediodía",src:"B3 Clase 01",base:"basico3"},
+  {hz:"下午",py:"xiàwǔ",es:"🌇 (por la) tarde / PM",src:"B3 Clase 01",base:"basico3"},
+  {hz:"凌晨",py:"língchén",es:"🌌 madrugada (~00:00–05:00)",src:"B3 Clase 01",base:"basico3"},
+  {hz:"早上",py:"zǎoshang",es:"🌄 temprano en la mañana",src:"B3 Clase 01",base:"basico3"},
+  {hz:"晚上",py:"wǎnshang",es:"🌙 noche",src:"B3 Clase 01",base:"basico3"},
+  {hz:"半夜",py:"bànyè",es:"🌚 medianoche / plena noche",src:"B3 Clase 01",base:"basico3"},
+  {hz:"几点",py:"jǐ diǎn",es:"❓ ¿a qué hora? / ¿qué hora?",src:"B3 Clase 01",base:"basico3"},
+  {hz:"回来",py:"huílái",es:"🔙 volver / regresar (hacia aquí)",src:"B3 Clase 01",base:"basico3"},
+  {hz:"回去",py:"huíqù",es:"↩️ volver (hacia allá)",src:"B3 Clase 01",base:"basico3"},
+  {hz:"回家",py:"huí jiā",es:"🏠 volver a casa",src:"B3 Clase 01",base:"basico3"},
+  {hz:"妈妈",py:"māma",es:"👩 mamá",src:"B3 Clase 01",base:"basico3"},
+  {hz:"爸爸",py:"bàba",es:"👨 papá",src:"B3 Clase 01",base:"basico3"},
+  {hz:"你几点去学校？",py:"Nǐ jǐ diǎn qù xuéxiào?",es:"🚶 ir físicamente a la escuela (去 + lugar)",src:"B3 Clase 01",base:"basico3"},
+  {hz:"你几点上学？",py:"Nǐ jǐ diǎn shàng xué?",es:"🎒 ir a estudiar / asistir al colegio (la rutina)",src:"B3 Clase 01",base:"basico3"},
+  {hz:"你几点上课？",py:"Nǐ jǐ diǎn shàng kè?",es:"🔔 entrar / empezar la clase",src:"B3 Clase 01",base:"basico3"},
+  {hz:"电影",py:"diànyǐng",es:"🎬 película",src:"B3 Clase 01",base:"basico3"},
+  {hz:"开始",py:"kāishǐ",es:"▶️ empezar / comenzar",src:"B3 Clase 01",base:"basico3"},
+  {hz:"结束",py:"jiéshù",es:"⏹️ terminar / acabar",src:"B3 Clase 01",base:"basico3"},
+  {hz:"演",py:"yǎn",es:"🎭 proyectar / dar (una función) / actuar",src:"B3 Clase 01",base:"basico3"},
+  {hz:"以前",py:"yǐqián",es:"⬅️ antes (de) / anteriormente",src:"B3 Clase 01",base:"basico3"},
+  {hz:"以后",py:"yǐhòu",es:"➡️ después (de) / más adelante",src:"B3 Clase 01",base:"basico3"},
+  {hz:"圣地亚哥",py:"Shèngdìyàgē",es:"🇨🇱 Santiago (de Chile)",src:"B3 Clase 01",base:"basico3"},
+  {hz:"星期一",py:"xīngqīyī",es:"📅 lunes",src:"B3 Clase 01",base:"basico3"},
+  {hz:"三点以前",py:"sān diǎn yǐqián",es:"antes de las 3",src:"B3 Clase 01",base:"basico3"},
+  {hz:"下午以后",py:"xiàwǔ yǐhòu",es:"después del mediodía / por la tarde en adelante",src:"B3 Clase 01",base:"basico3"},
+  {hz:"吃饭以前",py:"chī fàn yǐqián",es:"antes de comer",src:"B3 Clase 01",base:"basico3"},
+  {hz:"下课以后",py:"xià kè yǐhòu",es:"después de clase",src:"B3 Clase 01",base:"basico3"},
+  {hz:"2026年以前",py:"èr líng èr liù nián yǐqián",es:"antes de 2026",src:"B3 Clase 01",base:"basico3"},
+  {hz:"王芳",py:"Wáng Fāng",es:"👩 Wang Fang (nombre propio)",src:"B3 Clase 02",base:"basico3"},
+  {hz:"去",py:"qù",es:"➡️ ir (a)",src:"B3 Clase 02",base:"basico3"},
+  {hz:"商店",py:"shāngdiàn",es:"🏪 tienda / negocio",src:"B3 Clase 02",base:"basico3"},
+  {hz:"买",py:"mǎi",es:"🛍️ comprar",src:"B3 Clase 02",base:"basico3"},
+  {hz:"水果",py:"shuǐguǒ",es:"🍎 fruta",src:"B3 Clase 02",base:"basico3"},
+  {hz:"他们",py:"tāmen",es:"👥 ellos / ellas",src:"B3 Clase 02",base:"basico3"},
+  {hz:"很忙",py:"hěn máng",es:"😵 muy ocupado/a",src:"B3 Clase 02",base:"basico3"},
+  {hz:"星期六",py:"xīngqīliù",es:"📅 sábado",src:"B3 Clase 02",base:"basico3"},
+  {hz:"也",py:"yě",es:"➕ también",src:"B3 Clase 02",base:"basico3"},
+  {hz:"工作",py:"gōngzuò",es:"💼 trabajar / trabajo",src:"B3 Clase 02",base:"basico3"},
+  {hz:"醒来",py:"xǐnglái",es:"👀 despertarse",src:"B3 Clase 02",base:"basico3"},
+  {hz:"起床",py:"qǐchuáng",es:"🛏️ levantarse (de la cama)",src:"B3 Clase 02",base:"basico3"},
+  {hz:"睡觉",py:"shuìjiào",es:"😴 dormir / irse a dormir",src:"B3 Clase 02",base:"basico3"},
+  {hz:"吃",py:"chī",es:"🍴 comer",src:"B3 Clase 02",base:"basico3"},
+  {hz:"吃早饭",py:"chī zǎofàn",es:"🥐 desayunar (comer el desayuno)",src:"B3 Clase 02",base:"basico3"},
+  {hz:"早饭",py:"zǎofàn",es:"🌅 desayuno",src:"B3 Clase 02",base:"basico3"},
+  {hz:"午饭",py:"wǔfàn",es:"☀️ almuerzo",src:"B3 Clase 02",base:"basico3"},
+  {hz:"晚饭",py:"wǎnfàn",es:"🌙 cena",src:"B3 Clase 02",base:"basico3"},
+  {hz:"米饭",py:"mǐfàn",es:"🍚 arroz (cocido)",src:"B3 Clase 02",base:"basico3"},
+  {hz:"面包",py:"miànbāo",es:"🍞 pan",src:"B3 Clase 02",base:"basico3"},
+  {hz:"鸡蛋",py:"jīdàn",es:"🥚 huevo",src:"B3 Clase 02",base:"basico3"},
+  {hz:"面条",py:"miàntiáo",es:"🍜 fideos",src:"B3 Clase 02",base:"basico3"},
+  {hz:"牛奶",py:"niúnǎi",es:"🥛 leche",src:"B3 Clase 02",base:"basico3"},
+  {hz:"上班",py:"shàngbān",es:"🏢 ir a trabajar / entrar al trabajo",src:"B3 Clase 02",base:"basico3"},
+  {hz:"下班",py:"xiàbān",es:"🏠 salir del trabajo",src:"B3 Clase 02",base:"basico3"},
+  {hz:"上课",py:"shàngkè",es:"📚 ir a clase / empezar la clase",src:"B3 Clase 02",base:"basico3"},
+  {hz:"下课",py:"xiàkè",es:"🔔 salir de clase / terminar la clase",src:"B3 Clase 02",base:"basico3"},
+  {hz:"上学",py:"shàngxué",es:"🎒 ir a la escuela",src:"B3 Clase 02",base:"basico3"},
+  {hz:"公司",py:"gōngsī",es:"🏢 empresa / compañía",src:"B3 Clase 02",base:"basico3"},
+  {hz:"学校",py:"xuéxiào",es:"🏫 escuela / colegio",src:"B3 Clase 02",base:"basico3"},
+  {hz:"吃晚饭",py:"chī wǎnfàn",es:"🍲 cenar",src:"B3 Clase 02",base:"basico3"},
+  {hz:"吃午饭",py:"chī wǔfàn",es:"🍱 almorzar",src:"B3 Clase 02",base:"basico3"},
+  {hz:"吃中饭",py:"chī zhōngfàn",es:"🍱 almorzar (= 午饭)",src:"B3 Clase 02",base:"basico3"},
+  {hz:"午点",py:"wǔdiǎn",es:"🍪 merienda de la tarde",src:"B3 Clase 02",base:"basico3"},
+  {hz:"点心",py:"diǎnxin",es:"🥟 dim sum / bocadito / dulce",src:"B3 Clase 02",base:"basico3"},
+  {hz:"睡午觉",py:"shuì wǔjiào",es:"🛌 dormir la siesta",src:"B3 Clase 02",base:"basico3"},
+  {hz:"睡懒觉",py:"shuì lǎnjiào",es:"🥱 dormir hasta tarde / remolonear",src:"B3 Clase 02",base:"basico3"},
+  {hz:"轻声",py:"qīngshēng",es:"🎵 tono neutro (sílaba átona)",src:"B3 Clase 02",base:"basico3"},
+  {hz:"老子",py:"Lǎozǐ / lǎozi",es:"🧓 Laozi (filósofo) vs 'yo' (arrogante) — tono",src:"B3 Clase 02",base:"basico3"},
+  {hz:"买卖",py:"mǎimài / mǎimai",es:"🔄 comprar y vender vs 🏪 negocio — tono",src:"B3 Clase 02",base:"basico3"},
+  {hz:"大意",py:"dàyì / dàyi",es:"💡 idea principal vs 😵 descuidado — tono",src:"B3 Clase 02",base:"basico3"},
 ];
 
 function normalize(str) {
@@ -469,11 +566,12 @@ function search(query) {
   );
 }
 
-function srcToUrl(src, anchor) {
+function srcToUrl(src, anchor, base) {
   const match = src.match(/Clase (\d+)/i);
   if (!match) return null;
   const num = match[1].padStart(2, '0');
-  const url = `/basico2/clase${num}.html`;
+  const dir = base || 'basico2';
+  const url = `/${dir}/clase${num}.html`;
   return anchor ? `${url}#${anchor}` : url;
 }
 
@@ -490,7 +588,7 @@ function render(results, query) {
   let html = `<div class="result-count">${results.length} resultado${results.length > 1 ? 's' : ''}</div>`;
   results.forEach(v => {
     const link = `https://www.dong-chinese.com/wiki/${encodeURIComponent(v.hz.charAt(0))}`;
-    const classUrl = srcToUrl(v.src, v.anchor);
+    const classUrl = srcToUrl(v.src, v.anchor, v.base);
     const sectionLabel = v.section ? ` · ${v.section}` : '';
     const sourceHtml = classUrl
       ? `<a href="${classUrl}" onclick="event.stopPropagation()">📖 ${v.src}${sectionLabel} →</a>`
