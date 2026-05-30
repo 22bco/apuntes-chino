@@ -32,10 +32,10 @@
   }
   #viewport.panning { cursor: grabbing; }
   #viewport.tool-pen, #viewport.tool-eraser { cursor: crosshair; }
-  #viewport.tool-text { cursor: text; }
+  #viewport.tool-text, #viewport.tool-textplain { cursor: text; }
 
   #world { position: absolute; top: 0; left: 0; transform-origin: 0 0; }
-  #ink { position: fixed; inset: 0; pointer-events: none; z-index: 5; }
+  #ink { position: fixed; inset: 0; pointer-events: none; z-index: 40; }
   #viewport.tool-pen #ink, #viewport.tool-eraser #ink { pointer-events: auto; }
 
   /* ─── tarjetas ─── */
@@ -75,6 +75,45 @@
     font-size: calc(var(--py) * 1.1);
     color: #444; line-height: 1.35; max-width: 520px;
     white-space: pre-wrap; word-break: break-word;
+  }
+  /* tarjeta de texto normal (sin pinyin): letra mediana, para títulos/notas */
+  .card.plain { border-style: dashed; border-color: #d8d8d2; }
+  .card.plain .plain-line {
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    font-size: calc(var(--hz) * 0.5);
+    color: #1a1a2e; line-height: 1.3; max-width: 600px;
+    white-space: pre-wrap; word-break: break-word;
+  }
+
+  /* ─── imágenes ─── */
+  .image-el { position: absolute; z-index: 10; cursor: grab; }
+  .image-el.dragging { cursor: grabbing; z-index: 50; }
+  .image-el img {
+    display: block; width: 100%; height: 100%; border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.14); pointer-events: none;
+    -webkit-user-drag: none; user-select: none;
+  }
+  .image-el.selected img { outline: 2px solid #c0392b; outline-offset: 2px; }
+  .image-el .img-del {
+    position: absolute; top: -12px; right: -12px; width: 26px; height: 26px;
+    border-radius: 50%; border: 1px solid #e0e0e0; background: #fff; cursor: pointer;
+    display: none; align-items: center; justify-content: center; font-size: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.14); z-index: 60;
+  }
+  .image-el .img-del:hover { border-color: #c0392b; color: #c0392b; }
+  .image-el:hover .img-del, .image-el.selected .img-del { display: flex; }
+  .image-el .img-resize {
+    position: absolute; right: -8px; bottom: -8px; width: 16px; height: 16px;
+    background: #c0392b; border: 2px solid #fff; border-radius: 50%;
+    cursor: nwse-resize; display: none; z-index: 60;
+  }
+  .image-el:hover .img-resize, .image-el.selected .img-resize { display: block; }
+  /* feedback al arrastrar una imagen sobre el lienzo */
+  #viewport.dragover::after {
+    content: "🖼️ Suelta la imagen aquí"; position: fixed; inset: 0;
+    display: grid; place-items: center; font-size: 1.4rem; color: #c0392b;
+    background: rgba(192,57,43,.06); border: 3px dashed #c0392b; z-index: 80;
+    pointer-events: none;
   }
 
   .card .card-tools {
@@ -183,11 +222,13 @@
 <!-- barra de herramientas central -->
 <div class="toolbar" id="toolbar">
   <button data-tool="select" class="active" title="Seleccionar y mover (V)">🖱️</button>
-  <button data-tool="text" title="Agregar tarjeta de texto (T)">🔤</button>
+  <button data-tool="text" title="Texto chino + pinyin (T)">🔤</button>
+  <button data-tool="textplain" title="Texto normal, sin pinyin (N)">📝</button>
+  <button data-tool="image" title="Insertar imagen (I)">🖼️</button>
   <button data-tool="pen" title="Lápiz (P)">✏️</button>
   <button data-tool="eraser" title="Borrador de trazos (E)">🧽</button>
   <div class="sep"></div>
-  <button id="add-card" title="Nueva tarjeta al centro">➕</button>
+  <button id="add-card" title="Nueva tarjeta de chino al centro">➕</button>
   <div class="sep"></div>
   <button id="undo" title="Deshacer (Ctrl+Z)" disabled>↶</button>
   <button id="redo" title="Rehacer (Ctrl+Shift+Z)" disabled>↷</button>
@@ -238,6 +279,13 @@
     </div>
   </div>
   <div class="grp">
+    <div class="grp-label">Desplazamiento / zoom</div>
+    <div class="seg" data-control="navMode">
+      <button data-value="mouse" class="active">🖱️ Mouse</button>
+      <button data-value="trackpad">👆 Trackpad</button>
+    </div>
+  </div>
+  <div class="grp">
     <div class="grp-label">Guardado (local, en este navegador)</div>
     <button class="act" id="export-json">📤 Exportar pizarra (.json)</button>
     <button class="act" id="import-json">📥 Importar pizarra (.json)</button>
@@ -249,8 +297,9 @@
 </div>
 
 <input type="file" id="file-input" accept="application/json,.json" style="display:none">
+<input type="file" id="img-input" accept="image/*" multiple style="display:none">
 <div class="toast" id="toast"></div>
-<div class="hint">Arrastra el fondo para moverte · rueda para zoom · doble clic en una tarjeta para editar</div>
+<div class="hint">Arrastra el fondo para moverte · arrastra imágenes al lienzo · doble clic en una tarjeta para editar</div>
 
 <script src="https://unpkg.com/pinyin-pro"></script>
 <script>
@@ -267,10 +316,12 @@
 
   let state = {
     cam: { x: 0, y: 0, zoom: 1 },
-    cards: [],          // {id, x, y, text}
+    cards: [],          // {id, x, y, text, plain?}
+    images: [],         // {id, x, y, w, h, src}
     strokes: [],        // {points:[[x,y]...], color, width}
     tone: 'symbol',     // symbol | num | hidden
-    cardsize: 'med'
+    cardsize: 'med',
+    navMode: 'mouse'    // mouse | trackpad
   };
   let tool = 'select';
   let penColor = '#1a1a2e';
@@ -345,6 +396,19 @@
       el.insertBefore(wrap, el.firstChild);
       return;
     }
+    // tarjeta de texto normal: sin pinyin, cada línea como texto plano
+    if (card.plain) {
+      text.split('\n').forEach(line => {
+        if (line === '') return;
+        const d = document.createElement('div');
+        d.className = 'plain-line';
+        d.textContent = line;
+        wrap.appendChild(d);
+      });
+      el.querySelector('.lines')?.remove();
+      el.insertBefore(wrap, el.firstChild);
+      return;
+    }
     const hasHan = s => /[㐀-鿿]/.test(s);
     text.split('\n').forEach(line => {
       if (line === '') return;
@@ -380,6 +444,7 @@
   function makeCardEl(card) {
     const el = document.createElement('div');
     el.className = 'card';
+    if (card.plain) el.classList.add('plain');
     el.dataset.id = card.id;
     el.style.left = card.x + 'px';
     el.style.top  = card.y + 'px';
@@ -477,8 +542,8 @@
     });
   }
 
-  function addCard(wx, wy, text) {
-    const card = { id: nextId++, x: wx, y: wy, text: text || '' };
+  function addCard(wx, wy, text, plain) {
+    const card = { id: nextId++, x: wx, y: wy, text: text || '', plain: !!plain };
     state.cards.push(card);
     const el = makeCardEl(card);
     save();
@@ -486,8 +551,126 @@
   }
 
   function renderAllCards() {
-    world.querySelectorAll('.card').forEach(c => c.remove());
+    world.querySelectorAll('.card, .image-el').forEach(c => c.remove());
     state.cards.forEach(makeCardEl);
+    (state.images || []).forEach(makeImageEl);
+  }
+
+  /* ───────── imágenes ───────── */
+  function makeImageEl(img) {
+    const el = document.createElement('div');
+    el.className = 'image-el';
+    el.dataset.id = img.id;
+    el.dataset.kind = 'image';
+    el.style.left = img.x + 'px';
+    el.style.top = img.y + 'px';
+    el.style.width = img.w + 'px';
+    el.style.height = img.h + 'px';
+
+    const im = document.createElement('img');
+    im.src = img.src;
+    el.appendChild(im);
+
+    const del = document.createElement('button');
+    del.className = 'img-del'; del.textContent = '✕'; del.title = 'Eliminar imagen';
+    el.appendChild(del);
+
+    const rz = document.createElement('div');
+    rz.className = 'img-resize'; rz.title = 'Redimensionar';
+    el.appendChild(rz);
+
+    del.addEventListener('click', e => {
+      e.stopPropagation();
+      state.images = state.images.filter(i => i.id !== img.id);
+      el.remove(); record(); save();
+    });
+
+    // arrastrar
+    el.addEventListener('pointerdown', e => {
+      if (tool !== 'select' || e.target === rz || e.target === del) return;
+      e.stopPropagation();
+      selectCard(el);
+      el.setPointerCapture(e.pointerId);
+      el.classList.add('dragging');
+      const startW = screenToWorld(e.clientX, e.clientY);
+      const orig = { x: img.x, y: img.y };
+      const move = ev => {
+        const w = screenToWorld(ev.clientX, ev.clientY);
+        img.x = orig.x + (w.x - startW.x);
+        img.y = orig.y + (w.y - startW.y);
+        el.style.left = img.x + 'px'; el.style.top = img.y + 'px';
+      };
+      const up = () => {
+        el.classList.remove('dragging');
+        el.releasePointerCapture(e.pointerId);
+        el.removeEventListener('pointermove', move);
+        el.removeEventListener('pointerup', up);
+        record(); save();
+      };
+      el.addEventListener('pointermove', move);
+      el.addEventListener('pointerup', up);
+    });
+
+    // redimensionar (mantiene la proporción)
+    rz.addEventListener('pointerdown', e => {
+      e.stopPropagation(); e.preventDefault();
+      rz.setPointerCapture(e.pointerId);
+      selectCard(el);
+      const ratio = img.h / img.w;
+      const startW = screenToWorld(e.clientX, e.clientY);
+      const ow = img.w;
+      const move = ev => {
+        const w = screenToWorld(ev.clientX, ev.clientY);
+        const nw = Math.max(40, ow + (w.x - startW.x));
+        img.w = nw; img.h = nw * ratio;
+        el.style.width = img.w + 'px'; el.style.height = img.h + 'px';
+      };
+      const up = () => {
+        rz.releasePointerCapture(e.pointerId);
+        rz.removeEventListener('pointermove', move);
+        rz.removeEventListener('pointerup', up);
+        record(); save();
+      };
+      rz.addEventListener('pointermove', move);
+      rz.addEventListener('pointerup', up);
+    });
+
+    world.appendChild(el);
+    return el;
+  }
+
+  function addImage(src, wx, wy, w, h) {
+    const img = { id: nextId++, x: wx, y: wy, w, h, src };
+    state.images.push(img);
+    makeImageEl(img);
+    record(); save();
+  }
+
+  // lee un archivo de imagen, lo reduce (máx 900px) y lo inserta
+  function fileToImage(file, posWorld) {
+    if (!file || !file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const tmp = new Image();
+      tmp.onload = () => {
+        const MAX = 900;
+        let w = tmp.naturalWidth, h = tmp.naturalHeight;
+        const sc = Math.min(1, MAX / Math.max(w, h));
+        w = Math.round(w * sc); h = Math.round(h * sc);
+        const cv = document.createElement('canvas');
+        cv.width = w; cv.height = h;
+        cv.getContext('2d').drawImage(tmp, 0, 0, w, h);
+        let out;
+        try { out = cv.toDataURL('image/jpeg', 0.82); }
+        catch (err) { out = reader.result; }
+        const dispW = Math.min(300, w);
+        const dispH = dispW * (h / w);
+        const pos = posWorld || screenToWorld(innerWidth / 2, innerHeight / 2);
+        addImage(out, pos.x - dispW / 2, pos.y - dispH / 2, dispW, dispH);
+      };
+      tmp.src = reader.result;
+    };
+    reader.readAsDataURL(file);
   }
 
   /* ───────── TTS ───────── */
@@ -502,9 +685,9 @@
   viewport.addEventListener('pointerdown', e => {
     if (e.target.closest('.card')) return;
 
-    if (tool === 'text') {
+    if (tool === 'text' || tool === 'textplain') {
       const w = screenToWorld(e.clientX, e.clientY);
-      const { card, el } = addCard(w.x, w.y, '');
+      const { card, el } = addCard(w.x, w.y, '', tool === 'textplain');
       setTool('select');
       editCard(card, el);
       return;
@@ -534,8 +717,22 @@
 
   viewport.addEventListener('wheel', e => {
     e.preventDefault();
-    const factor = e.deltaY < 0 ? 1.1 : 1 / 1.1;
-    zoomAt(e.clientX, e.clientY, factor);
+    if (state.navMode === 'trackpad') {
+      if (e.ctrlKey) {
+        // pellizco del trackpad → zoom
+        const factor = e.deltaY < 0 ? 1.07 : 1 / 1.07;
+        zoomAt(e.clientX, e.clientY, factor);
+      } else {
+        // dos dedos → desplazar el lienzo
+        state.cam.x -= e.deltaX;
+        state.cam.y -= e.deltaY;
+        applyCamera(); save();
+      }
+    } else {
+      // mouse: rueda = zoom
+      const factor = e.deltaY < 0 ? 1.1 : 1 / 1.1;
+      zoomAt(e.clientX, e.clientY, factor);
+    }
   }, { passive: false });
 
   function zoomAt(sx, sy, factor) {
@@ -606,11 +803,37 @@
     document.getElementById('pen-opts').classList.toggle('show', t === 'pen');
   }
   document.querySelectorAll('.toolbar [data-tool]').forEach(b =>
-    b.addEventListener('click', () => setTool(b.dataset.tool)));
+    b.addEventListener('click', () => {
+      if (b.dataset.tool === 'image') { document.getElementById('img-input').click(); return; }
+      setTool(b.dataset.tool);
+    }));
   document.getElementById('add-card').addEventListener('click', () => {
     const c = screenToWorld(innerWidth / 2, innerHeight / 2);
     const { card, el } = addCard(c.x - 60, c.y - 30, '');
     setTool('select'); editCard(card, el);
+  });
+
+  // input de imagen (botón 🖼️)
+  document.getElementById('img-input').addEventListener('change', e => {
+    [...e.target.files].forEach((f, i) => {
+      const base = screenToWorld(innerWidth / 2, innerHeight / 2);
+      fileToImage(f, { x: base.x + i * 24, y: base.y + i * 24 });
+    });
+    e.target.value = '';
+  });
+
+  // arrastrar imágenes desde el escritorio
+  viewport.addEventListener('dragover', e => { e.preventDefault(); viewport.classList.add('dragover'); });
+  viewport.addEventListener('dragleave', e => {
+    if (e.target === viewport) viewport.classList.remove('dragover');
+  });
+  viewport.addEventListener('drop', e => {
+    e.preventDefault(); viewport.classList.remove('dragover');
+    const files = [...(e.dataTransfer?.files || [])].filter(f => f.type.startsWith('image/'));
+    files.forEach((f, i) => {
+      const w = screenToWorld(e.clientX, e.clientY);
+      fileToImage(f, { x: w.x + i * 24, y: w.y + i * 24 });
+    });
   });
 
   // swatches y grosor
@@ -663,6 +886,7 @@
     if ((e.key === 'Delete' || e.key === 'Backspace') && selectedEl) {
       const id = +selectedEl.dataset.id;
       state.cards = state.cards.filter(c => c.id !== id);
+      state.images = state.images.filter(i => i.id !== id);
       selectedEl.remove(); selectedEl = null; record(); save();
     }
   });
@@ -682,17 +906,21 @@
       const data = JSON.parse(raw);
       state.cam = data.cam || state.cam;
       state.cards = data.cards || [];
+      state.images = data.images || [];
       state.strokes = data.strokes || [];
       state.tone = data.tone || 'symbol';
       state.cardsize = data.cardsize || 'med';
-      nextId = data.nextId || (state.cards.reduce((m, c) => Math.max(m, c.id), 0) + 1);
+      state.navMode = data.navMode || 'mouse';
+      nextId = data.nextId || (Math.max(0,
+        ...state.cards.map(c => c.id),
+        ...state.images.map(i => i.id)) + 1);
       return true;
     } catch (e) { return false; }
   }
 
   /* ───────── deshacer / rehacer ───────── */
   let history = [], hi = -1;
-  function snap() { return JSON.stringify({ cards: state.cards, strokes: state.strokes }); }
+  function snap() { return JSON.stringify({ cards: state.cards, images: state.images, strokes: state.strokes }); }
   function record() {
     const s = snap();
     if (hi >= 0 && history[hi] === s) return;     // nada cambió
@@ -704,7 +932,7 @@
   }
   function applySnap(s) {
     const d = JSON.parse(s);
-    state.cards = d.cards; state.strokes = d.strokes;
+    state.cards = d.cards; state.images = d.images || []; state.strokes = d.strokes;
     selectedEl = null;
     renderAllCards(); redrawInk(); save();
   }
@@ -762,8 +990,8 @@
   });
 
   document.getElementById('clear-board').addEventListener('click', () => {
-    if (!confirm('¿Vaciar toda la pizarra? Esto borra tarjetas y trazos.')) return;
-    state.cards = []; state.strokes = []; selectedEl = null;
+    if (!confirm('¿Vaciar toda la pizarra? Esto borra tarjetas, imágenes y trazos.')) return;
+    state.cards = []; state.images = []; state.strokes = []; selectedEl = null;
     renderAllCards(); redrawInk(); record(); save();
     menu.classList.remove('open'); toast('Pizarra vaciada 🗑️');
   });
@@ -777,7 +1005,7 @@
     // reproduce el layout del DOM, respetando tamaño global + escala de la tarjeta
     const [bh, bp] = SIZES[state.cardsize] || SIZES.med;
     const s = card.scale || 1;
-    const hzPx = bh * s, pyPx = bp * s, esPx = bp * s * 1.1;
+    const hzPx = bh * s, pyPx = bp * s, esPx = bp * s * 1.1, plainPx = bh * s * 0.5;
     const pad = 16, lineGap = 10, colGap = 12, pyGap = 8;
     const tmp = document.createElement('canvas').getContext('2d');
     const lines = (card.text || '').split('\n').filter(l => l !== '');
@@ -785,6 +1013,14 @@
     let maxW = 0, totalH = pad;
     const layout = [];
     lines.forEach((line, li) => {
+      if (card.plain) { // tarjeta de texto normal: todo plano
+        tmp.font = `500 ${plainPx}px 'Noto Sans SC', Inter, sans-serif`;
+        maxW = Math.max(maxW, tmp.measureText(line).width);
+        const lineH = plainPx * 1.3;
+        layout.push({ type: 'plain', text: line, y: totalH, lineH, plainPx });
+        totalH += lineH + (li < lines.length - 1 ? lineGap : 0);
+        return;
+      }
       if (!hasHan(line)) { // línea en español
         tmp.font = `500 ${esPx}px Inter, sans-serif`;
         maxW = Math.max(maxW, tmp.measureText(line).width);
@@ -827,6 +1063,11 @@
       maxX = Math.max(maxX, c.x + L.w); maxY = Math.max(maxY, c.y + L.h);
       has = true; return L;
     });
+    (state.images || []).forEach(im => {
+      minX = Math.min(minX, im.x); minY = Math.min(minY, im.y);
+      maxX = Math.max(maxX, im.x + im.w); maxY = Math.max(maxY, im.y + im.h);
+      has = true;
+    });
     state.strokes.forEach(s => s.points.forEach(p => {
       minX = Math.min(minX, p[0]); minY = Math.min(minY, p[1]);
       maxX = Math.max(maxX, p[0]); maxY = Math.max(maxY, p[1]); has = true;
@@ -843,55 +1084,72 @@
     c.scale(dpr, dpr);
     c.fillStyle = '#ffffff'; c.fillRect(0, 0, W, H);
 
-    // trazos
-    state.strokes.forEach(s => {
-      c.strokeStyle = s.color; c.lineWidth = s.width; c.lineJoin = 'round'; c.lineCap = 'round';
-      c.beginPath();
-      s.points.forEach((p, i) => {
-        const x = p[0] - minX, y = p[1] - minY;
-        i === 0 ? c.moveTo(x, y) : c.lineTo(x, y);
-      });
-      c.stroke();
-    });
+    // precargar las imágenes (asíncrono) antes de dibujar
+    const loaders = (state.images || []).map(im => new Promise(res => {
+      const i = new Image();
+      i.onload = () => res({ im, i });
+      i.onerror = () => res(null);
+      i.src = im.src;
+    }));
 
-    // tarjetas
-    state.cards.forEach((card, idx) => {
-      const L = cardLayouts[idx];
-      const x0 = card.x - minX, y0 = card.y - minY;
-      // fondo tarjeta
-      c.fillStyle = '#fff'; c.strokeStyle = '#e3e3df'; c.lineWidth = 1;
-      roundRect(c, x0, y0, L.w, L.h, 12); c.fill(); c.stroke();
-      L.layout.forEach(line => {
-        if (line.type === 'es') {
-          c.fillStyle = '#444';
-          c.font = `500 ${line.esPx}px Inter, sans-serif`;
-          c.textAlign = 'left'; c.textBaseline = 'top';
-          c.fillText(line.text, x0 + L.pad, y0 + line.y);
-          return;
-        }
-        line.cols.forEach(col => {
-          const cx = x0 + L.pad + col.x + col.cw / 2;
-          // hanzi
-          c.fillStyle = '#1a1a2e';
-          c.font = `500 ${line.hzPx}px 'Noto Sans SC', sans-serif`;
-          c.textAlign = 'center'; c.textBaseline = 'top';
-          c.fillText(col.ch, cx, y0 + line.y);
-          // pinyin
-          if (state.tone !== 'hidden' && col.py) {
-            c.fillStyle = '#c0392b';
-            c.font = `500 ${line.pyPx}px Inter, sans-serif`;
-            c.fillText(col.py, cx, y0 + line.y + line.hzPx * 1.1 + line.pyGap);
+    Promise.all(loaders).then(loaded => {
+      // imágenes (capa de abajo)
+      loaded.forEach(o => { if (o) c.drawImage(o.i, o.im.x - minX, o.im.y - minY, o.im.w, o.im.h); });
+
+      // trazos
+      state.strokes.forEach(s => {
+        c.strokeStyle = s.color; c.lineWidth = s.width; c.lineJoin = 'round'; c.lineCap = 'round';
+        c.beginPath();
+        s.points.forEach((p, i) => {
+          const x = p[0] - minX, y = p[1] - minY;
+          i === 0 ? c.moveTo(x, y) : c.lineTo(x, y);
+        });
+        c.stroke();
+      });
+
+      // tarjetas
+      state.cards.forEach((card, idx) => {
+        const L = cardLayouts[idx];
+        const x0 = card.x - minX, y0 = card.y - minY;
+        c.fillStyle = '#fff'; c.strokeStyle = '#e3e3df'; c.lineWidth = 1;
+        roundRect(c, x0, y0, L.w, L.h, 12); c.fill(); c.stroke();
+        L.layout.forEach(line => {
+          if (line.type === 'plain') {
+            c.fillStyle = '#1a1a2e';
+            c.font = `500 ${line.plainPx}px 'Noto Sans SC', Inter, sans-serif`;
+            c.textAlign = 'left'; c.textBaseline = 'top';
+            c.fillText(line.text, x0 + L.pad, y0 + line.y);
+            return;
           }
+          if (line.type === 'es') {
+            c.fillStyle = '#444';
+            c.font = `500 ${line.esPx}px Inter, sans-serif`;
+            c.textAlign = 'left'; c.textBaseline = 'top';
+            c.fillText(line.text, x0 + L.pad, y0 + line.y);
+            return;
+          }
+          line.cols.forEach(col => {
+            const cx = x0 + L.pad + col.x + col.cw / 2;
+            c.fillStyle = '#1a1a2e';
+            c.font = `500 ${line.hzPx}px 'Noto Sans SC', sans-serif`;
+            c.textAlign = 'center'; c.textBaseline = 'top';
+            c.fillText(col.ch, cx, y0 + line.y);
+            if (state.tone !== 'hidden' && col.py) {
+              c.fillStyle = '#c0392b';
+              c.font = `500 ${line.pyPx}px Inter, sans-serif`;
+              c.fillText(col.py, cx, y0 + line.y + line.hzPx * 1.1 + line.pyGap);
+            }
+          });
         });
       });
-    });
 
-    cv.toBlob(blob => {
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'pizarra-chino-' + new Date().toISOString().slice(0, 10) + '.png';
-      a.click(); URL.revokeObjectURL(a.href);
-      toast('Imagen descargada 🖼️');
+      cv.toBlob(blob => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'pizarra-chino-' + new Date().toISOString().slice(0, 10) + '.png';
+        a.click(); URL.revokeObjectURL(a.href);
+        toast('Imagen descargada 🖼️');
+      });
     });
   }
   function roundRect(c, x, y, w, h, r) {
