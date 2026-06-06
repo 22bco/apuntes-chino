@@ -6,9 +6,20 @@ Tiene toda la info clave: estructura, convenciones HTML, sistema de audio (Eleve
 deploy, preferencias del usuario, etc. **Ahorra muchísimos tokens.**
 
 ## Estado actual
-Última clase tomada: **Clase 07 — Básico 2** (25 de abril, 2026).
+Clase en curso: **Clase 03 — Básico 3** (6 de junio, 2026).
 
-Archivo: `chino/basico2/clase07.html`. Próxima clase será la 08.
+Archivo: `chino/basico3/clase03.html`. La clase se va armando en vivo: Basti dicta
+temas en pinyin y se agregan secciones una a una. Próxima clase será la 04.
+
+Básico 3 hasta ahora: Clase 01 (la hora: 点/分/半), Clase 02 (la rutina del día:
+醒来→睡觉, comidas, 上班/上课, partes del día, 两点, 轻声).
+
+## Flujo de trabajo
+- Basti dicta cada tema en pinyin → se arma la sección HTML siguiendo el formato.
+- **Generar audio ElevenLabs (voz Lily) automáticamente para cada vocabulario nuevo,
+  sin preguntar.** Script reusable: ejecutar desde la raíz del repo
+  (`cd /Users/bchavez/Trabajos/apuntes-chino-1`). Extrae los `hz`, filtra contra
+  `chino/audio/mapping.json`, genera los MP3 y actualiza el `audioMap` del HTML.
 
 ## Formato
 - Seguir el mismo estilo HTML de clase05.html (ver `CONTEXT.md` para detalles)

@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Básico 3 — Clase 03 · Apuntes Chino</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
+  body { font-family: 'Noto Sans SC', -apple-system, Arial, sans-serif; max-width: 860px; margin: 0 auto; padding: 20px 24px 60px; color: #222; font-size: 15px; background: #fafafa; }
+  header { background: #1a1a2e; color: #fff; padding: 28px 28px 22px; border-radius: 12px; margin-bottom: 28px; }
+  header h1 { font-size: 1.6em; margin: 0 0 4px; color: #e74c3c; }
+  header p { margin: 0; color: #aaa; font-size: 0.88em; }
+  nav { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 16px 20px; margin-bottom: 28px; }
+  nav h3 { margin: 0 0 10px; font-size: 0.82em; text-transform: uppercase; letter-spacing: 1px; color: #999; }
+  nav li { margin: 3px 0; font-size: 0.9em; }
+  nav a { color: #c0392b; text-decoration: none; }
+  nav a:hover { text-decoration: underline; }
+  h2 { font-size: 1.1em; color: #fff; background: #c0392b; padding: 9px 16px; border-radius: 8px; margin-top: 36px; margin-bottom: 14px; }
+  h2.green { background: #27ae60; }
+  h2.blue { background: #2980b9; }
+  h2.gold { background: #d4820a; }
+  h2.gray { background: #555; }
+  h2.purple { background: #8e44ad; }
+  h3 { color: #444; font-size: 0.95em; margin: 16px 0 8px; border-left: 3px solid #e74c3c; padding-left: 10px; }
+  .box { border-radius: 8px; padding: 12px 16px; margin: 10px 0; font-size: 0.92em; }
+  .box.grammar { background: #fff3e0; border: 1.5px solid #ff9800; }
+  .box.structure { background: #fdecea; border: 1.5px solid #c0392b; }
+  .box.note { background: #e8f5e9; border-left: 4px solid #27ae60; border-radius: 0 8px 8px 0; }
+  .box.warn { background: #fce4ec; border-left: 4px solid #e91e63; border-radius: 0 8px 8px 0; }
+  .box.tip { background: #e3f2fd; border-left: 4px solid #1976d2; border-radius: 0 8px 8px 0; }
+  code { background: #f0f0f0; padding: 2px 7px; border-radius: 4px; font-size: 0.88em; font-family: monospace; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em; background: #fff; border-radius: 8px; overflow: hidden; }
+  th { background: #c0392b; color: #fff; padding: 8px 12px; text-align: left; font-size: 0.85em; }
+  tr:nth-child(even) { background: #fafafa; }
+  td { padding: 7px 12px; border-bottom: 1px solid #f0f0f0; }
+  .hz { font-size: 1.15em; font-weight: bold; color: #c0392b; }
+  .hz a { color: #c0392b; text-decoration: none; border-bottom: 1px dotted #c0392b; }
+  .hz a:hover { color: #e74c3c; border-bottom: 1px solid #e74c3c; }
+  .dialog { background: #fff; border-radius: 10px; border: 1px solid #e5e5e5; padding: 14px 16px; margin: 10px 0; }
+  .da { background: #e3f2fd; padding: 8px 14px; border-radius: 8px; margin: 5px 0; }
+  .db { background: #f3e5f5; padding: 8px 14px; border-radius: 8px; margin: 5px 0; margin-left: 40px; }
+  .ex { background: #fffde7; border: 1px solid #f9a825; border-radius: 8px; padding: 14px 18px; margin: 10px 0; }
+  .ex ol { margin: 8px 0 0; padding-left: 22px; }
+  .ex li { margin: 7px 0; }
+  .pinyin-toggle { position: fixed; bottom: 20px; right: 20px; background: #1a1a2e; color: #fff; border: none; padding: 10px 16px; border-radius: 30px; cursor: pointer; font-size: 0.85em; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,.25); transition: background .2s; }
+  .pinyin-toggle:hover { background: #c0392b; }
+  .hide-pinyin .pinyin-col { visibility: hidden; }
+  @media print {
+    .no-print, .pinyin-toggle { display: none !important; }
+    body { background: #fff !important; padding: 10px 20px; font-size: 12px; max-width: 100%; }
+    header { background: #1a1a2e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 16px 20px 12px; margin-bottom: 16px; }
+    header h1 { font-size: 1.3em; }
+    nav { padding: 10px 14px; margin-bottom: 16px; page-break-after: avoid; }
+    h2 { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-size: 1em; padding: 6px 12px; margin-top: 20px; margin-bottom: 8px; page-break-after: avoid; }
+    h3 { font-size: 0.85em; margin: 10px 0 6px; page-break-after: avoid; }
+    .box { padding: 8px 12px; margin: 6px 0; font-size: 0.85em; page-break-inside: avoid; }
+    table { font-size: 0.82em; page-break-inside: avoid; margin: 6px 0; }
+    th { padding: 5px 8px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    td { padding: 4px 8px; }
+    .hz { font-size: 1em; }
+    .hz a { border-bottom: none !important; color: #c0392b !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .dialog { padding: 8px 12px; margin: 6px 0; page-break-inside: avoid; }
+    .da, .db { padding: 5px 10px; }
+    .db { margin-left: 20px; }
+    footer { font-size: 0.7em; margin-top: 16px; }
+  }
+  .key { text-decoration: underline; text-decoration-color: #e74c3c; text-underline-offset: 3px; text-decoration-thickness: 2px; }
+  footer { text-align: center; color: #bbb; font-size: 0.8em; margin-top: 40px; }
+  .blank { display: inline-block; min-width: 64px; border-bottom: 2px solid #c0392b; text-align: center; color: #c0392b; font-weight: bold; }
+
+  /* Inter para pinyin: mejor renderizado de diacríticos (ī, ǐ, ǎ, ò...). */
+  .pinyin-col,
+  .ex em,
+  .dialog em,
+  .dialog .da em,
+  .dialog .db em,
+  .box em,
+  em {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'ss01' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  /* responsive-tables */
+  @media (max-width: 600px) {
+    table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    body { padding-left: 14px; padding-right: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Básico 3 — Clase 03</h1>
+  <p>6 de junio, 2026 · Centro Cultural Chino · <a href="/" style="color:#e74c3c">← Volver al índice</a> · <a href="/pinyin.html" style="color:#e74c3c">🔤 Pizarra de Pinyin</a></p>
+</header>
+
+<nav>
+  <h3>Índice</h3>
+  <div style="margin:12px 0 4px; font-weight:700; color:#c0392b; font-size:0.88em;">🔁 Repaso</div>
+  <ol>
+    <li><a href="#s1">你想在……住几天？— ¿cuántos días te quedas? 🧳</a></li>
+    <li><a href="#s2">你几点吃早饭？— ¿a qué hora desayunas? 🍚</a></li>
+  </ol>
+  <div style="margin:12px 0 4px; font-weight:700; color:#c0392b; font-size:0.88em;">🌤️ El clima</div>
+  <ol start="3">
+    <li><a href="#s3">明天天气怎么样？— el clima + 怎么样 🌤️</a></li>
+    <li><a href="#s4">Responder el clima — 冷 / 热 / 暖和 + 太……了 🌡️</a></li>
+    <li><a href="#s5">Diálogo: el clima en Beijing 🏙️ (不冷不热)</a></li>
+    <li><a href="#s6">会 — el futuro / predicciones 🔮 (+ 来 venir)</a></li>
+  </ol>
+  <div style="margin:12px 0 4px; font-weight:700; color:#c0392b; font-size:0.88em;">🧩 Gramática</div>
+  <ol start="7">
+    <li><a href="#s7">⭐ 怎么样 a fondo — la palabra estrella</a></li>
+    <li><a href="#s8">主谓谓语句 — el predicado sujeto-predicado 🧩</a></li>
+    <li><a href="#s9">¿Qué significa 了? 🤔</a></li>
+    <li><a href="#s10">太 y 了 en oraciones negativas ⚖️</a></li>
+    <li><a href="#s11">些 — "algunos / unos cuantos" 📦</a></li>
+  </ol>
+  <div style="margin:12px 0 4px; font-weight:700; color:#c0392b; font-size:0.88em;">🗣️ Pronunciación</div>
+  <ol start="12">
+    <li><a href="#s12">Pronunciación: la «r» de 热 👅</a></li>
+    <li><a href="#s13">变调 — los tonos que cambian 🎵</a></li>
+  </ol>
+  <div style="margin:12px 0 4px; font-weight:700; color:#c0392b; font-size:0.88em;">🎯 Integrador</div>
+  <ol start="14">
+    <li><a href="#s14">Diálogo con el médico 🩺 (多 + verbo, 爱)</a></li>
+  </ol>
+</nav>
+
+<div class="box note" style="margin-bottom: 24px;">
+  🧭 <strong>En esta clase.</strong> El tema central es <strong>el clima</strong> 🌤️ y cómo preguntarlo con <span class="hz">怎么样</span>. Está organizada en <strong>5 bloques</strong>: <strong>repaso</strong>, <strong>el clima</strong> (preguntar, responder y predecir con <span class="hz">会</span>), la <strong>gramática</strong> que apareció (<span class="hz">怎么样</span>, <span class="hz">主谓谓语句</span>, <span class="hz">了</span>, negativos, <span class="hz">些</span>), un <strong>rincón de pronunciación</strong> (la «r» y los cambios de tono) y un <strong>diálogo integrador</strong> final.
+</div>
+
+<!-- ░░░ BLOQUE 0 ░░░ -->
+<div style="margin:48px 0 10px; padding:16px 20px; background:linear-gradient(135deg,#1a1a2e 0%,#2a2a4a 60%,#3a1a28 100%); color:#fff; border-radius:14px; box-shadow:0 4px 14px rgba(26,26,46,.18);">
+  <div style="font-size:0.7em; letter-spacing:2.5px; text-transform:uppercase; color:#f1948a; font-weight:700;">Bloque 0</div>
+  <div style="font-size:1.2em; font-weight:700; margin-top:3px;">🔁 Repaso para entrar en calor</div>
+  <div style="font-size:0.84em; color:#c9c9dc; margin-top:5px;">Reactivamos lo de Básico 3 (la hora y la rutina) antes de entrar en lo nuevo.</div>
+</div>
+
+<!-- ═══ SECCIÓN 1 ═══ -->
+<h2 id="s1">1. 你想在……住几天？— ¿cuántos días te quedas? 🧳</h2>
+<p>De <span class="hz">几点</span> (¿qué hora?) pasamos a <span class="hz">几天</span> (¿cuántos días?): es el <strong>mismo 几 "cuántos"</strong>, pero ahora contando <strong>días</strong> en vez de horas. Y lo metemos en una frase de viaje muy útil con <span class="hz">想</span> (querer) y <span class="hz">住</span> (quedarse / alojarse).</p>
+
+<div style="background:linear-gradient(135deg,#fdecea,#fff); border:2px solid #c0392b; border-radius:12px; padding:18px 20px; margin:14px 0 20px;">
+  <div style="font-size:0.74em; color:#c0392b; text-transform:uppercase; letter-spacing:1.4px; font-weight:700; margin-bottom:12px;">⭐ Frase del día</div>
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; padding:6px 0;">
+    <span class="hz" style="font-size:1.5em;">你想在圣地亚哥住几天？</span>
+  </div>
+  <div style="font-family:'Inter',sans-serif; color:#555; padding-bottom:6px;"><em>Nǐ xiǎng zài Shèngdìyàgē zhù jǐ tiān?</em></div>
+  <div style="color:#222;">→ <strong>¿Cuántos días quieres quedarte en Santiago?</strong></div>
+</div>
+
+<div class="box structure">
+  <strong>Estructura:</strong><br>
+  <code>Sujeto + 想 + 在 + [lugar] + 住 + 几天 ?</code><br>
+  <small>El <strong>lugar</strong> (在 + sitio) va <strong>antes</strong> del verbo 住. La duración (几天) va <strong>después</strong> del verbo. Igual que con la hora: el "cuánto/cuándo" rodea al verbo en su sitio fijo.</small>
+</div>
+
+<h3>Vocabulario 🧳</h3>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/想" target="_blank">想</a></td><td class="pinyin-col">xiǎng</td><td>💭 querer / tener ganas de (+ verbo)</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></td><td class="pinyin-col">zài</td><td>📍 en (un lugar)</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/住" target="_blank">住</a></td><td class="pinyin-col">zhù</td><td>🏠 quedarse / alojarse / vivir</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/几天" target="_blank">几天</a></td><td class="pinyin-col">jǐ tiān</td><td>📅 cuántos días</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/天" target="_blank">天</a></td><td class="pinyin-col">tiān</td><td>☀️ día</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/圣地亚哥" target="_blank">圣地亚哥</a></td><td class="pinyin-col">Shèngdìyàgē</td><td>🇨🇱 Santiago</td></tr>
+</table>
+
+<div class="box grammar">
+  <strong>💭 想 (xiǎng) = "querer / tener ganas de".</strong> Es un verbo modal: va <strong>antes</strong> de otro verbo para decir lo que uno quiere hacer.<br>
+  • <span class="hz">我想住三天。</span> — <em>Wǒ xiǎng zhù sān tiān.</em> = Quiero quedarme tres días.<br>
+  • <span class="hz">我想吃饭。</span> — <em>Wǒ xiǎng chī fàn.</em> = Tengo ganas de comer.
+</div>
+
+<div class="box note">
+  🔢 <strong>几 + clasificador = "¿cuántos…?".</strong> Es la misma palabra en todas estas preguntas:<br>
+  • <span class="hz">几点</span> (jǐ diǎn) = ¿qué hora? &nbsp;·&nbsp; <span class="hz">几天</span> (jǐ tiān) = ¿cuántos días?<br>
+  • <span class="hz">几个</span> (jǐ ge) = ¿cuántos (cosas)? &nbsp;·&nbsp; <span class="hz">几月几号</span> (jǐ yuè jǐ hào) = ¿qué mes y día?<br>
+  <small>Ojo: 天 (día) <strong>no</strong> necesita clasificador → se dice 三天, no 三个天.</small>
+</div>
+
+<h3>Ejemplos — preguntar y responder 🗣️</h3>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz">你想在圣地亚哥住几天？</span><br><em>Nǐ xiǎng zài Shèngdìyàgē zhù jǐ tiān? — ¿Cuántos días quieres quedarte en Santiago?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz">我想在圣地亚哥住五天。</span><br><em>Wǒ xiǎng zài Shèngdìyàgē zhù wǔ tiān. — Quiero quedarme cinco días en Santiago.</em></div>
+  <div class="db"><strong>B (corto):</strong> <span class="hz">我想住五天。</span><br><em>Wǒ xiǎng zhù wǔ tiān. — Quiero quedarme cinco días.</em></div>
+</div>
+
+<div class="box tip">
+  🪞 <strong>La respuesta es el "espejo" de la pregunta:</strong> solo cambias <span class="hz">你</span> (tú) → <span class="hz">我</span> (yo) y <span class="hz">几天</span> (¿cuántos días?) → el número de días (<span class="hz">五天</span> = cinco días). Toda la estructura del medio (<span class="hz">想在圣地亚哥住</span>) se queda igual.<br>
+  <small>Por eso puedes responder con la frase completa (<span class="hz">我想在圣地亚哥住五天</span>) o acortarla si el lugar ya se sobreentiende (<span class="hz">我想住五天</span>). Las dos están bien.</small>
+</div>
+
+<div class="box tip">
+  📅 <strong>Otras duraciones para responder:</strong><br>
+  • <span class="hz">一天</span> (yì tiān) = un día &nbsp;·&nbsp; <span class="hz">两天</span> (liǎng tiān) = dos días &nbsp;·&nbsp; <span class="hz">三天</span> (sān tiān) = tres días<br>
+  • <span class="hz">一个星期</span> (yí ge xīngqī) = una semana &nbsp;·&nbsp; <span class="hz">一个月</span> (yí ge yuè) = un mes<br>
+  <small>Igual que con las horas, las <strong>2</strong> usan <span class="hz">两</span> (liǎng): <span class="hz">两天</span> = dos días, no 二天.</small>
+</div>
+
+<!-- ═══ SECCIÓN 2 ═══ -->
+<h2 id="s2" class="blue">2. 你几点吃早饭？— ¿a qué hora desayunas? 🍚</h2>
+<p>Volvemos al <span class="hz">几点</span> de "¿a qué hora?" (Clase 02) y lo juntamos con las comidas. La estructura es la de siempre: la <strong>hora va antes del verbo</strong>.</p>
+
+<div style="background:linear-gradient(135deg,#fdecea,#fff); border:2px solid #c0392b; border-radius:12px; padding:18px 20px; margin:14px 0 20px;">
+  <div style="font-size:0.74em; color:#c0392b; text-transform:uppercase; letter-spacing:1.4px; font-weight:700; margin-bottom:12px;">⭐ Frase del día</div>
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; padding:6px 0;">
+    <span class="hz" style="font-size:1.5em;">你几点吃早饭？</span>
+  </div>
+  <div style="font-family:'Inter',sans-serif; color:#555; padding-bottom:6px;"><em>Nǐ jǐ diǎn chī zǎofàn?</em></div>
+  <div style="color:#222;">→ <strong>¿A qué hora desayunas?</strong></div>
+</div>
+
+<div class="box structure">
+  <strong>Estructura:</strong><br>
+  <code>Sujeto + 几点 + 吃 + [comida] ?</code><br>
+  <small>⚠️ La hora (<span class="hz">几点</span>) va <strong>antes</strong> del verbo <span class="hz">吃</span>, no después.</small>
+</div>
+
+<h3>Las tres comidas 🍽️</h3>
+
+<table>
+  <tr><th>Pregunta</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz">你几点吃早饭？</td><td class="pinyin-col">Nǐ jǐ diǎn chī zǎofàn?</td><td>🍚 ¿A qué hora desayunas?</td></tr>
+  <tr><td class="hz">你几点吃午饭？</td><td class="pinyin-col">Nǐ jǐ diǎn chī wǔfàn?</td><td>🍱 ¿A qué hora almuerzas?</td></tr>
+  <tr><td class="hz">你几点吃晚饭？</td><td class="pinyin-col">Nǐ jǐ diǎn chī wǎnfàn?</td><td>🍲 ¿A qué hora cenas?</td></tr>
+</table>
+
+<h3>Ejemplos — preguntar y responder 🗣️</h3>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz">你几点吃早饭？</span><br><em>Nǐ jǐ diǎn chī zǎofàn? — ¿A qué hora desayunas?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz">我早上七点吃早饭。</span><br><em>Wǒ zǎoshang qī diǎn chī zǎofàn. — Desayuno a las 7 de la mañana.</em></div>
+</div>
+
+<div class="box tip">
+  🪞 <strong>Misma lógica de espejo:</strong> para responder, cambias <span class="hz">几点</span> por la hora concreta (con su franja del día delante): <span class="hz">早上七点</span> = 7 de la mañana, <span class="hz">中午十二点</span> = mediodía, <span class="hz">晚上八点</span> = 8 de la noche.
+</div>
+
+<div class="box note">
+  🔑 <strong>Dos preguntas, dos "几" distintos:</strong><br>
+  • <span class="hz">几点</span> (jǐ diǎn) = <strong>¿a qué hora?</strong> → momento del día.<br>
+  • <span class="hz">几天</span> (jǐ tiān) = <strong>¿cuántos días?</strong> → duración (Sección 1).<br>
+  <small>El mismo 几 sirve para preguntar "qué/cuánto"; lo que cambia es la palabra que va detrás (点 = hora, 天 = días).</small>
+</div>
+
+<!-- ░░░ BLOQUE 1 ░░░ -->
+<div style="margin:48px 0 10px; padding:16px 20px; background:linear-gradient(135deg,#1a1a2e 0%,#2a2a4a 60%,#3a1a28 100%); color:#fff; border-radius:14px; box-shadow:0 4px 14px rgba(26,26,46,.18);">
+  <div style="font-size:0.7em; letter-spacing:2.5px; text-transform:uppercase; color:#f1948a; font-weight:700;">Bloque 1</div>
+  <div style="font-size:1.2em; font-weight:700; margin-top:3px;">🌤️ El clima — el tema central</div>
+  <div style="font-size:0.84em; color:#c9c9dc; margin-top:5px;">Preguntar, responder y predecir el tiempo: 天气怎么样, 冷 / 热 / 暖和, 太……了, el diálogo de Beijing y 会 (futuro).</div>
+</div>
+
+<!-- ═══ SECCIÓN 3 ═══ -->
+<h2 id="s3" class="gold">3. 明天天气怎么样？— el clima + 怎么样 🌤️</h2>
+<div class="box note">
+  🆕 <strong>¡Empieza la materia nueva de la Clase 03!</strong> Hasta aquí fue repaso; ahora entramos al tema de hoy: <strong>el clima</strong> 🌤️ y la pregunta comodín <span class="hz">怎么样</span> ("¿qué tal?").
+</div>
+
+<p>Para preguntar por el clima se usa <span class="hz">天气</span> (tiānqì, "el tiempo / clima") + <span class="hz">怎么样</span> (zěnme yàng, "¿qué tal? / ¿cómo está?"). Y delante se pone <strong>cuándo</strong>: hoy, mañana, ayer…</p>
+
+<div style="background:linear-gradient(135deg,#fdecea,#fff); border:2px solid #c0392b; border-radius:12px; padding:18px 20px; margin:14px 0 20px;">
+  <div style="font-size:0.74em; color:#c0392b; text-transform:uppercase; letter-spacing:1.4px; font-weight:700; margin-bottom:12px;">⭐ Frase del día</div>
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; padding:6px 0;">
+    <span class="hz" style="font-size:1.5em;">明天天气怎么样？</span>
+  </div>
+  <div style="font-family:'Inter',sans-serif; color:#555; padding-bottom:6px;"><em>Míngtiān tiānqì zěnme yàng?</em></div>
+  <div style="color:#222;">→ <strong>¿Qué tal el clima mañana?</strong></div>
+</div>
+
+<div class="box structure">
+  <strong>Estructura:</strong><br>
+  <code>[cuándo] + 天气 + 怎么样 ?</code><br>
+  <small>El "cuándo" (今天 / 明天 / 昨天) va <strong>al principio</strong>. No lleva verbo "ser/estar": el chino pregunta literalmente "mañana — clima — ¿qué tal?".</small>
+</div>
+
+<h3>Vocabulario 🌤️</h3>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/天气" target="_blank">天气</a></td><td class="pinyin-col">tiānqì</td><td>🌦️ el tiempo / clima</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/怎么样" target="_blank">怎么样</a></td><td class="pinyin-col">zěnme yàng</td><td>❓ ¿qué tal? / ¿cómo está?</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/今天" target="_blank">今天</a></td><td class="pinyin-col">jīntiān</td><td>📅 hoy</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/明天" target="_blank">明天</a></td><td class="pinyin-col">míngtiān</td><td>➡️ mañana</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/昨天" target="_blank">昨天</a></td><td class="pinyin-col">zuótiān</td><td>⬅️ ayer</td></tr>
+</table>
+
+<div class="box grammar">
+  <strong>❓ 怎么样 (zěnme yàng) = "¿qué tal? / ¿cómo está?".</strong> Es una pregunta comodín: la pones <strong>al final</strong> para pedir una opinión o el estado de algo. No necesita "吗".<br>
+  • <span class="hz">天气怎么样？</span> = ¿Qué tal el clima?<br>
+  • <span class="hz">你怎么样？</span> = ¿Qué tal estás? / ¿Cómo te va?<br>
+  • <span class="hz">中国菜怎么样？</span> = ¿Qué tal la comida china?
+</div>
+
+<h3>Más usos de 怎么样 — para opinar y proponer 💡</h3>
+
+<p>怎么样 sirve para muchísimo. Estos son los dos usos más frecuentes:</p>
+
+<div class="box grammar">
+  <strong>1️⃣ Pedir una opinión sobre algo</strong> — <code>[cosa] + 怎么样 ?</code><br>
+  • <span class="hz">这个怎么样？</span> — <em>Zhège zěnme yàng?</em> = ¿Qué tal este? / ¿Qué te parece este?<br>
+  • <span class="hz">中文怎么样？</span> — <em>Zhōngwén zěnme yàng?</em> = ¿Qué tal (es) el chino?<br>
+  • <span class="hz">智利怎么样？</span> — <em>Zhìlì zěnme yàng?</em> = ¿Qué tal Chile?
+</div>
+
+<div class="box grammar">
+  <strong>2️⃣ Proponer un plan</strong> — pones la idea y cierras con <span class="hz">怎么样？</span> = "¿qué te parece?".<br>
+  • <span class="hz">我们去吃饭，怎么样？</span> — <em>Wǒmen qù chī fàn, zěnme yàng?</em> = Vamos a comer, ¿qué te parece?<br>
+  • <span class="hz">明天去商店，怎么样？</span> — <em>Míngtiān qù shāngdiàn, zěnme yàng?</em> = Mañana vamos a la tienda, ¿te parece?
+</div>
+
+<div class="box tip">
+  💬 <strong>Para responder</strong> a un 怎么样 puedes usar adjetivos con 很:<br>
+  • <span class="hz">很好。</span> (hěn hǎo) = Muy bien / Está bien.<br>
+  • <span class="hz">不太好。</span> (bú tài hǎo) = No muy bien.<br>
+  • <span class="hz">很有意思。</span> (hěn yǒu yìsi) = Muy interesante.
+</div>
+
+<div class="box tip">
+  📅 <strong>Los tres días base</strong> comparten el carácter <span class="hz">天</span> (día):<br>
+  <span class="hz">昨天</span> (ayer) → <span class="hz">今天</span> (hoy) → <span class="hz">明天</span> (mañana).
+</div>
+
+<h3>El carácter 样 — "manera / aspecto" 👀</h3>
+
+<p>El <span class="hz">样</span> de <span class="hz">怎么样</span> significa <strong>"manera / forma / aspecto"</strong>. Aparece solito en una palabra muy útil:</p>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/样" target="_blank">样</a></td><td class="pinyin-col">yàng</td><td>📐 manera / forma / tipo</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/样子" target="_blank">样子</a></td><td class="pinyin-col">yàngzi</td><td>👀 aspecto / apariencia / pinta</td></tr>
+</table>
+
+<div class="box grammar">
+  <strong>👀 样子 (yàngzi) = "aspecto / apariencia".</strong> El sufijo <span class="hz">子</span> (-zi, tono neutro) convierte 样 en un sustantivo concreto.<br>
+  • <span class="hz">你的样子</span> — <em>nǐ de yàngzi</em> = <strong>tu aspecto / cómo te ves</strong>.<br>
+  <small>💡 Conexión: <span class="hz">怎么样</span> = literalmente "¿de qué manera (样)?". Por eso sirve para preguntar el estado o la pinta de algo.</small>
+</div>
+
+<h3>Ejemplo — preguntar por el clima 🗣️</h3>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz">明天天气怎么样？</span><br><em>Míngtiān tiānqì zěnme yàng? — ¿Qué tal el clima mañana?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz">今天天气怎么样？</span><br><em>Jīntiān tiānqì zěnme yàng? — ¿Y qué tal el clima hoy?</em></div>
+</div>
+
+<!-- ═══ SECCIÓN 4 ═══ -->
+<h2 id="s4" class="green">4. Responder el clima + vocabulario nuevo 🌡️</h2>
+<p>Ya sabemos preguntar <span class="hz">天气怎么样？</span>. Ahora las palabras para <strong>responder</strong> qué tiempo hace:</p>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/冷" target="_blank">冷</a></td><td class="pinyin-col">lěng</td><td>🥶 frío</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/热" target="_blank">热</a></td><td class="pinyin-col">rè</td><td>🥵 calor / caluroso</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/暖和" target="_blank">暖和</a></td><td class="pinyin-col">nuǎnhuo</td><td>😊 templado / agradable (cálido)</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/下雨" target="_blank">下雨</a></td><td class="pinyin-col">xià yǔ</td><td>🌧️ llover / lluvia</td></tr>
+</table>
+
+<div class="box note">
+  ⬇️ <strong>下 (xià) = "bajar / caer / abajo".</strong> Por eso <span class="hz">下雨</span> es literalmente <strong>"caer lluvia"</strong> (下 + 雨 = lluvia) → "llueve". El mismo 下 está en muchas palabras de "hacia abajo":<br>
+  • <span class="hz">下雨</span> (xià yǔ) = llover (cae lluvia) &nbsp;·&nbsp; <span class="hz">下雪</span> (xià xuě) = nevar (cae nieve)<br>
+  • <span class="hz">下班</span> (xià bān) = salir del trabajo &nbsp;·&nbsp; <span class="hz">下课</span> (xià kè) = salir de clase &nbsp;<small>(¡los viste en Clase 02!)</small><br>
+  <small>Es el opuesto de <span class="hz">上</span> (shàng, "subir / arriba"): 上班/下班, 上课/下课.</small>
+</div>
+
+<div class="box tip">
+  💬 <strong>Responder el clima</strong> (sin verbo "ser/estar"):<br>
+  • <span class="hz">今天很热。</span> — <em>Jīntiān hěn rè.</em> = Hoy hace (mucho) calor.<br>
+  • <span class="hz">明天很冷。</span> — <em>Míngtiān hěn lěng.</em> = Mañana hace frío.<br>
+  • <span class="hz">今天很暖和。</span> — <em>Jīntiān hěn nuǎnhuo.</em> = Hoy está templado.<br>
+  • <span class="hz">明天下雨。</span> — <em>Míngtiān xià yǔ.</em> = Mañana llueve.<br>
+  <small>🔑 Con adjetivos de clima (热/冷/暖和) se suele poner <span class="hz">很</span> (hěn) antes, aunque no signifique "muy": es el "pegamento" normal del chino.</small>
+</div>
+
+<h3>太……了 — "¡demasiado…! / ¡qué…!" 🤯</h3>
+
+<p>Para enfatizar mucho un adjetivo se usa el "sándwich" <span class="hz">太</span> (tài, "demasiado") + adjetivo + <span class="hz">了</span> (le). Es muy expresivo, como un "¡qué frío!" en español.</p>
+
+<div class="box structure">
+  <strong>Estructura:</strong><br>
+  <code>太 + adjetivo + 了 ！</code><br>
+  <small>El <span class="hz">了</span> del final es obligatorio en esta fórmula: cierra la exclamación.</small>
+</div>
+
+<div class="box grammar">
+  <strong>🤯 Ejemplos de 太……了:</strong><br>
+  • <span class="hz">太冷了！</span> — <em>Tài lěng le!</em> = ¡Qué frío! / Demasiado frío.<br>
+  • <span class="hz">太热了！</span> — <em>Tài rè le!</em> = ¡Qué calor!<br>
+  • <span class="hz">太好了！</span> — <em>Tài hǎo le!</em> = ¡Qué bien! / ¡Genial!<br>
+  • <span class="hz">太贵了！</span> — <em>Tài guì le!</em> = ¡Demasiado caro!
+</div>
+
+<div class="box warn">
+  ⚠️ <strong>很 vs 太……了:</strong> <span class="hz">很冷</span> (hěn lěng) = "hace frío" (neutro, descriptivo). <span class="hz">太冷了</span> (tài lěng le) = "¡qué frío!" (exagerado, con emoción). 太 casi siempre implica que es <strong>demasiado / excesivo</strong>.
+</div>
+
+<div class="box tip">
+  🌶️ <strong>太……了 con la comida</strong> (muy útil en la mesa):<br>
+  • <span class="hz">太辣了！</span> — <em>Tài là le!</em> = ¡Qué picante! / Demasiado picante.<br>
+  • <span class="hz">太好吃了！</span> — <em>Tài hǎo chī le!</em> = ¡Qué rico! / ¡Está buenísimo!<br>
+  <small>Piezas nuevas: <span class="hz">辣</span> (là) = picante &nbsp;·&nbsp; <span class="hz">好吃</span> (hǎochī) = rico / delicioso (literalmente "bueno-de-comer", 好 + 吃).</small>
+</div>
+
+<h3>Más vocabulario de la clase 📒</h3>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/睡" target="_blank">睡</a></td><td class="pinyin-col">shuì</td><td>😴 dormir</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/水果" target="_blank">水果</a></td><td class="pinyin-col">shuǐguǒ</td><td>🍎 fruta</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/医生" target="_blank">医生</a></td><td class="pinyin-col">yīshēng</td><td>🧑‍⚕️ doctor / médico</td></tr>
+</table>
+
+<div class="box note">
+  😴 <strong>睡 (shuì) vs 睡觉 (shuìjiào):</strong> <span class="hz">睡</span> solo es "dormir"; en el día a día casi siempre se dice <span class="hz">睡觉</span> (la forma completa, ver <a href="clase02.html#s11">Clase 02</a>). <span class="hz">睡</span> aparece dentro de palabras como <span class="hz">睡午觉</span> (dormir la siesta).
+</div>
+
+<div class="box tip">
+  💧 <strong>水果 = "agua-fruta".</strong> <span class="hz">水</span> (shuǐ) = <strong>agua</strong> y <span class="hz">果</span> (guǒ) = fruto → juntos, la fruta (jugosa). El <span class="hz">水</span> aparece en muchísimas palabras: <span class="hz">喝水</span> (hē shuǐ) = beber agua, <span class="hz">水果</span> = fruta. ¡Buen ojo, Basti! 👀
+</div>
+
+<h3>✍️ ¡Practiquemos! — completa con la palabra correcta</h3>
+
+<div class="ex">
+  <strong>Traduce al chino (tipea el pinyin o el hanzi):</strong>
+  <ol>
+    <li>Hoy hace calor. → <span class="blank">&nbsp;</span> &nbsp;<small style="color:#999;">(今天很热)</small></li>
+    <li>¿Qué tal el clima mañana? → <span class="blank">&nbsp;</span> &nbsp;<small style="color:#999;">(明天天气怎么样？)</small></li>
+    <li>Mañana llueve. → <span class="blank">&nbsp;</span> &nbsp;<small style="color:#999;">(明天下雨)</small></li>
+    <li>Me gusta la fruta. → <span class="blank">&nbsp;</span> &nbsp;<small style="color:#999;">(我喜欢水果)</small></li>
+    <li>Hoy está templado. → <span class="blank">&nbsp;</span> &nbsp;<small style="color:#999;">(今天很暖和)</small></li>
+  </ol>
+  <small>💡 Las respuestas están en gris para autocorregirte. ¡Tápalo con la mano y prueba primero!</small>
+</div>
+
+<!-- ═══ SECCIÓN 5 ═══ -->
+<h2 id="s5" class="blue">5. Diálogo: el clima en Beijing 🏙️</h2>
+<p>Una conversación que junta casi todo lo de hoy: <span class="hz">怎么样</span>, <span class="hz">太……了</span>, <span class="hz">呢</span> y una forma nueva muy útil, <span class="hz">不冷不热</span> ("ni frío ni calor").</p>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz">昨天北京的天气怎么样？</span><br><em>Zuótiān Běijīng de tiānqì zěnme yàng? — ¿Qué tal el clima de Beijing ayer?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz">太热了！</span><br><em>Tài rè le! — ¡Demasiado calor!</em></div>
+  <div class="da"><strong>A:</strong> <span class="hz">明天呢？明天天气怎么样？</span><br><em>Míngtiān ne? Míngtiān tiānqì zěnme yàng? — ¿Y mañana? ¿Qué tal el clima mañana?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz">明天天气很好，不冷不热。</span><br><em>Míngtiān tiānqì hěn hǎo, bù lěng bú rè. — Mañana el clima está muy bien, ni frío ni calor.</em></div>
+</div>
+
+<h3>Vocabulario del diálogo 🏙️</h3>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/北京" target="_blank">北京</a></td><td class="pinyin-col">Běijīng</td><td>🏙️ Beijing (Pekín)</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/不冷不热" target="_blank">不冷不热</a></td><td class="pinyin-col">bù lěng bú rè</td><td>😊 ni frío ni calor (agradable)</td></tr>
+</table>
+
+<div class="box grammar">
+  <strong>📎 北京的天气 — el 的 de posesión.</strong> <span class="hz">的</span> (de) une dos cosas como el "de" del español, pero <strong>al revés</strong>: <code>X 的 Y = "el Y de X"</code>.<br>
+  • <span class="hz">北京的天气</span> = el clima <strong>de</strong> Beijing.<br>
+  • <span class="hz">我的朋友</span> = mi amigo (el amigo de mí).
+</div>
+
+<div class="box grammar">
+  <strong>⚖️ 不A不B = "ni A ni B".</strong> Se repite <span class="hz">不</span> delante de dos adjetivos opuestos para decir que algo está en el punto justo.<br>
+  • <span class="hz">不冷不热</span> — <em>bù lěng bú rè</em> = ni frío ni calor (templado, perfecto).<br>
+  • <span class="hz">不大不小</span> — <em>bú dà bù xiǎo</em> = ni grande ni pequeño.<br>
+  • <span class="hz">不多不少</span> — <em>bù duō bù shǎo</em> = ni mucho ni poco.
+</div>
+
+<div class="box tip">
+  🔄 <strong>Repaso del 呢 (ne):</strong> <span class="hz">明天呢？</span> = "¿y mañana?". 呢 sirve para <strong>devolver la misma pregunta</strong> cambiando solo el tema, sin repetir todo. (Ya lo vimos en <a href="clase02.html">Clase 02</a>.)
+</div>
+
+<div class="box warn">
+  🎵 <strong>Ojo al tono de 不 (bù):</strong> normalmente es 4.º tono (<em>bù</em>), pero <strong>antes de otra sílaba en 4.º tono cambia a 2.º</strong> (<em>bú</em>). Por eso: <span class="hz">不热</span> = <em>bú rè</em> (热 es 4.º), pero <span class="hz">不冷</span> = <em>bù lěng</em> (冷 es 3.º, 不 no cambia). → <span class="hz">不冷不热</span> = <em>bù lěng bú rè</em>.
+</div>
+
+<!-- ═══ SECCIÓN 6 ═══ -->
+<h2 id="s6" class="gold">6. 会 — hablar del futuro / hacer predicciones 🔮 (+ 来 venir)</h2>
+<p>Hasta ahora describíamos el clima de hoy o de costumbre. Con <span class="hz">会</span> (huì) hablamos del <strong>futuro / lo probable</strong>: "va a llover", "vendrá". Y aparece el verbo <span class="hz">来</span> (lái, venir).</p>
+
+<div style="background:linear-gradient(135deg,#fdecea,#fff); border:2px solid #c0392b; border-radius:12px; padding:18px 20px; margin:14px 0 20px;">
+  <div style="font-size:0.74em; color:#c0392b; text-transform:uppercase; letter-spacing:1.4px; font-weight:700; margin-bottom:12px;">⭐ Frase del día</div>
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; padding:6px 0;">
+    <span class="hz" style="font-size:1.5em;">今天会下雨吗？</span>
+  </div>
+  <div style="font-family:'Inter',sans-serif; color:#555; padding-bottom:6px;"><em>Jīntiān huì xià yǔ ma?</em></div>
+  <div style="color:#222;">→ <strong>¿Va a llover hoy?</strong></div>
+</div>
+
+<div class="box structure">
+  <strong>Estructura:</strong><br>
+  <code>Sujeto + 会 + verbo (+ 吗？)</code> &nbsp;·&nbsp; negativo: <code>Sujeto + 不会 + verbo</code><br>
+  <small><span class="hz">会</span> (huì) va <strong>antes del verbo</strong> y expresa que algo <strong>va a ocurrir</strong> (predicción / futuro).</small>
+</div>
+
+<h3>Vocabulario 🔮</h3>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/会" target="_blank">会</a></td><td class="pinyin-col">huì</td><td>🔮 ir a / va a (futuro, predicción)</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/来" target="_blank">来</a></td><td class="pinyin-col">lái</td><td>🙋 venir</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/小姐" target="_blank">小姐</a></td><td class="pinyin-col">xiǎojiě</td><td>👩 señorita</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/不会" target="_blank">不会</a></td><td class="pinyin-col">bú huì</td><td>🚫 no va a (negativo de 会)</td></tr>
+</table>
+
+<h3>Diálogos 🗣️</h3>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz">今天会下雨吗？</span><br><em>Jīntiān huì xià yǔ ma? — ¿Va a llover hoy?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz">今天不会下雨。</span><br><em>Jīntiān bú huì xià yǔ. — Hoy no va a llover.</em></div>
+</div>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz">王小姐今天会来吗？</span><br><em>Wáng xiǎojiě jīntiān huì lái ma? — ¿Vendrá hoy la señorita Wang?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz">不会来，天气太冷了。</span><br><em>Bú huì lái, tiānqì tài lěng le. — No vendrá, hace demasiado frío.</em></div>
+</div>
+
+<h3>⚖️ Los DOS usos de 会 — ¡ojo, no confundir!</h3>
+
+<p>会 tiene dos significados muy distintos según el contexto. Hoy nos interesa sobre todo el segundo (la posibilidad), pero conviene tener claros los dos:</p>
+
+<table>
+  <tr><th>Uso</th><th>Significado</th><th>Ejemplo</th><th>Español</th></tr>
+  <tr><td>1️⃣ Habilidad</td><td>saber / poder hacer (algo aprendido)</td><td class="hz">我会说中文。</td><td>Sé hablar chino.</td></tr>
+  <tr><td>2️⃣ Posibilidad</td><td>indicar que una situación <strong>va a / es probable que</strong> ocurra</td><td class="hz">今天会下雨。</td><td>Hoy va a llover / es probable que llueva.</td></tr>
+</table>
+
+<div class="box grammar">
+  <strong>1️⃣ 会 = "saber / poder" (habilidad aprendida).</strong><br>
+  • <span class="hz">我会说中文。</span> — <em>Wǒ huì shuō Zhōngwén.</em> = Sé hablar chino.<br>
+  • <span class="hz">我会游泳。</span> — <em>Wǒ huì yóuyǒng.</em> = Sé nadar.<br>
+  <small>Es una capacidad que aprendiste; nada que ver con el tiempo futuro.</small>
+</div>
+
+<div class="box grammar">
+  <strong>2️⃣ 会 = "posibilidad / probabilidad de una situación" (lo de hoy 🔮).</strong> Indica que algo <strong>va a pasar</strong> o que es probable que ocurra:<br>
+  • <span class="hz">今天会下雨。</span> — <em>Jīntiān huì xià yǔ.</em> = Hoy va a llover / puede que llueva.<br>
+  • <span class="hz">明天会冷。</span> — <em>Míngtiān huì lěng.</em> = Mañana va a hacer frío.<br>
+  • <span class="hz">他不会来。</span> — <em>Tā bú huì lái.</em> = (Probablemente) no va a venir.<br>
+  • <span class="hz">我的朋友不会来。</span> — <em>Wǒ de péngyou bú huì lái.</em> = Mi amigo no va a venir.<br>
+  <small>El negativo es siempre <span class="hz">不会</span> (¡nunca 没!), para los dos usos.</small>
+</div>
+
+<div class="box tip">
+  🧭 <strong>¿Cómo sé cuál es?</strong> Si después de 会 viene una <strong>habilidad/acción que se aprende</strong> (hablar, nadar, conducir) → es "saber". Si describe <strong>algo que ocurre/ocurrirá</strong> (llover, hacer frío, venir, pasar) → es "posibilidad/futuro". El contexto lo aclara casi siempre.
+</div>
+
+<div class="box note">
+  🙋 <strong>来 (lái) = "venir"</strong> (hacia donde está quien habla). Su opuesto es <span class="hz">去</span> (qù, "ir", alejándose). Ya lo viste dentro de <span class="hz">回来</span> (huílái, "volver") en <a href="clase02.html">Clase 02</a>.
+</div>
+
+<div class="box warn">
+  🎵 <strong>变调 otra vez:</strong> <span class="hz">不会</span> se dice <em>bú huì</em> — como 会 es 4.º tono, <span class="hz">不</span> sube a 2.º (igual que <span class="hz">不热</span> = bú rè). ¡Lo de la Sección 13!
+</div>
+
+<!-- ░░░ BLOQUE 2 ░░░ -->
+<div style="margin:48px 0 10px; padding:16px 20px; background:linear-gradient(135deg,#1a1a2e 0%,#2a2a4a 60%,#3a1a28 100%); color:#fff; border-radius:14px; box-shadow:0 4px 14px rgba(26,26,46,.18);">
+  <div style="font-size:0.7em; letter-spacing:2.5px; text-transform:uppercase; color:#f1948a; font-weight:700;">Bloque 2</div>
+  <div style="font-size:1.2em; font-weight:700; margin-top:3px;">🧩 La gramática del día</div>
+  <div style="font-size:0.84em; color:#c9c9dc; margin-top:5px;">Las estructuras que aparecieron: 怎么样, la oración tema-comentario (主谓谓语句), la partícula 了, los negativos y 些.</div>
+</div>
+
+<!-- ═══ SECCIÓN 7 ═══ -->
+<h2 id="s7" class="purple">7. ⭐ 怎么样 a fondo — la palabra estrella</h2>
+<!-- HERO grande -->
+<div style="background:radial-gradient(120% 120% at 0% 0%, #2a2a4a 0%, #1a1a2e 60%, #131322 100%); color:#fff; border-radius:16px; padding:30px 26px; margin:14px 0 22px; text-align:center; position:relative; overflow:hidden;">
+  <div style="font-size:3.4em; font-weight:700; letter-spacing:2px; line-height:1; color:#fff;">怎么样</div>
+  <div style="font-family:'Inter',sans-serif; font-size:1.3em; color:#f1948a; margin-top:10px;">zěnme yàng</div>
+  <div style="color:#cfcfe0; margin-top:10px; font-size:1.02em;">«¿qué tal? · ¿cómo está? · ¿de qué manera?»</div>
+  <div style="color:#9a9ab0; margin-top:14px; font-size:0.9em; max-width:560px; margin-left:auto; margin-right:auto;">Sirve para preguntar por la <strong style="color:#fff;">condición, el estado, la calidad o tu opinión</strong> sobre algo o alguien — y también para <strong style="color:#fff;">proponer un plan</strong>.</div>
+</div>
+
+<h3>🧩 De qué está hecha</h3>
+
+<div class="box grammar">
+  <span class="hz">怎么样</span> = <span class="hz">怎么</span> (zěnme, "¿cómo? / ¿de qué modo?") + <span class="hz">样</span> (yàng, "manera / aspecto").<br>
+  → Literalmente: <strong>"¿de qué manera (está)?"</strong>. Por eso pregunta por el <strong>estado o la condición</strong> de las cosas.<br>
+  <small>💡 Recuerda 样 de la Sección 3: también está en <span class="hz">样子</span> (yàngzi, "aspecto").</small>
+</div>
+
+<h3>🎯 Sus 4 usos principales</h3>
+
+<table>
+  <tr><th>Uso</th><th>Ejemplo</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td>① Estado de algo</td><td class="hz">天气怎么样？</td><td class="pinyin-col">Tiānqì zěnme yàng?</td><td>¿Qué tal el clima?</td></tr>
+  <tr><td>② ¿Cómo está alguien?</td><td class="hz">你怎么样？</td><td class="pinyin-col">Nǐ zěnme yàng?</td><td>¿Qué tal estás?</td></tr>
+  <tr><td>③ Pedir opinión</td><td class="hz">这个菜怎么样？</td><td class="pinyin-col">Zhège cài zěnme yàng?</td><td>¿Qué tal este plato?</td></tr>
+  <tr><td>④ Proponer un plan</td><td class="hz">我们去吃饭，怎么样？</td><td class="pinyin-col">Wǒmen qù chī fàn, zěnme yàng?</td><td>Vamos a comer, ¿te parece?</td></tr>
+</table>
+
+<h3>📐 Reglas de oro</h3>
+
+<div class="box structure">
+  <strong>1. Va SIEMPRE al final.</strong> <code>[tema] + 怎么样 ?</code><br>
+  <strong>2. NO lleva 吗.</strong> 怎么样 ya es una pregunta por sí sola (es de las "preguntas con palabra interrogativa"). ❌ <s>天气怎么样吗？</s><br>
+  <strong>3. No necesita verbo "ser/estar".</strong> El chino no dice "¿cómo *está* el clima?", dice directamente "clima — ¿qué tal?".
+</div>
+
+<h3>💬 Cómo responder a un 怎么样</h3>
+
+<table>
+  <tr><th>Respuesta</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz">很好。</td><td class="pinyin-col">Hěn hǎo.</td><td>😀 Muy bien.</td></tr>
+  <tr><td class="hz">不错。</td><td class="pinyin-col">Bú cuò.</td><td>👍 Nada mal / Bastante bien.</td></tr>
+  <tr><td class="hz">还可以。</td><td class="pinyin-col">Hái kěyǐ.</td><td>😐 Más o menos / Pasable.</td></tr>
+  <tr><td class="hz">不太好。</td><td class="pinyin-col">Bú tài hǎo.</td><td>🙁 No muy bien.</td></tr>
+</table>
+
+<h3>🗣️ Ejemplos de la vida real (con 的)</h3>
+
+<p>Combinado con <span class="hz">的</span> (posesión), 怎么样 sirve para preguntar por "el/la ___ de alguien":</p>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz">你的汉语怎么样？</span><br><em>Nǐ de hànyǔ zěnme yàng? — ¿Cómo va tu chino?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz">还可以。</span><br><em>Hái kěyǐ. — Más o menos / Va pasable.</em></div>
+  <div class="da"><strong>A:</strong> <span class="hz">你妈妈的身体怎么样？</span><br><em>Nǐ māma de shēntǐ zěnme yàng? — ¿Cómo está la salud de tu mamá?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz">她身体很好。</span><br><em>Tā shēntǐ hěn hǎo. — Ella está muy bien de salud.</em></div>
+</div>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/汉语" target="_blank">汉语</a></td><td class="pinyin-col">hànyǔ</td><td>🗣️ chino (el idioma) / mandarín</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/身体" target="_blank">身体</a></td><td class="pinyin-col">shēntǐ</td><td>💪 cuerpo / salud</td></tr>
+</table>
+
+<div class="box note">
+  🩺 <strong>Preguntar por la salud es de buena educación en chino.</strong> <span class="hz">你妈妈的身体怎么样？</span> ("¿cómo está la salud de tu mamá?") es una forma cálida y cortés de interesarse por la familia de alguien. Aquí <span class="hz">身体</span> (cuerpo) significa "salud / estado físico".
+</div>
+
+<div class="box tip">
+  🧠 <strong>Pariente cercano:</strong> <span class="hz">怎么</span> solo (sin 样) significa "¿cómo?" para preguntar el <strong>modo de hacer algo</strong>: <span class="hz">怎么走？</span> (¿cómo se va / llega?), <span class="hz">怎么说？</span> (¿cómo se dice?), <span class="hz">怎么办？</span> (¿qué hago? / ¿qué hacemos?). <br>
+  <small>Diferencia: <span class="hz">怎么样</span> = "¿qué tal / en qué estado?"; <span class="hz">怎么</span> = "¿de qué modo / cómo?".</small>
+</div>
+
+<h3>✍️ Aún más para practicar — 怎么样 con todo</h3>
+
+<div class="box grammar">
+  <strong>Preguntas para leer en voz alta</strong> (¡aplica los cambios de tono de la Sección 13!):<br>
+  • <span class="hz">今天天气怎么样？</span> — <em>Jīntiān tiānqì zěnme yàng?</em> = ¿Qué tal el clima hoy?<br>
+  • <span class="hz">你妹妹的身体怎么样？</span> — <em>Nǐ mèimei de shēntǐ zěnme yàng?</em> = ¿Cómo está tu hermana menor?<br>
+  • <span class="hz">你的西班牙语怎么样？</span> — <em>Nǐ de Xībānyáyǔ zěnme yàng?</em> = ¿Cómo va tu español?<br>
+  • <span class="hz">你的家人怎么样？</span> — <em>Nǐ de jiārén zěnme yàng?</em> = ¿Cómo está tu familia?
+</div>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/妹妹" target="_blank">妹妹</a></td><td class="pinyin-col">mèimei</td><td>👧 hermana menor</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/西班牙语" target="_blank">西班牙语</a></td><td class="pinyin-col">Xībānyáyǔ</td><td>🇪🇸 español (el idioma)</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/西班牙" target="_blank">西班牙</a></td><td class="pinyin-col">Xībānyá</td><td>🇪🇸 España</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/家人" target="_blank">家人</a></td><td class="pinyin-col">jiārén</td><td>👨‍👩‍👧‍👦 familia (los miembros)</td></tr>
+</table>
+
+<div class="box tip">
+  🌐 <strong>El patrón de los idiomas:</strong> [país] + <span class="hz">语</span> (yǔ, "lengua") = el idioma de ese país.<br>
+  • <span class="hz">西班牙</span> (España) → <span class="hz">西班牙语</span> (español) &nbsp;·&nbsp; <span class="hz">汉</span> (han/chino) → <span class="hz">汉语</span> (chino) &nbsp;·&nbsp; <span class="hz">英</span> (Inglaterra) → <span class="hz">英语</span> (inglés).
+</div>
+
+<!-- ═══ SECCIÓN 8 ═══ -->
+<h2 id="s8" class="blue">8. 主谓谓语句 — cuando el predicado es "sujeto + predicado" 🧩</h2>
+<div class="box note">
+  💡 <strong>¡Ya lo usaste hoy!</strong> Cuando dijiste <span class="hz">她身体很好</span> (ella está bien de salud), usaste justo esta estructura. Vamos a entenderla bien.
+</div>
+
+<p>En español decimos "<u>Ella</u> <u>tiene buena salud</u>" (sujeto + verbo + objeto). El chino, en cambio, arma muchas frases con un <strong>tema</strong> y luego, como comentario, <strong>una mini-oración completa</strong> (con su propio sujeto y predicado). A eso se le llama <span class="hz">主谓谓语句</span>: "oración cuyo predicado es a su vez sujeto-predicado".</p>
+
+<h3>🔬 La idea, en un diagrama</h3>
+
+<div style="background:#fff; border:1.5px solid #c0392b; border-radius:12px; padding:18px; margin:12px 0;">
+  <div style="text-align:center; font-size:1.5em; margin-bottom:14px;">
+    <span class="hz" style="background:#fdecea; padding:4px 12px; border-radius:8px;">她</span>
+    <span style="display:inline-block; padding:4px 12px; border:2px dashed #2980b9; border-radius:8px; margin-left:6px;">
+      <span class="hz" style="background:#e3f2fd; padding:2px 8px; border-radius:6px;">身体</span>
+      <span class="hz" style="background:#e8f5e9; padding:2px 8px; border-radius:6px;">很好</span>
+    </span>
+  </div>
+  <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap; font-size:0.82em; color:#555;">
+    <span>🟥 <strong>大主语</strong> (tema): <em>ella</em></span>
+    <span style="color:#2980b9;">⬜ <strong>predicado</strong> = mini-oración:</span>
+    <span>🟦 <strong>小主语</strong>: <em>la salud</em></span>
+    <span>🟩 <strong>predicado</strong>: <em>(es) muy buena</em></span>
+  </div>
+  <div style="text-align:center; margin-top:12px; color:#222; font-size:0.95em;">
+    <em>Tā shēntǐ hěn hǎo</em> → palabra por palabra: "ella — la salud — muy buena" = <strong>Ella está muy bien de salud.</strong>
+  </div>
+</div>
+
+<div class="box structure">
+  <strong>Estructura:</strong><br>
+  <code>[Tema] + [ Sujeto pequeño + Predicado ]</code><br>
+  <small>El "tema" es de lo que hablas; el predicado es una frase entera que <strong>comenta una parte o aspecto</strong> de ese tema (su salud, su nariz, su chino, su invierno…).</small>
+</div>
+
+<h3>🔍 Tabla: cada parte en su lugar</h3>
+
+<p>Así se descompone cada oración. Fíjate que el <strong>小主语</strong> (sujeto pequeño) casi siempre es <strong>una parte o aspecto</strong> del <strong>大主语</strong> (tema):</p>
+
+<table>
+  <tr>
+    <th>Oración completa</th>
+    <th>🟥 大主语<br><small>tema</small></th>
+    <th>🟦 小主语<br><small>suj. pequeño</small></th>
+    <th>🟩 谓语<br><small>predicado</small></th>
+    <th>Español</th>
+  </tr>
+  <tr><td class="hz">她身体很好</td><td class="hz">她</td><td class="hz">身体</td><td class="hz">很好</td><td>Ella está bien de salud</td></tr>
+  <tr><td class="hz">我头疼</td><td class="hz">我</td><td class="hz">头</td><td class="hz">疼</td><td>Me duele la cabeza</td></tr>
+  <tr><td class="hz">他汉语很好</td><td class="hz">他</td><td class="hz">汉语</td><td class="hz">很好</td><td>Él habla bien chino</td></tr>
+  <tr><td class="hz">北京冬天很冷</td><td class="hz">北京</td><td class="hz">冬天</td><td class="hz">很冷</td><td>En Beijing el invierno es frío</td></tr>
+  <tr><td class="hz">大象鼻子长</td><td class="hz">大象</td><td class="hz">鼻子</td><td class="hz">长</td><td>El elefante tiene la trompa larga</td></tr>
+  <tr><td class="hz">这个菜味道好</td><td class="hz">这个菜</td><td class="hz">味道</td><td class="hz">好</td><td>Este plato sabe rico</td></tr>
+  <tr><td class="hz">他个子很高</td><td class="hz">他</td><td class="hz">个子</td><td class="hz">很高</td><td>Él es muy alto</td></tr>
+</table>
+
+<div class="box note">
+  📏 <strong>他个子很高</strong> (<em>tā gèzi hěn gāo</em>) = "él es muy alto". Piezas nuevas: <span class="hz">个子</span> (gèzi) = estatura / altura de una persona &nbsp;·&nbsp; <span class="hz">高</span> (gāo) = alto. Otra vez el patrón: tema (他) + parte/aspecto (个子) + predicado (很高).
+</div>
+
+<div class="box warn">
+  🚻 <strong>¿他 (él) o 她 (ella)? Misma frase, mismo sonido.</strong> En chino <span class="hz">他</span> (él), <span class="hz">她</span> (ella) y <span class="hz">它</span> (ello/cosas) <strong>se pronuncian todos igual: <em>tā</em></strong> — solo cambian al escribirse (她 lleva el radical 女 de "mujer"). Y el resto de la frase <strong>no cambia</strong>, porque el chino <strong>no tiene concordancia de género</strong> (no existe "alto/alta"):<br>
+  • <span class="hz">他个子很高。</span> = Él es alto.<br>
+  • <span class="hz">她个子很高。</span> = Ella es alta.<br>
+  <small>Las dos son correctas; <span class="hz">很高</span> vale para cualquiera. Al oído suenan idénticas; eliges 他 o 她 al escribir según de quién hables.</small>
+</div>
+
+<div class="box tip">
+  📐 <strong>Cómo leer la tabla:</strong> junta las 3 columnas de color en orden → 大主语 + 小主语 + 谓语. Ej: <span class="hz">她</span> + <span class="hz">身体</span> + <span class="hz">很好</span> = <span class="hz">她身体很好</span>. El español casi siempre lo traduce con "tener" o un posesivo ("su salud", "le duele").
+</div>
+
+<h3>📋 Más ejemplos</h3>
+
+<table>
+  <tr><th>Tema</th><th>Sujeto + predicado</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz">我</td><td class="hz">身体很好。</td><td class="pinyin-col">Wǒ shēntǐ hěn hǎo.</td><td>Yo estoy bien de salud.</td></tr>
+  <tr><td class="hz">他</td><td class="hz">汉语很好。</td><td class="pinyin-col">Tā hànyǔ hěn hǎo.</td><td>Él habla muy bien chino.</td></tr>
+  <tr><td class="hz">北京</td><td class="hz">冬天很冷。</td><td class="pinyin-col">Běijīng dōngtiān hěn lěng.</td><td>En Beijing el invierno es muy frío.</td></tr>
+  <tr><td class="hz">大象</td><td class="hz">鼻子长。</td><td class="pinyin-col">Dàxiàng bízi cháng.</td><td>El elefante tiene la trompa larga.</td></tr>
+</table>
+
+<div class="box tip">
+  🧠 <strong>El truco para reconocerla:</strong> si puedes traducir como <em>"[tema], en cuanto a [X], es/está [Y]"</em>, es una 主谓谓语句. <span class="hz">我头疼。</span> (<em>Wǒ tóu téng</em>) = "Yo — la cabeza — duele" = <strong>Me duele la cabeza</strong>. <br>
+  <small>Muy típico para hablar de <strong>salud, partes del cuerpo, habilidades y características</strong>.</small>
+</div>
+
+<div class="box grammar">
+  <strong>🔗 Conexión con 怎么样:</strong> casi todas las preguntas de la Sección 7 generan respuestas de este tipo:<br>
+  • <span class="hz">你妈妈的身体怎么样？</span> → <span class="hz">她身体很好。</span><br>
+  • <span class="hz">你的汉语怎么样？</span> → <span class="hz">我汉语还可以。</span><br>
+  ¡Por eso te sonaba familiar! 👏
+</div>
+
+<h3>🔎 ¿Con 的 o sin 的? — cambia qué es lo "importante"</h3>
+
+<div class="box note">
+  ✨ <strong>Aquí está el detalle sutil pero elegante:</strong> con casi la misma frase, <strong>poner o quitar 的</strong> cambia <strong>cuántos sujetos hay</strong> y <strong>dónde está el foco</strong> (lo importante). Lo subrayado en <span class="key">rojo</span> es el centro de atención.
+</div>
+
+<p>Comparemos la misma idea sobre la salud de tu mamá:</p>
+
+<div class="box grammar">
+  <strong>① CON 的 — UN solo sujeto (frase posesiva):</strong><br>
+  <span style="font-size:1.25em;" class="hz">你妈妈<span class="key">的身体</span>怎么样？</span><br>
+  <em>Nǐ māma de shēntǐ zěnme yàng?</em><br>
+  → <span class="hz">你妈妈的身体</span> es <strong>una sola cosa</strong>: "la salud de tu mamá". El foco está en <span class="key">身体 (la salud)</span>. Preguntas por <strong>la salud en concreto</strong>, como objeto.
+</div>
+
+<div class="box grammar">
+  <strong>② SIN 的 — DOS sujetos (tema + comentario = 主谓谓语句):</strong><br>
+  <span style="font-size:1.25em;" class="hz"><span class="key">你妈妈</span>身体怎么样？</span><br>
+  <em>Nǐ māma shēntǐ zěnme yàng?</em><br>
+  → <span class="hz">你妈妈</span> (tema) + <span class="hz">身体怎么样</span> (comentario). El foco/tema es <span class="key">你妈妈 (tu mamá, la persona)</span>. Hablas <strong>DE tu mamá</strong> y, sobre ella, comentas su salud.
+</div>
+
+<div class="box tip">
+  🎚️ <strong>La diferencia en una frase:</strong><br>
+  • CON 的 → "¿Cómo está <span class="key">la salud</span> de tu mamá?" (importa el <strong>atributo</strong>).<br>
+  • SIN 的 → "<span class="key">Tu mamá</span>, ¿qué tal de salud?" (importa <strong>la persona</strong> como tema).<br>
+  <small>Es sutil y muchas veces se traducen igual al español, pero en chino el 的 "fusiona" los dos nombres en uno solo, mientras que sin 的 el primer nombre <strong>se eleva a tema principal</strong>.</small>
+</div>
+
+<div class="box grammar">
+  <strong>📈 Por qué el "sin 的" suele dar más énfasis al tema:</strong> al dejar <span class="hz">你妈妈</span> suelto al frente, lo conviertes en <em>aquello de lo que se habla</em>. Por eso aparece mucho en comparaciones o contrastes:<br>
+  • <span class="hz"><span class="key">我</span>汉语很好。</span> — <em>Wǒ hànyǔ hěn hǎo.</em> = "<u>Yo</u>, mi chino es bueno" (insinúa: <em>el mío</em>, en contraste con otro).<br>
+  • <span class="hz">我<span class="key">的</span>汉语很好。</span> — <em>Wǒ de hànyǔ hěn hǎo.</em> = "Mi chino es bueno" (afirmación neutra, sin contraste).
+</div>
+
+<!-- ═══ SECCIÓN 9 ═══ -->
+<h2 id="s9" class="purple">9. ¿Qué significa 了? — ¿es "pasado"? 🤔</h2>
+<div class="box note">
+  💡 <strong>Tu profe tiene razón… a medias.</strong> Decir que <span class="hz">了</span> es "pasado" es un buen <strong>atajo</strong> para empezar, pero ojo: el chino <strong>no tiene tiempos verbales</strong> (el verbo nunca cambia). En realidad <span class="hz">了</span> marca otra cosa: que algo <strong>se completó</strong> o que <strong>cambió la situación</strong>.
+</div>
+
+<p>Hay <strong>dos 了 distintos</strong> según dónde aparezcan. Vale la pena distinguirlos:</p>
+
+<h3>1️⃣ 了 después del verbo = acción completada ✅</h3>
+
+<div class="box structure">
+  <code>Sujeto + verbo + 了 + (objeto)</code><br>
+  <small>Marca que la acción <strong>ya se realizó / se completó</strong>. Aquí sí suele coincidir con el "pasado" del español.</small>
+</div>
+
+<div class="box grammar">
+  • <span class="hz">我吃了。</span> — <em>Wǒ chī le.</em> = Ya comí. / Comí.<br>
+  • <span class="hz">我吃了早饭。</span> — <em>Wǒ chī le zǎofàn.</em> = Desayuné (comí el desayuno).<br>
+  • <span class="hz">他去了商店。</span> — <em>Tā qù le shāngdiàn.</em> = Fue a la tienda.
+</div>
+
+<h3>2️⃣ 了 al final = cambio de situación / algo nuevo 🔄</h3>
+
+<div class="box structure">
+  <code>… + 了 ！</code> (al final de la frase)<br>
+  <small>Indica que <strong>algo cambió</strong> o <strong>apareció una situación nueva</strong>. ¡Esto NO es pasado! Muchas veces es presente o incluso futuro.</small>
+</div>
+
+<div class="box grammar">
+  • <span class="hz">下雨了。</span> — <em>Xià yǔ le.</em> = (Ahora) está lloviendo / empezó a llover. <small>(antes no llovía → cambió)</small><br>
+  • <span class="hz">太冷了！</span> — <em>Tài lěng le!</em> = ¡Qué frío! <small>(el 了 de 太……了 que ya vimos)</small><br>
+  • <span class="hz">我饿了。</span> — <em>Wǒ è le.</em> = (Ahora) tengo hambre / me dio hambre.
+</div>
+
+<div class="box warn">
+  ⚠️ <strong>Para negar una acción completada NO se usa 了.</strong> Se usa <span class="hz">没(有)</span> (méi yǒu) y <strong>se quita el 了</strong>:<br>
+  • <span class="hz">我吃了。</span> (comí) → ❌ <s>我没吃了</s> → ✅ <span class="hz">我没吃。</span> (<em>Wǒ méi chī.</em> = no comí).<br>
+  <small>Regla de oro: 了 y 没 no van juntos.</small>
+</div>
+
+<div class="box tip">
+  🧠 <strong>Resumen para no marearte:</strong><br>
+  • <span class="hz">了</span> tras el verbo → "ya pasó / se hizo" (≈ pasado). <br>
+  • <span class="hz">了</span> al final → "ahora es así / cambió" (estado nuevo).<br>
+  • Para negar lo primero: <span class="hz">没</span> + verbo, sin 了.
+</div>
+
+<!-- ═══ SECCIÓN 10 ═══ -->
+<h2 id="s10" class="gray">10. Aclaración: 太 y 了 en oraciones negativas ⚖️</h2>
+<div class="box note">
+  📝 <strong>Apunte tuyo, afinado.</strong> Tenías la intuición correcta sobre 太 y 了 con los negativos; aquí precisamos los detalles para que quede redondo.
+</div>
+
+<h3>太 — ¿dónde va y cómo se niega?</h3>
+
+<div class="box warn">
+  ⚠️ <strong>Cuidado con la posición:</strong> <span class="hz">太</span> <strong>NO va al final</strong>; va <strong>antes del adjetivo</strong>. Lo que va al final es el <span class="hz">了</span>:<br>
+  <code>太 + adjetivo + 了</code> → <span class="hz">太冷了</span> (¡qué frío!). El "al final" que recordabas es el <strong>了</strong>, no el 太.
+</div>
+
+<div class="box grammar">
+  <strong>太 en negativo → se usa 不太 = "no muy".</strong> Aquí <strong>no se usa 了</strong> y 太 ya <em>no</em> significa "demasiado", sino que <strong>suaviza</strong>:<br>
+  • <span class="hz">不太好。</span> — <em>bú tài hǎo</em> = no muy bien.<br>
+  • <span class="hz">不太冷。</span> — <em>bú tài lěng</em> = no muy frío.<br>
+  • <span class="hz">不太辣。</span> — <em>bú tài là</em> = no muy picante.<br>
+  <small>Compara: <span class="hz">太辣了</span> (¡demasiado picante!) ↔ <span class="hz">不太辣</span> (no muy picante). El positivo exagera; el negativo atenúa.</small>
+</div>
+
+<h3>了 — los dos casos con negación</h3>
+
+<div class="box structure">
+  <strong>1. Negar una acción completada → 没 + verbo, SIN 了</strong> (como vimos en la <a href="#s9">Sección 9</a>).<br>
+  • <span class="hz">我吃了。</span> (comí) → <span class="hz">我没吃。</span> (no comí). ❌ <s>我没吃了</s><br>
+  <small>Regla: 了 y 没 no van juntos.</small>
+</div>
+
+<div class="box grammar">
+  <strong>2. PERO 不…了 sí existe = "ya no / dejar de".</strong> Aquí el <span class="hz">了</span> final marca un <strong>cambio de situación</strong> (lo de la Sección 9, uso 2):<br>
+  • <span class="hz">我不去了。</span> — <em>Wǒ bú qù le.</em> = Ya no voy / Mejor no voy.<br>
+  • <span class="hz">我不喝了。</span> — <em>Wǒ bù hē le.</em> = Ya no bebo más / Dejo de beber.<br>
+  <small>Diferencia clave: con <span class="hz">没</span> (acción que no ocurrió) → sin 了. Con <span class="hz">不…了</span> (decisión / cambio: "ya no") → sí lleva 了.</small>
+</div>
+
+<div class="box tip">
+  🧠 <strong>Resumen exprés:</strong><br>
+  • <span class="hz">太</span> va antes del adjetivo; en negativo → <span class="hz">不太</span> ("no muy"), sin 了.<br>
+  • <span class="hz">了</span> de acción completada → se borra al negar con <span class="hz">没</span>.<br>
+  • <span class="hz">不…了</span> = "ya no" → ese 了 sí se queda (es cambio de estado).
+</div>
+
+<h3>✍️ Aplícalo — tus frases</h3>
+
+<div class="box grammar">
+  <strong>Junta todo lo de hoy:</strong><br>
+  • <span class="hz">智利太美了！</span> — <em>Zhìlì tài měi le!</em> = ¡Chile es hermoso! &nbsp;<small>(太……了 — exagerar en positivo)</small><br>
+  • <span class="hz">你太棒了！</span> — <em>Nǐ tài bàng le!</em> = ¡Eres genial! &nbsp;<small>(太……了 — para felicitar/elogiar)</small><br>
+  • <span class="hz">我身体不太好。</span> — <em>Wǒ shēntǐ bú tài hǎo.</em> = No estoy muy bien de salud. &nbsp;<small>(¡不太 + 主谓谓语句! 我 = tema, 身体不太好 = comentario)</small><br>
+  • <span class="hz">我妹妹身体不太好。</span> — <em>Wǒ mèimei shēntǐ bú tài hǎo.</em> = Mi hermana no está muy bien de salud. &nbsp;<small>(同 patrón: 我妹妹 = tema, 身体不太好 = comentario)</small><br>
+  • <span class="hz">我汉语不太好。</span> — <em>Wǒ hànyǔ bú tài hǎo.</em> = Mi chino no es muy bueno. &nbsp;<small>(我 = tema, 汉语不太好 = comentario — ¡pero vas mejorando! 😄)</small>
+</div>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/美" target="_blank">美</a></td><td class="pinyin-col">měi</td><td>😍 hermoso / bello</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/棒" target="_blank">棒</a></td><td class="pinyin-col">bàng</td><td>👏 genial / estupendo</td></tr>
+</table>
+
+<div class="box tip">
+  💡 <span class="hz">你太棒了！</span> es una de las mejores frases para <strong>felicitar o animar</strong> a alguien: "¡eres genial / lo hiciste increíble!". Muy usada en el día a día. 😄
+</div>
+
+<!-- ═══ SECCIÓN 11 ═══ -->
+<h2 id="s11" class="green">11. 些 — "algunos / unos cuantos" 📦</h2>
+<p><span class="hz">些</span> (xiē) significa <strong>"algunos / unos cuantos / unas"</strong> — una cantidad imprecisa de varias cosas. <strong>Nunca va sola</strong>: se apoya en <span class="hz">一</span>, <span class="hz">这</span>, <span class="hz">那</span> o <span class="hz">哪</span>.</p>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/一些" target="_blank">一些</a></td><td class="pinyin-col">yìxiē</td><td>📦 algunos / unos cuantos</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/这些" target="_blank">这些</a></td><td class="pinyin-col">zhèxiē</td><td>👉 estos / estas</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/那些" target="_blank">那些</a></td><td class="pinyin-col">nàxiē</td><td>👉 esos / aquellos</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/哪些" target="_blank">哪些</a></td><td class="pinyin-col">nǎxiē</td><td>❓ ¿cuáles?</td></tr>
+</table>
+
+<div class="box structure">
+  <strong>Estructura:</strong><br>
+  <code>一/这/那/哪 + 些 + sustantivo</code><br>
+  <small>Marca <strong>plural indefinido</strong>. Por eso <span class="hz">些</span> ya implica "varios": no se usa con números concretos (no se dice ❌ 三些).</small>
+</div>
+
+<div class="box grammar">
+  <strong>📦 Ejemplos:</strong><br>
+  • <span class="hz">一些朋友</span> — <em>yìxiē péngyou</em> = algunos amigos<br>
+  • <span class="hz">这些水果</span> — <em>zhèxiē shuǐguǒ</em> = estas frutas<br>
+  • <span class="hz">那些人</span> — <em>nàxiē rén</em> = esa gente / aquellas personas<br>
+  • <span class="hz">我买一些水果。</span> — <em>Wǒ mǎi yìxiē shuǐguǒ.</em> = Compro algunas frutas.
+</div>
+
+<div class="box tip">
+  🔢 <strong>些 vs 个:</strong> <span class="hz">个</span> (ge) cuenta cosas <strong>una por una</strong> (一个朋友 = un amigo, 三个朋友 = tres amigos). <span class="hz">些</span> habla de <strong>varias sin precisar cuántas</strong> (一些朋友 = algunos amigos). <br>
+  <small>🎵 Ojo al tono: <span class="hz">一些</span> se dice <em>yìxiē</em> (一 = yì antes de 1.º tono).</small>
+</div>
+
+<!-- ░░░ BLOQUE 3 ░░░ -->
+<div style="margin:48px 0 10px; padding:16px 20px; background:linear-gradient(135deg,#1a1a2e 0%,#2a2a4a 60%,#3a1a28 100%); color:#fff; border-radius:14px; box-shadow:0 4px 14px rgba(26,26,46,.18);">
+  <div style="font-size:0.7em; letter-spacing:2.5px; text-transform:uppercase; color:#f1948a; font-weight:700;">Bloque 3</div>
+  <div style="font-size:1.2em; font-weight:700; margin-top:3px;">🗣️ Rincón de pronunciación</div>
+  <div style="font-size:0.84em; color:#c9c9dc; margin-top:5px;">Los sonidos y tonos que más cuestan al hablar: la «r» de 热 y los cambios de tono (变调).</div>
+</div>
+
+<!-- ═══ SECCIÓN 12 ═══ -->
+<h2 id="s12" class="gray">12. 🗣️ Pronunciación: la «r» de 热 — forma de la lengua 👅</h2>
+<p>La <strong>r</strong> del pinyin (como en <span class="hz">热</span> = rè) <strong>no es la "r" española</strong> (no vibra ni rebota la lengua). Es un sonido <em>retroflejo</em>, parecido a la <strong>"j" del inglés en "pleasure / measure"</strong>, pero con la lengua curvada hacia atrás.</p>
+
+<div class="box grammar">
+  <strong>👄 Cómo armar la boca para la "r" de 热:</strong><br>
+  1. <strong>Curva la punta de la lengua</strong> hacia arriba y atrás, hacia el paladar (sin tocarlo) — posición "retrofleja".<br>
+  2. Los <strong>labios casi neutros</strong>, levemente tensos (no redondeados como en español).<br>
+  3. Deja salir el aire haciendo <strong>vibrar las cuerdas vocales</strong> (es un sonido "zumbón", sonoro).<br>
+  4. La vocal <span class="hz">e</span> de 热 suena como una <strong>"e" gutural / casi "ə"</strong> (entre "e" y "u" floja), no como la "e" española.
+</div>
+
+<div class="box tip">
+  🎧 <strong>Truco:</strong> parte diciendo la "ll/y" rioplatense de "playa" (ʒ) pero <strong>curvando la lengua hacia atrás</strong> y sin mover los labios → te acercas mucho a la <span class="hz">r</span> china. Escucha el botón 🔊 de <span class="hz">热</span> varias veces e imita.<br>
+  <small>⚠️ Es el mismo sonido inicial de otras sílabas con r-: <span class="hz">日</span> (rì, día/sol), <span class="hz">人</span> (rén, persona), <span class="hz">认识</span> (rènshi, conocer).</small>
+</div>
+
+<div class="box" style="background:#fff; border:1.5px solid #e0a0a0;">
+  <div style="text-align:center; color:#c0392b; font-weight:600; margin-bottom:6px;">👅 Posición de la lengua para la «r» retrofleja</div>
+  <svg viewBox="0 0 440 300" width="100%" style="max-width:420px; margin:0 auto; display:block;" role="img" aria-label="Corte lateral de la boca: la lengua se curva hacia arriba y atrás para pronunciar la r china">
+    <!-- cavidad bucal -->
+    <rect x="8" y="8" width="424" height="284" rx="18" fill="#fff7f5" stroke="#f0d0c8"/>
+    <!-- referencias frente / garganta -->
+    <text x="20" y="285" font-size="12" fill="#aaa">⟵ labios (frente)</text>
+    <text x="338" y="285" font-size="12" fill="#aaa">garganta ⟶</text>
+    <!-- paladar (techo) -->
+    <path d="M45,118 Q160,58 270,64 Q355,69 400,102" fill="none" stroke="#e9a7a0" stroke-width="15" stroke-linecap="round"/>
+    <text x="225" y="48" font-size="13" fill="#c0392b" text-anchor="middle">paladar (techo de la boca)</text>
+    <!-- cresta alveolar (detrás de los dientes) -->
+    <circle cx="92" cy="120" r="8" fill="#d98880"/>
+    <text x="40" y="104" font-size="11" fill="#a93226">cresta alveolar</text>
+    <!-- lengua curvada (retrofleja) -->
+    <path d="M60,248
+             Q54,200 72,186
+             Q98,152 122,132
+             Q140,118 160,127
+             Q181,137 161,156
+             Q150,166 140,170
+             Q176,176 232,182
+             Q322,190 366,202
+             Q386,212 365,240
+             Q205,260 60,248 Z"
+          fill="#f1948a" stroke="#c0392b" stroke-width="2" stroke-linejoin="round"/>
+    <text x="250" y="232" font-size="12" fill="#7b241c" text-anchor="middle">lengua</text>
+    <!-- flecha del movimiento de curvado -->
+    <defs>
+      <marker id="ah" markerWidth="11" markerHeight="11" refX="6" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7 Z" fill="#1976d2"/></marker>
+    </defs>
+    <path d="M118,178 Q170,150 150,120" fill="none" stroke="#1976d2" stroke-width="3" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+    <text x="178" y="138" font-size="12" fill="#1976d2" font-weight="600">cúrvala ↑ y atrás</text>
+    <text x="148" y="206" font-size="11" fill="#27ae60" text-anchor="middle">(la punta NO toca el techo)</text>
+  </svg>
+  <div style="font-size:0.84em; color:#777; margin-top:8px; text-align:center;">
+    La punta de la lengua se levanta y se <strong>curva hacia atrás</strong>, apuntando a la zona detrás de la cresta alveolar, sin llegar a tocarla. El aire pasa por ese hueco haciendo el zumbido sonoro de la <span class="hz" style="font-size:1em;">r</span>.
+  </div>
+</div>
+
+<!-- ═══ SECCIÓN 13 ═══ -->
+<h2 id="s13" class="gold">13. 变调 — los tonos que cambian al hablar 🎵</h2>
+<div class="box note">
+  🎵 <strong>Lo que escuchaste es real:</strong> el pinyin se <strong>escribe</strong> con el tono "original", pero al hablar algunos tonos <strong>cambian</strong>. Esto se llama <span class="hz">变调</span> (biàndiào) = "cambio de tono". Por eso <span class="hz">很好</span> no suena como dos terceros tonos.
+</div>
+
+<h3>1️⃣ Dos terceros tonos juntos → el primero sube a 2.º 📈</h3>
+
+<div class="box structure">
+  <code>3.º + 3.º &nbsp;→&nbsp; 2.º + 3.º</code><br>
+  <small>Cuando dos sílabas de tercer tono van seguidas, la <strong>primera se pronuncia en segundo tono</strong> (pero se sigue escribiendo en tercero).</small>
+</div>
+
+<div class="box grammar">
+  • <span class="hz">很好</span> — se escribe <em>hěn hǎo</em>, se pronuncia <strong><em>hén hǎo</em></strong> ✅ (¡eso que notaste!)<br>
+  • <span class="hz">你好</span> — se escribe <em>nǐ hǎo</em>, se pronuncia <strong><em>ní hǎo</em></strong><br>
+  • <span class="hz">我也</span> — se escribe <em>wǒ yě</em>, se pronuncia <strong><em>wó yě</em></strong><br>
+  <small>💡 El pinyin de los libros casi nunca marca este cambio: tú lo aplicas al hablar. Por eso "complejo" al principio, pero con el oído se vuelve automático.</small>
+</div>
+
+<div class="box tip">
+  🎯 <strong>¿Y si el 3.º tono NO va seguido de otro 3.º?</strong> Entonces suena como un <strong>"medio tercer tono"</strong>: solo la bajada grave, sin la subida final. Pasa con <span class="hz">很</span> antes de 1.º/2.º/4.º, p. ej. <span class="hz">很热</span> (<em>hěn rè</em>) o <span class="hz">很冷</span> (<em>hěn lěng</em>).
+</div>
+
+<h3>2️⃣ El 不 (bù) → sube a 2.º (bú) antes de 4.º tono 📈</h3>
+
+<div class="box structure">
+  <code>不 (4.º) + sílaba en 4.º &nbsp;→&nbsp; 不 se dice bú (2.º)</code><br>
+  <small>Delante de cualquier otro tono (1.º, 2.º, 3.º), <span class="hz">不</span> se queda en 4.º (bù).</small>
+</div>
+
+<div class="box grammar">
+  • <span class="hz">不热</span> — <em>bú rè</em> ✅ (热 es 4.º → 不 sube a bú)<br>
+  • <span class="hz">不是</span> — <em>bú shì</em> = no es / no (是 es 4.º → bú)<br>
+  • <span class="hz">不冷</span> — <em>bù lěng</em> (冷 es 3.º → 不 se queda bù)<br>
+  • <span class="hz">不去</span> — <em>bú qù</em> = no voy (去 es 4.º → bú)
+</div>
+
+<h3>🔬 Tu frase, tono por tono</h3>
+
+<div class="box tip">
+  <span class="hz">明天天气很好，不冷不热。</span><br>
+  <em>míngtiān tiānqì <strong>hén</strong> hǎo, bù lěng <strong>bú</strong> rè</em><br><br>
+  • <span class="hz">很好</span>: hěn + hǎo (3.º + 3.º) → <strong>hén hǎo</strong> 📈<br>
+  • <span class="hz">不冷</span>: bù + lěng (4.º + 3.º) → <strong>bù lěng</strong> (sin cambio)<br>
+  • <span class="hz">不热</span>: bù + rè (4.º + 4.º) → <strong>bú rè</strong> 📈<br>
+  <small>Por eso "suena diferente" a como se ve escrito. ¡Tu oído ya lo detectó solo! 👏</small>
+</div>
+
+<!-- ░░░ BLOQUE 4 ░░░ -->
+<div style="margin:48px 0 10px; padding:16px 20px; background:linear-gradient(135deg,#1a1a2e 0%,#2a2a4a 60%,#3a1a28 100%); color:#fff; border-radius:14px; box-shadow:0 4px 14px rgba(26,26,46,.18);">
+  <div style="font-size:0.7em; letter-spacing:2.5px; text-transform:uppercase; color:#f1948a; font-weight:700;">Bloque 4</div>
+  <div style="font-size:1.2em; font-weight:700; margin-top:3px;">🎯 Diálogo integrador</div>
+  <div style="font-size:0.84em; color:#c9c9dc; margin-top:5px;">Una consulta médica que junta casi todo lo de la clase, y suma 多 + verbo y 爱.</div>
+</div>
+
+<!-- ═══ SECCIÓN 14 ═══ -->
+<h2 id="s14" class="blue">14. Diálogo con el médico 🩺 — 多 + verbo y 爱</h2>
+<div class="dialog">
+  <div class="da"><strong>A (médico):</strong> <span class="hz">你身体怎么样？</span><br><em>Nǐ shēntǐ zěnme yàng? — ¿Cómo estás de salud?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz">我身体不太好。天气太热了，不爱吃饭。</span><br><em>Wǒ shēntǐ bú tài hǎo. Tiānqì tài rè le, bú ài chī fàn. — No estoy muy bien. Hace demasiado calor, no tengo ganas de comer.</em></div>
+  <div class="da"><strong>A:</strong> <span class="hz">你多吃些水果，多喝水。</span><br><em>Nǐ duō chī xiē shuǐguǒ, duō hē shuǐ. — Come más fruta, bebe más agua.</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz">谢谢你，医生。</span><br><em>Xièxie nǐ, yīshēng. — Gracias, doctor.</em></div>
+</div>
+
+<h3>Vocabulario nuevo 🩺</h3>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/多" target="_blank">多</a></td><td class="pinyin-col">duō</td><td>➕ mucho / más</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/爱" target="_blank">爱</a></td><td class="pinyin-col">ài</td><td>❤️ amar / gustar (mucho) / encantar</td></tr>
+</table>
+
+<div class="box grammar">
+  <strong>➕ 多 + verbo = "hacer más / V más".</strong> Pones <span class="hz">多</span> (duō) antes del verbo para aconsejar hacer algo en <strong>mayor cantidad</strong>. Es muy típico de consejos.<br>
+  • <span class="hz">多吃</span> — <em>duō chī</em> = come más<br>
+  • <span class="hz">多喝水</span> — <em>duō hē shuǐ</em> = bebe más agua<br>
+  • <span class="hz">多吃些水果</span> — <em>duō chī xiē shuǐguǒ</em> = come <strong>algo</strong> más de fruta (多 + 吃 + 些 + 水果)<br>
+  <small>💡 Su pareja es <span class="hz">少</span> (shǎo, "poco"): <span class="hz">少吃</span> = come menos.</small>
+</div>
+
+<div class="box grammar">
+  <strong>❤️ 爱 (ài) = "amar / gustar mucho / encantar".</strong> Delante de un verbo = "encantar/gustar hacer algo"; en negativo <span class="hz">不爱</span> = "no gustar / no tener ganas de".<br>
+  • <span class="hz">不爱吃饭</span> — <em>bú ài chī fàn</em> = no tener ganas de comer / no gustarle comer.<br>
+  • <span class="hz">我爱喝茶。</span> — <em>Wǒ ài hē chá.</em> = Me encanta tomar té.<br>
+  <small>Comparado con <span class="hz">喜欢</span> (xǐhuan, "gustar"): <span class="hz">爱</span> es <strong>más fuerte</strong> (encantar / amar).</small>
+</div>
+
+<div class="box tip">
+  🩺 <strong>Nota cultural:</strong> es un clásico intercambio médico-paciente. El consejo <span class="hz">多吃些水果，多喝水</span> ("come más fruta, bebe más agua") usa dos veces el patrón <span class="hz">多 + verbo</span>. Y se cierra con <span class="hz">谢谢你，医生</span> (gracias, doctor).
+</div>
+<div style="display: flex; justify-content: space-between; margin-top: 40px; padding: 16px; background: #fff; border-radius: 10px; border: 1px solid #e5e5e5;">
+  <a href="clase02.html" style="color: #c0392b; text-decoration: none;">← Clase 02</a>
+  <a href="/" style="color: #c0392b; text-decoration: none;">↑ Índice</a>
+  <span style="color: #ccc;">Clase 04 →</span>
+</div>
+
+<footer>Básico 3 · Clase 03 · 6 jun 2026 · <a href="https://basti.cl" style="color:inherit">basti.cl</a></footer>
+
+<button class="pinyin-toggle" onclick="document.body.classList.toggle('hide-pinyin'); this.textContent = document.body.classList.contains('hide-pinyin') ? '👁 Mostrar pinyin' : '🙈 Ocultar pinyin';">🙈 Ocultar pinyin</button>
+
+<script>
+const AUDIO_BASE = '/audio/';
+const audioMap = {
+  "e": "zh_e1671797c5.mp3",
+  "r": "zh_4b43b0aee3.mp3",
+  "一": "zh_7941da94db.mp3",
+  "一个星期": "zh_956bc1bef5.mp3",
+  "一个月": "zh_7dac661ba3.mp3",
+  "一些": "zh_fae65ac05d.mp3",
+  "一些朋友": "zh_20a5848fa1.mp3",
+  "一天": "zh_deb12cfdb9.mp3",
+  "三天": "zh_3e5839dd2a.mp3",
+  "上": "zh_af767b7e4a.mp3",
+  "下班": "zh_96ed60cdcb.mp3",
+  "下课": "zh_8ffca8155e.mp3",
+  "下雨": "zh_060e263e4b.mp3",
+  "下雨了。": "zh_0687f5f395.mp3",
+  "下雪": "zh_1837e3d126.mp3",
+  "不": "zh_9eba1ab697.mp3",
+  "不…了": "zh_a921ca4d80.mp3",
+  "不会": "zh_40dea0cab1.mp3",
+  "不会来，天气太冷了。": "zh_785af273d9.mp3",
+  "不冷": "zh_f3bc5c1050.mp3",
+  "不冷不热": "zh_2540e8a528.mp3",
+  "不去": "zh_05976988e2.mp3",
+  "不多不少": "zh_6b828e18f4.mp3",
+  "不大不小": "zh_9fb43a0ae6.mp3",
+  "不太": "zh_7b41c06047.mp3",
+  "不太冷。": "zh_f0fea6f6fc.mp3",
+  "不太好。": "zh_17e4007a07.mp3",
+  "不太辣": "zh_58fb9f431b.mp3",
+  "不太辣。": "zh_bf7721acdd.mp3",
+  "不是": "zh_046f5a050a.mp3",
+  "不热": "zh_6a8c18d320.mp3",
+  "不爱": "zh_3e70a2fd08.mp3",
+  "不爱吃饭": "zh_40d15f492a.mp3",
+  "不错。": "zh_6aca8b9796.mp3",
+  "两": "zh_0bff8e5ca6.mp3",
+  "两天": "zh_122e05c1df.mp3",
+  "个": "zh_930882bb0a.mp3",
+  "个子": "zh_21f81dcf53.mp3",
+  "中午十二点": "zh_20d18564cd.mp3",
+  "中国菜怎么样？": "zh_7326da748c.mp3",
+  "中文怎么样？": "zh_dddffe6513.mp3",
+  "主谓谓语句": "zh_57e2b75300.mp3",
+  "了": "zh_163773fb21.mp3",
+  "五天": "zh_419419391b.mp3",
+  "些": "zh_30d56019db.mp3",
+  "人": "zh_465afe3c11.mp3",
+  "今天": "今天_800dfdd902.mp3",
+  "今天不会下雨。": "zh_585bf50201.mp3",
+  "今天会下雨。": "zh_d2da246330.mp3",
+  "今天会下雨吗？": "zh_7838294afb.mp3",
+  "今天天气怎么样？": "zh_f334af875b.mp3",
+  "今天很暖和。": "zh_558b82183d.mp3",
+  "今天很热。": "zh_419a15073a.mp3",
+  "他": "zh_5fe86c60de.mp3",
+  "他不会来。": "zh_9d9d9ce98c.mp3",
+  "他个子很高": "zh_5b571a618f.mp3",
+  "他个子很高。": "zh_bede90c24b.mp3",
+  "他去了商店。": "zh_853e4c8b61.mp3",
+  "他汉语很好": "zh_23132be46c.mp3",
+  "会": "zh_647477bbc5.mp3",
+  "住": "zh_84f3602f49.mp3",
+  "你": "zh_df1fd91011.mp3",
+  "你几点吃午饭？": "zh_0bb52e9fb1.mp3",
+  "你几点吃早饭？": "zh_704391712d.mp3",
+  "你几点吃晚饭？": "zh_09c30ed1a9.mp3",
+  "你多吃些水果，多喝水。": "zh_3044cdf611.mp3",
+  "你太棒了！": "zh_9e0cc1940b.mp3",
+  "你好": "zh_7eca689f0d.mp3",
+  "你妈妈": "zh_332a1edcc1.mp3",
+  "你妈妈的身体": "zh_49e7a9af27.mp3",
+  "你妈妈的身体怎么样？": "zh_7f7bf80812.mp3",
+  "你妹妹的身体怎么样？": "zh_a82eabed4a.mp3",
+  "你怎么样？": "zh_b8b8ab8b3b.mp3",
+  "你想在圣地亚哥住几天？": "zh_b943d52090.mp3",
+  "你的家人怎么样？": "zh_eb1ab74de9.mp3",
+  "你的样子": "zh_bc97eb6520.mp3",
+  "你的汉语怎么样？": "zh_5682924bbc.mp3",
+  "你的西班牙语怎么样？": "zh_6660022960.mp3",
+  "你身体怎么样？": "zh_bc33bcdbdf.mp3",
+  "冬天": "zh_8f5324a632.mp3",
+  "冬天很冷。": "zh_028da8fd9b.mp3",
+  "冷": "zh_74eaee9656.mp3",
+  "几个": "zh_b301560312.mp3",
+  "几天": "zh_97aabf8b8a.mp3",
+  "几月几号": "zh_fa67bb22a2.mp3",
+  "几点": "zh_ace28ebb33.mp3",
+  "北京": "zh_692e92669c.mp3",
+  "北京冬天很冷": "zh_7fc3d7986d.mp3",
+  "北京的天气": "zh_c491fd82e1.mp3",
+  "医生": "zh_6d7c1afb07.mp3",
+  "去": "zh_dfb9366c91.mp3",
+  "变调": "zh_62f3f2905a.mp3",
+  "吃": "zh_a52b77dfc6.mp3",
+  "呢": "呢_65ac5a7b15.mp3",
+  "味道": "zh_a0a56c0fed.mp3",
+  "哪": "zh_e0bcc1fa08.mp3",
+  "哪些": "zh_67a0d348c5.mp3",
+  "喜欢": "zh_3d6c396cf4.mp3",
+  "喝水": "zh_2c8250acfd.mp3",
+  "回来": "zh_95c9f31304.mp3",
+  "圣地亚哥": "zh_87f3469428.mp3",
+  "在": "zh_241d47a3ee.mp3",
+  "多": "zh_7b1568e679.mp3",
+  "多 + verbo": "zh_9624bf7d6f.mp3",
+  "多吃": "zh_3c05120a2e.mp3",
+  "多吃些水果": "zh_43310a03a2.mp3",
+  "多吃些水果，多喝水": "zh_5dcc2d1509.mp3",
+  "多喝水": "zh_5b4760f1d7.mp3",
+  "大象": "zh_e33d101cae.mp3",
+  "大象鼻子长": "zh_23c1ff0df3.mp3",
+  "天": "zh_249aba7632.mp3",
+  "天气": "zh_265f273cf1.mp3",
+  "天气怎么样？": "zh_9435b10485.mp3",
+  "太": "zh_2b2daab200.mp3",
+  "太……了": "zh_aeb58e8a57.mp3",
+  "太冷了": "zh_6cc20f7a2c.mp3",
+  "太冷了！": "zh_496035181c.mp3",
+  "太好了！": "zh_0db9be67e4.mp3",
+  "太好吃了！": "zh_49c2a82e2f.mp3",
+  "太热了！": "zh_05634b454e.mp3",
+  "太贵了！": "zh_17e6211451.mp3",
+  "太辣了": "zh_f099d7c788.mp3",
+  "太辣了！": "zh_b50b09b11e.mp3",
+  "头": "zh_4be2abbcf7.mp3",
+  "她": "zh_92f3ca76d5.mp3",
+  "她个子很高。": "zh_f33f4bebe5.mp3",
+  "她身体很好": "zh_40bb1d7b01.mp3",
+  "她身体很好。": "zh_b727e2d5e7.mp3",
+  "好": "zh_ac2c8f13c6.mp3",
+  "好吃": "zh_a78e4f228b.mp3",
+  "妹妹": "zh_1c097b12de.mp3",
+  "子": "zh_ff6ae520d1.mp3",
+  "它": "zh_3c1400fbc2.mp3",
+  "家人": "zh_e1e33525b9.mp3",
+  "小姐": "zh_832c2de240.mp3",
+  "少": "zh_bd2282db35.mp3",
+  "少吃": "zh_f2871a4188.mp3",
+  "很": "zh_5e360de1b1.mp3",
+  "很冷": "zh_8362e6d92f.mp3",
+  "很好": "zh_745e25a85e.mp3",
+  "很好。": "zh_a694aab4bd.mp3",
+  "很有意思。": "zh_a30d43c194.mp3",
+  "很热": "zh_155192bdc0.mp3",
+  "很高": "zh_cfebcb06bc.mp3",
+  "怎么": "zh_786df56259.mp3",
+  "怎么办？": "zh_e4c294584f.mp3",
+  "怎么样": "zh_dcc8446e1c.mp3",
+  "怎么样？": "zh_8d5339bcd8.mp3",
+  "怎么说？": "zh_c8760d7c2b.mp3",
+  "怎么走？": "zh_0cfd1a1935.mp3",
+  "想": "zh_291837bd5b.mp3",
+  "想在圣地亚哥住": "zh_fdec8cb491.mp3",
+  "我": "zh_1681525453.mp3",
+  "我不去了。": "zh_2576a045b9.mp3",
+  "我不喝了。": "zh_2625465ce5.mp3",
+  "我也": "zh_ea705d95e2.mp3",
+  "我买一些水果。": "zh_132c56f9ce.mp3",
+  "我们去吃饭，怎么样？": "zh_eaffec92cd.mp3",
+  "我会游泳。": "zh_037b47d191.mp3",
+  "我会说中文。": "zh_702a72db9d.mp3",
+  "我吃了。": "zh_8a240c39e9.mp3",
+  "我吃了早饭。": "zh_c22a5ecd17.mp3",
+  "我头疼": "zh_6c56ab23fc.mp3",
+  "我头疼。": "zh_353b7fab0c.mp3",
+  "我妹妹身体不太好。": "zh_5e5148de10.mp3",
+  "我想住三天。": "zh_46aeee2a4e.mp3",
+  "我想住五天": "zh_587119e523.mp3",
+  "我想住五天。": "zh_977923eeb2.mp3",
+  "我想吃饭。": "zh_e4520d30e2.mp3",
+  "我想在圣地亚哥住五天": "zh_83727a7d48.mp3",
+  "我想在圣地亚哥住五天。": "zh_b4663ac622.mp3",
+  "我早上七点吃早饭。": "zh_5d791ad34d.mp3",
+  "我汉语不太好。": "zh_c53e36f363.mp3",
+  "我汉语还可以。": "zh_1860d11120.mp3",
+  "我没吃。": "zh_117159a9cd.mp3",
+  "我爱喝茶。": "zh_c453efd2c0.mp3",
+  "我的": "zh_07b1811842.mp3",
+  "我的朋友": "zh_a6c6e3abc1.mp3",
+  "我的朋友不会来。": "zh_fe9df5c442.mp3",
+  "我身体不太好。": "zh_36cf446209.mp3",
+  "我身体不太好。天气太热了，不爱吃饭。": "zh_24be61776e.mp3",
+  "我饿了。": "zh_18f6f9e534.mp3",
+  "日": "日_3edddd85ac.mp3",
+  "早上七点": "zh_c1a972116b.mp3",
+  "明天": "明天_8bcbd77d1f.mp3",
+  "明天下雨。": "zh_0e82a18862.mp3",
+  "明天会冷。": "zh_4c326fe538.mp3",
+  "明天去商店，怎么样？": "zh_61264dc88e.mp3",
+  "明天呢？": "明天呢_66b8434ed2.mp3",
+  "明天呢？明天天气怎么样？": "zh_ba09e22109.mp3",
+  "明天天气很好，不冷不热。": "zh_31dfef4e12.mp3",
+  "明天天气怎么样？": "zh_b9744bf252.mp3",
+  "明天很冷。": "zh_8db5fcc612.mp3",
+  "昨天": "昨天_2f8d6f1584.mp3",
+  "昨天北京的天气怎么样？": "zh_231541ffa7.mp3",
+  "晚上八点": "zh_9fbdde587d.mp3",
+  "智利太美了！": "zh_856d119f16.mp3",
+  "智利怎么样？": "zh_6cc0aabaa6.mp3",
+  "暖和": "zh_79a966e781.mp3",
+  "来": "zh_f7b0a3bd20.mp3",
+  "果": "zh_2bbb3b3992.mp3",
+  "样": "zh_c20704306b.mp3",
+  "样子": "zh_b27484dc11.mp3",
+  "棒": "zh_c71d2a67db.mp3",
+  "水": "zh_eab619fba2.mp3",
+  "水果": "zh_64254630ba.mp3",
+  "汉": "zh_cadf00a8be.mp3",
+  "汉语": "zh_25cf96268e.mp3",
+  "汉语很好。": "zh_94f7b18caf.mp3",
+  "没": "zh_3672c6af97.mp3",
+  "没(有)": "zh_ff9a803588.mp3",
+  "热": "zh_2044c27397.mp3",
+  "爱": "zh_8f743c2c68.mp3",
+  "王小姐今天会来吗？": "zh_fdd219a143.mp3",
+  "疼": "zh_47f18cd93a.mp3",
+  "的": "zh_01d7aa494b.mp3",
+  "睡": "zh_0e7c928c54.mp3",
+  "睡午觉": "zh_80aff4b644.mp3",
+  "睡觉": "zh_60cffce1f6.mp3",
+  "美": "zh_5a93a27052.mp3",
+  "英": "zh_b7671c81de.mp3",
+  "英语": "zh_4145d4c179.mp3",
+  "西班牙": "zh_ad7318c3ee.mp3",
+  "西班牙语": "zh_d43fa13960.mp3",
+  "认识": "zh_dad2ab0807.mp3",
+  "语": "zh_94441e69c7.mp3",
+  "谢谢你，医生": "zh_5495390192.mp3",
+  "谢谢你，医生。": "zh_0f94b3d708.mp3",
+  "身体": "zh_7be627ccbd.mp3",
+  "身体很好。": "zh_1601bd171d.mp3",
+  "身体怎么样": "zh_605f5821ec.mp3",
+  "辣": "zh_2134a40201.mp3",
+  "还可以。": "zh_e79129dbf3.mp3",
+  "这": "zh_8e9b7a3a19.mp3",
+  "这个怎么样？": "zh_5bd738d22b.mp3",
+  "这个菜": "zh_dd5ee9d6de.mp3",
+  "这个菜味道好": "zh_8ba2b33c80.mp3",
+  "这个菜怎么样？": "zh_90b39293ca.mp3",
+  "这些": "zh_3d83ec04fc.mp3",
+  "这些水果": "zh_d90e0833b4.mp3",
+  "那": "zh_995c3ec9d7.mp3",
+  "那些": "zh_f9776256f7.mp3",
+  "那些人": "zh_f743f3b06f.mp3",
+  "长": "zh_092acb9c0e.mp3",
+  "高": "zh_4296d7d293.mp3",
+  "鼻子": "zh_e6134a2993.mp3",
+  "鼻子长。": "zh_8a80c8ba05.mp3"
+};
+
+function speak(text) {
+  const file = audioMap[text];
+  if (file) { new Audio(AUDIO_BASE + file).play(); return; }
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'zh-CN'; u.rate = 0.8;
+  speechSynthesis.speak(u);
+}
+
+document.querySelectorAll('td.hz, .dialog .hz').forEach(el => {
+  const text = el.textContent.trim();
+  if (!text) return;
+  const btn = document.createElement('button');
+  btn.textContent = '🔊';
+  btn.style.cssText = 'background:none;border:none;cursor:pointer;margin-left:6px;font-size:0.9em;opacity:0.5;';
+  btn.onmouseover = () => btn.style.opacity = '1';
+  btn.onmouseout = () => btn.style.opacity = '0.5';
+  btn.onclick = (e) => { e.preventDefault(); e.stopPropagation(); speak(text); };
+  el.appendChild(btn);
+});
+</script>
+</body>
+</html>
