@@ -51,6 +51,7 @@
   .r-audio { background: none; border: none; font-size: 1.2em; cursor: pointer; opacity: 0.5; transition: opacity .2s; }
   .r-audio:hover { opacity: 1; }
   .empty { text-align: center; color: var(--red-tint); font-size: 1.05em; margin-top: 60px; font-family: var(--mono); }
+  mark { background: #ffe6a7; color: var(--ink); border-radius: 3px; padding: 0 1px; font-weight: 700; }
   footer { text-align: center; color: var(--muted); font-size: 0.78rem; padding: 30px 24px; font-family: var(--mono); }
   footer a { color: var(--red); }
   /* responsive-tables */
@@ -69,7 +70,7 @@
 
 <div class="search-area">
   <input type="text" class="search-box" id="searchInput" placeholder="Buscar: 你, ni, hao, tú, hablar..." autofocus>
-  <div class="search-hint">📝 No necesitas tildes ni tonos · usa "v" para "ü" (ej: "lv" = lǜ) · click en "📖 Clase X →" para ir a la sección · 420+ palabras de Básico 2 y 3</div>
+  <div class="search-hint">📝 No necesitas tildes ni tonos · usa "v" para "ü" (ej: "lv" = lǜ) · click en "📖 Clase X →" para ir a la sección · <span id="count">…</span> palabras</div>
 </div>
 
 <div class="results" id="results">
@@ -79,537 +80,143 @@
 <footer>Buscador · Apuntes Chino · <a href="https://basti.cl" style="color:inherit">basti.cl</a></footer>
 
 <script>
-const vocab = [
-  // Clase 01
-  {hz:"妈妈",py:"māma",es:"Mamá",src:"Clase 01"},
-  {hz:"爸爸",py:"bàba",es:"Papá",src:"Clase 01"},
-  {hz:"哥哥",py:"gēge",es:"Hermano mayor",src:"Clase 01"},
-  {hz:"姐姐",py:"jiějie",es:"Hermana mayor",src:"Clase 01"},
-  {hz:"弟弟",py:"dìdi",es:"Hermano menor",src:"Clase 01"},
-  {hz:"妹妹",py:"mèimei",es:"Hermana menor",src:"Clase 01"},
-  {hz:"汉字",py:"Hànzì",es:"Caracteres chinos",src:"Clase 01"},
-  {hz:"汉语",py:"Hànyǔ",es:"Chino mandarín",src:"Clase 01"},
-  {hz:"中国菜",py:"Zhōngguó cài",es:"Comida china",src:"Clase 01"},
-  {hz:"中文",py:"Zhōngwén",es:"Chino escrito",src:"Clase 01"},
-  {hz:"吉他",py:"jítā",es:"Guitarra",src:"Clase 01"},
-  {hz:"车",py:"chē",es:"Carro / auto",src:"Clase 01"},
-  {hz:"饭",py:"fàn",es:"Comida / arroz",src:"Clase 01"},
-  {hz:"猫",py:"māo",es:"Gato",src:"Clase 01"},
-  {hz:"狗",py:"gǒu",es:"Perro",src:"Clase 01"},
-  {hz:"会",py:"huì",es:"Saber / poder hacer",src:"Clase 01"},
-  {hz:"有",py:"yǒu",es:"Tener / haber",src:"Clase 01"},
-  {hz:"说",py:"shuō",es:"Hablar",src:"Clase 01"},
-  {hz:"写",py:"xiě",es:"Escribir",src:"Clase 01"},
-  {hz:"做",py:"zuò",es:"Hacer",src:"Clase 01"},
-  {hz:"做饭",py:"zuòfàn",es:"Cocinar",src:"Clase 01"},
-  {hz:"游泳",py:"yóuyǒng",es:"Nadar",src:"Clase 01"},
-  {hz:"开车",py:"kāichē",es:"Manejar",src:"Clase 01"},
-  {hz:"唱歌",py:"chànggē",es:"Cantar",src:"Clase 01"},
-  {hz:"不",py:"bù",es:"No (negación general)",src:"Clase 01"},
-  {hz:"没有",py:"méiyǒu",es:"No tener",src:"Clase 01"},
-  {hz:"吗",py:"ma",es:"Partícula de pregunta",src:"Clase 01"},
-  {hz:"的",py:"de",es:"Partícula posesiva",src:"Clase 01"},
-  {hz:"也",py:"yě",es:"También",src:"Clase 01"},
-  {hz:"很",py:"hěn",es:"Muy",src:"Clase 01"},
-  {hz:"高",py:"gāo",es:"Alto",src:"Clase 01"},
-  {hz:"矮",py:"ǎi",es:"Bajo (estatura)",src:"Clase 01"},
-  {hz:"胖",py:"pàng",es:"Gordo",src:"Clase 01"},
-  {hz:"瘦",py:"shòu",es:"Delgado",src:"Clase 01"},
-  {hz:"好吃",py:"hǎochī",es:"Delicioso",src:"Clase 01"},
-  {hz:"一点儿",py:"yìdiǎnr",es:"Un poquito",src:"Clase 01"},
-  {hz:"但是",py:"dànshì",es:"Pero",src:"Clase 01"},
-  // Clase 02
-  {hz:"画画",py:"huàhuà",es:"Pintar / dibujar",src:"Clase 02"},
-  {hz:"跳舞",py:"tiàowǔ",es:"Bailar",src:"Clase 02"},
-  {hz:"读",py:"dú",es:"Leer (en voz alta)",src:"Clase 02"},
-  {hz:"看书",py:"kànshū",es:"Leer un libro",src:"Clase 02"},
-  {hz:"学",py:"xué",es:"Aprender",src:"Clase 02"},
-  {hz:"学习",py:"xuéxí",es:"Estudiar",src:"Clase 02"},
-  {hz:"烧",py:"shāo",es:"Quemar / asar",src:"Clase 02"},
-  {hz:"生词",py:"shēngcí",es:"Vocabulario nuevo",src:"Clase 02"},
-  {hz:"会话",py:"huìhuà",es:"Conversación",src:"Clase 02"},
-  {hz:"练习",py:"liànxí",es:"Ejercicio / practicar",src:"Clase 02"},
-  {hz:"怎么",py:"zěnme",es:"¿Cómo?",src:"Clase 02"},
-  {hz:"对不起",py:"duìbuqǐ",es:"Lo siento",src:"Clase 02"},
-  {hz:"这个",py:"zhège",es:"Este / esto",src:"Clase 02"},
-  {hz:"字",py:"zì",es:"Carácter / letra",src:"Clase 02"},
-  {hz:"学生",py:"xuéshēng",es:"Estudiante",src:"Clase 02"},
-  {hz:"同学",py:"tóngxué",es:"Compañero de clase",src:"Clase 02"},
-  {hz:"学校",py:"xuéxiào",es:"Escuela",src:"Clase 02"},
-  {hz:"大学",py:"dàxué",es:"Universidad",src:"Clase 02"},
-  {hz:"种",py:"zhǒng",es:"Tipo / clase",src:"Clase 02"},
-  {hz:"运动",py:"yùndòng",es:"Deporte",src:"Clase 02"},
-  {hz:"动物",py:"dòngwù",es:"Animal",src:"Clase 02"},
-  {hz:"烧烤",py:"shāokǎo",es:"Asado / BBQ",src:"Clase 02"},
-  {hz:"好看",py:"hǎokàn",es:"Bonito",src:"Clase 02"},
-  {hz:"难看",py:"nánkàn",es:"Feo",src:"Clase 02"},
-  {hz:"难吃",py:"nánchī",es:"Asqueroso",src:"Clase 02"},
-  {hz:"好喝",py:"hǎohē",es:"Sabroso (bebida)",src:"Clase 02"},
-  {hz:"难喝",py:"nánhē",es:"Asqueroso (bebida)",src:"Clase 02"},
-  {hz:"好听",py:"hǎotīng",es:"Suena bien",src:"Clase 02"},
-  {hz:"难听",py:"nántīng",es:"Suena mal",src:"Clase 02"},
-  // Clase 03
-  {hz:"都",py:"dōu",es:"Todos / ambos",src:"Clase 03"},
-  {hz:"我们",py:"wǒmen",es:"Nosotros",src:"Clase 03"},
-  {hz:"您",py:"nín",es:"Usted (formal)",src:"Clase 03"},
-  {hz:"您们",py:"nínmen",es:"Ustedes (formal)",src:"Clase 03"},
-  {hz:"汉语名字",py:"hànyǔ míngzì",es:"Nombre chino",src:"Clase 03"},
-  {hz:"今天",py:"jīntiān",es:"Hoy",src:"Clase 03"},
-  {hz:"昨天",py:"zuótiān",es:"Ayer",src:"Clase 03"},
-  {hz:"明天",py:"míngtiān",es:"Mañana",src:"Clase 03"},
-  {hz:"月",py:"yuè",es:"Mes",src:"Clase 03"},
-  {hz:"号",py:"hào",es:"Día del mes",src:"Clase 03"},
-  {hz:"星期",py:"xīngqī",es:"Semana / día de la semana",src:"Clase 03"},
-  {hz:"几",py:"jǐ",es:"¿Cuántos? / ¿Cuál?",src:"Clase 03"},
-  {hz:"去",py:"qù",es:"Ir",src:"Clase 03"},
-  {hz:"看",py:"kàn",es:"Ver / mirar / leer",src:"Clase 03"},
-  {hz:"书",py:"shū",es:"Libro",src:"Clase 03"},
-  {hz:"问",py:"wèn",es:"Preguntar",src:"Clase 03"},
-  {hz:"请",py:"qǐng",es:"Por favor",src:"Clase 03"},
-  {hz:"请问",py:"qǐngwèn",es:"Disculpe (para preguntar)",src:"Clase 03"},
-  {hz:"呢",py:"ne",es:"¿Y tú? / ¿Y ___?",src:"Clase 03"},
-  {hz:"朋友",py:"péngyou",es:"Amigo",src:"Clase 03"},
-  {hz:"咖啡",py:"kāfēi",es:"Café",src:"Clase 03"},
-  {hz:"公园",py:"gōngyuán",es:"Parque",src:"Clase 03"},
-  {hz:"机场",py:"jīchǎng",es:"Aeropuerto",src:"Clase 03"},
-  {hz:"车站",py:"chēzhàn",es:"Estación",src:"Clase 03"},
-  {hz:"高兴",py:"gāoxìng",es:"Contento",src:"Clase 03"},
-  {hz:"欢迎",py:"huānyíng",es:"Bienvenido",src:"Clase 03"},
-  {hz:"开始",py:"kāishǐ",es:"Empezar",src:"Clase 03"},
-  {hz:"鸡蛋",py:"jīdàn",es:"Huevo",src:"Clase 03"},
-  {hz:"机会",py:"jīhuì",es:"Oportunidad",src:"Clase 03"},
-  {hz:"公司",py:"gōngsī",es:"Empresa",src:"Clase 03"},
-  {hz:"经理",py:"jīnglǐ",es:"Gerente",src:"Clase 03"},
-  {hz:"精彩",py:"jīngcǎi",es:"Genial / brillante",src:"Clase 03"},
-  {hz:"关心",py:"guānxīn",es:"Preocuparse",src:"Clase 03"},
-  {hz:"关于",py:"guānyú",es:"Acerca de",src:"Clase 03"},
-  // === Clases 04-06 (agregadas) ===
-  {hz:"一月",py:"yī yuè",es:"Enero",src:"Clase 04"},
-  {hz:"二月",py:"èr yuè",es:"Febrero",src:"Clase 04"},
-  {hz:"三月",py:"sān yuè",es:"Marzo",src:"Clase 04"},
-  {hz:"四月",py:"sì yuè",es:"Abril",src:"Clase 04"},
-  {hz:"五月",py:"wǔ yuè",es:"Mayo",src:"Clase 04"},
-  {hz:"六月",py:"liù yuè",es:"Junio",src:"Clase 04"},
-  {hz:"七月",py:"qī yuè",es:"Julio",src:"Clase 04"},
-  {hz:"八月",py:"bā yuè",es:"Agosto",src:"Clase 04"},
-  {hz:"九月",py:"jiǔ yuè",es:"Septiembre",src:"Clase 04"},
-  {hz:"十月",py:"shí yuè",es:"Octubre",src:"Clase 04"},
-  {hz:"十一月",py:"shíyī yuè",es:"Noviembre",src:"Clase 04"},
-  {hz:"十二月",py:"shí'èr yuè",es:"Diciembre",src:"Clase 04"},
-  {hz:"星期一",py:"xīngqī yī",es:"Lunes",src:"Clase 04"},
-  {hz:"星期二",py:"xīngqī èr",es:"Martes",src:"Clase 04"},
-  {hz:"星期三",py:"xīngqī sān",es:"Miércoles",src:"Clase 04"},
-  {hz:"星期四",py:"xīngqī sì",es:"Jueves",src:"Clase 04"},
-  {hz:"星期五",py:"xīngqī wǔ",es:"Viernes",src:"Clase 04"},
-  {hz:"星期六",py:"xīngqī liù",es:"Sábado",src:"Clase 04"},
-  {hz:"星期天",py:"xīngqī tiān",es:"Domingo",src:"Clase 04"},
-  {hz:"今天星期几？",py:"Jīntiān xīngqī jǐ?",es:"¿Qué día de la semana es hoy?",src:"Clase 04"},
-  {hz:"前天",py:"qiántiān",es:"Anteayer",src:"Clase 04"},
-  {hz:"后天",py:"hòutiān",es:"Pasado mañana",src:"Clase 04"},
-  {hz:"明天呢？",py:"Míngtiān ne?",es:"¿Y mañana?",src:"Clase 04"},
-  {hz:"你回家吗？",py:"Nǐ huí jiā ma?",es:"¿Te vas a casa? / ¿Vuelves a casa?",src:"Clase 04"},
-  {hz:"体育场",py:"tǐyùchǎng",es:"⚽ Campo deportivo / estadio (con pasto)",src:"Clase 04"},
-  {hz:"球场",py:"qiúchǎng",es:"🏟️ Cancha / estadio",src:"Clase 04"},
-  {hz:"赛马场",py:"sàimǎchǎng",es:"🐴 Hipódromo (carreras de caballos)",src:"Clase 04"},
-  {hz:"赛车场",py:"sàichēchǎng",es:"🚴 Pista de carreras / velódromo",src:"Clase 04"},
-  {hz:"停车场",py:"tíngchēchǎng",es:"🅿️ Estacionamiento",src:"Clase 04"},
-  {hz:"菜市场",py:"càishìchǎng",es:"🥬 Mercado / feria de la calle",src:"Clase 04"},
-  {hz:"体育馆",py:"tǐyùguǎn",es:"🏋️ Polideportivo / gimnasio (techado)",src:"Clase 04"},
-  {hz:"图书馆",py:"túshūguǎn",es:"📚 Biblioteca",src:"Clase 04"},
-  {hz:"博物馆",py:"bówùguǎn",es:"🏛️ Museo",src:"Clase 04"},
-  {hz:"餐馆",py:"cānguǎn",es:"🍽️ Restaurante",src:"Clase 04"},
-  {hz:"健身房",py:"jiànshēnfáng",es:"💪 Gimnasio (sala de fitness)",src:"Clase 04"},
-  {hz:"厨房",py:"chúfáng",es:"🍳 Cocina",src:"Clase 04"},
-  {hz:"卧室",py:"wòshì",es:"🛏️ Dormitorio",src:"Clase 04"},
-  {hz:"幼儿园",py:"yòu'éryuán",es:"👶 Jardín infantil / kindergarten",src:"Clase 04"},
-  {hz:"动物园",py:"dòngwùyuán",es:"🦁 Zoológico",src:"Clase 04"},
-  {hz:"电影院",py:"diànyǐngyuàn",es:"🎬 Cine",src:"Clase 04"},
-  {hz:"医院",py:"yīyuàn",es:"🏥 Hospital",src:"Clase 04"},
-  {hz:"教室",py:"jiàoshì",es:"📝 Sala de clases",src:"Clase 04"},
-  {hz:"礼堂",py:"lǐtáng",es:"🏛️ Auditorio / salón de actos",src:"Clase 04"},
-  {hz:"大礼堂",py:"dà lǐtáng",es:"🎓 Gran auditorio / aula magna",src:"Clase 04"},
-  {hz:"讲堂",py:"jiǎngtáng",es:"📢 Sala de conferencias / cátedra",src:"Clase 04"},
-  {hz:"超市",py:"chāoshì",es:"🛒 Supermercado",src:"Clase 04"},
-  {hz:"商场",py:"shāngchǎng",es:"🏬 Centro comercial / mall",src:"Clase 04"},
-  {hz:"生日",py:"shēngrì",es:"Cumpleaños",src:"Clase 04"},
-  {hz:"几号",py:"jǐ hào",es:"¿Qué día (del mes)?",src:"Clase 04"},
-  {hz:"几月",py:"jǐ yuè",es:"¿Qué mes?",src:"Clase 04"},
-  {hz:"星期几",py:"xīngqī jǐ",es:"¿Qué día de la semana?",src:"Clase 04"},
-  {hz:"是",py:"shì",es:"Ser / estar",src:"Clase 04"},
-  {hz:"买",py:"mǎi",es:"Comprar",src:"Clase 04"},
-  {hz:"上课",py:"shàng kè",es:"Tomar clases",src:"Clase 04"},
-  {hz:"东西",py:"dōngxi",es:"Cosas",src:"Clase 04"},
-  {hz:"水果",py:"shuǐguǒ",es:"Fruta",src:"Clase 04"},
-  {hz:"家",py:"jiā",es:"Casa",src:"Clase 05"},
-  {hz:"散步",py:"sànbù",es:"Pasear / caminar",src:"Clase 05"},
-  {hz:"看电视",py:"kàn diànshì",es:"Ver televisión",src:"Clase 05"},
-  {hz:"打篮球",py:"dǎ lánqiú",es:"Jugar básquetbol",src:"Clase 05"},
-  {hz:"踢足球",py:"tī zúqiú",es:"Jugar fútbol",src:"Clase 05"},
-  {hz:"比赛",py:"bǐsài",es:"Partido / competencia",src:"Clase 05"},
-  {hz:"星期一周一",py:"zhōu yī",es:"Lunes",src:"Clase 05"},
-  {hz:"星期二周二",py:"zhōu èr",es:"Martes",src:"Clase 05"},
-  {hz:"星期三周三",py:"zhōu sān",es:"Miércoles",src:"Clase 05"},
-  {hz:"星期四周四",py:"zhōu sì",es:"Jueves",src:"Clase 05"},
-  {hz:"星期五周五",py:"zhōu wǔ",es:"Viernes",src:"Clase 05"},
-  {hz:"星期六周六",py:"zhōu liù",es:"Sábado",src:"Clase 05"},
-  {hz:"时间",py:"shíjiān",es:"⏰ Tiempo",src:"Clase 05"},
-  {hz:"国家",py:"guójiā",es:"🌍 País",src:"Clase 05"},
-  {hz:"年轻",py:"niánqīng",es:"👦 Joven",src:"Clase 05"},
-  {hz:"银行",py:"yínháng",es:"🏦 Banco",src:"Clase 05"},
-  {hz:"楼房",py:"lóufáng",es:"🏢 Edificio",src:"Clase 05"},
-  {hz:"篮球",py:"lánqiú",es:"🏀 Básquetbol",src:"Clase 05"},
-  {hz:"长城",py:"Chángchéng",es:"🏯 Gran Muralla China",src:"Clase 05"},
-  {hz:"词典",py:"cídiǎn",es:"📖 Diccionario",src:"Clase 05"},
-  {hz:"苹果",py:"píngguǒ",es:"🍎 Manzana",src:"Clase 05"},
-  {hz:"啤酒",py:"píjiǔ",es:"🍺 Cerveza",src:"Clase 05"},
-  {hz:"牛奶",py:"niúnǎi",es:"🥛 Leche",src:"Clase 05"},
-  {hz:"蓝色",py:"lánsè",es:"🔵 Azul",src:"Clase 05"},
-  {hz:"环境",py:"huánjìng",es:"🌿 Ambiente / entorno",src:"Clase 05"},
-  {hz:"寒假",py:"hánjià",es:"❄️ Vacaciones de invierno",src:"Clase 05"},
-  {hz:"牛肉",py:"niúròu",es:"🥩 Carne de res",src:"Clase 05"},
-  {hz:"游戏",py:"yóuxì",es:"🎮 Juego / videojuego",src:"Clase 05"},
-  {hz:"茶",py:"chá",es:"🍵 Té",src:"Clase 05"},
-  {hz:"水",py:"shuǐ",es:"💧 Agua",src:"Clase 05"},
-  {hz:"米饭",py:"mǐfàn",es:"🍚 Arroz (cocido)",src:"Clase 05"},
-  {hz:"杯子",py:"bēizi",es:"🥤 Vaso / taza",src:"Clase 05"},
-  {hz:"钱",py:"qián",es:"💰 Dinero",src:"Clase 05"},
-  {hz:"你想喝什么？",py:"Nǐ xiǎng hē shénme?",es:"¿Qué quieres tomar?",src:"Clase 05"},
-  {hz:"你想吃什么？",py:"Nǐ xiǎng chī shénme?",es:"¿Qué quieres comer?",src:"Clase 05"},
-  {hz:"一杯茶",py:"yì bēi chá",es:"🍵 Una taza de té",src:"Clase 05"},
-  {hz:"一杯咖啡",py:"yì bēi kāfēi",es:"☕ Una taza de café",src:"Clase 05"},
-  {hz:"一杯红酒",py:"yì bēi hóngjiǔ",es:"🍷 Una copa de vino tinto",src:"Clase 05"},
-  {hz:"可乐",py:"kělè",es:"🥤 Cola",src:"Clase 05"},
-  {hz:"可口可乐",py:"kěkǒu kělè",es:"🥤 Coca-Cola",src:"Clase 05"},
-  {hz:"果汁",py:"guǒzhī",es:"🧃 Jugo",src:"Clase 05"},
-  {hz:"红酒",py:"hóngjiǔ",es:"🍷 Vino tinto",src:"Clase 05"},
-  {hz:"白酒",py:"báijiǔ",es:"🍶 Licor blanco chino",src:"Clase 05"},
-  {hz:"豆浆",py:"dòujiāng",es:"🥛 Leche de soja",src:"Clase 05"},
-  {hz:"绿茶",py:"lǜchá",es:"🍵 Té verde",src:"Clase 05"},
-  {hz:"红茶",py:"hóngchá",es:"🍵 Té negro (lit. \"té rojo\")",src:"Clase 05"},
-  {hz:"面包",py:"miànbāo",es:"🍞 Pan",src:"Clase 05"},
-  {hz:"面条",py:"miàntiáo",es:"🍜 Fideos",src:"Clase 05"},
-  {hz:"炒面",py:"chǎomiàn",es:"🍝 Fideos fritos / chao mein",src:"Clase 05"},
-  {hz:"炒饭",py:"chǎofàn",es:"🍳 Arroz frito",src:"Clase 05"},
-  {hz:"饺子",py:"jiǎozi",es:"🥟 Dumplings / empanadas chinas",src:"Clase 05"},
-  {hz:"烤鸭",py:"kǎoyā",es:"🦆 Pato asado / pato Pekín",src:"Clase 05"},
-  {hz:"和",py:"hé",es:"y / con",src:"Clase 05"},
-  {hz:"回",py:"huí",es:"Volver / regresar",src:"Clase 05"},
-  {hz:"球",py:"qiú",es:"Pelota / balón",src:"Clase 05"},
-  {hz:"哪儿",py:"nǎr",es:"¿Dónde?",src:"Clase 05"},
-  {hz:"什么",py:"shénme",es:"¿Qué?",src:"Clase 05"},
-  {hz:"吃东西",py:"chī dōngxi",es:"Comer cosas",src:"Clase 05"},
-  {hz:"来",py:"lái",es:"Venir",src:"Clase 05"},
-  {hz:"可以",py:"kěyǐ",es:"Poder (permiso)",src:"Clase 05"},
-  {hz:"能",py:"néng",es:"Poder (posibilidad)",src:"Clase 05"},
-  {hz:"只",py:"zhǐ",es:"Solo / solamente",src:"Clase 05"},
-  {hz:"周",py:"zhōu",es:"Semana (forma corta)",src:"Clase 05"},
-  {hz:"节",py:"jié",es:"Festividad / feriado",src:"Clase 05"},
-  {hz:"想",py:"xiǎng",es:"Querer / desear",src:"Clase 05"},
-  {hz:"喝",py:"hē",es:"Tomar / beber",src:"Clase 05"},
-  {hz:"早上",py:"zǎoshang",es:"🌅 Mañana (antes del mediodía)",src:"Clase 06"},
-  {hz:"上午",py:"shàngwǔ",es:"☀️ Media mañana / antes mediodía",src:"Clase 06"},
-  {hz:"中午",py:"zhōngwǔ",es:"🕛 Mediodía",src:"Clase 06"},
-  {hz:"下午",py:"xiàwǔ",es:"🌤️ Tarde",src:"Clase 06"},
-  {hz:"晚上",py:"wǎnshang",es:"🌙 Noche",src:"Clase 06"},
-  {hz:"明天下午",py:"míngtiān xiàwǔ",es:"Mañana en la tarde",src:"Clase 06"},
-  {hz:"今天晚上",py:"jīntiān wǎnshang",es:"Esta noche (hoy en la noche)",src:"Clase 06"},
-  {hz:"水杯",py:"shuǐbēi",es:"💧 Vaso de agua (específico)",src:"Clase 06"},
-  {hz:"玻璃杯",py:"bōlibēi",es:"🍶 Vaso de vidrio",src:"Clase 06"},
-  {hz:"瓶子",py:"píngzi",es:"🍾 Botella (genérica)",src:"Clase 06"},
-  {hz:"一瓶红酒",py:"yì píng hóngjiǔ",es:"🍷 Una botella de vino tinto",src:"Clase 06"},
-  {hz:"三个老师",py:"sān ge lǎoshī",es:"👨‍🏫 3 profesores",src:"Clase 06"},
-  {hz:"五个学生",py:"wǔ ge xuésheng",es:"🧑‍🎓 5 alumnos",src:"Clase 06"},
-  {hz:"一个朋友",py:"yí ge péngyou",es:"🙋 1 amigo",src:"Clase 06"},
-  {hz:"两个人",py:"liǎng ge rén",es:"👥 2 personas",src:"Clase 06"},
-  {hz:"一个杯子",py:"yí ge bēizi",es:"🥤 1 vaso",src:"Clase 06"},
-  {hz:"两个苹果",py:"liǎng ge píngguǒ",es:"🍎 2 manzanas",src:"Clase 06"},
-  {hz:"三个鸡蛋",py:"sān ge jīdàn",es:"🥚 3 huevos",src:"Clase 06"},
-  {hz:"一条狗",py:"yì tiáo gǒu",es:"🐕 1 perro",src:"Clase 06"},
-  {hz:"两条鱼",py:"liǎng tiáo yú",es:"🐟 2 peces",src:"Clase 06"},
-  {hz:"一条裤子",py:"yì tiáo kùzi",es:"👖 1 pantalón",src:"Clase 06"},
-  {hz:"一只猫",py:"yì zhī māo",es:"🐱 1 gato",src:"Clase 06"},
-  {hz:"三只鸟",py:"sān zhī niǎo",es:"🐦 3 pájaros",src:"Clase 06"},
-  {hz:"两只手",py:"liǎng zhī shǒu",es:"✋ 2 manos",src:"Clase 06"},
-  {hz:"五口人",py:"wǔ kǒu rén",es:"5 miembros de la familia",src:"Clase 06"},
-  {hz:"一件衣服",py:"yí jiàn yīfu",es:"👕 1 prenda de ropa",src:"Clase 06"},
-  {hz:"两件事",py:"liǎng jiàn shì",es:"📋 2 asuntos / cosas",src:"Clase 06"},
-  {hz:"个",py:"ge",es:"Genérico (personas, cosas sin clasificador propio)",src:"Clase 06"},
-  {hz:"条",py:"tiáo",es:"Objetos/animales largos y delgados",src:"Clase 06"},
-  {hz:"件",py:"jiàn",es:"Ropa, asuntos",src:"Clase 06"},
-  {hz:"口",py:"kǒu",es:"Miembros de la familia",src:"Clase 06"},
-  {hz:"杯",py:"bēi",es:"Bebidas en vaso/taza",src:"Clase 06"},
-  {hz:"瓶",py:"píng",es:"Bebidas en botella",src:"Clase 06"},
-  {hz:"这",py:"zhè",es:"👉 Esto / este",src:"Clase 06"},
-  {hz:"这个人",py:"zhège rén",es:"👤 Esta persona",src:"Clase 06"},
-  {hz:"这个杯子",py:"zhège bēizi",es:"🥤 Este vaso",src:"Clase 06"},
-  {hz:"这条狗",py:"zhè tiáo gǒu",es:"🐕 Este perro",src:"Clase 06"},
-  {hz:"这只猫",py:"zhè zhī māo",es:"🐱 Este gato",src:"Clase 06"},
-  {hz:"这件衣服",py:"zhè jiàn yīfu",es:"👕 Esta prenda de ropa",src:"Clase 06"},
-  {hz:"这杯咖啡",py:"zhè bēi kāfēi",es:"☕ Esta taza de café",src:"Clase 06"},
-  {hz:"这瓶水",py:"zhè píng shuǐ",es:"💧 Esta botella de agua",src:"Clase 06"},
-  {hz:"那",py:"nà",es:"👈 Eso / ese",src:"Clase 06"},
-  {hz:"那个",py:"nàge / nèige",es:"👈 Ese / esa (genérico)",src:"Clase 06"},
-  {hz:"那个人",py:"nàge rén",es:"👤 Esa persona",src:"Clase 06"},
-  {hz:"那个杯子",py:"nàge bēizi",es:"🥤 Ese vaso",src:"Clase 06"},
-  {hz:"那条狗",py:"nà tiáo gǒu",es:"🐕 Ese perro",src:"Clase 06"},
-  {hz:"那杯咖啡",py:"nà bēi kāfēi",es:"☕ Esa taza de café",src:"Clase 06"},
-  {hz:"要",py:"yào",es:"Directo, \"quiero\" / \"voy a\"",src:"Clase 06"},
-  {hz:"多少钱？",py:"Duōshao qián?",es:"💰 ¿Cuánto cuesta? / ¿Cuánto dinero?",src:"Clase 06"},
-  {hz:"这个多少钱？",py:"Zhège duōshao qián?",es:"👉 ¿Cuánto cuesta esto?",src:"Clase 06"},
-  {hz:"那个多少钱？",py:"Nàge duōshao qián?",es:"👈 ¿Cuánto cuesta ese?",src:"Clase 06"},
-  {hz:"你要多少？",py:"Nǐ yào duōshao?",es:"¿Cuánto/cuántos quieres?",src:"Clase 06"},
-  {hz:"你有多少钱？",py:"Nǐ yǒu duōshao qián?",es:"¿Cuánto dinero tienes?",src:"Clase 06"},
-  {hz:"块",py:"kuài",es:"💴 Unidad monetaria (coloquial)",src:"Clase 06"},
-  {hz:"元",py:"yuán",es:"💴 Yuan (formal, oficial)",src:"Clase 06"},
-  {hz:"一块钱",py:"yí kuài qián",es:"1 yuan",src:"Clase 06"},
-  {hz:"十块钱",py:"shí kuài qián",es:"10 yuan",src:"Clase 06"},
-  {hz:"一百块",py:"yì bǎi kuài",es:"100 yuan",src:"Clase 06"},
-  {hz:"一块",py:"yí kuài",es:"~ $135 CLP",src:"Clase 06"},
-  {hz:"十块",py:"shí kuài",es:"~ $1.350 CLP",src:"Clase 06"},
-  {hz:"一千块",py:"yì qiān kuài",es:"~ $135.000 CLP",src:"Clase 06"},
-  {hz:"元yuán块",py:"kuài",es:"💴 1 yuan (unidad principal)",src:"Clase 06"},
-  {hz:"角jiǎo毛",py:"máo",es:"🪙 0,1 yuan (10 céntimos)",src:"Clase 06"},
-  {hz:"分",py:"fēn",es:"—",src:"Clase 06"},
-  {hz:"五角",py:"wǔ jiǎo",es:"0,5 yuan (formal)",src:"Clase 06"},
-  {hz:"五毛",py:"wǔ máo",es:"0,5 yuan (coloquial)",src:"Clase 06"},
-  {hz:"三块五毛",py:"sān kuài wǔ máo",es:"3,50 yuan (~$475 CLP)",src:"Clase 06"},
-  {hz:"你多大？",py:"Nǐ duō dà?",es:"🎂 ¿Qué edad tienes?",src:"Clase 06"},
-  {hz:"你几岁？",py:"Nǐ jǐ suì?",es:"👶 Para niños pequeños (menos de 10)",src:"Clase 06"},
-  {hz:"您多大年纪？",py:"Nín duō dà niánjì?",es:"👴 Formal, para adultos mayores",src:"Clase 06"},
-  {hz:"那个呢？",py:"Nàge ne?",es:"👈 ¿Y ese?",src:"Clase 06"},
-  {hz:"一斤",py:"yì jīn",es:"⚖️ 1 jin = 500g (medio kilo)",src:"Clase 06"},
-  {hz:"两斤",py:"liǎng jīn",es:"⚖️ 2 jin = 1 kg",src:"Clase 06"},
-  {hz:"公斤",py:"gōngjīn",es:"⚖️ Kilogramo (formal/occidental)",src:"Clase 06"},
-  {hz:"多少钱一斤？",py:"Duōshao qián yì jīn?",es:"❓ ¿Cuánto cuesta por jin?",src:"Clase 06"},
-  // === Clase 07 (25 abr 2026) ===
-  // Sección 1: 在 + lugar
-  {hz:"在",py:"zài",es:"📍 En / estar en (punto de ubicación)",src:"Clase 07",anchor:"s1",section:"在 + lugar"},
-  {hz:"哪儿",py:"nǎr",es:"❓ ¿Dónde?",src:"Clase 07",anchor:"s1",section:"在 + lugar"},
-  {hz:"工作",py:"gōngzuò",es:"💼 Trabajar / trabajo",src:"Clase 07",anchor:"s1",section:"在 + lugar"},
-  {hz:"儿子",py:"érzi",es:"👦 Hijo",src:"Clase 07",anchor:"s2",section:"Familia"},
-  // Sección 2: Vocab nuevo
-  {hz:"医生",py:"yīshēng",es:"👨‍⚕️ Doctor / médico",src:"Clase 07",anchor:"s2",section:"Profesiones"},
-  {hz:"椅子",py:"yǐzi",es:"🪑 Silla",src:"Clase 07",anchor:"s2",section:"Objetos"},
-  {hz:"小",py:"xiǎo",es:"🤏 Pequeño",src:"Clase 07",anchor:"s2",section:"Adjetivos"},
-  {hz:"小猫",py:"xiǎo māo",es:"🐱 Gatito",src:"Clase 07",anchor:"s2",section:"Animales"},
-  {hz:"小狗",py:"xiǎo gǒu",es:"🐶 Perrito / cachorro",src:"Clase 07",anchor:"s2",section:"Animales"},
-  // Preposiciones de lugar
-  {hz:"上面",py:"shàngmiàn",es:"⬆️ Arriba / encima de",src:"Clase 07",anchor:"s2",section:"Preposiciones de lugar"},
-  {hz:"下面",py:"xiàmiàn",es:"⬇️ Abajo / debajo de",src:"Clase 07",anchor:"s2",section:"Preposiciones de lugar"},
-  {hz:"前面",py:"qiánmiàn",es:"➡️ En frente de / delante de",src:"Clase 07",anchor:"s2",section:"Preposiciones de lugar"},
-  {hz:"后面",py:"hòumiàn",es:"⬅️ Detrás de",src:"Clase 07",anchor:"s2",section:"Preposiciones de lugar"},
-  {hz:"里面",py:"lǐmiàn",es:"📦 Dentro de / adentro",src:"Clase 07",anchor:"s2",section:"Preposiciones de lugar"},
-  {hz:"外面",py:"wàimiàn",es:"🌳 Fuera de / afuera",src:"Clase 07",anchor:"s2",section:"Preposiciones de lugar"},
-  {hz:"中间",py:"zhōngjiān",es:"🎯 En medio de / entre",src:"Clase 07",anchor:"s2",section:"Preposiciones de lugar"},
-  {hz:"旁边",py:"pángbiān",es:"↔️ Al lado de / a un costado",src:"Clase 07",anchor:"s2",section:"Preposiciones de lugar"},
-  // Objetos
-  {hz:"电脑",py:"diànnǎo",es:"💻 Computador",src:"Clase 07",anchor:"s2",section:"Objetos"},
-  {hz:"电视",py:"diànshì",es:"📺 Televisión",src:"Clase 07",anchor:"s2",section:"Objetos"},
-  {hz:"手机",py:"shǒujī",es:"📱 Celular / teléfono móvil",src:"Clase 07",anchor:"s2",section:"Objetos"},
-  {hz:"钱包",py:"qiánbāo",es:"👛 Billetera",src:"Clase 07",anchor:"s2",section:"Objetos"},
-  {hz:"钥匙",py:"yàoshi",es:"🔑 Llave / llaves",src:"Clase 07",anchor:"s2",section:"Objetos"},
-  // Tiempo
-  {hz:"现在",py:"xiànzài",es:"⏰ Ahora / en este momento",src:"Clase 07",anchor:"s2",section:"Tiempo"},
-  {hz:"正在",py:"zhèng zài",es:"⏱️ Estar haciendo (progresivo)",src:"Clase 07",anchor:"s5",section:"Progresivo 正在"},
-  // Lugares
-  {hz:"公司",py:"gōngsī",es:"🏢 Empresa / compañía",src:"Clase 07",anchor:"s2",section:"Lugares"},
-  {hz:"咖啡馆",py:"kāfēi guǎn",es:"☕ Cafetería",src:"Clase 07",anchor:"s2",section:"Lugares"},
-  {hz:"办公室",py:"bàngōngshì",es:"🏢 Oficina",src:"Clase 07",anchor:"s2",section:"Lugares"},
-  // Profesiones
-  {hz:"会计",py:"kuàijì",es:"🧾 Contador / contadora",src:"Clase 07",anchor:"s2",section:"Profesiones"},
-  {hz:"司机",py:"sījī",es:"🚗 Conductor / chófer",src:"Clase 07",anchor:"s2",section:"Profesiones"},
-  {hz:"职员",py:"zhíyuán",es:"🧑‍💼 Oficinista / empleado",src:"Clase 07",anchor:"s2",section:"Profesiones"},
-  {hz:"秘书",py:"mìshū",es:"📋 Secretaria / secretario",src:"Clase 07",anchor:"s2",section:"Profesiones"},
-  {hz:"兽医",py:"shòuyī",es:"🐾 Veterinario (médico de animales)",src:"Clase 07",anchor:"s2",section:"Profesiones"},
-  {hz:"助手",py:"zhùshǒu",es:"🤝 Ayudante / asistente",src:"Clase 07",anchor:"s2",section:"Profesiones"},
-  {hz:"警察",py:"jǐngchá",es:"👮 Policía",src:"Clase 07",anchor:"s2",section:"Profesiones"},
-  {hz:"老板",py:"lǎobǎn",es:"👔 Jefe / dueño (de negocio)",src:"Clase 07",anchor:"s2",section:"Profesiones"},
-  // Sistema educativo
-  {hz:"小学",py:"xiǎoxué",es:"📒 Escuela básica (1°-6°)",src:"Clase 07",anchor:"s2",section:"Educación"},
-  {hz:"中学",py:"zhōngxué",es:"📕 Enseñanza media (general)",src:"Clase 07",anchor:"s2",section:"Educación"},
-  {hz:"初中",py:"chūzhōng",es:"📕 Media inicial (1°-2° medio aprox.)",src:"Clase 07",anchor:"s2",section:"Educación"},
-  {hz:"高中",py:"gāozhōng",es:"📗 Media superior (3°-4° medio)",src:"Clase 07",anchor:"s2",section:"Educación"},
-  {hz:"研究生",py:"yánjiūshēng",es:"🎓 Estudiante de postgrado",src:"Clase 07",anchor:"s2",section:"Educación"},
-  {hz:"硕士",py:"shuòshì",es:"🎓 Magíster / máster",src:"Clase 07",anchor:"s2",section:"Educación"},
-  {hz:"博士",py:"bóshì",es:"🎓 Doctorado / PhD",src:"Clase 07",anchor:"s2",section:"Educación"},
-  // Sección 3: 医
-  {hz:"医",py:"yī",es:"🩺 Medicina / curar",src:"Clase 07",anchor:"s3",section:"Componente 医"},
-  {hz:"医院",py:"yīyuàn",es:"🏥 Hospital",src:"Clase 07",anchor:"s3",section:"Componente 医"},
-  {hz:"中医",py:"zhōngyī",es:"🌿 Medicina china tradicional",src:"Clase 07",anchor:"s3",section:"Componente 医"},
-  {hz:"西医",py:"xīyī",es:"💊 Medicina occidental",src:"Clase 07",anchor:"s3",section:"Componente 医"},
-  // Sección 4: 这儿/那儿/哪儿
-  {hz:"这儿",py:"zhèr",es:"📍 Aquí",src:"Clase 07",anchor:"s4",section:"Demostrativos de lugar"},
-  {hz:"那儿",py:"nàr",es:"📌 Allá / ahí",src:"Clase 07",anchor:"s4",section:"Demostrativos de lugar"},
-  // Sección 5: 正在
-  // (正在 ya está arriba)
-  // Frases clave
-  {hz:"你儿子在哪儿工作？",py:"Nǐ érzi zài nǎr gōngzuò?",es:"💼 ¿Dónde trabaja tu hijo?",src:"Clase 07",anchor:"s1",section:"Diálogo central"},
-  {hz:"小猫在椅子下面",py:"Xiǎo māo zài yǐzi xiàmiàn",es:"🐱 El gatito está debajo de la silla",src:"Clase 07",anchor:"s4",section:"Diálogo animales"},
-  {hz:"我妈妈在家",py:"Wǒ māma zài jiā",es:"🏠 Mi mamá está en casa",src:"Clase 07",anchor:"s4",section:"Ejemplos"},
-  {hz:"我朋友在学校",py:"Wǒ péngyou zài xuéxiào",es:"🏫 Mi amigo está en la escuela",src:"Clase 07",anchor:"s4",section:"Listening"},
-  {hz:"你的小猫在哪儿？",py:"Nǐ de xiǎo māo zài nǎr?",es:"🐱 ¿Dónde está tu gatito? (con 的, no humano)",src:"Clase 07",anchor:"s4",section:"Regla del 的"},
-  {hz:"我正在朋友家喝茶",py:"Wǒ zhèng zài péngyou jiā hē chá",es:"🍵 Estoy tomando té en casa de un amigo",src:"Clase 07",anchor:"s5",section:"Progresivo 正在"},
-  {hz:"你现在在哪儿？",py:"Nǐ xiànzài zài nǎr?",es:"😡 ¿Tú AHORA dónde ESTÁS??? (frase enojada)",src:"Clase 07",anchor:"s5",section:"Frase enojada"},
-  {hz:"电视在小猫和小狗中间",py:"Diànshì zài xiǎo māo hé xiǎo gǒu zhōngjiān",es:"📺 La televisión está entre el gatito y el perrito",src:"Clase 07",anchor:"s2",section:"Estructura A 和 B 中间"},
-  {hz:"你在哪儿工作？",py:"Nǐ zài nǎr gōngzuò?",es:"💼 ¿Dónde trabajas?",src:"Clase 07",anchor:"s6",section:"¿Dónde trabajas?"},
-  // === Básico 3 (mayo 2026) ===
-  {hz:"现在",py:"xiànzài",es:"⏳ ahora",src:"B3 Clase 01",base:"basico3"},
-  {hz:"点",py:"diǎn",es:"🕐 hora (en punto) / 'las…'",src:"B3 Clase 01",base:"basico3"},
-  {hz:"分",py:"fēn",es:"⏱️ minuto",src:"B3 Clase 01",base:"basico3"},
-  {hz:"半",py:"bàn",es:"🌗 medio / y media (:30)",src:"B3 Clase 01",base:"basico3"},
-  {hz:"上午",py:"shàngwǔ",es:"🌅 (por la) mañana / AM",src:"B3 Clase 01",base:"basico3"},
-  {hz:"中午",py:"zhōngwǔ",es:"☀️ mediodía",src:"B3 Clase 01",base:"basico3"},
-  {hz:"下午",py:"xiàwǔ",es:"🌇 (por la) tarde / PM",src:"B3 Clase 01",base:"basico3"},
-  {hz:"凌晨",py:"língchén",es:"🌌 madrugada (~00:00–05:00)",src:"B3 Clase 01",base:"basico3"},
-  {hz:"早上",py:"zǎoshang",es:"🌄 temprano en la mañana",src:"B3 Clase 01",base:"basico3"},
-  {hz:"晚上",py:"wǎnshang",es:"🌙 noche",src:"B3 Clase 01",base:"basico3"},
-  {hz:"半夜",py:"bànyè",es:"🌚 medianoche / plena noche",src:"B3 Clase 01",base:"basico3"},
-  {hz:"几点",py:"jǐ diǎn",es:"❓ ¿a qué hora? / ¿qué hora?",src:"B3 Clase 01",base:"basico3"},
-  {hz:"回来",py:"huílái",es:"🔙 volver / regresar (hacia aquí)",src:"B3 Clase 01",base:"basico3"},
-  {hz:"回去",py:"huíqù",es:"↩️ volver (hacia allá)",src:"B3 Clase 01",base:"basico3"},
-  {hz:"回家",py:"huí jiā",es:"🏠 volver a casa",src:"B3 Clase 01",base:"basico3"},
-  {hz:"妈妈",py:"māma",es:"👩 mamá",src:"B3 Clase 01",base:"basico3"},
-  {hz:"爸爸",py:"bàba",es:"👨 papá",src:"B3 Clase 01",base:"basico3"},
-  {hz:"你几点去学校？",py:"Nǐ jǐ diǎn qù xuéxiào?",es:"🚶 ir físicamente a la escuela (去 + lugar)",src:"B3 Clase 01",base:"basico3"},
-  {hz:"你几点上学？",py:"Nǐ jǐ diǎn shàng xué?",es:"🎒 ir a estudiar / asistir al colegio (la rutina)",src:"B3 Clase 01",base:"basico3"},
-  {hz:"你几点上课？",py:"Nǐ jǐ diǎn shàng kè?",es:"🔔 entrar / empezar la clase",src:"B3 Clase 01",base:"basico3"},
-  {hz:"电影",py:"diànyǐng",es:"🎬 película",src:"B3 Clase 01",base:"basico3"},
-  {hz:"开始",py:"kāishǐ",es:"▶️ empezar / comenzar",src:"B3 Clase 01",base:"basico3"},
-  {hz:"结束",py:"jiéshù",es:"⏹️ terminar / acabar",src:"B3 Clase 01",base:"basico3"},
-  {hz:"演",py:"yǎn",es:"🎭 proyectar / dar (una función) / actuar",src:"B3 Clase 01",base:"basico3"},
-  {hz:"以前",py:"yǐqián",es:"⬅️ antes (de) / anteriormente",src:"B3 Clase 01",base:"basico3"},
-  {hz:"以后",py:"yǐhòu",es:"➡️ después (de) / más adelante",src:"B3 Clase 01",base:"basico3"},
-  {hz:"圣地亚哥",py:"Shèngdìyàgē",es:"🇨🇱 Santiago (de Chile)",src:"B3 Clase 01",base:"basico3"},
-  {hz:"星期一",py:"xīngqīyī",es:"📅 lunes",src:"B3 Clase 01",base:"basico3"},
-  {hz:"三点以前",py:"sān diǎn yǐqián",es:"antes de las 3",src:"B3 Clase 01",base:"basico3"},
-  {hz:"下午以后",py:"xiàwǔ yǐhòu",es:"después del mediodía / por la tarde en adelante",src:"B3 Clase 01",base:"basico3"},
-  {hz:"吃饭以前",py:"chī fàn yǐqián",es:"antes de comer",src:"B3 Clase 01",base:"basico3"},
-  {hz:"下课以后",py:"xià kè yǐhòu",es:"después de clase",src:"B3 Clase 01",base:"basico3"},
-  {hz:"2026年以前",py:"èr líng èr liù nián yǐqián",es:"antes de 2026",src:"B3 Clase 01",base:"basico3"},
-  {hz:"王芳",py:"Wáng Fāng",es:"👩 Wang Fang (nombre propio)",src:"B3 Clase 02",base:"basico3"},
-  {hz:"去",py:"qù",es:"➡️ ir (a)",src:"B3 Clase 02",base:"basico3"},
-  {hz:"商店",py:"shāngdiàn",es:"🏪 tienda / negocio",src:"B3 Clase 02",base:"basico3"},
-  {hz:"买",py:"mǎi",es:"🛍️ comprar",src:"B3 Clase 02",base:"basico3"},
-  {hz:"水果",py:"shuǐguǒ",es:"🍎 fruta",src:"B3 Clase 02",base:"basico3"},
-  {hz:"他们",py:"tāmen",es:"👥 ellos / ellas",src:"B3 Clase 02",base:"basico3"},
-  {hz:"很忙",py:"hěn máng",es:"😵 muy ocupado/a",src:"B3 Clase 02",base:"basico3"},
-  {hz:"星期六",py:"xīngqīliù",es:"📅 sábado",src:"B3 Clase 02",base:"basico3"},
-  {hz:"也",py:"yě",es:"➕ también",src:"B3 Clase 02",base:"basico3"},
-  {hz:"工作",py:"gōngzuò",es:"💼 trabajar / trabajo",src:"B3 Clase 02",base:"basico3"},
-  {hz:"醒来",py:"xǐnglái",es:"👀 despertarse",src:"B3 Clase 02",base:"basico3"},
-  {hz:"起床",py:"qǐchuáng",es:"🛏️ levantarse (de la cama)",src:"B3 Clase 02",base:"basico3"},
-  {hz:"睡觉",py:"shuìjiào",es:"😴 dormir / irse a dormir",src:"B3 Clase 02",base:"basico3"},
-  {hz:"吃",py:"chī",es:"🍴 comer",src:"B3 Clase 02",base:"basico3"},
-  {hz:"吃早饭",py:"chī zǎofàn",es:"🥐 desayunar (comer el desayuno)",src:"B3 Clase 02",base:"basico3"},
-  {hz:"早饭",py:"zǎofàn",es:"🌅 desayuno",src:"B3 Clase 02",base:"basico3"},
-  {hz:"午饭",py:"wǔfàn",es:"☀️ almuerzo",src:"B3 Clase 02",base:"basico3"},
-  {hz:"晚饭",py:"wǎnfàn",es:"🌙 cena",src:"B3 Clase 02",base:"basico3"},
-  {hz:"米饭",py:"mǐfàn",es:"🍚 arroz (cocido)",src:"B3 Clase 02",base:"basico3"},
-  {hz:"面包",py:"miànbāo",es:"🍞 pan",src:"B3 Clase 02",base:"basico3"},
-  {hz:"鸡蛋",py:"jīdàn",es:"🥚 huevo",src:"B3 Clase 02",base:"basico3"},
-  {hz:"面条",py:"miàntiáo",es:"🍜 fideos",src:"B3 Clase 02",base:"basico3"},
-  {hz:"牛奶",py:"niúnǎi",es:"🥛 leche",src:"B3 Clase 02",base:"basico3"},
-  {hz:"上班",py:"shàngbān",es:"🏢 ir a trabajar / entrar al trabajo",src:"B3 Clase 02",base:"basico3"},
-  {hz:"下班",py:"xiàbān",es:"🏠 salir del trabajo",src:"B3 Clase 02",base:"basico3"},
-  {hz:"上课",py:"shàngkè",es:"📚 ir a clase / empezar la clase",src:"B3 Clase 02",base:"basico3"},
-  {hz:"下课",py:"xiàkè",es:"🔔 salir de clase / terminar la clase",src:"B3 Clase 02",base:"basico3"},
-  {hz:"上学",py:"shàngxué",es:"🎒 ir a la escuela",src:"B3 Clase 02",base:"basico3"},
-  {hz:"公司",py:"gōngsī",es:"🏢 empresa / compañía",src:"B3 Clase 02",base:"basico3"},
-  {hz:"学校",py:"xuéxiào",es:"🏫 escuela / colegio",src:"B3 Clase 02",base:"basico3"},
-  {hz:"吃晚饭",py:"chī wǎnfàn",es:"🍲 cenar",src:"B3 Clase 02",base:"basico3"},
-  {hz:"吃午饭",py:"chī wǔfàn",es:"🍱 almorzar",src:"B3 Clase 02",base:"basico3"},
-  {hz:"吃中饭",py:"chī zhōngfàn",es:"🍱 almorzar (= 午饭)",src:"B3 Clase 02",base:"basico3"},
-  {hz:"午点",py:"wǔdiǎn",es:"🍪 merienda de la tarde",src:"B3 Clase 02",base:"basico3"},
-  {hz:"点心",py:"diǎnxin",es:"🥟 dim sum / bocadito / dulce",src:"B3 Clase 02",base:"basico3"},
-  {hz:"睡午觉",py:"shuì wǔjiào",es:"🛌 dormir la siesta",src:"B3 Clase 02",base:"basico3"},
-  {hz:"睡懒觉",py:"shuì lǎnjiào",es:"🥱 dormir hasta tarde / remolonear",src:"B3 Clase 02",base:"basico3"},
-  {hz:"轻声",py:"qīngshēng",es:"🎵 tono neutro (sílaba átona)",src:"B3 Clase 02",base:"basico3"},
-  {hz:"老子",py:"Lǎozǐ / lǎozi",es:"🧓 Laozi (filósofo) vs 'yo' (arrogante) — tono",src:"B3 Clase 02",base:"basico3"},
-  {hz:"买卖",py:"mǎimài / mǎimai",es:"🔄 comprar y vender vs 🏪 negocio — tono",src:"B3 Clase 02",base:"basico3"},
-  {hz:"大意",py:"dàyì / dàyi",es:"💡 idea principal vs 😵 descuidado — tono",src:"B3 Clase 02",base:"basico3"},
-];
+(function () {
+  'use strict';
+  const elInput   = document.getElementById('searchInput');
+  const elResults = document.getElementById('results');
 
-function normalize(str) {
-  return str.toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .replace(/[üǖǘǚǜ]/g, 'u')
-    .replace(/v/g, 'u');
-}
+  let vocab = [];
+  let audioMap = {};
 
-let audioMap = {};
-// Cargar mapping de audios MP3 (ElevenLabs voz Lily)
-fetch('/audio/mapping.json')
-  .then(r => r.json())
-  .then(data => { audioMap = data; })
-  .catch(() => {});
+  /* ---------- helpers ---------- */
+  const esc = s => String(s).replace(/[&<>"']/g, c =>
+    ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+  const stripDia = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const normalize = s => stripDia(s).replace(/[üǖǘǚǜ]/g, 'u').replace(/v/g, 'u');
+  const normNoSpace = s => normalize(s).replace(/\s+/g, '');
+  const hasHan = s => /[㐀-鿿]/.test(s);
 
-function speak(text) {
-  const file = audioMap[text];
-  if (file) {
-    new Audio('/audio/' + file).play();
-    return;
-  }
-  // Fallback: Web Speech API
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = 'zh-CN';
-  u.rate = 0.8;
-  speechSynthesis.speak(u);
-}
-
-function search(query) {
-  if (!query.trim()) return [];
-  const q = normalize(query.trim());
-  return vocab.filter(v =>
-    v.hz.includes(query) ||
-    normalize(v.py).includes(q) ||
-    normalize(v.es).includes(q)
-  );
-}
-
-function srcToUrl(src, anchor, base) {
-  const match = src.match(/Clase (\d+)/i);
-  if (!match) return null;
-  const num = match[1].padStart(2, '0');
-  const dir = base || 'basico2';
-  const url = `/${dir}/clase${num}.html`;
-  return anchor ? `${url}#${anchor}` : url;
-}
-
-function render(results, query) {
-  const container = document.getElementById('results');
-  if (!query.trim()) {
-    container.innerHTML = '<div class="empty">Escribe algo para buscar</div>';
-    return;
-  }
-  if (results.length === 0) {
-    container.innerHTML = '<div class="empty">No se encontró "' + query + '"</div>';
-    return;
-  }
-  let html = `<div class="result-count">${results.length} resultado${results.length > 1 ? 's' : ''}</div>`;
-  results.forEach(v => {
-    const link = `https://www.dong-chinese.com/wiki/${encodeURIComponent(v.hz.charAt(0))}`;
-    const classUrl = srcToUrl(v.src, v.anchor, v.base);
-    const sectionLabel = v.section ? ` · ${v.section}` : '';
-    const sourceHtml = classUrl
-      ? `<a href="${classUrl}" onclick="event.stopPropagation()">📖 ${v.src}${sectionLabel} →</a>`
-      : v.src;
-    html += `<div class="result-card" onclick="speak('${v.hz}')">
-      <div class="r-hz"><a href="${link}" target="_blank" onclick="event.stopPropagation()">${v.hz}</a></div>
-      <div class="r-info">
-        <div class="r-py">${v.py}</div>
-        <div class="r-es">${v.es}</div>
-        <div class="r-source">${sourceHtml}</div>
-      </div>
-      <button class="r-audio" onclick="event.stopPropagation(); speak('${v.hz}')">🔊</button>
-    </div>`;
+  /* ---------- carga de datos ---------- */
+  Promise.all([
+    fetch('/vocab.json').then(r => r.json()),
+    fetch('/audio/mapping.json').then(r => r.json()).catch(() => ({})),
+  ]).then(([v, m]) => {
+    vocab = v; audioMap = m;
+    const c = document.getElementById('count');
+    if (c) c.textContent = vocab.length;
+    if (elInput.value.trim()) doSearch();
+  }).catch(() => {
+    elResults.innerHTML = '<div class="empty">No se pudo cargar el vocabulario</div>';
   });
-  container.innerHTML = html;
-}
 
-document.getElementById('searchInput').addEventListener('input', e => {
-  const results = search(e.target.value);
-  render(results, e.target.value);
-});
+  /* ---------- audio (MP3 ElevenLabs con fallback a TTS) ---------- */
+  function speak(text) {
+    const file = audioMap[text];
+    if (file) { new Audio('/audio/' + file).play(); return; }
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'zh-CN'; u.rate = 0.8;
+    speechSynthesis.speak(u);
+  }
+
+  /* ---------- ranking de relevancia ----------
+     0 = mejor (hanzi exacto) … 6 = peor (substring en español); -1 = sin match */
+  function score(v, raw) {
+    let best = Infinity;
+    if (raw && hasHan(raw) && v.hz.includes(raw)) best = Math.min(best, v.hz === raw ? 0 : 1);
+    const qpy = normNoSpace(raw);
+    if (qpy) {
+      const py = normNoSpace(v.py);
+      if (py === qpy) best = Math.min(best, 2);
+      else if (py.startsWith(qpy)) best = Math.min(best, 3);
+      else if (py.includes(qpy)) best = Math.min(best, 4);
+    }
+    const qes = normalize(raw).trim();
+    if (qes) {
+      const es = normalize(v.es);
+      if (es.startsWith(qes)) best = Math.min(best, 5);
+      else if (es.includes(qes)) best = Math.min(best, 6);
+    }
+    return best === Infinity ? -1 : best;
+  }
+
+  /* ---------- resaltado insensible a tildes/tonos ---------- */
+  const HL = {
+    a:'aáàâäāǎ', e:'eéèêëēě', i:'iíìîïīǐ', o:'oóòôöōǒ',
+    u:'uúùûüūǔǖǘǚǜv', n:'nñ', c:'cç',
+  };
+  function buildRe(query) {
+    const q = stripDia(query.trim());
+    if (!q) return null;
+    let pat = '';
+    for (const ch of q) {
+      if (ch === 'v') pat += '[' + HL.u + ']';
+      else if (HL[ch]) pat += '[' + HL[ch] + ']';
+      else if (hasHan(ch)) pat += ch;
+      else pat += ch.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+    try { return new RegExp(pat, 'gi'); } catch (e) { return null; }
+  }
+  const hl = (escaped, re) => re ? escaped.replace(re, m => '<mark>' + m + '</mark>') : escaped;
+
+  /* ---------- URL a la clase de origen ---------- */
+  function srcToUrl(src, anchor, base) {
+    const match = src.match(/Clase (\d+)/i);
+    if (!match) return null;
+    const num = match[1].padStart(2, '0');
+    const dir = base || 'basico2';
+    const url = `/${dir}/clase${num}.html`;
+    return anchor ? `${url}#${anchor}` : url;
+  }
+
+  /* ---------- búsqueda + render ---------- */
+  function doSearch() {
+    const raw = elInput.value.trim();
+    if (!raw) { render([], ''); return; }
+    const scored = [];
+    for (const v of vocab) {
+      const s = score(v, raw);
+      if (s >= 0) scored.push([s, v]);
+    }
+    scored.sort((a, b) => a[0] - b[0] || a[1].py.length - b[1].py.length);
+    render(scored.map(x => x[1]), raw);
+  }
+
+  function render(results, query) {
+    if (!query) { elResults.innerHTML = '<div class="empty">Escribe algo para buscar</div>'; return; }
+    if (!results.length) {
+      elResults.innerHTML = '<div class="empty">No se encontró "' + esc(query) + '"</div>';
+      return;
+    }
+    const re = buildRe(query);
+    let html = `<div class="result-count">${results.length} resultado${results.length > 1 ? 's' : ''}</div>`;
+    for (const v of results) {
+      const wiki = `https://www.dong-chinese.com/wiki/${encodeURIComponent(v.hz.charAt(0))}`;
+      const classUrl = srcToUrl(v.src, v.anchor, v.base);
+      const sectionLabel = v.section ? ` · ${esc(v.section)}` : '';
+      const sourceHtml = classUrl
+        ? `<a href="${classUrl}" onclick="event.stopPropagation()">📖 ${esc(v.src)}${sectionLabel} →</a>`
+        : esc(v.src);
+      html += `<div class="result-card" data-hz="${esc(v.hz)}">
+        <div class="r-hz"><a href="${wiki}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${hl(esc(v.hz), re)}</a></div>
+        <div class="r-info">
+          <div class="r-py">${hl(esc(v.py), re)}</div>
+          <div class="r-es">${hl(esc(v.es), re)}</div>
+          <div class="r-source">${sourceHtml}</div>
+        </div>
+        <button class="r-audio" title="Escuchar">🔊</button>
+      </div>`;
+    }
+    elResults.innerHTML = html;
+  }
+
+  /* ---------- eventos ---------- */
+  let t = null;
+  elInput.addEventListener('input', () => { clearTimeout(t); t = setTimeout(doSearch, 60); });
+  elResults.addEventListener('click', e => {
+    const card = e.target.closest('[data-hz]');
+    if (card) speak(card.dataset.hz);
+  });
+})();
 </script>
 </body>
 </html>
