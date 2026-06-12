@@ -5,11 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>chino.basti.cl — Apuntes de Chino</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --bg: #f7f2f0;
     --paper: #fffdfc;
+    --navy: #1a1a2e;
     --ink: #1c1c1e;
     --muted: #9a9a9e;
     --faint: #d8d8d4;
@@ -17,63 +18,87 @@
     --red-bright: #e74c3c;
     --red-soft: #fdecea;
     --red-tint: #f6d8d3;
+    --gold: #d4820a;
+    --gold-bright: #f0a030;
+    --gold-soft: #fdf3e3;
+    --gold-tint: #f3ddb8;
     --green: #2f8f4e;
     --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   }
   html { -webkit-text-size-adjust: 100%; }
-  body {
-    font-family: var(--mono); background: var(--bg); color: var(--ink);
-    font-size: 14.5px; line-height: 1.5; -webkit-font-smoothing: antialiased;
-    padding: 0 20px 80px;
-    background-image:
-      radial-gradient(60% 30% at 100% 0%, rgba(231,76,60,.08), transparent 70%),
-      radial-gradient(50% 25% at 0% 0%, rgba(192,57,43,.06), transparent 70%);
-    background-repeat: no-repeat;
-  }
-  .wrap { max-width: 680px; margin: 0 auto; }
+  body { font-family: var(--mono); background: var(--bg); color: var(--ink); font-size: 14.5px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
   .zh { font-family: 'Noto Sans SC', var(--mono); }
 
-  /* ---------- HEADER ---------- */
-  .top-bar { height: 4px; background: linear-gradient(90deg, var(--red), var(--red-bright), #f0a39b); border-radius: 0 0 3px 3px; }
-  header { padding: 44px 0 0; }
-  .site-title { font-size: 1.7rem; font-weight: 700; letter-spacing: -.5px; display: inline-block; position: relative; }
-  .site-title .dot { color: var(--red); }
-  .site-title .cl { color: var(--red); }
-  .site-title::after {
-    content: ""; display: block; height: 7px; width: 62%;
-    background: var(--red-soft); border-radius: 3px;
-    margin-top: -8px; position: relative; z-index: -1;
+  /* ---------- HERO ---------- */
+  .hero {
+    background: radial-gradient(120% 120% at 0% 0%, #2a2a4a 0%, var(--navy) 55%, #131322 100%);
+    color: #fff; padding: 46px 24px 56px; position: relative; overflow: hidden;
   }
-  .tagline { color: var(--muted); font-size: 0.86rem; margin-top: 12px; }
-  .tagline .zh { color: var(--red); font-weight: 500; }
-  .rule { border: 0; height: 1px; background: linear-gradient(90deg, var(--red-tint), transparent); margin: 26px 0; }
+  .hero::after {
+    content: "中文"; position: absolute; right: -8px; bottom: -30px;
+    font-family: 'Noto Sans SC', sans-serif; font-size: 8.5rem; font-weight: 700;
+    color: rgba(231,76,60,.09); letter-spacing: -8px; line-height: 1; pointer-events: none;
+  }
+  .hero-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
+  .site-title { font-size: 1.85rem; font-weight: 700; letter-spacing: -.5px; }
+  .site-title .dot, .site-title .cl { color: var(--red-bright); }
+  .tagline { color: #b9b9c8; font-size: 0.86rem; margin-top: 10px; }
+  .tagline .zh { color: var(--red-bright); font-weight: 500; }
+  .hero-stats { display: flex; gap: 26px; margin-top: 24px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .num { font-size: 1.55em; font-weight: 700; color: #fff; line-height: 1; font-variant-numeric: tabular-nums; }
+  .stat .lbl { font-size: 0.68em; color: #9a9ab0; text-transform: uppercase; letter-spacing: .7px; margin-top: 5px; }
 
-  .label { color: var(--red); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; font-weight: 700; }
+  /* ---------- MAIN ---------- */
+  main { max-width: 760px; margin: -26px auto 0; padding: 0 20px 70px; position: relative; z-index: 2; }
+  .label { color: var(--red); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.6px; margin: 34px 4px 12px; font-weight: 700; }
+  .label.gold { color: var(--gold); }
   .label .count { color: var(--muted); font-weight: 400; }
 
-  /* ---------- LEVELS (details / summary) ---------- */
-  .lvl { background: var(--paper); border-radius: 8px; margin-bottom: 6px; border: 1px solid #f0e6e3; overflow: hidden; }
-  summary {
-    list-style: none; cursor: pointer; padding: 14px 14px;
-    display: grid; grid-template-columns: 1.4em auto 1fr auto; align-items: baseline; gap: 8px;
-    transition: background .12s;
+  /* ---------- CARD HSK 1 (destacada) ---------- */
+  .hsk-card {
+    display: block; text-decoration: none; color: inherit; position: relative; overflow: hidden;
+    background: var(--paper); border: 1px solid var(--gold-tint); border-radius: 14px;
+    padding: 20px 22px 18px 26px; box-shadow: 0 2px 8px rgba(212,130,10,.08);
+    transition: box-shadow .2s, transform .2s;
   }
+  .hsk-card:hover { box-shadow: 0 12px 30px rgba(212,130,10,.2); transform: translateY(-3px); }
+  .hsk-card .accent { position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(var(--gold), var(--gold-bright)); }
+  .hsk-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .hsk-card h2 { font-size: 1.12rem; font-weight: 700; }
+  .hsk-card h2 .zh { color: var(--gold); }
+  .hsk-new { background: var(--gold); color: #fff; font-size: 0.64rem; font-weight: 700; text-transform: uppercase; letter-spacing: .7px; padding: 3px 9px; border-radius: 6px; }
+  .hsk-card p { font-size: 0.82rem; color: #79705f; margin-top: 7px; line-height: 1.55; }
+  .hsk-bar { height: 9px; background: #f3ece1; border-radius: 6px; margin-top: 14px; overflow: hidden; }
+  .hsk-bar .fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--gold), var(--gold-bright)); border-radius: 6px; transition: width 1s cubic-bezier(.2,.7,.3,1); }
+  .hsk-meta { display: flex; justify-content: space-between; gap: 10px; font-size: 0.72rem; color: var(--muted); margin-top: 7px; flex-wrap: wrap; }
+  .hsk-meta b { color: var(--gold); }
+
+  /* ---------- LEVELS ---------- */
+  .lvl { background: var(--paper); border-radius: 12px; margin-bottom: 10px; border: 1px solid #f0e6e3; overflow: hidden; position: relative; box-shadow: 0 1px 3px rgba(0,0,0,.03); transition: box-shadow .2s; }
+  .lvl:hover { box-shadow: 0 6px 18px rgba(26,26,46,.08); }
+  .lvl::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(var(--red), var(--red-bright)); z-index: 1; }
+  summary { list-style: none; cursor: pointer; padding: 16px 16px 14px 20px; transition: background .12s; }
   summary::-webkit-details-marker { display: none; }
   summary:hover { background: var(--red-soft); }
   details[open] > summary { background: var(--red-soft); border-bottom: 1px solid var(--red-tint); }
-  .marker { color: var(--red-bright); transition: transform .18s; font-size: 0.9em; }
-  details[open] > summary .marker { transform: rotate(90deg); }
-  .path { font-weight: 700; color: var(--red); }
-  .path .zh { font-weight: 500; color: var(--muted); font-size: 0.92em; margin-left: 8px; }
-  .leader { border-bottom: 1px dotted var(--red-tint); transform: translateY(-4px); }
-  .meta { color: var(--muted); font-size: 0.84rem; white-space: nowrap; }
+  .lvl-row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .path { font-weight: 700; color: var(--red); font-size: 1rem; }
+  .path .marker { display: inline-block; color: var(--red-bright); transition: transform .18s; font-size: 0.85em; margin-right: 7px; }
+  details[open] .path .marker { transform: rotate(90deg); }
+  .path .zh { font-weight: 500; color: var(--muted); font-size: 0.9em; margin-left: 8px; }
+  .meta { color: var(--muted); font-size: 0.8rem; white-space: nowrap; }
   .meta .done { color: var(--green); font-weight: 500; }
   .meta .live { color: var(--red); font-weight: 700; }
-  .meta .live::before { content: "● "; font-size: 0.7em; vertical-align: middle; }
-  .lvl-sub { padding: 14px 16px 6px 16px; color: var(--muted); font-size: 0.82rem; line-height: 1.55; }
+  .meta .live::before { content: "● "; font-size: 0.7em; vertical-align: middle; animation: pulse 1.6s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+  .lvl-desc { font-size: 0.78rem; color: var(--muted); margin-top: 6px; line-height: 1.5; font-weight: 400; }
+  .lvl-stats { display: flex; gap: 14px; margin-top: 9px; font-size: 0.72rem; color: var(--muted); flex-wrap: wrap; }
+  .lvl-stats b { color: var(--red); }
+  .lvl-bar { flex: 1 1 130px; align-self: center; height: 6px; background: #f3e7e4; border-radius: 4px; overflow: hidden; min-width: 90px; }
+  .lvl-bar .fill { height: 100%; background: linear-gradient(90deg, var(--red), var(--red-bright)); border-radius: 4px; }
 
-  /* expanded class list */
-  .classes { padding: 8px 8px 12px 1.8em; }
+  .classes { padding: 8px 8px 12px 14px; }
   .classes a {
     display: grid; grid-template-columns: 1.2em 6.6em 1fr; gap: 8px; align-items: start;
     text-decoration: none; color: var(--ink); padding: 8px 8px; border-radius: 6px;
@@ -89,52 +114,99 @@
   .classes .concepts .zh { color: var(--red); }
   .classes .es { font-size: 0.8rem; color: var(--muted); line-height: 1.45; }
 
-  /* ---------- TOOLS (chips) ---------- */
-  .chips { display: flex; flex-wrap: wrap; gap: 9px; }
-  .chip {
-    text-decoration: none; color: var(--red); border: 1px solid var(--red-tint);
-    border-radius: 8px; padding: 9px 14px; font-size: 0.88rem; background: var(--red-soft);
-    font-weight: 500; transition: all .14s; line-height: 1.3;
+  /* ---------- NÚMEROS / VISUALIZACIONES ---------- */
+  .viz {
+    background: var(--paper); border: 1px solid #f0e6e3; border-radius: 12px;
+    padding: 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,.03);
   }
-  .chip:hover { background: var(--red); color: #fff; border-color: var(--red); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(192,57,43,.25); }
-  .chip .ico { margin-right: 5px; }
-  .chip .ct { display: block; font-size: 0.72rem; font-weight: 400; opacity: .8; margin-top: 1px; }
+  .viz h3 { font-size: 0.78rem; color: var(--ink); font-weight: 700; margin-bottom: 12px; }
+  .viz + .viz { margin-top: 12px; }
+  .hbar-row { display: grid; grid-template-columns: 7.5em 1fr 3em; gap: 10px; align-items: center; margin: 5px 0; font-size: 0.74rem; }
+  .hbar-row .name { color: var(--muted); text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hbar-row .track { height: 12px; background: #f6efed; border-radius: 4px; overflow: hidden; }
+  .hbar-row .bar { height: 100%; width: 0; border-radius: 4px; background: linear-gradient(90deg, var(--red), var(--red-bright)); transition: width .8s cubic-bezier(.2,.7,.3,1); }
+  .hbar-row.b3 .bar { background: linear-gradient(90deg, var(--gold), var(--gold-bright)); }
+  .hbar-row .val { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .viz-note { font-size: 0.7rem; color: var(--muted); margin-top: 10px; }
 
-  footer { color: var(--muted); font-size: 0.78rem; margin-top: 40px; }
+  /* ---------- TOOLS ---------- */
+  .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 11px; }
+  .tool-card {
+    background: var(--paper); border: 1px solid #f0e6e3; border-radius: 12px;
+    padding: 15px 16px; text-decoration: none; color: inherit; display: flex;
+    align-items: flex-start; gap: 12px; transition: box-shadow .2s, transform .2s, border-color .2s;
+  }
+  .tool-card:hover { box-shadow: 0 8px 22px rgba(192,57,43,.13); transform: translateY(-2px); border-color: var(--red-tint); }
+  .tool-ico {
+    flex-shrink: 0; width: 38px; height: 38px; border-radius: 10px;
+    background: linear-gradient(135deg, #fbe9e7, var(--red-soft)); display: grid; place-items: center;
+    font-size: 1.2em;
+  }
+  .tool-card h3 { color: var(--red); font-size: 0.9rem; margin-bottom: 3px; font-weight: 700; }
+  .tool-card p { font-size: 0.74rem; color: var(--muted); line-height: 1.45; }
+
+  footer { color: var(--muted); font-size: 0.78rem; margin-top: 46px; text-align: center; }
   footer .hash { color: var(--red-tint); }
   footer a { color: var(--red); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
 
-  @media (max-width: 560px) {
-    body { padding: 0 16px 64px; font-size: 14px; }
-    .site-title { font-size: 1.45rem; }
+  @media (max-width: 600px) {
+    .hero { padding: 36px 18px 48px; }
+    .hero::after { font-size: 5.5rem; bottom: -18px; }
+    .site-title { font-size: 1.5rem; }
+    .hero-stats { gap: 18px; }
+    main { padding: 0 14px 56px; }
     .classes a { grid-template-columns: 1.1em 5.6em 1fr; gap: 6px; }
     .path .zh { display: none; }
+    .tools-grid { grid-template-columns: 1fr; }
+    .hbar-row { grid-template-columns: 6em 1fr 2.6em; gap: 7px; }
   }
 </style>
 </head>
 <body>
-<div class="top-bar"></div>
-<div class="wrap">
 
-  <header>
+<div class="hero">
+  <div class="hero-inner">
     <h1 class="site-title">chino<span class="dot">.</span>basti<span class="dot">.</span><span class="cl">cl</span></h1>
     <p class="tagline"><span class="zh">中文</span> · apuntes de Basti · Centro Cultural Chino</p>
-  </header>
+    <div class="hero-stats">
+      <div class="stat"><span class="num" id="h-clases">23</span><span class="lbl">Clases</span></div>
+      <div class="stat"><span class="num" id="h-palabras">399</span><span class="lbl">Palabras</span></div>
+      <div class="stat"><span class="num" id="h-audios">1557</span><span class="lbl">Audios 🔊</span></div>
+      <div class="stat"><span class="num" id="h-hsk">95%</span><span class="lbl">HSK 1 cubierto</span></div>
+    </div>
+  </div>
+</div>
 
-  <hr class="rule">
+<main>
 
-  <div class="label">Niveles <span class="count">· 22 clases</span></div>
+  <div class="label gold">🎯 Por tema</div>
+  <a class="hsk-card" href="/hsk1/">
+    <span class="accent"></span>
+    <div class="hsk-top">
+      <h2>HSK 1 <span class="zh">汉语水平考试</span></h2>
+      <span class="hsk-new">Nuevo</span>
+    </div>
+    <p>Todo el contenido de las clases, reorganizado en <b>14 temas</b> según el sílabo oficial del examen HSK 1 (150 palabras): números, la hora, partículas, verbos modales, interrogativos y más.</p>
+    <div class="hsk-bar"><div class="fill" id="hsk-fill"></div></div>
+    <div class="hsk-meta">
+      <span><b id="hsk-vistas">143</b>/150 palabras ya vistas en clases</span>
+      <span id="hsk-temas">temas publicados: en construcción</span>
+    </div>
+  </a>
+
+  <div class="label">Niveles <span class="count">· 23 clases</span></div>
 
   <!-- BÁSICO 1 -->
   <details class="lvl">
     <summary>
-      <span class="marker">▸</span>
-      <span class="path">basico1/<span class="zh">基础一</span></span>
-      <span class="leader"></span>
-      <span class="meta"><span class="done">✓ completo</span> · 11 caps</span>
+      <div class="lvl-row">
+        <span class="path"><span class="marker">▸</span>basico1/<span class="zh">基础一</span></span>
+        <span class="meta"><span class="done">✓ completo</span> · 11 caps</span>
+      </div>
+      <div class="lvl-desc">Fundamentos: fonética, tonos, saludos, números, familia y la gramática base del mandarín.</div>
+      <div class="lvl-stats"><span>dic 2025</span><span class="lvl-bar"><span class="fill" style="width:100%"></span></span><span><b>11/11</b></span></div>
     </summary>
-    <div class="lvl-sub">Fundamentos: fonética, tonos, saludos, números, familia y la gramática base del mandarín.</div>
     <div class="classes">
       <a href="/basico1/cap01.html"><span class="tree">└</span><span class="id">cap01</span><span class="desc"><span class="concepts">Introducción y Fonética</span><span class="es">Los 4 tonos, iniciales y finales del pinyin.</span></span></a>
       <a href="/basico1/cap02.html"><span class="tree">└</span><span class="id">cap02</span><span class="desc"><span class="concepts">Iniciales y Cortesía</span><span class="es">Trazos, fórmulas de respeto y las formas de decir "no".</span></span></a>
@@ -153,12 +225,13 @@
   <!-- BÁSICO 2 -->
   <details class="lvl">
     <summary>
-      <span class="marker">▸</span>
-      <span class="path">basico2/<span class="zh">基础二</span></span>
-      <span class="leader"></span>
-      <span class="meta"><span class="done">✓ completo</span> · 9 clases</span>
+      <div class="lvl-row">
+        <span class="path"><span class="marker">▸</span>basico2/<span class="zh">基础二</span></span>
+        <span class="meta"><span class="done">✓ completo</span> · 9 clases</span>
+      </div>
+      <div class="lvl-desc">Verbos modales, fechas, ir a lugares, dinero, ubicación y acciones en curso; primeras conversaciones.</div>
+      <div class="lvl-stats"><span>mar–abr 2026</span><span class="lvl-bar"><span class="fill" style="width:100%"></span></span><span><b>9/9</b> · <span id="w-b2">316</span> palabras</span></div>
     </summary>
-    <div class="lvl-sub">Verbos modales, fechas, ir a lugares, dinero, ubicación y acciones en curso; primeras conversaciones.</div>
     <div class="classes">
       <a href="/basico2/clase01.html"><span class="tree">└</span><span class="id">clase01</span><span class="desc"><span class="concepts"><span class="zh">会 · 有 · 的</span></span><span class="es">Poder/saber, tener y posesión; familia y adjetivos.</span></span></a>
       <a href="/basico2/clase02.html"><span class="tree">└</span><span class="id">clase02</span><span class="desc"><span class="concepts"><span class="zh">怎么 · 好看 · 好吃</span></span><span class="es">Preguntar "cómo", y bueno/lindo/rico de ver o comer.</span></span></a>
@@ -175,31 +248,113 @@
   <!-- BÁSICO 3 (abierto: en curso) -->
   <details class="lvl" open>
     <summary>
-      <span class="marker">▸</span>
-      <span class="path">basico3/<span class="zh">基础三</span></span>
-      <span class="leader"></span>
-      <span class="meta"><span class="live">en curso</span> · 2 clases</span>
+      <div class="lvl-row">
+        <span class="path"><span class="marker">▸</span>basico3/<span class="zh">基础三</span></span>
+        <span class="meta"><span class="live">en curso</span> · 3 clases</span>
+      </div>
+      <div class="lvl-desc">El reloj y la vida diaria: la hora, la rutina, el clima y fonética avanzada (轻声, 变调).</div>
+      <div class="lvl-stats"><span>may–jun 2026</span><span class="lvl-bar"><span class="fill" style="width:30%"></span></span><span><b>3</b> clases · <span id="w-b3">49</span> palabras</span></div>
     </summary>
-    <div class="lvl-sub">El reloj y la vida diaria: decir la hora, la rutina de la mañana a la noche y un poco de fonética avanzada.</div>
     <div class="classes">
       <a href="/basico3/clase01.html"><span class="tree">└</span><span class="id">clase01</span><span class="desc"><span class="concepts">La hora — <span class="zh">点 · 分 · 半</span></span><span class="es">Decir la hora del reloj y preguntar a qué hora con <span class="zh">几点</span>.</span></span></a>
       <a href="/basico3/clase02.html"><span class="tree">└</span><span class="id">clase02</span><span class="desc"><span class="concepts">La rutina del día (<span class="zh">起床</span>→<span class="zh">睡觉</span>)</span><span class="es">La rutina de la mañana a la noche: comidas, trabajo/clase y el tono neutro.</span></span></a>
+      <a href="/basico3/clase03.html"><span class="tree">└</span><span class="id">clase03</span><span class="desc"><span class="concepts">El clima — <span class="zh">天气怎么样</span></span><span class="es">El clima y el futuro con <span class="zh">会</span>, <span class="zh">怎么样</span>, <span class="zh">太…了</span>, <span class="zh">些</span> y los tonos que cambian (<span class="zh">变调</span>).</span></span></a>
     </div>
   </details>
 
-  <hr class="rule">
+  <div class="label">📊 El sitio en números</div>
+  <div class="viz">
+    <h3>Palabras de vocabulario por clase</h3>
+    <div id="words-chart"><div class="viz-note">cargando…</div></div>
+    <div class="viz-note">Fuente: vocab.json (Básico 2 y 3; el vocabulario de Básico 1 aún no está indexado).</div>
+  </div>
 
   <div class="label">Herramientas</div>
-  <div class="chips">
-    <a class="chip" href="/flashcards.html"><span class="ico">🃏</span>flashcards<span class="ct">vocabulario</span></a>
-    <a class="chip" href="/buscador.html"><span class="ico">🔍</span>buscador<span class="ct">hanzi · pinyin · es</span></a>
-    <a class="chip" href="/listening.html"><span class="ico">🎧</span>listening<span class="ct">audio → escribir</span></a>
-    <a class="chip" href="/pinyin.html"><span class="ico">🔤</span>pinyin<span class="ct">pizarra de tonos</span></a>
-    <a class="chip" href="/pinyinv2.html"><span class="ico">🖌️</span>pizarra v2<span class="ct">lienzo · tarjetas · lápiz</span></a>
+  <div class="tools-grid">
+    <a class="tool-card" href="/flashcards.html">
+      <span class="tool-ico">🃏</span>
+      <div><h3>Flashcards</h3><p>Practica el vocabulario. Interactivo, con audio e imprimible.</p></div>
+    </a>
+    <a class="tool-card" href="/buscador.html">
+      <span class="tool-ico">🔍</span>
+      <div><h3>Buscador</h3><p>Busca cualquier palabra por hanzi, pinyin o español.</p></div>
+    </a>
+    <a class="tool-card" href="/listening.html">
+      <span class="tool-ico">🎧</span>
+      <div><h3>Listening</h3><p>Escucha audio en chino y escribe lo que oyes.</p></div>
+    </a>
+    <a class="tool-card" href="/typing.html">
+      <span class="tool-ico">⌨️</span>
+      <div><h3>Typing HSK1</h3><p>Lee en español y escribe en pinyin o hanzi. Las 300 palabras del HSK 1.</p></div>
+    </a>
+    <a class="tool-card" href="/pinyin.html">
+      <span class="tool-ico">🔤</span>
+      <div><h3>Pizarra de Pinyin</h3><p>Tipea chino y ve el pinyin alineado por carácter.</p></div>
+    </a>
+    <a class="tool-card" href="/pinyinv2.html">
+      <span class="tool-ico">🖌️</span>
+      <div><h3>Pizarra v2</h3><p>Lienzo infinito: tarjetas, lápiz, texto e imágenes.</p></div>
+    </a>
   </div>
 
   <footer><span class="hash">#</span> <a href="https://basti.cl">basti.cl</a> · Chino Mandarín</footer>
 
-</div>
+</main>
+
+<script>
+/* ── Stats dinámicas (con fallback estático en el HTML) ── */
+function countUp(el, target, suffix) {
+  const dur = 900, t0 = performance.now();
+  function step(t) {
+    const p = Math.min((t - t0) / dur, 1);
+    el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))) + (suffix || '');
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+Promise.all([
+  fetch('/vocab.json').then(r => r.json()),
+  fetch('/audio/mapping.json').then(r => r.json()),
+  fetch('/hsk1/hsk1-data.json').then(r => r.json()),
+]).then(([vocab, mapping, hsk]) => {
+  countUp(document.getElementById('h-palabras'), vocab.length);
+  countUp(document.getElementById('h-audios'), Object.keys(mapping).length);
+
+  /* HSK 1: cobertura */
+  const vistas = hsk.filter(w => w.clases.length).length;
+  const pct = Math.round(vistas / hsk.length * 100);
+  countUp(document.getElementById('h-hsk'), pct, '%');
+  document.getElementById('hsk-vistas').textContent = vistas;
+  requestAnimationFrame(() => { document.getElementById('hsk-fill').style.width = pct + '%'; });
+
+  /* Palabras por clase (barras horizontales) */
+  const porClase = {};
+  vocab.forEach(w => { porClase[w.src] = (porClase[w.src] || 0) + 1; });
+  const niveles = { b2: 0, b3: 0 };
+  const rows = Object.entries(porClase).sort((a, b) => {
+    const key = s => (s.startsWith('B3') ? '2' : '1') + s;
+    return key(a[0]).localeCompare(key(b[0]));
+  });
+  const max = Math.max(...rows.map(r => r[1]));
+  const $chart = document.getElementById('words-chart');
+  $chart.innerHTML = '';
+  rows.forEach(([src, n]) => {
+    const isB3 = src.startsWith('B3');
+    niveles[isB3 ? 'b3' : 'b2'] += n;
+    const name = isB3 ? src.replace('B3 Clase', 'B3 · cl') : 'B2 · cl' + src.replace('Clase ', '');
+    const row = document.createElement('div');
+    row.className = 'hbar-row' + (isB3 ? ' b3' : '');
+    row.innerHTML = `<span class="name">${name}</span><span class="track"><span class="bar"></span></span><span class="val">${n}</span>`;
+    $chart.appendChild(row);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      row.querySelector('.bar').style.width = (n / max * 100) + '%';
+    }));
+  });
+  const wb2 = document.getElementById('w-b2'), wb3 = document.getElementById('w-b3');
+  if (wb2) wb2.textContent = niveles.b2;
+  if (wb3) wb3.textContent = niveles.b3;
+}).catch(() => { /* sin red o file://, quedan los números estáticos */ });
+</script>
 </body>
 </html>

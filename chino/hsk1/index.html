@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HSK 1 · Apuntes Chino — Basti</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #1a1a2e;
+    --red: #c0392b;
+    --red-bright: #e74c3c;
+    --gold: #d4820a;
+    --gold-bright: #f0a030;
+    --green: #27ae60;
+    --bg: #f5f5f7;
+    --ink: #222;
+    --muted: #8a8a93;
+  }
+  body { font-family: 'Inter', 'Noto Sans SC', -apple-system, Arial, sans-serif; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+  .zh { font-family: 'Noto Sans SC', sans-serif; }
+
+  /* ---------- HERO ---------- */
+  header {
+    background: radial-gradient(120% 120% at 0% 0%, #2a2a4a 0%, var(--navy) 55%, #131322 100%);
+    color: #fff; padding: 48px 24px 56px; position: relative; overflow: hidden;
+  }
+  header::after {
+    content: "汉语"; position: absolute; right: -10px; bottom: -34px;
+    font-family: 'Noto Sans SC', sans-serif; font-size: 9rem; font-weight: 700;
+    color: rgba(212,130,10,.12); letter-spacing: -8px; line-height: 1; pointer-events: none;
+  }
+  .header-inner { max-width: 880px; margin: 0 auto; position: relative; z-index: 1; }
+  .crumb { display: inline-flex; align-items: center; gap: 6px; color: #c9c9d6; text-decoration: none; font-size: 0.82em; opacity: .85; transition: opacity .15s; }
+  .crumb:hover { opacity: 1; }
+  header h1 { font-size: 2.1em; font-weight: 700; margin-top: 14px; letter-spacing: -.5px; }
+  header h1 .zh { color: var(--gold-bright); }
+  header .subtitle { color: #b9b9c8; margin-top: 8px; font-size: 0.92em; }
+  .hero-stats { display: flex; gap: 22px; margin-top: 22px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .num { font-size: 1.5em; font-weight: 700; color: #fff; line-height: 1; }
+  .stat .lbl { font-size: 0.72em; color: #9a9ab0; text-transform: uppercase; letter-spacing: .6px; margin-top: 4px; }
+
+  /* ---------- MAIN ---------- */
+  main { max-width: 880px; margin: -28px auto 0; padding: 0 20px 60px; position: relative; z-index: 2; }
+  .section-label { font-size: 0.78em; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; margin: 30px 4px 14px; }
+
+  /* ---------- TRACKER ---------- */
+  .tracker {
+    background: #fff; border: 1px solid #ececf0; border-radius: 16px;
+    padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  }
+  .tracker-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .tracker-head h2 { font-size: 1.05em; font-weight: 600; }
+  .tracker-head .pct { font-size: 0.85em; color: var(--gold); font-weight: 700; }
+  .bar { height: 12px; background: #f0f0f4; border-radius: 8px; margin: 14px 0 6px; overflow: hidden; }
+  .bar .fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--gold), var(--gold-bright)); border-radius: 8px; transition: width 1s cubic-bezier(.2,.7,.3,1); }
+  .bar-note { font-size: 0.78em; color: var(--muted); margin-bottom: 16px; }
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.76em; color: #777; margin-bottom: 12px; }
+  .legend span::before { content: "●"; margin-right: 5px; }
+  .legend .l-pub::before { color: var(--green); }
+  .legend .l-seen::before { color: var(--gold-bright); }
+  .legend .l-pend::before { color: #d5d5dc; }
+  .chips-150 { display: flex; flex-wrap: wrap; gap: 5px; }
+  .chip-hz {
+    font-family: 'Noto Sans SC', sans-serif; font-size: 0.92em; line-height: 1;
+    padding: 6px 7px; border-radius: 7px; text-decoration: none; cursor: pointer;
+    border: 1px solid transparent; transition: transform .1s, box-shadow .1s;
+  }
+  .chip-hz:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,.12); }
+  .chip-pub  { background: #e6f5ec; color: #1d7a43; border-color: #c4e7d2; }
+  .chip-seen { background: #fdf3e3; color: #a4650a; border-color: #f3ddb8; }
+  .chip-pend { background: #f3f3f6; color: #aaa; border-color: #e8e8ee; }
+
+  /* ---------- TEMA CARDS ---------- */
+  .temas-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .tema-card {
+    background: #fff; border: 1px solid #ececf0; border-radius: 16px;
+    text-decoration: none; color: inherit; display: block; overflow: hidden; position: relative;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+    transition: box-shadow .2s, transform .2s, border-color .2s;
+  }
+  a.tema-card:hover { box-shadow: 0 12px 32px rgba(26,26,46,.14); transform: translateY(-3px); border-color: #ecd9bd; }
+  .tema-card .accent { position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(var(--gold), var(--gold-bright)); }
+  .tema-card.pendiente { opacity: .62; }
+  .tema-card.pendiente .accent { background: #d5d5dc; }
+  .tema-body { padding: 18px 18px 16px 22px; }
+  .tema-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .tema-num { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .9px; color: var(--gold); }
+  .tema-state { font-size: 0.72rem; font-weight: 600; white-space: nowrap; }
+  .tema-state.pub { color: var(--green); }
+  .tema-state.pend { color: var(--muted); }
+  .tema-card h3 { font-size: 1.02em; margin: 7px 0 5px; font-weight: 600; letter-spacing: -.2px; }
+  .tema-card h3 .zh { color: var(--red); }
+  .tema-card p { font-size: 0.82em; color: #6b6b73; line-height: 1.5; }
+  .tema-words { margin-top: 10px; font-size: 0.72rem; color: var(--muted); }
+  .tema-words b { color: var(--gold); }
+
+  footer { text-align: center; color: #b3b3bb; font-size: 0.82em; padding: 28px 24px 40px; }
+  footer a { color: inherit; }
+
+  @media (max-width: 640px) {
+    header { padding: 38px 20px 48px; }
+    header::after { font-size: 6rem; bottom: -20px; }
+    header h1 { font-size: 1.7em; }
+    .hero-stats { gap: 18px; }
+    main { padding: 0 14px 48px; }
+    .temas-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="crumb" href="/">← Todos los apuntes</a>
+    <h1>🎯 HSK <span class="zh">一</span> — por temas</h1>
+    <p class="subtitle">Las 150 palabras y la gramática del examen HSK 1 (sílabo 2.0), reorganizadas por tema a partir de las clases.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="num">150</span><span class="lbl">Palabras oficiales</span></div>
+      <div class="stat"><span class="num" id="st-vistas">—</span><span class="lbl">Vistas en clases</span></div>
+      <div class="stat"><span class="num" id="st-temas">—</span><span class="lbl">Temas publicados</span></div>
+      <div class="stat"><span class="num" id="st-audio">—</span><span class="lbl">Con audio 🔊</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="section-label">📊 Cobertura del vocabulario HSK 1</div>
+  <div class="tracker">
+    <div class="tracker-head">
+      <h2>¿Cuánto del HSK 1 ya pasó por las clases?</h2>
+      <span class="pct" id="tr-pct">cargando…</span>
+    </div>
+    <div class="bar"><div class="fill" id="tr-fill"></div></div>
+    <div class="bar-note" id="tr-note">Cruce automático de las 150 palabras oficiales contra el vocabulario de Básico 1, 2 y 3.</div>
+    <div class="legend">
+      <span class="l-pub">tema publicado</span>
+      <span class="l-seen">vista en clase (tema pendiente)</span>
+      <span class="l-pend">aún no vista</span>
+    </div>
+    <div class="chips-150" id="chips"></div>
+  </div>
+
+  <div class="section-label">📚 Los 14 temas</div>
+  <div class="temas-grid" id="temas"></div>
+</main>
+
+<footer>HSK 1 · Apuntes Chino · <a href="https://basti.cl">basti.cl</a></footer>
+
+<script>
+/* Temas de la sección. Al publicar una página nueva, agrega su id a PUBLICADAS. */
+const PUBLICADAS = new Set([]);
+
+const TEMAS = [
+  { id: '01', file: '01-pronombres-saludos.html', emoji: '👋', titulo: 'Pronombres y saludos', zh: '我 · 你 · 你好 · 谢谢', desc: 'Los pronombres personales y todas las fórmulas de cortesía: hola, gracias, perdón, de nada, adiós.' },
+  { id: '02', file: '02-identidad.html', emoji: '🪪', titulo: 'Identidad — 是 y 叫', zh: '叫 · 是 · 名字 · 中国', desc: 'Presentarse: cómo te llamas, de dónde eres y a qué te dedicas. China, el idioma chino y las profesiones.' },
+  { id: '03', file: '03-familia-personas.html', emoji: '👨‍👩‍👧', titulo: 'Familia y personas', zh: '爸爸 · 妈妈 · 家 · 岁', desc: 'La familia, los amigos, preguntar la edad con 岁 y describir personas.' },
+  { id: '04', file: '04-numeros-dinero.html', emoji: '🔢', titulo: 'Números y dinero', zh: '一 … 十 · 块 · 钱', desc: 'Del 0 al 99, los teléfonos, preguntar cuánto cuesta y pagar con 块.' },
+  { id: '05', file: '05-fechas-dias.html', emoji: '📅', titulo: 'Fechas y días', zh: '年 · 月 · 号 · 星期', desc: 'El calendario: año, mes, día, la semana, y hoy / mañana / ayer.' },
+  { id: '06', file: '06-la-hora.html', emoji: '⏰', titulo: 'La hora', zh: '点 · 分钟 · 现在', desc: 'Decir y preguntar la hora, y las partes del día: mañana, mediodía y tarde.' },
+  { id: '07', file: '07-clasificadores-demostrativos.html', emoji: '📦', titulo: 'Clasificadores y demostrativos', zh: '个 · 本 · 些 · 这 / 那', desc: 'Contar cosas con clasificadores y señalar con este / ese.' },
+  { id: '08', file: '08-particulas.html', emoji: '✨', titulo: 'Partículas', zh: '的 · 了 · 吗 · 呢', desc: 'Las 4 partículas que arman el idioma: posesión, cambio, pregunta y rebote.' },
+  { id: '09', file: '09-adverbios-conjunciones.html', emoji: '⚖️', titulo: 'Adverbios y 和', zh: '不 · 没有 · 很 · 太 · 都 · 也', desc: 'Negar, intensificar (muy / demasiado), "todos", "también" y unir con 和.' },
+  { id: '10', file: '10-interrogativos.html', emoji: '❓', titulo: 'Interrogativos', zh: '什么 · 谁 · 哪儿 · 怎么', desc: 'Las 8 palabras para preguntar qué, quién, cuál, dónde, cuántos, cómo y qué tal.' },
+  { id: '11', file: '11-existencia-ubicacion.html', emoji: '📍', titulo: 'Existencia y ubicación', zh: '有 · 在 · 里 · 前面', desc: 'Haber y estar: 有, 在 + lugar, posiciones y los lugares del HSK 1.' },
+  { id: '12', file: '12-verbos-modales.html', emoji: '💪', titulo: 'Verbos modales y gustos', zh: '会 · 能 · 想 · 喜欢 · 爱', desc: 'Saber hacer, poder, querer, y lo que te gusta o amas.' },
+  { id: '13', file: '13-acciones-rutina.html', emoji: '🏃', titulo: 'Acciones y rutina', zh: '去 · 来 · 吃 · 睡觉 · 正在', desc: 'Los verbos del día a día, estar haciendo algo (正在) e ir a un lugar a hacer algo.' },
+  { id: '14', file: '14-clima-comida-campos.html', emoji: '🌦️', titulo: 'Clima, comida y cosas', zh: '天气 · 米饭 · 茶 · 东西', desc: 'El clima, la comida y bebida, el transporte y los objetos cotidianos del HSK 1.' },
+];
+
+/* ── Cards de temas (no dependen del fetch) ── */
+const $temas = document.getElementById('temas');
+TEMAS.forEach(t => {
+  const pub = PUBLICADAS.has(t.id);
+  const el = document.createElement(pub ? 'a' : 'div');
+  el.className = 'tema-card' + (pub ? '' : ' pendiente');
+  if (pub) el.href = t.file;
+  el.innerHTML = `
+    <span class="accent"></span>
+    <div class="tema-body">
+      <div class="tema-top">
+        <span class="tema-num">Tema ${t.id}</span>
+        <span class="tema-state ${pub ? 'pub' : 'pend'}">${pub ? '✓ publicado' : '○ pendiente'}</span>
+      </div>
+      <h3>${t.emoji} ${t.titulo}</h3>
+      <p><span class="zh" style="color:#c0392b">${t.zh}</span> — ${t.desc}</p>
+      <div class="tema-words" id="tw-${t.id}"></div>
+    </div>`;
+  $temas.appendChild(el);
+});
+document.getElementById('st-temas').textContent = PUBLICADAS.size + '/14';
+
+/* ── Tracker (necesita hsk1-data.json y mapping.json) ── */
+Promise.all([
+  fetch('hsk1-data.json').then(r => r.json()),
+  fetch('/audio/mapping.json').then(r => r.json()).catch(() => ({})),
+]).then(([words, mapping]) => {
+  const vistas = words.filter(w => w.clases.length).length;
+  const conAudio = words.filter(w => mapping[w.hz]).length;
+  const pct = Math.round(vistas / words.length * 100);
+
+  document.getElementById('st-vistas').textContent = vistas;
+  document.getElementById('st-audio').textContent = conAudio;
+  document.getElementById('tr-pct').textContent = `${vistas}/150 · ${pct}%`;
+  requestAnimationFrame(() => { document.getElementById('tr-fill').style.width = pct + '%'; });
+
+  const faltan = words.filter(w => !w.clases.length).map(w => w.hz);
+  if (faltan.length) {
+    document.getElementById('tr-note').innerHTML =
+      `Solo faltan por aparecer en clases: <span class="zh" style="color:#a4650a">${faltan.join(' · ')}</span>`;
+  }
+
+  /* chips de las 150 palabras */
+  const $chips = document.getElementById('chips');
+  const frag = document.createDocumentFragment();
+  words.forEach(w => {
+    const pub = PUBLICADAS.has(w.tema);
+    const cls = pub ? 'chip-pub' : (w.clases.length ? 'chip-seen' : 'chip-pend');
+    const a = document.createElement('a');
+    a.className = 'chip-hz zh ' + cls;
+    a.textContent = w.hz;
+    a.title = `${w.py} — ${w.es}` + (w.clases.length ? `\nVisto en: ${w.clases.join(', ')}` : '\nAún no visto en clases');
+    a.href = pub ? TEMAS.find(t => t.id === w.tema).file
+                 : 'https://www.dong-chinese.com/wiki/' + encodeURIComponent(w.hz);
+    if (!pub) a.target = '_blank';
+    frag.appendChild(a);
+  });
+  $chips.appendChild(frag);
+
+  /* conteo de palabras por tema en las cards */
+  TEMAS.forEach(t => {
+    const del = words.filter(w => w.tema === t.id);
+    const seen = del.filter(w => w.clases.length).length;
+    const el = document.getElementById('tw-' + t.id);
+    if (el) el.innerHTML = `<b>${del.length}</b> palabras HSK 1 · ${seen} ya vistas en clases`;
+  });
+}).catch(() => {
+  document.getElementById('tr-pct').textContent = 'sin datos (abre vía http)';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1665 @@
+[
+ {
+  "hz": "爱",
+  "py": "ài",
+  "es": "amar / encantar",
+  "tema": "12",
+  "clases": [
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "八",
+  "py": "bā",
+  "es": "ocho",
+  "tema": "04",
+  "clases": [
+   "basico1/cap02",
+   "basico1/cap08",
+   "basico2/clase06"
+  ]
+ },
+ {
+  "hz": "爸爸",
+  "py": "bàba",
+  "es": "papá",
+  "tema": "03",
+  "clases": [
+   "basico1/cap05",
+   "basico1/cap09",
+   "basico2/clase07",
+   "basico3/clase01",
+   "basico3/clase02"
+  ]
+ },
+ {
+  "hz": "杯子",
+  "py": "bēizi",
+  "es": "vaso / taza",
+  "tema": "14",
+  "clases": [
+   "basico2/clase05",
+   "basico2/clase06",
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "北京",
+  "py": "Běijīng",
+  "es": "Pekín",
+  "tema": "02",
+  "clases": [
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "本",
+  "py": "běn",
+  "es": "clasificador para libros",
+  "tema": "07",
+  "clases": [
+   "basico1/cap06",
+   "basico1/capapendice",
+   "basico2/clase08",
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "不客气",
+  "py": "bú kèqi",
+  "es": "de nada",
+  "tema": "01",
+  "clases": [
+   "basico1/cap01",
+   "basico1/cap03"
+  ]
+ },
+ {
+  "hz": "不",
+  "py": "bù",
+  "es": "no",
+  "tema": "09",
+  "clases": [
+   "basico1/cap02",
+   "basico2/clase01",
+   "basico2/clase03",
+   "basico2/clase08",
+   "basico2/clase09",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "菜",
+  "py": "cài",
+  "es": "plato / comida",
+  "tema": "14",
+  "clases": [
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "茶",
+  "py": "chá",
+  "es": "té",
+  "tema": "14",
+  "clases": [
+   "basico1/cap10",
+   "basico2/clase05"
+  ]
+ },
+ {
+  "hz": "吃",
+  "py": "chī",
+  "es": "comer",
+  "tema": "13",
+  "clases": [
+   "basico1/cap08",
+   "basico1/capapendice",
+   "basico2/clase02",
+   "basico2/clase09",
+   "basico3/clase02",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "出租车",
+  "py": "chūzūchē",
+  "es": "taxi",
+  "tema": "14",
+  "clases": [
+   "basico1/cap10"
+  ]
+ },
+ {
+  "hz": "打电话",
+  "py": "dǎ diànhuà",
+  "es": "llamar por teléfono",
+  "tema": "13",
+  "clases": []
+ },
+ {
+  "hz": "大",
+  "py": "dà",
+  "es": "grande",
+  "tema": "03",
+  "clases": [
+   "basico1/cap02",
+   "basico2/clase06",
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "的",
+  "py": "de",
+  "es": "partícula posesiva",
+  "tema": "08",
+  "clases": [
+   "basico1/capapendice",
+   "basico2/clase07",
+   "basico2/clase08",
+   "basico3/clase01",
+   "basico3/clase02",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "点",
+  "py": "diǎn",
+  "es": "hora (en punto)",
+  "tema": "06",
+  "clases": [
+   "basico3/clase01"
+  ]
+ },
+ {
+  "hz": "电脑",
+  "py": "diànnǎo",
+  "es": "computadora",
+  "tema": "14",
+  "clases": [
+   "basico2/clase07",
+   "basico2/clase08"
+  ]
+ },
+ {
+  "hz": "电视",
+  "py": "diànshì",
+  "es": "televisión",
+  "tema": "14",
+  "clases": [
+   "basico2/clase07",
+   "basico2/clase08"
+  ]
+ },
+ {
+  "hz": "电影",
+  "py": "diànyǐng",
+  "es": "película",
+  "tema": "14",
+  "clases": [
+   "basico2/clase08",
+   "basico3/clase01"
+  ]
+ },
+ {
+  "hz": "东西",
+  "py": "dōngxi",
+  "es": "cosa",
+  "tema": "14",
+  "clases": [
+   "basico2/clase04",
+   "basico3/clase02"
+  ]
+ },
+ {
+  "hz": "都",
+  "py": "dōu",
+  "es": "todos / ambos",
+  "tema": "09",
+  "clases": [
+   "basico2/clase03"
+  ]
+ },
+ {
+  "hz": "读",
+  "py": "dú",
+  "es": "leer",
+  "tema": "13",
+  "clases": [
+   "basico2/clase02"
+  ]
+ },
+ {
+  "hz": "对不起",
+  "py": "duìbuqǐ",
+  "es": "perdón",
+  "tema": "01",
+  "clases": [
+   "basico1/cap02",
+   "basico2/clase02"
+  ]
+ },
+ {
+  "hz": "多少",
+  "py": "duōshao",
+  "es": "cuánto",
+  "tema": "10",
+  "clases": [
+   "basico1/cap08",
+   "basico2/clase06",
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "儿子",
+  "py": "érzi",
+  "es": "hijo",
+  "tema": "03",
+  "clases": [
+   "basico1/cap09",
+   "basico2/clase07",
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "二",
+  "py": "èr",
+  "es": "dos",
+  "tema": "04",
+  "clases": [
+   "basico1/cap02",
+   "basico1/cap05",
+   "basico1/cap08",
+   "basico2/clase06",
+   "basico2/clase08",
+   "basico3/clase01",
+   "basico3/clase02"
+  ]
+ },
+ {
+  "hz": "饭馆",
+  "py": "fànguǎn",
+  "es": "restaurante",
+  "tema": "11",
+  "clases": []
+ },
+ {
+  "hz": "飞机",
+  "py": "fēijī",
+  "es": "avión",
+  "tema": "14",
+  "clases": []
+ },
+ {
+  "hz": "分钟",
+  "py": "fēnzhōng",
+  "es": "minuto",
+  "tema": "06",
+  "clases": []
+ },
+ {
+  "hz": "高兴",
+  "py": "gāoxìng",
+  "es": "contento / feliz",
+  "tema": "01",
+  "clases": [
+   "basico2/clase03"
+  ]
+ },
+ {
+  "hz": "个",
+  "py": "gè",
+  "es": "clasificador general",
+  "tema": "07",
+  "clases": [
+   "basico1/cap05",
+   "basico1/capapendice",
+   "basico2/clase06",
+   "basico2/clase08",
+   "basico2/clase09",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "工作",
+  "py": "gōngzuò",
+  "es": "trabajo / trabajar",
+  "tema": "02",
+  "clases": [
+   "basico2/clase07",
+   "basico3/clase02"
+  ]
+ },
+ {
+  "hz": "狗",
+  "py": "gǒu",
+  "es": "perro",
+  "tema": "14",
+  "clases": [
+   "basico2/clase07"
+  ]
+ },
+ {
+  "hz": "汉语",
+  "py": "Hànyǔ",
+  "es": "chino mandarín",
+  "tema": "02",
+  "clases": [
+   "basico1/cap04",
+   "basico2/clase08",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "好",
+  "py": "hǎo",
+  "es": "bueno / bien",
+  "tema": "01",
+  "clases": [
+   "basico2/clase02",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "号",
+  "py": "hào",
+  "es": "día del mes (fecha)",
+  "tema": "05",
+  "clases": [
+   "basico2/clase03",
+   "basico2/clase04",
+   "basico3/clase01"
+  ]
+ },
+ {
+  "hz": "喝",
+  "py": "hē",
+  "es": "beber",
+  "tema": "13",
+  "clases": [
+   "basico2/clase05",
+   "basico2/clase09",
+   "basico3/clase02"
+  ]
+ },
+ {
+  "hz": "和",
+  "py": "hé",
+  "es": "y / con",
+  "tema": "09",
+  "clases": [
+   "basico2/clase05",
+   "basico2/clase08"
+  ]
+ },
+ {
+  "hz": "很",
+  "py": "hěn",
+  "es": "muy",
+  "tema": "09",
+  "clases": [
+   "basico1/cap07",
+   "basico2/clase01",
+   "basico2/clase09",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "后面",
+  "py": "hòumiàn",
+  "es": "detrás",
+  "tema": "11",
+  "clases": [
+   "basico2/clase07",
+   "basico2/clase08",
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "回",
+  "py": "huí",
+  "es": "volver / regresar",
+  "tema": "13",
+  "clases": [
+   "basico2/clase04",
+   "basico2/clase05",
+   "basico2/clase09",
+   "basico3/clase01"
+  ]
+ },
+ {
+  "hz": "会",
+  "py": "huì",
+  "es": "saber / poder hacer",
+  "tema": "12",
+  "clases": [
+   "basico2/clase01",
+   "basico2/clase02",
+   "basico2/clase03",
+   "basico2/clase08",
+   "basico2/clase09",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "火车站",
+  "py": "huǒchēzhàn",
+  "es": "estación de tren",
+  "tema": "14",
+  "clases": []
+ },
+ {
+  "hz": "几",
+  "py": "jǐ",
+  "es": "cuántos (≤10)",
+  "tema": "10",
+  "clases": [
+   "basico1/cap08",
+   "basico1/cap10",
+   "basico1/capapendice",
+   "basico2/clase03",
+   "basico2/clase04",
+   "basico2/clase06",
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "家",
+  "py": "jiā",
+  "es": "casa / familia",
+  "tema": "03",
+  "clases": [
+   "basico1/cap03",
+   "basico1/cap10",
+   "basico2/clase05",
+   "basico2/clase07"
+  ]
+ },
+ {
+  "hz": "叫",
+  "py": "jiào",
+  "es": "llamarse",
+  "tema": "02",
+  "clases": [
+   "basico1/cap04",
+   "basico1/cap08",
+   "basico1/capapendice",
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "今天",
+  "py": "jīntiān",
+  "es": "hoy",
+  "tema": "05",
+  "clases": [
+   "basico1/cap10",
+   "basico2/clase03",
+   "basico2/clase04",
+   "basico2/clase06",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "九",
+  "py": "jiǔ",
+  "es": "nueve",
+  "tema": "04",
+  "clases": [
+   "basico1/cap08",
+   "basico2/clase06"
+  ]
+ },
+ {
+  "hz": "开",
+  "py": "kāi",
+  "es": "abrir / conducir",
+  "tema": "13",
+  "clases": [
+   "basico2/clase01",
+   "basico2/clase02",
+   "basico2/clase03",
+   "basico2/clase09",
+   "basico3/clase01"
+  ]
+ },
+ {
+  "hz": "看",
+  "py": "kàn",
+  "es": "mirar / ver",
+  "tema": "13",
+  "clases": [
+   "basico1/cap08",
+   "basico1/capapendice",
+   "basico2/clase02",
+   "basico2/clase03"
+  ]
+ },
+ {
+  "hz": "看见",
+  "py": "kànjiàn",
+  "es": "ver (percibir)",
+  "tema": "13",
+  "clases": [
+   "basico2/clase06"
+  ]
+ },
+ {
+  "hz": "块",
+  "py": "kuài",
+  "es": "clasificador de dinero",
+  "tema": "04",
+  "clases": [
+   "basico2/clase06"
+  ]
+ },
+ {
+  "hz": "来",
+  "py": "lái",
+  "es": "venir",
+  "tema": "13",
+  "clases": [
+   "basico2/clase05",
+   "basico3/clase01",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "老师",
+  "py": "lǎoshī",
+  "es": "profesor(a)",
+  "tema": "02",
+  "clases": [
+   "basico1/cap01",
+   "basico1/cap03",
+   "basico1/cap04",
+   "basico2/clase06",
+   "basico2/clase07"
+  ]
+ },
+ {
+  "hz": "了",
+  "py": "le",
+  "es": "partícula de cambio",
+  "tema": "08",
+  "clases": [
+   "basico1/cap09",
+   "basico1/capapendice",
+   "basico3/clase02",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "冷",
+  "py": "lěng",
+  "es": "frío",
+  "tema": "14",
+  "clases": [
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "里",
+  "py": "lǐ",
+  "es": "dentro de",
+  "tema": "11",
+  "clases": [
+   "basico2/clase08"
+  ]
+ },
+ {
+  "hz": "六",
+  "py": "liù",
+  "es": "seis",
+  "tema": "04",
+  "clases": [
+   "basico1/cap02",
+   "basico1/cap08",
+   "basico2/clase06"
+  ]
+ },
+ {
+  "hz": "妈妈",
+  "py": "māma",
+  "es": "mamá",
+  "tema": "03",
+  "clases": [
+   "basico1/cap05",
+   "basico1/cap09",
+   "basico3/clase01",
+   "basico3/clase02"
+  ]
+ },
+ {
+  "hz": "吗",
+  "py": "ma",
+  "es": "partícula de pregunta",
+  "tema": "08",
+  "clases": [
+   "basico1/cap03",
+   "basico1/cap04",
+   "basico1/cap08",
+   "basico2/clase06",
+   "basico2/clase09",
+   "basico3/clase02"
+  ]
+ },
+ {
+  "hz": "买",
+  "py": "mǎi",
+  "es": "comprar",
+  "tema": "13",
+  "clases": [
+   "basico2/clase04",
+   "basico2/clase06",
+   "basico2/clase09",
+   "basico3/clase02"
+  ]
+ },
+ {
+  "hz": "猫",
+  "py": "māo",
+  "es": "gato",
+  "tema": "14",
+  "clases": [
+   "basico2/clase07"
+  ]
+ },
+ {
+  "hz": "没关系",
+  "py": "méi guānxi",
+  "es": "no importa",
+  "tema": "01",
+  "clases": [
+   "basico1/cap02"
+  ]
+ },
+ {
+  "hz": "没有",
+  "py": "méiyǒu",
+  "es": "no tener / no haber",
+  "tema": "09",
+  "clases": [
+   "basico2/clase01",
+   "basico2/clase08"
+  ]
+ },
+ {
+  "hz": "米饭",
+  "py": "mǐfàn",
+  "es": "arroz cocido",
+  "tema": "14",
+  "clases": [
+   "basico2/clase05",
+   "basico3/clase02"
+  ]
+ },
+ {
+  "hz": "名字",
+  "py": "míngzi",
+  "es": "nombre",
+  "tema": "02",
+  "clases": [
+   "basico2/clase09",
+   "basico3/clase02"
+  ]
+ },
+ {
+  "hz": "明天",
+  "py": "míngtiān",
+  "es": "mañana",
+  "tema": "05",
+  "clases": [
+   "basico2/clase03",
+   "basico2/clase04",
+   "basico2/clase05",
+   "basico2/clase06",
+   "basico2/clase09",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "哪",
+  "py": "nǎ",
+  "es": "cuál",
+  "tema": "10",
+  "clases": [
+   "basico1/cap05",
+   "basico1/cap08",
+   "basico2/clase07",
+   "basico2/clase09",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "哪儿",
+  "py": "nǎr",
+  "es": "dónde",
+  "tema": "10",
+  "clases": [
+   "basico1/cap05",
+   "basico1/cap08",
+   "basico1/capapendice",
+   "basico2/clase05",
+   "basico2/clase07",
+   "basico2/clase08"
+  ]
+ },
+ {
+  "hz": "那",
+  "py": "nà",
+  "es": "ese / aquel",
+  "tema": "07",
+  "clases": [
+   "basico1/cap05",
+   "basico2/clase06",
+   "basico2/clase07",
+   "basico2/clase09",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "呢",
+  "py": "ne",
+  "es": "partícula (¿y tú?)",
+  "tema": "08",
+  "clases": [
+   "basico1/cap03",
+   "basico1/cap08",
+   "basico2/clase03",
+   "basico2/clase04",
+   "basico2/clase06",
+   "basico2/clase09",
+   "basico3/clase02",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "能",
+  "py": "néng",
+  "es": "poder (circunstancia)",
+  "tema": "12",
+  "clases": [
+   "basico2/clase01",
+   "basico2/clase05",
+   "basico2/clase08",
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "你",
+  "py": "nǐ",
+  "es": "tú",
+  "tema": "01",
+  "clases": [
+   "basico1/cap02",
+   "basico1/cap03",
+   "basico2/clase01",
+   "basico2/clase03",
+   "basico2/clase09",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "你好",
+  "py": "nǐ hǎo",
+  "es": "hola",
+  "tema": "01",
+  "clases": [
+   "basico1/cap01",
+   "basico1/cap02",
+   "basico2/clase03",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "年",
+  "py": "nián",
+  "es": "año",
+  "tema": "05",
+  "clases": [
+   "basico3/clase01"
+  ]
+ },
+ {
+  "hz": "女儿",
+  "py": "nǚ'ér",
+  "es": "hija",
+  "tema": "03",
+  "clases": [
+   "basico1/cap09"
+  ]
+ },
+ {
+  "hz": "朋友",
+  "py": "péngyou",
+  "es": "amigo/a",
+  "tema": "03",
+  "clases": [
+   "basico1/cap03",
+   "basico2/clase03",
+   "basico2/clase09",
+   "basico3/clase02"
+  ]
+ },
+ {
+  "hz": "漂亮",
+  "py": "piàoliang",
+  "es": "bonito/a",
+  "tema": "03",
+  "clases": [
+   "basico1/cap07",
+   "basico2/clase02"
+  ]
+ },
+ {
+  "hz": "苹果",
+  "py": "píngguǒ",
+  "es": "manzana",
+  "tema": "14",
+  "clases": [
+   "basico2/clase05"
+  ]
+ },
+ {
+  "hz": "七",
+  "py": "qī",
+  "es": "siete",
+  "tema": "04",
+  "clases": [
+   "basico1/cap08",
+   "basico1/cap10",
+   "basico2/clase06"
+  ]
+ },
+ {
+  "hz": "前面",
+  "py": "qiánmiàn",
+  "es": "delante",
+  "tema": "11",
+  "clases": [
+   "basico1/cap10",
+   "basico2/clase07",
+   "basico2/clase08",
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "钱",
+  "py": "qián",
+  "es": "dinero",
+  "tema": "04",
+  "clases": [
+   "basico1/cap10",
+   "basico2/clase05",
+   "basico2/clase06"
+  ]
+ },
+ {
+  "hz": "请",
+  "py": "qǐng",
+  "es": "por favor / invitar",
+  "tema": "01",
+  "clases": [
+   "basico1/cap10",
+   "basico2/clase03",
+   "basico2/clase08",
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "去",
+  "py": "qù",
+  "es": "ir",
+  "tema": "13",
+  "clases": [
+   "basico1/cap08",
+   "basico1/cap10",
+   "basico1/capapendice",
+   "basico2/clase03",
+   "basico2/clase04",
+   "basico2/clase05",
+   "basico2/clase09",
+   "basico3/clase02",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "热",
+  "py": "rè",
+  "es": "calor / caluroso",
+  "tema": "14",
+  "clases": [
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "人",
+  "py": "rén",
+  "es": "persona",
+  "tema": "03",
+  "clases": [
+   "basico1/cap02",
+   "basico1/cap10",
+   "basico2/clase03",
+   "basico2/clase09",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "认识",
+  "py": "rènshi",
+  "es": "conocer (a alguien)",
+  "tema": "01",
+  "clases": [
+   "basico1/cap09",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "三",
+  "py": "sān",
+  "es": "tres",
+  "tema": "04",
+  "clases": [
+   "basico1/cap08",
+   "basico2/clase06"
+  ]
+ },
+ {
+  "hz": "商店",
+  "py": "shāngdiàn",
+  "es": "tienda",
+  "tema": "11",
+  "clases": [
+   "basico1/cap10",
+   "basico2/clase05",
+   "basico2/clase06",
+   "basico2/clase08",
+   "basico2/clase09",
+   "basico3/clase02"
+  ]
+ },
+ {
+  "hz": "上",
+  "py": "shàng",
+  "es": "arriba / encima",
+  "tema": "11",
+  "clases": [
+   "basico2/clase08",
+   "basico2/clase09",
+   "basico3/clase01",
+   "basico3/clase02",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "上午",
+  "py": "shàngwǔ",
+  "es": "la mañana",
+  "tema": "06",
+  "clases": [
+   "basico2/clase06",
+   "basico3/clase01",
+   "basico3/clase02"
+  ]
+ },
+ {
+  "hz": "谁",
+  "py": "shéi",
+  "es": "quién",
+  "tema": "10",
+  "clases": [
+   "basico1/cap05",
+   "basico1/cap08",
+   "basico1/capapendice",
+   "basico2/clase03"
+  ]
+ },
+ {
+  "hz": "什么",
+  "py": "shénme",
+  "es": "qué",
+  "tema": "10",
+  "clases": [
+   "basico1/cap04",
+   "basico1/cap08",
+   "basico1/cap10",
+   "basico1/capapendice",
+   "basico2/clase05",
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "十",
+  "py": "shí",
+  "es": "diez",
+  "tema": "04",
+  "clases": [
+   "basico1/cap02",
+   "basico1/cap08",
+   "basico2/clase06"
+  ]
+ },
+ {
+  "hz": "时候",
+  "py": "shíhou",
+  "es": "momento (什么时候)",
+  "tema": "06",
+  "clases": []
+ },
+ {
+  "hz": "是",
+  "py": "shì",
+  "es": "ser",
+  "tema": "02",
+  "clases": [
+   "basico1/cap04",
+   "basico1/cap07",
+   "basico1/cap08",
+   "basico1/capapendice",
+   "basico2/clase04",
+   "basico2/clase07"
+  ]
+ },
+ {
+  "hz": "书",
+  "py": "shū",
+  "es": "libro",
+  "tema": "14",
+  "clases": [
+   "basico2/clase03"
+  ]
+ },
+ {
+  "hz": "水",
+  "py": "shuǐ",
+  "es": "agua",
+  "tema": "14",
+  "clases": [
+   "basico2/clase05",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "水果",
+  "py": "shuǐguǒ",
+  "es": "fruta",
+  "tema": "14",
+  "clases": [
+   "basico2/clase04",
+   "basico2/clase05",
+   "basico3/clase02",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "睡觉",
+  "py": "shuìjiào",
+  "es": "dormir",
+  "tema": "13",
+  "clases": [
+   "basico1/cap10",
+   "basico2/clase08",
+   "basico2/clase09",
+   "basico3/clase02",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "说",
+  "py": "shuō",
+  "es": "hablar / decir",
+  "tema": "13",
+  "clases": [
+   "basico1/cap08",
+   "basico1/capapendice",
+   "basico2/clase03"
+  ]
+ },
+ {
+  "hz": "四",
+  "py": "sì",
+  "es": "cuatro",
+  "tema": "04",
+  "clases": [
+   "basico1/cap08",
+   "basico2/clase06"
+  ]
+ },
+ {
+  "hz": "岁",
+  "py": "suì",
+  "es": "años (edad)",
+  "tema": "03",
+  "clases": [
+   "basico1/cap09",
+   "basico1/cap10"
+  ]
+ },
+ {
+  "hz": "他",
+  "py": "tā",
+  "es": "él",
+  "tema": "01",
+  "clases": [
+   "basico1/cap02",
+   "basico2/clase03",
+   "basico2/clase08",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "她",
+  "py": "tā",
+  "es": "ella",
+  "tema": "01",
+  "clases": [
+   "basico1/cap02",
+   "basico2/clase03",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "太",
+  "py": "tài",
+  "es": "demasiado",
+  "tema": "09",
+  "clases": [
+   "basico2/clase09",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "天气",
+  "py": "tiānqì",
+  "es": "clima",
+  "tema": "14",
+  "clases": [
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "听",
+  "py": "tīng",
+  "es": "escuchar",
+  "tema": "13",
+  "clases": [
+   "basico1/cap05",
+   "basico2/clase02",
+   "basico2/clase03",
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "同学",
+  "py": "tóngxué",
+  "es": "compañero/a de clase",
+  "tema": "02",
+  "clases": [
+   "basico1/cap03",
+   "basico2/clase02",
+   "basico2/clase08",
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "喂",
+  "py": "wèi",
+  "es": "¿aló? (teléfono)",
+  "tema": "01",
+  "clases": []
+ },
+ {
+  "hz": "我",
+  "py": "wǒ",
+  "es": "yo",
+  "tema": "01",
+  "clases": [
+   "basico1/cap03",
+   "basico1/cap09",
+   "basico2/clase01",
+   "basico2/clase04",
+   "basico2/clase07",
+   "basico2/clase09",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "我们",
+  "py": "wǒmen",
+  "es": "nosotros",
+  "tema": "01",
+  "clases": [
+   "basico1/cap03",
+   "basico1/capapendice",
+   "basico2/clase03",
+   "basico2/clase05",
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "五",
+  "py": "wǔ",
+  "es": "cinco",
+  "tema": "04",
+  "clases": [
+   "basico1/cap08",
+   "basico2/clase06"
+  ]
+ },
+ {
+  "hz": "喜欢",
+  "py": "xǐhuan",
+  "es": "gustar",
+  "tema": "12",
+  "clases": [
+   "basico1/cap08",
+   "basico1/capapendice",
+   "basico3/clase02",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "下",
+  "py": "xià",
+  "es": "abajo / bajar",
+  "tema": "11",
+  "clases": [
+   "basico2/clase07",
+   "basico2/clase09",
+   "basico3/clase01"
+  ]
+ },
+ {
+  "hz": "下午",
+  "py": "xiàwǔ",
+  "es": "la tarde",
+  "tema": "06",
+  "clases": [
+   "basico2/clase05",
+   "basico2/clase06",
+   "basico2/clase09",
+   "basico3/clase01",
+   "basico3/clase02"
+  ]
+ },
+ {
+  "hz": "下雨",
+  "py": "xià yǔ",
+  "es": "llover",
+  "tema": "14",
+  "clases": [
+   "basico1/cap07",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "先生",
+  "py": "xiānsheng",
+  "es": "señor",
+  "tema": "01",
+  "clases": [
+   "basico1/cap09",
+   "basico1/cap10"
+  ]
+ },
+ {
+  "hz": "现在",
+  "py": "xiànzài",
+  "es": "ahora",
+  "tema": "06",
+  "clases": [
+   "basico2/clase07",
+   "basico3/clase01"
+  ]
+ },
+ {
+  "hz": "想",
+  "py": "xiǎng",
+  "es": "querer / pensar",
+  "tema": "12",
+  "clases": [
+   "basico1/cap06",
+   "basico1/cap08",
+   "basico1/cap10",
+   "basico1/capapendice",
+   "basico2/clase05",
+   "basico2/clase06",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "小",
+  "py": "xiǎo",
+  "es": "pequeño",
+  "tema": "03",
+  "clases": [
+   "basico2/clase07"
+  ]
+ },
+ {
+  "hz": "小姐",
+  "py": "xiǎojiě",
+  "es": "señorita",
+  "tema": "01",
+  "clases": [
+   "basico1/cap09",
+   "basico1/cap10",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "些",
+  "py": "xiē",
+  "es": "algunos",
+  "tema": "07",
+  "clases": [
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "写",
+  "py": "xiě",
+  "es": "escribir",
+  "tema": "13",
+  "clases": [
+   "basico2/clase02",
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "谢谢",
+  "py": "xièxie",
+  "es": "gracias",
+  "tema": "01",
+  "clases": [
+   "basico1/cap01",
+   "basico3/clase02"
+  ]
+ },
+ {
+  "hz": "星期",
+  "py": "xīngqī",
+  "es": "semana",
+  "tema": "05",
+  "clases": [
+   "basico2/clase03",
+   "basico2/clase04",
+   "basico2/clase05",
+   "basico3/clase01"
+  ]
+ },
+ {
+  "hz": "学生",
+  "py": "xuésheng",
+  "es": "estudiante",
+  "tema": "02",
+  "clases": [
+   "basico1/cap03",
+   "basico2/clase02"
+  ]
+ },
+ {
+  "hz": "学习",
+  "py": "xuéxí",
+  "es": "estudiar",
+  "tema": "13",
+  "clases": [
+   "basico1/cap10",
+   "basico2/clase02",
+   "basico2/clase08"
+  ]
+ },
+ {
+  "hz": "学校",
+  "py": "xuéxiào",
+  "es": "escuela",
+  "tema": "11",
+  "clases": [
+   "basico2/clase02",
+   "basico2/clase03",
+   "basico2/clase04",
+   "basico2/clase07",
+   "basico3/clase02"
+  ]
+ },
+ {
+  "hz": "一",
+  "py": "yī",
+  "es": "uno",
+  "tema": "04",
+  "clases": [
+   "basico1/cap02",
+   "basico1/cap08",
+   "basico2/clase06",
+   "basico2/clase09",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "一点儿",
+  "py": "yìdiǎnr",
+  "es": "un poquito",
+  "tema": "09",
+  "clases": [
+   "basico2/clase02"
+  ]
+ },
+ {
+  "hz": "衣服",
+  "py": "yīfu",
+  "es": "ropa",
+  "tema": "14",
+  "clases": [
+   "basico2/clase02",
+   "basico2/clase06"
+  ]
+ },
+ {
+  "hz": "医生",
+  "py": "yīshēng",
+  "es": "médico/a",
+  "tema": "02",
+  "clases": [
+   "basico2/clase07",
+   "basico2/clase08",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "医院",
+  "py": "yīyuàn",
+  "es": "hospital",
+  "tema": "11",
+  "clases": [
+   "basico2/clase04",
+   "basico2/clase07",
+   "basico2/clase08"
+  ]
+ },
+ {
+  "hz": "椅子",
+  "py": "yǐzi",
+  "es": "silla",
+  "tema": "14",
+  "clases": [
+   "basico2/clase07",
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "有",
+  "py": "yǒu",
+  "es": "tener / haber",
+  "tema": "11",
+  "clases": [
+   "basico1/cap08",
+   "basico1/capapendice",
+   "basico2/clase01",
+   "basico2/clase03",
+   "basico2/clase08"
+  ]
+ },
+ {
+  "hz": "月",
+  "py": "yuè",
+  "es": "mes",
+  "tema": "05",
+  "clases": [
+   "basico2/clase03",
+   "basico2/clase04",
+   "basico3/clase01"
+  ]
+ },
+ {
+  "hz": "再见",
+  "py": "zàijiàn",
+  "es": "adiós",
+  "tema": "01",
+  "clases": [
+   "basico1/cap01",
+   "basico1/cap03"
+  ]
+ },
+ {
+  "hz": "在",
+  "py": "zài",
+  "es": "estar en",
+  "tema": "11",
+  "clases": [
+   "basico1/cap08",
+   "basico1/capapendice",
+   "basico2/clase07",
+   "basico2/clase08",
+   "basico2/clase09",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "怎么",
+  "py": "zěnme",
+  "es": "cómo",
+  "tema": "10",
+  "clases": [
+   "basico1/cap04",
+   "basico1/cap08",
+   "basico2/clase02",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "怎么样",
+  "py": "zěnmeyàng",
+  "es": "qué tal",
+  "tema": "10",
+  "clases": [
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "这",
+  "py": "zhè",
+  "es": "este",
+  "tema": "07",
+  "clases": [
+   "basico1/cap05",
+   "basico2/clase06",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "中国",
+  "py": "Zhōngguó",
+  "es": "China",
+  "tema": "02",
+  "clases": [
+   "basico1/cap04"
+  ]
+ },
+ {
+  "hz": "中午",
+  "py": "zhōngwǔ",
+  "es": "mediodía",
+  "tema": "06",
+  "clases": [
+   "basico1/cap10",
+   "basico2/clase06",
+   "basico3/clase01",
+   "basico3/clase02"
+  ]
+ },
+ {
+  "hz": "住",
+  "py": "zhù",
+  "es": "vivir / alojarse",
+  "tema": "13",
+  "clases": [
+   "basico1/cap10",
+   "basico2/clase08",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "桌子",
+  "py": "zhuōzi",
+  "es": "mesa",
+  "tema": "14",
+  "clases": [
+   "basico1/cap10",
+   "basico2/clase07",
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "字",
+  "py": "zì",
+  "es": "carácter",
+  "tema": "02",
+  "clases": [
+   "basico1/cap04",
+   "basico2/clase02"
+  ]
+ },
+ {
+  "hz": "昨天",
+  "py": "zuótiān",
+  "es": "ayer",
+  "tema": "05",
+  "clases": [
+   "basico1/cap10",
+   "basico2/clase03",
+   "basico2/clase04",
+   "basico2/clase05",
+   "basico2/clase06",
+   "basico3/clase03"
+  ]
+ },
+ {
+  "hz": "坐",
+  "py": "zuò",
+  "es": "sentarse / tomar (transporte)",
+  "tema": "13",
+  "clases": [
+   "basico1/cap10",
+   "basico2/clase08",
+   "basico2/clase09"
+  ]
+ },
+ {
+  "hz": "做",
+  "py": "zuò",
+  "es": "hacer",
+  "tema": "13",
+  "clases": [
+   "basico1/cap08",
+   "basico1/cap10",
+   "basico1/capapendice",
+   "basico2/clase02",
+   "basico2/clase03",
+   "basico2/clase05",
+   "basico2/clase06",
+   "basico2/clase09"
+  ]
+ }
+]
