@@ -41,6 +41,10 @@
   .sr-rad .zh { font-family:'Noto Sans SC',sans-serif; color:var(--gold); font-weight:700; }
   .sr-rad:hover { background:#f9e8c8; transform:translateY(-1px); }
   .sr-none { font-size:.82em; color:var(--muted); }
+  .sr-tag { display:inline-block; font-size:.6em; font-weight:700; letter-spacing:.5px; text-transform:uppercase; color:var(--gold); background:#fdf3e3; border:1px solid #f3ddb8; border-radius:5px; padding:1px 6px; margin-bottom:5px; }
+  .sr-word { cursor:pointer; }
+  .sr-empty { color:var(--muted); font-size:.88em; padding:14px 4px; }
+  .sr-group { font-size:.72em; font-weight:700; text-transform:uppercase; letter-spacing:.8px; color:var(--muted); margin:6px 2px 2px; }
   /* filtro por nivel HSK */
   .hsk-filter { display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin-bottom:16px; }
   .hsk-filter .hf-label { font-size:.78em; color:var(--muted); font-weight:600; margin-right:2px; }
@@ -121,7 +125,7 @@
     💡 <strong>Cómo leerlos:</strong> muchos radicales cambian de forma al combinarse — 人 (persona) se comprime en <span class="zh" style="color:#d4820a">亻</span> a la izquierda (你, 他), y 水 (agua) se vuelve <span class="zh" style="color:#d4820a">氵</span> (没, 汉). Cada ficha te explica el porqué del significado para que no haya que memorizar a ciegas.
   </div>
   <div class="search-box">
-    <input type="text" id="search" placeholder="🔎 Escribe una palabra (你好) para ver sus radicales · o &quot;agua&quot; / &quot;shui&quot; para encontrar un radical" autocomplete="off" spellcheck="false">
+    <input type="text" id="search" placeholder="🔎 Escribe una palabra china (米饭) o un significado / pinyin (arroz, mǐfàn) para ver sus radicales" autocomplete="off" spellcheck="false">
   </div>
   <div class="search-result" id="search-result" style="display:none"></div>
   <div class="hsk-filter" id="hskFilter">
@@ -383,6 +387,24 @@ const $hskFilter = document.getElementById('hskFilter');
 function hasHan(s) { return /[一-鿿]/.test(s); }
 function norm(s) { return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[\s'’]/g, '').replace(/v/g, 'u'); }
 
+/* vocabulario HSK 1-3 para buscar palabras por significado/pinyin */
+let WORDS = [];
+Promise.all(['/vocab_hsk1.json', '/vocab_hsk2.json', '/vocab_hsk3.json']
+  .map(u => fetch(u).then(r => r.json()).catch(() => [])))
+  .then(arrs => { WORDS = arrs.flat().map(w => ({ hz: w.hz, py: w.py, es: w.es })); });
+
+function wordRads(hz) {
+  const set = new Set();
+  for (const ch of hz) (CHAR_RADS[ch] || []).forEach(r => set.add(r));
+  return [...set];
+}
+function radChips(rs) {
+  if (!rs.length) return '<span class="sr-none">sin radical de la lista</span>';
+  return '<span class="lbl">radicales:</span>' + rs.map(r => {
+    const d = BY_HZ[r]; return `<a class="sr-rad" data-hz="${r}"><span class="zh">${r}</span> · ${d ? d[3] : ''}</a>`;
+  }).join('');
+}
+
 function runSearch() {
   const q = $search.value.trim();
   if (!q) {
@@ -393,38 +415,45 @@ function runSearch() {
   }
   $hskFilter.style.display = 'none'; $toc.style.display = 'none';
 
+  document.querySelectorAll('.cat-block').forEach(b => b.style.display = 'none');
+
   if (hasHan(q)) {
-    // modo descomponer: por cada carácter chino, sus radicales
-    document.querySelectorAll('.cat-block').forEach(b => b.style.display = 'none');
+    // palabra/caracteres chinos → desglosar cada carácter en sus radicales
     const cs = [...q].filter(c => /[一-鿿]/.test(c));
     $result.innerHTML = cs.map(ch => {
       const g = GLOSS[ch] || (BY_HZ[ch] ? [BY_HZ[ch][2], BY_HZ[ch][3]] : null);
       const gloss = g ? `<span class="sr-py">${g[0]}</span>${g[1]}` : '<span class="sr-none">—</span>';
-      const rs = CHAR_RADS[ch] || [];
-      const chips = rs.length
-        ? '<span class="lbl">radicales:</span>' + rs.map(r => {
-            const d = BY_HZ[r]; return `<a class="sr-rad" data-hz="${r}"><span class="zh">${r}</span> · ${d ? d[3] : ''}</a>`;
-          }).join('')
-        : '<span class="sr-none">sin radical de la lista</span>';
-      return `<div class="sr-card"><div class="sr-hz zh" data-hz="${ch}">${ch}</div><div class="sr-body"><div class="sr-gloss">${gloss}</div><div class="sr-rads">${chips}</div></div></div>`;
+      return `<div class="sr-card"><div class="sr-hz zh" data-hz="${ch}">${ch}</div><div class="sr-body"><div class="sr-gloss">${gloss}</div><div class="sr-rads">${radChips(CHAR_RADS[ch] || [])}</div></div></div>`;
     }).join('');
     $result.style.display = '';
   } else {
-    // modo filtrar radicales por significado/pinyin
-    $result.style.display = 'none'; $result.innerHTML = '';
+    // significado/pinyin → palabras del vocabulario + radicales que coinciden
     const nq = norm(q);
-    document.querySelectorAll('.cat-block').forEach(block => {
-      let vis = 0;
-      block.querySelectorAll('.rad').forEach(card => {
-        const d = BY_HZ[card.dataset.hz];
-        const hit = d && (norm(d[3]).includes(nq) || norm(d[2]).includes(nq));
-        card.style.display = hit ? '' : 'none'; if (hit) vis++;
-      });
-      block.style.display = vis ? '' : 'none';
-    });
+    let html = '';
+    const wordHits = WORDS.filter(w => norm(w.es).includes(nq) || norm(w.py).includes(nq)).slice(0, 40);
+    if (wordHits.length) {
+      html += '<div class="sr-group">Palabras</div>';
+      html += wordHits.map(w =>
+        `<div class="sr-card"><div class="sr-hz zh sr-word" data-word="${w.hz}">${w.hz}</div><div class="sr-body"><div class="sr-gloss"><span class="sr-py">${w.py}</span>${w.es}</div><div class="sr-rads">${radChips(wordRads(w.hz))}</div></div></div>`
+      ).join('');
+    }
+    const radHits = RADICALES.filter(r => norm(r[3]).includes(nq) || norm(r[2]).includes(nq));
+    if (radHits.length) {
+      html += '<div class="sr-group">Radicales</div>';
+      html += radHits.map(r =>
+        `<div class="sr-card"><div class="sr-hz zh" data-hz="${r[0]}">${r[0]}</div><div class="sr-body"><div class="sr-tag">radical</div><div class="sr-gloss"><span class="sr-py">${r[2]}</span>${r[3]}</div></div></div>`
+      ).join('');
+    }
+    if (!html) html = `<div class="sr-empty">Sin resultados para «${q}». Prueba con un significado en español, pinyin o una palabra china.</div>`;
+    $result.innerHTML = html;
+    $result.style.display = '';
   }
 }
 $search.addEventListener('input', runSearch);
+$result.addEventListener('click', e => {
+  const w = e.target.closest('[data-word]');
+  if (w) speak(w.dataset.word);
+});
 
 /* ── Audio: mapping.json + fallback Web Speech ── */
 let MAP = {};
