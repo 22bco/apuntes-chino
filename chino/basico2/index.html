@@ -5,146 +5,229 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Básico 2 · Apuntes Chino — Basti</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Sans SC', -apple-system, Arial, sans-serif; background: #f5f5f7; color: #222; }
-  header { background: #1a1a2e; color: #fff; padding: 36px 24px 28px; }
-  .header-inner { max-width: 860px; margin: 0 auto; }
-  header h1 { font-size: 1.8em; color: #e74c3c; }
-  header p { color: #aaa; margin-top: 6px; font-size: 0.9em; }
-  header a { color: #e74c3c; text-decoration: none; }
-  main { max-width: 860px; margin: 32px auto; padding: 0 24px 60px; }
-  .clase-card { background: #fff; border: 1px solid #e5e5e5; border-radius: 12px; padding: 22px 24px; margin-bottom: 14px; text-decoration: none; color: inherit; display: block; transition: box-shadow .15s, transform .15s; }
-  .clase-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.1); transform: translateY(-2px); }
-  .clase-num { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: #c0392b; margin-bottom: 6px; }
-  .clase-card h3 { font-size: 1.05em; margin-bottom: 4px; }
-  .clase-card p { font-size: 0.85em; color: #888; line-height: 1.4; }
-  .clase-meta { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
-  .badge { display: inline-block; background: #f0f0f0; color: #555; border-radius: 20px; padding: 2px 10px; font-size: 0.75rem; }
-  .tools-section { margin-top: 32px; }
-  .tools-section h2 { font-size: 0.85em; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
-  .tool-card { background: #fff; border: 1.5px dashed #c0392b; border-radius: 12px; padding: 22px 24px; margin-bottom: 14px; text-decoration: none; color: inherit; display: block; transition: box-shadow .15s; }
-  .tool-card:hover { box-shadow: 0 4px 20px rgba(192,57,43,.15); }
-  .tool-card h3 { color: #c0392b; font-size: 1.05em; margin-bottom: 4px; }
-  .tool-card p { font-size: 0.85em; color: #888; }
-  footer { text-align: center; color: #bbb; font-size: 0.82em; padding: 24px; }
-
-  /* Inter para pinyin: mejor renderizado de diacríticos (ī, ǐ, ǎ, ò...). */
-  .pinyin-col,
-  .ex em,
-  .dialog em,
-  .dialog .da em,
-  .dialog .db em,
-  .box em,
-  em {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'ss01' 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  :root {
+    --navy: #1a1a2e;
+    --red: #c0392b;
+    --red-bright: #e74c3c;
+    --bg: #f5f5f7;
+    --ink: #222;
+    --muted: #8a8a93;
   }
-  /* responsive-tables */
-  @media (max-width: 600px) {
-    table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  body { font-family: 'Inter', 'Noto Sans SC', -apple-system, Arial, sans-serif; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+  /* ---------- HERO ---------- */
+  header {
+    background: radial-gradient(120% 120% at 0% 0%, #2a2a4a 0%, var(--navy) 55%, #131322 100%);
+    color: #fff; padding: 48px 24px 56px; position: relative; overflow: hidden;
+  }
+  header::after {
+    content: "基础"; position: absolute; right: -10px; bottom: -34px;
+    font-family: 'Noto Sans SC', sans-serif; font-size: 9rem; font-weight: 700;
+    color: rgba(231,76,60,.08); letter-spacing: -8px; line-height: 1; pointer-events: none;
+  }
+  .header-inner { max-width: 880px; margin: 0 auto; position: relative; z-index: 1; }
+  .crumb { display: inline-flex; align-items: center; gap: 6px; color: #c9c9d6; text-decoration: none; font-size: 0.82em; opacity: .85; transition: opacity .15s; }
+  .crumb:hover { opacity: 1; }
+  header h1 { font-size: 2.1em; font-weight: 700; margin-top: 14px; letter-spacing: -.5px; }
+  header h1 .zh { color: var(--red-bright); }
+  header .subtitle { color: #b9b9c8; margin-top: 8px; font-size: 0.92em; }
+  .hero-stats { display: flex; gap: 22px; margin-top: 22px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .num { font-size: 1.5em; font-weight: 700; color: #fff; line-height: 1; }
+  .stat .lbl { font-size: 0.72em; color: #9a9ab0; text-transform: uppercase; letter-spacing: .6px; margin-top: 4px; }
+
+  /* ---------- MAIN ---------- */
+  main { max-width: 880px; margin: -28px auto 0; padding: 0 20px 60px; position: relative; z-index: 2; }
+  .section-label { font-size: 0.78em; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; margin: 30px 4px 14px; }
+
+  /* ---------- CLASE CARDS ---------- */
+  .clase-card {
+    background: #fff; border: 1px solid #ececf0; border-radius: 16px;
+    padding: 0; margin-bottom: 16px; text-decoration: none; color: inherit;
+    display: block; overflow: hidden; position: relative;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+    transition: box-shadow .2s, transform .2s, border-color .2s;
+  }
+  .clase-card:hover { box-shadow: 0 12px 32px rgba(26,26,46,.14); transform: translateY(-3px); border-color: #e0d2cf; }
+  .clase-card .accent { position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(var(--red), var(--red-bright)); }
+  .clase-body { padding: 20px 24px 20px 28px; }
+  .clase-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .clase-num { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .9px; color: var(--red); }
+  .clase-date { font-size: 0.74rem; color: var(--muted); white-space: nowrap; }
+  .clase-card h3 { font-size: 1.12em; margin: 7px 0 5px; font-weight: 600; letter-spacing: -.2px; }
+  .clase-card h3 .zh { font-family: 'Noto Sans SC', sans-serif; color: var(--red); font-weight: 700; }
+  .clase-card p { font-size: 0.86em; color: #6b6b73; line-height: 1.5; }
+  .clase-meta { margin-top: 12px; display: flex; gap: 7px; flex-wrap: wrap; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: #faf3f2; color: var(--red); border: 1px solid #f1ddda;
+    border-radius: 20px; padding: 3px 11px; font-size: 0.76rem; font-weight: 500;
+  }
+  .badge .zh { font-family: 'Noto Sans SC', sans-serif; }
+  .badge-soft { background: #f3f3f6; color: #777; border-color: #eaeaef; }
+
+  /* ---------- TOOLS ---------- */
+  .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .tool-card {
+    background: #fff; border: 1px solid #ececf0; border-radius: 14px;
+    padding: 18px 18px; text-decoration: none; color: inherit; display: flex;
+    align-items: flex-start; gap: 13px; transition: box-shadow .2s, transform .2s, border-color .2s;
+  }
+  .tool-card:hover { box-shadow: 0 8px 22px rgba(192,57,43,.12); transform: translateY(-2px); border-color: #f1ddda; }
+  .tool-ico {
+    flex-shrink: 0; width: 40px; height: 40px; border-radius: 11px;
+    background: linear-gradient(135deg, #fbe9e7, #fdecea); display: grid; place-items: center;
+    font-size: 1.25em;
+  }
+  .tool-card h3 { color: var(--red); font-size: 0.98em; margin-bottom: 3px; font-weight: 600; }
+  .tool-card p { font-size: 0.8em; color: #888; line-height: 1.4; }
+
+  footer { text-align: center; color: #b3b3bb; font-size: 0.82em; padding: 28px 24px 40px; }
+  footer a { color: var(--red); text-decoration: none; }
+
+  @media (max-width: 640px) {
+    header { padding: 38px 20px 48px; }
+    header::after { font-size: 6rem; bottom: -20px; }
+    header h1 { font-size: 1.7em; }
+    .hero-stats { gap: 18px; }
+    main { padding: 0 14px 48px; }
+    .clase-body { padding: 18px 18px 18px 22px; }
+    .clase-card h3 { font-size: 1.04em; }
+    .clase-top { flex-direction: column; align-items: flex-start; gap: 2px; }
+    .tools-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 <header>
   <div class="header-inner">
-    <h1>🀄 Básico 2</h1>
-    <p>Chino Mandarín · Centro Cultural Chino · Marzo 2026 · <a href="/">← Todos los apuntes</a></p>
+    <a class="crumb" href="/">← Todos los apuntes</a>
+    <h1>🀄 Básico <span class="zh">二</span></h1>
+    <p class="subtitle">Chino Mandarín · Centro Cultural Chino · Marzo – Mayo 2026</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="num">9</span><span class="lbl">Clases</span></div>
+      <div class="stat"><span class="num">✓</span><span class="lbl">Nivel completo</span></div>
+      <div class="stat"><span class="num">💬</span><span class="lbl">Primeras conversaciones</span></div>
+    </div>
   </div>
 </header>
+
 <main>
-  <a class="clase-card" href="clase07.html">
-    <div class="clase-num">Clase 07 — 25 de abril, 2026</div>
-    <h3>在 + lugar · Posiciones · 正在 · Profesiones</h3>
-    <p>Estructura 在 + lugar + verbo, demostrativos 这儿/那儿/哪儿, preposiciones 上下前后里外中旁, progresivo 正在, regla del 的 (humanos vs cosas), profesiones y lugares de trabajo, sistema educativo chino.</p>
-    <div class="clase-meta">
-      <span class="badge">在 哪儿 工作 正在</span>
-      <span class="badge">医生 司机 老板</span>
-      <span class="badge">134 audios 🔊</span>
-    </div>
-  </a>
-  <a class="clase-card" href="clase06.html">
-    <div class="clase-num">Clase 06 — 18 de abril, 2026</div>
-    <h3>想 · 这/那 · 多少 · Números</h3>
-    <p>Clasificadores 个/条/只/件/口, demostrativos 这/那, 要 vs 想, 多少 cuánto cuesta, dinero (块/元/人民币), monedas regionales, preguntar edad, repaso rápido de números.</p>
-    <div class="clase-meta">
-      <span class="badge">想 要 多少</span>
-      <span class="badge">块 人民币</span>
-      <span class="badge">167 audios 🔊</span>
-    </div>
-  </a>
-  <a class="clase-card" href="clase05.html">
-    <div class="clase-num">Clase 05 — 11 de abril, 2026</div>
-    <h3>和 · 想 · 哪儿/做什么 · 杯子 vs 杯</h3>
-    <p>Conector 和, lugares y deportes, preguntas con 哪儿/做什么, fechas con 几, 周 vs 星期, tonos bisilábicos 2°, verbo modal 想, bebidas y comidas, clasificadores 个/杯.</p>
-    <div class="clase-meta">
-      <span class="badge">和 想 喝 吃</span>
-      <span class="badge">周 可以 能</span>
-      <span class="badge">136 audios 🔊</span>
-    </div>
-  </a>
-  <a class="clase-card" href="clase04.html">
-    <div class="clase-num">Clase 04 — 28 de marzo, 2026</div>
-    <h3>去 + lugar + verbo · 生日 · Lugares</h3>
-    <p>Construcción de verbo serial, cumpleaños con 生日, negación con 不去, volver con 回家, 逛, tipos de lugares (场/馆/房/园/院/校/市/堂).</p>
-    <div class="clase-meta">
-      <span class="badge">去 回 买 学</span>
-      <span class="badge">体育馆 商场</span>
-      <span class="badge">149 audios 🔊</span>
-    </div>
-  </a>
-  <a class="clase-card" href="clase03.html">
-    <div class="clase-num">Clase 03 — 21 de marzo, 2026</div>
-    <h3>今天几号 · 星期 · 去 + lugar</h3>
-    <p>Fechas, meses, días de la semana, ayer/mañana, nombres chinos, 有/没有, 我们+都, tonos bisilábicos, estructura de caracteres, radicales.</p>
-    <div class="clase-meta">
-      <span class="badge">今天 星期 去</span>
-      <span class="badge">请问 呢 朋友</span>
-      <span class="badge">13 secciones</span>
-    </div>
-  </a>
-  <a class="clase-card" href="clase02.html">
-    <div class="clase-num">Clase 02 — 14 de marzo, 2026</div>
-    <h3>怎么 · 好看 · 好吃</h3>
-    <p>怎么 (¿cómo?), adjetivos con 好/难, vocabulario de clase, caracteres y combinaciones, diálogos.</p>
-    <div class="clase-meta">
-      <span class="badge">怎么 好吃 难吃</span>
-      <span class="badge">画画 跳舞</span>
-    </div>
-  </a>
-  <a class="clase-card" href="clase01.html">
-    <div class="clase-num">Clase 01 — 7 de marzo, 2026</div>
-    <h3>会 · 有 · 的</h3>
-    <p>Saber hacer, tener, posesión. Vocabulario de familia, adjetivos físicos, preguntas.</p>
-    <div class="clase-meta">
-      <span class="badge">会 有 的 很</span>
-      <span class="badge">家族 形容词</span>
+  <div class="section-label">📚 Clases</div>
+
+  <a class="clase-card" href="clase09.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <div class="clase-top"><span class="clase-num">Clase 09</span><span class="clase-date">16 de mayo, 2026</span></div>
+      <h3><span class="zh">能 · 请</span> — poder y cortesía</h3>
+      <p>El modal <span class="zh">能</span> aplicado, la cortesía con <span class="zh">请</span>, <span class="zh">那</span> vs <span class="zh">哪</span>, cantidades con <span class="zh">很多</span>, los sufijos <span class="zh">们/子/头</span> y radicales culturales (<span class="zh">示/礻</span>).</p>
+      <div class="clase-meta"><span class="badge"><span class="zh">能 · 请</span></span><span class="badge"><span class="zh">很多</span></span><span class="badge badge-soft">sufijos · radicales</span></div>
     </div>
   </a>
 
-  <div class="tools-section">
-    <h2>🛠️ Herramientas</h2>
+  <a class="clase-card" href="clase08.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <div class="clase-top"><span class="clase-num">Clase 08</span><span class="clase-date">9 de mayo, 2026</span></div>
+      <h3>Negación con <span class="zh">不</span> · <span class="zh">一起</span> juntos</h3>
+      <p>Negación contextual (<span class="zh">不/不在</span>), hacer cosas juntos con <span class="zh">一起</span>, los tres poderes <span class="zh">能/可以/会</span>, el orden de los trazos y la estructura presentativa lugar + <span class="zh">上/里</span> + <span class="zh">有</span>.</p>
+      <div class="clase-meta"><span class="badge"><span class="zh">不 · 不在</span></span><span class="badge"><span class="zh">能 可以 会</span></span><span class="badge badge-soft">前面 · 对面</span></div>
+    </div>
+  </a>
+
+  <a class="clase-card" href="clase07.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <div class="clase-top"><span class="clase-num">Clase 07</span><span class="clase-date">25 de abril, 2026</span></div>
+      <h3><span class="zh">在</span> + lugar · Posiciones · <span class="zh">正在</span></h3>
+      <p>Estar en un lugar con <span class="zh">在</span>, los demostrativos <span class="zh">这儿/那儿/哪儿</span>, las preposiciones de posición (<span class="zh">上下前后里外中旁</span>), el progresivo <span class="zh">正在</span> y las profesiones.</p>
+      <div class="clase-meta"><span class="badge"><span class="zh">在</span> + lugar</span><span class="badge"><span class="zh">正在</span></span><span class="badge badge-soft">profesiones</span></div>
+    </div>
+  </a>
+
+  <a class="clase-card" href="clase06.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <div class="clase-top"><span class="clase-num">Clase 06</span><span class="clase-date">18 de abril, 2026</span></div>
+      <h3><span class="zh">想 · 这/那 · 多少</span> — comprar y contar</h3>
+      <p>Clasificadores <span class="zh">个/条/只/件/口</span>, demostrativos, <span class="zh">要</span> vs <span class="zh">想</span>, preguntar el precio con <span class="zh">多少</span> y el dinero (<span class="zh">块/元/人民币</span>).</p>
+      <div class="clase-meta"><span class="badge">clasificadores</span><span class="badge"><span class="zh">多少钱</span></span><span class="badge badge-soft">dinero 💴</span></div>
+    </div>
+  </a>
+
+  <a class="clase-card" href="clase05.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <div class="clase-top"><span class="clase-num">Clase 05</span><span class="clase-date">11 de abril, 2026</span></div>
+      <h3><span class="zh">和 · 想 · 哪儿/做什么</span></h3>
+      <p>El conector <span class="zh">和</span>, lugares y deportes, preguntas con <span class="zh">哪儿/做什么</span>, <span class="zh">周</span> vs <span class="zh">星期</span>, bebidas y la diferencia <span class="zh">杯子</span> vs <span class="zh">杯</span>.</p>
+      <div class="clase-meta"><span class="badge"><span class="zh">和</span></span><span class="badge"><span class="zh">哪儿 · 做什么</span></span><span class="badge badge-soft">bebidas 🍵</span></div>
+    </div>
+  </a>
+
+  <a class="clase-card" href="clase04.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <div class="clase-top"><span class="clase-num">Clase 04</span><span class="clase-date">28 de marzo, 2026</span></div>
+      <h3><span class="zh">去</span> + lugar + verbo · <span class="zh">生日</span></h3>
+      <p>El verbo serial (ir a un lugar a hacer algo), el cumpleaños con <span class="zh">生日</span>, volver con <span class="zh">回家</span>, pasear con <span class="zh">逛</span> y los tipos de lugares (<span class="zh">场/馆/园/院/校</span>).</p>
+      <div class="clase-meta"><span class="badge">verbo serial</span><span class="badge"><span class="zh">生日</span> 🎂</span><span class="badge badge-soft">lugares</span></div>
+    </div>
+  </a>
+
+  <a class="clase-card" href="clase03.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <div class="clase-top"><span class="clase-num">Clase 03</span><span class="clase-date">21 de marzo, 2026</span></div>
+      <h3><span class="zh">今天几号 · 星期 · 去</span> + lugar</h3>
+      <p>Fechas y meses, los días de la semana, ayer/hoy/mañana, los nombres chinos, <span class="zh">都</span>, tonos bisilábicos y la estructura de los caracteres.</p>
+      <div class="clase-meta"><span class="badge"><span class="zh">几号 · 星期</span></span><span class="badge">nombres chinos</span><span class="badge badge-soft">radicales</span></div>
+    </div>
+  </a>
+
+  <a class="clase-card" href="clase02.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <div class="clase-top"><span class="clase-num">Clase 02</span><span class="clase-date">14 de marzo, 2026</span></div>
+      <h3><span class="zh">怎么 · 好看 · 好吃</span></h3>
+      <p>Preguntar "cómo" con <span class="zh">怎么</span>, adjetivos con <span class="zh">好/难</span> (bonito de ver, rico de comer), análisis de caracteres y diálogos.</p>
+      <div class="clase-meta"><span class="badge"><span class="zh">怎么</span></span><span class="badge"><span class="zh">好看 · 好吃</span></span></div>
+    </div>
+  </a>
+
+  <a class="clase-card" href="clase01.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <div class="clase-top"><span class="clase-num">Clase 01</span><span class="clase-date">7 de marzo, 2026</span></div>
+      <h3><span class="zh">会 · 有 · 的</span> — habilidades y posesión</h3>
+      <p>Saber/poder hacer con <span class="zh">会</span>, tener con <span class="zh">有</span>, la posesión con <span class="zh">的</span> y <span class="zh">很</span> + adjetivo. Familia, mascotas y habilidades.</p>
+      <div class="clase-meta"><span class="badge"><span class="zh">会 · 有 · 的</span></span><span class="badge"><span class="zh">很</span> + adj</span><span class="badge badge-soft">familia</span></div>
+    </div>
+  </a>
+
+  <div class="section-label">🛠️ Herramientas</div>
+  <div class="tools-grid">
     <a class="tool-card" href="/flashcards.html">
-      <h3>🃏 Flashcards</h3>
-      <p>Practica todo el vocabulario de las clases 01-03. Modo interactivo, audio, imprimible.</p>
+      <span class="tool-ico">🃏</span>
+      <div><h3>Flashcards</h3><p>Practica el vocabulario. Interactivo, con audio e imprimible.</p></div>
     </a>
     <a class="tool-card" href="/buscador.html">
-      <h3>🔍 Buscador de Caracteres</h3>
-      <p>Busca cualquier carácter por hanzi, pinyin o español en todo el vocabulario.</p>
+      <span class="tool-ico">🔍</span>
+      <div><h3>Buscador</h3><p>Busca cualquier carácter por hanzi, pinyin o español.</p></div>
     </a>
     <a class="tool-card" href="/listening.html">
-      <h3>🎧 Listening Practice</h3>
-      <p>Escucha audio en chino y escribe lo que oyes. Practica por clase, palabras o frases.</p>
+      <span class="tool-ico">🎧</span>
+      <div><h3>Listening</h3><p>Escucha audio en chino y escribe lo que oyes.</p></div>
     </a>
     <a class="tool-card" href="/pinyin.html">
-      <h3>🔤 Pizarra de Pinyin</h3>
-      <p>Tipea texto chino y ve el pinyin alineado por carácter. Ideal para clases.</p>
+      <span class="tool-ico">🔤</span>
+      <div><h3>Pizarra de Pinyin</h3><p>Tipea chino y ve el pinyin alineado por carácter.</p></div>
     </a>
   </div>
 </main>
-<footer>Básico 2 · Apuntes Chino · <a href="https://basti.cl" style="color:inherit">basti.cl</a></footer>
+
+<footer>Básico 2 · Apuntes Chino · <a href="https://basti.cl">basti.cl</a></footer>
 </body>
 </html>

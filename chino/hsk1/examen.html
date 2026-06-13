@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examen HSK 1 · Simulacro · Apuntes Chino</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --navy:#1a1a2e; --red:#c0392b; --red-bright:#e74c3c; --gold:#d4820a; --gold-bright:#f0a030; --green:#27ae60; --bg:#f5f5f7; --muted:#8a8a93; }
+  body { font-family:'Inter','Noto Sans SC',-apple-system,Arial,sans-serif; background:var(--bg); color:#222; -webkit-font-smoothing:antialiased; }
+  .zh { font-family:'Noto Sans SC',sans-serif; }
+  header { background:radial-gradient(120% 120% at 0% 0%, #3a1a28 0%, var(--navy) 55%, #131322 100%); color:#fff; padding:30px 24px 38px; position:relative; overflow:hidden; }
+  header::after { content:"考试"; position:absolute; right:-6px; bottom:-22px; font-family:'Noto Sans SC',sans-serif; font-size:6rem; font-weight:700; color:rgba(231,76,60,.13); letter-spacing:-6px; line-height:1; pointer-events:none; }
+  .hin { max-width:700px; margin:0 auto; position:relative; z-index:1; }
+  .crumb { color:#c9c9d6; text-decoration:none; font-size:.82em; opacity:.85; }
+  .crumb:hover { opacity:1; }
+  header h1 { font-size:1.6em; margin-top:10px; }
+  header h1 .zh { color:var(--red-bright); }
+  header p { color:#b9b9c8; font-size:.88em; margin-top:6px; }
+  main { max-width:700px; margin:-18px auto 0; padding:0 18px 60px; position:relative; z-index:2; }
+  .card { background:#fff; border:1px solid #ececf0; border-radius:16px; padding:22px; box-shadow:0 1px 3px rgba(0,0,0,.05); margin-bottom:14px; }
+  .lbl { font-size:.72em; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:1.1px; margin-bottom:10px; }
+  .intro-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; text-align:center; margin:14px 0; }
+  .ig { background:#f7f7fa; border:1px solid #ececf2; border-radius:10px; padding:12px 6px; }
+  .ig .n { font-size:1.3em; font-weight:800; color:var(--red); }
+  .ig .t { font-size:.68em; color:var(--muted); margin-top:3px; }
+  .start-btn { width:100%; margin-top:10px; background:linear-gradient(135deg,var(--red),var(--red-bright)); color:#fff; border:none; border-radius:12px; padding:14px; font-size:1em; font-weight:700; cursor:pointer; font-family:inherit; transition:transform .12s, box-shadow .12s; }
+  .start-btn:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(192,57,43,.35); }
+  /* examen */
+  .ebar { display:flex; justify-content:space-between; align-items:center; font-size:.8em; color:var(--muted); margin-bottom:6px; }
+  .timer { font-variant-numeric:tabular-nums; font-weight:700; color:var(--red); }
+  .timer.low { animation:blink 1s infinite; }
+  @keyframes blink { 50% { opacity:.4; } }
+  .etrack { height:7px; background:#ececf2; border-radius:4px; overflow:hidden; margin-bottom:14px; }
+  .etrack .f { height:100%; background:linear-gradient(90deg,var(--red),var(--red-bright)); border-radius:4px; transition:width .3s; }
+  .sec-tag { display:inline-block; background:#fdecea; color:var(--red); font-size:.7em; font-weight:700; text-transform:uppercase; letter-spacing:.8px; border-radius:6px; padding:3px 10px; margin-bottom:10px; }
+  .prompt { text-align:center; padding:12px 8px 18px; }
+  .prompt .big { font-size:2.6em; font-weight:700; color:var(--red); line-height:1.25; }
+  .prompt .frase { font-size:1.7em; }
+  .audio-btn { background:var(--navy); color:#fff; border:none; border-radius:50%; width:68px; height:68px; font-size:1.5em; cursor:pointer; box-shadow:0 6px 16px rgba(26,26,46,.3); transition:transform .12s; }
+  .audio-btn:hover { transform:scale(1.07); }
+  .prompt .hint { color:var(--muted); font-size:.8em; margin-top:8px; }
+  .opts { display:grid; grid-template-columns:1fr; gap:9px; }
+  .opts button { background:#fff; border:1.5px solid #e3e3ea; border-radius:12px; padding:13px 14px; font-size:.98em; cursor:pointer; font-family:inherit; text-align:left; transition:all .12s; line-height:1.4; }
+  .opts button:hover { border-color:var(--red); background:#fdf6f5; }
+  .opts button .zh { font-size:1.3em; font-weight:700; }
+  /* resultados */
+  .score-big { text-align:center; font-size:3.2em; font-weight:800; }
+  .score-big small { display:block; font-size:.3em; color:var(--muted); font-weight:500; }
+  .verdict { text-align:center; font-size:1.05em; margin-top:6px; font-weight:600; }
+  .rev { margin-top:16px; }
+  .rev div { padding:9px 4px; border-top:1px solid #f1f1f5; font-size:.92em; line-height:1.5; }
+  .rev .q { font-weight:600; }
+  .rev .zh { color:var(--red); font-weight:700; }
+  .rev em { color:var(--muted); font-size:.88em; }
+  footer { text-align:center; color:#b3b3bb; font-size:.8em; padding:24px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="hin">
+    <a class="crumb" href="index.html">← HSK 1 por temas</a>
+    <h1>📝 Simulacro de examen <span class="zh">考试</span></h1>
+    <p>30 preguntas en 3 secciones, contra el reloj. Aprobado con 60% — como el HSK real (120/200).</p>
+  </div>
+</header>
+
+<main>
+  <!-- INTRO -->
+  <div class="card" id="intro">
+    <div class="lbl">Cómo funciona</div>
+    <div class="intro-grid">
+      <div class="ig"><div class="n">🎧 10</div><div class="t">Listening: escucha y elige el significado</div></div>
+      <div class="ig"><div class="n">📖 10</div><div class="t">Vocabulario: hanzi → significado</div></div>
+      <div class="ig"><div class="n">🧩 10</div><div class="t">Frases: lee (y escucha) → traducción</div></div>
+    </div>
+    <p style="font-size:.86em; color:#555; line-height:1.6;">⏱️ Tienes <strong>15 minutos</strong>. No puedes volver atrás ni hay feedback hasta el final, igual que en el examen real. El audio de cada pregunta se puede repetir las veces que quieras.</p>
+    <button class="start-btn" id="start">Comenzar el simulacro 🚦</button>
+  </div>
+
+  <!-- EXAMEN -->
+  <div class="card" id="exam" style="display:none;">
+    <div class="ebar"><span id="e-num">1/30</span><span class="timer" id="e-timer">15:00</span></div>
+    <div class="etrack"><div class="f" id="e-fill"></div></div>
+    <span class="sec-tag" id="e-sec"></span>
+    <div class="prompt" id="e-prompt"></div>
+    <div class="opts" id="e-opts"></div>
+  </div>
+
+  <!-- RESULTADOS -->
+  <div class="card" id="results" style="display:none;">
+    <div class="score-big" id="r-score"></div>
+    <div class="verdict" id="r-verdict"></div>
+    <div class="rev" id="r-rev"></div>
+    <button class="start-btn" id="again">Intentarlo de nuevo 🔁</button>
+  </div>
+</main>
+
+<footer>Simulacro HSK 1 · <a href="index.html" style="color:inherit">volver al índice</a></footer>
+
+<script>
+const AUDIO_BASE = '/audio/';
+const TIEMPO = 15 * 60;
+let WORDS = [], FRASES = [], MAPPING = {};
+let qs = [], qi = 0, answers = [], t0 = null, timerId = null;
+
+const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+function speakFile(file, hzFallback) {
+  if (file) { new Audio(AUDIO_BASE + file).play(); return; }
+  const u = new SpeechSynthesisUtterance(hzFallback); u.lang = 'zh-CN'; u.rate = 0.8;
+  speechSynthesis.speak(u);
+}
+
+Promise.all([
+  fetch('hsk1-data.json').then(r => r.json()),
+  fetch('/audio/vocab_listening.json').then(r => r.json()).catch(() => []),
+  fetch('/audio/mapping.json').then(r => r.json()).catch(() => ({})),
+]).then(([w, f, m]) => { WORDS = w; FRASES = f.filter(x => x.hanzi && x.espanol); MAPPING = m; });
+
+function buildExam() {
+  const pw = shuffle(WORDS.slice());
+  const listening = pw.slice(0, 10).map(w => ({
+    sec: '🎧 Sección 1 · Listening', tipo: 'audio',
+    audio: MAPPING[w.hz], hz: w.hz, py: w.py,
+    correcta: w.es,
+    opciones: shuffle([w.es, ...shuffle(WORDS.filter(x => x.hz !== w.hz)).slice(0, 3).map(x => x.es)]),
+  }));
+  const vocab = pw.slice(10, 20).map(w => ({
+    sec: '📖 Sección 2 · Vocabulario', tipo: 'hz',
+    hz: w.hz, py: w.py,
+    correcta: w.es,
+    opciones: shuffle([w.es, ...shuffle(WORDS.filter(x => x.hz !== w.hz)).slice(0, 3).map(x => x.es)]),
+  }));
+  const pf = shuffle(FRASES.slice()).slice(0, 10);
+  const frases = pf.map(f => ({
+    sec: '🧩 Sección 3 · Frases', tipo: 'frase',
+    audio: f.audio, hz: f.hanzi, py: f.pinyin,
+    correcta: f.espanol,
+    opciones: shuffle([f.espanol, ...shuffle(FRASES.filter(x => x.hanzi !== f.hanzi)).slice(0, 3).map(x => x.espanol)]),
+  }));
+  return [...listening, ...vocab, ...frases];
+}
+
+document.getElementById('start').onclick = () => {
+  if (!WORDS.length) return alert('Cargando datos… intenta de nuevo en un segundo.');
+  qs = buildExam(); qi = 0; answers = [];
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('exam').style.display = '';
+  t0 = Date.now();
+  timerId = setInterval(tick, 500);
+  renderQ();
+};
+
+function tick() {
+  const left = TIEMPO - Math.floor((Date.now() - t0) / 1000);
+  if (left <= 0) return finish(true);
+  const m = Math.floor(left / 60), s = left % 60;
+  const $t = document.getElementById('e-timer');
+  $t.textContent = `${m}:${String(s).padStart(2, '0')}`;
+  $t.classList.toggle('low', left <= 60);
+}
+
+function renderQ() {
+  const q = qs[qi];
+  document.getElementById('e-num').textContent = `${qi + 1}/${qs.length}`;
+  document.getElementById('e-fill').style.width = (qi / qs.length * 100) + '%';
+  document.getElementById('e-sec').textContent = q.sec;
+  const $p = document.getElementById('e-prompt');
+  if (q.tipo === 'audio') {
+    $p.innerHTML = `<button class="audio-btn" id="play">🔊</button><div class="hint">Escucha la palabra y elige su significado</div>`;
+    document.getElementById('play').onclick = () => speakFile(q.audio, q.hz);
+    setTimeout(() => speakFile(q.audio, q.hz), 350);
+  } else if (q.tipo === 'hz') {
+    $p.innerHTML = `<div class="big zh">${q.hz}</div><div class="hint">¿Qué significa?</div>`;
+  } else {
+    $p.innerHTML = `<div class="big frase zh">${q.hz}</div>
+      <div class="hint"><button class="audio-btn" id="play" style="width:46px;height:46px;font-size:1em;">🔊</button> &nbsp;Lee (o escucha) la frase y elige la traducción</div>`;
+    document.getElementById('play').onclick = () => speakFile(q.audio, q.hz);
+  }
+  const $o = document.getElementById('e-opts');
+  $o.innerHTML = '';
+  q.opciones.forEach(op => {
+    const b = document.createElement('button');
+    b.textContent = op;
+    b.onclick = () => { answers.push(op); qi++; (qi >= qs.length) ? finish(false) : renderQ(); };
+    $o.appendChild(b);
+  });
+}
+
+function finish(porTiempo) {
+  clearInterval(timerId);
+  document.getElementById('exam').style.display = 'none';
+  document.getElementById('results').style.display = '';
+  while (answers.length < qs.length) answers.push(null);
+  const ok = qs.filter((q, i) => answers[i] === q.correcta).length;
+  const pct = Math.round(ok / qs.length * 100);
+  const aprobado = pct >= 60;
+  const usado = Math.min(TIEMPO, Math.floor((Date.now() - t0) / 1000));
+  document.getElementById('r-score').innerHTML =
+    `${aprobado ? '🏅' : '📚'} ${ok}/${qs.length}<small>${pct}% · ${Math.floor(usado / 60)}:${String(usado % 60).padStart(2, '0')} min${porTiempo ? ' · ⏰ se acabó el tiempo' : ''}</small>`;
+  document.getElementById('r-verdict').innerHTML = aprobado
+    ? `<span style="color:#27ae60">¡APROBADO! 通过了 — en el HSK real esto sería ${pct * 2}/200 puntos.</span>`
+    : `<span style="color:#c0392b">Aún no — necesitas 60%. ¡Repasa los temas que fallaste y reintenta! 加油</span>`;
+  const $r = document.getElementById('r-rev');
+  $r.innerHTML = '<div class="lbl" style="border:none">Revisión de errores:</div>';
+  let errores = 0;
+  qs.forEach((q, i) => {
+    if (answers[i] === q.correcta) return;
+    errores++;
+    const d = document.createElement('div');
+    d.innerHTML = `<span class="q">${i + 1}.</span> <span class="zh">${q.hz}</span> <em>${q.py}</em><br>
+      ✅ ${q.correcta} ${answers[i] ? `&nbsp;·&nbsp; ❌ tu respuesta: ${answers[i]}` : '&nbsp;·&nbsp; (sin responder)'}`;
+    $r.appendChild(d);
+  });
+  if (!errores) $r.innerHTML = '<div style="text-align:center; padding:10px;">💯 ¡Perfecto! Ni un solo error.</div>';
+  /* fallos de palabras (secciones 1-2) → caja 1 del SRS */
+  try {
+    const srs = JSON.parse(localStorage.getItem('hsk1-srs') || '{}');
+    qs.slice(0, 20).forEach((q, i) => {
+      if (answers[i] !== q.correcta) srs[q.hz] = { box: 1, due: Date.now() };
+    });
+    localStorage.setItem('hsk1-srs', JSON.stringify(srs));
+  } catch (e) {}
+}
+
+document.getElementById('again').onclick = () => {
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('intro').style.display = '';
+};
+</script>
+</body>
+</html>

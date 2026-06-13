@@ -73,6 +73,19 @@
   .chip-seen { background: #fdf3e3; color: #a4650a; border-color: #f3ddb8; }
   .chip-pend { background: #f3f3f6; color: #aaa; border-color: #e8e8ee; }
 
+  /* ---------- PRACTICE CARDS ---------- */
+  .practice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .practice-card {
+    background: #fff; border: 1px solid #ececf0; border-radius: 14px;
+    padding: 16px; text-decoration: none; color: inherit; display: flex;
+    align-items: flex-start; gap: 12px; transition: box-shadow .2s, transform .2s, border-color .2s;
+  }
+  .practice-card:hover { box-shadow: 0 10px 24px rgba(212,130,10,.18); transform: translateY(-3px); border-color: #ecd9bd; }
+  .p-ico { flex-shrink: 0; width: 40px; height: 40px; border-radius: 11px; background: linear-gradient(135deg, #fdf3e3, #fbe9d0); display: grid; place-items: center; font-size: 1.25em; }
+  .practice-card h3 { color: var(--gold); font-size: .92em; margin-bottom: 3px; font-weight: 700; }
+  .practice-card p { font-size: .76em; color: #888; line-height: 1.45; }
+  @media (max-width: 640px) { .practice-grid { grid-template-columns: 1fr; } }
+
   /* ---------- TEMA CARDS ---------- */
   .temas-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
   .tema-card {
@@ -140,6 +153,31 @@
       <span class="l-pend">aún no vista</span>
     </div>
     <div class="chips-150" id="chips"></div>
+
+    <div class="mi-progreso" id="mi-progreso" style="display:none;">
+      <div class="tracker-head" style="margin-top:18px;">
+        <h2 style="font-size:.92em;">🧠 Mi progreso personal (repaso espaciado)</h2>
+        <span class="pct" id="mp-pct" style="color:var(--green);"></span>
+      </div>
+      <div class="bar"><div class="fill" id="mp-fill" style="background:linear-gradient(90deg,#27ae60,#2ecc71);"></div></div>
+      <div class="bar-note" id="mp-note"></div>
+    </div>
+  </div>
+
+  <div class="section-label">🎮 Práctica</div>
+  <div class="practice-grid">
+    <a class="practice-card" href="quiz.html">
+      <span class="p-ico">🎲</span>
+      <div><h3>Quiz por tema</h3><p>Opción múltiple: hanzi, español o audio. Elige un tema o las 150.</p></div>
+    </a>
+    <a class="practice-card" href="repaso.html">
+      <span class="p-ico">🗂️</span>
+      <div><h3>Repaso espaciado</h3><p>Sistema Leitner de 5 cajas. Unos minutos al día y no se te olvidan.</p></div>
+    </a>
+    <a class="practice-card" href="examen.html">
+      <span class="p-ico">📝</span>
+      <div><h3>Simulacro de examen</h3><p>30 preguntas contra el reloj: listening, vocabulario y frases.</p></div>
+    </a>
   </div>
 
   <div class="section-label">📚 Los 14 temas</div>
@@ -238,6 +276,22 @@ Promise.all([
 }).catch(() => {
   document.getElementById('tr-pct').textContent = 'sin datos (abre vía http)';
 });
+
+/* ── Mi progreso personal (localStorage del repaso espaciado) ── */
+(function () {
+  let srs;
+  try { srs = JSON.parse(localStorage.getItem('hsk1-srs') || '{}'); } catch (e) { return; }
+  const entradas = Object.values(srs);
+  if (!entradas.length) return;
+  const dominadas = entradas.filter(e => e.box === 5).length;
+  const estudiando = entradas.length - dominadas;
+  const pct = Math.round(dominadas / 150 * 100);
+  document.getElementById('mi-progreso').style.display = '';
+  document.getElementById('mp-pct').textContent = `${dominadas}/150 dominadas · ${pct}%`;
+  document.getElementById('mp-note').textContent =
+    `${dominadas} en la caja 5 (dominadas) y ${estudiando} en estudio. Sigue en el repaso espaciado 🗂️`;
+  requestAnimationFrame(() => { document.getElementById('mp-fill').style.width = Math.max(pct, 1) + '%'; });
+})();
 </script>
 </body>
 </html>

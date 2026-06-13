@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radicales · Apuntes Chino</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --navy:#1a1a2e; --red:#c0392b; --red-bright:#e74c3c; --gold:#d4820a; --green:#27ae60; --bg:#f5f5f7; --muted:#8a8a93; }
+  body { font-family:'Inter','Noto Sans SC',-apple-system,Arial,sans-serif; background:var(--bg); color:#222; -webkit-font-smoothing:antialiased; }
+  .zh { font-family:'Noto Sans SC',sans-serif; }
+  header { background:radial-gradient(120% 120% at 0% 0%, #2a2a4a 0%, var(--navy) 55%, #131322 100%); color:#fff; padding:40px 24px 50px; position:relative; overflow:hidden; }
+  header::after { content:"部首"; position:absolute; right:-8px; bottom:-28px; font-family:'Noto Sans SC',sans-serif; font-size:7.5rem; font-weight:700; color:rgba(231,76,60,.1); letter-spacing:-7px; line-height:1; pointer-events:none; }
+  .hin { max-width:880px; margin:0 auto; position:relative; z-index:1; }
+  .crumb { color:#c9c9d6; text-decoration:none; font-size:.82em; opacity:.85; }
+  .crumb:hover { opacity:1; }
+  header h1 { font-size:1.9em; margin-top:12px; }
+  header h1 .zh { color:var(--red-bright); }
+  header p { color:#b9b9c8; font-size:.9em; margin-top:8px; max-width:600px; line-height:1.55; }
+  main { max-width:880px; margin:-22px auto 0; padding:0 18px 60px; position:relative; z-index:2; }
+  .intro { background:#fff; border:1px solid #ececf0; border-radius:14px; padding:16px 18px; font-size:.88em; color:#555; line-height:1.6; box-shadow:0 1px 3px rgba(0,0,0,.05); margin-bottom:20px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(255px, 1fr)); gap:13px; }
+  .rad { background:#fff; border:1px solid #ececf0; border-radius:14px; padding:16px; box-shadow:0 1px 3px rgba(0,0,0,.04); transition:box-shadow .2s, transform .2s; }
+  .rad:hover { box-shadow:0 10px 26px rgba(26,26,46,.12); transform:translateY(-2px); }
+  .rad-top { display:flex; align-items:center; gap:13px; }
+  .rad-hz { font-family:'Noto Sans SC',sans-serif; font-size:2.3em; font-weight:700; color:var(--red); cursor:pointer; line-height:1; transition:transform .12s; }
+  .rad-hz:hover { transform:scale(1.12); }
+  .rad-meta .name { font-weight:700; font-size:.95em; }
+  .rad-meta .name em { font-family:Inter,sans-serif; color:var(--muted); font-weight:400; font-size:.86em; }
+  .rad-meta .var { font-size:.74em; color:var(--muted); margin-top:2px; }
+  .rad-meta .var .zh { color:var(--gold); font-weight:700; font-size:1.25em; }
+  .ej { margin-top:11px; display:flex; flex-wrap:wrap; gap:5px; align-items:center; }
+  .ej span.t { font-size:.66em; color:var(--muted); text-transform:uppercase; letter-spacing:.6px; margin-right:2px; }
+  .ej a { font-family:'Noto Sans SC',sans-serif; text-decoration:none; color:#333; background:#f6f6f9; border:1px solid #ececf2; border-radius:7px; padding:3px 7px; font-size:1em; transition:all .12s; cursor:pointer; }
+  .ej a:hover { background:#fdecea; border-color:#f1ddda; color:var(--red); }
+  .hint { font-size:.74em; color:var(--muted); text-align:center; margin:18px 0 6px; }
+  /* modal de trazos */
+  .modal { position:fixed; inset:0; background:rgba(20,20,34,.55); display:none; place-items:center; z-index:100; padding:20px; }
+  .modal.open { display:grid; }
+  .mbox { background:#fff; border-radius:18px; padding:24px; text-align:center; box-shadow:0 24px 60px rgba(0,0,0,.35); max-width:340px; width:100%; }
+  .mbox h3 { font-size:1em; margin-bottom:4px; }
+  .mbox .sub { font-size:.8em; color:var(--muted); margin-bottom:12px; }
+  #writer { width:220px; height:220px; margin:0 auto; background:repeating-linear-gradient(0deg, transparent, transparent 109px, #f3d3cf 109px, #f3d3cf 111px, transparent 111px), repeating-linear-gradient(90deg, transparent, transparent 109px, #f3d3cf 109px, #f3d3cf 111px, transparent 111px), #fffdfc; border:2px dashed #f1ddda; border-radius:12px; }
+  .mbtns { display:flex; gap:8px; justify-content:center; margin-top:14px; flex-wrap:wrap; }
+  .mbtns button, .mbtns a { font-family:inherit; font-size:.84em; border-radius:20px; padding:8px 16px; cursor:pointer; text-decoration:none; }
+  .mbtns .replay { background:var(--navy); color:#fff; border:none; }
+  .mbtns .dong { background:#fff; color:var(--red); border:1.5px solid #f1ddda; }
+  .mbtns .close { background:#f3f3f6; color:#555; border:none; }
+  footer { text-align:center; color:#b3b3bb; font-size:.8em; padding:24px; }
+  footer a { color:inherit; }
+</style>
+</head>
+<body>
+<header>
+  <div class="hin">
+    <a class="crumb" href="/">← Todos los apuntes</a>
+    <h1>🧩 Radicales <span class="zh">部首</span></h1>
+    <p>Los 30 radicales que más aparecen en tu vocabulario. Conocerlos convierte caracteres "imposibles" en piezas con lógica: el radical aporta el <strong>significado</strong> y el resto suele aportar el <strong>sonido</strong>. Toca cualquier carácter para ver sus trazos animados ✍️.</p>
+  </div>
+</header>
+
+<main>
+  <div class="intro">
+    💡 <strong>Cómo leerlos:</strong> muchos radicales cambian de forma al combinarse — 人 (persona) se comprime en <span class="zh" style="color:#d4820a">亻</span> cuando va a la izquierda (你, 他), y 水 (agua) se vuelve <span class="zh" style="color:#d4820a">氵</span> (没, 汉). Los ejemplos salen de tus clases: si reconoces la palabra, ya conoces el radical.
+  </div>
+  <div class="grid" id="grid"></div>
+  <div class="hint">✍️ Toca un radical o un ejemplo para ver la animación de trazos · datos de <a href="https://hanziwriter.org" target="_blank" style="color:#c0392b">HanziWriter</a></div>
+</main>
+
+<div class="modal" id="modal">
+  <div class="mbox">
+    <h3 id="m-title" class="zh">字</h3>
+    <div class="sub" id="m-sub"></div>
+    <div id="writer"></div>
+    <div class="mbtns">
+      <button class="replay" id="m-replay">▶️ Repetir</button>
+      <a class="dong" id="m-dong" target="_blank" href="#">dong-chinese ↗</a>
+      <button class="close" id="m-close">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<footer>Radicales · Apuntes Chino · <a href="https://basti.cl">basti.cl</a></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
+<script>
+/* radical, forma combinada (o ''), pinyin, significado, ejemplos del curso */
+const RADICALES = [
+  ['人', '亻', 'rén', 'persona', ['你', '他', '们', '什', '住']],
+  ['口', '', 'kǒu', 'boca', ['吃', '喝', '叫', '吗', '呢', '哪']],
+  ['女', '', 'nǚ', 'mujer', ['妈', '她', '好', '姐', '妹']],
+  ['心', '忄', 'xīn', 'corazón', ['想', '忙', '快']],
+  ['手', '扌', 'shǒu', 'mano', ['打', '我']],
+  ['水', '氵', 'shuǐ', 'agua', ['没', '汉', '渴', '酒']],
+  ['火', '灬', 'huǒ', 'fuego', ['热', '点', '烤']],
+  ['木', '', 'mù', 'árbol / madera', ['本', '杯', '校', '椅', '果']],
+  ['日', '', 'rì', 'sol / día', ['明', '早', '星', '时', '昨']],
+  ['月', '', 'yuè', 'luna / carne', ['朋', '期', '半']],
+  ['土', '', 'tǔ', 'tierra', ['在', '坐', '地']],
+  ['金', '钅', 'jīn', 'metal / oro', ['钱', '钟']],
+  ['言', '讠', 'yán', 'palabra / hablar', ['说', '请', '谢', '课', '谁', '语']],
+  ['走', '辶', 'zǒu', 'caminar / moverse', ['这', '还', '过', '进', '边']],
+  ['食', '饣', 'shí', 'comida', ['饭', '饿', '馆']],
+  ['丝', '纟', 'sī', 'seda / hilo', ['红', '给', '绿']],
+  ['雨', '', 'yǔ', 'lluvia', ['雪', '零', '雷']],
+  ['门', '', 'mén', 'puerta', ['问', '间', '们']],
+  ['马', '', 'mǎ', 'caballo (suele dar el sonido "ma")', ['吗', '妈', '骑']],
+  ['大', '', 'dà', 'grande', ['太', '天']],
+  ['子', '', 'zǐ', 'niño / hijo', ['字', '学', '孩']],
+  ['宀', '', 'mián', 'techo / casa', ['家', '字', '客', '它']],
+  ['艹', '', 'cǎo', 'pasto / planta', ['茶', '菜', '苹', '药']],
+  ['目', '', 'mù', 'ojo', ['看', '睡', '眼']],
+  ['田', '', 'tián', 'campo de cultivo', ['男', '电', '画']],
+  ['白', '', 'bái', 'blanco', ['的', '百']],
+  ['竹', '⺮', 'zhú', 'bambú', ['笔', '第', '篮']],
+  ['王', '', 'wáng', 'rey / jade', ['现', '玩', '班']],
+  ['车', '', 'chē', 'vehículo', ['辆', '较']],
+  ['足', '', 'zú', 'pie', ['跑', '跳', '路']],
+];
+
+const $g = document.getElementById('grid');
+RADICALES.forEach(([rad, varia, py, es, ejemplos]) => {
+  const card = document.createElement('div');
+  card.className = 'rad';
+  card.innerHTML = `
+    <div class="rad-top">
+      <span class="rad-hz" data-hz="${rad}">${rad}</span>
+      <div class="rad-meta">
+        <div class="name">${es} <em>· ${py}</em></div>
+        <div class="var">${varia ? `forma combinada: <span class="zh">${varia}</span>` : 'no cambia de forma'}</div>
+      </div>
+    </div>
+    <div class="ej"><span class="t">en tu vocab:</span>${ejemplos.map(e => `<a data-hz="${e}">${e}</a>`).join('')}</div>`;
+  $g.appendChild(card);
+});
+
+/* Modal con HanziWriter */
+const $modal = document.getElementById('modal');
+let writer = null, currentHz = '';
+
+function openWriter(hz) {
+  currentHz = hz;
+  document.getElementById('m-title').textContent = hz;
+  document.getElementById('m-sub').textContent = 'orden de trazos';
+  document.getElementById('m-dong').href = 'https://www.dong-chinese.com/wiki/' + encodeURIComponent(hz);
+  document.getElementById('writer').innerHTML = '';
+  $modal.classList.add('open');
+  try {
+    writer = HanziWriter.create('writer', hz, {
+      width: 220, height: 220, padding: 12,
+      strokeColor: '#c0392b', radicalColor: '#d4820a',
+      strokeAnimationSpeed: 1.1, delayBetweenStrokes: 220, showOutline: true,
+    });
+    writer.animateCharacter();
+  } catch (e) {
+    document.getElementById('writer').innerHTML =
+      '<div style="display:grid;place-items:center;height:100%;font-size:.8em;color:#8a8a93;padding:14px;">Sin datos de trazos para este carácter — míralo en dong-chinese ↗</div>';
+  }
+}
+document.addEventListener('click', (e) => {
+  const t = e.target.closest('[data-hz]');
+  if (t) openWriter(t.dataset.hz);
+});
+document.getElementById('m-replay').onclick = () => { if (writer) writer.animateCharacter(); };
+document.getElementById('m-close').onclick = () => $modal.classList.remove('open');
+$modal.addEventListener('click', (e) => { if (e.target === $modal) $modal.classList.remove('open'); });
+</script>
+</body>
+</html>

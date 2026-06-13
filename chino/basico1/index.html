@@ -5,173 +5,246 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Básico 1 · Apuntes Chino — Basti</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Sans SC', -apple-system, Arial, sans-serif; background: #f5f5f7; color: #222; }
-  header { background: #1a1a2e; color: #fff; padding: 36px 24px 28px; }
-  .header-inner { max-width: 860px; margin: 0 auto; }
-  header h1 { font-size: 1.8em; color: #e74c3c; }
-  header p { color: #aaa; margin-top: 6px; font-size: 0.9em; }
-  header a { color: #e74c3c; text-decoration: none; }
-  main { max-width: 860px; margin: 32px auto; padding: 0 24px 60px; }
-  .clase-card { background: #fff; border: 1px solid #e5e5e5; border-radius: 12px; padding: 22px 24px; margin-bottom: 14px; text-decoration: none; color: inherit; display: block; transition: box-shadow .15s, transform .15s; }
-  .clase-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.1); transform: translateY(-2px); }
-  .clase-num { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: #c0392b; margin-bottom: 6px; }
-  .clase-card h3 { font-size: 1.05em; margin-bottom: 4px; }
-  .clase-card p { font-size: 0.85em; color: #888; line-height: 1.4; }
-  .clase-meta { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
-  .badge { display: inline-block; background: #f0f0f0; color: #555; border-radius: 20px; padding: 2px 10px; font-size: 0.75rem; }
-  .tools-section { margin-top: 32px; }
-  .tools-section h2 { font-size: 0.85em; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
-  .tool-card { background: #fff; border: 1.5px dashed #c0392b; border-radius: 12px; padding: 22px 24px; margin-bottom: 14px; text-decoration: none; color: inherit; display: block; transition: box-shadow .15s; }
-  .tool-card:hover { box-shadow: 0 4px 20px rgba(192,57,43,.15); }
-  .tool-card h3 { color: #c0392b; font-size: 1.05em; margin-bottom: 4px; }
-  .tool-card p { font-size: 0.85em; color: #888; }
-  .original-link { text-align: center; margin-top: 24px; }
-  .original-link a { color: #888; font-size: 0.82em; text-decoration: none; border-bottom: 1px dotted #ccc; }
-  .original-link a:hover { color: #c0392b; }
-  footer { text-align: center; color: #bbb; font-size: 0.82em; padding: 24px; }
-
-  /* Inter para pinyin: mejor renderizado de diacríticos (ī, ǐ, ǎ, ò...). */
-  .pinyin-col,
-  .ex em,
-  .dialog em,
-  .dialog .da em,
-  .dialog .db em,
-  .box em,
-  em {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'ss01' 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  :root {
+    --navy: #1a1a2e;
+    --red: #c0392b;
+    --red-bright: #e74c3c;
+    --bg: #f5f5f7;
+    --ink: #222;
+    --muted: #8a8a93;
   }
-  /* responsive-tables */
-  @media (max-width: 600px) {
-    table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  body { font-family: 'Inter', 'Noto Sans SC', -apple-system, Arial, sans-serif; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+  /* ---------- HERO ---------- */
+  header {
+    background: radial-gradient(120% 120% at 0% 0%, #2a2a4a 0%, var(--navy) 55%, #131322 100%);
+    color: #fff; padding: 48px 24px 56px; position: relative; overflow: hidden;
+  }
+  header::after {
+    content: "基础"; position: absolute; right: -10px; bottom: -34px;
+    font-family: 'Noto Sans SC', sans-serif; font-size: 9rem; font-weight: 700;
+    color: rgba(231,76,60,.08); letter-spacing: -8px; line-height: 1; pointer-events: none;
+  }
+  .header-inner { max-width: 880px; margin: 0 auto; position: relative; z-index: 1; }
+  .crumb { display: inline-flex; align-items: center; gap: 6px; color: #c9c9d6; text-decoration: none; font-size: 0.82em; opacity: .85; transition: opacity .15s; }
+  .crumb:hover { opacity: 1; }
+  header h1 { font-size: 2.1em; font-weight: 700; margin-top: 14px; letter-spacing: -.5px; }
+  header h1 .zh { color: var(--red-bright); }
+  header .subtitle { color: #b9b9c8; margin-top: 8px; font-size: 0.92em; }
+  .hero-stats { display: flex; gap: 22px; margin-top: 22px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .num { font-size: 1.5em; font-weight: 700; color: #fff; line-height: 1; }
+  .stat .lbl { font-size: 0.72em; color: #9a9ab0; text-transform: uppercase; letter-spacing: .6px; margin-top: 4px; }
+
+  /* ---------- MAIN ---------- */
+  main { max-width: 880px; margin: -28px auto 0; padding: 0 20px 60px; position: relative; z-index: 2; }
+  .section-label { font-size: 0.78em; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; margin: 30px 4px 14px; }
+
+  /* ---------- CLASE CARDS ---------- */
+  .clase-card {
+    background: #fff; border: 1px solid #ececf0; border-radius: 16px;
+    padding: 0; margin-bottom: 16px; text-decoration: none; color: inherit;
+    display: block; overflow: hidden; position: relative;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+    transition: box-shadow .2s, transform .2s, border-color .2s;
+  }
+  .clase-card:hover { box-shadow: 0 12px 32px rgba(26,26,46,.14); transform: translateY(-3px); border-color: #e0d2cf; }
+  .clase-card .accent { position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(var(--red), var(--red-bright)); }
+  .clase-body { padding: 20px 24px 20px 28px; }
+  .clase-num { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .9px; color: var(--red); }
+  .clase-card h3 { font-size: 1.12em; margin: 7px 0 5px; font-weight: 600; letter-spacing: -.2px; }
+  .clase-card h3 .zh { font-family: 'Noto Sans SC', sans-serif; color: var(--red); font-weight: 700; }
+  .clase-card p { font-size: 0.86em; color: #6b6b73; line-height: 1.5; }
+  .clase-meta { margin-top: 12px; display: flex; gap: 7px; flex-wrap: wrap; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: #faf3f2; color: var(--red); border: 1px solid #f1ddda;
+    border-radius: 20px; padding: 3px 11px; font-size: 0.76rem; font-weight: 500;
+  }
+  .badge .zh { font-family: 'Noto Sans SC', sans-serif; }
+  .badge-soft { background: #f3f3f6; color: #777; border-color: #eaeaef; }
+
+  /* ---------- TOOLS ---------- */
+  .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .tool-card {
+    background: #fff; border: 1px solid #ececf0; border-radius: 14px;
+    padding: 18px 18px; text-decoration: none; color: inherit; display: flex;
+    align-items: flex-start; gap: 13px; transition: box-shadow .2s, transform .2s, border-color .2s;
+  }
+  .tool-card:hover { box-shadow: 0 8px 22px rgba(192,57,43,.12); transform: translateY(-2px); border-color: #f1ddda; }
+  .tool-ico {
+    flex-shrink: 0; width: 40px; height: 40px; border-radius: 11px;
+    background: linear-gradient(135deg, #fbe9e7, #fdecea); display: grid; place-items: center;
+    font-size: 1.25em;
+  }
+  .tool-card h3 { color: var(--red); font-size: 0.98em; margin-bottom: 3px; font-weight: 600; }
+  .tool-card p { font-size: 0.8em; color: #888; line-height: 1.4; }
+
+  footer { text-align: center; color: #b3b3bb; font-size: 0.82em; padding: 28px 24px 40px; }
+  footer a { color: var(--red); text-decoration: none; }
+
+  @media (max-width: 640px) {
+    header { padding: 38px 20px 48px; }
+    header::after { font-size: 6rem; bottom: -20px; }
+    header h1 { font-size: 1.7em; }
+    .hero-stats { gap: 18px; }
+    main { padding: 0 14px 48px; }
+    .clase-body { padding: 18px 18px 18px 22px; }
+    .clase-card h3 { font-size: 1.04em; }
+    .tools-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 <header>
   <div class="header-inner">
-    <h1>🀄 Básico 1</h1>
-    <p>Chino Mandarín · Centro Cultural Chino · Diciembre 2025 · <a href="/">← Todos los apuntes</a></p>
+    <a class="crumb" href="/">← Todos los apuntes</a>
+    <h1>🀄 Básico <span class="zh">一</span></h1>
+    <p class="subtitle">Chino Mandarín · Centro Cultural Chino · Diciembre 2025</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="num">11</span><span class="lbl">Capítulos</span></div>
+      <div class="stat"><span class="num">✓</span><span class="lbl">Nivel completo</span></div>
+      <div class="stat"><span class="num">🧱</span><span class="lbl">Los fundamentos</span></div>
+    </div>
   </div>
 </header>
+
 <main>
-  <a class="clase-card" href="cap10.html">
-    <div class="clase-num">Capítulo 10</div>
-    <h3>Repaso de Iniciales y Vocabulario</h3>
-    <p>Repaso de iniciales: grupos clave, práctica intensiva de vocabulario completo.</p>
-    <div class="clase-meta">
-      <span class="badge">Repaso</span>
-      <span class="badge">54 audios</span>
-    </div>
-  </a>
-  <a class="clase-card" href="cap09.html">
-    <div class="clase-num">Capítulo 09</div>
-    <h3>La Gran Familia (大家族)</h3>
-    <p>Árbol genealógico, formalidad y respeto, preguntar la edad.</p>
-    <div class="clase-meta">
-      <span class="badge">家族 礼貌 岁</span>
-      <span class="badge">52 audios</span>
-    </div>
-  </a>
-  <a class="clase-card" href="cap08.html">
-    <div class="clase-num">Capítulo 08</div>
-    <h3>Frases, Números y Cultura</h3>
-    <p>Clasificación gramatical, números 0-99, grandes cifras, superstición y cultura.</p>
-    <div class="clase-meta">
-      <span class="badge">数字 万 亿</span>
-      <span class="badge">101 audios</span>
-    </div>
-  </a>
-  <a class="clase-card" href="cap07.html">
-    <div class="clase-num">Capítulo 07</div>
-    <h3>Posesión y Verbos de Estado</h3>
-    <p>La posesión con 的, descripciones con 很, el verbo estar 在, partícula 了.</p>
-    <div class="clase-meta">
-      <span class="badge">的 很 在 了</span>
-      <span class="badge">31 audios</span>
-    </div>
-  </a>
-  <a class="clase-card" href="cap06.html">
-    <div class="clase-num">Capítulo 06</div>
-    <h3>Identidad y Cultura</h3>
-    <p>Diálogo de identidad, el deseo mental 想, clasificador 本.</p>
-    <div class="clase-meta">
-      <span class="badge">想 本 谁</span>
-      <span class="badge">16 audios</span>
-    </div>
-  </a>
-  <a class="clase-card" href="cap05.html">
-    <div class="clase-num">Capítulo 05</div>
-    <h3>Demostrativos y Cantidad</h3>
-    <p>Demostrativos 这/那/哪, clasificadores, familia básica.</p>
-    <div class="clase-meta">
-      <span class="badge">这 那 哪 个</span>
-      <span class="badge">21 audios</span>
-    </div>
-  </a>
-  <a class="clase-card" href="cap04.html">
-    <div class="clase-num">Capítulo 04</div>
-    <h3>Nombres y Nacionalidades</h3>
-    <p>El verbo 叫, estructura con 是, países y profesiones.</p>
-    <div class="clase-meta">
-      <span class="badge">叫 是 国家 职业</span>
-      <span class="badge">46 audios</span>
-    </div>
-  </a>
-  <a class="clase-card" href="cap03.html">
-    <div class="clase-num">Capítulo 03</div>
-    <h3>Gramática Básica (Yǔfǎ)</h3>
-    <p>Pronombres personales, verbo 要, partículas 吗/呢, saludos por hora, despedida.</p>
-    <div class="clase-meta">
-      <span class="badge">要 吗 呢 再见</span>
-      <span class="badge">47 audios</span>
-    </div>
-  </a>
-  <a class="clase-card" href="cap02.html">
-    <div class="clase-num">Capítulo 02</div>
-    <h3>Iniciales y Cortesía</h3>
-    <p>Regla de G y K, filosofía de escritura, trazos fundamentales, respeto, las 3 caras del NO.</p>
-    <div class="clase-meta">
-      <span class="badge">不 没 别</span>
-      <span class="badge">30 audios</span>
-    </div>
-  </a>
+  <div class="section-label">📚 Capítulos</div>
+
   <a class="clase-card" href="cap01.html">
-    <div class="clase-num">Capítulo 01</div>
-    <h3>Introducción y Fonética</h3>
-    <p>Los 4 tonos, iniciales, finales, vocabulario esencial.</p>
-    <div class="clase-meta">
-      <span class="badge">Tonos Pinyin</span>
-      <span class="badge">18 audios</span>
+    <span class="accent"></span>
+    <div class="clase-body">
+      <span class="clase-num">Capítulo 01</span>
+      <h3>Introducción y Fonética</h3>
+      <p>Los 4 tonos, las iniciales y finales del pinyin, y el primer vocabulario esencial.</p>
+      <div class="clase-meta"><span class="badge">4 tonos</span><span class="badge">pinyin</span><span class="badge badge-soft">números 1-10</span></div>
     </div>
   </a>
 
-  <a class="clase-card" href="capapendice.html" style="border-style:dashed; border-color:#555;">
-    <div class="clase-num" style="color:#555;">Apéndice</div>
-    <h3>Hoja de Trucos — Gramática Esencial</h3>
-    <p>Estructuras básicas, partículas clave, clasificadores esenciales, resumen de verbos.</p>
-    <div class="clase-meta">
-      <span class="badge">Referencia rápida</span>
-      <span class="badge">51 audios</span>
+  <a class="clase-card" href="cap02.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <span class="clase-num">Capítulo 02</span>
+      <h3>Iniciales y Cortesía</h3>
+      <p>Los trazos fundamentales, las fórmulas de respeto y las tres caras del "no" (<span class="zh">不/没/别</span>).</p>
+      <div class="clase-meta"><span class="badge"><span class="zh">不 没 别</span></span><span class="badge">trazos</span><span class="badge badge-soft">cortesía</span></div>
     </div>
   </a>
 
-  <div class="tools-section">
-    <h2>🛠️ Herramientas</h2>
+  <a class="clase-card" href="cap03.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <span class="clase-num">Capítulo 03</span>
+      <h3>Gramática Básica <span class="zh">语法</span></h3>
+      <p>Pronombres personales, el verbo <span class="zh">要</span>, preguntas con <span class="zh">吗/呢</span>, saludos por hora y despedidas.</p>
+      <div class="clase-meta"><span class="badge"><span class="zh">我 你 他</span></span><span class="badge"><span class="zh">吗 · 呢</span></span><span class="badge badge-soft">再见</span></div>
+    </div>
+  </a>
+
+  <a class="clase-card" href="cap04.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <span class="clase-num">Capítulo 04</span>
+      <h3>Nombres y Nacionalidades</h3>
+      <p>Presentarse con <span class="zh">叫</span> y <span class="zh">是</span>, países, profesiones y la estructura SVO.</p>
+      <div class="clase-meta"><span class="badge"><span class="zh">叫 · 是</span></span><span class="badge">países</span><span class="badge badge-soft">profesiones</span></div>
+    </div>
+  </a>
+
+  <a class="clase-card" href="cap05.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <span class="clase-num">Capítulo 05</span>
+      <h3>Demostrativos y Cantidad</h3>
+      <p>Señalar con <span class="zh">这/那/哪</span>, los primeros clasificadores y la familia básica.</p>
+      <div class="clase-meta"><span class="badge"><span class="zh">这 那 哪</span></span><span class="badge">clasificadores</span><span class="badge badge-soft">familia</span></div>
+    </div>
+  </a>
+
+  <a class="clase-card" href="cap06.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <span class="clase-num">Capítulo 06</span>
+      <h3>Identidad y Cultura</h3>
+      <p>El deseo mental con <span class="zh">想</span>, preferencias con <span class="zh">喜欢</span>, el clasificador <span class="zh">本</span> y el zodiaco chino.</p>
+      <div class="clase-meta"><span class="badge"><span class="zh">想 · 喜欢</span></span><span class="badge"><span class="zh">本</span></span><span class="badge badge-soft">zodiaco 🐉</span></div>
+    </div>
+  </a>
+
+  <a class="clase-card" href="cap07.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <span class="clase-num">Capítulo 07</span>
+      <h3>Posesión y Verbos de Estado</h3>
+      <p>La posesión con <span class="zh">的</span>, descripciones con <span class="zh">很</span>, estar en un lugar con <span class="zh">在</span> y la partícula <span class="zh">了</span>.</p>
+      <div class="clase-meta"><span class="badge"><span class="zh">的 · 很</span></span><span class="badge"><span class="zh">在 · 了</span></span></div>
+    </div>
+  </a>
+
+  <a class="clase-card" href="cap08.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <span class="clase-num">Capítulo 08</span>
+      <h3>Frases, Números y Cultura</h3>
+      <p>Los números del 0 al 99, las grandes cifras <span class="zh">万/亿</span> y las supersticiones numéricas.</p>
+      <div class="clase-meta"><span class="badge">0-99</span><span class="badge"><span class="zh">万 · 亿</span></span><span class="badge badge-soft">superstición 🎱</span></div>
+    </div>
+  </a>
+
+  <a class="clase-card" href="cap09.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <span class="clase-num">Capítulo 09</span>
+      <h3>La Gran Familia <span class="zh">大家族</span></h3>
+      <p>El árbol genealógico completo, preguntar la edad y el trato formal (<span class="zh">先生/太太/小姐</span>).</p>
+      <div class="clase-meta"><span class="badge">árbol genealógico</span><span class="badge"><span class="zh">岁</span> edad</span><span class="badge badge-soft">formalidad</span></div>
+    </div>
+  </a>
+
+  <a class="clase-card" href="cap10.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <span class="clase-num">Capítulo 10</span>
+      <h3>Repaso de Iniciales y Vocabulario</h3>
+      <p>Las palatales (j, q, x), retroflejas (zh, ch, sh, r) y dentales (z, c, s) con práctica de vocabulario.</p>
+      <div class="clase-meta"><span class="badge">j · q · x</span><span class="badge">zh · ch · sh</span><span class="badge badge-soft">repaso</span></div>
+    </div>
+  </a>
+
+  <a class="clase-card" href="capapendice.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <span class="clase-num">Apéndice</span>
+      <h3>Hoja de Trucos — Gramática Esencial</h3>
+      <p>Las estructuras básicas, partículas clave, clasificadores esenciales y los 12 verbos core en una sola página.</p>
+      <div class="clase-meta"><span class="badge">cheatsheet 📋</span><span class="badge badge-soft">imprimible</span></div>
+    </div>
+  </a>
+
+  <div class="section-label">🛠️ Herramientas</div>
+  <div class="tools-grid">
+    <a class="tool-card" href="/flashcards.html">
+      <span class="tool-ico">🃏</span>
+      <div><h3>Flashcards</h3><p>Practica el vocabulario. Interactivo, con audio e imprimible.</p></div>
+    </a>
+    <a class="tool-card" href="/buscador.html">
+      <span class="tool-ico">🔍</span>
+      <div><h3>Buscador</h3><p>Busca cualquier carácter por hanzi, pinyin o español.</p></div>
+    </a>
+    <a class="tool-card" href="/listening.html">
+      <span class="tool-ico">🎧</span>
+      <div><h3>Listening</h3><p>Escucha audio en chino y escribe lo que oyes.</p></div>
+    </a>
     <a class="tool-card" href="/pinyin.html">
-      <h3>🔤 Pizarra de Pinyin</h3>
-      <p>Tipea texto chino y ve el pinyin alineado por carácter. Ideal para clases.</p>
+      <span class="tool-ico">🔤</span>
+      <div><h3>Pizarra de Pinyin</h3><p>Tipea chino y ve el pinyin alineado por carácter.</p></div>
     </a>
   </div>
-
-  <div class="original-link">
-    <a href="index_completo.html">📄 Ver versión completa en una sola página</a>
-  </div>
 </main>
-<footer>Básico 1 · Apuntes Chino · <a href="https://basti.cl" style="color:inherit">basti.cl</a></footer>
+
+<footer>Básico 1 · Apuntes Chino · <a href="index_completo.html">versión monolítica original</a> · <a href="https://basti.cl">basti.cl</a></footer>
 </body>
 </html>

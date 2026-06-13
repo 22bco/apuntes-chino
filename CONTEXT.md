@@ -36,11 +36,16 @@ chino/
 │   └── clase01.html .. clase03.html
 │
 ├── hsk1/                   # ⭐ HSK 1 POR TEMAS (jun 2026) — contenido reorganizado por sílabo
-│   ├── index.html          # Hub con tracker de cobertura (150 chips, 3 estados)
+│   ├── index.html          # Hub con tracker de cobertura (150 chips) + "mi progreso" (SRS)
 │   ├── hsk1-data.json      # DATO MAESTRO: 150 palabras {hz, py, es, tema, clases}
 │   ├── hsk1.css            # CSS compartido de las 14 páginas (única sección con CSS externo)
 │   ├── hsk1.js             # JS compartido (speak + botones 🔊 + toggle pinyin)
+│   ├── quiz.html           # Quiz opción múltiple (hz→es, es→hz, audio→hz; por tema)
+│   ├── repaso.html         # SRS Leitner 5 cajas (localStorage 'hsk1-srs') + export Anki TSV
+│   ├── examen.html         # Simulacro: 30 preguntas, 3 secciones, 15 min, fallos→SRS
 │   └── 01-*.html .. 14-*.html  # 14 páginas temáticas autocontenidas
+│
+├── radicales.html          # Herramienta: 30 radicales con HanziWriter (trazos animados)
 │
 └── audio/                  # 2000+ archivos MP3 (voz Lily de ElevenLabs)
     ├── mapping.json        # Mapa texto_chino → filename.mp3

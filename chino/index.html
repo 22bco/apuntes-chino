@@ -55,6 +55,45 @@
   .label.gold { color: var(--gold); }
   .label .count { color: var(--muted); font-weight: 400; }
 
+  /* ---------- BÚSQUEDA GLOBAL ---------- */
+  .search-wrap { position: relative; margin-top: 4px; }
+  #gsearch {
+    width: 100%; font-family: var(--mono); font-size: 0.92rem;
+    background: var(--paper); border: 1.5px solid #f0e6e3; border-radius: 12px;
+    padding: 13px 16px; color: var(--ink); outline: none;
+    box-shadow: 0 2px 8px rgba(26,26,46,.06); transition: border-color .15s, box-shadow .15s;
+  }
+  #gsearch:focus { border-color: var(--red-tint); box-shadow: 0 4px 16px rgba(192,57,43,.12); }
+  .gresults {
+    position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 50;
+    background: var(--paper); border: 1px solid #f0e6e3; border-radius: 12px;
+    box-shadow: 0 14px 36px rgba(26,26,46,.16); overflow: hidden; display: none;
+  }
+  .gresults.open { display: block; }
+  .gr-item { display: flex; align-items: baseline; gap: 12px; padding: 10px 14px; font-size: 0.86rem; border-top: 1px solid #f6efed; }
+  .gr-item:first-child { border-top: none; }
+  .gr-item .hz { font-family: 'Noto Sans SC', var(--mono); font-size: 1.25em; font-weight: 700; color: var(--red); }
+  .gr-item .py { color: var(--muted); font-family: Inter, sans-serif; font-style: italic; }
+  .gr-item .src { margin-left: auto; font-size: 0.7rem; color: var(--muted); white-space: nowrap; }
+  .gr-item button { background: none; border: none; cursor: pointer; opacity: .5; font-size: 0.95em; }
+  .gr-item button:hover { opacity: 1; }
+  .gr-more { display: block; text-align: center; padding: 9px; font-size: 0.76rem; color: var(--red); text-decoration: none; background: var(--red-soft); }
+
+  /* ---------- PALABRA DEL DÍA ---------- */
+  .wod {
+    display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+    background: var(--paper); border: 1px solid #f0e6e3; border-radius: 12px;
+    padding: 12px 16px; margin-top: 12px; text-decoration: none; color: inherit;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04); transition: box-shadow .2s, transform .2s;
+  }
+  .wod:hover { box-shadow: 0 8px 20px rgba(192,57,43,.12); transform: translateY(-2px); }
+  .wod-tag { font-size: 0.68rem; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 1px; }
+  .wod-hz { font-size: 1.6rem; font-weight: 700; color: var(--red); line-height: 1; }
+  .wod-info { font-size: 0.82rem; color: #6b6b73; }
+  .wod-info em { font-family: Inter, sans-serif; }
+  .wod-play { margin-left: auto; background: none; border: none; cursor: pointer; font-size: 1.1em; opacity: .6; }
+  .wod-play:hover { opacity: 1; }
+
   /* ---------- CARD HSK 1 (destacada) ---------- */
   .hsk-card {
     display: block; text-decoration: none; color: inherit; position: relative; overflow: hidden;
@@ -188,6 +227,18 @@
 
 <main>
 
+  <div class="search-wrap">
+    <input id="gsearch" type="search" autocomplete="off" placeholder="🔍 Buscar en el vocabulario… (hanzi, pinyin o español)">
+    <div class="gresults" id="gresults"></div>
+  </div>
+
+  <a class="wod" id="wod" href="/hsk1/" style="display:none;">
+    <span class="wod-tag">📅 Palabra del día</span>
+    <span class="wod-hz zh" id="wod-hz"></span>
+    <span class="wod-info"><em id="wod-py"></em> · <span id="wod-es"></span></span>
+    <button class="wod-play" id="wod-play" title="Escuchar">🔊</button>
+  </a>
+
   <div class="label gold">🎯 Por tema</div>
   <a class="hsk-card" href="/hsk1/">
     <span class="accent"></span>
@@ -314,6 +365,10 @@
       <span class="tool-ico">🌧️</span>
       <div><h3>Lluvia HSK1</h3><p>Arcade: revienta las palabras que caen escribiendo su pinyin.</p></div>
     </a>
+    <a class="tool-card" href="/radicales.html">
+      <span class="tool-ico">🧩</span>
+      <div><h3>Radicales</h3><p>Los 30 radicales clave con trazos animados y ejemplos de tu vocab.</p></div>
+    </a>
     <a class="tool-card" href="/pinyin.html">
       <span class="tool-ico">🔤</span>
       <div><h3>Pizarra de Pinyin</h3><p>Tipea chino y ve el pinyin alineado por carácter.</p></div>
@@ -382,6 +437,50 @@ Promise.all([
   const wb2 = document.getElementById('w-b2'), wb3 = document.getElementById('w-b3');
   if (wb2) wb2.textContent = niveles.b2;
   if (wb3) wb3.textContent = niveles.b3;
+
+  /* Palabra del día: determinística según la fecha */
+  const dia = Math.floor(Date.now() / 86400000);
+  const wod = hsk[dia % hsk.length];
+  document.getElementById('wod-hz').textContent = wod.hz;
+  document.getElementById('wod-py').textContent = wod.py;
+  document.getElementById('wod-es').textContent = wod.es;
+  document.getElementById('wod').style.display = '';
+  document.getElementById('wod-play').onclick = (e) => {
+    e.preventDefault(); e.stopPropagation();
+    const f = mapping[wod.hz];
+    if (f) new Audio('/audio/' + f).play();
+  };
+
+  /* Búsqueda global en vivo sobre vocab.json */
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const $in = document.getElementById('gsearch'), $res = document.getElementById('gresults');
+  $in.addEventListener('input', () => {
+    const q = norm($in.value.trim());
+    if (q.length < 1) { $res.classList.remove('open'); return; }
+    const hits = vocab.filter(w =>
+      w.hz.includes($in.value.trim()) || norm(w.py).includes(q) || norm(w.es).includes(q)
+    ).slice(0, 8);
+    $res.innerHTML = '';
+    hits.forEach(w => {
+      const d = document.createElement('div');
+      d.className = 'gr-item';
+      d.innerHTML = `<span class="hz">${w.hz}</span><span class="py">${w.py}</span><span>${w.es}</span><span class="src">${w.src}</span>`;
+      const b = document.createElement('button');
+      b.textContent = '🔊';
+      b.onclick = () => { const f = mapping[w.hz]; if (f) new Audio('/audio/' + f).play(); };
+      d.appendChild(b);
+      $res.appendChild(d);
+    });
+    if (!hits.length) $res.innerHTML = '<div class="gr-item" style="color:var(--muted)">Sin resultados aquí…</div>';
+    const more = document.createElement('a');
+    more.className = 'gr-more'; more.href = '/buscador.html';
+    more.textContent = '↗ Búsqueda completa en todas las clases';
+    $res.appendChild(more);
+    $res.classList.add('open');
+  });
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-wrap')) $res.classList.remove('open');
+  });
 
   /* Donut: distribución de tonos (marcas diacríticas del pinyin) */
   const MARKS = {

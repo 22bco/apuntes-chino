@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repaso SRS · HSK 1 · Apuntes Chino</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --navy:#1a1a2e; --red:#c0392b; --red-bright:#e74c3c; --gold:#d4820a; --gold-bright:#f0a030; --green:#27ae60; --bg:#f5f5f7; --muted:#8a8a93; }
+  body { font-family:'Inter','Noto Sans SC',-apple-system,Arial,sans-serif; background:var(--bg); color:#222; -webkit-font-smoothing:antialiased; }
+  .zh { font-family:'Noto Sans SC',sans-serif; }
+  header { background:radial-gradient(120% 120% at 0% 0%, #2a2a4a 0%, var(--navy) 55%, #131322 100%); color:#fff; padding:30px 24px 38px; position:relative; overflow:hidden; }
+  header::after { content:"复习"; position:absolute; right:-6px; bottom:-22px; font-family:'Noto Sans SC',sans-serif; font-size:6rem; font-weight:700; color:rgba(39,174,96,.14); letter-spacing:-6px; line-height:1; pointer-events:none; }
+  .hin { max-width:700px; margin:0 auto; position:relative; z-index:1; }
+  .crumb { color:#c9c9d6; text-decoration:none; font-size:.82em; opacity:.85; }
+  .crumb:hover { opacity:1; }
+  header h1 { font-size:1.6em; margin-top:10px; }
+  header h1 .zh { color:#5fd38f; }
+  header p { color:#b9b9c8; font-size:.88em; margin-top:6px; }
+  main { max-width:700px; margin:-18px auto 0; padding:0 18px 60px; position:relative; z-index:2; }
+  .card { background:#fff; border:1px solid #ececf0; border-radius:16px; padding:22px; box-shadow:0 1px 3px rgba(0,0,0,.05); margin-bottom:14px; }
+  .lbl { font-size:.72em; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:1.1px; margin-bottom:10px; }
+  /* cajas */
+  .boxes { display:grid; grid-template-columns:repeat(6,1fr); gap:8px; text-align:center; }
+  .bx { border-radius:10px; padding:10px 4px; background:#f7f7fa; border:1px solid #ececf2; }
+  .bx .n { font-size:1.35em; font-weight:800; }
+  .bx .t { font-size:.64em; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; margin-top:2px; }
+  .bx.b1 .n { color:#e74c3c; } .bx.b2 .n { color:#e67e22; } .bx.b3 .n { color:#d4820a; }
+  .bx.b4 .n { color:#2980b9; } .bx.b5 .n { color:#27ae60; } .bx.b0 .n { color:#aaa; }
+  .due-line { margin-top:14px; font-size:.86em; color:#555; }
+  .due-line b { color:var(--green); }
+  .start-btn { width:100%; margin-top:14px; background:linear-gradient(135deg,#27ae60,#2ecc71); color:#fff; border:none; border-radius:12px; padding:14px; font-size:1em; font-weight:700; cursor:pointer; font-family:inherit; transition:transform .12s, box-shadow .12s; }
+  .start-btn:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(39,174,96,.35); }
+  .start-btn:disabled { background:#ccc; cursor:default; transform:none; box-shadow:none; }
+  .ghost-btn { width:100%; margin-top:10px; background:#fff; color:#555; border:1.5px solid #e3e3ea; border-radius:12px; padding:11px; font-size:.9em; cursor:pointer; font-family:inherit; }
+  .ghost-btn:hover { border-color:var(--gold); color:var(--gold); }
+  /* sesión */
+  .sbar { display:flex; justify-content:space-between; font-size:.8em; color:var(--muted); margin-bottom:12px; }
+  .flash { text-align:center; padding:14px 8px 8px; }
+  .flash .hz-big { font-size:4em; font-weight:700; color:var(--red); line-height:1.15; cursor:pointer; }
+  .flash .box-tag { display:inline-block; font-size:.68em; color:var(--muted); border:1px solid #e3e3ea; border-radius:12px; padding:2px 10px; margin-top:10px; }
+  .reveal { margin-top:12px; }
+  .reveal .py { font-size:1.25em; color:#555; }
+  .reveal .es { font-size:1.05em; color:#222; margin-top:4px; }
+  .show-btn { display:block; margin:18px auto 4px; background:var(--navy); color:#fff; border:none; border-radius:24px; padding:12px 34px; font-size:.95em; font-weight:600; cursor:pointer; font-family:inherit; }
+  .judge { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px; }
+  .judge button { border:none; border-radius:12px; padding:14px; font-size:.95em; font-weight:700; cursor:pointer; font-family:inherit; color:#fff; transition:transform .1s; }
+  .judge button:hover { transform:translateY(-2px); }
+  .judge .no { background:#e74c3c; }
+  .judge .si { background:#27ae60; }
+  .judge small { display:block; font-weight:400; font-size:.76em; opacity:.85; margin-top:2px; }
+  .done-msg { text-align:center; padding:18px 6px; }
+  .done-msg .big { font-size:2.4em; }
+  footer { text-align:center; color:#b3b3bb; font-size:.8em; padding:24px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="hin">
+    <a class="crumb" href="index.html">← HSK 1 por temas</a>
+    <h1>🗂️ Repaso espaciado <span class="zh">复习</span></h1>
+    <p>Sistema Leitner de 5 cajas: lo que fallas vuelve al inicio, lo que dominas se espacia (1 → 3 → 7 → 21 días).</p>
+  </div>
+</header>
+
+<main>
+  <!-- PANEL -->
+  <div class="card" id="panel">
+    <div class="lbl">Tus cajas</div>
+    <div class="boxes" id="boxes"></div>
+    <div class="due-line" id="due-line">Cargando…</div>
+    <button class="start-btn" id="start">Repasar ahora 🚀</button>
+    <button class="ghost-btn" id="anki">⬇️ Exportar a Anki (TSV)</button>
+    <button class="ghost-btn" id="reset" style="border-color:#f3d3cf;color:#c0392b;">🗑️ Reiniciar progreso</button>
+  </div>
+
+  <!-- SESIÓN -->
+  <div class="card" id="session" style="display:none;">
+    <div class="sbar"><span id="s-left">—</span><span id="s-stats">—</span></div>
+    <div class="flash">
+      <div class="hz-big zh" id="f-hz" title="toca para escuchar">…</div>
+      <div class="box-tag" id="f-box"></div>
+      <div class="reveal" id="f-reveal" style="visibility:hidden;">
+        <div class="py" id="f-py">—</div>
+        <div class="es" id="f-es">—</div>
+      </div>
+    </div>
+    <button class="show-btn" id="show">Mostrar respuesta 👁</button>
+    <div class="judge" id="judge" style="display:none;">
+      <button class="no" id="j-no">❌ No la sabía<small>vuelve a la caja 1</small></button>
+      <button class="si" id="j-si">✅ La sabía<small id="j-si-sub">sube de caja</small></button>
+    </div>
+  </div>
+</main>
+
+<footer>Repaso SRS · HSK 1 · <a href="index.html" style="color:inherit">volver al índice</a></footer>
+
+<script>
+const AUDIO_BASE = '/audio/';
+const KEY = 'hsk1-srs';
+const DIA = 24 * 60 * 60 * 1000;
+const INTERVALOS = { 1: 0, 2: 1, 3: 3, 4: 7, 5: 21 };   // días hasta el próximo repaso al ENTRAR a esa caja
+const NUEVAS_POR_SESION = 10;
+
+let WORDS = [], MAPPING = {}, srs = {};
+let queue = [], cur = null, hechas = 0, aciertos = 0;
+
+function load() { try { srs = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { srs = {}; } }
+function save() { localStorage.setItem(KEY, JSON.stringify(srs)); }
+function speak(hz) {
+  const f = MAPPING[hz];
+  if (f) { new Audio(AUDIO_BASE + f).play(); return; }
+  const u = new SpeechSynthesisUtterance(hz); u.lang = 'zh-CN'; u.rate = 0.8;
+  speechSynthesis.speak(u);
+}
+const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+function renderPanel() {
+  const counts = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+  WORDS.forEach(w => { counts[srs[w.hz] ? srs[w.hz].box : 0]++; });
+  const NAMES = { 0: 'nuevas', 1: 'caja 1', 2: 'caja 2', 3: 'caja 3', 4: 'caja 4', 5: '⭐ caja 5' };
+  document.getElementById('boxes').innerHTML = Object.entries(counts)
+    .map(([b, n]) => `<div class="bx b${b}"><div class="n">${n}</div><div class="t">${NAMES[b]}</div></div>`).join('');
+  const due = WORDS.filter(w => srs[w.hz] && srs[w.hz].due <= Date.now());
+  const nuevas = WORDS.filter(w => !srs[w.hz]);
+  const total = due.length + Math.min(nuevas.length, NUEVAS_POR_SESION);
+  document.getElementById('due-line').innerHTML = total
+    ? `Hoy te tocan <b>${due.length}</b> por vencer + <b>${Math.min(nuevas.length, NUEVAS_POR_SESION)}</b> nuevas = <b>${total}</b> tarjetas.`
+    : `🎉 Nada pendiente por hoy. Las ${counts[5]} de la caja 5 ya casi son tuyas para siempre.`;
+  document.getElementById('start').disabled = !total;
+}
+
+Promise.all([
+  fetch('hsk1-data.json').then(r => r.json()),
+  fetch('/audio/mapping.json').then(r => r.json()).catch(() => ({})),
+]).then(([w, m]) => { WORDS = w; MAPPING = m; load(); renderPanel(); });
+
+document.getElementById('start').onclick = () => {
+  const due = WORDS.filter(w => srs[w.hz] && srs[w.hz].due <= Date.now());
+  const nuevas = shuffle(WORDS.filter(w => !srs[w.hz])).slice(0, NUEVAS_POR_SESION);
+  queue = shuffle([...due, ...nuevas]);
+  hechas = 0; aciertos = 0;
+  document.getElementById('panel').style.display = 'none';
+  document.getElementById('session').style.display = '';
+  next();
+};
+
+function next() {
+  if (!queue.length) return end();
+  cur = queue.shift();
+  const st = srs[cur.hz];
+  document.getElementById('s-left').textContent = `Quedan ${queue.length + 1}`;
+  document.getElementById('s-stats').textContent = `${aciertos}/${hechas} ✓`;
+  document.getElementById('f-hz').textContent = cur.hz;
+  document.getElementById('f-box').textContent = st ? `caja ${st.box}` : '🆕 nueva';
+  document.getElementById('f-reveal').style.visibility = 'hidden';
+  document.getElementById('show').style.display = '';
+  document.getElementById('judge').style.display = 'none';
+  document.getElementById('f-py').textContent = cur.py;
+  document.getElementById('f-es').textContent = cur.es;
+  const nb = st ? Math.min(st.box + 1, 5) : 2;
+  document.getElementById('j-si-sub').textContent = (st && st.box === 5) ? 'se queda en la caja 5 (+21 días)' : `sube a la caja ${nb}`;
+}
+
+document.getElementById('f-hz').onclick = () => speak(cur.hz);
+document.getElementById('show').onclick = () => {
+  document.getElementById('f-reveal').style.visibility = 'visible';
+  document.getElementById('show').style.display = 'none';
+  document.getElementById('judge').style.display = '';
+  speak(cur.hz);
+};
+
+function judge(sabia) {
+  const st = srs[cur.hz];
+  let box = sabia ? (st ? Math.min(st.box + 1, 5) : 2) : 1;
+  srs[cur.hz] = { box, due: Date.now() + INTERVALOS[box] * DIA };
+  save();
+  hechas++; if (sabia) aciertos++;
+  next();
+}
+document.getElementById('j-no').onclick = () => judge(false);
+document.getElementById('j-si').onclick = () => judge(true);
+
+function end() {
+  document.getElementById('session').style.display = 'none';
+  document.getElementById('panel').style.display = '';
+  renderPanel();
+  const pct = hechas ? Math.round(aciertos / hechas * 100) : 0;
+  document.getElementById('due-line').innerHTML =
+    `✅ Sesión terminada: <b>${aciertos}/${hechas}</b> (${pct}%). Vuelve mañana para las que vencen. 加油！` ;
+}
+
+/* Export Anki: TSV hz <tab> py <tab> es <tab> tema */
+document.getElementById('anki').onclick = () => {
+  const tsv = WORDS.map(w => `${w.hz}\t${w.py}\t${w.es}\tHSK1-tema${w.tema}`).join('\n');
+  const blob = new Blob(['﻿' + tsv], { type: 'text/tab-separated-values;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'hsk1-150-palabras.tsv';
+  a.click();
+  URL.revokeObjectURL(a.href);
+};
+
+document.getElementById('reset').onclick = () => {
+  if (confirm('¿Borrar todo tu progreso de repaso? Esto no se puede deshacer.')) {
+    localStorage.removeItem(KEY); load(); renderPanel();
+  }
+};
+</script>
+</body>
+</html>

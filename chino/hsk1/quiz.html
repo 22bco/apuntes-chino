@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz HSK 1 · Apuntes Chino</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --navy:#1a1a2e; --red:#c0392b; --red-bright:#e74c3c; --gold:#d4820a; --gold-bright:#f0a030; --green:#27ae60; --bg:#f5f5f7; --muted:#8a8a93; }
+  body { font-family: 'Inter','Noto Sans SC',-apple-system,Arial,sans-serif; background: var(--bg); color: #222; -webkit-font-smoothing: antialiased; }
+  .zh { font-family: 'Noto Sans SC', sans-serif; }
+  header { background: radial-gradient(120% 120% at 0% 0%, #2a2a4a 0%, var(--navy) 55%, #131322 100%); color:#fff; padding: 30px 24px 38px; position:relative; overflow:hidden; }
+  header::after { content:"测验"; position:absolute; right:-6px; bottom:-22px; font-family:'Noto Sans SC',sans-serif; font-size:6rem; font-weight:700; color:rgba(212,130,10,.13); letter-spacing:-6px; line-height:1; pointer-events:none; }
+  .hin { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
+  .crumb { color:#c9c9d6; text-decoration:none; font-size:.82em; opacity:.85; }
+  .crumb:hover { opacity:1; }
+  header h1 { font-size:1.6em; margin-top:10px; }
+  header h1 .zh { color: var(--gold-bright); }
+  header p { color:#b9b9c8; font-size:.88em; margin-top:6px; }
+  main { max-width: 700px; margin: -18px auto 0; padding: 0 18px 60px; position: relative; z-index: 2; }
+  .card { background:#fff; border:1px solid #ececf0; border-radius:16px; padding:22px; box-shadow:0 1px 3px rgba(0,0,0,.05); margin-bottom:14px; }
+  .lbl { font-size:.72em; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:1.1px; margin-bottom:10px; }
+  .chips { display:flex; flex-wrap:wrap; gap:7px; }
+  .chips button { border:1px solid #e3e3ea; background:#f7f7fa; color:#555; border-radius:18px; padding:7px 13px; font-size:.82em; cursor:pointer; transition:all .12s; font-family:inherit; }
+  .chips button:hover { border-color:var(--gold); color:var(--gold); }
+  .chips button.on { background:var(--gold); border-color:var(--gold); color:#fff; font-weight:600; }
+  .start-btn { width:100%; margin-top:16px; background:linear-gradient(135deg,var(--gold),var(--gold-bright)); color:#fff; border:none; border-radius:12px; padding:14px; font-size:1em; font-weight:700; cursor:pointer; font-family:inherit; transition:transform .12s, box-shadow .12s; }
+  .start-btn:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(212,130,10,.35); }
+  /* quiz */
+  .qbar { display:flex; justify-content:space-between; align-items:center; font-size:.8em; color:var(--muted); margin-bottom:10px; }
+  .qtrack { flex:1; height:7px; background:#ececf2; border-radius:4px; margin:0 12px; overflow:hidden; }
+  .qtrack .f { height:100%; background:linear-gradient(90deg,var(--gold),var(--gold-bright)); border-radius:4px; transition:width .3s; }
+  .prompt { text-align:center; padding: 18px 8px 22px; }
+  .prompt .big { font-size:3em; font-weight:700; color:var(--red); line-height:1.2; }
+  .prompt .big.es { font-size:1.6em; color:#333; }
+  .prompt .hint { color:var(--muted); font-size:.82em; margin-top:8px; }
+  .audio-btn { background:var(--navy); color:#fff; border:none; border-radius:50%; width:74px; height:74px; font-size:1.7em; cursor:pointer; box-shadow:0 6px 16px rgba(26,26,46,.3); transition:transform .12s; }
+  .audio-btn:hover { transform:scale(1.07); }
+  .opts { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .opts button { background:#fff; border:1.5px solid #e3e3ea; border-radius:12px; padding:15px 12px; font-size:1.02em; cursor:pointer; font-family:inherit; transition:all .12s; line-height:1.35; }
+  .opts button .zh { font-size:1.35em; font-weight:700; }
+  .opts button:hover:not(:disabled) { border-color:var(--gold); background:#fdf8ef; }
+  .opts button.ok { border-color:var(--green); background:#e9f7ef; }
+  .opts button.bad { border-color:var(--red-bright); background:#fdecea; }
+  .opts button:disabled { cursor:default; }
+  .next-btn { display:block; margin:16px auto 0; background:var(--navy); color:#fff; border:none; border-radius:24px; padding:11px 30px; font-size:.92em; font-weight:600; cursor:pointer; font-family:inherit; }
+  .feedback { text-align:center; margin-top:12px; font-size:.9em; min-height:1.4em; }
+  .feedback .py { color:var(--muted); }
+  /* results */
+  .score-big { text-align:center; font-size:3.4em; font-weight:800; }
+  .score-big small { display:block; font-size:.32em; color:var(--muted); font-weight:500; }
+  .wrong-list { margin-top:14px; }
+  .wrong-list div { display:flex; gap:12px; align-items:baseline; padding:8px 4px; border-top:1px solid #f1f1f5; font-size:.94em; }
+  .wrong-list .zh { font-size:1.25em; font-weight:700; color:var(--red); }
+  .wrong-list em { color:var(--muted); font-size:.88em; }
+  footer { text-align:center; color:#b3b3bb; font-size:.8em; padding:24px; }
+  @media (max-width:520px) { .opts { grid-template-columns:1fr; } .prompt .big { font-size:2.3em; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="hin">
+    <a class="crumb" href="index.html">← HSK 1 por temas</a>
+    <h1>🎲 Quiz <span class="zh">测验</span></h1>
+    <p>Pon a prueba las 150 palabras del HSK 1 — por tema o todas juntas.</p>
+  </div>
+</header>
+
+<main>
+  <!-- SETUP -->
+  <div class="card" id="setup">
+    <div class="lbl">1 · Elige el tema</div>
+    <div class="chips" id="tema-chips"></div>
+    <div class="lbl" style="margin-top:18px;">2 · Elige el modo</div>
+    <div class="chips" id="mode-chips">
+      <button data-m="hz-es" class="on">汉字 → español</button>
+      <button data-m="es-hz">español → 汉字</button>
+      <button data-m="audio-hz">🔊 audio → 汉字</button>
+    </div>
+    <button class="start-btn" id="start">¡Empezar! 开始</button>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="card" id="quiz" style="display:none;">
+    <div class="qbar"><span id="qnum">1/10</span><span class="qtrack"><span class="f" id="qfill"></span></span><span id="qscore">0 ✓</span></div>
+    <div class="prompt" id="prompt"></div>
+    <div class="opts" id="opts"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="next-btn" id="next" style="visibility:hidden;">Siguiente →</button>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="card" id="results" style="display:none;">
+    <div class="score-big" id="final-score"></div>
+    <div class="wrong-list" id="wrong-list"></div>
+    <button class="start-btn" id="again">Otra ronda 🔁</button>
+  </div>
+</main>
+
+<footer>Quiz HSK 1 · <a href="index.html" style="color:inherit">volver al índice</a></footer>
+
+<script>
+const AUDIO_BASE = '/audio/';
+const N_PREGUNTAS = 10;
+const TEMAS = { '00':'🌟 Todas', '01':'👋 Saludos', '02':'🪪 Identidad', '03':'👨‍👩‍👧 Familia', '04':'🔢 Números', '05':'📅 Fechas', '06':'⏰ La hora', '07':'📦 Clasificadores', '08':'✨ Partículas', '09':'⚖️ Adverbios', '10':'❓ Interrogativos', '11':'📍 Ubicación', '12':'💪 Modales', '13':'🏃 Acciones', '14':'🌦️ Clima y cosas' };
+
+let WORDS = [], MAPPING = {};
+let tema = new URLSearchParams(location.search).get('tema') || '00';
+let mode = 'hz-es';
+let pool = [], qs = [], qi = 0, score = 0, wrong = [], answered = false;
+
+function speak(hz) {
+  const f = MAPPING[hz];
+  if (f) { new Audio(AUDIO_BASE + f).play(); return; }
+  const u = new SpeechSynthesisUtterance(hz); u.lang = 'zh-CN'; u.rate = 0.8;
+  speechSynthesis.speak(u);
+}
+const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+/* setup UI */
+const $tc = document.getElementById('tema-chips');
+Object.entries(TEMAS).forEach(([id, name]) => {
+  const b = document.createElement('button');
+  b.textContent = name; b.dataset.t = id;
+  if (id === tema) b.classList.add('on');
+  b.onclick = () => { tema = id; $tc.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); };
+  $tc.appendChild(b);
+});
+document.getElementById('mode-chips').querySelectorAll('button').forEach(b => {
+  b.onclick = () => { mode = b.dataset.m; b.parentElement.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); };
+});
+
+Promise.all([
+  fetch('hsk1-data.json').then(r => r.json()),
+  fetch('/audio/mapping.json').then(r => r.json()).catch(() => ({})),
+]).then(([w, m]) => { WORDS = w; MAPPING = m; });
+
+document.getElementById('start').onclick = () => {
+  if (!WORDS.length) return alert('Cargando datos… intenta de nuevo en un segundo.');
+  pool = tema === '00' ? WORDS.slice() : WORDS.filter(w => w.tema === tema);
+  if (pool.length < 4) pool = WORDS.slice();
+  qs = shuffle(pool.slice()).slice(0, N_PREGUNTAS);
+  qi = 0; score = 0; wrong = [];
+  document.getElementById('setup').style.display = 'none';
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('quiz').style.display = '';
+  renderQ();
+};
+
+function distractores(word) {
+  const mismas = pool.filter(w => w.hz !== word.hz);
+  const otras = WORDS.filter(w => w.tema !== word.tema && w.hz !== word.hz);
+  const src = shuffle(mismas.slice());
+  while (src.length < 3) src.push(...shuffle(otras.slice()).slice(0, 3 - src.length));
+  return src.slice(0, 3);
+}
+
+function renderQ() {
+  answered = false;
+  const w = qs[qi];
+  const ops = shuffle([w, ...distractores(w)]);
+  document.getElementById('qnum').textContent = `${qi + 1}/${qs.length}`;
+  document.getElementById('qfill').style.width = (qi / qs.length * 100) + '%';
+  document.getElementById('qscore').textContent = `${score} ✓`;
+  document.getElementById('feedback').innerHTML = '';
+  document.getElementById('next').style.visibility = 'hidden';
+
+  const $p = document.getElementById('prompt');
+  if (mode === 'hz-es') {
+    $p.innerHTML = `<div class="big zh">${w.hz}</div><div class="hint">¿Qué significa?</div>`;
+  } else if (mode === 'es-hz') {
+    $p.innerHTML = `<div class="big es">«${w.es}»</div><div class="hint">¿Cuál es el hanzi?</div>`;
+  } else {
+    $p.innerHTML = `<button class="audio-btn" onclick="speak('${w.hz}')">🔊</button><div class="hint">Escucha y elige el hanzi (toca para repetir)</div>`;
+    setTimeout(() => speak(w.hz), 350);
+  }
+
+  const $o = document.getElementById('opts');
+  $o.innerHTML = '';
+  ops.forEach(op => {
+    const b = document.createElement('button');
+    b.innerHTML = (mode === 'hz-es') ? op.es : `<span class="zh">${op.hz}</span>`;
+    b.onclick = () => answer(b, op, w);
+    $o.appendChild(b);
+  });
+}
+
+function answer(btn, op, w) {
+  if (answered) return;
+  answered = true;
+  const ok = op.hz === w.hz;
+  document.getElementById('opts').querySelectorAll('button').forEach(b => b.disabled = true);
+  btn.classList.add(ok ? 'ok' : 'bad');
+  if (!ok) {
+    [...document.getElementById('opts').children].forEach(b => {
+      if (b.textContent.trim() === (mode === 'hz-es' ? w.es : w.hz)) b.classList.add('ok');
+    });
+    wrong.push(w);
+  } else score++;
+  document.getElementById('qscore').textContent = `${score} ✓`;
+  document.getElementById('feedback').innerHTML =
+    `${ok ? '✅' : '❌'} <span class="zh" style="color:#c0392b;font-weight:700">${w.hz}</span> <span class="py"><em>${w.py}</em> — ${w.es}</span>`;
+  if (mode !== 'audio-hz') speak(w.hz);
+  document.getElementById('next').style.visibility = 'visible';
+}
+
+document.getElementById('next').onclick = () => {
+  qi++;
+  if (qi >= qs.length) return results();
+  renderQ();
+};
+
+function results() {
+  document.getElementById('quiz').style.display = 'none';
+  document.getElementById('results').style.display = '';
+  const pct = Math.round(score / qs.length * 100);
+  const emoji = pct === 100 ? '🏆' : pct >= 80 ? '🎉' : pct >= 60 ? '💪' : '📖';
+  document.getElementById('final-score').innerHTML =
+    `${emoji} ${score}/${qs.length}<small>${TEMAS[tema]} · ${pct}%</small>`;
+  const $w = document.getElementById('wrong-list');
+  $w.innerHTML = wrong.length ? '<div class="lbl" style="border:none">Para repasar:</div>' : '';
+  wrong.forEach(w => {
+    const d = document.createElement('div');
+    d.innerHTML = `<span class="zh">${w.hz}</span><em>${w.py}</em><span>${w.es}</span>
+      <a href="https://www.dong-chinese.com/wiki/${encodeURIComponent(w.hz)}" target="_blank" style="margin-left:auto;color:#c0392b;text-decoration:none;">trazos ↗</a>`;
+    $w.appendChild(d);
+  });
+  /* guardar fallos para el SRS (caen a caja 1) */
+  try {
+    const srs = JSON.parse(localStorage.getItem('hsk1-srs') || '{}');
+    wrong.forEach(w => { srs[w.hz] = { box: 1, due: Date.now() }; });
+    localStorage.setItem('hsk1-srs', JSON.stringify(srs));
+  } catch (e) {}
+}
+
+document.getElementById('again').onclick = () => {
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('setup').style.display = '';
+};
+</script>
+</body>
+</html>
