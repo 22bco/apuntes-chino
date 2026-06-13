@@ -25,6 +25,16 @@
   .toc a { text-decoration:none; font-size:.8em; color:#444; background:#fff; border:1px solid #e6e6ec; border-radius:20px; padding:6px 12px; transition:all .15s; white-space:nowrap; }
   .toc a:hover { border-color:var(--red); color:var(--red); transform:translateY(-1px); }
   .toc a .n { color:var(--muted); font-size:.85em; margin-left:3px; }
+  /* filtro por nivel HSK */
+  .hsk-filter { display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin-bottom:16px; }
+  .hsk-filter .hf-label { font-size:.78em; color:var(--muted); font-weight:600; margin-right:2px; }
+  .hf-btn { font-family:inherit; font-size:.78em; font-weight:600; color:#555; background:#fff; border:1px solid #e6e6ec; border-radius:20px; padding:6px 14px; cursor:pointer; transition:all .15s; }
+  .hf-btn:hover { border-color:var(--navy); color:var(--navy); transform:translateY(-1px); }
+  .hf-btn.active { background:var(--navy); color:#fff; border-color:var(--navy); }
+  .hf-btn[data-hsk="1"].active { background:#1d7a43; border-color:#1d7a43; }
+  .hf-btn[data-hsk="2"].active { background:#1f6aa8; border-color:#1f6aa8; }
+  .hf-btn[data-hsk="3"].active { background:#7d3ca8; border-color:#7d3ca8; }
+  .hf-btn[data-hsk="0"].active { background:#777; border-color:#777; }
   /* secciones por categoría */
   .cat-h { display:flex; align-items:center; gap:9px; color:#fff; padding:9px 16px; border-radius:10px; margin:30px 0 14px; font-size:1.05em; font-weight:700; scroll-margin-top:14px; }
   .cat-h .count { margin-left:auto; font-size:.72em; font-weight:500; opacity:.85; background:rgba(255,255,255,.18); padding:2px 9px; border-radius:20px; }
@@ -93,6 +103,14 @@
 <main>
   <div class="intro">
     💡 <strong>Cómo leerlos:</strong> muchos radicales cambian de forma al combinarse — 人 (persona) se comprime en <span class="zh" style="color:#d4820a">亻</span> a la izquierda (你, 他), y 水 (agua) se vuelve <span class="zh" style="color:#d4820a">氵</span> (没, 汉). Cada ficha te explica el porqué del significado para que no haya que memorizar a ciegas.
+  </div>
+  <div class="hsk-filter" id="hskFilter">
+    <span class="hf-label">Nivel:</span>
+    <button class="hf-btn active" data-hsk="all">Todos</button>
+    <button class="hf-btn" data-hsk="1">HSK 1</button>
+    <button class="hf-btn" data-hsk="2">HSK 2</button>
+    <button class="hf-btn" data-hsk="3">HSK 3</button>
+    <button class="hf-btn" data-hsk="0">HSK 3+</button>
   </div>
   <nav class="toc" id="toc"></nav>
   <div id="sections"></div>
@@ -285,12 +303,15 @@ Object.keys(CATS).forEach(key => {
   chip.href = '#cat-' + key;
   chip.innerHTML = `${meta.emoji} ${meta.label}<span class="n">${items.length}</span>`;
   $toc.appendChild(chip);
+  // bloque de la categoría (para poder ocultarlo entero al filtrar)
+  const block = document.createElement('section');
+  block.className = 'cat-block'; block.dataset.cat = key;
   // encabezado
   const h = document.createElement('div');
   h.className = 'cat-h'; h.id = 'cat-' + key;
   h.style.background = meta.color;
   h.innerHTML = `<span>${meta.emoji}</span><span>${meta.label}</span><span class="count">${items.length}</span>`;
-  $sections.appendChild(h);
+  block.appendChild(h);
   // grilla
   const grid = document.createElement('div');
   grid.className = 'grid';
@@ -298,6 +319,7 @@ Object.keys(CATS).forEach(key => {
     const card = document.createElement('div');
     card.className = 'rad';
     card.dataset.hz = rad;
+    card.dataset.level = String(RAD_LEVEL[rad]);
     const ejHtml = ej.filter(Boolean).length
       ? `<div class="ej"><span class="t">ejemplos:</span>${ej.filter(Boolean).map(e => `<a data-hz="${e}" data-rad="${rad}">${e}</a>`).join('')}</div>` : '';
     const lv = lvlInfo(RAD_LEVEL[rad]);
@@ -313,7 +335,34 @@ Object.keys(CATS).forEach(key => {
       </div>${ejHtml}`;
     grid.appendChild(card);
   });
-  $sections.appendChild(grid);
+  block.appendChild(grid);
+  $sections.appendChild(block);
+});
+
+/* ── Filtro por nivel HSK ── */
+function applyHskFilter(level) {
+  document.querySelectorAll('.cat-block').forEach(block => {
+    let visible = 0;
+    block.querySelectorAll('.rad').forEach(card => {
+      const show = level === 'all' || card.dataset.level === level;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    block.style.display = visible ? '' : 'none';
+    block.querySelector('.cat-h .count').textContent = visible;
+    const chip = document.querySelector(`.toc a[href="#cat-${block.dataset.cat}"]`);
+    if (chip) {
+      chip.style.display = visible ? '' : 'none';
+      chip.querySelector('.n').textContent = visible;
+    }
+  });
+}
+document.querySelectorAll('.hf-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.hf-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyHskFilter(btn.dataset.hsk);
+  });
 });
 
 /* ── Audio: mapping.json + fallback Web Speech ── */
