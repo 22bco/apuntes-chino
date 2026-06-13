@@ -168,6 +168,7 @@
   <button class="mode-btn" data-scope="150">Núcleo (150)</button>
   <button class="mode-btn" data-scope="errores">🔁 Errores (<span id="errCount">0</span>)</button>
   <button class="mode-btn" id="timerToggle">⏱ Timer: off</button>
+  <button class="mode-btn" id="sprintToggle">⚡ 60s</button>
 </div>
 <div class="cat-bar" id="catBar"></div>
 
@@ -182,6 +183,7 @@
     <span class="score">⭐ <span id="score">0</span> pts</span>
     <span class="streak">🔥 <span id="streak">0</span></span>
     <span class="mult" id="mult"></span>
+    <span class="score" id="sprintClock" style="display:none">⚡ <span id="sprintLeft">60</span>s</span>
   </div>
 
   <div id="gameArea">
@@ -226,6 +228,7 @@
     </div>
     <div class="actions">
       <button class="btn btn-check" id="againBtn">Jugar de nuevo</button>
+      <button class="btn btn-skip" id="shareBtn">📤 Compartir</button>
     </div>
   </div>
 
@@ -254,15 +257,36 @@ let history = [];
 let inputMode = 'pinyin';   // 'pinyin' | 'hanzi' | 'choice'
 let scope = 'all';          // 'all' | '150' | 'errores'
 let catFilter = 'all';
-let score = 0, streak = 0;
+let score = 0, streak = 0, bestStreak = 0;
 let timerEnabled = false, timerId = null;
+let roundMode = 'normal';   // 'normal' | 'sprint'
+let sprintId = null, sprintLeft = 0;
+const SPRINT_SECONDS = 60;
 
-/* ── localStorage: récords y errores persistentes ── */
+/* ── localStorage: récords, errores y SRS persistentes ── */
 function loadStore() {
   try { return JSON.parse(localStorage.typing_hsk1 || '{}'); } catch (e) { return {}; }
 }
-let store = Object.assign({ records: {}, failed: {} }, loadStore());
+let store = Object.assign({ records: {}, failed: {}, srs: {} }, loadStore());
+if (!store.srs) store.srs = {};
 function saveStore() { localStorage.typing_hsk1 = JSON.stringify(store); }
+
+/* ── SRS ligero: intervalos en días; las vencidas van primero en la cola ── */
+const SRS_DAYS = [1, 3, 7, 21];
+const DAY_MS = 24 * 60 * 60 * 1000;
+function srsDue(hz) {
+  const s = store.srs[hz];
+  return s ? s.due <= Date.now() : false;
+}
+function srsHit(hz) {
+  const s = store.srs[hz] || { level: -1 };
+  s.level = Math.min(s.level + 1, SRS_DAYS.length - 1);
+  s.due = Date.now() + SRS_DAYS[s.level] * DAY_MS;
+  store.srs[hz] = s;
+}
+function srsMiss(hz) {
+  store.srs[hz] = { level: 0, due: Date.now() };  // vencida ya: vuelve pronto
+}
 function updateErrCount() {
   document.getElementById('errCount').textContent = Object.keys(store.failed).length;
 }
@@ -312,11 +336,21 @@ function buildPool() {
 
 function startRound() {
   const pool = buildPool();
-  queue = shuffle(pool.slice()).slice(0, ROUND_SIZE);
+  queue = shuffle(pool.slice());
+  if (roundMode === 'sprint') {
+    startSprintClock();
+  } else {
+    stopSprintClock();
+    // SRS: las vencidas entran sí o sí a la ronda y salen primero
+    // (la cola se consume con pop, así que van al final del array)
+    const due = shuffle(pool.filter(w => srsDue(w.hz)));
+    const rest = shuffle(pool.filter(w => !srsDue(w.hz)));
+    queue = due.concat(rest).slice(0, ROUND_SIZE).reverse();
+  }
   failedRound = [];
   stats = { total: 0, correct: 0, wrong: 0 };
-  score = 0; streak = 0;
-  document.getElementById('roundSize').textContent = queue.length;
+  score = 0; streak = 0; bestStreak = 0;
+  document.getElementById('roundSize').textContent = roundMode === 'sprint' ? '∞' : queue.length;
   document.getElementById('summary').className = 'summary';
   document.getElementById('gameArea').style.display = '';
   updateStats();
@@ -331,6 +365,22 @@ function startRound() {
     return;
   }
   loadNext();
+}
+
+function startSprintClock() {
+  stopSprintClock();
+  sprintLeft = SPRINT_SECONDS;
+  document.getElementById('sprintClock').style.display = '';
+  document.getElementById('sprintLeft').textContent = sprintLeft;
+  sprintId = setInterval(() => {
+    sprintLeft--;
+    document.getElementById('sprintLeft').textContent = Math.max(sprintLeft, 0);
+    if (sprintLeft <= 0) { stopSprintClock(); endRound(); }
+  }, 1000);
+}
+function stopSprintClock() {
+  if (sprintId) { clearInterval(sprintId); sprintId = null; }
+  document.getElementById('sprintClock').style.display = roundMode === 'sprint' ? '' : 'none';
 }
 
 function clearTimer() {
@@ -435,17 +485,20 @@ function multiplier() { return streak >= 10 ? 3 : streak >= 5 ? 2 : 1; }
 
 function registerHit() {
   streak++;
+  bestStreak = Math.max(bestStreak, streak);
   score += 10 * multiplier();
   if (current.hz in store.failed) {
     store.failed[current.hz]--;
     if (store.failed[current.hz] <= 0) delete store.failed[current.hz];
-    saveStore(); updateErrCount();
   }
+  srsHit(current.hz);
+  saveStore(); updateErrCount();
 }
 
 function registerMiss() {
   streak = 0;
   store.failed[current.hz] = 2;  // 2 aciertos para sacarla del repaso
+  srsMiss(current.hz);
   saveStore(); updateErrCount();
 }
 
@@ -514,17 +567,21 @@ function updateStats() {
   document.getElementById('progressFill').style.width = pct + '%';
 }
 
-function recordKey() { return inputMode + (scope === '150' ? '-150' : ''); }
+function recordKey() {
+  return (roundMode === 'sprint' ? 'sprint-' : '') + inputMode + (scope === '150' ? '-150' : '');
+}
 
 function endRound() {
   clearTimer();
+  stopSprintClock();
   document.getElementById('gameArea').style.display = 'none';
   const summary = document.getElementById('summary');
   summary.className = 'summary show';
   const pct = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
   document.getElementById('summaryPct').textContent = pct + '%';
   document.getElementById('summarySub').textContent =
-    stats.correct + ' de ' + stats.total + ' correctas · ⭐ ' + score + ' pts · modo ' + inputMode +
+    stats.correct + ' de ' + stats.total + ' correctas · ⭐ ' + score + ' pts · 🔥 racha máx ' + bestStreak +
+    ' · modo ' + inputMode + (roundMode === 'sprint' ? ' · ⚡ 60s' : '') +
     (scope === '150' ? ' · núcleo 150' : scope === 'errores' ? ' · repaso de errores' : '');
 
   const key = recordKey();
@@ -589,6 +646,27 @@ document.getElementById('skipBtn').addEventListener('click', skipQuestion);
 document.getElementById('nextBtn').addEventListener('click', loadNext);
 document.getElementById('againBtn').addEventListener('click', startRound);
 document.getElementById('resultAudio').addEventListener('click', () => playAudio());
+
+document.getElementById('sprintToggle').addEventListener('click', () => {
+  roundMode = roundMode === 'sprint' ? 'normal' : 'sprint';
+  document.getElementById('sprintToggle').classList.toggle('active', roundMode === 'sprint');
+  startRound();
+});
+
+document.getElementById('shareBtn').addEventListener('click', () => {
+  const text = '⌨️ Typing HSK1: ⭐ ' + score + ' pts · ' + stats.correct + '/' + stats.total +
+    ' correctas · 🔥 racha máx ' + bestStreak +
+    (roundMode === 'sprint' ? ' en 60s' : '') + ' — https://chino.basti.cl/typing.html';
+  if (navigator.share) {
+    navigator.share({ text }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('shareBtn');
+      btn.textContent = '✅ Copiado';
+      setTimeout(() => { btn.textContent = '📤 Compartir'; }, 1500);
+    });
+  }
+});
 
 document.getElementById('timerToggle').addEventListener('click', () => {
   timerEnabled = !timerEnabled;

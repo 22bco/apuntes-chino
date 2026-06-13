@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lluvia HSK1 · Apuntes Chino — Basti</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f7f2f0; --paper: #fffdfc; --ink: #1c1c1e; --muted: #9a9a9e;
+    --red: #c0392b; --red-bright: #e74c3c; --red-soft: #fdecea; --red-tint: #f6d8d3;
+    --green: #2f8f4e; --gold: #d4820a;
+    --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  }
+  body {
+    font-family: 'Noto Sans SC', -apple-system, Arial, sans-serif; color: var(--ink); min-height: 100vh;
+    background: var(--bg);
+    background-image:
+      radial-gradient(60% 26% at 100% 0%, rgba(231,76,60,.08), transparent 70%),
+      radial-gradient(50% 22% at 0% 0%, rgba(192,57,43,.06), transparent 70%);
+    background-repeat: no-repeat;
+  }
+  .zh { font-family: 'Noto Sans SC', var(--mono); }
+  .top-bar { height: 4px; background: linear-gradient(90deg, var(--red), var(--red-bright), #f0a39b); }
+
+  .header { padding: 22px 24px 4px; max-width: 640px; margin: 0 auto; font-family: var(--mono); }
+  .header .back { color: var(--red); text-decoration: none; font-size: 0.8rem; }
+  .header .back:hover { text-decoration: underline; }
+  .header h1 { font-size: 1.3rem; font-weight: 700; margin-top: 8px; letter-spacing: -.3px; }
+  .header h1 .zh { color: var(--red); font-weight: 500; font-size: 0.78em; margin-left: 8px; }
+
+  .hud { display: flex; justify-content: center; gap: 22px; padding: 8px 24px; font-family: var(--mono); font-size: 0.9em; }
+  .hud .score { color: var(--gold); font-weight: 700; }
+  .hud .lives { color: var(--red-bright); font-weight: 700; }
+  .hud .level { color: var(--muted); }
+
+  .game-wrap { max-width: 640px; margin: 0 auto; padding: 0 24px 30px; }
+  .sky {
+    position: relative; height: 56vh; min-height: 360px; overflow: hidden;
+    background: var(--paper); border: 1px solid #f0e6e3; border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.04);
+  }
+  .floor { position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: linear-gradient(90deg, var(--red), var(--red-bright)); opacity: .6; }
+
+  .word {
+    position: absolute; padding: 6px 14px; border-radius: 10px; white-space: nowrap;
+    background: var(--red-soft); border: 1.5px solid var(--red-tint); color: var(--ink);
+    font-weight: 600; font-size: 0.95em; will-change: transform;
+  }
+  .word.danger { background: #fff0f0; border-color: var(--red-bright); }
+  .word .pts { font-size: 0.7em; color: var(--muted); margin-left: 6px; font-family: var(--mono); }
+  .splash {
+    position: absolute; font-weight: 700; color: var(--green); text-align: center;
+    animation: rise 0.9s ease-out forwards; pointer-events: none; z-index: 5;
+  }
+  .splash .hz { font-size: 1.5em; }
+  .splash .py { font-size: 0.8em; color: var(--red); display: block; }
+  @keyframes rise { to { transform: translateY(-36px); opacity: 0; } }
+  .lost-flash { animation: flash 0.4s; }
+  @keyframes flash { 0% { background: var(--red-soft); } 100% { background: var(--paper); } }
+
+  /* Overlays: inicio y game over */
+  .overlay {
+    position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 14px; background: rgba(255,253,252,.94); z-index: 10;
+    border-radius: 16px; text-align: center; padding: 24px;
+  }
+  .overlay h2 { font-family: var(--mono); font-size: 1.2em; }
+  .overlay p { color: var(--muted); font-size: 0.86em; max-width: 380px; }
+  .overlay .big { font-size: 2.4em; font-weight: 700; font-family: var(--mono); color: var(--red); }
+  .overlay .record { color: var(--gold); font-family: var(--mono); font-size: 0.9em; font-weight: 700; }
+  .btn { padding: 10px 26px; border-radius: 10px; border: none; cursor: pointer; font-size: 0.9em; font-weight: 600; font-family: var(--mono); transition: all .15s; }
+  .btn-play { background: var(--red); color: #fff; }
+  .btn-play:hover { background: #a93226; }
+  .scope-row { display: flex; gap: 8px; }
+  .scope-btn { padding: 6px 14px; border-radius: 8px; border: 1px solid #e5ddda; background: var(--paper); color: var(--muted); cursor: pointer; font-size: 0.78em; font-family: var(--mono); }
+  .scope-btn.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+  .input-row { margin-top: 14px; }
+  .answer-input {
+    width: 100%; padding: 13px 18px; border: 1.5px solid var(--red-tint); border-radius: 12px;
+    font-size: 1.1em; font-family: var(--mono); text-align: center; background: var(--paper);
+    transition: border-color .2s, box-shadow .2s; outline: none;
+  }
+  .answer-input:focus { border-color: var(--red); box-shadow: 0 0 0 3px var(--red-soft); }
+  .answer-input.miss { animation: shake 0.25s; border-color: var(--red-bright); }
+  @keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+  .input-hint { color: var(--muted); font-size: 0.76em; margin-top: 8px; font-family: var(--mono); text-align: center; }
+
+  footer { text-align: center; color: var(--muted); font-size: 0.78rem; padding: 18px; font-family: var(--mono); }
+  footer a { color: var(--red); }
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+<div class="header">
+  <a class="back" href="/">← chino.basti.cl</a>
+  <h1>🌧️ lluvia<span class="zh">下雨了</span></h1>
+</div>
+
+<div class="hud">
+  <span class="score">⭐ <span id="score">0</span></span>
+  <span class="lives" id="lives">❤️❤️❤️</span>
+  <span class="level">nivel <span id="level">1</span></span>
+  <span class="level">🏆 <span id="recordHud">0</span></span>
+</div>
+
+<div class="game-wrap">
+  <div class="sky" id="sky">
+    <div class="floor"></div>
+
+    <div class="overlay" id="startOverlay">
+      <h2>🌧️ Lluvia de palabras</h2>
+      <p>Caen palabras en español: escribe su <strong>pinyin</strong> (sin tonos) y presiona Enter para reventarlas antes de que toquen el piso. Tienes 3 vidas.</p>
+      <div class="scope-row">
+        <button class="scope-btn active" data-scope="150">Núcleo (150)</button>
+        <button class="scope-btn" data-scope="all">HSK1 (300)</button>
+      </div>
+      <button class="btn btn-play" id="playBtn">Jugar</button>
+    </div>
+
+    <div class="overlay" id="overOverlay" style="display:none">
+      <h2>💀 Fin del juego</h2>
+      <div class="big" id="finalScore">0</div>
+      <div class="record" id="finalRecord"></div>
+      <p id="finalDetail"></p>
+      <button class="btn btn-play" id="againBtn">Jugar de nuevo</button>
+    </div>
+  </div>
+
+  <div class="input-row">
+    <input type="text" class="answer-input" id="answerInput" placeholder="pinyin + Enter…" autocomplete="off" autocapitalize="off" spellcheck="false" disabled>
+    <div class="input-hint">El pinyin sin tonos basta: "pengyou" revienta 朋友 · La velocidad sube cada 8 palabras</div>
+  </div>
+</div>
+
+<footer>Lluvia HSK1 · Apuntes Chino · <a href="https://basti.cl" style="color:inherit">basti.cl</a></footer>
+
+<script>
+const AUDIO_BASE = '/audio/';
+let vocab = [], pool = [];
+let words = [];            // {el, item, y, speed}
+let lives = 3, score = 0, level = 1, destroyed = 0;
+let running = false;
+let lastSpawn = 0, rafId = null, lastTs = 0;
+let scope = '150';
+
+const BASE_FALL = 18;      // px/segundo en nivel 1
+const BASE_SPAWN = 3800;   // ms entre palabras en nivel 1
+const WORDS_PER_LEVEL = 8;
+
+function record() { try { return JSON.parse(localStorage.lluvia_hsk1 || '{}')[scope] || 0; } catch (e) { return 0; } }
+function saveRecord(v) {
+  let s = {};
+  try { s = JSON.parse(localStorage.lluvia_hsk1 || '{}'); } catch (e) {}
+  s[scope] = v;
+  localStorage.lluvia_hsk1 = JSON.stringify(s);
+}
+
+fetch('/vocab_hsk1.json').then(r => r.json()).then(data => {
+  vocab = data;
+  document.getElementById('recordHud').textContent = record();
+});
+
+function normalize(str) {
+  return str.toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[。？，！、：'’ʼ\s]/g, '')
+    .replace(/v/g, 'u')
+    .trim();
+}
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function playAudio(item) {
+  if (item.audio) { new Audio(AUDIO_BASE + item.audio).play(); return; }
+  const u = new SpeechSynthesisUtterance(item.hz);
+  u.lang = 'zh-CN'; u.rate = 0.8;
+  speechSynthesis.speak(u);
+}
+
+function startGame() {
+  pool = shuffle(vocab.filter(w => scope === 'all' || w.banda === 150).slice());
+  words.forEach(w => w.el.remove());
+  words = [];
+  lives = 3; score = 0; level = 1; destroyed = 0;
+  lastSpawn = 0; lastTs = 0;
+  running = true;
+  updateHud();
+  document.getElementById('startOverlay').style.display = 'none';
+  document.getElementById('overOverlay').style.display = 'none';
+  const input = document.getElementById('answerInput');
+  input.disabled = false;
+  input.value = '';
+  input.focus();
+  rafId = requestAnimationFrame(tick);
+}
+
+function spawnWord() {
+  if (pool.length === 0) pool = shuffle(vocab.filter(w => scope === 'all' || w.banda === 150).slice());
+  const item = pool.pop();
+  const sky = document.getElementById('sky');
+  const el = document.createElement('div');
+  el.className = 'word';
+  el.textContent = item.es;
+  sky.appendChild(el);
+  const maxX = Math.max(sky.clientWidth - el.offsetWidth - 10, 10);
+  el.style.left = (10 + Math.random() * maxX) + 'px';
+  const speed = BASE_FALL * (1 + (level - 1) * 0.35);
+  words.push({ el, item, y: -el.offsetHeight, speed });
+}
+
+function tick(ts) {
+  if (!running) return;
+  if (!lastTs) lastTs = ts;
+  const dt = (ts - lastTs) / 1000;
+  lastTs = ts;
+
+  const spawnEvery = Math.max(BASE_SPAWN * Math.pow(0.88, level - 1), 1200);
+  if (ts - lastSpawn > spawnEvery) { spawnWord(); lastSpawn = ts; }
+
+  const sky = document.getElementById('sky');
+  const floorY = sky.clientHeight - 10;
+  for (let i = words.length - 1; i >= 0; i--) {
+    const w = words[i];
+    w.y += w.speed * dt;
+    w.el.style.transform = `translateY(${w.y}px)`;
+    if (w.y > floorY * 0.72) w.el.classList.add('danger');
+    if (w.y + w.el.offsetHeight >= floorY) {
+      loseLife(w);
+      words.splice(i, 1);
+    }
+  }
+  rafId = requestAnimationFrame(tick);
+}
+
+function loseLife(w) {
+  w.el.remove();
+  lives--;
+  updateHud();
+  const sky = document.getElementById('sky');
+  sky.classList.remove('lost-flash');
+  void sky.offsetWidth;  // reiniciar la animación
+  sky.classList.add('lost-flash');
+  // mostrar qué era
+  splash(w.el.style.left, sky.clientHeight - 70, w.item, false);
+  if (lives <= 0) gameOver();
+}
+
+function splash(left, y, item, good) {
+  const sky = document.getElementById('sky');
+  const s = document.createElement('div');
+  s.className = 'splash';
+  s.style.left = left;
+  s.style.top = y + 'px';
+  s.style.color = good ? 'var(--green)' : 'var(--red-bright)';
+  s.innerHTML = `<span class="hz zh">${item.hz}</span><span class="py">${item.py}</span>`;
+  sky.appendChild(s);
+  setTimeout(() => s.remove(), 900);
+}
+
+function tryAnswer() {
+  const input = document.getElementById('answerInput');
+  const val = normalize(input.value);
+  if (!val) return;
+  // la palabra que coincida y vaya más abajo
+  let best = -1;
+  for (let i = 0; i < words.length; i++) {
+    if (normalize(words[i].item.py) === val && (best === -1 || words[i].y > words[best].y)) best = i;
+  }
+  if (best === -1) {
+    input.classList.remove('miss');
+    void input.offsetWidth;
+    input.classList.add('miss');
+    return;
+  }
+  const w = words.splice(best, 1)[0];
+  splash(w.el.style.left, w.y, w.item, true);
+  w.el.remove();
+  playAudio(w.item);
+  destroyed++;
+  score += 10 * level;
+  if (destroyed % WORDS_PER_LEVEL === 0) level++;
+  updateHud();
+  input.value = '';
+}
+
+function updateHud() {
+  document.getElementById('score').textContent = score;
+  document.getElementById('lives').textContent = '❤️'.repeat(Math.max(lives, 0)) || '💔';
+  document.getElementById('level').textContent = level;
+  document.getElementById('recordHud').textContent = Math.max(record(), score);
+}
+
+function gameOver() {
+  running = false;
+  cancelAnimationFrame(rafId);
+  words.forEach(w => w.el.remove());
+  words = [];
+  document.getElementById('answerInput').disabled = true;
+  const prev = record();
+  document.getElementById('finalScore').textContent = '⭐ ' + score;
+  document.getElementById('finalDetail').textContent =
+    destroyed + ' palabras reventadas · nivel ' + level + (scope === '150' ? ' · núcleo 150' : ' · HSK1 completo');
+  if (score > prev) {
+    saveRecord(score);
+    document.getElementById('finalRecord').textContent = '🏆 ¡Nuevo récord! (anterior: ' + prev + ')';
+  } else {
+    document.getElementById('finalRecord').textContent = prev > 0 ? '🏆 Récord: ' + prev : '';
+  }
+  document.getElementById('overOverlay').style.display = '';
+}
+
+/* ── Eventos ── */
+document.getElementById('playBtn').addEventListener('click', startGame);
+document.getElementById('againBtn').addEventListener('click', startGame);
+document.getElementById('answerInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.isComposing) tryAnswer();
+});
+document.querySelectorAll('.scope-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.scope-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    scope = btn.dataset.scope;
+    document.getElementById('recordHud').textContent = record();
+  });
+});
+</script>
+</body>
+</html>

@@ -128,6 +128,14 @@
   .hbar-row.b3 .bar { background: linear-gradient(90deg, var(--gold), var(--gold-bright)); }
   .hbar-row .val { color: var(--muted); font-variant-numeric: tabular-nums; }
   .viz-note { font-size: 0.7rem; color: var(--muted); margin-top: 10px; }
+  .viz-split { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .donut-wrap { display: flex; align-items: center; gap: 16px; }
+  .legend-tones { display: flex; flex-direction: column; gap: 4px; font-size: 0.72rem; color: #777; }
+  .legend-tones .sw { display: inline-block; width: 9px; height: 9px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+  .hanzi-cloud { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
+  .hanzi-cloud a { font-family: 'Noto Sans SC', var(--mono); text-decoration: none; color: var(--red); line-height: 1.1; transition: transform .12s; }
+  .hanzi-cloud a:hover { transform: scale(1.18); color: var(--red-bright); }
+  @media (max-width: 600px) { .viz-split { grid-template-columns: 1fr; } }
 
   /* ---------- TOOLS ---------- */
   .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 11px; }
@@ -191,7 +199,7 @@
     <div class="hsk-bar"><div class="fill" id="hsk-fill"></div></div>
     <div class="hsk-meta">
       <span><b id="hsk-vistas">143</b>/150 palabras ya vistas en clases</span>
-      <span id="hsk-temas">temas publicados: en construcción</span>
+      <span id="hsk-temas">14/14 temas publicados ✓</span>
     </div>
   </a>
 
@@ -269,6 +277,21 @@
     <div class="viz-note">Fuente: vocab.json (Básico 2 y 3; el vocabulario de Básico 1 aún no está indexado).</div>
   </div>
 
+  <div class="viz viz-split">
+    <div class="viz-half">
+      <h3>Distribución de tonos del vocabulario</h3>
+      <div class="donut-wrap">
+        <svg id="tone-donut" viewBox="0 0 120 120" width="130" height="130" role="img" aria-label="Distribución de tonos"></svg>
+        <div class="legend-tones" id="tone-legend"></div>
+      </div>
+    </div>
+    <div class="viz-half">
+      <h3>Los 20 hanzi más frecuentes</h3>
+      <div class="hanzi-cloud" id="hanzi-cloud"><span class="viz-note">cargando…</span></div>
+      <div class="viz-note">Contados sobre las frases con audio. Toca uno para ver sus trazos.</div>
+    </div>
+  </div>
+
   <div class="label">Herramientas</div>
   <div class="tools-grid">
     <a class="tool-card" href="/flashcards.html">
@@ -286,6 +309,10 @@
     <a class="tool-card" href="/typing.html">
       <span class="tool-ico">⌨️</span>
       <div><h3>Typing HSK1</h3><p>Lee en español y escribe en pinyin o hanzi. Las 300 palabras del HSK 1.</p></div>
+    </a>
+    <a class="tool-card" href="/lluvia.html">
+      <span class="tool-ico">🌧️</span>
+      <div><h3>Lluvia HSK1</h3><p>Arcade: revienta las palabras que caen escribiendo su pinyin.</p></div>
     </a>
     <a class="tool-card" href="/pinyin.html">
       <span class="tool-ico">🔤</span>
@@ -317,7 +344,8 @@ Promise.all([
   fetch('/vocab.json').then(r => r.json()),
   fetch('/audio/mapping.json').then(r => r.json()),
   fetch('/hsk1/hsk1-data.json').then(r => r.json()),
-]).then(([vocab, mapping, hsk]) => {
+  fetch('/audio/vocab_listening.json').then(r => r.json()).catch(() => []),
+]).then(([vocab, mapping, hsk, frases]) => {
   countUp(document.getElementById('h-palabras'), vocab.length);
   countUp(document.getElementById('h-audios'), Object.keys(mapping).length);
 

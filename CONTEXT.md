@@ -280,6 +280,14 @@ Al hacer push a `main`:
   clásico) y `audio` (todas tienen MP3)
 - Gamificación: puntaje con combos (x2/x3), timer opcional 15 s, récords y
   repaso de errores persistentes en `localStorage.typing_hsk1`
+- v3: modo ⚡ sprint 60 s, SRS ligero (intervalos 1/3/7/21 días, vencidas
+  primero en la ronda) y botón compartir
+
+### `lluvia.html`
+- Arcade: palabras en español caen y se "revientan" escribiendo su pinyin
+  (sin tonos) antes de que toquen el piso; 3 vidas, velocidad sube cada
+  8 palabras, récord en `localStorage.lluvia_hsk1`
+- Misma fuente: `vocab_hsk1.json` (núcleo 150 o las 300)
 
 ### `hsk1/` (carpeta)
 - Página de cobertura HSK1: las 150 palabras clásicas cruzadas con las clases
