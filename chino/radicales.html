@@ -12,37 +12,60 @@
   .zh { font-family:'Noto Sans SC',sans-serif; }
   header { background:radial-gradient(120% 120% at 0% 0%, #2a2a4a 0%, var(--navy) 55%, #131322 100%); color:#fff; padding:40px 24px 50px; position:relative; overflow:hidden; }
   header::after { content:"部首"; position:absolute; right:-8px; bottom:-28px; font-family:'Noto Sans SC',sans-serif; font-size:7.5rem; font-weight:700; color:rgba(231,76,60,.1); letter-spacing:-7px; line-height:1; pointer-events:none; }
-  .hin { max-width:880px; margin:0 auto; position:relative; z-index:1; }
+  .hin { max-width:920px; margin:0 auto; position:relative; z-index:1; }
   .crumb { color:#c9c9d6; text-decoration:none; font-size:.82em; opacity:.85; }
   .crumb:hover { opacity:1; }
   header h1 { font-size:1.9em; margin-top:12px; }
   header h1 .zh { color:var(--red-bright); }
-  header p { color:#b9b9c8; font-size:.9em; margin-top:8px; max-width:600px; line-height:1.55; }
-  main { max-width:880px; margin:-22px auto 0; padding:0 18px 60px; position:relative; z-index:2; }
-  .intro { background:#fff; border:1px solid #ececf0; border-radius:14px; padding:16px 18px; font-size:.88em; color:#555; line-height:1.6; box-shadow:0 1px 3px rgba(0,0,0,.05); margin-bottom:20px; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(255px, 1fr)); gap:13px; }
-  .rad { background:#fff; border:1px solid #ececf0; border-radius:14px; padding:16px; box-shadow:0 1px 3px rgba(0,0,0,.04); transition:box-shadow .2s, transform .2s; }
+  header p { color:#b9b9c8; font-size:.9em; margin-top:8px; max-width:640px; line-height:1.55; }
+  main { max-width:920px; margin:-22px auto 0; padding:0 18px 60px; position:relative; z-index:2; }
+  .intro { background:#fff; border:1px solid #ececf0; border-radius:14px; padding:16px 18px; font-size:.88em; color:#555; line-height:1.6; box-shadow:0 1px 3px rgba(0,0,0,.05); margin-bottom:18px; }
+  /* índice de categorías */
+  .toc { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:24px; }
+  .toc a { text-decoration:none; font-size:.8em; color:#444; background:#fff; border:1px solid #e6e6ec; border-radius:20px; padding:6px 12px; transition:all .15s; white-space:nowrap; }
+  .toc a:hover { border-color:var(--red); color:var(--red); transform:translateY(-1px); }
+  .toc a .n { color:var(--muted); font-size:.85em; margin-left:3px; }
+  /* secciones por categoría */
+  .cat-h { display:flex; align-items:center; gap:9px; color:#fff; padding:9px 16px; border-radius:10px; margin:30px 0 14px; font-size:1.05em; font-weight:700; scroll-margin-top:14px; }
+  .cat-h .count { margin-left:auto; font-size:.72em; font-weight:500; opacity:.85; background:rgba(255,255,255,.18); padding:2px 9px; border-radius:20px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(248px, 1fr)); gap:12px; }
+  .rad { background:#fff; border:1px solid #ececf0; border-radius:14px; padding:15px; box-shadow:0 1px 3px rgba(0,0,0,.04); transition:box-shadow .2s, transform .2s; cursor:pointer; }
   .rad:hover { box-shadow:0 10px 26px rgba(26,26,46,.12); transform:translateY(-2px); }
   .rad-top { display:flex; align-items:center; gap:13px; }
-  .rad-hz { font-family:'Noto Sans SC',sans-serif; font-size:2.3em; font-weight:700; color:var(--red); cursor:pointer; line-height:1; transition:transform .12s; }
-  .rad-hz:hover { transform:scale(1.12); }
+  .rad-hz { font-family:'Noto Sans SC',sans-serif; font-size:2.3em; font-weight:700; color:var(--red); line-height:1; }
+  .rad-meta { min-width:0; }
   .rad-meta .name { font-weight:700; font-size:.95em; }
   .rad-meta .name em { font-family:Inter,sans-serif; color:var(--muted); font-weight:400; font-size:.86em; }
   .rad-meta .var { font-size:.74em; color:var(--muted); margin-top:2px; }
   .rad-meta .var .zh { color:var(--gold); font-weight:700; font-size:1.25em; }
-  .ej { margin-top:11px; display:flex; flex-wrap:wrap; gap:5px; align-items:center; }
+  .rad-meta .strokes { font-size:.72em; color:var(--muted); }
+  .ej { margin-top:10px; display:flex; flex-wrap:wrap; gap:5px; align-items:center; }
   .ej span.t { font-size:.66em; color:var(--muted); text-transform:uppercase; letter-spacing:.6px; margin-right:2px; }
   .ej a { font-family:'Noto Sans SC',sans-serif; text-decoration:none; color:#333; background:#f6f6f9; border:1px solid #ececf2; border-radius:7px; padding:3px 7px; font-size:1em; transition:all .12s; cursor:pointer; }
   .ej a:hover { background:#fdecea; border-color:#f1ddda; color:var(--red); }
-  .hint { font-size:.74em; color:var(--muted); text-align:center; margin:18px 0 6px; }
-  /* modal de trazos */
+  .hint { font-size:.74em; color:var(--muted); text-align:center; margin:26px 0 6px; }
+  /* modal */
   .modal { position:fixed; inset:0; background:rgba(20,20,34,.55); display:none; place-items:center; z-index:100; padding:20px; }
   .modal.open { display:grid; }
-  .mbox { background:#fff; border-radius:18px; padding:24px; text-align:center; box-shadow:0 24px 60px rgba(0,0,0,.35); max-width:340px; width:100%; }
-  .mbox h3 { font-size:1em; margin-bottom:4px; }
-  .mbox .sub { font-size:.8em; color:var(--muted); margin-bottom:12px; }
-  #writer { width:220px; height:220px; margin:0 auto; background:repeating-linear-gradient(0deg, transparent, transparent 109px, #f3d3cf 109px, #f3d3cf 111px, transparent 111px), repeating-linear-gradient(90deg, transparent, transparent 109px, #f3d3cf 109px, #f3d3cf 111px, transparent 111px), #fffdfc; border:2px dashed #f1ddda; border-radius:12px; }
-  .mbtns { display:flex; gap:8px; justify-content:center; margin-top:14px; flex-wrap:wrap; }
+  .mbox { background:#fff; border-radius:18px; padding:22px 24px 24px; text-align:center; box-shadow:0 24px 60px rgba(0,0,0,.35); max-width:380px; width:100%; max-height:92vh; overflow-y:auto; }
+  .m-hz { font-family:'Noto Sans SC',sans-serif; font-size:2.6em; font-weight:700; color:var(--red); line-height:1.1; }
+  .m-info { display:none; }
+  .m-info.on { display:block; }
+  .m-py { font-size:1.05em; color:#555; margin-top:2px; }
+  .m-py .audio { background:none; border:none; cursor:pointer; opacity:.55; font-size:.85em; margin-left:4px; }
+  .m-py .audio:hover { opacity:1; }
+  .m-es { font-weight:700; font-size:1.05em; margin-top:6px; }
+  .m-tags { font-size:.76em; color:var(--muted); margin-top:4px; }
+  .m-tags .zh { color:var(--gold); font-weight:700; font-size:1.2em; }
+  .m-nota { background:#f6f3ee; border-left:4px solid var(--gold); border-radius:0 8px 8px 0; padding:9px 13px; font-size:.84em; color:#6d6253; text-align:left; margin:12px 0 4px; line-height:1.5; }
+  .sub { font-size:.78em; color:var(--muted); margin:12px 0 8px; }
+  #writer { width:200px; height:200px; margin:0 auto; background:repeating-linear-gradient(0deg, transparent, transparent 99px, #f3d3cf 99px, #f3d3cf 101px, transparent 101px), repeating-linear-gradient(90deg, transparent, transparent 99px, #f3d3cf 99px, #f3d3cf 101px, transparent 101px), #fffdfc; border:2px dashed #f1ddda; border-radius:12px; }
+  .m-ej { margin-top:14px; }
+  .m-ej .t { font-size:.66em; color:var(--muted); text-transform:uppercase; letter-spacing:.6px; display:block; margin-bottom:6px; }
+  .m-ej .row { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; }
+  .m-ej a { font-family:'Noto Sans SC',sans-serif; text-decoration:none; color:#333; background:#f6f6f9; border:1px solid #ececf2; border-radius:8px; padding:5px 10px; font-size:1.15em; cursor:pointer; transition:all .12s; }
+  .m-ej a:hover { background:#fdecea; border-color:#f1ddda; color:var(--red); }
+  .mbtns { display:flex; gap:8px; justify-content:center; margin-top:16px; flex-wrap:wrap; }
   .mbtns button, .mbtns a { font-family:inherit; font-size:.84em; border-radius:20px; padding:8px 16px; cursor:pointer; text-decoration:none; }
   .mbtns .replay { background:var(--navy); color:#fff; border:none; }
   .mbtns .dong { background:#fff; color:var(--red); border:1.5px solid #f1ddda; }
@@ -56,23 +79,31 @@
   <div class="hin">
     <a class="crumb" href="/">← Todos los apuntes</a>
     <h1>🧩 Radicales <span class="zh">部首</span></h1>
-    <p>Los 30 radicales que más aparecen en tu vocabulario. Conocerlos convierte caracteres "imposibles" en piezas con lógica: el radical aporta el <strong>significado</strong> y el resto suele aportar el <strong>sonido</strong>. Toca cualquier carácter para ver sus trazos animados ✍️.</p>
+    <p>Cerca de <strong>100 radicales</strong> agrupados por significado. El radical es la pieza que aporta el <strong>sentido</strong> del carácter (el resto suele dar el <strong>sonido</strong>). Toca cualquiera para ver su significado, pinyin, origen y los trazos animados ✍️.</p>
   </div>
 </header>
 
 <main>
   <div class="intro">
-    💡 <strong>Cómo leerlos:</strong> muchos radicales cambian de forma al combinarse — 人 (persona) se comprime en <span class="zh" style="color:#d4820a">亻</span> cuando va a la izquierda (你, 他), y 水 (agua) se vuelve <span class="zh" style="color:#d4820a">氵</span> (没, 汉). Los ejemplos salen de tus clases: si reconoces la palabra, ya conoces el radical.
+    💡 <strong>Cómo leerlos:</strong> muchos radicales cambian de forma al combinarse — 人 (persona) se comprime en <span class="zh" style="color:#d4820a">亻</span> a la izquierda (你, 他), y 水 (agua) se vuelve <span class="zh" style="color:#d4820a">氵</span> (没, 汉). Cada ficha te explica el porqué del significado para que no haya que memorizar a ciegas.
   </div>
-  <div class="grid" id="grid"></div>
-  <div class="hint">✍️ Toca un radical o un ejemplo para ver la animación de trazos · datos de <a href="https://hanziwriter.org" target="_blank" style="color:#c0392b">HanziWriter</a></div>
+  <nav class="toc" id="toc"></nav>
+  <div id="sections"></div>
+  <div class="hint">✍️ Toca un radical o un ejemplo para ver su ficha y la animación de trazos · datos de <a href="https://hanziwriter.org" target="_blank" style="color:#c0392b">HanziWriter</a></div>
 </main>
 
 <div class="modal" id="modal">
   <div class="mbox">
-    <h3 id="m-title" class="zh">字</h3>
-    <div class="sub" id="m-sub"></div>
+    <div class="m-hz zh" id="m-hz">字</div>
+    <div class="m-info" id="m-info">
+      <div class="m-py" id="m-py"></div>
+      <div class="m-es" id="m-es"></div>
+      <div class="m-tags" id="m-tags"></div>
+      <div class="m-nota" id="m-nota"></div>
+    </div>
+    <div class="sub" id="m-sub">orden de trazos</div>
     <div id="writer"></div>
+    <div class="m-ej" id="m-ej" style="display:none"><span class="t">caracteres que lo usan</span><div class="row" id="m-ej-row"></div></div>
     <div class="mbtns">
       <button class="replay" id="m-replay">▶️ Repetir</button>
       <a class="dong" id="m-dong" target="_blank" href="#">dong-chinese ↗</a>
@@ -85,86 +116,244 @@
 
 <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
 <script>
-/* radical, forma combinada (o ''), pinyin, significado, ejemplos del curso */
+/* Categorías: clave → {emoji, label, color} (orden de aparición) */
+const CATS = {
+  persona:    { emoji:'🙋', label:'Persona y relaciones', color:'#c0392b' },
+  cuerpo:     { emoji:'🫀', label:'Cuerpo y mente',        color:'#e74c3c' },
+  naturaleza: { emoji:'🌊', label:'Naturaleza y clima',    color:'#2980b9' },
+  plantas:    { emoji:'🌿', label:'Plantas',               color:'#27ae60' },
+  animales:   { emoji:'🐾', label:'Animales',              color:'#d4820a' },
+  objetos:    { emoji:'🔨', label:'Objetos y herramientas',color:'#8e44ad' },
+  lugar:      { emoji:'🏠', label:'Construcción y lugar',  color:'#16a085' },
+  comida:     { emoji:'🍚', label:'Comida y recipientes',  color:'#d35400' },
+  habla:      { emoji:'🗣️', label:'Habla y conocimiento',  color:'#34495e' },
+  movimiento: { emoji:'🚶', label:'Movimiento y camino',   color:'#1976d2' },
+  trazos:     { emoji:'✏️', label:'Trazos básicos y medida',color:'#555' },
+};
+
+/* rad, varia (''=no cambia), py, es, trazos, cat, nota, ejemplos */
 const RADICALES = [
-  ['人', '亻', 'rén', 'persona', ['你', '他', '们', '什', '住']],
-  ['口', '', 'kǒu', 'boca', ['吃', '喝', '叫', '吗', '呢', '哪']],
-  ['女', '', 'nǚ', 'mujer', ['妈', '她', '好', '姐', '妹']],
-  ['心', '忄', 'xīn', 'corazón', ['想', '忙', '快']],
-  ['手', '扌', 'shǒu', 'mano', ['打', '我']],
-  ['水', '氵', 'shuǐ', 'agua', ['没', '汉', '渴', '酒']],
-  ['火', '灬', 'huǒ', 'fuego', ['热', '点', '烤']],
-  ['木', '', 'mù', 'árbol / madera', ['本', '杯', '校', '椅', '果']],
-  ['日', '', 'rì', 'sol / día', ['明', '早', '星', '时', '昨']],
-  ['月', '', 'yuè', 'luna / carne', ['朋', '期', '半']],
-  ['土', '', 'tǔ', 'tierra', ['在', '坐', '地']],
-  ['金', '钅', 'jīn', 'metal / oro', ['钱', '钟']],
-  ['言', '讠', 'yán', 'palabra / hablar', ['说', '请', '谢', '课', '谁', '语']],
-  ['走', '辶', 'zǒu', 'caminar / moverse', ['这', '还', '过', '进', '边']],
-  ['食', '饣', 'shí', 'comida', ['饭', '饿', '馆']],
-  ['丝', '纟', 'sī', 'seda / hilo', ['红', '给', '绿']],
-  ['雨', '', 'yǔ', 'lluvia', ['雪', '零', '雷']],
-  ['门', '', 'mén', 'puerta', ['问', '间', '们']],
-  ['马', '', 'mǎ', 'caballo (suele dar el sonido "ma")', ['吗', '妈', '骑']],
-  ['大', '', 'dà', 'grande', ['太', '天']],
-  ['子', '', 'zǐ', 'niño / hijo', ['字', '学', '孩']],
-  ['宀', '', 'mián', 'techo / casa', ['家', '字', '客', '它']],
-  ['艹', '', 'cǎo', 'pasto / planta', ['茶', '菜', '苹', '药']],
-  ['目', '', 'mù', 'ojo', ['看', '睡', '眼']],
-  ['田', '', 'tián', 'campo de cultivo', ['男', '电', '画']],
-  ['白', '', 'bái', 'blanco', ['的', '百']],
-  ['竹', '⺮', 'zhú', 'bambú', ['笔', '第', '篮']],
-  ['王', '', 'wáng', 'rey / jade', ['现', '玩', '班']],
-  ['车', '', 'chē', 'vehículo', ['辆', '较']],
-  ['足', '', 'zú', 'pie', ['跑', '跳', '路']],
+  // Persona y relaciones
+  ['人','亻','rén','persona',2,'persona','Una figura humana de pie; a la izquierda se comprime en 亻.',['你','他','们','住']],
+  ['女','','nǚ','mujer',3,'persona','Una mujer arrodillada; aparece en muchos términos de parentesco.',['妈','她','好','姐']],
+  ['子','','zǐ','niño / hijo',3,'persona','Un bebé envuelto con los brazos abiertos.',['字','学','孩']],
+  ['父','','fù','padre',4,'persona','Una mano sosteniendo un hacha: la autoridad paterna.',['爸','爷']],
+  ['大','','dà','grande',3,'persona','Una persona con los brazos bien extendidos: ¡grande!',['太','天']],
+  ['儿','','ér','hijo / piernas',2,'persona','Piernas de un niño; suele ir debajo del carácter.',['元','先','光']],
+  ['比','','bǐ','comparar',4,'persona','Dos personas lado a lado, midiéndose.',['毕']],
+  ['老','耂','lǎo','viejo',6,'persona','Un anciano encorvado con bastón.',['考','者']],
+  ['士','','shì','erudito / soldado',3,'persona','Un hacha ceremonial: el hombre culto o el guerrero.',['声','壮']],
+  // Cuerpo y mente
+  ['心','忄','xīn','corazón',4,'cuerpo','Un corazón; emociones y pensamiento. A la izquierda es 忄.',['想','忙','快','爱']],
+  ['手','扌','shǒu','mano',4,'cuerpo','Una mano abierta; acciones manuales. A la izquierda es 扌.',['打','找','拿']],
+  ['口','','kǒu','boca',3,'cuerpo','Una boca abierta; hablar, comer, sonidos.',['吃','喝','叫','吗']],
+  ['目','','mù','ojo',5,'cuerpo','Un ojo puesto de pie.',['看','睡','眼']],
+  ['耳','','ěr','oreja',6,'cuerpo','Una oreja vista de frente.',['听','取','闻']],
+  ['足','⻊','zú','pie',7,'cuerpo','Pie y pierna; movimiento a pie. A la izquierda es ⻊.',['跑','跳','路']],
+  ['月','','ròu','carne / cuerpo',4,'cuerpo','Trozo de carne (idéntico a "luna"); partes del cuerpo.',['脸','脚','胖']],
+  ['自','','zì','uno mismo / nariz',6,'cuerpo','Una nariz: en China uno se señala la nariz para decir "yo".',['息','臭']],
+  ['牙','','yá','diente',4,'cuerpo','Dientes que encajan.',['芽']],
+  ['骨','','gǔ','hueso',9,'cuerpo','Hueso con un poco de carne.',['滑']],
+  // Naturaleza y clima
+  ['水','氵','shuǐ','agua',4,'naturaleza','Una corriente; a la izquierda son las "tres gotas" 氵.',['没','汉','渴','酒']],
+  ['火','灬','huǒ','fuego',4,'naturaleza','Llamas; debajo se vuelven cuatro puntos 灬.',['热','点','烧']],
+  ['日','','rì','sol / día',4,'naturaleza','El sol con una marca dentro; tiempo y luz.',['明','早','星','时']],
+  ['月','','yuè','luna / mes',4,'naturaleza','Luna creciente; meses y noche.',['期','朗','阴']],
+  ['雨','','yǔ','lluvia',8,'naturaleza','Gotas cayendo de una nube; fenómenos del clima.',['雪','零','雷']],
+  ['山','','shān','montaña',3,'naturaleza','Tres picos.',['岁','岛']],
+  ['土','','tǔ','tierra',3,'naturaleza','Un montículo de tierra sobre el suelo.',['在','坐','地']],
+  ['石','','shí','piedra',5,'naturaleza','Una roca al pie de un acantilado.',['码','破']],
+  ['气','','qì','aire / vapor',4,'naturaleza','Vapor que se eleva en el aire.',['汽','氧']],
+  ['冫','','bīng','hielo',2,'naturaleza','Dos gotas heladas ("hielo"); idea de frío.',['冷','次','准']],
+  ['田','','tián','campo de cultivo',5,'naturaleza','Un campo dividido en parcelas.',['男','电','画']],
+  ['川','','chuān','río',3,'naturaleza','Tres líneas de agua corriente.',['州','顺']],
+  // Plantas
+  ['木','','mù','árbol / madera',4,'plantas','Un árbol con tronco, ramas y raíces.',['本','杯','校','果']],
+  ['艹','','cǎo','planta / hierba',3,'plantas','Dos brotes que asoman; va siempre arriba.',['茶','菜','苹','药']],
+  ['竹','⺮','zhú','bambú',6,'plantas','Dos cañas de bambú; arriba se aplana en ⺮.',['笔','第','篮']],
+  ['禾','','hé','cereal / grano',5,'plantas','Una espiga de cereal inclinada por el peso.',['和','秋','种']],
+  ['米','','mǐ','arroz',6,'plantas','Granos de arroz separados por un eje.',['类','粉']],
+  // Animales
+  ['马','','mǎ','caballo',3,'animales','Un caballo con su crin; suele dar el sonido "ma".',['吗','妈','骑']],
+  ['鸟','','niǎo','pájaro',5,'animales','Un ave de perfil con su pico.',['鸡','鸭','鹅']],
+  ['鱼','','yú','pez',8,'animales','Un pez completo, con cabeza y cola.',['鲜']],
+  ['虫','','chóng','insecto / bicho',6,'animales','Un gusano o insecto.',['虽','蚊']],
+  ['犬','犭','quǎn','perro',4,'animales','Un perro; a la izquierda es 犭.',['狗','猫','猪']],
+  ['牛','','niú','vaca / buey',4,'animales','Cabeza de buey con cuernos.',['物','特']],
+  ['羊','','yáng','oveja',6,'animales','Cabeza de oveja vista de frente.',['美','样']],
+  ['隹','','zhuī','ave de cola corta',8,'animales','Pájaro robusto de cola corta.',['难','售']],
+  ['贝','','bèi','concha / dinero',4,'animales','Una concha de cauri: se usaban como moneda.',['贵','财','购']],
+  // Objetos y herramientas
+  ['刀','刂','dāo','cuchillo',2,'objetos','Una hoja afilada; a la derecha es 刂.',['分','到','别']],
+  ['力','','lì','fuerza',2,'objetos','Un brazo en tensión o un arado: esfuerzo.',['男','办','加']],
+  ['金','钅','jīn','metal / oro',8,'objetos','Pepitas de metal bajo tierra; a la izquierda es 钅.',['钱','钟','银']],
+  ['车','','chē','vehículo',4,'objetos','Un carro visto desde arriba.',['辆','较','轻']],
+  ['门','','mén','puerta',3,'objetos','Las dos hojas de una puerta.',['问','间','闷']],
+  ['衣','衤','yī','ropa',6,'objetos','Una prenda con cuello y mangas; a la izquierda es 衤.',['初','衫','袋']],
+  ['巾','','jīn','paño / tela',3,'objetos','Un trapo colgando de un soporte.',['帮','带','常']],
+  ['弓','','gōng','arco',3,'objetos','Un arco de tiro.',['张','弟','强']],
+  ['工','','gōng','trabajo / herramienta',3,'objetos','Una escuadra de carpintero.',['左','功','江']],
+  ['几','','jǐ','mesita',2,'objetos','Una mesa baja.',['机','凡']],
+  ['皿','','mǐn','recipiente',5,'objetos','Un cuenco visto de frente.',['盘','盐','益']],
+  ['纟','','sī','seda / hilo',3,'objetos','Una madeja de hilo de seda.',['红','给','绿']],
+  ['王','','wáng','rey / jade',4,'objetos','Tres discos de jade ensartados (como radical = jade).',['现','玩','班']],
+  // Construcción y lugar
+  ['宀','','mián','techo / casa',3,'lugar','Un tejado: todo lo que ocurre bajo techo.',['家','字','客','它']],
+  ['广','','guǎng','cobertizo',3,'lugar','Un techo abierto apoyado en un muro.',['店','床','应']],
+  ['厂','','chǎng','risco / galpón',2,'lugar','Un acantilado o cobertizo abierto.',['厅','历']],
+  ['户','','hù','puerta de una hoja',4,'lugar','Media puerta: un hogar, una familia.',['房','所']],
+  ['囗','','wéi','recinto',3,'lugar','Un cercado completamente cerrado.',['国','回','因']],
+  ['阜','阝','fù','colina (a la izquierda)',2,'lugar','阝 a la IZQUIERDA = colina, montículo.',['院','阳','阴']],
+  ['邑','阝','yì','ciudad (a la derecha)',2,'lugar','阝 a la DERECHA = ciudad, pueblo.',['都','那','邮']],
+  ['穴','','xué','cueva',5,'lugar','Una cueva o abertura en la tierra.',['空','穿','窗']],
+  ['里','','lǐ','aldea / interior',7,'lugar','Campo (田) sobre tierra (土): una aldea.',['野','理']],
+  // Comida y recipientes
+  ['食','饣','shí','comida',9,'comida','Tapa sobre un cuenco lleno; a la izquierda es 饣.',['饭','饿','馆','饱']],
+  ['酉','','yǒu','jarra de licor',7,'comida','Una vasija de vino fermentado.',['酒','醋','配']],
+  ['豆','','dòu','vasija / frijol',7,'comida','Una vasija ritual con tapa; luego "frijol".',['短','登']],
+  // Habla y conocimiento
+  ['言','讠','yán','hablar / palabra',7,'habla','Sonidos que salen de la boca; a la izquierda es 讠.',['说','请','谢','课']],
+  ['文','','wén','escritura / cultura',4,'habla','Líneas entrelazadas: un texto, lo culto.',['这','刘']],
+  ['立','','lì','estar de pie',5,'habla','Una persona de pie firme sobre el suelo.',['站','音','亲']],
+  ['见','','jiàn','ver',4,'habla','Un ojo (目) sobre piernas: ir a mirar.',['觉','视','观']],
+  ['页','','yè','página / cabeza',6,'habla','Una cabeza; hoy también significa "página".',['顾','题','顺']],
+  ['音','','yīn','sonido',9,'habla','Sonido que sale de la boca (言 con una marca).',['意','章']],
+  // Movimiento y camino
+  ['辶','','chuò','avanzar / camino',4,'movimiento','Pie + camino: ir, desplazarse (la "zancada").',['这','还','过','进']],
+  ['彳','','chì','paso (a la izquierda)',3,'movimiento','Un cruce de caminos; idea de andar.',['很','得','往']],
+  ['走','','zǒu','caminar / correr',7,'movimiento','Una persona en movimiento sobre un pie.',['起','越','超']],
+  ['止','','zhǐ','detener / pie',4,'movimiento','Una huella: parar, o el pie mismo.',['正','步','武']],
+  ['行','','xíng','andar / hilera',6,'movimiento','Un cruce de calles: andar, una fila.',['街','衡']],
+  ['飞','','fēi','volar',3,'movimiento','Un ave alzando el vuelo.',['']],
+  // Trazos básicos y medida
+  ['一','','yī','uno',1,'trazos','Un trazo horizontal: el número uno.',['二','三','不']],
+  ['丨','','gǔn','línea vertical',1,'trazos','Un trazo vertical que atraviesa.',['中','旧']],
+  ['丶','','zhǔ','punto',1,'trazos','Una gota o punto suelto.',['主','为']],
+  ['八','','bā','ocho / dividir',2,'trazos','Dos trazos que se separan: dividir, repartir.',['分','公','共']],
+  ['十','','shí','diez',2,'trazos','Un cruce completo: el número diez.',['古','华','南']],
+  ['又','','yòu','mano derecha / otra vez',2,'trazos','Una mano derecha; acción que se repite.',['友','双','对']],
+  ['寸','','cùn','pulgada / mano',3,'trazos','Una mano con la marca del pulso: medida corta.',['对','村','寺']],
+  ['小','','xiǎo','pequeño',3,'trazos','Tres puntitos: algo chico.',['少','尖']],
+  ['匕','','bǐ','cuchara',2,'trazos','Una cuchara (o persona invertida).',['北','化']],
+  ['卜','','bǔ','adivinación',2,'trazos','Grietas de un hueso oracular.',['外','卡']],
+  ['厶','','sī','privado',2,'trazos','Un brazo que rodea: lo propio.',['去','私']],
+  ['卩','','jié','sello',2,'trazos','Una persona arrodillada (un sello).',['印','却']],
 ];
 
-const $g = document.getElementById('grid');
-RADICALES.forEach(([rad, varia, py, es, ejemplos]) => {
-  const card = document.createElement('div');
-  card.className = 'rad';
-  card.innerHTML = `
-    <div class="rad-top">
-      <span class="rad-hz" data-hz="${rad}">${rad}</span>
-      <div class="rad-meta">
-        <div class="name">${es} <em>· ${py}</em></div>
-        <div class="var">${varia ? `forma combinada: <span class="zh">${varia}</span>` : 'no cambia de forma'}</div>
-      </div>
-    </div>
-    <div class="ej"><span class="t">en tu vocab:</span>${ejemplos.map(e => `<a data-hz="${e}">${e}</a>`).join('')}</div>`;
-  $g.appendChild(card);
+/* Índice por hanzi del radical (para la ficha rica) */
+const BY_HZ = {};
+RADICALES.forEach(r => { BY_HZ[r[0]] = r; });
+
+/* ── Render de secciones por categoría ── */
+const $sections = document.getElementById('sections');
+const $toc = document.getElementById('toc');
+Object.keys(CATS).forEach(key => {
+  const meta = CATS[key];
+  const items = RADICALES.filter(r => r[5] === key);
+  if (!items.length) return;
+  // chip del índice
+  const chip = document.createElement('a');
+  chip.href = '#cat-' + key;
+  chip.innerHTML = `${meta.emoji} ${meta.label}<span class="n">${items.length}</span>`;
+  $toc.appendChild(chip);
+  // encabezado
+  const h = document.createElement('div');
+  h.className = 'cat-h'; h.id = 'cat-' + key;
+  h.style.background = meta.color;
+  h.innerHTML = `<span>${meta.emoji}</span><span>${meta.label}</span><span class="count">${items.length}</span>`;
+  $sections.appendChild(h);
+  // grilla
+  const grid = document.createElement('div');
+  grid.className = 'grid';
+  items.forEach(([rad, varia, py, es, trazos, cat, nota, ej]) => {
+    const card = document.createElement('div');
+    card.className = 'rad';
+    card.dataset.hz = rad;
+    const ejHtml = ej.filter(Boolean).length
+      ? `<div class="ej"><span class="t">ejemplos:</span>${ej.filter(Boolean).map(e => `<a data-hz="${e}">${e}</a>`).join('')}</div>` : '';
+    card.innerHTML = `
+      <div class="rad-top">
+        <span class="rad-hz zh">${rad}</span>
+        <div class="rad-meta">
+          <div class="name">${es} <em>· ${py}</em></div>
+          <div class="var">${varia ? `forma combinada: <span class="zh">${varia}</span>` : 'no cambia de forma'}</div>
+          <div class="strokes">${trazos} ${trazos === 1 ? 'trazo' : 'trazos'}</div>
+        </div>
+      </div>${ejHtml}`;
+    grid.appendChild(card);
+  });
+  $sections.appendChild(grid);
 });
 
-/* Modal con HanziWriter */
+/* ── Audio: mapping.json + fallback Web Speech ── */
+let MAP = {};
+fetch('/audio/mapping.json').then(r => r.json()).then(m => { MAP = m; }).catch(() => {});
+function speak(hz) {
+  const file = MAP[hz];
+  if (file) { new Audio('/audio/' + file).play(); return; }
+  const u = new SpeechSynthesisUtterance(hz);
+  u.lang = 'zh-CN'; u.rate = 0.7; speechSynthesis.speak(u);
+}
+
+/* ── Modal con ficha enriquecida + HanziWriter ── */
 const $modal = document.getElementById('modal');
-let writer = null, currentHz = '';
+let writer = null;
 
 function openWriter(hz) {
-  currentHz = hz;
-  document.getElementById('m-title').textContent = hz;
-  document.getElementById('m-sub').textContent = 'orden de trazos';
+  const info = document.getElementById('m-info');
+  document.getElementById('m-hz').textContent = hz;
   document.getElementById('m-dong').href = 'https://www.dong-chinese.com/wiki/' + encodeURIComponent(hz);
+
+  const data = BY_HZ[hz];
+  if (data) {
+    const [rad, varia, py, es, trazos, cat, nota, ej] = data;
+    document.getElementById('m-py').innerHTML = `${py} <button class="audio" id="m-audio" title="Escuchar">🔊</button>`;
+    document.getElementById('m-es').textContent = es;
+    document.getElementById('m-tags').innerHTML =
+      `${trazos} ${trazos === 1 ? 'trazo' : 'trazos'}` +
+      (varia ? ` · forma combinada <span class="zh">${varia}</span>` : '');
+    document.getElementById('m-nota').textContent = nota;
+    info.classList.add('on');
+    document.getElementById('m-audio').onclick = () => speak(rad);
+    // ejemplos dentro del modal
+    const ejs = ej.filter(Boolean);
+    const ejBox = document.getElementById('m-ej');
+    if (ejs.length) {
+      document.getElementById('m-ej-row').innerHTML = ejs.map(e => `<a data-hz="${e}">${e}</a>`).join('');
+      ejBox.style.display = '';
+    } else { ejBox.style.display = 'none'; }
+    document.getElementById('m-sub').textContent = 'orden de trazos';
+  } else {
+    // carácter de ejemplo (no es radical): ficha mínima
+    info.classList.remove('on');
+    document.getElementById('m-ej').style.display = 'none';
+    document.getElementById('m-sub').textContent = 'carácter de ejemplo · orden de trazos';
+  }
+
   document.getElementById('writer').innerHTML = '';
   $modal.classList.add('open');
   try {
     writer = HanziWriter.create('writer', hz, {
-      width: 220, height: 220, padding: 12,
+      width: 200, height: 200, padding: 10,
       strokeColor: '#c0392b', radicalColor: '#d4820a',
       strokeAnimationSpeed: 1.1, delayBetweenStrokes: 220, showOutline: true,
     });
     writer.animateCharacter();
   } catch (e) {
+    writer = null;
     document.getElementById('writer').innerHTML =
       '<div style="display:grid;place-items:center;height:100%;font-size:.8em;color:#8a8a93;padding:14px;">Sin datos de trazos para este carácter — míralo en dong-chinese ↗</div>';
   }
 }
+
 document.addEventListener('click', (e) => {
   const t = e.target.closest('[data-hz]');
-  if (t) openWriter(t.dataset.hz);
+  if (t) { e.preventDefault(); openWriter(t.dataset.hz); }
 });
 document.getElementById('m-replay').onclick = () => { if (writer) writer.animateCharacter(); };
 document.getElementById('m-close').onclick = () => $modal.classList.remove('open');
 $modal.addEventListener('click', (e) => { if (e.target === $modal) $modal.classList.remove('open'); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') $modal.classList.remove('open'); });
 </script>
 </body>
 </html>
