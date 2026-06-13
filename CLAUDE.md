@@ -16,6 +16,9 @@ Básico 3 hasta ahora: Clase 01 (la hora: 点/分/半), Clase 02 (la rutina del 
 
 ## Flujo de trabajo
 - Basti dicta cada tema en pinyin → se arma la sección HTML siguiendo el formato.
+- **Checklist al cerrar una clase**: ¿toca palabras/temas HSK 1? → actualizar
+  `chino/hsk1/hsk1-data.json` (campo `clases`) y la página del tema en `chino/hsk1/`
+  si aporta contenido nuevo. Ver sección "HSK 1 por temas" en CONTEXT.md.
 - **Generar audio ElevenLabs (voz Lily) automáticamente para cada vocabulario nuevo,
   sin preguntar.** Script reusable: ejecutar desde la raíz del repo
   (`cd /Users/bchavez/Trabajos/apuntes-chino-1`). Extrae los `hz`, filtra contra

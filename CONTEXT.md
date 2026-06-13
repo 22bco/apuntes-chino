@@ -28,10 +28,21 @@ chino/
 │
 ├── basico2/                # Básico 2 (marzo-abril 2026)
 │   ├── index.html          # Índice con cards
-│   ├── clase01.html .. clase06.html
+│   ├── clase01.html .. clase09.html
 │   └── clase**.pdf         # PDFs generados para imprimir/compartir
 │
-└── audio/                  # 1063+ archivos MP3 (voz Lily de ElevenLabs)
+├── basico3/                # Básico 3 (mayo-junio 2026, en curso)
+│   ├── index.html
+│   └── clase01.html .. clase03.html
+│
+├── hsk1/                   # ⭐ HSK 1 POR TEMAS (jun 2026) — contenido reorganizado por sílabo
+│   ├── index.html          # Hub con tracker de cobertura (150 chips, 3 estados)
+│   ├── hsk1-data.json      # DATO MAESTRO: 150 palabras {hz, py, es, tema, clases}
+│   ├── hsk1.css            # CSS compartido de las 14 páginas (única sección con CSS externo)
+│   ├── hsk1.js             # JS compartido (speak + botones 🔊 + toggle pinyin)
+│   └── 01-*.html .. 14-*.html  # 14 páginas temáticas autocontenidas
+│
+└── audio/                  # 2000+ archivos MP3 (voz Lily de ElevenLabs)
     ├── mapping.json        # Mapa texto_chino → filename.mp3
     ├── vocab_listening.json # Vocab con pinyin/español para listening tool
     └── zh_XXXXXXXXXX.mp3   # Nombres hasheados MD5 de los textos
@@ -66,6 +77,33 @@ chino/
 | 05 | 11 abr 2026 | 和, 想, 哪儿/做什么, 周 vs 星期, bebidas, 杯子 vs 杯 |
 | 06 | 18 abr 2026 | 想 vs 要, 这/那, 多少, 块/元/人民币, números |
 | 07 | 25 abr 2026 | 在+lugar+verbo, 这儿/那儿/哪儿, preposiciones (上下前后里外中旁), 正在, 的 (humanos vs cosas), profesiones, sistema educativo |
+
+---
+
+## 🎯 Sección HSK 1 por temas (chino/hsk1/)
+
+Reorganización del contenido de TODAS las clases según el sílabo oficial HSK 1
+(versión 2.0, 150 palabras), en 14 páginas temáticas autocontenidas:
+
+| # | Tema | # | Tema |
+|---|------|---|------|
+| 01 | Pronombres y saludos | 08 | Partículas 的/了/吗/呢 |
+| 02 | Identidad: 是 y 叫 | 09 | Adverbios y 和 |
+| 03 | Familia y personas | 10 | Interrogativos |
+| 04 | Números y dinero | 11 | Existencia y ubicación |
+| 05 | Fechas y días | 12 | Verbos modales y gustos |
+| 06 | La hora | 13 | Acciones y rutina |
+| 07 | Clasificadores y demostrativos | 14 | Clima, comida y cosas |
+
+**Reglas de mantenimiento:**
+- `hsk1-data.json` es el dato maestro: 150 palabras con `tema` (página dueña) y
+  `clases` (dónde se vieron). El tracker del hub y el % del dashboard se calculan de ahí.
+- **Al publicar una clase nueva**: revisar si toca palabras/temas HSK 1 → actualizar el
+  campo `clases` en hsk1-data.json y, si aporta contenido nuevo, la página del tema.
+- Dirección de sincronía única: las clases son la fuente cronológica; las páginas hsk1
+  son la referencia canónica. Las cajas `.seen-in` dan la trazabilidad.
+- Contenido que excede el sílabo → badge `<span class="beyond">más allá de HSK 1</span>`.
+- Las 14 páginas comparten `hsk1.css` y `hsk1.js` (audioMap inline por página).
 
 ---
 

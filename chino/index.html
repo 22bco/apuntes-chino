@@ -382,6 +382,69 @@ Promise.all([
   const wb2 = document.getElementById('w-b2'), wb3 = document.getElementById('w-b3');
   if (wb2) wb2.textContent = niveles.b2;
   if (wb3) wb3.textContent = niveles.b3;
+
+  /* Donut: distribución de tonos (marcas diacríticas del pinyin) */
+  const MARKS = {
+    1: 'āēīōūǖĀĒĪŌŪ', 2: 'áéíóúǘÁÉÍÓÚ', 3: 'ǎěǐǒǔǚǍĚǏǑǓ', 4: 'àèìòùǜÀÈÌÒÙ',
+  };
+  const tonos = { 1: 0, 2: 0, 3: 0, 4: 0, 0: 0 };
+  vocab.forEach(w => {
+    let marcadas = 0;
+    for (const ch of w.py) {
+      for (const t in MARKS) if (MARKS[t].includes(ch)) { tonos[t]++; marcadas++; }
+    }
+    const silabas = (w.hz.match(/[一-鿿]/g) || []).length;
+    tonos[0] += Math.max(0, silabas - marcadas);
+  });
+  const TONE_INFO = [
+    [1, '1er tono ˉ', '#e74c3c'], [2, '2º tono ˊ', '#27ae60'],
+    [3, '3er tono ˇ', '#2980b9'], [4, '4º tono ˋ', '#8e44ad'], [0, 'neutro', '#9a9a9e'],
+  ];
+  const total = Object.values(tonos).reduce((a, b) => a + b, 0) || 1;
+  const svg = document.getElementById('tone-donut');
+  const C = 2 * Math.PI * 42;
+  let offset = 0;
+  TONE_INFO.forEach(([t, lbl, color]) => {
+    const frac = tonos[t] / total;
+    const seg = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    seg.setAttribute('cx', 60); seg.setAttribute('cy', 60); seg.setAttribute('r', 42);
+    seg.setAttribute('fill', 'none'); seg.setAttribute('stroke', color); seg.setAttribute('stroke-width', 15);
+    seg.setAttribute('stroke-dasharray', `${frac * C} ${C}`);
+    seg.setAttribute('stroke-dashoffset', -offset * C);
+    seg.setAttribute('transform', 'rotate(-90 60 60)');
+    svg.appendChild(seg);
+    offset += frac;
+    const li = document.createElement('div');
+    li.innerHTML = `<span class="sw" style="background:${color}"></span>${lbl} · ${tonos[t]} (${Math.round(frac * 100)}%)`;
+    document.getElementById('tone-legend').appendChild(li);
+  });
+  const mid = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  mid.setAttribute('x', 60); mid.setAttribute('y', 64); mid.setAttribute('text-anchor', 'middle');
+  mid.setAttribute('font-size', '13'); mid.setAttribute('fill', '#9a9a9e'); mid.setAttribute('font-family', 'inherit');
+  mid.textContent = total + ' síl.';
+  svg.appendChild(mid);
+
+  /* Nube: top 20 hanzi más frecuentes en las frases con audio */
+  const freq = {};
+  frases.forEach(f => {
+    for (const ch of (f.hanzi || '')) if (/[一-鿿]/.test(ch)) freq[ch] = (freq[ch] || 0) + 1;
+  });
+  const top = Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, 20);
+  if (top.length) {
+    const $cloud = document.getElementById('hanzi-cloud');
+    $cloud.innerHTML = '';
+    const maxF = top[0][1];
+    top.forEach(([ch, n]) => {
+      const a = document.createElement('a');
+      a.href = 'https://www.dong-chinese.com/wiki/' + encodeURIComponent(ch);
+      a.target = '_blank';
+      a.textContent = ch;
+      a.title = `${ch} — aparece ${n} veces`;
+      a.style.fontSize = (0.95 + (n / maxF) * 1.25) + 'rem';
+      a.style.opacity = (0.55 + (n / maxF) * 0.45).toFixed(2);
+      $cloud.appendChild(a);
+    });
+  }
 }).catch(() => { /* sin red o file://, quedan los números estáticos */ });
 </script>
 </body>
