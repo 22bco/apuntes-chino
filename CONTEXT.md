@@ -272,6 +272,19 @@ Al hacer push a `main`:
 - Reproduce audio MP3 y el usuario escribe lo que escucha
 - Usa `vocab_listening.json` como fuente
 
+### `typing.html`
+- Juego estilo TypeChinese en español: lee la palabra en español y la escribe
+  en pinyin (sin tonos) o hanzi (IME); modo "opciones" inverso (hanzi → español)
+- Fuente: `chino/vocab_hsk1.json` — las 300 palabras oficiales del nuevo
+  HSK 3.0 nivel 1 (2026), con `cat` (12 categorías), `banda` (150 = núcleo
+  clásico) y `audio` (todas tienen MP3)
+- Gamificación: puntaje con combos (x2/x3), timer opcional 15 s, récords y
+  repaso de errores persistentes en `localStorage.typing_hsk1`
+
+### `hsk1/` (carpeta)
+- Página de cobertura HSK1: las 150 palabras clásicas cruzadas con las clases
+  donde se vieron (`hsk1-data.json`) + páginas temáticas
+
 ---
 
 ## ⚡ Tips para sesiones nuevas

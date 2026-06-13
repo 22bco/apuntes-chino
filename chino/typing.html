@@ -32,30 +32,44 @@
   .header h1 .zh { color: var(--red); font-weight: 500; font-size: 0.78em; margin-left: 8px; }
   .header p { color: var(--muted); font-size: 0.84rem; margin-top: 6px; }
 
-  /* Selectores: modo de escritura + alcance */
+  /* Selectores */
   .filters { display: flex; justify-content: center; gap: 8px; padding: 16px 24px 8px; flex-wrap: wrap; }
   .filter-btn { padding: 7px 16px; border-radius: 8px; border: 1px solid var(--red-tint); background: var(--red-soft); color: var(--red); cursor: pointer; font-size: 0.82em; font-weight: 500; font-family: var(--mono); transition: all .15s; }
   .filter-btn:hover { border-color: var(--red); transform: translateY(-1px); }
   .filter-btn.active { background: var(--red); color: #fff; border-color: var(--red); box-shadow: 0 4px 12px rgba(192,57,43,.25); }
-  .mode-bar { display: flex; justify-content: center; gap: 8px; padding: 0 24px 16px; flex-wrap: wrap; }
+  .mode-bar { display: flex; justify-content: center; gap: 8px; padding: 0 24px 8px; flex-wrap: wrap; }
   .mode-btn { padding: 5px 14px; border-radius: 8px; border: 1px solid #e5ddda; background: var(--paper); color: var(--muted); cursor: pointer; font-size: 0.78em; font-family: var(--mono); transition: all .15s; }
   .mode-btn:hover { border-color: var(--red); color: var(--red); }
   .mode-btn.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .cat-bar { display: flex; justify-content: center; gap: 6px; padding: 0 24px 16px; flex-wrap: wrap; max-width: 640px; margin: 0 auto; }
+  .cat-btn { padding: 3px 10px; border-radius: 7px; border: 1px solid #e5ddda; background: var(--paper); color: var(--muted); cursor: pointer; font-size: 0.7em; font-family: var(--mono); transition: all .15s; }
+  .cat-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .cat-btn.active { background: var(--gold); color: #fff; border-color: var(--gold); }
 
   /* Stats */
-  .stats { text-align: center; padding: 0 24px 16px; font-size: 0.86em; color: var(--muted); font-family: var(--mono); max-width: 520px; margin: 0 auto; }
+  .stats { text-align: center; padding: 0 24px 6px; font-size: 0.86em; color: var(--muted); font-family: var(--mono); max-width: 520px; margin: 0 auto; }
   .stats strong { color: var(--red); }
   .stats .correct { color: var(--green); }
   .stats .wrong { color: var(--red-bright); }
+  .scoreline { text-align: center; padding: 0 24px 14px; font-size: 0.92em; font-family: var(--mono); }
+  .scoreline .score { color: var(--gold); font-weight: 700; }
+  .scoreline .streak { color: var(--red-bright); font-weight: 700; margin-left: 14px; }
+  .scoreline .mult { color: var(--muted); font-size: 0.85em; }
   .progress-bar { height: 4px; background: #efe6e3; border-radius: 2px; margin: 0 0 8px; overflow: hidden; }
   .progress-fill { height: 100%; background: linear-gradient(90deg, var(--red), var(--red-bright)); transition: width .3s; border-radius: 2px; }
 
   .main-area { max-width: 520px; margin: 0 auto; padding: 0 24px 40px; }
 
-  /* La palabra en español a traducir */
+  /* Timer */
+  .timer-bar { height: 6px; background: #efe6e3; border-radius: 3px; margin: 0 0 14px; overflow: hidden; display: none; }
+  .timer-bar.on { display: block; }
+  .timer-fill { height: 100%; width: 100%; background: linear-gradient(90deg, var(--gold), #f0a030); border-radius: 3px; }
+
+  /* La consigna */
   .prompt-card { text-align: center; margin: 20px 0; padding: 32px 24px; background: var(--paper); border: 1px solid #f0e6e3; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,.04); }
   .prompt-label { font-size: 0.72em; text-transform: uppercase; letter-spacing: 1.4px; color: var(--muted); font-family: var(--mono); margin-bottom: 10px; }
   .prompt-es { font-size: 1.7em; font-weight: 700; line-height: 1.25; }
+  .prompt-es.hanzi-prompt { font-size: 2.6em; }
   .prompt-cat { display: inline-block; margin-top: 12px; font-size: 0.7em; color: var(--gold); border: 1px solid #f3ddb8; background: #fdf3e3; border-radius: 6px; padding: 2px 10px; font-family: var(--mono); }
 
   /* Input */
@@ -65,6 +79,15 @@
   .answer-input.correct { border-color: var(--green); background: #f0fff4; }
   .answer-input.wrong { border-color: var(--red-bright); background: #fff5f5; }
   .input-hint { color: var(--muted); font-size: 0.78em; margin-top: 8px; font-family: var(--mono); }
+
+  /* Opciones (multiple choice) */
+  .choices { display: none; flex-direction: column; gap: 10px; margin: 24px 0 0; }
+  .choices.show { display: flex; }
+  .choice-btn { padding: 13px 18px; border-radius: 12px; border: 1.5px solid var(--red-tint); background: var(--paper); cursor: pointer; font-size: 1em; font-family: 'Noto Sans SC', sans-serif; transition: all .15s; text-align: center; }
+  .choice-btn:hover { border-color: var(--red); transform: translateY(-1px); }
+  .choice-btn.good { border-color: var(--green); background: #e7f7ec; font-weight: 700; }
+  .choice-btn.bad { border-color: var(--red-bright); background: var(--red-soft); }
+  .choice-btn:disabled { cursor: default; opacity: .85; }
 
   .actions { display: flex; justify-content: center; gap: 10px; margin: 16px 0; }
   .btn { padding: 10px 24px; border-radius: 10px; border: none; cursor: pointer; font-size: 0.88em; font-weight: 600; font-family: var(--mono); transition: all .15s; }
@@ -96,7 +119,8 @@
   .summary.show { display: block; }
   .summary h2 { font-size: 1.05em; font-family: var(--mono); text-align: center; }
   .summary .big-pct { text-align: center; font-size: 2.6em; font-weight: 700; font-family: var(--mono); margin: 12px 0 4px; color: var(--red); }
-  .summary .sub { text-align: center; color: var(--muted); font-size: 0.84em; font-family: var(--mono); margin-bottom: 16px; }
+  .summary .sub { text-align: center; color: var(--muted); font-size: 0.84em; font-family: var(--mono); margin-bottom: 6px; }
+  .summary .record { text-align: center; color: var(--gold); font-size: 0.9em; font-family: var(--mono); font-weight: 700; margin-bottom: 12px; }
   .summary h3 { font-size: 0.74em; text-transform: uppercase; letter-spacing: 1.2px; color: var(--red); margin: 16px 0 10px; font-family: var(--mono); }
   .failed-item { display: flex; align-items: center; gap: 12px; padding: 8px 12px; background: var(--red-soft); border-radius: 10px; margin-bottom: 6px; font-size: 0.9em; }
   .failed-item .hz { font-weight: 700; font-size: 1.15em; }
@@ -120,6 +144,7 @@
 
   @media (max-width: 480px) {
     .prompt-es { font-size: 1.4em; }
+    .prompt-es.hanzi-prompt { font-size: 2.1em; }
     .result-hanzi { font-size: 1.8em; }
   }
 </style>
@@ -134,13 +159,17 @@
 </div>
 
 <div class="filters">
-  <button class="filter-btn active" data-input="pinyin">✍️ Pinyin (sin tonos)</button>
-  <button class="filter-btn" data-input="hanzi">⌨️ Hanzi (teclado chino)</button>
+  <button class="filter-btn active" data-input="pinyin">✍️ Pinyin</button>
+  <button class="filter-btn" data-input="hanzi">⌨️ Hanzi</button>
+  <button class="filter-btn" data-input="choice">🀄 Opciones</button>
 </div>
 <div class="mode-bar">
-  <button class="mode-btn active" data-scope="all">HSK1 completo (300)</button>
-  <button class="mode-btn" data-scope="150">Núcleo clásico (150)</button>
+  <button class="mode-btn active" data-scope="all">HSK1 (300)</button>
+  <button class="mode-btn" data-scope="150">Núcleo (150)</button>
+  <button class="mode-btn" data-scope="errores">🔁 Errores (<span id="errCount">0</span>)</button>
+  <button class="mode-btn" id="timerToggle">⏱ Timer: off</button>
 </div>
+<div class="cat-bar" id="catBar"></div>
 
 <div class="main-area">
   <div class="stats">
@@ -149,18 +178,27 @@
     <span class="correct" id="correctCount">0</span> correctas ·
     <span class="wrong" id="wrongCount">0</span> incorrectas
   </div>
+  <div class="scoreline">
+    <span class="score">⭐ <span id="score">0</span> pts</span>
+    <span class="streak">🔥 <span id="streak">0</span></span>
+    <span class="mult" id="mult"></span>
+  </div>
 
   <div id="gameArea">
+    <div class="timer-bar" id="timerBar"><div class="timer-fill" id="timerFill"></div></div>
+
     <div class="prompt-card">
-      <div class="prompt-label">Escribe en chino</div>
+      <div class="prompt-label" id="promptLabel">Escribe en chino</div>
       <div class="prompt-es" id="promptEs">…</div>
       <div class="prompt-cat" id="promptCat"></div>
     </div>
 
-    <div class="input-area">
+    <div class="input-area" id="inputArea">
       <input type="text" class="answer-input" id="answerInput" placeholder="escribe el pinyin…" autocomplete="off" autocapitalize="off" spellcheck="false">
       <div class="input-hint" id="inputHint">Sin tonos: "mingtian" vale por 明天 · Enter para verificar</div>
     </div>
+
+    <div class="choices" id="choices"></div>
 
     <div class="actions">
       <button class="btn btn-check" id="checkBtn">Verificar</button>
@@ -181,6 +219,7 @@
     <h2>🏁 Fin de la ronda</h2>
     <div class="big-pct" id="summaryPct">0%</div>
     <div class="sub" id="summarySub"></div>
+    <div class="record" id="summaryRecord"></div>
     <div id="failedSection">
       <h3>Para repasar</h3>
       <div id="failedList"></div>
@@ -201,19 +240,36 @@
 <script>
 const AUDIO_BASE = '/audio/';
 const ROUND_SIZE = 20;
+const TIMER_SECONDS = 15;
+const CATS = ['pronombres','numeros','tiempo','familia','personas','lugares','comida','verbos','adjetivos','particulas','objetos','expresiones'];
+const CAT_LABELS = { pronombres:'pronombres', numeros:'números', tiempo:'tiempo', familia:'familia', personas:'personas', lugares:'lugares', comida:'comida', verbos:'verbos', adjetivos:'adjetivos', particulas:'partículas', objetos:'objetos', expresiones:'expresiones' };
+
 let vocab = [];
-let queue = [];        // palabras restantes de la ronda
-let failed = [];       // falladas de la ronda
+let queue = [];
+let failedRound = [];
 let current = null;
 let answered = false;
 let stats = { total: 0, correct: 0, wrong: 0 };
 let history = [];
-let inputMode = 'pinyin';   // 'pinyin' | 'hanzi'
-let scope = 'all';          // 'all' | '150'
+let inputMode = 'pinyin';   // 'pinyin' | 'hanzi' | 'choice'
+let scope = 'all';          // 'all' | '150' | 'errores'
+let catFilter = 'all';
+let score = 0, streak = 0;
+let timerEnabled = false, timerId = null;
+
+/* ── localStorage: récords y errores persistentes ── */
+function loadStore() {
+  try { return JSON.parse(localStorage.typing_hsk1 || '{}'); } catch (e) { return {}; }
+}
+let store = Object.assign({ records: {}, failed: {} }, loadStore());
+function saveStore() { localStorage.typing_hsk1 = JSON.stringify(store); }
+function updateErrCount() {
+  document.getElementById('errCount').textContent = Object.keys(store.failed).length;
+}
 
 fetch('/vocab_hsk1.json')
   .then(r => r.json())
-  .then(data => { vocab = data; startRound(); });
+  .then(data => { vocab = data; buildCatBar(); updateErrCount(); startRound(); });
 
 function normalize(str) {
   return str.toLowerCase()
@@ -231,34 +287,134 @@ function shuffle(arr) {
   return arr;
 }
 
+function buildCatBar() {
+  const bar = document.getElementById('catBar');
+  bar.innerHTML = '<button class="cat-btn active" data-cat="all">todas</button>' +
+    CATS.map(c => `<button class="cat-btn" data-cat="${c}">${CAT_LABELS[c]}</button>`).join('');
+  bar.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      bar.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      catFilter = btn.dataset.cat;
+      startRound();
+    });
+  });
+}
+
+function buildPool() {
+  return vocab.filter(w => {
+    if (scope === '150' && w.banda !== 150) return false;
+    if (scope === 'errores' && !(w.hz in store.failed)) return false;
+    if (catFilter !== 'all' && w.cat !== catFilter) return false;
+    return true;
+  });
+}
+
 function startRound() {
-  const pool = vocab.filter(w => scope === 'all' || w.banda === 150);
+  const pool = buildPool();
   queue = shuffle(pool.slice()).slice(0, ROUND_SIZE);
-  failed = [];
+  failedRound = [];
   stats = { total: 0, correct: 0, wrong: 0 };
+  score = 0; streak = 0;
   document.getElementById('roundSize').textContent = queue.length;
   document.getElementById('summary').className = 'summary';
   document.getElementById('gameArea').style.display = '';
   updateStats();
+  if (queue.length === 0) {
+    document.getElementById('promptEs').textContent =
+      scope === 'errores' ? '🎉 No tienes errores pendientes en este filtro' : 'No hay palabras con este filtro';
+    document.getElementById('promptCat').textContent = '';
+    document.getElementById('inputArea').style.display = 'none';
+    document.getElementById('choices').className = 'choices';
+    document.getElementById('checkBtn').style.display = 'none';
+    document.getElementById('skipBtn').style.display = 'none';
+    return;
+  }
   loadNext();
+}
+
+function clearTimer() {
+  if (timerId) { clearTimeout(timerId); timerId = null; }
+  const fill = document.getElementById('timerFill');
+  fill.style.transition = 'none';
+  fill.style.width = '100%';
+}
+
+function armTimer() {
+  if (!timerEnabled) return;
+  const fill = document.getElementById('timerFill');
+  // reiniciar la animación: ancho 100% sin transición y luego a 0 con transición
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    fill.style.transition = `width ${TIMER_SECONDS}s linear`;
+    fill.style.width = '0%';
+  }));
+  timerId = setTimeout(() => {
+    if (!answered && current) {
+      answered = true;
+      registerMiss();
+      showResult(false, '⏱ Tiempo agotado');
+      history.unshift({ hz: current.hz, py: current.py, answer: '(tiempo)', correct: false });
+      renderHistory();
+    }
+  }, TIMER_SECONDS * 1000);
 }
 
 function loadNext() {
   if (queue.length === 0) { endRound(); return; }
+  clearTimer();
   current = queue.pop();
   answered = false;
 
-  document.getElementById('promptEs').textContent = current.es;
-  document.getElementById('promptCat').textContent = current.cat + (current.banda === 150 ? ' · núcleo 150' : '');
+  const promptEs = document.getElementById('promptEs');
+  const promptLabel = document.getElementById('promptLabel');
+  if (inputMode === 'choice') {
+    promptLabel.textContent = '¿Qué significa?';
+    promptEs.textContent = current.hz;
+    promptEs.className = 'prompt-es hanzi-prompt zh';
+    buildChoices();
+  } else {
+    promptLabel.textContent = 'Escribe en chino';
+    promptEs.textContent = current.es;
+    promptEs.className = 'prompt-es';
+  }
+  document.getElementById('promptCat').textContent =
+    CAT_LABELS[current.cat] + (current.banda === 150 ? ' · núcleo 150' : '');
+
   const input = document.getElementById('answerInput');
   input.value = '';
   input.className = 'answer-input';
   input.disabled = false;
   document.getElementById('result').className = 'result';
-  document.getElementById('checkBtn').style.display = '';
+  document.getElementById('inputArea').style.display = inputMode === 'choice' ? 'none' : '';
+  document.getElementById('choices').className = inputMode === 'choice' ? 'choices show' : 'choices';
+  document.getElementById('checkBtn').style.display = inputMode === 'choice' ? 'none' : '';
   document.getElementById('skipBtn').style.display = '';
   document.getElementById('nextBtn').style.display = 'none';
-  input.focus();
+  if (inputMode !== 'choice') input.focus();
+  armTimer();
+}
+
+function buildChoices() {
+  const wrong = shuffle(vocab.filter(w => w.hz !== current.hz && w.es !== current.es).slice()).slice(0, 3);
+  const options = shuffle([current, ...wrong]);
+  const box = document.getElementById('choices');
+  box.innerHTML = options.map(o => `<button class="choice-btn" data-hz="${o.hz}">${o.es}</button>`).join('');
+  box.querySelectorAll('.choice-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (answered) return;
+      answered = true;
+      const ok = btn.dataset.hz === current.hz;
+      box.querySelectorAll('.choice-btn').forEach(b => {
+        b.disabled = true;
+        if (b.dataset.hz === current.hz) b.classList.add('good');
+        else if (b === btn && !ok) b.classList.add('bad');
+      });
+      if (ok) registerHit(); else registerMiss();
+      showResult(ok, ok ? '¡Correcto! 🎉' : 'Incorrecto');
+      history.unshift({ hz: current.hz, py: current.py, answer: btn.textContent, correct: ok });
+      renderHistory();
+    });
+  });
 }
 
 function playAudio(item) {
@@ -275,7 +431,26 @@ function isAnswerCorrect(userAnswer) {
   return normalize(userAnswer) === normalize(current.py);
 }
 
+function multiplier() { return streak >= 10 ? 3 : streak >= 5 ? 2 : 1; }
+
+function registerHit() {
+  streak++;
+  score += 10 * multiplier();
+  if (current.hz in store.failed) {
+    store.failed[current.hz]--;
+    if (store.failed[current.hz] <= 0) delete store.failed[current.hz];
+    saveStore(); updateErrCount();
+  }
+}
+
+function registerMiss() {
+  streak = 0;
+  store.failed[current.hz] = 2;  // 2 aciertos para sacarla del repaso
+  saveStore(); updateErrCount();
+}
+
 function showResult(isCorrect, title) {
+  clearTimer();
   const input = document.getElementById('answerInput');
   const result = document.getElementById('result');
   stats.total++;
@@ -285,11 +460,12 @@ function showResult(isCorrect, title) {
     result.className = 'result correct show';
   } else {
     stats.wrong++;
-    failed.push(current);
+    failedRound.push(current);
     input.className = 'answer-input wrong';
     result.className = 'result wrong show';
   }
-  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultTitle').textContent = title +
+    (isCorrect && multiplier() > 1 ? `  +${10 * multiplier()} pts (x${multiplier()})` : '');
   const hzLink = document.getElementById('resultHanzi');
   hzLink.textContent = current.hz;
   hzLink.href = 'https://www.dong-chinese.com/wiki/' + encodeURIComponent(current.hz);
@@ -305,11 +481,12 @@ function showResult(isCorrect, title) {
 }
 
 function checkAnswer() {
-  if (!current || answered) return;
+  if (!current || answered || inputMode === 'choice') return;
   const userAnswer = document.getElementById('answerInput').value;
   if (!userAnswer.trim()) return;
   answered = true;
   const ok = isAnswerCorrect(userAnswer);
+  if (ok) registerHit(); else registerMiss();
   showResult(ok, ok ? '¡Correcto! 🎉' : 'Incorrecto');
   history.unshift({ hz: current.hz, py: current.py, answer: userAnswer.trim(), correct: ok });
   renderHistory();
@@ -318,6 +495,7 @@ function checkAnswer() {
 function skipQuestion() {
   if (!current || answered) return;
   answered = true;
+  registerMiss();
   showResult(false, 'Saltada');
   history.unshift({ hz: current.hz, py: current.py, answer: '(saltada)', correct: false });
   renderHistory();
@@ -327,27 +505,45 @@ function updateStats() {
   document.getElementById('questionNum').textContent = stats.total;
   document.getElementById('correctCount').textContent = stats.correct;
   document.getElementById('wrongCount').textContent = stats.wrong;
+  document.getElementById('score').textContent = score;
+  document.getElementById('streak').textContent = streak;
+  const m = multiplier();
+  document.getElementById('mult').textContent = m > 1 ? `x${m}` : '';
   const roundLen = stats.total + queue.length + (current && !answered ? 1 : 0);
   const pct = roundLen > 0 ? (stats.total / Math.max(roundLen, 1)) * 100 : 0;
   document.getElementById('progressFill').style.width = pct + '%';
 }
 
+function recordKey() { return inputMode + (scope === '150' ? '-150' : ''); }
+
 function endRound() {
+  clearTimer();
   document.getElementById('gameArea').style.display = 'none';
   const summary = document.getElementById('summary');
   summary.className = 'summary show';
   const pct = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
   document.getElementById('summaryPct').textContent = pct + '%';
   document.getElementById('summarySub').textContent =
-    stats.correct + ' de ' + stats.total + ' correctas · modo ' +
-    (inputMode === 'pinyin' ? 'pinyin' : 'hanzi') +
-    (scope === '150' ? ' · núcleo 150' : ' · HSK1 completo');
+    stats.correct + ' de ' + stats.total + ' correctas · ⭐ ' + score + ' pts · modo ' + inputMode +
+    (scope === '150' ? ' · núcleo 150' : scope === 'errores' ? ' · repaso de errores' : '');
+
+  const key = recordKey();
+  const prev = store.records[key] || 0;
+  const recEl = document.getElementById('summaryRecord');
+  if (score > prev) {
+    store.records[key] = score;
+    saveStore();
+    recEl.textContent = '🏆 ¡Nuevo récord! (anterior: ' + prev + ')';
+  } else {
+    recEl.textContent = prev > 0 ? '🏆 Récord: ' + prev + ' pts' : '';
+  }
+
   const failedSection = document.getElementById('failedSection');
-  if (failed.length === 0) {
+  if (failedRound.length === 0) {
     failedSection.style.display = 'none';
   } else {
     failedSection.style.display = '';
-    document.getElementById('failedList').innerHTML = failed.map((w, i) => `
+    document.getElementById('failedList').innerHTML = failedRound.map((w, i) => `
       <div class="failed-item">
         <button class="play" data-i="${i}">🔊</button>
         <span class="hz zh">${w.hz}</span>
@@ -356,7 +552,7 @@ function endRound() {
       </div>
     `).join('');
     document.querySelectorAll('.failed-item .play').forEach(btn => {
-      btn.addEventListener('click', () => playAudio(failed[+btn.dataset.i]));
+      btn.addEventListener('click', () => playAudio(failedRound[+btn.dataset.i]));
     });
   }
 }
@@ -381,18 +577,28 @@ function setInputUI() {
   if (inputMode === 'pinyin') {
     input.placeholder = 'escribe el pinyin…';
     hint.textContent = 'Sin tonos: "mingtian" vale por 明天 · Enter para verificar';
-  } else {
+  } else if (inputMode === 'hanzi') {
     input.placeholder = '用中文写…';
     hint.textContent = 'Activa el teclado chino del sistema y escribe el hanzi · Enter para verificar';
   }
 }
 
-// Eventos
+/* ── Eventos ── */
 document.getElementById('checkBtn').addEventListener('click', checkAnswer);
 document.getElementById('skipBtn').addEventListener('click', skipQuestion);
 document.getElementById('nextBtn').addEventListener('click', loadNext);
 document.getElementById('againBtn').addEventListener('click', startRound);
 document.getElementById('resultAudio').addEventListener('click', () => playAudio());
+
+document.getElementById('timerToggle').addEventListener('click', () => {
+  timerEnabled = !timerEnabled;
+  const btn = document.getElementById('timerToggle');
+  btn.textContent = timerEnabled ? `⏱ Timer: ${TIMER_SECONDS}s` : '⏱ Timer: off';
+  btn.classList.toggle('active', timerEnabled);
+  document.getElementById('timerBar').className = timerEnabled ? 'timer-bar on' : 'timer-bar';
+  clearTimer();
+  if (timerEnabled && current && !answered) armTimer();
+});
 
 document.getElementById('answerInput').addEventListener('keydown', e => {
   if (e.key === 'Enter' && !e.isComposing) {  // isComposing: no interceptar el IME
@@ -414,9 +620,9 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     startRound();
   });
 });
-document.querySelectorAll('.mode-btn').forEach(btn => {
+document.querySelectorAll('.mode-btn[data-scope]').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.mode-btn[data-scope]').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     scope = btn.dataset.scope;
     startRound();
