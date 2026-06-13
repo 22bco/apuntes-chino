@@ -25,6 +25,22 @@
   .toc a { text-decoration:none; font-size:.8em; color:#444; background:#fff; border:1px solid #e6e6ec; border-radius:20px; padding:6px 12px; transition:all .15s; white-space:nowrap; }
   .toc a:hover { border-color:var(--red); color:var(--red); transform:translateY(-1px); }
   .toc a .n { color:var(--muted); font-size:.85em; margin-left:3px; }
+  /* buscador */
+  .search-box { margin-bottom:14px; }
+  .search-box input { width:100%; padding:12px 16px; font-family:inherit; font-size:.92em; color:#222; background:#fff; border:1px solid #e6e6ec; border-radius:12px; outline:none; transition:border-color .15s, box-shadow .15s; }
+  .search-box input:focus { border-color:var(--red); box-shadow:0 0 0 3px #fdecea; }
+  .search-result { margin-bottom:22px; display:flex; flex-direction:column; gap:10px; }
+  .sr-card { display:flex; gap:14px; align-items:center; background:#fff; border:1px solid #ececf0; border-radius:14px; padding:14px 16px; box-shadow:0 1px 3px rgba(0,0,0,.04); }
+  .sr-hz { font-family:'Noto Sans SC',sans-serif; font-size:2.6em; font-weight:700; color:var(--red); line-height:1; cursor:pointer; }
+  .sr-body { min-width:0; }
+  .sr-gloss { font-size:.9em; color:#444; margin-bottom:7px; }
+  .sr-gloss .sr-py { color:var(--muted); font-style:italic; margin-right:4px; }
+  .sr-rads { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+  .sr-rads .lbl { font-size:.66em; color:var(--muted); text-transform:uppercase; letter-spacing:.6px; }
+  .sr-rad { font-size:.84em; text-decoration:none; color:#333; background:#fdf3e3; border:1px solid #f3ddb8; border-radius:8px; padding:4px 10px; cursor:pointer; transition:all .12s; }
+  .sr-rad .zh { font-family:'Noto Sans SC',sans-serif; color:var(--gold); font-weight:700; }
+  .sr-rad:hover { background:#f9e8c8; transform:translateY(-1px); }
+  .sr-none { font-size:.82em; color:var(--muted); }
   /* filtro por nivel HSK */
   .hsk-filter { display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin-bottom:16px; }
   .hsk-filter .hf-label { font-size:.78em; color:var(--muted); font-weight:600; margin-right:2px; }
@@ -104,6 +120,10 @@
   <div class="intro">
     💡 <strong>Cómo leerlos:</strong> muchos radicales cambian de forma al combinarse — 人 (persona) se comprime en <span class="zh" style="color:#d4820a">亻</span> a la izquierda (你, 他), y 水 (agua) se vuelve <span class="zh" style="color:#d4820a">氵</span> (没, 汉). Cada ficha te explica el porqué del significado para que no haya que memorizar a ciegas.
   </div>
+  <div class="search-box">
+    <input type="text" id="search" placeholder="🔎 Escribe una palabra (你好) para ver sus radicales · o &quot;agua&quot; / &quot;shui&quot; para encontrar un radical" autocomplete="off" spellcheck="false">
+  </div>
+  <div class="search-result" id="search-result" style="display:none"></div>
   <div class="hsk-filter" id="hskFilter">
     <span class="hf-label">Nivel:</span>
     <button class="hf-btn active" data-hsk="all">Todos</button>
@@ -158,114 +178,102 @@ const CATS = {
 
 /* rad, varia (''=no cambia), py, es, trazos, cat, nota, ejemplos */
 const RADICALES = [
-  // Persona y relaciones
-  ['人','亻','rén','persona',2,'persona','Una figura humana de pie; a la izquierda se comprime en 亻.',['你','他','们','住']],
-  ['女','','nǚ','mujer',3,'persona','Una mujer arrodillada; aparece en muchos términos de parentesco.',['妈','她','好','姐']],
+  ['人','亻','rén','persona',2,'persona','Una figura humana de pie; a la izquierda se comprime en 亻.',['你','他','们','住','什','今','会']],
+  ['女','','nǚ','mujer',3,'persona','Una mujer arrodillada; aparece en muchos términos de parentesco.',['妈','她','好','姐','奶','妹','要']],
   ['子','','zǐ','niño / hijo',3,'persona','Un bebé envuelto con los brazos abiertos.',['字','学','孩']],
   ['父','','fù','padre',4,'persona','Una mano sosteniendo un hacha: la autoridad paterna.',['爸','爷']],
-  ['大','','dà','grande',3,'persona','Una persona con los brazos bien extendidos: ¡grande!',['太','天']],
+  ['大','','dà','grande',3,'persona','Una persona con los brazos bien extendidos: ¡grande!',['太','天','买']],
   ['儿','','ér','hijo / piernas',2,'persona','Piernas de un niño; suele ir debajo del carácter.',['元','先','光']],
   ['比','','bǐ','comparar',4,'persona','Dos personas lado a lado, midiéndose.',['毕']],
   ['老','耂','lǎo','viejo',6,'persona','Un anciano encorvado con bastón.',['考','者']],
   ['士','','shì','erudito / soldado',3,'persona','Un hacha ceremonial: el hombre culto o el guerrero.',['声','壮']],
-  // Cuerpo y mente
-  ['心','忄','xīn','corazón',4,'cuerpo','Un corazón; emociones y pensamiento. A la izquierda es 忄.',['想','忙','快','爱']],
+  ['心','忄','xīn','corazón',4,'cuerpo','Un corazón; emociones y pensamiento. A la izquierda es 忄.',['想','忙','快','爱','怎','息','您']],
   ['手','扌','shǒu','mano',4,'cuerpo','Una mano abierta; acciones manuales. A la izquierda es 扌.',['打','找','拿']],
-  ['口','','kǒu','boca',3,'cuerpo','Una boca abierta; hablar, comer, sonidos.',['吃','喝','叫','吗']],
-  ['目','','mù','ojo',5,'cuerpo','Un ojo puesto de pie.',['看','睡','眼']],
+  ['口','','kǒu','boca',3,'cuerpo','Una boca abierta; hablar, comer, sonidos.',['吃','喝','叫','吗','号','同','名']],
+  ['目','','mù','ojo',5,'cuerpo','Un ojo puesto de pie.',['看','睡','眼','真']],
   ['耳','','ěr','oreja',6,'cuerpo','Una oreja vista de frente.',['听','取','闻']],
   ['足','⻊','zú','pie',7,'cuerpo','Pie y pierna; movimiento a pie. A la izquierda es ⻊.',['跑','跳','路']],
-  ['月','','ròu','carne / cuerpo',4,'cuerpo','Trozo de carne (idéntico a "luna"); partes del cuerpo.',['脸','脚','胖']],
+  ['月','','ròu','carne / cuerpo',4,'cuerpo','Trozo de carne (idéntico a "luna"); partes del cuerpo.',['脸','脚','胖','有','朋','服','期']],
   ['自','','zì','uno mismo / nariz',6,'cuerpo','Una nariz: en China uno se señala la nariz para decir "yo".',['息','臭']],
   ['牙','','yá','diente',4,'cuerpo','Dientes que encajan.',['芽']],
   ['骨','','gǔ','hueso',9,'cuerpo','Hueso con un poco de carne.',['滑']],
-  // Naturaleza y clima
-  ['水','氵','shuǐ','agua',4,'naturaleza','Una corriente; a la izquierda son las "tres gotas" 氵.',['没','汉','渴','酒']],
+  ['水','氵','shuǐ','agua',4,'naturaleza','Una corriente; a la izquierda son las "tres gotas" 氵.',['没','汉','渴','酒','漂']],
   ['火','灬','huǒ','fuego',4,'naturaleza','Llamas; debajo se vuelven cuatro puntos 灬.',['热','点','烧']],
-  ['日','','rì','sol / día',4,'naturaleza','El sol con una marca dentro; tiempo y luz.',['明','早','星','时']],
-  ['月','','yuè','luna / mes',4,'naturaleza','Luna creciente; meses y noche.',['期','朗','阴']],
+  ['日','','rì','sol / día',4,'naturaleza','El sol con una marca dentro; tiempo y luz.',['明','早','星','时','昨','是','晚']],
+  ['月','','yuè','luna / mes',4,'naturaleza','Luna creciente; meses y noche.',['期','朗','阴','有','朋','服']],
   ['雨','','yǔ','lluvia',8,'naturaleza','Gotas cayendo de una nube; fenómenos del clima.',['雪','零','雷']],
   ['山','','shān','montaña',3,'naturaleza','Tres picos.',['岁','岛']],
-  ['土','','tǔ','tierra',3,'naturaleza','Un montículo de tierra sobre el suelo.',['在','坐','地']],
+  ['土','','tǔ','tierra',3,'naturaleza','Un montículo de tierra sobre el suelo.',['在','坐','地','块']],
   ['石','','shí','piedra',5,'naturaleza','Una roca al pie de un acantilado.',['码','破']],
   ['气','','qì','aire / vapor',4,'naturaleza','Vapor que se eleva en el aire.',['汽','氧']],
-  ['冫','','bīng','hielo',2,'naturaleza','Dos gotas heladas ("hielo"); idea de frío.',['冷','次','准']],
+  ['冫','','bīng','hielo',2,'naturaleza','Dos gotas heladas ("hielo"); idea de frío.',['冷','次','准','习']],
   ['田','','tián','campo de cultivo',5,'naturaleza','Un campo dividido en parcelas.',['男','电','画']],
   ['川','','chuān','río',3,'naturaleza','Tres líneas de agua corriente.',['州','顺']],
-  // Plantas
-  ['木','','mù','árbol / madera',4,'plantas','Un árbol con tronco, ramas y raíces.',['本','杯','校','果']],
+  ['木','','mù','árbol / madera',4,'plantas','Un árbol con tronco, ramas y raíces.',['本','杯','校','果','机','来','样']],
   ['艹','','cǎo','planta / hierba',3,'plantas','Dos brotes que asoman; va siempre arriba.',['茶','菜','苹','药']],
   ['竹','⺮','zhú','bambú',6,'plantas','Dos cañas de bambú; arriba se aplana en ⺮.',['笔','第','篮']],
-  ['禾','','hé','cereal / grano',5,'plantas','Una espiga de cereal inclinada por el peso.',['和','秋','种']],
+  ['禾','','hé','cereal / grano',5,'plantas','Una espiga de cereal inclinada por el peso.',['和','秋','种','租']],
   ['米','','mǐ','arroz',6,'plantas','Granos de arroz separados por un eje.',['类','粉']],
-  // Animales
   ['马','','mǎ','caballo',3,'animales','Un caballo con su crin; suele dar el sonido "ma".',['吗','妈','骑']],
   ['鸟','','niǎo','pájaro',5,'animales','Un ave de perfil con su pico.',['鸡','鸭','鹅']],
   ['鱼','','yú','pez',8,'animales','Un pez completo, con cabeza y cola.',['鲜']],
-  ['虫','','chóng','insecto / bicho',6,'animales','Un gusano o insecto.',['虽','蚊']],
+  ['虫','','chóng','insecto / bicho',6,'animales','Un gusano o insecto.',['虽','蚊','蛋']],
   ['犬','犭','quǎn','perro',4,'animales','Un perro; a la izquierda es 犭.',['狗','猫','猪']],
   ['牛','','niú','vaca / buey',4,'animales','Cabeza de buey con cuernos.',['物','特']],
   ['羊','','yáng','oveja',6,'animales','Cabeza de oveja vista de frente.',['美','样']],
   ['隹','','zhuī','ave de cola corta',8,'animales','Pájaro robusto de cola corta.',['难','售']],
   ['贝','','bèi','concha / dinero',4,'animales','Una concha de cauri: se usaban como moneda.',['贵','财','购']],
-  // Objetos y herramientas
-  ['刀','刂','dāo','cuchillo',2,'objetos','Una hoja afilada; a la derecha es 刂.',['分','到','别']],
+  ['刀','刂','dāo','cuchillo',2,'objetos','Una hoja afilada; a la derecha es 刂.',['分','到','别','前']],
   ['力','','lì','fuerza',2,'objetos','Un brazo en tensión o un arado: esfuerzo.',['男','办','加']],
   ['金','钅','jīn','metal / oro',8,'objetos','Pepitas de metal bajo tierra; a la izquierda es 钅.',['钱','钟','银']],
   ['车','','chē','vehículo',4,'objetos','Un carro visto desde arriba.',['辆','较','轻']],
   ['门','','mén','puerta',3,'objetos','Las dos hojas de una puerta.',['问','间','闷']],
   ['衣','衤','yī','ropa',6,'objetos','Una prenda con cuello y mangas; a la izquierda es 衤.',['初','衫','袋']],
-  ['巾','','jīn','paño / tela',3,'objetos','Un trapo colgando de un soporte.',['帮','带','常']],
+  ['巾','','jīn','paño / tela',3,'objetos','Un trapo colgando de un soporte.',['帮','带','常','师','市']],
   ['弓','','gōng','arco',3,'objetos','Un arco de tiro.',['张','弟','强']],
   ['工','','gōng','trabajo / herramienta',3,'objetos','Una escuadra de carpintero.',['左','功','江']],
   ['几','','jǐ','mesita',2,'objetos','Una mesa baja.',['机','凡']],
   ['皿','','mǐn','recipiente',5,'objetos','Un cuenco visto de frente.',['盘','盐','益']],
   ['纟','','sī','seda / hilo',3,'objetos','Una madeja de hilo de seda.',['红','给','绿']],
   ['王','','wáng','rey / jade',4,'objetos','Tres discos de jade ensartados (como radical = jade).',['现','玩','班']],
-  // Construcción y lugar
-  ['宀','','mián','techo / casa',3,'lugar','Un tejado: todo lo que ocurre bajo techo.',['家','字','客','它']],
+  ['宀','','mián','techo / casa',3,'lugar','Un tejado: todo lo que ocurre bajo techo.',['家','字','客','它','宜']],
   ['广','','guǎng','cobertizo',3,'lugar','Un techo abierto apoyado en un muro.',['店','床','应']],
   ['厂','','chǎng','risco / galpón',2,'lugar','Un acantilado o cobertizo abierto.',['厅','历']],
   ['户','','hù','puerta de una hoja',4,'lugar','Media puerta: un hogar, una familia.',['房','所']],
-  ['囗','','wéi','recinto',3,'lugar','Un cercado completamente cerrado.',['国','回','因']],
+  ['囗','','wéi','recinto',3,'lugar','Un cercado completamente cerrado.',['国','回','因','四']],
   ['阜','阝','fù','colina (a la izquierda)',2,'lugar','阝 a la IZQUIERDA = colina, montículo.',['院','阳','阴']],
-  ['邑','阝','yì','ciudad (a la derecha)',2,'lugar','阝 a la DERECHA = ciudad, pueblo.',['都','那','邮']],
+  ['邑','阝','yì','ciudad (a la derecha)',2,'lugar','阝 a la DERECHA = ciudad, pueblo.',['都','那','邮','院']],
   ['穴','','xué','cueva',5,'lugar','Una cueva o abertura en la tierra.',['空','穿','窗']],
   ['里','','lǐ','aldea / interior',7,'lugar','Campo (田) sobre tierra (土): una aldea.',['野','理']],
-  // Comida y recipientes
-  ['食','饣','shí','comida',9,'comida','Tapa sobre un cuenco lleno; a la izquierda es 饣.',['饭','饿','馆','饱']],
+  ['食','饣','shí','comida',9,'comida','Tapa sobre un cuenco lleno; a la izquierda es 饣.',['饭','饿','馆','饱','饺']],
   ['酉','','yǒu','jarra de licor',7,'comida','Una vasija de vino fermentado.',['酒','醋','配']],
   ['豆','','dòu','vasija / frijol',7,'comida','Una vasija ritual con tapa; luego "frijol".',['短','登']],
-  // Habla y conocimiento
-  ['言','讠','yán','hablar / palabra',7,'habla','Sonidos que salen de la boca; a la izquierda es 讠.',['说','请','谢','课']],
+  ['言','讠','yán','hablar / palabra',7,'habla','Sonidos que salen de la boca; a la izquierda es 讠.',['说','请','谢','课','认','识','话']],
   ['文','','wén','escritura / cultura',4,'habla','Líneas entrelazadas: un texto, lo culto.',['这','刘']],
   ['立','','lì','estar de pie',5,'habla','Una persona de pie firme sobre el suelo.',['站','音','亲']],
   ['见','','jiàn','ver',4,'habla','Un ojo (目) sobre piernas: ir a mirar.',['觉','视','观']],
   ['页','','yè','página / cabeza',6,'habla','Una cabeza; hoy también significa "página".',['顾','题','顺']],
   ['音','','yīn','sonido',9,'habla','Sonido que sale de la boca (言 con una marca).',['意','章']],
-  // Movimiento y camino
-  ['辶','','chuò','avanzar / camino',4,'movimiento','Pie + camino: ir, desplazarse (la "zancada").',['这','还','过','进']],
+  ['辶','','chuò','avanzar / camino',4,'movimiento','Pie + camino: ir, desplazarse (la "zancada").',['这','还','过','进','边','道']],
   ['彳','','chì','paso (a la izquierda)',3,'movimiento','Un cruce de caminos; idea de andar.',['很','得','往']],
   ['走','','zǒu','caminar / correr',7,'movimiento','Una persona en movimiento sobre un pie.',['起','越','超']],
   ['止','','zhǐ','detener / pie',4,'movimiento','Una huella: parar, o el pie mismo.',['正','步','武']],
   ['行','','xíng','andar / hilera',6,'movimiento','Un cruce de calles: andar, una fila.',['街','衡']],
-  ['飞','','fēi','volar',3,'movimiento','Un ave alzando el vuelo.',['']],
-  // Trazos básicos y medida
-  ['一','','yī','uno',1,'trazos','Un trazo horizontal: el número uno.',['二','三','不']],
-  ['丨','','gǔn','línea vertical',1,'trazos','Un trazo vertical que atraviesa.',['中','旧']],
+  ['飞','','fēi','volar',3,'movimiento','Un ave alzando el vuelo.',[]],
+  ['一','','yī','uno',1,'trazos','Un trazo horizontal: el número uno.',['二','三','不','七','上','下','东']],
+  ['丨','','gǔn','línea vertical',1,'trazos','Un trazo vertical que atraviesa.',['中','旧','个','书']],
   ['丶','','zhǔ','punto',1,'trazos','Una gota o punto suelto.',['主','为']],
-  ['八','','bā','ocho / dividir',2,'trazos','Dos trazos que se separan: dividir, repartir.',['分','公','共']],
-  ['十','','shí','diez',2,'trazos','Un cruce completo: el número diez.',['古','华','南']],
+  ['八','','bā','ocho / dividir',2,'trazos','Dos trazos que se separan: dividir, repartir.',['分','公','共','六','兴']],
+  ['十','','shí','diez',2,'trazos','Un cruce completo: el número diez.',['古','华','南','午','千','半','卖']],
   ['又','','yòu','mano derecha / otra vez',2,'trazos','Una mano derecha; acción que se repite.',['友','双','对']],
   ['寸','','cùn','pulgada / mano',3,'trazos','Una mano con la marca del pulso: medida corta.',['对','村','寺']],
   ['小','','xiǎo','pequeño',3,'trazos','Tres puntitos: algo chico.',['少','尖']],
   ['匕','','bǐ','cuchara',2,'trazos','Una cuchara (o persona invertida).',['北','化']],
   ['卜','','bǔ','adivinación',2,'trazos','Grietas de un hueso oracular.',['外','卡']],
-  ['厶','','sī','privado',2,'trazos','Un brazo que rodea: lo propio.',['去','私']],
+  ['厶','','sī','privado',2,'trazos','Un brazo que rodea: lo propio.',['去','私','么','能']],
   ['卩','','jié','sello',2,'trazos','Una persona arrodillada (un sello).',['印','却']],
-  // — radicales que completan el HSK 1 —
   ['戈','','gē','alabarda / lanza',4,'objetos','Una alabarda, arma antigua de asta.',['我','找','成']],
-  ['矢','','shǐ','flecha',5,'objetos','Una flecha con punta y plumas.',['知','短','矮']],
+  ['矢','','shǐ','flecha',5,'objetos','Una flecha con punta y plumas.',['知','短','矮','医']],
   ['凵','','kǎn','recipiente abierto',2,'objetos','Un cuenco o caja abierta por arriba.',['出','凶']],
   ['匚','','fāng','caja',2,'objetos','Una caja abierta por un lado.',['医','区','匠']],
   ['欠','','qiàn','bostezar / faltar',4,'cuerpo','Una persona con la boca abierta: bostezo, deber.',['欢','歌','次']],
@@ -273,7 +281,7 @@ const RADICALES = [
   ['舌','','shé','lengua',6,'cuerpo','Una lengua saliendo de la boca.',['话','甜','乱']],
   ['夕','','xī','atardecer',3,'naturaleza','Media luna al caer la tarde.',['多','名','外','夜']],
   ['西','','xī','oeste',6,'naturaleza','Un pájaro en su nido al anochecer; como radical también es "cubrir" (襾).',['要','票','西']],
-  ['亠','','tóu','tapa',2,'trazos','Una cubierta o tapa superior.',['高','六','市','京']],
+  ['亠','','tóu','tapa',2,'trazos','Una cubierta o tapa superior.',['高','六','市','京','亮','脑']],
   ['冖','','mì','cubierta',2,'trazos','Una tela que cubre desde arriba.',['写','军']],
   ['彡','','shān','adorno / rayas',3,'trazos','Tres trazos: pelo, rayas, brillo.',['影','形']],
   ['廾','','gǒng','dos manos',3,'trazos','Dos manos que sostienen desde abajo.',['开','弄']],
@@ -288,8 +296,9 @@ function lvlInfo(n) {
 /* Índice por hanzi del radical (para la ficha rica) */
 const BY_HZ = {};
 RADICALES.forEach(r => { BY_HZ[r[0]] = r; });
-const RAD_LEVEL = {"人": 1, "女": 1, "子": 1, "父": 1, "大": 1, "儿": 1, "比": 2, "老": 1, "士": 1, "心": 1, "手": 1, "口": 1, "目": 1, "耳": 1, "足": 2, "月": 1, "自": 1, "牙": 3, "骨": 0, "水": 1, "火": 1, "日": 1, "雨": 1, "山": 1, "土": 1, "石": 3, "气": 1, "冫": 1, "田": 1, "川": 0, "木": 1, "艹": 1, "竹": 1, "禾": 1, "米": 1, "马": 1, "鸟": 1, "鱼": 2, "虫": 2, "犬": 1, "牛": 1, "羊": 1, "隹": 3, "贝": 1, "刀": 1, "力": 1, "金": 1, "车": 1, "门": 1, "衣": 1, "巾": 1, "弓": 1, "工": 1, "几": 1, "皿": 3, "纟": 1, "王": 1, "宀": 1, "广": 1, "厂": 3, "户": 1, "囗": 1, "阜": 1, "邑": 1, "穴": 1, "里": 1, "食": 1, "酉": 2, "豆": 3, "言": 1, "文": 1, "立": 2, "见": 1, "页": 1, "音": 2, "辶": 1, "彳": 1, "走": 1, "止": 1, "行": 3, "飞": 1, "一": 1, "丨": 1, "丶": 2, "八": 1, "十": 1, "又": 1, "寸": 1, "小": 1, "匕": 3, "卜": 1, "厶": 1, "卩": 0, "戈": 1, "矢": 1, "凵": 1, "匚": 1, "欠": 1, "爪": 1, "舌": 1, "夕": 1, "西": 1, "亠": 1, "冖": 1, "彡": 1, "廾": 1};
-const GLOSS = {"饭": ["fàn", "Comida / arroz"], "猫": ["māo", "Gato"], "狗": ["gǒu", "Perro"], "说": ["shuō", "Hablar"], "不": ["bù", "No (negación general)"], "吗": ["ma", "Partícula de pregunta"], "很": ["hěn", "Muy"], "胖": ["pàng", "Gordo"], "学": ["xué", "Aprender"], "烧": ["shāo", "Quemar / asar"], "字": ["zì", "Carácter / letra"], "种": ["zhǒng", "Tipo / clase"], "都": ["dōu", "Todos / ambos"], "去": ["qù", "Ir"], "看": ["kàn", "Ver / mirar / leer"], "问": ["wèn", "Preguntar"], "请": ["qǐng", "Por favor"], "家": ["jiā", "Casa"], "茶": ["chá", "🍵 Té"], "钱": ["qián", "💰 Dinero"], "和": ["hé", "y / con"], "回": ["huí", "Volver / regresar"], "想": ["xiǎng", "Querer / desear"], "喝": ["hē", "Tomar / beber"], "杯": ["bēi", "Bebidas en vaso/taza"], "这": ["zhè", "👉 Esto / este"], "那": ["nà", "👈 Eso / ese"], "元": ["yuán", "💴 Yuan (formal, oficial)"], "分": ["fēn", "⏱️ minuto (tiempo) · 💴 0,01 yuan (cé…"], "在": ["zài", "📍 En / estar en (punto de ubicación)"], "点": ["diǎn", "🕐 hora (en punto) / 'las…'"], "吃": ["chī", "🍴 comer"], "爱": ["ài", "amar, querer"], "本": ["běn", "clasificador de libros"], "菜": ["cài", "verdura"], "穿": ["chuān", "vestir, ponerse (ropa)"], "到": ["dào", "llegar"], "第": ["dì", "prefijo ordinal (1.º, 2.º…)"], "店": ["diàn", "tienda"], "对": ["duì", "correcto"], "二": ["èr", "dos (número)"], "给": ["gěi", "dar"], "贵": ["guì", "caro"], "国": ["guó", "país"], "还": ["hái", "todavía"], "好": ["hǎo", "bueno, bien"], "叫": ["jiào", "llamarse"], "课": ["kè", "clase, lección"], "冷": ["lěng", "frío 🥶"], "零": ["líng", "cero"], "忙": ["máng", "ocupado"], "们": ["men", "sufijo plural (nosotros, ellos…)"], "男": ["nán", "hombre, masculino"], "你": ["nǐ", "tú"], "热": ["rè", "calor, caluroso 🥵"], "三": ["sān", "tres"], "少": ["shǎo", "poco"], "睡": ["shuì", "dormir"], "岁": ["suì", "años (de edad)"], "他": ["tā", "él"], "它": ["tā", "ello (cosas / animales)"], "她": ["tā", "ella"], "太": ["tài", "demasiado (太…了)"], "天": ["tiān", "día"], "听": ["tīng", "escuchar"], "外": ["wài", "fuera, exterior"], "玩": ["wán", "jugar, divertirse"], "雪": ["xuě", "nieve ❄️"], "早": ["zǎo", "temprano"], "找": ["zhǎo", "buscar"], "住": ["zhù", "vivir, residir"], "坐": ["zuò", "sentarse"], "班": ["bān", "clase, grupo (de alumnos)"], "帮": ["bāng", "ayudar"], "笔": ["bǐ", "lápiz, bolígrafo ✏️"], "别": ["bié", "no (prohibición: ¡no lo hagas!)"], "床": ["chuáng", "cama 🛏️"], "次": ["cì", "vez (clasificador de ocasiones)"], "打": ["dǎ", "golpear"], "得": ["de", "partícula de grado/modo (después del…"], "地": ["de", "partícula que forma adverbios (+ ver…"], "过": ["guò / guo", "pasar, cruzar"], "画": ["huà", "dibujar, pintar"], "间": ["jiān", "clasificador de habitaciones"], "进": ["jìn", "entrar"], "考": ["kǎo", "examinar, dar un examen"], "快": ["kuài", "rápido"], "路": ["lù", "camino, calle"], "拿": ["ná", "tomar, coger (con la mano)"], "跑": ["pǎo", "correr"], "时": ["shí", "tiempo, momento"], "题": ["tí", "problema, pregunta (de examen)"], "往": ["wǎng", "hacia (dirección)"], "药": ["yào", "medicina, remedio 💊"], "阴": ["yīn", "nublado ☁️"], "站": ["zhàn", "estar de pie"], "正": ["zhèng", "justo, exactamente"], "左": ["zuǒ", "izquierda"], "办": ["bàn", "hacer, gestionar, tramitar"], "饱": ["bǎo", "lleno (saciado)"], "北": ["běi", "norte"], "常": ["cháng", "a menudo, frecuente"], "带": ["dài", "llevar, traer (consigo)"], "电": ["diàn", "electricidad"], "短": ["duǎn", "corto"], "饿": ["è", "tener hambre"], "鸡": ["jī", "gallina, pollo 🐔"], "加": ["jiā", "añadir, sumar"], "脚": ["jiǎo", "pie 🦶"], "街": ["jiē", "calle"], "酒": ["jiǔ", "alcohol, licor 🍶"], "旧": ["jiù", "viejo, usado (cosas)"], "卡": ["kǎ", "tarjeta 💳"], "渴": ["kě", "tener sed"], "脸": ["liǎn", "cara, rostro"], "辆": ["liàng", "clasif. de vehículos"], "南": ["nán", "sur"], "难": ["nán", "difícil"], "骑": ["qí", "montar (bici, caballo)"], "起": ["qǐ", "levantarse, subir"], "声": ["shēng", "sonido, voz"], "双": ["shuāng", "par (clasif. de pares)"], "跳": ["tiào", "saltar, brincar"], "为": ["wèi", "para, por (a causa de)"], "先": ["xiān", "primero, antes"], "越": ["yuè", "cuanto más (越…越…)"], "张": ["zhāng", "clasif. de cosas planas"], "中": ["zhōng", "medio, centro"], "主": ["zhǔ", "dueño / principal"], "亲": ["qīn", "cercano / pariente"], "光": ["guāng", "luz"], "公": ["gōng", "público / común"], "共": ["gòng", "común, juntos"], "准": ["zhǔn", "preciso"], "凡": ["fán", "común, ordinario"], "刘": ["Liú", "(apellido Liu)"], "初": ["chū", "inicio, primero"], "功": ["gōng", "mérito, logro"], "化": ["huà", "transformar"], "华": ["huá", "magnífico"], "印": ["yìn", "sello"], "却": ["què", "sin embargo"], "厅": ["tīng", "sala, salón"], "历": ["lì", "historia, experiencia"], "友": ["yǒu", "amigo"], "取": ["qǔ", "tomar, recoger"], "古": ["gǔ", "antiguo"], "售": ["shòu", "vender"], "因": ["yīn", "causa, porque"], "壮": ["zhuàng", "fuerte, robusto"], "妈": ["mā", "mamá"], "姐": ["jiě", "hermana mayor"], "孩": ["hái", "niño"], "客": ["kè", "invitado, huésped"], "寺": ["sì", "templo"], "尖": ["jiān", "punta, agudo"], "岛": ["dǎo", "isla"], "州": ["zhōu", "región, estado"], "应": ["yīng", "deber"], "弟": ["dì", "hermano menor"], "强": ["qiáng", "fuerte"], "息": ["xī", "aliento"], "意": ["yì", "significado, idea"], "房": ["fáng", "casa, habitación"], "所": ["suǒ", "lugar"], "明": ["míng", "brillante, claro"], "星": ["xīng", "estrella"], "朗": ["lǎng", "despejado, claro"], "期": ["qī", "período, plazo"], "机": ["jī", "máquina"], "村": ["cūn", "aldea"], "果": ["guǒ", "fruta"], "校": ["xiào", "escuela"], "样": ["yàng", "forma, tipo"], "步": ["bù", "paso"], "武": ["wǔ", "militar, marcial"], "毕": ["bì", "terminar, completar"], "氧": ["yǎng", "oxígeno"], "汉": ["Hàn", "han"], "江": ["jiāng", "río (grande)"], "汽": ["qì", "vapor"], "没": ["méi", "no tener, no haber"], "滑": ["huá", "resbaladizo"], "爷": ["yé", "abuelo"], "爸": ["bà", "papá"], "物": ["wù", "cosa, objeto"], "特": ["tè", "especial"], "猪": ["zhū", "cerdo"], "现": ["xiàn", "aparecer"], "理": ["lǐ", "razón"], "登": ["dēng", "subir"], "益": ["yì", "beneficio"], "盐": ["yán", "sal"], "盘": ["pán", "plato, bandeja"], "眼": ["yǎn", "ojo"], "码": ["mǎ", "código, número"], "破": ["pò", "romper, roto"], "私": ["sī", "privado"], "秋": ["qiū", "otoño"], "空": ["kōng", "vacío"], "窗": ["chuāng", "ventana"], "章": ["zhāng", "capítulo"], "篮": ["lán", "canasta"], "类": ["lèi", "tipo, categoría"], "粉": ["fěn", "polvo"], "红": ["hóng", "rojo"], "绿": ["lǜ", "verde"], "美": ["měi", "bello"], "者": ["zhě", "el que (sufijo)"], "臭": ["chòu", "apestoso"], "芽": ["yá", "brote"], "苹": ["píng", "(de 苹果, manzana)"], "虽": ["suī", "aunque"], "蚊": ["wén", "mosquito"], "衡": ["héng", "equilibrar"], "衫": ["shān", "camisa"], "袋": ["dài", "bolsa"], "观": ["guān", "observar, vista"], "视": ["shì", "ver, mirar"], "觉": ["jué", "sentir, darse cuenta"], "谢": ["xiè", "agradecer"], "财": ["cái", "riqueza"], "购": ["gòu", "comprar"], "超": ["chāo", "super, exceder"], "轻": ["qīng", "ligero"], "较": ["jiào", "comparar"], "邮": ["yóu", "correo"], "配": ["pèi", "combinar, emparejar"], "醋": ["cù", "vinagre"], "野": ["yě", "campo, salvaje"], "钟": ["zhōng", "reloj"], "银": ["yín", "plata"], "闷": ["mèn", "sofocante, aburrido"], "闻": ["wén", "oír, oler"], "阳": ["yáng", "sol"], "院": ["yuàn", "patio"], "雷": ["léi", "trueno"], "音": ["yīn", "sonido"], "顺": ["shùn", "fluido, favorable"], "顾": ["gù", "atender, cuidar"], "馆": ["guǎn", "edificio público (-ería)"], "鲜": ["xiān", "fresco"], "鸭": ["yā", "pato"], "鹅": ["é", "ganso"], "乱": ["luàn", "desordenado, caótico"], "京": ["jīng", "capital"], "六": ["liù", "seis"], "写": ["xiě", "Escribir"], "军": ["jūn", "ejército, militar"], "凶": ["xiōng", "feroz, fatídico"], "出": ["chū", "salir"], "匠": ["jiàng", "artesano"], "区": ["qū", "zona, distrito"], "医": ["yī", "🩺 Medicina / curar"], "受": ["shòu", "recibir; sufrir"], "名": ["míng", "nombre"], "多": ["duō", "mucho"], "夜": ["yè", "noche"], "市": ["shì", "ciudad, urbe"], "开": ["kāi", "abrir"], "弄": ["nòng", "manipular, hacer"], "形": ["xíng", "forma, figura"], "成": ["chéng", "lograr, convertirse en"], "我": ["wǒ", "yo"], "歌": ["gē", "canción"], "爬": ["pá", "trepar, gatear"], "甜": ["tián", "dulce"], "矮": ["ǎi", "bajo (de estatura)"], "票": ["piào", "boleto, entrada 🎫"], "西": ["xī", "oeste"], "要": ["yào", "Directo, \"quiero\" / \"voy a\""], "高": ["gāo", "Alto"], "影": ["yǐng", "sombra; película"], "欢": ["huān", "alegre, contento"], "知": ["zhī", "saber, conocer"], "话": ["huà", "habla, palabra"]};
+const RAD_LEVEL = {"人": 1, "女": 1, "子": 1, "父": 1, "大": 1, "儿": 1, "比": 2, "老": 1, "士": 1, "心": 1, "手": 1, "口": 1, "目": 1, "耳": 1, "足": 2, "月": 1, "自": 1, "牙": 3, "骨": 0, "水": 1, "火": 1, "日": 1, "雨": 1, "山": 1, "土": 1, "石": 3, "气": 1, "冫": 1, "田": 1, "川": 0, "木": 1, "艹": 1, "竹": 1, "禾": 1, "米": 1, "马": 1, "鸟": 1, "鱼": 2, "虫": 1, "犬": 1, "牛": 1, "羊": 1, "隹": 3, "贝": 1, "刀": 1, "力": 1, "金": 1, "车": 1, "门": 1, "衣": 1, "巾": 1, "弓": 1, "工": 1, "几": 1, "皿": 3, "纟": 1, "王": 1, "宀": 1, "广": 1, "厂": 3, "户": 1, "囗": 1, "阜": 1, "邑": 1, "穴": 1, "里": 1, "食": 1, "酉": 2, "豆": 3, "言": 1, "文": 1, "立": 2, "见": 1, "页": 1, "音": 2, "辶": 1, "彳": 1, "走": 1, "止": 1, "行": 3, "飞": 1, "一": 1, "丨": 1, "丶": 2, "八": 1, "十": 1, "又": 1, "寸": 1, "小": 1, "匕": 3, "卜": 1, "厶": 1, "卩": 0, "戈": 1, "矢": 1, "凵": 1, "匚": 1, "欠": 1, "爪": 1, "舌": 1, "夕": 1, "西": 1, "亠": 1, "冖": 1, "彡": 1, "廾": 1};
+const CHAR_RADS = {"衫": ["彡", "衣"], "头": ["大"], "境": ["土"], "炼": ["火"], "声": ["士"], "活": ["水", "舌"], "文": ["亠", "文"], "购": ["贝"], "热": ["火"], "封": ["寸"], "发": ["又"], "桌": ["木"], "拍": ["手"], "氧": ["气", "羊"], "迎": ["辶"], "她": ["女"], "机": ["几", "木"], "鸭": ["鸟"], "朗": ["月"], "士": ["士"], "烧": ["火"], "养": ["儿", "羊"], "颜": ["页"], "街": ["行"], "儿": ["儿"], "还": ["辶"], "选": ["辶"], "典": ["八"], "雷": ["田", "雨"], "丨": ["丨"], "跳": ["足"], "零": ["雨"], "椅": ["木"], "二": ["一"], "离": ["亠"], "羊": ["羊"], "阴": ["月", "邑"], "石": ["厂", "口", "石"], "为": ["丶", "力"], "跑": ["足"], "出": ["凵"], "很": ["彳"], "演": ["水"], "丢": ["一", "厶", "王"], "宾": ["宀"], "司": ["口"], "咱": ["口", "自"], "过": ["寸", "辶"], "类": ["大", "米"], "树": ["木"], "姐": ["女"], "比": ["匕", "比"], "立": ["一", "亠", "立"], "渴": ["水"], "耳": ["耳"], "思": ["心", "田"], "飞": ["飞"], "右": ["口"], "员": ["口", "贝"], "种": ["禾"], "因": ["囗", "大"], "请": ["言"], "睛": ["目"], "冷": ["冫"], "刀": ["刀"], "取": ["又", "耳"], "历": ["力", "厂"], "土": ["一", "十", "土"], "空": ["工", "穴"], "处": ["卜"], "午": ["十"], "件": ["人", "牛"], "累": ["田"], "南": ["十"], "碗": ["石"], "卜": ["丨", "丶", "卜"], "汽": ["气", "水"], "校": ["木"], "笑": ["竹"], "糕": ["米"], "糖": ["米"], "吗": ["口", "马"], "医": ["矢"], "旁": ["立"], "行": ["彳", "行"], "城": ["土"], "香": ["日", "禾"], "话": ["舌", "言"], "查": ["木"], "像": ["人"], "房": ["户"], "应": ["一", "广"], "休": ["人", "木"], "鱼": ["一", "田", "鱼"], "实": ["宀"], "虽": ["口", "虫"], "写": ["冖"], "绿": ["纟"], "有": ["月"], "灯": ["火"], "刻": ["刀"], "史": ["口"], "张": ["弓"], "日": ["一", "口", "日"], "苹": ["艹"], "铁": ["金"], "记": ["言"], "那": ["邑"], "报": ["卩", "又", "手"], "起": ["走"], "得": ["寸", "彳"], "或": ["一", "口", "戈"], "怪": ["心"], "猪": ["犬"], "页": ["贝", "页"], "净": ["冫"], "真": ["几", "目"], "衬": ["寸", "衣"], "米": ["木", "米"], "下": ["一", "卜"], "光": ["儿"], "持": ["手"], "啤": ["口"], "袋": ["衣"], "船": ["几", "口"], "定": ["宀"], "武": ["一", "止"], "超": ["走"], "担": ["手"], "望": ["月", "王"], "药": ["艹"], "爬": ["爪"], "正": ["一", "止"], "铅": ["几", "口", "金"], "突": ["犬", "穴"], "们": ["人", "门"], "银": ["金"], "什": ["人", "十"], "马": ["一", "马"], "冫": ["丶", "冫"], "熊": ["火"], "你": ["人"], "啊": ["口"], "决": ["冫"], "戏": ["又", "戈"], "鲜": ["羊", "鱼"], "听": ["口"], "进": ["辶"], "课": ["言"], "节": ["艹"], "夜": ["亠", "人", "夕"], "展": ["衣"], "矮": ["矢"], "毕": ["十", "比"], "纟": ["一", "纟"], "元": ["儿"], "饺": ["食"], "办": ["八", "力"], "试": ["言"], "场": ["土"], "楼": ["木"], "喝": ["口"], "旧": ["丨", "日"], "盐": ["皿"], "盘": ["皿"], "跟": ["足"], "游": ["水"], "作": ["人"], "乱": ["舌"], "我": ["戈", "手"], "海": ["水"], "明": ["日", "月"], "讲": ["言"], "卫": ["一"], "觉": ["冖", "见"], "忘": ["心"], "时": ["寸", "日"], "短": ["矢", "豆"], "两": ["一"], "容": ["宀"], "白": ["日"], "以": ["人"], "服": ["卩", "又", "月"], "冒": ["日", "目"], "厂": ["厂"], "化": ["人", "匕"], "照": ["火"], "读": ["言"], "适": ["舌", "辶"], "售": ["口", "隹"], "窗": ["穴"], "见": ["儿", "见"], "拿": ["手"], "江": ["工", "水"], "绍": ["纟"], "方": ["亠"], "更": ["一"], "外": ["卜", "夕"], "夫": ["一", "大"], "师": ["刀", "巾"], "本": ["一", "木"], "把": ["手"], "遍": ["辶"], "步": ["止"], "息": ["心", "自"], "慢": ["心"], "蕉": ["艹"], "简": ["竹"], "画": ["一", "凵", "田"], "室": ["宀"], "唱": ["口"], "上": ["一"], "尖": ["大", "小"], "万": ["一"], "概": ["木"], "破": ["石"], "级": ["纟"], "草": ["艹"], "育": ["亠", "厶"], "岛": ["山", "鸟"], "码": ["石", "马"], "聊": ["耳"], "一": ["一"], "能": ["匕", "厶"], "酉": ["日", "酉"], "凌": ["冫"], "几": ["几"], "可": ["口"], "早": ["十", "日"], "昨": ["日"], "总": ["口", "心"], "再": ["一"], "裤": ["衣"], "检": ["木"], "它": ["匕", "宀"], "往": ["彳", "王"], "差": ["工", "羊"], "考": ["老"], "朋": ["月"], "西": ["囗", "西"], "成": ["戈"], "瓜": ["厶"], "骨": ["骨"], "么": ["厶"], "合": ["口"], "叫": ["口"], "澡": ["水"], "刘": ["刀", "文"], "远": ["辶"], "业": ["一"], "搬": ["手"], "亠": ["一", "丶", "亠"], "条": ["木"], "在": ["土"], "壮": ["士"], "答": ["竹"], "扫": ["手"], "黑": ["火"], "朵": ["几", "木"], "手": ["手"], "四": ["儿", "囗"], "床": ["广", "木"], "相": ["木", "目"], "火": ["人", "火"], "然": ["火"], "三": ["一"], "择": ["手"], "喂": ["口"], "啡": ["口"], "情": ["心"], "饭": ["食"], "带": ["冖", "巾"], "野": ["里"], "秋": ["火", "禾"], "钟": ["金"], "星": ["日"], "护": ["户", "手"], "少": ["小"], "料": ["米"], "家": ["宀"], "求": ["一"], "去": ["厶", "土"], "他": ["人"], "聪": ["耳"], "号": ["口"], "歌": ["欠"], "闷": ["心", "门"], "篮": ["竹"], "急": ["心"], "美": ["大", "羊"], "寺": ["土", "寸"], "诉": ["言"], "金": ["人", "王", "金"], "初": ["刀", "衣"], "饿": ["食"], "冖": ["冖"], "国": ["囗"], "千": ["十"], "裙": ["衣"], "月": ["月"], "公": ["八", "厶"], "宜": ["宀"], "是": ["日"], "候": ["人"], "坐": ["土"], "常": ["巾"], "川": ["丨", "川"], "食": ["人", "食"], "说": ["言"], "打": ["手"], "巾": ["丨", "巾"], "足": ["口", "足"], "木": ["八", "十", "木"], "遇": ["辶"], "竹": ["竹"], "矿": ["广", "石"], "界": ["田"], "军": ["冖", "车"], "刷": ["刀", "巾"], "近": ["辶"], "助": ["力"], "轻": ["又", "工", "车"], "宀": ["丶", "冖", "宀"], "知": ["口", "矢"], "会": ["人"], "邻": ["邑"], "犬": ["丶", "大", "犬"], "醋": ["酉"], "田": ["土", "田"], "后": ["口"], "店": ["广"], "沙": ["水"], "形": ["彡"], "调": ["言"], "妻": ["十", "女"], "箱": ["竹"], "晴": ["日"], "匕": ["匕"], "体": ["人"], "长": ["一"], "咖": ["口"], "激": ["水"], "坏": ["土"], "院": ["邑"], "夕": ["丶", "夕"], "着": ["目", "羊"], "顺": ["川", "页"], "十": ["一", "丨", "十"], "呢": ["口"], "开": ["一", "廾"], "亮": ["亠", "冖", "几", "口"], "被": ["衣"], "卖": ["十"], "点": ["火"], "八": ["八"], "结": ["纟"], "里": ["土", "田", "里"], "财": ["贝"], "换": ["手"], "次": ["冫", "欠"], "古": ["十", "口"], "又": ["又"], "让": ["言"], "丶": ["丶"], "语": ["言"], "识": ["言"], "个": ["丨", "人"], "买": ["大"], "爱": ["冖", "爪"], "私": ["厶", "禾"], "练": ["纟"], "辆": ["车"], "芽": ["牙", "艹"], "这": ["文", "辶"], "虫": ["虫"], "从": ["人"], "球": ["王"], "重": ["里"], "户": ["丶", "户"], "自": ["目", "自"], "板": ["木"], "附": ["邑"], "妈": ["女", "马"], "变": ["又"], "言": ["亠", "口", "言"], "彳": ["丨", "彳"], "弄": ["廾"], "谁": ["言", "隹"], "鸟": ["鸟"], "先": ["儿", "土"], "怎": ["心"], "蓝": ["艹"], "认": ["人", "言"], "希": ["巾"], "丈": ["一", "又"], "但": ["人"], "舒": ["舌"], "懂": ["心"], "鸡": ["又", "鸟"], "迟": ["辶"], "来": ["木"], "谢": ["言"], "才": ["手"], "园": ["囗"], "邮": ["邑"], "算": ["竹"], "观": ["又", "见"], "忙": ["心"], "音": ["日", "立", "音"], "州": ["川"], "双": ["又"], "吧": ["口"], "特": ["牛"], "父": ["八", "父"], "路": ["足"], "闻": ["耳", "门"], "直": ["一", "十", "目"], "小": ["八", "小"], "议": ["言"], "学": ["冖", "子"], "较": ["车"], "强": ["弓"], "动": ["力"], "平": ["广"], "看": ["手", "目"], "蚊": ["文", "虫"], "口": ["一", "口"], "老": ["匕", "老"], "梯": ["木"], "分": ["八", "刀"], "完": ["宀"], "阳": ["日", "邑"], "太": ["丶", "大"], "冰": ["冫", "水"], "图": ["囗"], "表": ["衣"], "安": ["女", "宀"], "季": ["子", "禾"], "问": ["口", "门"], "除": ["邑"], "生": ["一", "土"], "到": ["刀"], "雨": ["雨"], "末": ["一", "木"], "法": ["水"], "必": ["心"], "找": ["戈", "手"], "居": ["户"], "爪": ["丨", "爪"], "周": ["口", "土"], "睡": ["目"], "第": ["竹"], "告": ["口", "牛"], "备": ["田"], "贝": ["人", "贝"], "市": ["亠", "巾"], "题": ["页"], "河": ["水"], "车": ["十", "车"], "绩": ["纟"], "顾": ["页"], "同": ["口"], "样": ["木", "羊"], "山": ["丨", "凵", "山"], "粉": ["米"], "须": ["彡", "页"], "客": ["宀"], "害": ["口", "宀"], "吃": ["口"], "现": ["王", "见"], "春": ["日"], "始": ["女"], "骑": ["马"], "环": ["王"], "中": ["丨", "口"], "欢": ["又", "欠"], "穿": ["牙", "穴"], "清": ["水"], "臭": ["犬", "自"], "匚": ["一", "匚"], "玩": ["王"], "错": ["金"], "站": ["立"], "村": ["寸", "木"], "黄": ["八"], "难": ["又", "隹"], "亲": ["一", "小", "立"], "位": ["人", "立"], "厅": ["厂"], "凶": ["凵"], "蛋": ["虫"], "厶": ["厶"], "斤": ["厂"], "根": ["木"], "提": ["手"], "泳": ["水"], "送": ["辶"], "视": ["见"], "满": ["水", "艹"], "毛": ["一"], "经": ["工", "纟"], "愿": ["心"], "雪": ["雨"], "所": ["户"], "饱": ["食"], "挺": ["手"], "想": ["心"], "匠": ["匚"], "共": ["一", "八", "廾"], "期": ["月"], "楚": ["木"], "益": ["水", "皿"], "廾": ["廾"], "锻": ["金"], "地": ["土"], "红": ["工", "纟"], "帮": ["巾"], "间": ["日", "门"], "李": ["子", "木"], "广": ["丶", "厂", "广"], "夏": ["一", "自"], "汉": ["又", "水"], "女": ["女"], "都": ["邑"], "边": ["力", "辶"], "心": ["心"], "努": ["力"], "向": ["口"], "班": ["刀", "王"], "如": ["口", "女"], "王": ["一", "土", "王"], "牛": ["牛"], "矢": ["矢"], "配": ["酉"], "酒": ["水", "酉"], "钱": ["金"], "禾": ["木", "禾"], "凡": ["丶", "几"], "世": ["一"], "乐": ["小"], "舌": ["口", "舌"], "天": ["一", "大"], "百": ["一"], "哪": ["口"], "奇": ["大"], "惯": ["心"], "爷": ["卩", "父"], "却": ["卩"], "止": ["丨", "止"], "留": ["田"], "人": ["人"], "便": ["人"], "阜": ["十", "阜"], "住": ["人"], "衡": ["大", "行"], "借": ["人"], "洗": ["水"], "七": ["一"], "工": ["一", "工"], "力": ["力"], "块": ["土"], "牙": ["牙"], "半": ["十", "牛"], "饮": ["欠", "食"], "孩": ["子"], "该": ["言"], "等": ["竹"], "物": ["牛"], "刚": ["刀"], "泉": ["水"], "感": ["心"], "果": ["木", "田"], "词": ["言"], "假": ["人"], "习": ["冫"], "叔": ["又", "小"], "弓": ["弓"], "响": ["口"], "字": ["子", "宀"], "皿": ["一", "皿"], "登": ["豆"], "没": ["水"], "纸": ["纟"], "名": ["口", "夕"], "鹅": ["鸟"], "加": ["力", "口"], "只": ["八", "口"], "邑": ["口", "邑"], "多": ["夕"], "坚": ["又", "土"], "束": ["口", "木"], "囗": ["一", "囗"], "姨": ["女"], "赛": ["宀", "贝"], "门": ["丨", "丶", "门"], "章": ["十", "立", "音"], "刮": ["刀", "舌"], "贵": ["一", "贝"], "杯": ["木"], "主": ["丶", "王"], "事": ["一", "口"], "踢": ["足"], "需": ["雨"], "卩": ["丨", "卩"], "信": ["人", "言"], "华": ["十"], "参": ["厶", "大", "彡"], "卡": ["卜"], "筷": ["竹"], "脑": ["亠"], "给": ["纟"], "商": ["亠", "口"], "句": ["口"], "晚": ["日"], "弟": ["弓"], "其": ["一", "八"], "对": ["又", "寸"], "租": ["禾"], "嘴": ["口"], "健": ["人"], "爸": ["父"], "运": ["辶"], "交": ["亠"], "婚": ["女"], "子": ["一", "子"], "康": ["广"], "北": ["匕"], "兴": ["一", "八"], "今": ["人"], "回": ["口", "囗"], "馆": ["食"], "据": ["手"], "水": ["水"], "理": ["王", "里"], "做": ["人"], "要": ["女"], "京": ["亠", "口", "小"], "彡": ["彡"], "豆": ["一", "口", "豆"], "菜": ["艹"], "衣": ["亠", "衣"], "走": ["土", "止", "走"], "大": ["一", "人", "大"], "隹": ["人", "隹"], "和": ["口", "禾"], "喜": ["口"], "风": ["几"], "道": ["辶"], "功": ["力", "工"], "男": ["力", "田"], "注": ["水"], "高": ["亠", "口"], "穴": ["八", "宀", "穴"], "岁": ["夕", "山"], "艹": ["艹"], "快": ["心"], "意": ["心", "音"], "笔": ["竹"], "姓": ["女"], "接": ["手"], "友": ["又"], "印": ["卩"], "勺": ["丶"], "漂": ["水"], "眼": ["目"], "妹": ["女"], "不": ["一"], "越": ["走"], "猫": ["犬"], "好": ["女", "子"], "复": ["人", "日"], "您": ["心"], "凉": ["冫"], "影": ["彡"], "趣": ["走"], "奶": ["女"], "受": ["冖", "又", "爪"], "且": ["一", "月"], "寸": ["寸"], "滑": ["水", "骨"], "狗": ["犬"], "前": ["一", "刀"], "干": ["一", "十"], "哭": ["口", "犬"], "终": ["纟"], "解": ["刀", "牛"], "凵": ["凵"], "欠": ["人", "欠"], "怕": ["心"], "者": ["日", "老"], "书": ["丨"], "六": ["亠", "八"], "茶": ["人", "木", "艹"], "准": ["冫", "隹"], "东": ["一", "小"], "介": ["人"], "最": ["日"], "易": ["日"], "辶": ["辶"], "别": ["刀"], "戈": ["戈"], "花": ["艹"], "目": ["口", "目"], "气": ["人", "气"], "伞": ["人"], "甜": ["舌"], "务": ["力"], "极": ["木"], "阿": ["邑"], "左": ["工"], "哥": ["口"]};
+const GLOSS = {"饭": ["fàn", "Comida / arroz"], "猫": ["māo", "Gato"], "狗": ["gǒu", "Perro"], "说": ["shuō", "Hablar"], "不": ["bù", "No (negación general)"], "吗": ["ma", "Partícula de pregunta"], "很": ["hěn", "Muy"], "胖": ["pàng", "Gordo"], "学": ["xué", "Aprender"], "烧": ["shāo", "Quemar / asar"], "字": ["zì", "Carácter / letra"], "种": ["zhǒng", "Tipo / clase"], "都": ["dōu", "Todos / ambos"], "去": ["qù", "Ir"], "看": ["kàn", "Ver / mirar / leer"], "问": ["wèn", "Preguntar"], "请": ["qǐng", "Por favor"], "家": ["jiā", "Casa"], "茶": ["chá", "🍵 Té"], "钱": ["qián", "💰 Dinero"], "和": ["hé", "y / con"], "回": ["huí", "Volver / regresar"], "想": ["xiǎng", "Querer / desear"], "喝": ["hē", "Tomar / beber"], "杯": ["bēi", "Bebidas en vaso/taza"], "这": ["zhè", "👉 Esto / este"], "那": ["nà", "👈 Eso / ese"], "元": ["yuán", "💴 Yuan (formal, oficial)"], "分": ["fēn", "⏱️ minuto (tiempo) · 💴 0,01 yuan (cé…"], "在": ["zài", "📍 En / estar en (punto de ubicación)"], "点": ["diǎn", "🕐 hora (en punto) / 'las…'"], "吃": ["chī", "🍴 comer"], "爱": ["ài", "amar, querer"], "本": ["běn", "clasificador de libros"], "菜": ["cài", "verdura"], "穿": ["chuān", "vestir, ponerse (ropa)"], "到": ["dào", "llegar"], "第": ["dì", "prefijo ordinal (1.º, 2.º…)"], "店": ["diàn", "tienda"], "对": ["duì", "correcto"], "二": ["èr", "dos (número)"], "给": ["gěi", "dar"], "贵": ["guì", "caro"], "国": ["guó", "país"], "还": ["hái", "todavía"], "好": ["hǎo", "bueno, bien"], "叫": ["jiào", "llamarse"], "课": ["kè", "clase, lección"], "冷": ["lěng", "frío 🥶"], "零": ["líng", "cero"], "忙": ["máng", "ocupado"], "们": ["men", "sufijo plural (nosotros, ellos…)"], "男": ["nán", "hombre, masculino"], "你": ["nǐ", "tú"], "热": ["rè", "calor, caluroso 🥵"], "三": ["sān", "tres"], "少": ["shǎo", "poco"], "睡": ["shuì", "dormir"], "岁": ["suì", "años (de edad)"], "他": ["tā", "él"], "它": ["tā", "ello (cosas / animales)"], "她": ["tā", "ella"], "太": ["tài", "demasiado (太…了)"], "天": ["tiān", "día"], "听": ["tīng", "escuchar"], "外": ["wài", "fuera, exterior"], "玩": ["wán", "jugar, divertirse"], "雪": ["xuě", "nieve ❄️"], "早": ["zǎo", "temprano"], "找": ["zhǎo", "buscar"], "住": ["zhù", "vivir, residir"], "坐": ["zuò", "sentarse"], "班": ["bān", "clase, grupo (de alumnos)"], "帮": ["bāng", "ayudar"], "笔": ["bǐ", "lápiz, bolígrafo ✏️"], "别": ["bié", "no (prohibición: ¡no lo hagas!)"], "床": ["chuáng", "cama 🛏️"], "次": ["cì", "vez (clasificador de ocasiones)"], "打": ["dǎ", "golpear"], "得": ["de", "partícula de grado/modo (después del…"], "地": ["de", "partícula que forma adverbios (+ ver…"], "过": ["guò / guo", "pasar, cruzar"], "画": ["huà", "dibujar, pintar"], "间": ["jiān", "clasificador de habitaciones"], "进": ["jìn", "entrar"], "考": ["kǎo", "examinar, dar un examen"], "快": ["kuài", "rápido"], "路": ["lù", "camino, calle"], "拿": ["ná", "tomar, coger (con la mano)"], "跑": ["pǎo", "correr"], "时": ["shí", "tiempo, momento"], "题": ["tí", "problema, pregunta (de examen)"], "往": ["wǎng", "hacia (dirección)"], "药": ["yào", "medicina, remedio 💊"], "阴": ["yīn", "nublado ☁️"], "站": ["zhàn", "estar de pie"], "正": ["zhèng", "justo, exactamente"], "左": ["zuǒ", "izquierda"], "办": ["bàn", "hacer, gestionar, tramitar"], "饱": ["bǎo", "lleno (saciado)"], "北": ["běi", "norte"], "常": ["cháng", "a menudo, frecuente"], "带": ["dài", "llevar, traer (consigo)"], "电": ["diàn", "electricidad"], "短": ["duǎn", "corto"], "饿": ["è", "tener hambre"], "鸡": ["jī", "gallina, pollo 🐔"], "加": ["jiā", "añadir, sumar"], "脚": ["jiǎo", "pie 🦶"], "街": ["jiē", "calle"], "酒": ["jiǔ", "alcohol, licor 🍶"], "旧": ["jiù", "viejo, usado (cosas)"], "卡": ["kǎ", "tarjeta 💳"], "渴": ["kě", "tener sed"], "脸": ["liǎn", "cara, rostro"], "辆": ["liàng", "clasif. de vehículos"], "南": ["nán", "sur"], "难": ["nán", "difícil"], "骑": ["qí", "montar (bici, caballo)"], "起": ["qǐ", "levantarse, subir"], "声": ["shēng", "sonido, voz"], "双": ["shuāng", "par (clasif. de pares)"], "跳": ["tiào", "saltar, brincar"], "为": ["wèi", "para, por (a causa de)"], "先": ["xiān", "primero, antes"], "越": ["yuè", "cuanto más (越…越…)"], "张": ["zhāng", "clasif. de cosas planas"], "中": ["zhōng", "medio, centro"], "主": ["zhǔ", "dueño / principal"], "亲": ["qīn", "cercano / pariente"], "光": ["guāng", "luz"], "公": ["gōng", "público / común"], "共": ["gòng", "común, juntos"], "准": ["zhǔn", "preciso"], "凡": ["fán", "común, ordinario"], "刘": ["Liú", "(apellido Liu)"], "初": ["chū", "inicio, primero"], "功": ["gōng", "mérito, logro"], "化": ["huà", "transformar"], "华": ["huá", "magnífico"], "印": ["yìn", "sello"], "却": ["què", "sin embargo"], "厅": ["tīng", "sala, salón"], "历": ["lì", "historia, experiencia"], "友": ["yǒu", "amigo"], "取": ["qǔ", "tomar, recoger"], "古": ["gǔ", "antiguo"], "售": ["shòu", "vender"], "因": ["yīn", "causa, porque"], "壮": ["zhuàng", "fuerte, robusto"], "妈": ["mā", "mamá"], "姐": ["jiě", "hermana mayor"], "孩": ["hái", "niño"], "客": ["kè", "invitado, huésped"], "寺": ["sì", "templo"], "尖": ["jiān", "punta, agudo"], "岛": ["dǎo", "isla"], "州": ["zhōu", "región, estado"], "应": ["yīng", "deber"], "弟": ["dì", "hermano menor"], "强": ["qiáng", "fuerte"], "息": ["xī", "aliento"], "意": ["yì", "significado, idea"], "房": ["fáng", "casa, habitación"], "所": ["suǒ", "lugar"], "明": ["míng", "brillante, claro"], "星": ["xīng", "estrella"], "朗": ["lǎng", "despejado, claro"], "期": ["qī", "período, plazo"], "机": ["jī", "máquina"], "村": ["cūn", "aldea"], "果": ["guǒ", "fruta"], "校": ["xiào", "escuela"], "样": ["yàng", "forma, tipo"], "步": ["bù", "paso"], "武": ["wǔ", "militar, marcial"], "毕": ["bì", "terminar, completar"], "氧": ["yǎng", "oxígeno"], "汉": ["Hàn", "han"], "江": ["jiāng", "río (grande)"], "汽": ["qì", "vapor"], "没": ["méi", "no tener, no haber"], "滑": ["huá", "resbaladizo"], "爷": ["yé", "abuelo"], "爸": ["bà", "papá"], "物": ["wù", "cosa, objeto"], "特": ["tè", "especial"], "猪": ["zhū", "cerdo"], "现": ["xiàn", "aparecer"], "理": ["lǐ", "razón"], "登": ["dēng", "subir"], "益": ["yì", "beneficio"], "盐": ["yán", "sal"], "盘": ["pán", "plato, bandeja"], "眼": ["yǎn", "ojo"], "码": ["mǎ", "código, número"], "破": ["pò", "romper, roto"], "私": ["sī", "privado"], "秋": ["qiū", "otoño"], "空": ["kōng", "vacío"], "窗": ["chuāng", "ventana"], "章": ["zhāng", "capítulo"], "篮": ["lán", "canasta"], "类": ["lèi", "tipo, categoría"], "粉": ["fěn", "polvo"], "红": ["hóng", "rojo"], "绿": ["lǜ", "verde"], "美": ["měi", "bello"], "者": ["zhě", "el que (sufijo)"], "臭": ["chòu", "apestoso"], "芽": ["yá", "brote"], "苹": ["píng", "(de 苹果, manzana)"], "虽": ["suī", "aunque"], "蚊": ["wén", "mosquito"], "衡": ["héng", "equilibrar"], "衫": ["shān", "camisa"], "袋": ["dài", "bolsa"], "观": ["guān", "observar, vista"], "视": ["shì", "ver, mirar"], "觉": ["jué", "sentir, darse cuenta"], "谢": ["xiè", "agradecer"], "财": ["cái", "riqueza"], "购": ["gòu", "comprar"], "超": ["chāo", "super, exceder"], "轻": ["qīng", "ligero"], "较": ["jiào", "comparar"], "邮": ["yóu", "correo"], "配": ["pèi", "combinar, emparejar"], "醋": ["cù", "vinagre"], "野": ["yě", "campo, salvaje"], "钟": ["zhōng", "reloj"], "银": ["yín", "plata"], "闷": ["mèn", "sofocante, aburrido"], "闻": ["wén", "oír, oler"], "阳": ["yáng", "sol"], "院": ["yuàn", "patio"], "雷": ["léi", "trueno"], "音": ["yīn", "sonido"], "顺": ["shùn", "fluido, favorable"], "顾": ["gù", "atender, cuidar"], "馆": ["guǎn", "edificio público (-ería)"], "鲜": ["xiān", "fresco"], "鸭": ["yā", "pato"], "鹅": ["é", "ganso"], "乱": ["luàn", "desordenado, caótico"], "京": ["jīng", "capital"], "六": ["liù", "seis"], "写": ["xiě", "Escribir"], "军": ["jūn", "ejército, militar"], "凶": ["xiōng", "feroz, fatídico"], "出": ["chū", "salir"], "匠": ["jiàng", "artesano"], "区": ["qū", "zona, distrito"], "医": ["yī", "🩺 Medicina / curar"], "受": ["shòu", "recibir; sufrir"], "名": ["míng", "nombre"], "多": ["duō", "mucho"], "夜": ["yè", "noche"], "市": ["shì", "ciudad, urbe"], "开": ["kāi", "abrir"], "弄": ["nòng", "manipular, hacer"], "形": ["xíng", "forma, figura"], "成": ["chéng", "lograr, convertirse en"], "我": ["wǒ", "yo"], "歌": ["gē", "canción"], "爬": ["pá", "trepar, gatear"], "甜": ["tián", "dulce"], "矮": ["ǎi", "bajo (de estatura)"], "票": ["piào", "boleto, entrada 🎫"], "西": ["xī", "oeste"], "要": ["yào", "Directo, \"quiero\" / \"voy a\""], "高": ["gāo", "Alto"], "影": ["yǐng", "sombra; película"], "欢": ["huān", "alegre, contento"], "知": ["zhī", "saber, conocer"], "话": ["huà", "habla, palabra"], "今": ["jīn", "hoy, actual"], "租": ["zū", "alquilar (出租车)"], "服": ["fú", "ropa; servir (衣服)"], "脑": ["nǎo", "cerebro (电脑)"], "书": ["shū", "Libro"], "边": ["biān", "lado, borde"], "亮": ["liàng", "brillante, luminoso"], "号": ["hào", "Día del mes"], "饺": ["jiǎo", "dumpling (饺子)"], "来": ["lái", "Venir"], "认": ["rèn", "reconocer (认识)"], "是": ["shì", "Ser / estar"], "半": ["bàn", "🌗 medio / y media (:30)"], "七": ["qī", "siete"], "东": ["dōng", "este (punto cardinal)"], "朋": ["péng", "amigo (朋友)"], "道": ["dào", "camino; (知道 saber)"], "奶": ["nǎi", "leche; abuela (奶奶)"], "块": ["kuài", "💴 Unidad monetaria (coloquial)"], "妹": ["mèi", "hermana menor"], "会": ["huì", "Saber / poder hacer"], "四": ["sì", "cuatro"], "买": ["mǎi", "Comprar"], "卖": ["mài", "vender"], "晚": ["wǎn", "tarde (no temprano)"], "您": ["nín", "Usted (formal)"], "下": ["xià", "abajo"], "个": ["ge", "Genérico (personas, cosas sin clasif…"], "兴": ["xìng", "ánimo, interés (高兴)"], "怎": ["zěn", "cómo (怎么)"], "有": ["yǒu", "Tener / haber"], "师": ["shī", "maestro (老师)"], "真": ["zhēn", "realmente, de verdad"], "上": ["shàng", "arriba"], "么": ["me", "sufijo (什么 qué)"], "能": ["néng", "Poder (posibilidad)"], "什": ["shén", "qué (什么)"], "识": ["shí", "conocer (认识)"], "蛋": ["dàn", "huevo (鸡蛋)"], "前": ["qián", "delante"], "昨": ["zuó", "ayer (昨天)"], "午": ["wǔ", "mediodía"], "宜": ["yí", "apropiado (便宜 barato)"], "千": ["qiān", "mil"], "漂": ["piào", "(漂亮 bonito)"], "同": ["tóng", "igual, mismo (同学)"], "习": ["xí", "practicar (学习)"]};
 
 /* ── Render de secciones por categoría ── */
 const $sections = document.getElementById('sections');
@@ -357,13 +366,65 @@ function applyHskFilter(level) {
     }
   });
 }
+let currentHsk = 'all';
 document.querySelectorAll('.hf-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.hf-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    applyHskFilter(btn.dataset.hsk);
+    currentHsk = btn.dataset.hsk;
+    applyHskFilter(currentHsk);
   });
 });
+
+/* ── Buscador: palabra → radicales · español/pinyin → radical ── */
+const $search = document.getElementById('search');
+const $result = document.getElementById('search-result');
+const $hskFilter = document.getElementById('hskFilter');
+function hasHan(s) { return /[一-鿿]/.test(s); }
+function norm(s) { return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[\s'’]/g, '').replace(/v/g, 'u'); }
+
+function runSearch() {
+  const q = $search.value.trim();
+  if (!q) {
+    $result.style.display = 'none'; $result.innerHTML = '';
+    $hskFilter.style.display = ''; $toc.style.display = '';
+    applyHskFilter(currentHsk);
+    return;
+  }
+  $hskFilter.style.display = 'none'; $toc.style.display = 'none';
+
+  if (hasHan(q)) {
+    // modo descomponer: por cada carácter chino, sus radicales
+    document.querySelectorAll('.cat-block').forEach(b => b.style.display = 'none');
+    const cs = [...q].filter(c => /[一-鿿]/.test(c));
+    $result.innerHTML = cs.map(ch => {
+      const g = GLOSS[ch] || (BY_HZ[ch] ? [BY_HZ[ch][2], BY_HZ[ch][3]] : null);
+      const gloss = g ? `<span class="sr-py">${g[0]}</span>${g[1]}` : '<span class="sr-none">—</span>';
+      const rs = CHAR_RADS[ch] || [];
+      const chips = rs.length
+        ? '<span class="lbl">radicales:</span>' + rs.map(r => {
+            const d = BY_HZ[r]; return `<a class="sr-rad" data-hz="${r}"><span class="zh">${r}</span> · ${d ? d[3] : ''}</a>`;
+          }).join('')
+        : '<span class="sr-none">sin radical de la lista</span>';
+      return `<div class="sr-card"><div class="sr-hz zh" data-hz="${ch}">${ch}</div><div class="sr-body"><div class="sr-gloss">${gloss}</div><div class="sr-rads">${chips}</div></div></div>`;
+    }).join('');
+    $result.style.display = '';
+  } else {
+    // modo filtrar radicales por significado/pinyin
+    $result.style.display = 'none'; $result.innerHTML = '';
+    const nq = norm(q);
+    document.querySelectorAll('.cat-block').forEach(block => {
+      let vis = 0;
+      block.querySelectorAll('.rad').forEach(card => {
+        const d = BY_HZ[card.dataset.hz];
+        const hit = d && (norm(d[3]).includes(nq) || norm(d[2]).includes(nq));
+        card.style.display = hit ? '' : 'none'; if (hit) vis++;
+      });
+      block.style.display = vis ? '' : 'none';
+    });
+  }
+}
+$search.addEventListener('input', runSearch);
 
 /* ── Audio: mapping.json + fallback Web Speech ── */
 let MAP = {};
