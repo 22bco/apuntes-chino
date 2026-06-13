@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HSK 2 · Guía y vocabulario · Apuntes Chino</title>
+<link rel="stylesheet" href="/hsk1/hsk1.css">
+<style>
+  /* Específico de HSK 2: cards de vocabulario por categoría */
+  .voc-cat { margin: 18px 0; }
+  .voc-cat h3 { display: flex; align-items: center; gap: 8px; }
+  .voc-count { color: #999; font-size: 0.82em; font-weight: 400; }
+  .voc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin-top: 8px; }
+  .voc-item { background: #fff; border: 1px solid #eee; border-radius: 9px; padding: 9px 11px; display: flex; align-items: baseline; gap: 7px; }
+  .voc-item .v-hz { font-family: 'Noto Sans SC', sans-serif; font-weight: 700; color: #c0392b; font-size: 1.05em; }
+  .voc-item .v-py { font-family: 'Inter', sans-serif; color: #888; font-size: 0.78em; }
+  .voc-item .v-es { display: block; color: #555; font-size: 0.82em; margin-top: 2px; width: 100%; }
+  .voc-item .v-audio { background: none; border: none; cursor: pointer; opacity: .5; font-size: 0.95em; margin-left: auto; }
+  .voc-item .v-audio:hover { opacity: 1; }
+  .voc-item .v-main { display: flex; flex-direction: column; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🚀 HSK 2 — guía y vocabulario</h1>
+  <p>HSK por niveles · <a href="/hsk1/" style="color:#f0a030">← HSK 1</a> · <a href="/" style="color:#e74c3c">Inicio</a></p>
+  <div class="hsk-mark">二级</div>
+</header>
+
+<div class="box tip" style="margin-bottom: 24px;">
+  🚀 <strong>Adelantando terreno</strong> — el HSK 2 toma todo el HSK 1 y le suma <strong>~200 palabras</strong> (500 acumuladas) y un puñado de estructuras gramaticales nuevas. Aquí tienes la <strong>estructura del examen</strong> (versión 2.0 y la nueva 3.0), los <strong>conceptos de gramática</strong> que aparecen por primera vez, y todo el <strong>vocabulario nuevo</strong> por categoría con audio 🔊.
+</div>
+
+<nav>
+  <h3>Índice</h3>
+  <ol>
+    <li><a href="#s1">El salto desde HSK 1 🪜</a></li>
+    <li><a href="#s2">Estructura del examen (2.0 vs 3.0) 🗺️</a></li>
+    <li><a href="#s3">La gramática nueva del HSK 2 🧩</a></li>
+    <li><a href="#s4">Vocabulario nuevo por categoría 📚</a></li>
+    <li><a href="#s5">Cómo prepararlo 🎯</a></li>
+  </ol>
+</nav>
+
+<!-- ═══════════════════════════════════════ -->
+<h2 id="s1">1. El salto desde HSK 1 🪜</h2>
+
+<p>Si dominas el HSK 1, ya tienes la base: pronombres, números, la hora, las partículas y los verbos del día a día. El HSK 2 <strong>no reinicia nada</strong> — profundiza. Lo que cambia es esto:</p>
+
+<table>
+  <tr><th></th><th>HSK 1</th><th>HSK 2</th></tr>
+  <tr><td><strong>Vocabulario</strong></td><td>150 (2.0) / 300 (3.0)</td><td>300 (2.0) / <strong>500</strong> (3.0) acumuladas</td></tr>
+  <tr><td><strong>Secciones</strong></td><td>Listening + Reading</td><td>Listening + Reading <span class="beyond">+ escritura básica en 3.0</span></td></tr>
+  <tr><td><strong>Preguntas</strong></td><td>40</td><td><strong>60</strong> (35 listening + 25 reading)</td></tr>
+  <tr><td><strong>Frases</strong></td><td>cortas y directas</td><td>más largas, con comparaciones y conectores</td></tr>
+  <tr><td><strong>Gramática nueva</strong></td><td>—</td><td>比, 了/过/着, 得, 离, 因为…所以…</td></tr>
+</table>
+
+<div class="box note">
+  🟢 <strong>La gran novedad de la 3.0:</strong> el HSK 2 ahora incluye una <strong>sección de escritura básica</strong> (antes empezaba en HSK 3). Es ligera: se basa en los ~101 caracteres compartidos HSK 1-2 y pide cosas simples como ordenar palabras o escribir un carácter desde el pinyin. Aun así, <strong>la escritura a mano de memoria no se exige hasta el nivel 5</strong>.
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<h2 id="s2" class="blue">2. Estructura del examen (2.0 vs 3.0) 🗺️</h2>
+
+<table>
+  <tr><th></th><th>HSK 2 — 2.0</th><th>HSK 2 — 3.0 (desde jul 2026)</th></tr>
+  <tr><td><strong>Secciones</strong></td><td>Listening + Reading</td><td>Listening + Reading + Escritura</td></tr>
+  <tr><td><strong>Listening</strong></td><td>35 preguntas (4 partes)</td><td>similar (optimizado)</td></tr>
+  <tr><td><strong>Reading</strong></td><td>25 preguntas (4 partes)</td><td>similar</td></tr>
+  <tr><td><strong>Escritura</strong></td><td>—</td><td>componente básico nuevo</td></tr>
+  <tr><td><strong>Duración</strong></td><td>~55 min</td><td>~55 min</td></tr>
+  <tr><td><strong>Aprobar</strong></td><td>120 / 200</td><td>120 / 200</td></tr>
+</table>
+
+<div class="box grammar">
+  🎧 <strong>Listening (4 partes):</strong> ① imagen ¿coincide? (✓/✗) · ② elegir imagen según el audio · ③ diálogos con pregunta · ④ diálogos más largos con opciones. <br>
+  📖 <strong>Reading (4 partes):</strong> ① emparejar frase con imagen · ② completar el hueco · ③ verdadero/falso sobre una frase · ④ emparejar preguntas con respuestas.
+</div>
+
+<div class="box tip">
+  💡 Respecto al HSK 1, el audio es un poco <strong>más rápido</strong> y las frases de lectura son <strong>más largas</strong>: aparecen comparaciones (<span class="hz">比</span>), conectores (<span class="hz">因为…所以</span>) y el pasado con <span class="hz">了</span>. Por eso la gramática de abajo es clave.
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<h2 id="s3" class="gold">3. La gramática nueva del HSK 2 🧩</h2>
+
+<p>Estos son los puntos que aparecen <strong>por primera vez</strong> en HSK 2. Son los que marcan la diferencia con el HSK 1.</p>
+
+<h3>比 (bǐ) — el comparativo</h3>
+<div class="box structure">
+  <code>A + 比 + B + adjetivo</code> — "A es más … que B". <strong>¡Sin 很!</strong>
+</div>
+<table>
+  <tr><th>Frase</th><th class="pinyin-col">Pinyin</th><th>Significado</th></tr>
+  <tr><td class="hz">我比你高。</td><td class="pinyin-col">Wǒ bǐ nǐ gāo.</td><td>Soy más alto que tú.</td></tr>
+  <tr><td class="hz">今天比昨天冷。</td><td class="pinyin-col">Jīntiān bǐ zuótiān lěng.</td><td>Hoy hace más frío que ayer.</td></tr>
+</table>
+<div class="box warn">⚠️ Nunca metas <span class="hz">很</span> en una frase con <span class="hz">比</span>: ❌ <span class="hz">我比你很高</span> → ✅ <span class="hz">我比你高</span>.</div>
+
+<h3>了 · 过 · 着 — los tres aspectos</h3>
+<table>
+  <tr><th>Partícula</th><th>Qué marca</th><th>Ejemplo</th></tr>
+  <tr><td class="hz">了 (le)</td><td>acción completada / cambio</td><td><span class="hz">我吃了。</span> Ya comí.</td></tr>
+  <tr><td class="hz">过 (guo)</td><td>experiencia ("alguna vez")</td><td><span class="hz">我去过中国。</span> He estado en China.</td></tr>
+  <tr><td class="hz">着 (zhe)</td><td>estado / acción en curso</td><td><span class="hz">门开着。</span> La puerta está abierta.</td></tr>
+</table>
+<div class="box note">🔑 <span class="hz">了</span> es "lo hice / pasó"; <span class="hz">过</span> es "lo he hecho alguna vez (experiencia)"; <span class="hz">着</span> describe cómo está algo (estado que continúa).</div>
+
+<h3>得 (de) — complemento de grado</h3>
+<div class="box structure"><code>verbo + 得 + adjetivo</code> — dice <em>cómo</em> se hace la acción.</div>
+<table>
+  <tr><th>Frase</th><th class="pinyin-col">Pinyin</th><th>Significado</th></tr>
+  <tr><td class="hz">他跑得很快。</td><td class="pinyin-col">Tā pǎo de hěn kuài.</td><td>Él corre muy rápido.</td></tr>
+  <tr><td class="hz">你说得很好。</td><td class="pinyin-col">Nǐ shuō de hěn hǎo.</td><td>Hablas muy bien.</td></tr>
+</table>
+
+<h3>离 (lí) — distancia entre dos puntos</h3>
+<div class="box structure"><code>A + 离 + B + 远/近</code> — "A está lejos/cerca de B".</div>
+<table>
+  <tr><th>Frase</th><th class="pinyin-col">Pinyin</th><th>Significado</th></tr>
+  <tr><td class="hz">我家离学校很近。</td><td class="pinyin-col">Wǒ jiā lí xuéxiào hěn jìn.</td><td>Mi casa está muy cerca de la escuela.</td></tr>
+</table>
+
+<h3>因为…所以… y 虽然…但是… — los conectores</h3>
+<table>
+  <tr><th>Patrón</th><th>Ejemplo</th></tr>
+  <tr><td class="hz">因为…所以… <small>(porque… por eso…)</small></td><td><span class="hz">因为下雨，所以我没去。</span> Como llovía, no fui.</td></tr>
+  <tr><td class="hz">虽然…但是… <small>(aunque… pero…)</small></td><td><span class="hz">虽然累，但是很开心。</span> Aunque cansado, muy contento.</td></tr>
+</table>
+
+<h3>快要…了 — algo está por pasar</h3>
+<div class="box structure"><code>快要 + verbo + 了</code> — "está a punto de…".</div>
+<table>
+  <tr><th>Frase</th><th class="pinyin-col">Pinyin</th><th>Significado</th></tr>
+  <tr><td class="hz">火车快要走了。</td><td class="pinyin-col">Huǒchē kuàiyào zǒu le.</td><td>El tren está a punto de irse.</td></tr>
+</table>
+
+<h3>Verbos de dirección — 来 / 去 pegados al verbo</h3>
+<p>Los compuestos como <span class="hz">进来</span> (entrar hacia acá), <span class="hz">出去</span> (salir hacia allá), <span class="hz">回来</span> (volver acá): el verbo dice el movimiento y <span class="hz">来/去</span> dicen si es hacia el hablante o lejos de él.</p>
+<table>
+  <tr><th>Hacia acá (来)</th><th>Hacia allá (去)</th></tr>
+  <tr><td class="hz">进来 entrar · 出来 salir · 回来 volver · 上来 subir · 下来 bajar</td><td class="hz">进去 entrar · 出去 salir · 回去 volver · 上去 subir · 下去 bajar</td></tr>
+</table>
+
+<div class="box note">🔑 Otros invitados nuevos: <span class="hz">让</span> (dejar / hacer que), <span class="hz">最</span> (el más, superlativo), <span class="hz">每</span> (cada), <span class="hz">从</span> (desde), <span class="hz">往</span> (hacia) y clasificadores nuevos como <span class="hz">次</span> (veces), <span class="hz">条</span> (cosas largas), <span class="hz">位</span> (personas, cortés) y <span class="hz">间</span> (habitaciones). Todos están abajo en el vocabulario.</div>
+
+<!-- ═══════════════════════════════════════ -->
+<h2 id="s4" class="green">4. Vocabulario nuevo por categoría 📚</h2>
+
+<p>Las <strong>~200 palabras</strong> que el HSK 2 añade sobre el HSK 1, agrupadas por tema. Toca 🔊 para escuchar (voz Lily).</p>
+
+<div id="voc-container"><p style="color:#999">Cargando vocabulario…</p></div>
+
+<!-- ═══════════════════════════════════════ -->
+<h2 id="s5" class="purple">5. Cómo prepararlo 🎯</h2>
+
+<div class="box tip">
+  💡 <strong>El plan:</strong> primero asegura el HSK 1 (la <a href="/hsk1/guia-examen.html">guía del examen</a> y el <a href="/hsk1/repaso.html">repaso espaciado</a>). Después incorpora estas 200 palabras de a poco y practica las estructuras nuevas — sobre todo <span class="hz">比</span>, <span class="hz">了/过</span> y <span class="hz">因为…所以</span>, que son las que más cambian respecto al HSK 1.
+</div>
+
+<div class="box note">
+  🎯 <strong>En resumen:</strong> HSK 2 = HSK 1 + 200 palabras + comparar (<span class="hz">比</span>), hablar del pasado y la experiencia (<span class="hz">了/过</span>), describir cómo se hace algo (<span class="hz">得</span>) y conectar ideas (<span class="hz">因为…所以</span>). Si rindes la 3.0, súmale un poco de escritura básica. 加油 💪
+</div>
+
+<div class="tema-nav">
+  <a href="/hsk1/">← HSK 1</a>
+  <a href="/">↑ Inicio</a>
+  <a href="/hsk3/">HSK 3 →</a>
+</div>
+
+<footer>HSK 2 · Apuntes Chino · <a href="https://basti.cl" style="color:inherit">basti.cl</a></footer>
+
+<button class="pinyin-toggle" id="pyToggle">🙈 Ocultar pinyin</button>
+
+<script>
+const AUDIO_BASE = '/audio/';
+const CAT_LABELS = {
+  verbos: '🏃 Verbos', objetos: '📦 Objetos', adjetivos: '🎨 Adjetivos',
+  particulas: '✨ Partículas y clasificadores', lugares: '📍 Lugares',
+  direcciones: '🧭 Posición y dirección', adverbios: '⚖️ Adverbios',
+  personas: '👤 Personas', tiempo: '⏰ Tiempo', conjunciones: '🔗 Conjunciones',
+  comida: '🍜 Comida y bebida', deportes: '⚽ Deportes y actividades',
+  pronombres: '🙋 Pronombres', colores: '🌈 Colores', cuerpo: '🫀 Cuerpo',
+  familia: '👨‍👩‍👧 Familia', expresiones: '💬 Expresiones', transporte: '🚇 Transporte',
+  ropa: '👕 Ropa', numeros: '🔢 Números'
+};
+const CAT_ORDER = ['verbos','adjetivos','objetos','lugares','direcciones','comida',
+  'deportes','colores','cuerpo','personas','familia','tiempo','transporte','ropa',
+  'numeros','pronombres','adverbios','conjunciones','particulas','expresiones'];
+
+function speak(text, file) {
+  if (file) { new Audio(AUDIO_BASE + file).play(); return; }
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'zh-CN'; u.rate = 0.8; speechSynthesis.speak(u);
+}
+
+fetch('/vocab_hsk2.json').then(r => r.json()).then(data => {
+  const byCat = {};
+  data.forEach(w => { (byCat[w.cat] = byCat[w.cat] || []).push(w); });
+  const cont = document.getElementById('voc-container');
+  cont.innerHTML = '';
+  const cats = CAT_ORDER.filter(c => byCat[c]).concat(Object.keys(byCat).filter(c => !CAT_ORDER.includes(c)));
+  cats.forEach(cat => {
+    const words = byCat[cat];
+    const sec = document.createElement('div');
+    sec.className = 'voc-cat';
+    sec.innerHTML = `<h3>${CAT_LABELS[cat] || cat} <span class="voc-count">${words.length}</span></h3>`;
+    const grid = document.createElement('div');
+    grid.className = 'voc-grid';
+    words.forEach(w => {
+      const it = document.createElement('div');
+      it.className = 'voc-item';
+      it.innerHTML = `<div class="v-main"><span><a class="v-hz" href="https://www.dong-chinese.com/wiki/${encodeURIComponent(w.hz)}" target="_blank" rel="noopener">${w.hz}</a> <span class="v-py pinyin-col">${w.py}</span></span><span class="v-es">${w.es}</span></div><button class="v-audio" title="Escuchar">🔊</button>`;
+      it.querySelector('.v-audio').addEventListener('click', () => speak(w.hz, w.audio));
+      grid.appendChild(it);
+    });
+    sec.appendChild(grid);
+    cont.appendChild(sec);
+  });
+}).catch(() => {
+  document.getElementById('voc-container').innerHTML = '<p style="color:#c0392b">No se pudo cargar el vocabulario (ábrelo vía http).</p>';
+});
+
+/* Botones 🔊 en los ejemplos estáticos (td.hz / span.hz con frase) */
+document.querySelectorAll('td.hz').forEach(el => {
+  const text = el.textContent.trim();
+  if (!text) return;
+  const btn = document.createElement('button');
+  btn.textContent = ' 🔊';
+  btn.style.cssText = 'background:none;border:none;cursor:pointer;opacity:.45;font-size:.85em;';
+  btn.onmouseover = () => btn.style.opacity = '1';
+  btn.onmouseout = () => btn.style.opacity = '.45';
+  btn.onclick = (e) => { e.preventDefault(); speak(text); };
+  el.appendChild(btn);
+});
+
+/* Toggle de pinyin */
+document.getElementById('pyToggle').addEventListener('click', function () {
+  document.body.classList.toggle('hide-pinyin');
+  this.textContent = document.body.classList.contains('hide-pinyin') ? '👁 Mostrar pinyin' : '🙈 Ocultar pinyin';
+});
+</script>
+</body>
+</html>

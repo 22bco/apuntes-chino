@@ -1,0 +1,1586 @@
+[
+ {
+  "hz": "啊",
+  "py": "a",
+  "es": "partícula exclamativa (¡ah!, ¿eh?)",
+  "cat": "particulas",
+  "banda": 500,
+  "audio": "zh_04c16ff7b1.mp3"
+ },
+ {
+  "hz": "爱好",
+  "py": "àihào",
+  "es": "afición, hobby; gustar de",
+  "cat": "objetos",
+  "banda": 500,
+  "audio": "zh_1d32ab8964.mp3"
+ },
+ {
+  "hz": "白色",
+  "py": "báisè",
+  "es": "blanco (color) ⚪",
+  "cat": "colores",
+  "banda": 500,
+  "audio": "zh_2fc96b2704.mp3"
+ },
+ {
+  "hz": "班",
+  "py": "bān",
+  "es": "clase, grupo (de alumnos)",
+  "cat": "personas",
+  "banda": 500,
+  "audio": "zh_043aaa7176.mp3"
+ },
+ {
+  "hz": "帮",
+  "py": "bāng",
+  "es": "ayudar",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_5679e0e35b.mp3"
+ },
+ {
+  "hz": "帮忙",
+  "py": "bāngmáng",
+  "es": "ayudar, echar una mano",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_e21730cbd8.mp3"
+ },
+ {
+  "hz": "包",
+  "py": "bāo",
+  "es": "bolso; envolver",
+  "cat": "objetos",
+  "banda": 500,
+  "audio": "zh_5442dfce9b.mp3"
+ },
+ {
+  "hz": "本子",
+  "py": "běnzi",
+  "es": "cuaderno",
+  "cat": "objetos",
+  "banda": 500,
+  "audio": "zh_59abf9c63a.mp3"
+ },
+ {
+  "hz": "比",
+  "py": "bǐ",
+  "es": "comparar; que (en comparaciones)",
+  "cat": "particulas",
+  "banda": 500,
+  "audio": "zh_d6eea35759.mp3"
+ },
+ {
+  "hz": "笔",
+  "py": "bǐ",
+  "es": "lápiz, bolígrafo ✏️",
+  "cat": "objetos",
+  "banda": 500,
+  "audio": "zh_9fb4dafdc6.mp3"
+ },
+ {
+  "hz": "别",
+  "py": "bié",
+  "es": "no (prohibición: ¡no lo hagas!)",
+  "cat": "particulas",
+  "banda": 500,
+  "audio": "zh_994f48ba91.mp3"
+ },
+ {
+  "hz": "不错",
+  "py": "búcuò",
+  "es": "bastante bien, no está mal",
+  "cat": "adjetivos",
+  "banda": 500,
+  "audio": "zh_c3097ae1fd.mp3"
+ },
+ {
+  "hz": "不好意思",
+  "py": "bù hǎoyìsi",
+  "es": "disculpa; qué pena (vergüenza leve)",
+  "cat": "expresiones",
+  "banda": 500,
+  "audio": "zh_e81fdd38b6.mp3"
+ },
+ {
+  "hz": "长",
+  "py": "cháng",
+  "es": "largo",
+  "cat": "adjetivos",
+  "banda": 500,
+  "audio": "zh_092acb9c0e.mp3"
+ },
+ {
+  "hz": "车站",
+  "py": "chēzhàn",
+  "es": "estación, parada",
+  "cat": "lugares",
+  "banda": 500,
+  "audio": "zh_9726ca980a.mp3"
+ },
+ {
+  "hz": "出",
+  "py": "chū",
+  "es": "salir",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_58f0210610.mp3"
+ },
+ {
+  "hz": "出国",
+  "py": "chūguó",
+  "es": "ir al extranjero",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_30261228c7.mp3"
+ },
+ {
+  "hz": "出来",
+  "py": "chūlái",
+  "es": "salir (hacia acá)",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_08dd6b8295.mp3"
+ },
+ {
+  "hz": "出门",
+  "py": "chūmén",
+  "es": "salir de casa",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_b584bad0c7.mp3"
+ },
+ {
+  "hz": "出去",
+  "py": "chūqù",
+  "es": "salir (hacia allá)",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_e4e06820c7.mp3"
+ },
+ {
+  "hz": "床",
+  "py": "chuáng",
+  "es": "cama 🛏️",
+  "cat": "objetos",
+  "banda": 500,
+  "audio": "zh_1696a59602.mp3"
+ },
+ {
+  "hz": "词",
+  "py": "cí",
+  "es": "palabra, vocablo",
+  "cat": "objetos",
+  "banda": 500,
+  "audio": "zh_c809738f22.mp3"
+ },
+ {
+  "hz": "次",
+  "py": "cì",
+  "es": "vez (clasificador de ocasiones)",
+  "cat": "particulas",
+  "banda": 500,
+  "audio": "zh_7229ecc631.mp3"
+ },
+ {
+  "hz": "从",
+  "py": "cóng",
+  "es": "desde, de",
+  "cat": "particulas",
+  "banda": 500,
+  "audio": "zh_0cc05f4268.mp3"
+ },
+ {
+  "hz": "从小",
+  "py": "cóngxiǎo",
+  "es": "desde pequeño",
+  "cat": "tiempo",
+  "banda": 500,
+  "audio": "zh_d3cda7f427.mp3"
+ },
+ {
+  "hz": "错",
+  "py": "cuò",
+  "es": "equivocado, mal",
+  "cat": "adjetivos",
+  "banda": 500,
+  "audio": "zh_6160eb68dd.mp3"
+ },
+ {
+  "hz": "打",
+  "py": "dǎ",
+  "es": "golpear; jugar (a); hacer (llamada)",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_0e1ceeea46.mp3"
+ },
+ {
+  "hz": "打车",
+  "py": "dǎchē",
+  "es": "tomar un taxi",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_bebd29b623.mp3"
+ },
+ {
+  "hz": "打开",
+  "py": "dǎkāi",
+  "es": "abrir (algo)",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_d7098f5050.mp3"
+ },
+ {
+  "hz": "但",
+  "py": "dàn",
+  "es": "pero, sin embargo",
+  "cat": "conjunciones",
+  "banda": 500,
+  "audio": "zh_fc8f10bc49.mp3"
+ },
+ {
+  "hz": "但是",
+  "py": "dànshì",
+  "es": "pero, sin embargo",
+  "cat": "conjunciones",
+  "banda": 500,
+  "audio": "zh_fcdba379c3.mp3"
+ },
+ {
+  "hz": "得",
+  "py": "de",
+  "es": "partícula de grado/modo (después del verbo)",
+  "cat": "particulas",
+  "banda": 500,
+  "audio": "zh_49f12aa61d.mp3"
+ },
+ {
+  "hz": "地",
+  "py": "de",
+  "es": "partícula que forma adverbios (+ verbo)",
+  "cat": "particulas",
+  "banda": 500,
+  "audio": "zh_1ee506bf5e.mp3"
+ },
+ {
+  "hz": "等",
+  "py": "děng",
+  "es": "esperar; etcétera",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_11ccee3ac8.mp3"
+ },
+ {
+  "hz": "地铁",
+  "py": "dìtiě",
+  "es": "metro, subterráneo 🚇",
+  "cat": "transporte",
+  "banda": 500,
+  "audio": "zh_9266202469.mp3"
+ },
+ {
+  "hz": "点",
+  "py": "diǎn",
+  "es": "encender; pedir (comida)",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_be604f8b7e.mp3"
+ },
+ {
+  "hz": "懂",
+  "py": "dǒng",
+  "es": "entender, comprender",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_d5ceb8486d.mp3"
+ },
+ {
+  "hz": "动",
+  "py": "dòng",
+  "es": "mover(se)",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_180aa85811.mp3"
+ },
+ {
+  "hz": "饭馆",
+  "py": "fànguǎn",
+  "es": "restaurante",
+  "cat": "lugares",
+  "banda": 500,
+  "audio": "zh_0d4a883fd2.mp3"
+ },
+ {
+  "hz": "飞",
+  "py": "fēi",
+  "es": "volar",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_a8dd7133d9.mp3"
+ },
+ {
+  "hz": "高",
+  "py": "gāo",
+  "es": "alto",
+  "cat": "adjetivos",
+  "banda": 500,
+  "audio": "zh_4296d7d293.mp3"
+ },
+ {
+  "hz": "高中",
+  "py": "gāozhōng",
+  "es": "secundaria superior (preparatoria)",
+  "cat": "lugares",
+  "banda": 500,
+  "audio": "zh_fefa7c8483.mp3"
+ },
+ {
+  "hz": "告诉",
+  "py": "gàosu",
+  "es": "decir, contar (a alguien)",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_79b197abe7.mp3"
+ },
+ {
+  "hz": "个子",
+  "py": "gèzi",
+  "es": "estatura, talla",
+  "cat": "cuerpo",
+  "banda": 500,
+  "audio": "zh_21f81dcf53.mp3"
+ },
+ {
+  "hz": "跟",
+  "py": "gēn",
+  "es": "con; y; seguir",
+  "cat": "particulas",
+  "banda": 500,
+  "audio": "zh_3e040f815a.mp3"
+ },
+ {
+  "hz": "公交车",
+  "py": "gōngjiāochē",
+  "es": "autobús 🚌",
+  "cat": "transporte",
+  "banda": 500,
+  "audio": "zh_70b46ee9e8.mp3"
+ },
+ {
+  "hz": "过",
+  "py": "guò / guo",
+  "es": "pasar, cruzar; (part.) haber hecho alguna vez",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_a4c566f849.mp3"
+ },
+ {
+  "hz": "过来",
+  "py": "guòlái",
+  "es": "venir hacia acá",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_3d89d10125.mp3"
+ },
+ {
+  "hz": "过年",
+  "py": "guònián",
+  "es": "celebrar el Año Nuevo",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_3ff6a33dc7.mp3"
+ },
+ {
+  "hz": "过去",
+  "py": "guòqù",
+  "es": "ir hacia allá; el pasado",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_69a4361fbb.mp3"
+ },
+ {
+  "hz": "还是",
+  "py": "háishi",
+  "es": "todavía; o (en preguntas)",
+  "cat": "conjunciones",
+  "banda": 500,
+  "audio": "zh_d33a3d0563.mp3"
+ },
+ {
+  "hz": "黑色",
+  "py": "hēisè",
+  "es": "negro (color) ⚫",
+  "cat": "colores",
+  "banda": 500,
+  "audio": "zh_9d2d1f62ae.mp3"
+ },
+ {
+  "hz": "红茶",
+  "py": "hóngchá",
+  "es": "té negro 🍵",
+  "cat": "comida",
+  "banda": 500,
+  "audio": "zh_91c7d5aac9.mp3"
+ },
+ {
+  "hz": "红色",
+  "py": "hóngsè",
+  "es": "rojo (color) 🔴",
+  "cat": "colores",
+  "banda": 500,
+  "audio": "zh_5263651186.mp3"
+ },
+ {
+  "hz": "后面",
+  "py": "hòumiàn",
+  "es": "detrás, atrás",
+  "cat": "direcciones",
+  "banda": 500,
+  "audio": "zh_518ffd2761.mp3"
+ },
+ {
+  "hz": "花",
+  "py": "huā",
+  "es": "gastar (dinero/tiempo); flor 🌸",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_22dbba75b9.mp3"
+ },
+ {
+  "hz": "画",
+  "py": "huà",
+  "es": "dibujar, pintar; cuadro",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_2287851dee.mp3"
+ },
+ {
+  "hz": "坏",
+  "py": "huài",
+  "es": "malo, estropeado",
+  "cat": "adjetivos",
+  "banda": 500,
+  "audio": "zh_88b5b7181b.mp3"
+ },
+ {
+  "hz": "回来",
+  "py": "huílái",
+  "es": "volver (hacia acá)",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_95c9f31304.mp3"
+ },
+ {
+  "hz": "回去",
+  "py": "huíqù",
+  "es": "volver (hacia allá)",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_1b3cad8a5d.mp3"
+ },
+ {
+  "hz": "机场",
+  "py": "jīchǎng",
+  "es": "aeropuerto 🛫",
+  "cat": "lugares",
+  "banda": 500,
+  "audio": "zh_9fb66e93bc.mp3"
+ },
+ {
+  "hz": "机票",
+  "py": "jīpiào",
+  "es": "boleto de avión",
+  "cat": "objetos",
+  "banda": 500,
+  "audio": "zh_5829062758.mp3"
+ },
+ {
+  "hz": "记得",
+  "py": "jìde",
+  "es": "recordar, acordarse",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_bb351527dd.mp3"
+ },
+ {
+  "hz": "间",
+  "py": "jiān",
+  "es": "clasificador de habitaciones; entre",
+  "cat": "particulas",
+  "banda": 500,
+  "audio": "zh_e04aa3f347.mp3"
+ },
+ {
+  "hz": "教",
+  "py": "jiāo",
+  "es": "enseñar",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_d3db75fca3.mp3"
+ },
+ {
+  "hz": "教室",
+  "py": "jiàoshì",
+  "es": "salón de clase, aula",
+  "cat": "lugares",
+  "banda": 500,
+  "audio": "zh_28c2fc3de8.mp3"
+ },
+ {
+  "hz": "介绍",
+  "py": "jièshào",
+  "es": "presentar, introducir",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_61a3ec6656.mp3"
+ },
+ {
+  "hz": "进",
+  "py": "jìn",
+  "es": "entrar",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_0b1b3058fb.mp3"
+ },
+ {
+  "hz": "近",
+  "py": "jìn",
+  "es": "cerca",
+  "cat": "adjetivos",
+  "banda": 500,
+  "audio": "zh_c68a31cb46.mp3"
+ },
+ {
+  "hz": "进来",
+  "py": "jìnlái",
+  "es": "entrar (hacia acá)",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_c7fd8da0b1.mp3"
+ },
+ {
+  "hz": "进去",
+  "py": "jìnqù",
+  "es": "entrar (hacia allá)",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_955cd24383.mp3"
+ },
+ {
+  "hz": "经常",
+  "py": "jīngcháng",
+  "es": "a menudo, frecuentemente",
+  "cat": "adverbios",
+  "banda": 500,
+  "audio": "zh_b8f86b59c2.mp3"
+ },
+ {
+  "hz": "酒店",
+  "py": "jiǔdiàn",
+  "es": "hotel 🏨",
+  "cat": "lugares",
+  "banda": 500,
+  "audio": "zh_a48985ec8f.mp3"
+ },
+ {
+  "hz": "就",
+  "py": "jiù",
+  "es": "justo, entonces, ya",
+  "cat": "adverbios",
+  "banda": 500,
+  "audio": "zh_1ff3ffeeb1.mp3"
+ },
+ {
+  "hz": "咖啡",
+  "py": "kāfēi",
+  "es": "café ☕",
+  "cat": "comida",
+  "banda": 500,
+  "audio": "zh_a761914f97.mp3"
+ },
+ {
+  "hz": "开始",
+  "py": "kāishǐ",
+  "es": "empezar; comienzo",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_a3e3b88377.mp3"
+ },
+ {
+  "hz": "开学",
+  "py": "kāixué",
+  "es": "empezar las clases (el curso)",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_53a00b172b.mp3"
+ },
+ {
+  "hz": "考",
+  "py": "kǎo",
+  "es": "examinar, dar un examen",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_e7b196a121.mp3"
+ },
+ {
+  "hz": "考试",
+  "py": "kǎoshì",
+  "es": "examen; dar un examen 📝",
+  "cat": "objetos",
+  "banda": 500,
+  "audio": "zh_7746fb87c6.mp3"
+ },
+ {
+  "hz": "可能",
+  "py": "kěnéng",
+  "es": "posible; quizás; posibilidad",
+  "cat": "adjetivos",
+  "banda": 500,
+  "audio": "zh_ca63dc0953.mp3"
+ },
+ {
+  "hz": "裤子",
+  "py": "kùzi",
+  "es": "pantalones 👖",
+  "cat": "ropa",
+  "banda": 500,
+  "audio": "zh_f2bdf96832.mp3"
+ },
+ {
+  "hz": "快",
+  "py": "kuài",
+  "es": "rápido; pronto",
+  "cat": "adjetivos",
+  "banda": 500,
+  "audio": "zh_8fcedbfdde.mp3"
+ },
+ {
+  "hz": "快乐",
+  "py": "kuàilè",
+  "es": "feliz, alegre 😄",
+  "cat": "adjetivos",
+  "banda": 500,
+  "audio": "zh_f8bea620b1.mp3"
+ },
+ {
+  "hz": "快要",
+  "py": "kuàiyào",
+  "es": "estar a punto de, pronto",
+  "cat": "adverbios",
+  "banda": 500,
+  "audio": "zh_4544440c9d.mp3"
+ },
+ {
+  "hz": "篮球",
+  "py": "lánqiú",
+  "es": "básquetbol 🏀",
+  "cat": "deportes",
+  "banda": 500,
+  "audio": "zh_ea2eed1fb5.mp3"
+ },
+ {
+  "hz": "累",
+  "py": "lèi",
+  "es": "cansado 😩",
+  "cat": "adjetivos",
+  "banda": 500,
+  "audio": "zh_af467b208f.mp3"
+ },
+ {
+  "hz": "离",
+  "py": "lí",
+  "es": "(distancia) de, a (tal distancia de)",
+  "cat": "particulas",
+  "banda": 500,
+  "audio": "zh_2afad8c04a.mp3"
+ },
+ {
+  "hz": "里面",
+  "py": "lǐmiàn",
+  "es": "dentro, adentro",
+  "cat": "direcciones",
+  "banda": 500,
+  "audio": "zh_0bf6a4f167.mp3"
+ },
+ {
+  "hz": "楼",
+  "py": "lóu",
+  "es": "edificio; piso (planta)",
+  "cat": "lugares",
+  "banda": 500,
+  "audio": "zh_302a1f4343.mp3"
+ },
+ {
+  "hz": "路",
+  "py": "lù",
+  "es": "camino, calle",
+  "cat": "lugares",
+  "banda": 500,
+  "audio": "zh_d047a27f42.mp3"
+ },
+ {
+  "hz": "路上",
+  "py": "lùshang",
+  "es": "en el camino",
+  "cat": "lugares",
+  "banda": 500,
+  "audio": "zh_f862ca0777.mp3"
+ },
+ {
+  "hz": "旅游",
+  "py": "lǚyóu",
+  "es": "viajar, hacer turismo ✈️",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_0ebbd85f68.mp3"
+ },
+ {
+  "hz": "绿茶",
+  "py": "lǜchá",
+  "es": "té verde 🍵",
+  "cat": "comida",
+  "banda": 500,
+  "audio": "zh_7e668e496f.mp3"
+ },
+ {
+  "hz": "绿色",
+  "py": "lǜsè",
+  "es": "verde (color) 🟢",
+  "cat": "colores",
+  "banda": 500,
+  "audio": "zh_b2c712c788.mp3"
+ },
+ {
+  "hz": "慢",
+  "py": "màn",
+  "es": "lento",
+  "cat": "adjetivos",
+  "banda": 500,
+  "audio": "zh_e0b665f23b.mp3"
+ },
+ {
+  "hz": "没意思",
+  "py": "méi yìsi",
+  "es": "aburrido, sin gracia",
+  "cat": "expresiones",
+  "banda": 500,
+  "audio": "zh_17ba6338e4.mp3"
+ },
+ {
+  "hz": "每",
+  "py": "měi",
+  "es": "cada, todos (los…)",
+  "cat": "pronombres",
+  "banda": 500,
+  "audio": "zh_a7e221ca62.mp3"
+ },
+ {
+  "hz": "门",
+  "py": "mén",
+  "es": "puerta",
+  "cat": "objetos",
+  "banda": 500,
+  "audio": "zh_a4960087a9.mp3"
+ },
+ {
+  "hz": "门口",
+  "py": "ménkǒu",
+  "es": "entrada, puerta (umbral)",
+  "cat": "lugares",
+  "banda": 500,
+  "audio": "zh_e98e3093b8.mp3"
+ },
+ {
+  "hz": "门票",
+  "py": "ménpiào",
+  "es": "entrada (boleto de acceso)",
+  "cat": "objetos",
+  "banda": 500,
+  "audio": "zh_66447b77d6.mp3"
+ },
+ {
+  "hz": "面",
+  "py": "miàn",
+  "es": "lado, cara; sufijo de dirección",
+  "cat": "direcciones",
+  "banda": 500,
+  "audio": "zh_fd6a0e7d36.mp3"
+ },
+ {
+  "hz": "名",
+  "py": "míng",
+  "es": "nombre; clasificador de personas",
+  "cat": "particulas",
+  "banda": 500,
+  "audio": "zh_4f8ca95e7b.mp3"
+ },
+ {
+  "hz": "拿",
+  "py": "ná",
+  "es": "tomar, coger (con la mano)",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_c7f7acf5b6.mp3"
+ },
+ {
+  "hz": "那么",
+  "py": "nàme",
+  "es": "tan, así; entonces",
+  "cat": "adverbios",
+  "banda": 500,
+  "audio": "zh_2d536d5a8a.mp3"
+ },
+ {
+  "hz": "那样",
+  "py": "nàyàng",
+  "es": "así, de esa manera",
+  "cat": "pronombres",
+  "banda": 500,
+  "audio": "zh_ff74b9f2ec.mp3"
+ },
+ {
+  "hz": "奶茶",
+  "py": "nǎichá",
+  "es": "té con leche (bubble tea) 🧋",
+  "cat": "comida",
+  "banda": 500,
+  "audio": "zh_90293ea702.mp3"
+ },
+ {
+  "hz": "奶奶",
+  "py": "nǎinai",
+  "es": "abuela (paterna)",
+  "cat": "familia",
+  "banda": 500,
+  "audio": "zh_2144381ade.mp3"
+ },
+ {
+  "hz": "男孩儿",
+  "py": "nánháir",
+  "es": "niño, chico 👦",
+  "cat": "personas",
+  "banda": 500,
+  "audio": "zh_881bbc1324.mp3"
+ },
+ {
+  "hz": "鸟",
+  "py": "niǎo",
+  "es": "pájaro 🐦",
+  "cat": "objetos",
+  "banda": 500,
+  "audio": "zh_cdd7ce48a9.mp3"
+ },
+ {
+  "hz": "女孩儿",
+  "py": "nǚháir",
+  "es": "niña, chica 👧",
+  "cat": "personas",
+  "banda": 500,
+  "audio": "zh_17db0e4afc.mp3"
+ },
+ {
+  "hz": "旁边",
+  "py": "pángbiān",
+  "es": "al lado de, junto a",
+  "cat": "direcciones",
+  "banda": 500,
+  "audio": "zh_0a50d8e569.mp3"
+ },
+ {
+  "hz": "跑",
+  "py": "pǎo",
+  "es": "correr",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_c5032ff770.mp3"
+ },
+ {
+  "hz": "跑步",
+  "py": "pǎobù",
+  "es": "correr, trotar 🏃",
+  "cat": "deportes",
+  "banda": 500,
+  "audio": "zh_7b385d0284.mp3"
+ },
+ {
+  "hz": "票",
+  "py": "piào",
+  "es": "boleto, entrada 🎫",
+  "cat": "objetos",
+  "banda": 500,
+  "audio": "zh_e46f3b4fe1.mp3"
+ },
+ {
+  "hz": "妻子",
+  "py": "qīzi",
+  "es": "esposa",
+  "cat": "familia",
+  "banda": 500,
+  "audio": "zh_97795c8167.mp3"
+ },
+ {
+  "hz": "起来",
+  "py": "qǐlái",
+  "es": "levantarse; (tras verbo) empezar a",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_741f5850b2.mp3"
+ },
+ {
+  "hz": "前面",
+  "py": "qiánmiàn",
+  "es": "delante, al frente",
+  "cat": "direcciones",
+  "banda": 500,
+  "audio": "zh_0c3ea1e092.mp3"
+ },
+ {
+  "hz": "晴",
+  "py": "qíng",
+  "es": "despejado, soleado ☀️",
+  "cat": "adjetivos",
+  "banda": 500,
+  "audio": "zh_eabe42f713.mp3"
+ },
+ {
+  "hz": "球",
+  "py": "qiú",
+  "es": "pelota, balón",
+  "cat": "objetos",
+  "banda": 500,
+  "audio": "zh_1b2527d8ae.mp3"
+ },
+ {
+  "hz": "让",
+  "py": "ràng",
+  "es": "dejar, permitir; hacer que",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_167bb5dcc6.mp3"
+ },
+ {
+  "hz": "肉",
+  "py": "ròu",
+  "es": "carne 🥩",
+  "cat": "comida",
+  "banda": 500,
+  "audio": "zh_f37896e63b.mp3"
+ },
+ {
+  "hz": "商场",
+  "py": "shāngchǎng",
+  "es": "centro comercial 🛍️",
+  "cat": "lugares",
+  "banda": 500,
+  "audio": "zh_861f5f23be.mp3"
+ },
+ {
+  "hz": "上来",
+  "py": "shànglái",
+  "es": "subir (hacia acá)",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_855ec69991.mp3"
+ },
+ {
+  "hz": "上面",
+  "py": "shàngmiàn",
+  "es": "encima, arriba",
+  "cat": "direcciones",
+  "banda": 500,
+  "audio": "zh_2221389445.mp3"
+ },
+ {
+  "hz": "上去",
+  "py": "shàngqù",
+  "es": "subir (hacia allá)",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_65581c5716.mp3"
+ },
+ {
+  "hz": "上网",
+  "py": "shàngwǎng",
+  "es": "conectarse a internet",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_9cb9e1ec54.mp3"
+ },
+ {
+  "hz": "身体",
+  "py": "shēntǐ",
+  "es": "cuerpo; salud",
+  "cat": "cuerpo",
+  "banda": 500,
+  "audio": "zh_7be627ccbd.mp3"
+ },
+ {
+  "hz": "生日",
+  "py": "shēngrì",
+  "es": "cumpleaños 🎂",
+  "cat": "tiempo",
+  "banda": 500,
+  "audio": "生日_8483ed132b.mp3"
+ },
+ {
+  "hz": "时",
+  "py": "shí",
+  "es": "tiempo, momento; cuando",
+  "cat": "tiempo",
+  "banda": 500,
+  "audio": "zh_609b5f0a08.mp3"
+ },
+ {
+  "hz": "事情",
+  "py": "shìqing",
+  "es": "asunto, cosa (que hacer)",
+  "cat": "objetos",
+  "banda": 500,
+  "audio": "zh_a245c52e0f.mp3"
+ },
+ {
+  "hz": "手",
+  "py": "shǒu",
+  "es": "mano ✋",
+  "cat": "cuerpo",
+  "banda": 500,
+  "audio": "zh_3c7d183f1b.mp3"
+ },
+ {
+  "hz": "手表",
+  "py": "shǒubiǎo",
+  "es": "reloj de pulsera ⌚",
+  "cat": "objetos",
+  "banda": 500,
+  "audio": "zh_abc55f407b.mp3"
+ },
+ {
+  "hz": "书包",
+  "py": "shūbāo",
+  "es": "mochila escolar 🎒",
+  "cat": "objetos",
+  "banda": 500,
+  "audio": "zh_999f3de2cf.mp3"
+ },
+ {
+  "hz": "舒服",
+  "py": "shūfu",
+  "es": "cómodo; a gusto",
+  "cat": "adjetivos",
+  "banda": 500,
+  "audio": "zh_6dcd6442b0.mp3"
+ },
+ {
+  "hz": "送",
+  "py": "sòng",
+  "es": "regalar; enviar; acompañar",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_040f3943c3.mp3"
+ },
+ {
+  "hz": "虽然",
+  "py": "suīrán",
+  "es": "aunque",
+  "cat": "conjunciones",
+  "banda": 500,
+  "audio": "zh_3f08be8832.mp3"
+ },
+ {
+  "hz": "所以",
+  "py": "suǒyǐ",
+  "es": "por eso, por lo tanto",
+  "cat": "conjunciones",
+  "banda": 500,
+  "audio": "zh_7681c27955.mp3"
+ },
+ {
+  "hz": "疼",
+  "py": "téng",
+  "es": "doler; dolorido",
+  "cat": "adjetivos",
+  "banda": 500,
+  "audio": "zh_47f18cd93a.mp3"
+ },
+ {
+  "hz": "踢",
+  "py": "tī",
+  "es": "patear, dar patadas",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_81309b8457.mp3"
+ },
+ {
+  "hz": "题",
+  "py": "tí",
+  "es": "problema, pregunta (de examen)",
+  "cat": "objetos",
+  "banda": 500,
+  "audio": "zh_c571208c82.mp3"
+ },
+ {
+  "hz": "条",
+  "py": "tiáo",
+  "es": "clasif. de cosas largas (calles, peces…)",
+  "cat": "particulas",
+  "banda": 500,
+  "audio": "zh_cc1bacb511.mp3"
+ },
+ {
+  "hz": "跳舞",
+  "py": "tiàowǔ",
+  "es": "bailar 💃",
+  "cat": "deportes",
+  "banda": 500,
+  "audio": "zh_fad50bfdcb.mp3"
+ },
+ {
+  "hz": "头",
+  "py": "tóu",
+  "es": "cabeza; clasif. de animales",
+  "cat": "cuerpo",
+  "banda": 500,
+  "audio": "zh_4be2abbcf7.mp3"
+ },
+ {
+  "hz": "外国",
+  "py": "wàiguó",
+  "es": "extranjero (país)",
+  "cat": "lugares",
+  "banda": 500,
+  "audio": "zh_2645f8ec49.mp3"
+ },
+ {
+  "hz": "外面",
+  "py": "wàimiàn",
+  "es": "fuera, afuera",
+  "cat": "direcciones",
+  "banda": 500,
+  "audio": "zh_0f7738748f.mp3"
+ },
+ {
+  "hz": "完",
+  "py": "wán",
+  "es": "terminar, acabar",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_68b6c8104e.mp3"
+ },
+ {
+  "hz": "万",
+  "py": "wàn",
+  "es": "diez mil",
+  "cat": "numeros",
+  "banda": 500,
+  "audio": "zh_9d03206671.mp3"
+ },
+ {
+  "hz": "往",
+  "py": "wǎng",
+  "es": "hacia (dirección)",
+  "cat": "particulas",
+  "banda": 500,
+  "audio": "zh_a3cc6922c7.mp3"
+ },
+ {
+  "hz": "网上",
+  "py": "wǎngshang",
+  "es": "en línea, por internet",
+  "cat": "lugares",
+  "banda": 500,
+  "audio": "zh_1bb5391f35.mp3"
+ },
+ {
+  "hz": "忘",
+  "py": "wàng",
+  "es": "olvidar",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_9a707d96b2.mp3"
+ },
+ {
+  "hz": "位",
+  "py": "wèi",
+  "es": "clasif. cortés de personas",
+  "cat": "particulas",
+  "banda": 500,
+  "audio": "zh_cf10dcb8d7.mp3"
+ },
+ {
+  "hz": "为什么",
+  "py": "wèishénme",
+  "es": "¿por qué?",
+  "cat": "pronombres",
+  "banda": 500,
+  "audio": "zh_cf9e991128.mp3"
+ },
+ {
+  "hz": "希望",
+  "py": "xīwàng",
+  "es": "esperar, desear; esperanza",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_bfde964498.mp3"
+ },
+ {
+  "hz": "洗",
+  "py": "xǐ",
+  "es": "lavar",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_d96561075f.mp3"
+ },
+ {
+  "hz": "洗手间",
+  "py": "xǐshǒujiān",
+  "es": "baño, servicios 🚻",
+  "cat": "lugares",
+  "banda": 500,
+  "audio": "zh_7df4fa959f.mp3"
+ },
+ {
+  "hz": "下来",
+  "py": "xiàlái",
+  "es": "bajar (hacia acá)",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_d6df874e42.mp3"
+ },
+ {
+  "hz": "下面",
+  "py": "xiàmiàn",
+  "es": "debajo, abajo",
+  "cat": "direcciones",
+  "banda": 500,
+  "audio": "zh_933defc128.mp3"
+ },
+ {
+  "hz": "下去",
+  "py": "xiàqù",
+  "es": "bajar (hacia allá)",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_5e1267cc96.mp3"
+ },
+ {
+  "hz": "小孩儿",
+  "py": "xiǎoháir",
+  "es": "niño (pequeño)",
+  "cat": "personas",
+  "banda": 500,
+  "audio": "zh_03c8e516a6.mp3"
+ },
+ {
+  "hz": "小时候",
+  "py": "xiǎoshíhou",
+  "es": "la infancia, de niño",
+  "cat": "tiempo",
+  "banda": 500,
+  "audio": "zh_38476973c7.mp3"
+ },
+ {
+  "hz": "笑",
+  "py": "xiào",
+  "es": "reír, sonreír 😄",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_1300f40cb6.mp3"
+ },
+ {
+  "hz": "姓",
+  "py": "xìng",
+  "es": "apellido; apellidarse",
+  "cat": "personas",
+  "banda": 500,
+  "audio": "zh_1b992ad754.mp3"
+ },
+ {
+  "hz": "姓名",
+  "py": "xìngmíng",
+  "es": "nombre completo",
+  "cat": "personas",
+  "banda": 500,
+  "audio": "zh_60d0458ac6.mp3"
+ },
+ {
+  "hz": "颜色",
+  "py": "yánsè",
+  "es": "color 🎨",
+  "cat": "colores",
+  "banda": 500,
+  "audio": "zh_6b36c6f7ec.mp3"
+ },
+ {
+  "hz": "眼睛",
+  "py": "yǎnjing",
+  "es": "ojo 👁️",
+  "cat": "cuerpo",
+  "banda": 500,
+  "audio": "zh_946f5c8c69.mp3"
+ },
+ {
+  "hz": "药",
+  "py": "yào",
+  "es": "medicina, remedio 💊",
+  "cat": "objetos",
+  "banda": 500,
+  "audio": "zh_60cb730b1e.mp3"
+ },
+ {
+  "hz": "药店",
+  "py": "yàodiàn",
+  "es": "farmacia",
+  "cat": "lugares",
+  "banda": 500,
+  "audio": "zh_629960fd5b.mp3"
+ },
+ {
+  "hz": "爷爷",
+  "py": "yéye",
+  "es": "abuelo (paterno)",
+  "cat": "familia",
+  "banda": 500,
+  "audio": "zh_e571dca2d0.mp3"
+ },
+ {
+  "hz": "一会儿",
+  "py": "yíhuìr",
+  "es": "un ratito, un momento",
+  "cat": "tiempo",
+  "banda": 500,
+  "audio": "zh_ed88192c19.mp3"
+ },
+ {
+  "hz": "已经",
+  "py": "yǐjīng",
+  "es": "ya",
+  "cat": "adverbios",
+  "banda": 500,
+  "audio": "zh_d26c2b24f3.mp3"
+ },
+ {
+  "hz": "一起",
+  "py": "yìqǐ",
+  "es": "juntos",
+  "cat": "adverbios",
+  "banda": 500,
+  "audio": "zh_3efffd5f35.mp3"
+ },
+ {
+  "hz": "意思",
+  "py": "yìsi",
+  "es": "significado, sentido",
+  "cat": "objetos",
+  "banda": 500,
+  "audio": "zh_323bf89a32.mp3"
+ },
+ {
+  "hz": "阴",
+  "py": "yīn",
+  "es": "nublado ☁️",
+  "cat": "adjetivos",
+  "banda": 500,
+  "audio": "zh_ca4062ed6b.mp3"
+ },
+ {
+  "hz": "因为",
+  "py": "yīnwèi",
+  "es": "porque",
+  "cat": "conjunciones",
+  "banda": 500,
+  "audio": "zh_5f3cf4472e.mp3"
+ },
+ {
+  "hz": "游",
+  "py": "yóu",
+  "es": "nadar",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_e34cb018b2.mp3"
+ },
+ {
+  "hz": "游泳",
+  "py": "yóuyǒng",
+  "es": "nadar, natación 🏊",
+  "cat": "deportes",
+  "banda": 500,
+  "audio": "zh_221486055c.mp3"
+ },
+ {
+  "hz": "有意思",
+  "py": "yǒu yìsi",
+  "es": "interesante, entretenido",
+  "cat": "expresiones",
+  "banda": 500,
+  "audio": "zh_ef102b9fe1.mp3"
+ },
+ {
+  "hz": "有时",
+  "py": "yǒushí",
+  "es": "a veces",
+  "cat": "adverbios",
+  "banda": 500,
+  "audio": "zh_02924b98cd.mp3"
+ },
+ {
+  "hz": "右",
+  "py": "yòu",
+  "es": "derecha",
+  "cat": "direcciones",
+  "banda": 500,
+  "audio": "zh_4d9c32c23d.mp3"
+ },
+ {
+  "hz": "右边",
+  "py": "yòubian",
+  "es": "lado derecho, a la derecha",
+  "cat": "direcciones",
+  "banda": 500,
+  "audio": "zh_128d58f066.mp3"
+ },
+ {
+  "hz": "鱼",
+  "py": "yú",
+  "es": "pez, pescado 🐟",
+  "cat": "comida",
+  "banda": 500,
+  "audio": "zh_0857fa4e34.mp3"
+ },
+ {
+  "hz": "远",
+  "py": "yuǎn",
+  "es": "lejos",
+  "cat": "adjetivos",
+  "banda": 500,
+  "audio": "zh_6619176b57.mp3"
+ },
+ {
+  "hz": "运动",
+  "py": "yùndòng",
+  "es": "hacer deporte; ejercicio 🏅",
+  "cat": "deportes",
+  "banda": 500,
+  "audio": "zh_37b6debeb4.mp3"
+ },
+ {
+  "hz": "站",
+  "py": "zhàn",
+  "es": "estar de pie; estación",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_4b3774c6a2.mp3"
+ },
+ {
+  "hz": "丈夫",
+  "py": "zhàngfu",
+  "es": "esposo, marido",
+  "cat": "familia",
+  "banda": 500,
+  "audio": "zh_a583eae023.mp3"
+ },
+ {
+  "hz": "这么",
+  "py": "zhème",
+  "es": "tan, así (de)",
+  "cat": "pronombres",
+  "banda": 500,
+  "audio": "zh_f80f9358b1.mp3"
+ },
+ {
+  "hz": "这样",
+  "py": "zhèyàng",
+  "es": "así, de esta manera",
+  "cat": "pronombres",
+  "banda": 500,
+  "audio": "zh_9807ef7012.mp3"
+ },
+ {
+  "hz": "着",
+  "py": "zhe",
+  "es": "partícula de acción/estado en curso",
+  "cat": "particulas",
+  "banda": 500,
+  "audio": "zh_7d49b35ca8.mp3"
+ },
+ {
+  "hz": "正",
+  "py": "zhèng",
+  "es": "justo, exactamente; recto",
+  "cat": "adverbios",
+  "banda": 500,
+  "audio": "zh_0f756c3fad.mp3"
+ },
+ {
+  "hz": "周",
+  "py": "zhōu",
+  "es": "semana",
+  "cat": "tiempo",
+  "banda": 500,
+  "audio": "zh_a657f46f5b.mp3"
+ },
+ {
+  "hz": "准备",
+  "py": "zhǔnbèi",
+  "es": "preparar(se)",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_424a2ad8f7.mp3"
+ },
+ {
+  "hz": "自己",
+  "py": "zìjǐ",
+  "es": "uno mismo, sí mismo",
+  "cat": "pronombres",
+  "banda": 500,
+  "audio": "zh_0c105e7ca0.mp3"
+ },
+ {
+  "hz": "走",
+  "py": "zǒu",
+  "es": "caminar, andar; irse",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_0154e79e14.mp3"
+ },
+ {
+  "hz": "走路",
+  "py": "zǒulù",
+  "es": "caminar, ir a pie",
+  "cat": "verbos",
+  "banda": 500,
+  "audio": "zh_a315706916.mp3"
+ },
+ {
+  "hz": "足球",
+  "py": "zúqiú",
+  "es": "fútbol ⚽",
+  "cat": "deportes",
+  "banda": 500,
+  "audio": "zh_ed05233ac8.mp3"
+ },
+ {
+  "hz": "最",
+  "py": "zuì",
+  "es": "el más, -ísimo (superlativo)",
+  "cat": "adverbios",
+  "banda": 500,
+  "audio": "zh_084fa77fa0.mp3"
+ },
+ {
+  "hz": "左",
+  "py": "zuǒ",
+  "es": "izquierda",
+  "cat": "direcciones",
+  "banda": 500,
+  "audio": "zh_d2aff14178.mp3"
+ },
+ {
+  "hz": "左边",
+  "py": "zuǒbian",
+  "es": "lado izquierdo, a la izquierda",
+  "cat": "direcciones",
+  "banda": 500,
+  "audio": "zh_a7eaff2960.mp3"
+ }
+]
