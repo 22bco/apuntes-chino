@@ -43,7 +43,17 @@ chino/
 │   ├── quiz.html           # Quiz opción múltiple (hz→es, es→hz, audio→hz; por tema)
 │   ├── repaso.html         # SRS Leitner 5 cajas (localStorage 'hsk1-srs') + export Anki TSV
 │   ├── examen.html         # Simulacro: 30 preguntas, 3 secciones, 15 min, fallos→SRS
+│   ├── guia-examen.html    # Guía de estrategia del examen HSK 1 (2.0 vs 3.0)
 │   └── 01-*.html .. 14-*.html  # 14 páginas temáticas autocontenidas
+│
+├── hsk2/                   # HSK 2 (adelanto, jun 2026) — guía del examen + vocab nuevo
+│   └── index.html          # Estructura examen 2.0/3.0, gramática nueva, ~200 palabras (carga vocab_hsk2.json)
+├── hsk3/                   # HSK 3 (adelanto, jun 2026) — guía del examen + vocab nuevo
+│   └── index.html          # Estructura examen (con escritura), gramática nueva, 500 palabras (carga vocab_hsk3.json)
+│
+├── vocab_hsk1.json         # 300 palabras HSK 1 (3.0) {hz,py,es,cat,banda 150/300,audio} — typing/lluvia
+├── vocab_hsk2.json         # 198 palabras nuevas HSK 2 (banda 500)
+├── vocab_hsk3.json         # 500 palabras nuevas HSK 3 (banda 1000)
 │
 ├── radicales.html          # Herramienta: 30 radicales con HanziWriter (trazos animados)
 │
