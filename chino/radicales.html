@@ -243,6 +243,7 @@ const RADICALES = [
 /* Índice por hanzi del radical (para la ficha rica) */
 const BY_HZ = {};
 RADICALES.forEach(r => { BY_HZ[r[0]] = r; });
+const GLOSS = {"饭": ["fàn", "Comida / arroz"], "猫": ["māo", "Gato"], "狗": ["gǒu", "Perro"], "说": ["shuō", "Hablar"], "不": ["bù", "No (negación general)"], "吗": ["ma", "Partícula de pregunta"], "很": ["hěn", "Muy"], "胖": ["pàng", "Gordo"], "学": ["xué", "Aprender"], "烧": ["shāo", "Quemar / asar"], "字": ["zì", "Carácter / letra"], "种": ["zhǒng", "Tipo / clase"], "都": ["dōu", "Todos / ambos"], "去": ["qù", "Ir"], "看": ["kàn", "Ver / mirar / leer"], "问": ["wèn", "Preguntar"], "请": ["qǐng", "Por favor"], "家": ["jiā", "Casa"], "茶": ["chá", "🍵 Té"], "钱": ["qián", "💰 Dinero"], "和": ["hé", "y / con"], "回": ["huí", "Volver / regresar"], "想": ["xiǎng", "Querer / desear"], "喝": ["hē", "Tomar / beber"], "杯": ["bēi", "Bebidas en vaso/taza"], "这": ["zhè", "👉 Esto / este"], "那": ["nà", "👈 Eso / ese"], "元": ["yuán", "💴 Yuan (formal, oficial)"], "分": ["fēn", "⏱️ minuto (tiempo) · 💴 0,01 yuan (cé…"], "在": ["zài", "📍 En / estar en (punto de ubicación)"], "点": ["diǎn", "🕐 hora (en punto) / 'las…'"], "吃": ["chī", "🍴 comer"], "爱": ["ài", "amar, querer"], "本": ["běn", "clasificador de libros"], "菜": ["cài", "verdura"], "穿": ["chuān", "vestir, ponerse (ropa)"], "到": ["dào", "llegar"], "第": ["dì", "prefijo ordinal (1.º, 2.º…)"], "店": ["diàn", "tienda"], "对": ["duì", "correcto"], "二": ["èr", "dos (número)"], "给": ["gěi", "dar"], "贵": ["guì", "caro"], "国": ["guó", "país"], "还": ["hái", "todavía"], "好": ["hǎo", "bueno, bien"], "叫": ["jiào", "llamarse"], "课": ["kè", "clase, lección"], "冷": ["lěng", "frío 🥶"], "零": ["líng", "cero"], "忙": ["máng", "ocupado"], "们": ["men", "sufijo plural (nosotros, ellos…)"], "男": ["nán", "hombre, masculino"], "你": ["nǐ", "tú"], "热": ["rè", "calor, caluroso 🥵"], "三": ["sān", "tres"], "少": ["shǎo", "poco"], "睡": ["shuì", "dormir"], "岁": ["suì", "años (de edad)"], "他": ["tā", "él"], "它": ["tā", "ello (cosas / animales)"], "她": ["tā", "ella"], "太": ["tài", "demasiado (太…了)"], "天": ["tiān", "día"], "听": ["tīng", "escuchar"], "外": ["wài", "fuera, exterior"], "玩": ["wán", "jugar, divertirse"], "雪": ["xuě", "nieve ❄️"], "早": ["zǎo", "temprano"], "找": ["zhǎo", "buscar"], "住": ["zhù", "vivir, residir"], "坐": ["zuò", "sentarse"], "班": ["bān", "clase, grupo (de alumnos)"], "帮": ["bāng", "ayudar"], "笔": ["bǐ", "lápiz, bolígrafo ✏️"], "别": ["bié", "no (prohibición: ¡no lo hagas!)"], "床": ["chuáng", "cama 🛏️"], "次": ["cì", "vez (clasificador de ocasiones)"], "打": ["dǎ", "golpear"], "得": ["de", "partícula de grado/modo (después del…"], "地": ["de", "partícula que forma adverbios (+ ver…"], "过": ["guò / guo", "pasar, cruzar"], "画": ["huà", "dibujar, pintar"], "间": ["jiān", "clasificador de habitaciones"], "进": ["jìn", "entrar"], "考": ["kǎo", "examinar, dar un examen"], "快": ["kuài", "rápido"], "路": ["lù", "camino, calle"], "拿": ["ná", "tomar, coger (con la mano)"], "跑": ["pǎo", "correr"], "时": ["shí", "tiempo, momento"], "题": ["tí", "problema, pregunta (de examen)"], "往": ["wǎng", "hacia (dirección)"], "药": ["yào", "medicina, remedio 💊"], "阴": ["yīn", "nublado ☁️"], "站": ["zhàn", "estar de pie"], "正": ["zhèng", "justo, exactamente"], "左": ["zuǒ", "izquierda"], "办": ["bàn", "hacer, gestionar, tramitar"], "饱": ["bǎo", "lleno (saciado)"], "北": ["běi", "norte"], "常": ["cháng", "a menudo, frecuente"], "带": ["dài", "llevar, traer (consigo)"], "电": ["diàn", "electricidad"], "短": ["duǎn", "corto"], "饿": ["è", "tener hambre"], "鸡": ["jī", "gallina, pollo 🐔"], "加": ["jiā", "añadir, sumar"], "脚": ["jiǎo", "pie 🦶"], "街": ["jiē", "calle"], "酒": ["jiǔ", "alcohol, licor 🍶"], "旧": ["jiù", "viejo, usado (cosas)"], "卡": ["kǎ", "tarjeta 💳"], "渴": ["kě", "tener sed"], "脸": ["liǎn", "cara, rostro"], "辆": ["liàng", "clasif. de vehículos"], "南": ["nán", "sur"], "难": ["nán", "difícil"], "骑": ["qí", "montar (bici, caballo)"], "起": ["qǐ", "levantarse, subir"], "声": ["shēng", "sonido, voz"], "双": ["shuāng", "par (clasif. de pares)"], "跳": ["tiào", "saltar, brincar"], "为": ["wèi", "para, por (a causa de)"], "先": ["xiān", "primero, antes"], "越": ["yuè", "cuanto más (越…越…)"], "张": ["zhāng", "clasif. de cosas planas"], "中": ["zhōng", "medio, centro"], "主": ["zhǔ", "dueño / principal"], "亲": ["qīn", "cercano / pariente"], "光": ["guāng", "luz"], "公": ["gōng", "público / común"], "共": ["gòng", "común, juntos"], "准": ["zhǔn", "preciso"], "凡": ["fán", "común, ordinario"], "刘": ["Liú", "(apellido Liu)"], "初": ["chū", "inicio, primero"], "功": ["gōng", "mérito, logro"], "化": ["huà", "transformar"], "华": ["huá", "magnífico"], "印": ["yìn", "sello"], "却": ["què", "sin embargo"], "厅": ["tīng", "sala, salón"], "历": ["lì", "historia, experiencia"], "友": ["yǒu", "amigo"], "取": ["qǔ", "tomar, recoger"], "古": ["gǔ", "antiguo"], "售": ["shòu", "vender"], "因": ["yīn", "causa, porque"], "壮": ["zhuàng", "fuerte, robusto"], "妈": ["mā", "mamá"], "姐": ["jiě", "hermana mayor"], "孩": ["hái", "niño"], "客": ["kè", "invitado, huésped"], "寺": ["sì", "templo"], "尖": ["jiān", "punta, agudo"], "岛": ["dǎo", "isla"], "州": ["zhōu", "región, estado"], "应": ["yīng", "deber"], "弟": ["dì", "hermano menor"], "强": ["qiáng", "fuerte"], "息": ["xī", "aliento"], "意": ["yì", "significado, idea"], "房": ["fáng", "casa, habitación"], "所": ["suǒ", "lugar"], "明": ["míng", "brillante, claro"], "星": ["xīng", "estrella"], "朗": ["lǎng", "despejado, claro"], "期": ["qī", "período, plazo"], "机": ["jī", "máquina"], "村": ["cūn", "aldea"], "果": ["guǒ", "fruta"], "校": ["xiào", "escuela"], "样": ["yàng", "forma, tipo"], "步": ["bù", "paso"], "武": ["wǔ", "militar, marcial"], "毕": ["bì", "terminar, completar"], "氧": ["yǎng", "oxígeno"], "汉": ["Hàn", "han"], "江": ["jiāng", "río (grande)"], "汽": ["qì", "vapor"], "没": ["méi", "no tener, no haber"], "滑": ["huá", "resbaladizo"], "爷": ["yé", "abuelo"], "爸": ["bà", "papá"], "物": ["wù", "cosa, objeto"], "特": ["tè", "especial"], "猪": ["zhū", "cerdo"], "现": ["xiàn", "aparecer"], "理": ["lǐ", "razón"], "登": ["dēng", "subir"], "益": ["yì", "beneficio"], "盐": ["yán", "sal"], "盘": ["pán", "plato, bandeja"], "眼": ["yǎn", "ojo"], "码": ["mǎ", "código, número"], "破": ["pò", "romper, roto"], "私": ["sī", "privado"], "秋": ["qiū", "otoño"], "空": ["kōng", "vacío"], "窗": ["chuāng", "ventana"], "章": ["zhāng", "capítulo"], "篮": ["lán", "canasta"], "类": ["lèi", "tipo, categoría"], "粉": ["fěn", "polvo"], "红": ["hóng", "rojo"], "绿": ["lǜ", "verde"], "美": ["měi", "bello"], "者": ["zhě", "el que (sufijo)"], "臭": ["chòu", "apestoso"], "芽": ["yá", "brote"], "苹": ["píng", "(de 苹果, manzana)"], "虽": ["suī", "aunque"], "蚊": ["wén", "mosquito"], "衡": ["héng", "equilibrar"], "衫": ["shān", "camisa"], "袋": ["dài", "bolsa"], "观": ["guān", "observar, vista"], "视": ["shì", "ver, mirar"], "觉": ["jué", "sentir, darse cuenta"], "谢": ["xiè", "agradecer"], "财": ["cái", "riqueza"], "购": ["gòu", "comprar"], "超": ["chāo", "super, exceder"], "轻": ["qīng", "ligero"], "较": ["jiào", "comparar"], "邮": ["yóu", "correo"], "配": ["pèi", "combinar, emparejar"], "醋": ["cù", "vinagre"], "野": ["yě", "campo, salvaje"], "钟": ["zhōng", "reloj"], "银": ["yín", "plata"], "闷": ["mèn", "sofocante, aburrido"], "闻": ["wén", "oír, oler"], "阳": ["yáng", "sol"], "院": ["yuàn", "patio"], "雷": ["léi", "trueno"], "音": ["yīn", "sonido"], "顺": ["shùn", "fluido, favorable"], "顾": ["gù", "atender, cuidar"], "馆": ["guǎn", "edificio público (-ería)"], "鲜": ["xiān", "fresco"], "鸭": ["yā", "pato"], "鹅": ["é", "ganso"]};
 
 /* ── Render de secciones por categoría ── */
 const $sections = document.getElementById('sections');
@@ -270,7 +271,7 @@ Object.keys(CATS).forEach(key => {
     card.className = 'rad';
     card.dataset.hz = rad;
     const ejHtml = ej.filter(Boolean).length
-      ? `<div class="ej"><span class="t">ejemplos:</span>${ej.filter(Boolean).map(e => `<a data-hz="${e}">${e}</a>`).join('')}</div>` : '';
+      ? `<div class="ej"><span class="t">ejemplos:</span>${ej.filter(Boolean).map(e => `<a data-hz="${e}" data-rad="${rad}">${e}</a>`).join('')}</div>` : '';
     card.innerHTML = `
       <div class="rad-top">
         <span class="rad-hz zh">${rad}</span>
@@ -299,32 +300,50 @@ function speak(hz) {
 const $modal = document.getElementById('modal');
 let writer = null;
 
-function openWriter(hz) {
+function openWriter(hz, ctxRad) {
   const info = document.getElementById('m-info');
+  const $nota = document.getElementById('m-nota');
+  $nota.style.display = '';
   document.getElementById('m-hz').textContent = hz;
   document.getElementById('m-dong').href = 'https://www.dong-chinese.com/wiki/' + encodeURIComponent(hz);
 
   const data = BY_HZ[hz];
   if (data) {
+    // ── ficha de un RADICAL ──
     const [rad, varia, py, es, trazos, cat, nota, ej] = data;
     document.getElementById('m-py').innerHTML = `${py} <button class="audio" id="m-audio" title="Escuchar">🔊</button>`;
     document.getElementById('m-es').textContent = es;
     document.getElementById('m-tags').innerHTML =
-      `${trazos} ${trazos === 1 ? 'trazo' : 'trazos'}` +
+      `radical · ${trazos} ${trazos === 1 ? 'trazo' : 'trazos'}` +
       (varia ? ` · forma combinada <span class="zh">${varia}</span>` : '');
-    document.getElementById('m-nota').textContent = nota;
+    $nota.textContent = nota;
     info.classList.add('on');
     document.getElementById('m-audio').onclick = () => speak(rad);
-    // ejemplos dentro del modal
     const ejs = ej.filter(Boolean);
     const ejBox = document.getElementById('m-ej');
     if (ejs.length) {
-      document.getElementById('m-ej-row').innerHTML = ejs.map(e => `<a data-hz="${e}">${e}</a>`).join('');
+      document.getElementById('m-ej-row').innerHTML = ejs.map(e => `<a data-hz="${e}" data-rad="${rad}">${e}</a>`).join('');
       ejBox.style.display = '';
     } else { ejBox.style.display = 'none'; }
     document.getElementById('m-sub').textContent = 'orden de trazos';
+  } else if (GLOSS[hz]) {
+    // ── ficha de un CARÁCTER DE EJEMPLO ──
+    const [py, es] = GLOSS[hz];
+    const r = ctxRad ? BY_HZ[ctxRad] : null;
+    document.getElementById('m-py').innerHTML = `${py} <button class="audio" id="m-audio" title="Escuchar">🔊</button>`;
+    document.getElementById('m-es').textContent = es;
+    document.getElementById('m-tags').innerHTML = r
+      ? `incluye el radical <span class="zh">${r[0]}</span> · ${r[3]}`
+      : 'carácter de ejemplo';
+    if (r) {
+      $nota.textContent = `Lleva el radical ${r[0]} (${r[3]}), que aporta el sentido; el resto del carácter suele dar el sonido.`;
+    } else { $nota.style.display = 'none'; }
+    info.classList.add('on');
+    document.getElementById('m-audio').onclick = () => speak(hz);
+    document.getElementById('m-ej').style.display = 'none';
+    document.getElementById('m-sub').textContent = 'orden de trazos';
   } else {
-    // carácter de ejemplo (no es radical): ficha mínima
+    // ── sin datos ──
     info.classList.remove('on');
     document.getElementById('m-ej').style.display = 'none';
     document.getElementById('m-sub').textContent = 'carácter de ejemplo · orden de trazos';
@@ -348,7 +367,7 @@ function openWriter(hz) {
 
 document.addEventListener('click', (e) => {
   const t = e.target.closest('[data-hz]');
-  if (t) { e.preventDefault(); openWriter(t.dataset.hz); }
+  if (t) { e.preventDefault(); openWriter(t.dataset.hz, t.dataset.rad); }
 });
 document.getElementById('m-replay').onclick = () => { if (writer) writer.animateCharacter(); };
 document.getElementById('m-close').onclick = () => $modal.classList.remove('open');
