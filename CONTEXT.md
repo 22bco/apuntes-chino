@@ -44,6 +44,11 @@ chino/
 │   ├── repaso.html         # SRS Leitner 5 cajas (localStorage 'hsk1-srs') + export Anki TSV
 │   ├── examen.html         # Simulacro: 30 preguntas, 3 secciones, 15 min, fallos→SRS
 │   ├── guia-examen.html    # Guía de estrategia del examen HSK 1 (2.0 vs 3.0)
+│   ├── curso.html          # ⭐ Guía: las 15 lecciones del HSK Standard Course 1
+│   │                       #   (sílabo factual + glosas de datos propios + links a temas/clases;
+│   │                       #   contenido original, NO copia del libro con copyright)
+│   ├── vocab300.html       # ⭐ Las 300 palabras del HSK 1 (3.0) por categoría (carga vocab_hsk1.json):
+│   │                       #   12 temas, filtro núcleo-150/ampliación, audio por palabra
 │   └── 01-*.html .. 14-*.html  # 14 páginas temáticas autocontenidas
 │
 ├── hsk2/                   # HSK 2 (adelanto, jun 2026) — guía del examen + vocab nuevo
@@ -55,7 +60,15 @@ chino/
 ├── vocab_hsk2.json         # 198 palabras nuevas HSK 2 (banda 500)
 ├── vocab_hsk3.json         # 500 palabras nuevas HSK 3 (banda 1000)
 │
-├── radicales.html          # Herramienta: 30 radicales con HanziWriter (trazos animados)
+├── radicales.html          # Herramienta: ~105 radicales con HanziWriter (trazos animados)
+├── radicales.json          # ⭐ DATO COMPARTIDO: {radicales[], charRads, gloss, cats}
+│                           #   extraído de radicales.html. Lo consumen buscador.html e index.html.
+│                           #   ⚠️ radicales.html aún tiene su copia inline (regenerar el JSON si cambia).
+├── material/               # 📚 Material de estudio HSK 1 (~230 MB, se despliega)
+│   ├── index.html          # Página de material: libros + simulacros con audio
+│   └── hsk1/
+│       ├── libros/         # 4 PDF (Textbook, Workbook, Course, Answers)
+│       └── simulacros/     # 4 mock-tests (exam.pdf + answer.pdf + audios MP3)
 │
 └── audio/                  # 2000+ archivos MP3 (voz Lily de ElevenLabs)
     ├── mapping.json        # Mapa texto_chino → filename.mp3
@@ -319,7 +332,20 @@ Al hacer push a `main`:
 
 ### `buscador.html`
 - Busca por hanzi, pinyin o español
-- Indexa todas las clases
+- Indexa **vocab.json (clases) + vocab_hsk1/2/3.json + radicales.json** → ~1250 entradas,
+  deduplicadas por hanzi (una palabra fusiona su clase de origen + su banda HSK + si es radical).
+- Ranking por tiers: hanzi exacto > prefijo > substring > pinyin (exacto/prefijo/sub) >
+  español (palabra exacta/prefijo/sub); a igual score, lo más básico primero (clase < HSK1 < HSK2 < HSK3 < radical).
+- Filtros: Todo / Clases / HSK / Radicales. Cada palabra muestra su descomposición en
+  radicales (chips clicables con 🔊). Los radicales aparecen también como resultado propio.
+- **Sinónimos + género/plural** (`sinonimos.json`, ~95 grupos): busca por significado equivalente
+  (lindo→bonito, plata→dinero, auto→车, empleo→trabajo) y tolera plurales/género (perros, contenta).
+  Tiers español: palabra exacta (6) › sinónimo (7, badge ≈) › prefijo/plural (8) › substring (9).
+- **Motor compartido `buscador-core.js`** (`window.ChinoSearch`): una sola fuente de verdad para
+  fuentes, índice, ranking, sinónimos y resaltado. Lo usan **`buscador.html`** (página completa,
+  `engine.load()`) e **`index.html`** (desplegable top-8, `engine.build({...})` con datos ya cargados).
+  API: `create()` → `{ build, load, search(q,{filter,limit}), decompose, radInfo, audioFile, counts }`.
+  Tocar el ranking o `sinonimos.json` ahora cambia ambos buscadores a la vez (sin duplicación).
 
 ### `listening.html`
 - Reproduce audio MP3 y el usuario escribe lo que escucha
@@ -341,6 +367,11 @@ Al hacer push a `main`:
   (sin tonos) antes de que toquen el piso; 3 vidas, velocidad sube cada
   8 palabras, récord en `localStorage.lluvia_hsk1`
 - Misma fuente: `vocab_hsk1.json` (núcleo 150 o las 300)
+
+### `material/` (carpeta)
+- Página de material de estudio HSK 1: libros/cuadernos oficiales (4 PDF) y 4 simulacros
+  de examen (examen + respuestas + audio). Pensado para analizarlo y nutrir las páginas
+  HSK 1 del sitio. ~230 MB → ojo con el tamaño del deploy.
 
 ### `hsk1/` (carpeta)
 - Página de cobertura HSK1: las 150 palabras clásicas cruzadas con las clases

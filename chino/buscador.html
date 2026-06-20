@@ -52,6 +52,39 @@
   .r-audio:hover { opacity: 1; }
   .empty { text-align: center; color: var(--red-tint); font-size: 1.05em; margin-top: 60px; font-family: var(--mono); }
   mark { background: #ffe6a7; color: var(--ink); border-radius: 3px; padding: 0 1px; font-weight: 700; }
+
+  /* ---------- filtros ---------- */
+  .filters { display: flex; flex-wrap: wrap; gap: 7px; max-width: 600px; margin: 14px auto 0; padding: 0 24px; }
+  .filters button { font-family: var(--mono); font-size: 0.72rem; font-weight: 600; border: 1.5px solid var(--red-tint); background: var(--paper); color: var(--muted); border-radius: 20px; padding: 5px 13px; cursor: pointer; transition: background .15s, border-color .15s, color .15s; }
+  .filters button:hover { border-color: var(--red); color: var(--red); }
+  .filters button.active { background: var(--red); border-color: var(--red); color: #fff; }
+  .filters button .c { opacity: .65; font-weight: 400; margin-left: 3px; }
+
+  /* ---------- badges de fuente ---------- */
+  .r-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; align-items: center; }
+  .badge { font-family: var(--mono); font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; padding: 2px 7px; border-radius: 5px; }
+  .badge a { color: inherit; text-decoration: none; }
+  .badge a:hover { text-decoration: underline; }
+  .badge.clase { background: var(--red-soft); color: var(--red); }
+  .badge.hsk1 { background: #fdf3e3; color: #d4820a; }
+  .badge.hsk2 { background: #eaf3fb; color: #2980b9; }
+  .badge.hsk3 { background: #f0eafc; color: #8e44ad; }
+  .badge.rad { background: #e3f4ee; color: #16a085; }
+  .badge.syn { background: #eef0f6; color: #6c63b5; }
+
+  /* ---------- descomposición en radicales ---------- */
+  .r-rads { display: flex; flex-wrap: wrap; gap: 5px 7px; margin-top: 8px; align-items: center; font-size: 0.74rem; }
+  .r-rads .lbl { color: var(--muted); font-family: var(--mono); font-size: 0.64rem; text-transform: uppercase; letter-spacing: .6px; }
+  .r-rads .chip { display: inline-flex; align-items: center; gap: 4px; background: #f6efed; border: 1px solid #f0e0db; border-radius: 20px; padding: 2px 9px; cursor: pointer; color: var(--ink); transition: background .12s, border-color .12s; }
+  .r-rads .chip:hover { background: var(--red-soft); border-color: var(--red-tint); }
+  .r-rads .chip .zh { color: var(--red); font-weight: 700; font-size: 1.05em; }
+  .r-rads .chip .m { color: var(--muted); }
+  .r-note { font-size: 0.74rem; color: #8a8a93; margin-top: 7px; font-style: italic; line-height: 1.45; }
+
+  /* tarjeta de un radical */
+  .result-card.is-rad { border-left-color: #16a085; }
+  .result-card.is-rad .r-hz a { color: #16a085; border-bottom-color: #b9e3d6; }
+
   footer { text-align: center; color: var(--muted); font-size: 0.78rem; padding: 30px 24px; font-family: var(--mono); }
   footer a { color: var(--red); }
   /* responsive-tables */
@@ -65,12 +98,19 @@
 <div class="header">
   <a class="back" href="/">← chino.basti.cl</a>
   <h1>🔍 buscador<span class="zh">查找</span></h1>
-  <p>Busca por hanzi, pinyin o español en todo el vocabulario.</p>
+  <p>Busca por hanzi, pinyin o español: vocabulario de las clases, HSK 1·2·3 y radicales.</p>
 </div>
 
 <div class="search-area">
-  <input type="text" class="search-box" id="searchInput" placeholder="Buscar: 你, ni, hao, tú, hablar..." autofocus>
-  <div class="search-hint">📝 No necesitas tildes ni tonos · usa "v" para "ü" (ej: "lv" = lǜ) · click en "📖 Clase X →" para ir a la sección · <span id="count">…</span> palabras</div>
+  <input type="text" class="search-box" id="searchInput" placeholder="Buscar: 你, ni, hao, tú, hablar, mujer..." autofocus>
+  <div class="search-hint">📝 No necesitas tildes ni tonos · usa "v" para "ü" (ej: "lv" = lǜ) · entiende sinónimos (lindo, auto, plata…) y plurales/género · 🧩 toca un radical para escucharlo · <span id="count">…</span> entradas</div>
+</div>
+
+<div class="filters" id="filters">
+  <button data-f="all" class="active">Todo <span class="c" id="f-all"></span></button>
+  <button data-f="clase">Clases <span class="c" id="f-clase"></span></button>
+  <button data-f="hsk">HSK <span class="c" id="f-hsk"></span></button>
+  <button data-f="rad">Radicales <span class="c" id="f-rad"></span></button>
 </div>
 
 <div class="results" id="results">
@@ -79,129 +119,100 @@
 
 <footer>Buscador · Apuntes Chino · <a href="https://basti.cl" style="color:inherit">basti.cl</a></footer>
 
+<script src="/buscador-core.js"></script>
 <script>
 (function () {
   'use strict';
   const elInput   = document.getElementById('searchInput');
   const elResults = document.getElementById('results');
+  const elFilters = document.getElementById('filters');
+  const CAP = 80;                 // máximo de tarjetas a renderizar de golpe
+  const S = window.ChinoSearch;   // motor compartido
+  const engine = S.create();
+  let FILTER = 'all';
 
-  let vocab = [];
-  let audioMap = {};
-
-  /* ---------- helpers ---------- */
   const esc = s => String(s).replace(/[&<>"']/g, c =>
     ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
-  const stripDia = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
-  const normalize = s => stripDia(s).replace(/[üǖǘǚǜ]/g, 'u').replace(/v/g, 'u');
-  const normNoSpace = s => normalize(s).replace(/\s+/g, '');
-  const hasHan = s => /[㐀-鿿]/.test(s);
 
-  /* ---------- carga de datos ---------- */
-  Promise.all([
-    fetch('/vocab.json').then(r => r.json()),
-    fetch('/audio/mapping.json').then(r => r.json()).catch(() => ({})),
-  ]).then(([v, m]) => {
-    vocab = v; audioMap = m;
-    const c = document.getElementById('count');
-    if (c) c.textContent = vocab.length;
+  /* ---------- carga de datos (vía motor compartido) ---------- */
+  engine.load().then(() => {
+    const c = engine.counts();
+    const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+    set('f-all', c.all); set('f-clase', c.clase); set('f-hsk', c.hsk); set('f-rad', c.rad); set('count', c.all);
     if (elInput.value.trim()) doSearch();
   }).catch(() => {
     elResults.innerHTML = '<div class="empty">No se pudo cargar el vocabulario</div>';
   });
 
   /* ---------- audio (MP3 ElevenLabs con fallback a TTS) ---------- */
-  function speak(text) {
-    const file = audioMap[text];
+  function speak(text, file) {
+    file = engine.audioFile(text, file);
     if (file) { new Audio('/audio/' + file).play(); return; }
     const u = new SpeechSynthesisUtterance(text);
     u.lang = 'zh-CN'; u.rate = 0.8;
     speechSynthesis.speak(u);
   }
 
-  /* ---------- ranking de relevancia ----------
-     0 = mejor (hanzi exacto) … 6 = peor (substring en español); -1 = sin match */
-  function score(v, raw) {
-    let best = Infinity;
-    if (raw && hasHan(raw) && v.hz.includes(raw)) best = Math.min(best, v.hz === raw ? 0 : 1);
-    const qpy = normNoSpace(raw);
-    if (qpy) {
-      const py = normNoSpace(v.py);
-      if (py === qpy) best = Math.min(best, 2);
-      else if (py.startsWith(qpy)) best = Math.min(best, 3);
-      else if (py.includes(qpy)) best = Math.min(best, 4);
-    }
-    const qes = normalize(raw).trim();
-    if (qes) {
-      const es = normalize(v.es);
-      if (es.startsWith(qes)) best = Math.min(best, 5);
-      else if (es.includes(qes)) best = Math.min(best, 6);
-    }
-    return best === Infinity ? -1 : best;
+  /* El motor (índice, ranking, sinónimos y resaltado) vive en buscador-core.js */
+
+  /* ---------- descomposición en radicales ---------- */
+  function radsHtml(hz) {
+    const rs = engine.decompose(hz);
+    if (!rs.length) return '';
+    const chips = rs.map(r => {
+      const d = engine.radInfo(r);
+      const m = d ? `<span class="m">${esc(d.es)}</span>` : '';
+      return `<span class="chip" data-rad="${esc(r)}" title="Escuchar el radical"><span class="zh">${esc(r)}</span>${m} 🔊</span>`;
+    }).join('');
+    return `<div class="r-rads"><span class="lbl">radicales</span>${chips}</div>`;
   }
 
-  /* ---------- resaltado insensible a tildes/tonos ---------- */
-  const HL = {
-    a:'aáàâäāǎ', e:'eéèêëēě', i:'iíìîïīǐ', o:'oóòôöōǒ',
-    u:'uúùûüūǔǖǘǚǜv', n:'nñ', c:'cç',
-  };
-  function buildRe(query) {
-    const q = stripDia(query.trim());
-    if (!q) return null;
-    let pat = '';
-    for (const ch of q) {
-      if (ch === 'v') pat += '[' + HL.u + ']';
-      else if (HL[ch]) pat += '[' + HL[ch] + ']';
-      else if (hasHan(ch)) pat += ch;
-      else pat += ch.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  /* ---------- badges de fuente ---------- */
+  function badges(e) {
+    const b = [];
+    if (e.clase) {
+      const url = S.srcToUrl(e.clase);
+      b.push(`<span class="badge clase">${url
+        ? `<a href="${url}" onclick="event.stopPropagation()">📖 ${esc(e.clase)} →</a>`
+        : esc(e.clase)}</span>`);
     }
-    try { return new RegExp(pat, 'gi'); } catch (e) { return null; }
-  }
-  const hl = (escaped, re) => re ? escaped.replace(re, m => '<mark>' + m + '</mark>') : escaped;
-
-  /* ---------- URL a la clase de origen ---------- */
-  function srcToUrl(src, anchor, base) {
-    const match = src.match(/Clase (\d+)/i);
-    if (!match) return null;
-    const num = match[1].padStart(2, '0');
-    const dir = base || 'basico2';
-    const url = `/${dir}/clase${num}.html`;
-    return anchor ? `${url}#${anchor}` : url;
+    if (e.hsk) b.push(`<span class="badge hsk${e.hsk}">HSK ${e.hsk}</span>`);
+    if (e.type === 'radical' || e.radInfo) {
+      const tr = e.radInfo && e.radInfo.strokes != null ? ` · ${e.radInfo.strokes} tr.` : '';
+      b.push(`<span class="badge rad"><a href="/radicales.html" onclick="event.stopPropagation()">🧩 radical${tr}</a></span>`);
+    }
+    if (e.__s === 7) b.push('<span class="badge syn">≈ sinónimo</span>');
+    return b.length ? `<div class="r-badges">${b.join('')}</div>` : '';
   }
 
   /* ---------- búsqueda + render ---------- */
   function doSearch() {
-    const raw = elInput.value.trim();
-    if (!raw) { render([], ''); return; }
-    const scored = [];
-    for (const v of vocab) {
-      const s = score(v, raw);
-      if (s >= 0) scored.push([s, v]);
-    }
-    scored.sort((a, b) => a[0] - b[0] || a[1].py.length - b[1].py.length);
-    render(scored.map(x => x[1]), raw);
+    const { results, total, query } = engine.search(elInput.value, { filter: FILTER, limit: CAP });
+    render(results, query, total);
   }
 
-  function render(results, query) {
+  function render(results, query, total) {
     if (!query) { elResults.innerHTML = '<div class="empty">Escribe algo para buscar</div>'; return; }
     if (!results.length) {
       elResults.innerHTML = '<div class="empty">No se encontró "' + esc(query) + '"</div>';
       return;
     }
-    const re = buildRe(query);
-    let html = `<div class="result-count">${results.length} resultado${results.length > 1 ? 's' : ''}</div>`;
-    for (const v of results) {
-      const wiki = `https://www.dong-chinese.com/wiki/${encodeURIComponent(v.hz.charAt(0))}`;
-      const classUrl = srcToUrl(v.src, v.anchor, v.base);
-      const sectionLabel = v.section ? ` · ${esc(v.section)}` : '';
-      const sourceHtml = classUrl
-        ? `<a href="${classUrl}" onclick="event.stopPropagation()">📖 ${esc(v.src)}${sectionLabel} →</a>`
-        : esc(v.src);
-      html += `<div class="result-card" data-hz="${esc(v.hz)}">
-        <div class="r-hz"><a href="${wiki}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${hl(esc(v.hz), re)}</a></div>
+    const re = S.buildRe(query);
+    const extra = total > results.length ? ` · mostrando ${results.length}` : '';
+    let html = `<div class="result-count">${total} resultado${total > 1 ? 's' : ''}${extra}</div>`;
+    for (const e of results) {
+      const isRad = e.type === 'radical';
+      const wiki = `https://www.dong-chinese.com/wiki/${encodeURIComponent(e.hz.charAt(0))}`;
+      const note = isRad && e.radInfo && e.radInfo.note ? `<div class="r-note">${esc(e.radInfo.note)}</div>` : '';
+      const dataAudio = e.audio ? ` data-audio="${esc(e.audio)}"` : '';
+      html += `<div class="result-card${isRad ? ' is-rad' : ''}" data-hz="${esc(e.hz)}"${dataAudio}>
+        <div class="r-hz"><a href="${wiki}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${S.highlight(esc(e.hz), re)}</a></div>
         <div class="r-info">
-          <div class="r-py">${hl(esc(v.py), re)}</div>
-          <div class="r-es">${hl(esc(v.es), re)}</div>
-          <div class="r-source">${sourceHtml}</div>
+          <div class="r-py">${S.highlight(esc(e.py || ''), re)}</div>
+          <div class="r-es">${S.highlight(esc(e.es || ''), re)}</div>
+          ${badges(e)}
+          ${radsHtml(e.hz)}
+          ${note}
         </div>
         <button class="r-audio" title="Escuchar">🔊</button>
       </div>`;
@@ -213,8 +224,16 @@
   let t = null;
   elInput.addEventListener('input', () => { clearTimeout(t); t = setTimeout(doSearch, 60); });
   elResults.addEventListener('click', e => {
+    const chip = e.target.closest('[data-rad]');
+    if (chip) { e.stopPropagation(); speak(chip.dataset.rad); return; }
     const card = e.target.closest('[data-hz]');
-    if (card) speak(card.dataset.hz);
+    if (card) speak(card.dataset.hz, card.dataset.audio);
+  });
+  elFilters.addEventListener('click', e => {
+    const btn = e.target.closest('button'); if (!btn) return;
+    FILTER = btn.dataset.f;
+    elFilters.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
+    doSearch();
   });
 })();
 </script>

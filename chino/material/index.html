@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Material de estudio · HSK 1 · Apuntes Chino — Basti</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f7f2f0; --paper: #fffdfc; --ink: #1c1c1e; --muted: #9a9a9e;
+    --red: #c0392b; --red-bright: #e74c3c; --red-soft: #fdecea; --red-tint: #f6d8d3;
+    --gold: #d4820a; --green: #2f8f4e; --blue: #2980b9;
+    --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  }
+  body {
+    font-family: var(--mono); color: var(--ink); min-height: 100vh; background: var(--bg);
+    background-image:
+      radial-gradient(60% 26% at 100% 0%, rgba(231,76,60,.08), transparent 70%),
+      radial-gradient(50% 22% at 0% 0%, rgba(192,57,43,.06), transparent 70%);
+    background-repeat: no-repeat;
+  }
+  .zh { font-family: 'Noto Sans SC', var(--mono); }
+  .top-bar { height: 4px; background: linear-gradient(90deg, var(--red), var(--red-bright), #f0a39b); }
+
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+  header { padding: 30px 0 6px; }
+  header .back { color: var(--red); text-decoration: none; font-size: 0.8rem; }
+  header .back:hover { text-decoration: underline; }
+  header h1 { font-size: 1.45rem; font-weight: 700; margin-top: 12px; letter-spacing: -.3px; }
+  header h1 .zh { color: var(--red); font-weight: 500; font-size: 0.78em; margin-left: 8px; }
+  header p { color: var(--muted); font-size: 0.84rem; margin-top: 8px; line-height: 1.6; }
+
+  .note { background: #fff8e8; border: 1px solid #f3ddb8; border-left: 3px solid var(--gold); border-radius: 10px; padding: 11px 14px; margin-top: 16px; font-size: 0.78rem; color: #7a6326; line-height: 1.55; }
+
+  .label { color: var(--red); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.6px; margin: 30px 2px 12px; font-weight: 700; }
+  .label .c { color: var(--muted); font-weight: 400; }
+
+  /* ---- libros ---- */
+  .book {
+    display: flex; align-items: center; gap: 14px; background: var(--paper);
+    border: 1px solid #f0e6e3; border-left: 3px solid var(--red-tint); border-radius: 10px;
+    padding: 13px 16px; margin-bottom: 9px; transition: box-shadow .15s, border-left-color .15s, transform .12s;
+  }
+  .book:hover { box-shadow: 0 6px 18px rgba(192,57,43,.1); border-left-color: var(--red); transform: translateY(-1px); }
+  .book .ico { font-size: 1.6rem; flex-shrink: 0; }
+  .book .meta { flex: 1; min-width: 0; }
+  .book .name { font-size: 0.9rem; font-weight: 600; }
+  .book .sub { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+  .book .acts { display: flex; gap: 7px; flex-shrink: 0; }
+  .btn {
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 600; text-decoration: none;
+    padding: 6px 11px; border-radius: 7px; border: 1.5px solid var(--red-tint); color: var(--red);
+    background: var(--paper); transition: all .15s; white-space: nowrap;
+  }
+  .btn:hover { background: var(--red); border-color: var(--red); color: #fff; }
+  .btn.solid { background: var(--red); border-color: var(--red); color: #fff; }
+  .btn.solid:hover { background: var(--red-bright); }
+
+  /* ---- simulacros ---- */
+  .mock {
+    background: var(--paper); border: 1px solid #f0e6e3; border-left: 3px solid var(--blue);
+    border-radius: 10px; padding: 14px 16px; margin-bottom: 11px;
+  }
+  .mock-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .mock-top .code { font-weight: 700; font-size: 0.95rem; color: var(--blue); }
+  .mock-top .tag { font-size: 0.68rem; color: var(--muted); }
+  .mock-acts { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 11px; }
+  .mock-acts .btn.blue { border-color: #bcd9ec; color: var(--blue); }
+  .mock-acts .btn.blue:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .mock audio { width: 100%; margin-top: 11px; height: 38px; }
+
+  footer { text-align: center; color: var(--muted); font-size: 0.78rem; padding: 36px 24px; }
+  footer a { color: var(--red); }
+</style>
+</head>
+<body>
+<div class="top-bar"></div>
+<div class="wrap">
+  <header>
+    <a class="back" href="/">← chino.basti.cl</a>
+    <h1>📚 Material de estudio<span class="zh">学习资料</span></h1>
+    <p>Libros oficiales, cuadernos de ejercicios y simulacros de examen para preparar el <b>HSK 1</b>. Toca para ver/descargar; los simulacros traen examen, respuestas y audio.</p>
+    <div class="note">⚠️ Material de referencia con derechos de autor de sus respectivas editoriales (Hanban / HSK). Para uso de estudio personal.</div>
+    <div style="margin-top:14px;"><a class="btn solid" href="/hsk1/curso.html" style="font-size:0.82rem; padding:9px 15px;">📖 Guía: el curso HSK 1 lección por lección →</a></div>
+  </header>
+
+  <div class="label">📖 Libros y cuadernos <span class="c">· 4 PDF</span></div>
+
+  <div class="book">
+    <span class="ico">📕</span>
+    <div class="meta"><div class="name">HSK Standard Course 1 — Textbook</div><div class="sub">Libro de texto principal · 51 MB</div></div>
+    <div class="acts"><a class="btn" href="/material/hsk1/libros/HSK-1-Textbook.pdf" target="_blank">Ver</a><a class="btn solid" href="/material/hsk1/libros/HSK-1-Textbook.pdf" download>↓</a></div>
+  </div>
+  <div class="book">
+    <span class="ico">📗</span>
+    <div class="meta"><div class="name">HSK Standard Course 1 — Workbook</div><div class="sub">Cuaderno de ejercicios · 29 MB</div></div>
+    <div class="acts"><a class="btn" href="/material/hsk1/libros/HSK-1-Workbook.pdf" target="_blank">Ver</a><a class="btn solid" href="/material/hsk1/libros/HSK-1-Workbook.pdf" download>↓</a></div>
+  </div>
+  <div class="book">
+    <span class="ico">📘</span>
+    <div class="meta"><div class="name">HSK Course 1 (completo)</div><div class="sub">Curso completo · 64 MB</div></div>
+    <div class="acts"><a class="btn" href="/material/hsk1/libros/hsk-course-1.pdf" target="_blank">Ver</a><a class="btn solid" href="/material/hsk1/libros/hsk-course-1.pdf" download>↓</a></div>
+  </div>
+  <div class="book">
+    <span class="ico">✅</span>
+    <div class="meta"><div class="name">Workbook — Respuestas</div><div class="sub">Soluciones del cuaderno · 6 MB</div></div>
+    <div class="acts"><a class="btn" href="/material/hsk1/libros/hsk1-workbook-answers.pdf" target="_blank">Ver</a><a class="btn solid" href="/material/hsk1/libros/hsk1-workbook-answers.pdf" download>↓</a></div>
+  </div>
+
+  <div class="label">📝 Simulacros de examen <span class="c">· 4 pruebas con audio</span></div>
+
+  <div class="mock">
+    <div class="mock-top"><span class="code">Simulacro H11329</span><span class="tag">examen + respuestas + audio</span></div>
+    <div class="mock-acts">
+      <a class="btn blue" href="/material/hsk1/simulacros/mock-test-HSK1-H11329/mock-test-HSK1-H11329-exam.pdf" target="_blank">📄 Examen</a>
+      <a class="btn blue" href="/material/hsk1/simulacros/mock-test-HSK1-H11329/mock-test-HSK1-H11329-answer.pdf" target="_blank">✅ Respuestas</a>
+    </div>
+    <audio controls preload="none" src="/material/hsk1/simulacros/mock-test-HSK1-H11329/mock-test-HSK1-H11329-audios/H11329.mp3"></audio>
+  </div>
+
+  <div class="mock">
+    <div class="mock-top"><span class="code">Simulacro H11330</span><span class="tag">examen + respuestas + audio</span></div>
+    <div class="mock-acts">
+      <a class="btn blue" href="/material/hsk1/simulacros/mock-test-HSK1-H11330/mock-test-HSK1-H11330-exam.pdf" target="_blank">📄 Examen</a>
+      <a class="btn blue" href="/material/hsk1/simulacros/mock-test-HSK1-H11330/mock-test-HSK1-H11330-answer.pdf" target="_blank">✅ Respuestas</a>
+    </div>
+    <audio controls preload="none" src="/material/hsk1/simulacros/mock-test-HSK1-H11330/mock-test-HSK1-H11330-audios/H11330.mp3"></audio>
+  </div>
+
+  <div class="mock">
+    <div class="mock-top"><span class="code">Simulacro H11331</span><span class="tag">examen + respuestas + audio</span></div>
+    <div class="mock-acts">
+      <a class="btn blue" href="/material/hsk1/simulacros/mock-test-HSK1-H11331/mock-test-HSK1-H11331-exam.pdf" target="_blank">📄 Examen</a>
+      <a class="btn blue" href="/material/hsk1/simulacros/mock-test-HSK1-H11331/mock-test-HSK1-H11331-answer.pdf" target="_blank">✅ Respuestas</a>
+    </div>
+    <audio controls preload="none" src="/material/hsk1/simulacros/mock-test-HSK1-H11331/mock-test-HSK1-H11331-audios/H11331.mp3"></audio>
+  </div>
+
+  <div class="mock">
+    <div class="mock-top"><span class="code">Simulacro H11332</span><span class="tag">examen + respuestas + audio</span></div>
+    <div class="mock-acts">
+      <a class="btn blue" href="/material/hsk1/simulacros/mock-test-HSK1-H11332/mock-test-HSK1-H11332-exam.pdf" target="_blank">📄 Examen</a>
+      <a class="btn blue" href="/material/hsk1/simulacros/mock-test-HSK1-H11332/mock-test-HSK1-H11332-answer.pdf" target="_blank">✅ Respuestas</a>
+    </div>
+    <audio controls preload="none" src="/material/hsk1/simulacros/mock-test-HSK1-H11332/mock-test-HSK1-H11332-audios/H11332.mp3"></audio>
+  </div>
+
+</div>
+<footer>Material · Apuntes Chino · <a href="https://basti.cl">basti.cl</a></footer>
+</body>
+</html>

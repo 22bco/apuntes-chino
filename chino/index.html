@@ -391,12 +391,17 @@
       <span class="tool-ico">🖌️</span>
       <div><h3>Pizarra v2</h3><p>Lienzo infinito: tarjetas, lápiz, texto e imágenes.</p></div>
     </a>
+    <a class="tool-card" href="/material/">
+      <span class="tool-ico">📚</span>
+      <div><h3>Material HSK 1</h3><p>Libros, cuadernos y 4 simulacros de examen con audio para descargar.</p></div>
+    </a>
   </div>
 
   <footer><span class="hash">#</span> <a href="https://basti.cl">basti.cl</a> · Chino Mandarín</footer>
 
 </main>
 
+<script src="/buscador-core.js"></script>
 <script>
 /* ── Stats dinámicas (con fallback estático en el HTML) ── */
 function countUp(el, target, suffix) {
@@ -414,7 +419,12 @@ Promise.all([
   fetch('/audio/mapping.json').then(r => r.json()),
   fetch('/hsk1/hsk1-data.json').then(r => r.json()),
   fetch('/audio/vocab_listening.json').then(r => r.json()).catch(() => []),
-]).then(([vocab, mapping, hsk, frases]) => {
+  fetch('/vocab_hsk1.json').then(r => r.json()).catch(() => []),
+  fetch('/vocab_hsk2.json').then(r => r.json()).catch(() => []),
+  fetch('/vocab_hsk3.json').then(r => r.json()).catch(() => []),
+  fetch('/radicales.json').then(r => r.json()).catch(() => null),
+  fetch('/sinonimos.json').then(r => r.json()).catch(() => []),
+]).then(([vocab, mapping, hsk, frases, vh1, vh2, vh3, rad, syn]) => {
   countUp(document.getElementById('h-palabras'), vocab.length);
   countUp(document.getElementById('h-audios'), Object.keys(mapping).length);
 
@@ -465,30 +475,32 @@ Promise.all([
     if (f) new Audio('/audio/' + f).play();
   };
 
-  /* Búsqueda global en vivo sobre vocab.json */
-  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  /* Búsqueda global en vivo: mismo motor que /buscador.html (sinónimos, género/plural, ranking) */
+  const engine = ChinoSearch.create().build({ clase: vocab, h1: vh1, h2: vh2, h3: vh3, rad, map: mapping, syn });
   const $in = document.getElementById('gsearch'), $res = document.getElementById('gresults');
   $in.addEventListener('input', () => {
-    const q = norm($in.value.trim());
-    if (q.length < 1) { $res.classList.remove('open'); return; }
-    const hits = vocab.filter(w =>
-      w.hz.includes($in.value.trim()) || norm(w.py).includes(q) || norm(w.es).includes(q)
-    ).slice(0, 8);
+    const raw = $in.value.trim();
+    if (!raw) { $res.classList.remove('open'); return; }
+    const { results } = engine.search(raw, { limit: 8 });
     $res.innerHTML = '';
-    hits.forEach(w => {
+    results.forEach(w => {
       const d = document.createElement('div');
       d.className = 'gr-item';
-      d.innerHTML = `<span class="hz">${w.hz}</span><span class="py">${w.py}</span><span>${w.es}</span><span class="src">${w.src}</span>`;
+      const isRad = w.type === 'radical';
+      const origen = w.clase || (w.hsk ? 'HSK ' + w.hsk : '');
+      const label = isRad ? '🧩 radical' : (w.radInfo ? (origen ? origen + ' · 🧩' : '🧩') : origen);
+      const syn = w.__s === 7 ? ' <span style="color:#6c63b5">≈</span>' : '';
+      d.innerHTML = `<span class="hz">${w.hz}</span><span class="py">${w.py}</span><span>${w.es}${syn}</span><span class="src">${label}</span>`;
       const b = document.createElement('button');
       b.textContent = '🔊';
-      b.onclick = () => { const f = mapping[w.hz]; if (f) new Audio('/audio/' + f).play(); };
+      b.onclick = () => { const f = engine.audioFile(w.hz, w.audio); if (f) new Audio('/audio/' + f).play(); };
       d.appendChild(b);
       $res.appendChild(d);
     });
-    if (!hits.length) $res.innerHTML = '<div class="gr-item" style="color:var(--muted)">Sin resultados aquí…</div>';
+    if (!results.length) $res.innerHTML = '<div class="gr-item" style="color:var(--muted)">Sin resultados aquí…</div>';
     const more = document.createElement('a');
     more.className = 'gr-more'; more.href = '/buscador.html';
-    more.textContent = '↗ Búsqueda completa en todas las clases';
+    more.textContent = '↗ Búsqueda completa (clases · HSK · radicales)';
     $res.appendChild(more);
     $res.classList.add('open');
   });
