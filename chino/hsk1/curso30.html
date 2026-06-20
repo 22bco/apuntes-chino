@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curso HSK 1 · 3.0 — las 15 lecciones · Apuntes Chino — Basti</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f7f2f0; --paper: #fffdfc; --ink: #1c1c1e; --muted: #9a9a9e;
+    --blue: #2563b5; --blue-bright: #3b82e0; --blue-soft: #eaf1fb; --blue-tint: #cfe0f5;
+    --gold: #d4820a; --green: #2f8f4e; --teal: #16a085;
+    --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  }
+  body {
+    font-family: var(--mono); color: var(--ink); min-height: 100vh; background: var(--bg);
+    background-image:
+      radial-gradient(60% 26% at 100% 0%, rgba(59,130,224,.08), transparent 70%),
+      radial-gradient(50% 22% at 0% 0%, rgba(37,99,181,.06), transparent 70%);
+    background-repeat: no-repeat;
+  }
+  .zh { font-family: 'Noto Sans SC', var(--mono); }
+  .top-bar { height: 4px; background: linear-gradient(90deg, var(--blue), var(--blue-bright), #8ab6ec); }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 22px; }
+  header { padding: 30px 0 6px; }
+  header .back { color: var(--blue); text-decoration: none; font-size: 0.8rem; }
+  header .back:hover { text-decoration: underline; }
+  header h1 { font-size: 1.5rem; font-weight: 700; margin-top: 12px; letter-spacing: -.3px; }
+  header h1 .pill { font-size: 0.62rem; font-weight: 700; background: var(--blue); color: #fff; padding: 3px 8px; border-radius: 6px; vertical-align: middle; margin-left: 8px; letter-spacing: .5px; }
+  header h1 .zh { color: var(--blue); font-weight: 500; font-size: 0.74em; margin-left: 8px; }
+  header p { color: var(--muted); font-size: 0.84rem; margin-top: 8px; line-height: 1.6; }
+  .src-note { background: var(--blue-soft); border: 1px solid var(--blue-tint); border-left: 3px solid var(--blue); border-radius: 10px; padding: 11px 14px; margin-top: 16px; font-size: 0.77rem; color: #2a4a73; line-height: 1.55; }
+  .src-note a { color: var(--blue); font-weight: 600; }
+
+  .toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 4px; }
+  .toolbar input { flex: 1; min-width: 180px; font-family: var(--mono); font-size: 0.85rem; padding: 10px 14px; border: 1.5px solid var(--blue-tint); border-radius: 10px; background: var(--paper); outline: none; }
+  .toolbar input:focus { border-color: var(--blue); }
+  .toolbar button { font-family: var(--mono); font-size: 0.74rem; font-weight: 600; border: 1.5px solid var(--blue-tint); background: var(--paper); color: var(--muted); border-radius: 10px; padding: 8px 13px; cursor: pointer; }
+  .toolbar button.active, .toolbar button:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+  .lesson { background: var(--paper); border: 1px solid #e7ecf3; border-radius: 13px; margin-top: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.03); }
+  .lesson > summary { list-style: none; cursor: pointer; padding: 15px 18px; display: flex; align-items: center; gap: 14px; transition: background .12s; }
+  .lesson > summary::-webkit-details-marker { display: none; }
+  .lesson > summary:hover { background: var(--blue-soft); }
+  .lesson[open] > summary { background: var(--blue-soft); border-bottom: 1px solid var(--blue-tint); }
+  .l-num { flex-shrink: 0; width: 34px; height: 34px; border-radius: 9px; background: linear-gradient(135deg, var(--blue), var(--blue-bright)); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 1rem; }
+  .lesson.fon .l-num { background: linear-gradient(135deg, #6b6b73, #9a9a9e); }
+  .l-head { flex: 1; min-width: 0; }
+  .l-title { font-weight: 700; font-size: 1.02rem; }
+  .l-title .zh { color: var(--blue); }
+  .lesson.fon .l-title .zh { color: #6b6b73; }
+  .l-title .py { color: var(--muted); font-weight: 400; font-size: 0.82em; margin-left: 7px; }
+  .l-sub { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
+  .l-tags { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
+  .tag { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; padding: 2px 7px; border-radius: 5px; white-space: nowrap; }
+  .tag.fon { background: #eee; color: #6b6b73; }
+  .tag.pdf { background: #fdf3e3; color: var(--gold); }
+
+  .l-body { padding: 4px 18px 18px; }
+  .sec-h { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1px; color: var(--blue); font-weight: 700; margin: 16px 0 8px; }
+  .foco { font-size: 0.86rem; line-height: 1.6; color: #41464d; }
+  .gram { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .gram li { font-size: 0.83rem; padding-left: 18px; position: relative; line-height: 1.5; }
+  .gram li::before { content: "▸"; position: absolute; left: 0; color: var(--blue-bright); }
+  .gram .g-hz { color: var(--blue); font-weight: 600; }
+
+  .links { display: flex; flex-wrap: wrap; gap: 7px; }
+  .lk { font-size: 0.74rem; font-weight: 600; text-decoration: none; padding: 6px 11px; border-radius: 8px; border: 1.5px solid var(--blue-tint); color: var(--blue); background: var(--paper); transition: all .15s; }
+  .lk:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .lk.gold { border-color: #f3ddb8; color: var(--gold); }
+  .lk.gold:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
+
+  footer { text-align: center; color: var(--muted); font-size: 0.78rem; padding: 36px 22px; }
+  footer a { color: var(--blue); }
+  @media (max-width: 600px) { .l-tags { display: none; } header h1 { font-size: 1.2rem; } }
+</style>
+</head>
+<body>
+<div class="top-bar"></div>
+<div class="wrap">
+  <header>
+    <a class="back" href="/hsk1/">← HSK 1</a>
+    <h1>Curso HSK 1<span class="pill">3.0</span><span class="zh">新教程</span></h1>
+    <p>El recorrido del <b>nuevo HSK 1 (versión 3.0)</b> mapeado a los apuntes: para cada una de las 15 lecciones, su gramática y a qué páginas del sitio ir. Para cuando rindas el examen nuevo.</p>
+    <div class="src-note">📘 Guía de estudio original basada en la estructura del <b>《新HSK教程1》 / New HSK Course 1</b> (外研社/FLTRP, 2026), alineado al <b>HSK 3.0</b> — 15 lecciones, <b>300 palabras</b>. El libro está en <a href="/material/">Material</a>. ¿Vocabulario? → <a href="/hsk1/vocab300.html">las 300 palabras</a>. ¿La versión vieja? → <a href="/hsk1/curso.html">curso HSK 1 · 2.0 (150)</a>.</div>
+  </header>
+
+  <div class="toolbar">
+    <input type="search" id="q" placeholder="🔍 Filtrar por lección o gramática (你好, 是, partícula…)">
+    <button id="expand">Expandir todo</button>
+  </div>
+
+  <div id="lessons"></div>
+</div>
+<footer>Curso HSK 1 · 3.0 · Apuntes Chino · <a href="https://basti.cl">basti.cl</a></footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* === Sílabo factual de las 15 lecciones (《新HSK教程1》, HSK 3.0) === */
+  const LESSONS = [
+    { n:1, hz:'AI小语，你好！', py:'AI Xiǎoyǔ, nǐ hǎo!', es:'¡Hola, AI Xiaoyu!', tipo:'fon', pdf:1,
+      foco:'Lección de arranque: los primeros saludos y la base del pinyin, de la mano de la asistente "Xiaoyu".',
+      gram:[],
+      sitio:[['HSK1 · Pronombres y saludos','/hsk1/01-pronombres-saludos.html'],['Básico 1 · Fonética','/basico1/cap01.html']] },
+    { n:2, hz:'我叫李文', py:'wǒ jiào Lǐ Wén', es:'Me llamo Li Wen', tipo:'tema', pdf:5,
+      foco:'Presentarse (我叫…) y cómo se arma una oración en chino.',
+      gram:[['语序','el orden básico de la oración (Sujeto–Verbo–Objeto)']],
+      sitio:[['HSK1 · Identidad: 是 y 叫','/hsk1/02-identidad.html'],['HSK1 · Pronombres y saludos','/hsk1/01-pronombres-saludos.html']] },
+    { n:3, hz:'我是中国人', py:'wǒ shì Zhōngguó rén', es:'Soy chino', tipo:'tema', pdf:10,
+      foco:'Identidad y nacionalidad: identificar con 是, posesión con 的 y preguntas de sí/no con 吗.',
+      gram:[['是','la oración con 是 (A 是 B)'],['的','la partícula estructural 的'],['吗','preguntas de sí/no con 吗']],
+      sitio:[['HSK1 · Identidad: 是 y 叫','/hsk1/02-identidad.html'],['HSK1 · Partículas','/hsk1/08-particulas.html'],['HSK1 · Interrogativos','/hsk1/10-interrogativos.html']] },
+    { n:4, hz:'我有两个孩子', py:'wǒ yǒu liǎng ge háizi', es:'Tengo dos hijos', tipo:'tema', pdf:18,
+      foco:'La familia y tener cosas: 有, los números y los clasificadores.',
+      gram:[['有','la oración con 有 (1): tener / haber'],['números','la expresión de los números'],['呢','la partícula 呢 (1)'],['量词','los clasificadores: estructura número + clasificador + (sustantivo)']],
+      sitio:[['HSK1 · Existencia y ubicación','/hsk1/11-existencia-ubicacion.html'],['HSK1 · Números y dinero','/hsk1/04-numeros-dinero.html'],['HSK1 · Clasificadores y demostrativos','/hsk1/07-clasificadores-demostrativos.html']] },
+    { n:5, hz:'今天我休息', py:'jīntiān wǒ xiūxi', es:'Hoy descanso', tipo:'tema', pdf:27,
+      foco:'La rutina y el tiempo libre: situar en el tiempo y poder/saber hacer algo con 会.',
+      gram:[['tiempo','la expresión del tiempo (1)'],['predicado nominal','oraciones de predicado nominal (fecha/tiempo sin 是)'],['会','el verbo modal 会']],
+      sitio:[['HSK1 · Fechas y días','/hsk1/05-fechas-dias.html'],['HSK1 · Verbos modales y gustos','/hsk1/12-verbos-modales.html']] },
+    { n:6, hz:'你的手机号是多少？', py:'nǐ de shǒujī hào shì duōshao?', es:'¿Cuál es tu número de celular?', tipo:'tema', pdf:35,
+      foco:'Datos de contacto: querer con 想, hacer algo yendo a un lugar y preguntar con 怎么.',
+      gram:[['想','el verbo modal 想'],['连动句','oraciones con verbos en serie (1)'],['怎么','el interrogativo 怎么']],
+      sitio:[['HSK1 · Verbos modales y gustos','/hsk1/12-verbos-modales.html'],['HSK1 · Interrogativos','/hsk1/10-interrogativos.html'],['HSK1 · Números y dinero','/hsk1/04-numeros-dinero.html']] },
+    { n:7, hz:'我晚上六点半下班', py:'wǒ wǎnshang liù diǎn bàn xiàbān', es:'Salgo del trabajo a las 6:30 de la tarde', tipo:'tema', pdf:45,
+      foco:'Los horarios: la hora del día, sugerir con 吧 y dónde van los adverbios de tiempo.',
+      gram:[['tiempo','la expresión del tiempo (2): la hora'],['吧','la partícula modal 吧 (1)'],['adverbios','la posición de adverbios y palabras de tiempo como circunstanciales'],['呢','la partícula 呢 (2)']],
+      sitio:[['HSK1 · La hora','/hsk1/06-la-hora.html'],['HSK1 · Partículas','/hsk1/08-particulas.html'],['Básico 3 · Clase 01','/basico3/clase01.html']] },
+    { n:8, hz:'我爸爸也在医院工作', py:'wǒ bàba yě zài yīyuàn gōngzuò', es:'Mi papá también trabaja en un hospital', tipo:'tema', pdf:54,
+      foco:'Dónde se está y dónde se hace algo: posiciones (方位词), la preposición 在 y poder con 能.',
+      gram:[['方位词','las palabras de posición (方位词)'],['在','la preposición 在 (在 + lugar + verbo)'],['能','el verbo modal 能']],
+      sitio:[['HSK1 · Existencia y ubicación','/hsk1/11-existencia-ubicacion.html'],['HSK1 · Verbos modales y gustos','/hsk1/12-verbos-modales.html'],['Básico 2 · Clase 07','/basico2/clase07.html']] },
+    { n:9, hz:'我明天上午在学校学习', py:'wǒ míngtiān shàngwǔ zài xuéxiào xuéxí', es:'Mañana por la mañana estudio en la escuela', tipo:'tema', pdf:61,
+      foco:'Planes con lugar y hora: existencia, el orden tiempo→lugar y los ordinales con 第.',
+      gram:[['存现句','oraciones existenciales (1)'],['orden','el orden de tiempo + lugar cuando van juntos como circunstanciales'],['第','el prefijo ordinal 第 (1.º, 2.º…)']],
+      sitio:[['HSK1 · Existencia y ubicación','/hsk1/11-existencia-ubicacion.html'],['HSK1 · Acciones y rutina','/hsk1/13-acciones-rutina.html'],['HSK1 · Fechas y días','/hsk1/05-fechas-dias.html']] },
+    { n:10, hz:'这儿的苹果真便宜！', py:'zhèr de píngguǒ zhēn piányi!', es:'¡Las manzanas aquí son baratísimas!', tipo:'tema', pdf:70,
+      foco:'De compras: el dinero, describir con adjetivos y preguntar 怎么样.',
+      gram:[['钱','la expresión de cantidades de dinero'],['predicado adjetival','oraciones de predicado adjetival (很 + adjetivo)'],['怎么样','el interrogativo 怎么样']],
+      sitio:[['HSK1 · Números y dinero','/hsk1/04-numeros-dinero.html'],['HSK1 · Clima, comida y cosas','/hsk1/14-clima-comida-campos.html'],['Básico 2 · Clase 06','/basico2/clase06.html']] },
+    { n:11, hz:'我读大学呢', py:'wǒ dú dàxué ne', es:'Estoy estudiando en la universidad', tipo:'tema', pdf:78,
+      foco:'Qué estás haciendo: preguntas afirmativo-negativas, la acción en curso (在/正在) y 要.',
+      gram:[['正反问','las preguntas afirmativo-negativas (正反问)'],['在/正在','los adverbios 在 / 正在: la acción en curso'],['要','el verbo modal 要']],
+      sitio:[['HSK1 · Interrogativos','/hsk1/10-interrogativos.html'],['HSK1 · Acciones y rutina','/hsk1/13-acciones-rutina.html'],['Básico 2 · Clase 07','/basico2/clase07.html']] },
+    { n:12, hz:'昨天下雪了', py:'zuótiān xià xuě le', es:'Ayer nevó', tipo:'tema', pdf:86,
+      foco:'El clima y lo que pasó: oraciones sin sujeto, el 了 de cambio y el patrón 太…了.',
+      gram:[['无主句','oraciones sin sujeto'],['了','la partícula modal 了 (1): cambio de situación'],['太…了','el patrón 太…了: «demasiado»']],
+      sitio:[['HSK1 · Clima, comida y cosas','/hsk1/14-clima-comida-campos.html'],['HSK1 · Partículas','/hsk1/08-particulas.html'],['Básico 3 · Clase 03','/basico3/clase03.html']] },
+    { n:13, hz:'请给我一杯茶', py:'qǐng gěi wǒ yì bēi chá', es:'Deme una taza de té, por favor', tipo:'tema', pdf:95,
+      foco:'Pedir cosas: permiso/posibilidad con 可以, suavizar con 动词+一下 y dar (doble objeto).',
+      gram:[['可以','el verbo modal 可以'],['动词+一下','la estructura verbo + 一下 (hacer algo un momento)'],['双宾句','oraciones de doble objeto (1): dar algo a alguien']],
+      sitio:[['HSK1 · Verbos modales y gustos','/hsk1/12-verbos-modales.html'],['HSK1 · Clasificadores y demostrativos','/hsk1/07-clasificadores-demostrativos.html'],['Básico 2 · Clase 05','/basico2/clase05.html']] },
+    { n:14, hz:'我看了一个电影', py:'wǒ kàn le yí ge diànyǐng', es:'Vi una película', tipo:'tema', pdf:103,
+      foco:'Contar lo que hiciste: el 了 de acción completada, los verbos separables y 都.',
+      gram:[['了','la partícula aspectual 了 (2): acción completada'],['离合词','las palabras separables (离合词, 1)'],['都','el adverbio de alcance 都: «todos / ambos»']],
+      sitio:[['HSK1 · Partículas','/hsk1/08-particulas.html'],['HSK1 · Acciones y rutina','/hsk1/13-acciones-rutina.html'],['HSK1 · Adverbios y conjunciones','/hsk1/09-adverbios-conjunciones.html']] },
+    { n:15, hz:'大兴机场见！', py:'Dàxīng jīchǎng jiàn!', es:'¡Nos vemos en el aeropuerto de Daxing!', tipo:'tema', pdf:112,
+      foco:'Despedirse y planes: unir dos ideas con «…, 还/也…».',
+      gram:[['还/也','la oración coordinada «…, 还/也…»: «y además / también»']],
+      sitio:[['HSK1 · Adverbios y conjunciones','/hsk1/09-adverbios-conjunciones.html'],['Básico 2 · Clase 09','/basico2/clase09.html']] },
+  ];
+
+  const $lessons = document.getElementById('lessons');
+  const $q = document.getElementById('q');
+  const $expand = document.getElementById('expand');
+  const norm = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/v/g, 'u');
+
+  function render() {
+    $lessons.innerHTML = LESSONS.map(L => {
+      const gram = L.gram.length
+        ? `<div class="sec-h">Gramática (小语讲堂)</div><ul class="gram">${L.gram.map(g => `<li><span class="g-hz zh">${g[0]}</span> — ${g[1]}</li>`).join('')}</ul>`
+        : '';
+      const links = (L.sitio || []).map(s => {
+        const gold = s[1].includes('/basico');
+        return `<a class="lk${gold ? ' gold' : ''}" href="${s[1]}">${s[0]} →</a>`;
+      }).join('');
+      const blob = norm(L.hz + ' ' + L.py + ' ' + L.es + ' ' + L.foco + ' ' + L.gram.map(g => g[0] + g[1]).join(' '));
+      return `<details class="lesson ${L.tipo === 'fon' ? 'fon' : ''}" data-blob="${blob}">
+        <summary>
+          <span class="l-num">${L.n}</span>
+          <span class="l-head">
+            <span class="l-title"><span class="zh">${L.hz}</span><span class="py">${L.py}</span></span>
+            <span class="l-sub">${L.es}</span>
+          </span>
+          <span class="l-tags">
+            ${L.tipo === 'fon' ? '<span class="tag fon">fonética</span>' : ''}
+            <span class="tag pdf">libro p.${L.pdf}</span>
+          </span>
+        </summary>
+        <div class="l-body">
+          <div class="sec-h">Foco</div>
+          <div class="foco">${L.foco}</div>
+          ${gram}
+          <div class="sec-h">En los apuntes</div>
+          <div class="links">${links}<a class="lk" href="/hsk1/vocab300.html">🗂️ Las 300 palabras →</a><a class="lk gold" href="/material/">📘 Libro 3.0 (Material) →</a></div>
+        </div>
+      </details>`;
+    }).join('');
+  }
+  render();
+
+  let expanded = false;
+  $expand.addEventListener('click', () => {
+    expanded = !expanded;
+    $lessons.querySelectorAll('details').forEach(d => { d.open = expanded; });
+    $expand.textContent = expanded ? 'Colapsar todo' : 'Expandir todo';
+    $expand.classList.toggle('active', expanded);
+  });
+
+  let t = null;
+  $q.addEventListener('input', () => {
+    clearTimeout(t);
+    t = setTimeout(() => {
+      const q = norm($q.value.trim());
+      $lessons.querySelectorAll('details').forEach(d => {
+        const hit = !q || d.dataset.blob.includes(q);
+        d.style.display = hit ? '' : 'none';
+        d.open = q && hit;
+      });
+    }, 80);
+  });
+})();
+</script>
+</body>
+</html>
