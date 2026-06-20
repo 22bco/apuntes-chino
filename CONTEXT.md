@@ -48,7 +48,9 @@ chino/
 │   │                       #   (sílabo factual + glosas de datos propios + links a temas/clases;
 │   │                       #   contenido original, NO copia del libro con copyright)
 │   ├── curso30.html        # ⭐ Guía 3.0: las 15 lecciones del 《新HSK教程1》 (FLTRP 2026, 300, azul)
-│   │                       #   estructura/gramática del nuevo estándar HSK 3.0 + links
+│   │                       #   gramática + VOCABULARIO por lección (con audio) + links
+│   ├── hsk30-lessons.json  # DATO: lección → [{hz,py,es,audio}] (mapeo palabra→lección del libro 3.0,
+│   │                       #   glosado con datos del sitio; lo carga curso30.html)
 │   ├── vocab300.html       # ⭐ Las 300 palabras del HSK 1 (3.0) por categoría (carga vocab_hsk1.json):
 │   │                       #   12 temas, filtro núcleo-150/ampliación, audio por palabra
 │   └── 01-*.html .. 14-*.html  # 14 páginas temáticas autocontenidas

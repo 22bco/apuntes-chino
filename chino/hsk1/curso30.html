@@ -72,6 +72,20 @@
   .lk.gold { border-color: #f3ddb8; color: var(--gold); }
   .lk.gold:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
 
+  /* tabla de vocabulario */
+  .vocab { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+  .vocab tr { border-bottom: 1px solid #eef2f7; }
+  .vocab tr:last-child { border-bottom: none; }
+  .vocab td { padding: 6px 8px; vertical-align: middle; }
+  .vocab .v-hz { font-family: 'Noto Sans SC', var(--mono); font-size: 1.15rem; font-weight: 700; white-space: nowrap; }
+  .vocab .v-hz a { color: var(--blue); text-decoration: none; border-bottom: 1px dotted var(--blue-tint); }
+  .vocab .v-hz a:hover { color: var(--blue-bright); }
+  .vocab .v-py { color: var(--muted); font-weight: 600; white-space: nowrap; }
+  .vocab .v-es { color: #41464d; width: 99%; }
+  .vocab .v-au { background: none; border: none; cursor: pointer; font-size: 1em; opacity: .5; padding: 2px 4px; }
+  .vocab .v-au:hover { opacity: 1; }
+  .v-count { color: var(--muted); font-weight: 400; text-transform: none; letter-spacing: 0; }
+
   footer { text-align: center; color: var(--muted); font-size: 0.78rem; padding: 36px 22px; }
   footer a { color: var(--blue); }
   @media (max-width: 600px) { .l-tags { display: none; } header h1 { font-size: 1.2rem; } }
@@ -83,7 +97,7 @@
   <header>
     <a class="back" href="/hsk1/">← HSK 1</a>
     <h1>Curso HSK 1<span class="pill">3.0</span><span class="zh">新教程</span></h1>
-    <p>El recorrido del <b>nuevo HSK 1 (versión 3.0)</b> mapeado a los apuntes: para cada una de las 15 lecciones, su gramática y a qué páginas del sitio ir. Para cuando rindas el examen nuevo.</p>
+    <p>El recorrido del <b>nuevo HSK 1 (versión 3.0)</b> mapeado a los apuntes: para cada una de las 15 lecciones, su <b>vocabulario</b> (con audio), su gramática y a qué páginas del sitio ir. Para cuando rindas el examen nuevo.</p>
     <div class="src-note">📘 Guía de estudio original basada en la estructura del <b>《新HSK教程1》 / New HSK Course 1</b> (外研社/FLTRP, 2026), alineado al <b>HSK 3.0</b> — 15 lecciones, <b>300 palabras</b>. El libro está en <a href="/material/">Material</a>. ¿Vocabulario? → <a href="/hsk1/vocab300.html">las 300 palabras</a>. ¿La versión vieja? → <a href="/hsk1/curso.html">curso HSK 1 · 2.0 (150)</a>.</div>
   </header>
 
@@ -168,6 +182,27 @@
   const $q = document.getElementById('q');
   const $expand = document.getElementById('expand');
   const norm = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/v/g, 'u');
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+  let VOCAB = {};
+
+  function speak(hz, file) {
+    if (file) { new Audio('/audio/' + file).play(); return; }
+    const u = new SpeechSynthesisUtterance(hz); u.lang = 'zh-CN'; u.rate = 0.8; speechSynthesis.speak(u);
+  }
+  function vocabHtml(n) {
+    const list = VOCAB[String(n)] || [];
+    if (!list.length) return '';
+    const rows = list.map(w => {
+      const wiki = 'https://www.dong-chinese.com/wiki/' + encodeURIComponent(w.hz.charAt(0));
+      return `<tr>
+        <td class="v-hz"><a href="${wiki}" target="_blank" rel="noopener">${esc(w.hz)}</a></td>
+        <td class="v-py">${esc(w.py)}</td>
+        <td class="v-es">${esc(w.es)}</td>
+        <td><button class="v-au" data-hz="${esc(w.hz)}"${w.audio ? ` data-audio="${esc(w.audio)}"` : ''} title="Escuchar">🔊</button></td>
+      </tr>`;
+    }).join('');
+    return `<div class="sec-h">Vocabulario <span class="v-count">· ${list.length} palabras de la lección · toca 🔊</span></div><table class="vocab">${rows}</table>`;
+  }
 
   function render() {
     $lessons.innerHTML = LESSONS.map(L => {
@@ -178,7 +213,8 @@
         const gold = s[1].includes('/basico');
         return `<a class="lk${gold ? ' gold' : ''}" href="${s[1]}">${s[0]} →</a>`;
       }).join('');
-      const blob = norm(L.hz + ' ' + L.py + ' ' + L.es + ' ' + L.foco + ' ' + L.gram.map(g => g[0] + g[1]).join(' '));
+      const vlist = VOCAB[String(L.n)] || [];
+      const blob = norm(L.hz + ' ' + L.py + ' ' + L.es + ' ' + L.foco + ' ' + L.gram.map(g => g[0] + g[1]).join(' ') + ' ' + vlist.map(w => w.hz + ' ' + w.py + ' ' + w.es).join(' '));
       return `<details class="lesson ${L.tipo === 'fon' ? 'fon' : ''}" data-blob="${blob}">
         <summary>
           <span class="l-num">${L.n}</span>
@@ -195,13 +231,19 @@
           <div class="sec-h">Foco</div>
           <div class="foco">${L.foco}</div>
           ${gram}
+          ${vocabHtml(L.n)}
           <div class="sec-h">En los apuntes</div>
           <div class="links">${links}<a class="lk" href="/hsk1/vocab300.html">🗂️ Las 300 palabras →</a><a class="lk gold" href="/material/">📘 Libro 3.0 (Material) →</a></div>
         </div>
       </details>`;
     }).join('');
   }
-  render();
+  fetch('/hsk1/hsk30-lessons.json').then(r => r.json()).then(v => { VOCAB = v; }).catch(() => {}).finally(render);
+
+  $lessons.addEventListener('click', e => {
+    const b = e.target.closest('.v-au');
+    if (b) { e.stopPropagation(); speak(b.dataset.hz, b.dataset.audio); }
+  });
 
   let expanded = false;
   $expand.addEventListener('click', () => {
