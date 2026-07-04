@@ -1,0 +1,235 @@
+# PLAN-MEJORAS — Refactor de seguridad, arquitectura y orden del sitio
+
+> Playbook para ejecutar en sesiones futuras (cualquier modelo). Diagnóstico hecho
+> el 4 de julio de 2026 revisando CONTEXT.md, CLAUDE.md, deploy.yml, estructura
+> completa y estado de git. Ejecutar EN ORDEN: cada fase es independiente pero
+> P0 es urgente. Marcar `[x]` al completar cada ítem y commitear este archivo.
+
+## ⚠️ Reglas de ejecución (leer antes de empezar)
+
+1. **NUNCA leer los HTML de clases completos** (46-172 KB c/u, hay 31+). Toda
+   transformación masiva se hace con scripts Python/Bash que editan los archivos
+   sin pasarlos por el contexto. Leer solo fragmentos con Grep/offset para verificar.
+2. **No tocar el contenido pedagógico** (texto de las clases, tablas, diálogos).
+   Este plan es solo infraestructura.
+3. Después de cada fase: commit con conventional commits + push (el push despliega
+   a chino.basti.cl automáticamente). Verificar el sitio tras cada deploy.
+4. Los links absolutos en HTML usan `/` NO `/chino/` (nginx apunta a chino/).
+5. Si algo de este plan contradice el estado real del repo, el repo manda:
+   verificar antes de ejecutar.
+
+---
+
+## 🔴 FASE 0 — Seguridad (URGENTE, ~1 sesión corta)
+
+### 0.1 Rotar la API key de ElevenLabs — [REQUIERE A BASTI]
+- [ ] La key vive en `CONTEXT.md:189` y **el repo es PÚBLICO** (github.com/22bco/apuntes-chino).
+      Pedirle a Basti que entre a https://elevenlabs.io → Profile → API Keys,
+      revoque la key actual y genere una nueva. **No continuar la fase sin esto.**
+
+### 0.2 Mover la key a variable de entorno
+- [ ] Basti agrega a `~/.zshenv`: `export ELEVENLABS_API_KEY="sk_...nueva"`
+      (sugerirle el comando; el modelo no debe ver ni escribir la key en ningún
+      archivo versionado ni en el chat si es evitable).
+- [ ] Editar `CONTEXT.md` sección "Sistema de audio": borrar la key literal y
+      reemplazar por: «API Key: en la variable de entorno `ELEVENLABS_API_KEY`
+      (nunca escribirla en archivos del repo)». Mantener Voice ID, model y settings
+      (no son secretos).
+- [ ] Actualizar el script tipo de CONTEXT.md para que use
+      `os.environ["ELEVENLABS_API_KEY"]` (se reemplaza del todo en la fase 2.1).
+
+### 0.3 Limpiar el historial de git — [DESTRUCTIVO, confirmar con Basti antes]
+- [ ] La key actual y una anterior están en commits históricos de `CONTEXT.md`.
+      Tras rotar (0.1), decidir con Basti: (a) no limpiar — la key revocada ya no
+      sirve (opción válida y simple), o (b) reescribir historial con
+      `git filter-repo --replace-text` y force-push. Si (b): avisar que invalida
+      clones existentes y que el VPS hace `git pull` — habrá que resetear el clone
+      del VPS (`git fetch && git reset --hard origin/main`).
+- Recomendación: (a) si la key fue revocada; el historial limpio es cosmético.
+
+### 0.4 Decidir el destino de `chino/material/` (230 MB de PDFs con copyright) — [DECISIÓN DE BASTI]
+- [ ] Contiene libros oficiales HSK (FLTRP) y simulacros, en repo público Y
+      servidos sin auth en chino.basti.cl/material/. Riesgo de DMCA contra el
+      repo entero. Presentar opciones a Basti:
+      (a) sacarlos del repo y de la web (quedan solo locales) — más seguro;
+      (b) sacarlos del repo, subirlos al VPS por rsync manual fuera de git,
+          y proteger `/material/` en nginx con auth básica + `robots.txt`;
+      (c) dejarlos (riesgo asumido).
+- [ ] Si (a) o (b): `git rm -r --cached chino/material/` + agregar a `.gitignore`
+      + ajustar el rsync del deploy si hace falta `--exclude material/`.
+      Nota: quedan en el historial de git → mismo dilema que 0.3 (filter-repo
+      opcional; aquí sí reduce ~230 MB del repo).
+
+### 0.5 Endurecer deploy y nginx (menor)
+- [ ] En `.github/workflows/deploy.yml`: las rutas `/opt/apuntes-chino/` y
+      `/opt/TransportesMarDelSur/static/chino/` están hardcodeadas. Moverlas a
+      secrets/vars del repo (`VPS_REPO_PATH`, `VPS_DEPLOY_PATH`) y documentar en
+      CONTEXT.md por qué el sitio vive dentro del static de TransportesMarDelSur.
+- [ ] Sugerir a Basti (config del VPS, fuera de este repo): cabeceras nginx
+      `X-Content-Type-Options: nosniff` y una CSP básica que permita
+      dong-chinese.com (links) y el CDN de HanziWriter (radicales.html la usa).
+
+---
+
+## 🟠 FASE 1 — Arquitectura y deduplicación (~1-2 sesiones)
+
+### 1.1 Extraer CSS/JS compartido de las clases (la tarea más grande)
+Contexto: 31+ HTML en `basico1/ basico2/ basico3/` repiten inline el mismo
+`<style>` y el mismo `<script>` (función `speak()`, botones 🔊, toggle pinyin).
+La carpeta `hsk1/` ya usa el patrón correcto (`hsk1.css` + `hsk1.js` compartidos).
+
+- [ ] Paso 1 — inventario: script Python que extraiga el bloque `<style>...</style>`
+      y el `<script>` final de CADA clase a archivos temporales en scratchpad, y
+      los compare (difflib) para detectar variantes. Esperable: 2-4 variantes
+      (basico1 vs basico2 vs basico3 evolucionaron).
+- [ ] Paso 2 — crear `chino/assets/clase.css` y `chino/assets/clase.js` con la
+      versión más completa (la de basico3/clase05.html, la más reciente). El JS
+      debe leer un `window.audioMap` que cada página define inline ANTES de
+      cargar el script, y mantener el fallback speechSynthesis.
+- [ ] Paso 3 — script de migración por archivo: reemplaza el `<style>` inline por
+      `<link rel="stylesheet" href="/assets/clase.css">`, y el `<script>` por un
+      bloque mínimo `<script>window.audioMap = {...}</script><script src="/assets/clase.js"></script>`,
+      PRESERVANDO el audioMap existente de cada página. Correrlo primero sobre
+      UNA clase de cada curso, verificar en navegador local
+      (`python3 -m http.server` en `chino/` + revisar toggle pinyin, botones 🔊,
+      colores h2, cajas .box), y recién entonces correrlo sobre el resto.
+- [ ] Paso 4 — si el inventario del paso 1 mostró diferencias reales de estilo
+      entre cursos (colores, fuentes), resolver con clases CSS por curso
+      (`body.b1 / body.b2 / body.b3`) dentro del mismo clase.css, no con 3 archivos.
+- [ ] Verificación final: `grep -L 'assets/clase.css'` sobre las 31 clases debe
+      devolver vacío; peso de cada HTML debería bajar 30-60%.
+- [ ] Actualizar CONTEXT.md (sección "Convenciones de formato HTML") y el patrón
+      de audio para reflejar el nuevo layout.
+
+### 1.2 Derivar el audioMap desde mapping.json (elimina la doble contabilidad)
+Contexto: cada página lleva una copia parcial de `chino/audio/mapping.json` que
+un script regenera con regex. Es frágil y es EL paso manual del flujo de clases.
+
+- [ ] Opción recomendada (simple, estático): en `clase.js`, si no existe
+      `window.audioMap`, hacer `fetch('/audio/mapping.json')` (cachearlo en el
+      objeto; el JSON pesa poco, los MP3 se cargan on-demand igual que hoy).
+      Mantener `window.audioMap` inline como override opcional.
+- [ ] Migración: script que borre los `audioMap` inline de las 31 clases (dejando
+      solo el `<script src>`), una vez confirmado que TODOS los textos hz de cada
+      página existen en mapping.json (usar el validador de 2.2 antes).
+- [ ] Con esto, el flujo de clase nueva queda: generar MP3 + actualizar
+      mapping.json y NADA más (se elimina el paso "reconstruir audioMap del HTML").
+      Actualizar CLAUDE.md y CONTEXT.md con el flujo nuevo.
+
+### 1.3 Radicales: una sola fuente
+- [ ] `radicales.json` fue extraído de `radicales.html`, pero el HTML conserva su
+      copia inline (ver nota ⚠️ en CONTEXT.md). Invertir: que `radicales.html`
+      haga fetch de `/radicales.json` como ya hacen buscador.html e index.html,
+      y borrar la copia inline. Verificar en navegador (HanziWriter + chips).
+- [ ] Borrar la advertencia de doble copia en CONTEXT.md.
+
+### 1.4 Documentar y validar el ecosistema de datos (no unificar todavía)
+Contexto: vocab.json, vocab_hsk1/2/3.json, hsk1-data.json, hsk30-lessons.json,
+vocab_listening.json, radicales.json, sinonimos.json se solapan con esquemas
+distintos y sincronía manual.
+
+- [ ] Crear `chino/DATA.md`: tabla con cada JSON → esquema, quién lo consume,
+      quién lo actualiza y cuándo, y qué campos se solapan con otros.
+- [ ] NO fusionar los JSON en esta fase (riesgo alto, beneficio incierto para un
+      sitio que funciona). La protección real es el validador de 2.2.
+
+### 1.5 Limpiar la raíz del repo
+- [ ] `4b/`, `usm/`, `programacion/`, `robotica/`, `pinyin-react/` no son parte
+      del sitio de chino (el deploy solo rsynca `chino/`). Preguntar a Basti si
+      se mueven a otro repo o se quedan; como mínimo: agregar `pinyin-react/dist/`
+      a un build reproducible o documentar en CONTEXT.md qué es cada carpeta.
+- [ ] Decidir el destino de `pinyin.html` vs `pinyinv2.html` vs `pinyin-react/`
+      (tres generaciones de la misma herramienta) y de
+      `basico1/index_completo.html` (backup monolítico). Propuesta: borrar los
+      obsoletos (git los recuerda); si Basti prefiere, moverlos a `attic/`.
+
+### 1.6 Binarios en git (decisión, no urgente)
+- [ ] 3.056+ MP3 (68 MB) + material (230 MB si sigue) en git. Presentar a Basti:
+      (a) status quo consciente (válido, repo personal);
+      (b) Git LFS para `*.mp3 *.pdf`;
+      (c) audio fuera de git con rsync directo al VPS.
+      Recomendación: (a) si material/ sale del repo en 0.4 — 68 MB de MP3 es manejable.
+
+---
+
+## 🟡 FASE 2 — Tooling e integración (~1 sesión)
+
+### 2.1 Script de audio real y versionado
+- [ ] Crear `scripts/gen_audio.py` a partir del patrón que hoy vive en CONTEXT.md:
+      - Uso: `python3 scripts/gen_audio.py chino/basico3/claseXX.html [más.html...]`
+      - Key desde `os.environ["ELEVENLABS_API_KEY"]` (error claro si falta).
+      - Extrae textos de `td.hz` y `span.hz`, filtra contra mapping.json, genera
+        `zh_{md5[:10]}.mp3`, actualiza mapping.json. Si la fase 1.2 ya se hizo,
+        ELIMINAR la parte que reescribe el audioMap del HTML; si no, mantenerla.
+      - Reintentos con backoff ante 429/5xx; resumen final (N nuevos, N ya existían, N fallos).
+- [ ] Reemplazar el bloque de código de CONTEXT.md por una referencia al script.
+- [ ] Actualizar CLAUDE.md (flujo de trabajo) para apuntar al script.
+
+### 2.2 Validador de integridad + CI
+- [ ] Crear `scripts/check_site.py` que valide y salga con código ≠0 si falla algo:
+      1. Todo texto en `td.hz`/`span.hz` de cada HTML tiene entrada en mapping.json
+         y el MP3 referenciado existe en `chino/audio/` (warning, no error, para
+         textos largos >40 chars que nunca llevan audio).
+      2. Ningún HTML contiene links con prefijo `/chino/` (causa #1 histórica de 404).
+      3. `hsk1-data.json`: los valores del campo `clases` apuntan a archivos que existen.
+      4. Todos los JSON del repo parsean.
+      5. Ningún archivo versionado contiene el patrón `sk_[a-zA-Z0-9]{20,}` (secretos).
+- [ ] Crear `.github/workflows/check.yml`: corre `scripts/check_site.py` en cada
+      push/PR (NO despliega; el deploy sigue en deploy.yml). Python stdlib only,
+      sin dependencias.
+- [ ] Correr el validador sobre el repo actual y arreglar lo que reporte ANTES de
+      activar el workflow (probablemente haya audios/links huérfanos históricos).
+
+### 2.3 Higiene de git
+- [ ] Revisar `git status`: si hay cambios sin commitear (audios, mapping.json,
+      HTML de la última clase), commitearlos con mensaje descriptivo ANTES de
+      cualquier transformación masiva de este plan. Nunca mezclar en un mismo
+      commit contenido de clases con refactor de infraestructura.
+- [ ] Agregar `.gitignore` para: `.env`, `*.pyc`, `__pycache__/`, `.DS_Store`,
+      y lo que se decida en 0.4/1.5.
+
+---
+
+## 🟢 FASE 3 — Orden y pulido (~1 sesión corta, oportunista)
+
+### 3.1 Sincronizar documentación con la realidad
+- [ ] CONTEXT.md: Básico 2 lista 7 clases pero hay 9 archivos (clase08, clase09);
+      Básico 3 va en clase05 (y clase06 NO debe crearse aún — ver CLAUDE.md);
+      faltan en la estructura: typing.html, lluvia.html, pinyin.html, pinyinv2.html,
+      buscador-core.js, sinonimos.json, vocab.json. Actualizar el árbol y las tablas.
+- [ ] Regla nueva en CLAUDE.md (checklist de cierre de clase): «actualizar
+      CONTEXT.md si la clase agregó archivos o herramientas nuevas».
+
+### 3.2 Página 404
+- [ ] Crear `chino/404.html` con el estilo del sitio y links al dashboard.
+      Pedirle a Basti agregar `error_page 404 /404.html;` en nginx (fuera del repo).
+
+### 3.3 Accesibilidad (barato una vez hecho 1.1)
+- [ ] En `clase.js` y `hsk1.js`: los botones 🔊 generados deben llevar
+      `aria-label="Escuchar {texto}"` y `type="button"`; el toggle pinyin,
+      `aria-pressed`. Un solo cambio en los JS compartidos cubre todo el sitio.
+
+### 3.4 PWA / offline (opcional, solo si Basti lo pide)
+- [ ] Service worker con cache-first para `/audio/*.mp3` (los nombres zh_{md5}
+      son inmutables → candidatos perfectos) y network-first para HTML/JSON.
+      + `manifest.json` para instalar el sitio en el teléfono. Es la mejora de
+      mayor valor de uso real (estudiar sin señal), pero requiere probar bien
+      la invalidación de mapping.json.
+
+---
+
+## Orden de ejecución sugerido y esfuerzo estimado
+
+| Sesión | Contenido | Tokens aprox. |
+|--------|-----------|---------------|
+| 1 | Fase 0 completa (0.1 y 0.4 requieren a Basti) + 2.3 | 50-100k |
+| 2 | 2.1 + 2.2 (script audio + validador + CI) | 60-100k |
+| 3 | 1.1 + 1.2 (CSS/JS compartido + audioMap por fetch) | 150-300k |
+| 4 | 1.3 + 1.4 + 1.5 + Fase 3 | 100-150k |
+
+Notas para el modelo ejecutor:
+- Las fases 2.1/2.2 van ANTES del refactor 1.1/1.2 a propósito: el validador es
+  la red de seguridad del refactor masivo.
+- Cada `[REQUIERE A BASTI]` / `[DECISIÓN DE BASTI]` es un punto de parada real:
+  no asumir la respuesta.
+- Al terminar cada fase: marcar los checkboxes de este archivo, commit y push.

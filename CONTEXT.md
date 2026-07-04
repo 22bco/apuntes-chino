@@ -186,81 +186,34 @@ Reorganización del contenido de TODAS las clases según el sílabo oficial HSK 
 ## 🔊 Sistema de audio (ElevenLabs)
 
 ### Credenciales
-- **API Key**: `sk_0f789f0b9a6f5a985540d067b3f767f23d392d0338238d4c`
-  - ⚠️ Rotar al terminar. La anterior `c3549...` ya fue rotada.
+- **API Key**: en la variable de entorno `ELEVENLABS_API_KEY`.
+  - ⚠️ **NUNCA** escribir la key literal en ningún archivo del repo (es público).
+    Definirla en `~/.zshenv`: `export ELEVENLABS_API_KEY="sk_..."`.
+  - El validador `scripts/check_site.py` falla el CI si detecta una key `sk_...`
+    en cualquier archivo versionado.
 - **Voice ID**: `pFZP5JQG7iQjIQuC4Bku` (Lily)
 - **Model**: `eleven_turbo_v2_5`
 - **Settings**: `{"stability": 0.5, "similarity_boost": 0.75}`
 
 ### Flujo para generar audios nuevos
-1. Extraer texto de `<td class="hz">` y `<span class="hz">` del HTML
-2. Filtrar los que ya están en `chino/audio/mapping.json`
-3. Generar MP3 con nombre `zh_{md5(text)[:10]}.mp3`
-4. Actualizar `mapping.json` con `{"texto": "filename.mp3"}`
-5. Actualizar `const audioMap = {...}` en `<script>` del HTML
+Usar el script versionado **`scripts/gen_audio.py`** (stdlib, sin dependencias):
 
-### Script tipo para generar audios (patrón reutilizable)
-```python
-import re, json, urllib.request, hashlib, os, time
-
-API_KEY = "sk_..."
-VOICE_ID = "pFZP5JQG7iQjIQuC4Bku"
-MODEL = "eleven_turbo_v2_5"
-OUTPUT_DIR = "chino/audio"
-
-with open(os.path.join(OUTPUT_DIR, "mapping.json")) as f:
-    mapping = json.load(f)
-
-# Extraer textos del HTML
-with open("chino/basico2/claseXX.html") as f:
-    html = f.read()
-td_texts = re.findall(r'<td class="hz">(.*?)</td>', html)
-span_texts = re.findall(r'<span class="hz">(.*?)</span>', html)
-texts = set()
-for raw in td_texts + span_texts:
-    clean = re.sub(r'<[^>]+>', '', raw).strip()
-    if clean and len(clean) <= 40:
-        texts.add(clean)
-new_texts = sorted(texts - set(mapping.keys()))
-
-def text_to_filename(t):
-    return f"zh_{hashlib.md5(t.encode()).hexdigest()[:10]}.mp3"
-
-for text in new_texts:
-    fname = text_to_filename(text)
-    fpath = os.path.join(OUTPUT_DIR, fname)
-    url = f"https://api.elevenlabs.io/v1/text-to-speech/{VOICE_ID}"
-    payload = json.dumps({
-        "text": text, "model_id": MODEL,
-        "voice_settings": {"stability": 0.5, "similarity_boost": 0.75}
-    }).encode()
-    req = urllib.request.Request(url, data=payload, headers={
-        "xi-api-key": API_KEY, "Content-Type": "application/json"
-    })
-    try:
-        with urllib.request.urlopen(req) as resp:
-            with open(fpath, "wb") as out: out.write(resp.read())
-        mapping[text] = fname
-    except Exception as e:
-        print(f"[FAIL] {text}: {e}")
-    time.sleep(0.25)
-
-with open(os.path.join(OUTPUT_DIR, "mapping.json"), "w") as f:
-    json.dump(mapping, f, ensure_ascii=False, indent=2)
-
-# Actualizar audioMap en HTML
-file_texts = set()
-for raw in td_texts + span_texts:
-    clean = re.sub(r'<[^>]+>', '', raw).strip()
-    if clean and clean in mapping: file_texts.add(clean)
-map_lines = [f'  "{t}": "{mapping[t]}"' for t in sorted(file_texts)]
-map_js = ',\n'.join(map_lines)
-html = re.sub(r'const audioMap = \{[^}]*\};',
-              f'const audioMap = {{\n{map_js}\n}};',
-              html, flags=re.DOTALL)
-with open("chino/basico2/claseXX.html", "w") as f:
-    f.write(html)
+```bash
+export ELEVENLABS_API_KEY="sk_..."          # nunca hardcodear la key en el repo
+python3 scripts/gen_audio.py chino/basico3/claseXX.html [más.html ...]
 ```
+
+El script hace todo el flujo automáticamente:
+1. Extrae los textos de `<td class="hz">` y `<span class="hz">`
+2. Filtra los que ya están en `chino/audio/mapping.json`
+3. Genera el MP3 que falte con nombre `zh_{md5(text)[:10]}.mp3` (reintentos con backoff)
+4. Actualiza `mapping.json`
+5. Reconstruye el bloque `const audioMap = {...}` del HTML
+
+Flag `--no-audiomap`: omite el paso 5 (usar cuando el sitio cargue el audioMap
+por fetch desde mapping.json — ver PLAN-MEJORAS.md fase 1.2).
+
+Tras generar, correr `python3 scripts/check_site.py` para validar integridad.
 
 ### JavaScript inyectado en cada clase (patrón)
 ```javascript

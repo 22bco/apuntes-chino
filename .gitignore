@@ -7,3 +7,11 @@
 # Material de estudio con copyright (HSK Standard Course) — local, no se versiona en repo público
 chino/material/hsk1/libros/
 chino/material/hsk1/simulacros/
+
+# Secretos y entorno — la API key de ElevenLabs NUNCA va al repo
+.env
+.env.*
+
+# Python (scripts/)
+__pycache__/
+*.pyc
