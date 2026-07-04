@@ -349,6 +349,76 @@ Juntar en una sola sesión de nginx todo lo que quedó pendiente del plan:
 
 ---
 
+## 💡 FASE 5 — Backlog de ideas (revisión 2ª ronda, 4 jul 2026)
+
+> Ideas verificadas contra el repo pero pendientes de que Basti confirme interés
+> (salvo 5.1, que es un fix objetivo). Menos especificadas que la Fase 4 a
+> propósito: detallar al momento de ejecutar.
+
+### 5.1 CI: el deploy debe esperar al validador — [FIX OBJETIVO, hacerlo pronto]
+Gap real verificado: `deploy.yml` y `check.yml` corren EN PARALELO en cada push.
+Un push con errores (JSON roto, links /chino/, key filtrada) se despliega igual
+aunque el check falle segundos después.
+- [ ] Unificar en un workflow con dos jobs: `check` → `deploy` con `needs: check`
+      (o `workflow_run` con conclusión success). El deploy de un push roto no
+      debe llegar al VPS.
+
+### 5.2 Buscador de temas gramaticales (el buscador solo encuentra palabras)
+Hay **183 secciones `<h2 id="sN">`** en las clases (你怎么了, 变调, 会 vs 能…)
+pero buscar "变调" en el buscador no da nada: solo indexa vocabulario.
+- [ ] Script que extraiga de cada clase sus secciones (id, título, curso/clase)
+      → `chino/secciones.json` (generado, regenerable; agregarlo al validador).
+- [ ] `buscador-core.js`: nueva categoría "secciones/gramática" en el ranking
+      (tier propio, badge 📖) que linkee directo a `claseNN.html#sX`.
+- Resuelve el caso de uso real "¿en qué clase vimos X?" que hoy requiere memoria.
+
+### 5.3 SRS unificado — los juegos no conversan entre sí
+Verificado: 3 silos de progreso — `hsk1-srs` (repaso Leitner), `typing_hsk1`
+(SRS propio del typing), `lluvia_hsk1` (récords). Fallar 会 en typing no lo
+mete a la cola de repaso.
+- [ ] Diseñar una cola única (formato de `hsk1-srs` como base): typing, lluvia,
+      quiz y examen ESCRIBEN sus errores ahí; `repaso.html` sigue siendo el
+      centro de repaso. Los récords/streaks de cada juego quedan locales.
+- [ ] Migración suave: leer los formatos viejos una vez y fusionar.
+- Es LA mejora de estudio más valiosa después de 4.2 (mismo espíritu: que el
+  sitio recuerde qué te cuesta, vengas del juego que vengas).
+
+### 5.4 Backup del progreso (localStorage es frágil)
+Todo el progreso (SRS, récords) vive en localStorage de UN navegador: limpiar
+caché o cambiar de dispositivo = perder todo. Sin cuentas ni servidor (fuera de
+alcance), lo honesto es exportar/importar.
+- [ ] Botón "exportar/importar progreso" (JSON descargable) en `/hsk1/` y en el
+      bloque "continuar" del dashboard (4.2). Un archivo, todas las keys.
+
+### 5.5 Drill de tonos (juego nuevo, reusa lo que ya hay)
+No existe práctica de discriminación auditiva de tonos (el punto débil clásico).
+Los MP3 ya están (3200+ en mapping.json).
+- [ ] `tonos.html`: suena una palabra → elegir qué tono(s) escuchaste (1-4 por
+      sílaba). Fuente: vocab_hsk1.json (el campo py trae los tonos = respuesta).
+      Mismo patrón de juego/récords que typing/lluvia.
+
+### 5.6 Práctica de trazos por clase (HanziWriter ya está en el sitio)
+`radicales.html` ya usa HanziWriter (animación de trazos). Extenderlo a quiz:
+- [ ] `trazos.html`: modo quiz de HanziWriter (dibujar con el dedo/mouse y que
+      corrija) con las palabras de una clase o tema HSK elegido.
+
+### 5.7 Modo oscuro
+- [ ] `prefers-color-scheme: dark` + toggle manual en `clase.css`, `hsk1.css` y
+      dashboard, con variables CSS (los colores ya están centralizados en
+      `:root` tras la Fase 1). Persistir elección en localStorage.
+
+### 5.8 Accesibilidad/tipografía china correcta (menor, mecánico)
+- [ ] Pasada con script: `lang="zh-Hans"` en los elementos `.hz`/`.zh` (hoy los
+      lectores de pantalla y la selección de fuentes tratan el chino como
+      español). Un `sed`/Python sobre los HTML + regla en la plantilla.
+
+### 5.9 PDFs de clases — [DECISIÓN: ¿te sirven aún?]
+basico2 tiene solo 2 PDFs sueltos y basico3 ninguno. O se retoma (script de
+print-to-pdf con Playwright, que ya está instalado) o se declaran descontinuados
+y se borran los 2 huérfanos. Sin punto medio.
+
+---
+
 ## Orden de ejecución sugerido y esfuerzo estimado
 
 | Sesión | Contenido | Tokens aprox. | Estado |
@@ -360,6 +430,8 @@ Juntar en una sola sesión de nginx todo lo que quedó pendiente del plan:
 | 5 | **4.1 + 4.2** (lazy-load buscador + continuar/favicon) | 60-100k | ⏳ |
 | 6 | **4.3 + 4.4** (clases.json + validador v2) | 80-120k | ⏳ |
 | 7 | **4.5** (nginx: cache/404/headers — sesión SSH con Basti) + 1.3 radicales | 40-80k | ⏳ |
+| 8 | **5.1** (deploy espera al check — fix corto) + 5.2 (buscador de secciones) | 50-90k | ⏳ |
+| 9+ | Fase 5 restante según interés de Basti (5.3 SRS unificado es la más valiosa) | variable | 💡 |
 
 Notas para el modelo ejecutor:
 - Las fases 2.1/2.2 van ANTES del refactor 1.1/1.2 a propósito: el validador es
