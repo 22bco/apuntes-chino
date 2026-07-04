@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>chino.basti.cl — Apuntes de Chino</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -153,29 +155,6 @@
   .classes .concepts .zh { color: var(--red); }
   .classes .es { font-size: 0.8rem; color: var(--muted); line-height: 1.45; }
 
-  /* ---------- NÚMEROS / VISUALIZACIONES ---------- */
-  .viz {
-    background: var(--paper); border: 1px solid #f0e6e3; border-radius: 12px;
-    padding: 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,.03);
-  }
-  .viz h3 { font-size: 0.78rem; color: var(--ink); font-weight: 700; margin-bottom: 12px; }
-  .viz + .viz { margin-top: 12px; }
-  .hbar-row { display: grid; grid-template-columns: 7.5em 1fr 3em; gap: 10px; align-items: center; margin: 5px 0; font-size: 0.74rem; }
-  .hbar-row .name { color: var(--muted); text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .hbar-row .track { height: 12px; background: #f6efed; border-radius: 4px; overflow: hidden; }
-  .hbar-row .bar { height: 100%; width: 0; border-radius: 4px; background: linear-gradient(90deg, var(--red), var(--red-bright)); transition: width .8s cubic-bezier(.2,.7,.3,1); }
-  .hbar-row.b3 .bar { background: linear-gradient(90deg, var(--gold), var(--gold-bright)); }
-  .hbar-row .val { color: var(--muted); font-variant-numeric: tabular-nums; }
-  .viz-note { font-size: 0.7rem; color: var(--muted); margin-top: 10px; }
-  .viz-split { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-  .donut-wrap { display: flex; align-items: center; gap: 16px; }
-  .legend-tones { display: flex; flex-direction: column; gap: 4px; font-size: 0.72rem; color: #777; }
-  .legend-tones .sw { display: inline-block; width: 9px; height: 9px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
-  .hanzi-cloud { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
-  .hanzi-cloud a { font-family: 'Noto Sans SC', var(--mono); text-decoration: none; color: var(--red); line-height: 1.1; transition: transform .12s; }
-  .hanzi-cloud a:hover { transform: scale(1.18); color: var(--red-bright); }
-  @media (max-width: 600px) { .viz-split { grid-template-columns: 1fr; } }
-
   /* ---------- TOOLS ---------- */
   .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 11px; }
   .tool-card {
@@ -206,8 +185,28 @@
     .classes a { grid-template-columns: 1.1em 5.6em 1fr; gap: 6px; }
     .path .zh { display: none; }
     .tools-grid { grid-template-columns: 1fr; }
-    .hbar-row { grid-template-columns: 6em 1fr 2.6em; gap: 7px; }
   }
+  /* Seguir estudiando */
+  .resume { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 2px; }
+  .resume-item { display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+    background: var(--paper); border: 1px solid var(--red-tint, #f0d5cf); border-radius: 11px;
+    padding: 8px 13px; transition: border-color .15s, transform .15s, box-shadow .15s; }
+  .resume-item:hover { border-color: var(--red-bright, #e74c3c); transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(192,57,43,.1); }
+  .resume-item .ri-tag { font-size: .68rem; font-weight: 700; color: var(--red, #c0392b);
+    text-transform: uppercase; letter-spacing: .5px; white-space: nowrap; }
+  .resume-item .ri-main { font-size: .82rem; color: var(--ink); font-weight: 500; }
+  /* Marcar clase como completada */
+  .classes a { position: relative; padding-right: 38px; }
+  .done-btn { position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+    width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--red-tint, #f0d5cf);
+    background: #fff; color: var(--muted); font-size: .78rem; line-height: 1; display: flex;
+    align-items: center; justify-content: center; cursor: pointer; transition: all .12s; z-index: 2; }
+  .done-btn:hover { border-color: var(--red-bright, #e74c3c); color: var(--red, #c0392b); }
+  .classes a.done .done-btn { background: #27ae60; border-color: #27ae60; color: #fff; }
+  .classes a.done .id { color: #27ae60; }
+  .classes a.done .concepts { opacity: .72; }
+  #done-progress { color: #27ae60; font-weight: 600; }
 </style>
 </head>
 <body>
@@ -217,7 +216,7 @@
     <h1 class="site-title">chino<span class="dot">.</span>basti<span class="dot">.</span><span class="cl">cl</span></h1>
     <p class="tagline"><span class="zh">中文</span> · apuntes de Basti · Centro Cultural Chino</p>
     <div class="hero-stats">
-      <div class="stat"><span class="num" id="h-clases">25</span><span class="lbl">Clases</span></div>
+      <div class="stat"><span class="num" id="h-clases">27</span><span class="lbl">Clases</span></div>
       <div class="stat"><span class="num" id="h-palabras">399</span><span class="lbl">Palabras</span></div>
       <div class="stat"><span class="num" id="h-audios">1557</span><span class="lbl">Audios 🔊</span></div>
       <div class="stat"><span class="num" id="h-hsk">95%</span><span class="lbl">HSK 1 cubierto</span></div>
@@ -238,6 +237,11 @@
     <span class="wod-info"><em id="wod-py"></em> · <span id="wod-es"></span></span>
     <button class="wod-play" id="wod-play" title="Escuchar">🔊</button>
   </a>
+
+  <div class="resume" id="resume" style="display:none;">
+    <a class="resume-item" id="resume-last" href="#"><span class="ri-tag">▶ Seguir</span><span class="ri-main" id="resume-last-label"></span></a>
+    <a class="resume-item" id="resume-srs" href="/hsk1/repaso.html" style="display:none;"><span class="ri-tag">🔁 Repaso</span><span class="ri-main" id="resume-srs-label"></span></a>
+  </div>
 
   <div class="label gold">🎯 Por tema</div>
   <a class="hsk-card" href="/hsk1/">
@@ -267,7 +271,7 @@
     </a>
   </div>
 
-  <div class="label">Niveles <span class="count">· 25 clases</span></div>
+  <div class="label">Niveles <span class="count">· 27 clases</span><span id="done-progress"></span></div>
 
   <!-- BÁSICO 1 -->
   <details class="lvl">
@@ -322,10 +326,10 @@
     <summary>
       <div class="lvl-row">
         <span class="path"><span class="marker">▸</span>basico3/<span class="zh">基础三</span></span>
-        <span class="meta"><span class="live">en curso</span> · 4 clases</span>
+        <span class="meta"><span class="live">en curso</span> · 6 clases</span>
       </div>
-      <div class="lvl-desc">El reloj y la vida diaria: la hora, la rutina, el clima, la salud y fonética avanzada (轻声, 变调).</div>
-      <div class="lvl-stats"><span>may–jun 2026</span><span class="lvl-bar"><span class="fill" style="width:50%"></span></span><span><b>5</b> clases · <span id="w-b3">49</span> palabras</span></div>
+      <div class="lvl-desc">El reloj y la vida diaria: la hora, la rutina, el clima, la salud, la partícula 了 y fonética avanzada (轻声, 变调).</div>
+      <div class="lvl-stats"><span>may–jul 2026</span><span class="lvl-bar"><span class="fill" style="width:70%"></span></span><span><b>7</b> clases · <span id="w-b3">49</span> palabras</span></div>
     </summary>
     <div class="classes">
       <a href="/basico3/clase01.html"><span class="tree">└</span><span class="id">clase01</span><span class="desc"><span class="concepts">La hora — <span class="zh">点 · 分 · 半</span></span><span class="es">Decir la hora del reloj y preguntar a qué hora con <span class="zh">几点</span>.</span></span></a>
@@ -333,30 +337,10 @@
       <a href="/basico3/clase03.html"><span class="tree">└</span><span class="id">clase03</span><span class="desc"><span class="concepts">El clima — <span class="zh">天气怎么样</span></span><span class="es">El clima y el futuro con <span class="zh">会</span>, <span class="zh">怎么样</span>, <span class="zh">太…了</span>, <span class="zh">些</span> y los tonos que cambian (<span class="zh">变调</span>).</span></span></a>
       <a href="/basico3/clase04.html"><span class="tree">└</span><span class="id">clase04</span><span class="desc"><span class="concepts">La salud y el clima — <span class="zh">身体怎么样 · 在…呢</span></span><span class="es">Salud, clima a fondo, 能/想, 爱, 学习 y el progresivo 在…呢. 14 secciones.</span></span></a>
       <a href="/basico3/clase05.html"><span class="tree">└</span><span class="id">clase05</span><span class="desc"><span class="concepts">Estar haciendo algo — <span class="zh">在…呢 · 喂 · 给</span></span><span class="es">El progresivo 在 (presente y pasado), el teléfono (喂, 打电话, 号码, el 1 = 幺), los dos 在, negar con 没 vs 不, las partículas 呢/吗/吧, 给 y un torpedo de números. 12 secciones.</span></span></a>
+      <a href="/basico3/clase06.html"><span class="tree">└</span><span class="id">clase06</span><span class="desc"><span class="concepts">Los tres lugares de 了 — <span class="zh">你看见张先生了吗？</span></span><span class="es">Reconstruida de las diapositivas de la profe. 了 al final, pegado al verbo con cantidad, y su negación con 没; el sustantivo 后; 看见, 回来, 不少, 书店.</span></span></a>
+      <a href="/basico3/clase07.html"><span class="tree">└</span><span class="id">clase07</span><span class="desc"><span class="concepts">¿Adónde fuiste? — <span class="zh">昨天你去哪儿了</span></span><span class="es">去 + 哪儿 + 了, 早上 vs 上午, y comprar cosas (买东西, 一点儿, 苹果) con el detalle de dónde va 了 según la cantidad.</span></span></a>
     </div>
   </details>
-
-  <div class="label">📊 El sitio en números</div>
-  <div class="viz">
-    <h3>Palabras de vocabulario por clase</h3>
-    <div id="words-chart"><div class="viz-note">cargando…</div></div>
-    <div class="viz-note">Fuente: vocab.json (Básico 2 y 3; el vocabulario de Básico 1 aún no está indexado).</div>
-  </div>
-
-  <div class="viz viz-split">
-    <div class="viz-half">
-      <h3>Distribución de tonos del vocabulario</h3>
-      <div class="donut-wrap">
-        <svg id="tone-donut" viewBox="0 0 120 120" width="130" height="130" role="img" aria-label="Distribución de tonos"></svg>
-        <div class="legend-tones" id="tone-legend"></div>
-      </div>
-    </div>
-    <div class="viz-half">
-      <h3>Los 20 hanzi más frecuentes</h3>
-      <div class="hanzi-cloud" id="hanzi-cloud"><span class="viz-note">cargando…</span></div>
-      <div class="viz-note">Contados sobre las frases con audio. Toca uno para ver sus trazos.</div>
-    </div>
-  </div>
 
   <div class="label">Herramientas</div>
   <div class="tools-grid">
@@ -415,73 +399,80 @@ function countUp(el, target, suffix) {
   requestAnimationFrame(step);
 }
 
-Promise.all([
-  fetch('/vocab.json').then(r => r.json()),
-  fetch('/audio/mapping.json').then(r => r.json()),
-  fetch('/hsk1/hsk1-data.json').then(r => r.json()),
-  fetch('/audio/vocab_listening.json').then(r => r.json()).catch(() => []),
-  fetch('/vocab_hsk1.json').then(r => r.json()).catch(() => []),
-  fetch('/vocab_hsk2.json').then(r => r.json()).catch(() => []),
-  fetch('/vocab_hsk3.json').then(r => r.json()).catch(() => []),
-  fetch('/radicales.json').then(r => r.json()).catch(() => null),
-  fetch('/sinonimos.json').then(r => r.json()).catch(() => []),
-]).then(([vocab, mapping, hsk, frases, vh1, vh2, vh3, rad, syn]) => {
-  countUp(document.getElementById('h-palabras'), vocab.length);
-  countUp(document.getElementById('h-audios'), Object.keys(mapping).length);
+/* ── Render del dashboard desde stats.json precalculado (eager ~4 KB gz en vez de ~150 KB) ── */
+fetch('/stats.json').then(r => r.json()).then(stats => {
+  countUp(document.getElementById('h-clases'), stats.clases);
+  countUp(document.getElementById('h-palabras'), stats.palabras);
+  countUp(document.getElementById('h-audios'), stats.audios);
 
   /* HSK 1: cobertura */
-  const vistas = hsk.filter(w => w.clases.length).length;
-  const pct = Math.round(vistas / hsk.length * 100);
+  const pct = stats.hsk.pct;
   countUp(document.getElementById('h-hsk'), pct, '%');
-  document.getElementById('hsk-vistas').textContent = vistas;
+  document.getElementById('hsk-vistas').textContent = stats.hsk.vistas;
   requestAnimationFrame(() => { document.getElementById('hsk-fill').style.width = pct + '%'; });
 
-  /* Palabras por clase (barras horizontales) */
-  const porClase = {};
-  vocab.forEach(w => { porClase[w.src] = (porClase[w.src] || 0) + 1; });
-  const niveles = { b2: 0, b3: 0 };
-  const rows = Object.entries(porClase).sort((a, b) => {
-    const key = s => (s.startsWith('B3') ? '2' : '1') + s;
-    return key(a[0]).localeCompare(key(b[0]));
-  });
-  const max = Math.max(...rows.map(r => r[1]));
-  const $chart = document.getElementById('words-chart');
-  $chart.innerHTML = '';
-  rows.forEach(([src, n]) => {
-    const isB3 = src.startsWith('B3');
-    niveles[isB3 ? 'b3' : 'b2'] += n;
-    const name = isB3 ? src.replace('B3 Clase', 'B3 · cl') : 'B2 · cl' + src.replace('Clase ', '');
-    const row = document.createElement('div');
-    row.className = 'hbar-row' + (isB3 ? ' b3' : '');
-    row.innerHTML = `<span class="name">${name}</span><span class="track"><span class="bar"></span></span><span class="val">${n}</span>`;
-    $chart.appendChild(row);
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      row.querySelector('.bar').style.width = (n / max * 100) + '%';
-    }));
-  });
+  /* Palabras de vocabulario por curso (tarjetas de Niveles) */
   const wb2 = document.getElementById('w-b2'), wb3 = document.getElementById('w-b3');
-  if (wb2) wb2.textContent = niveles.b2;
-  if (wb3) wb3.textContent = niveles.b3;
+  if (wb2 && stats.words) wb2.textContent = stats.words.b2;
+  if (wb3 && stats.words) wb3.textContent = stats.words.b3;
 
-  /* Palabra del día: determinística según la fecha */
+  /* Palabra del día: determinística según la fecha (audio ya resuelto en stats.wod) */
   const dia = Math.floor(Date.now() / 86400000);
-  const wod = hsk[dia % hsk.length];
-  document.getElementById('wod-hz').textContent = wod.hz;
-  document.getElementById('wod-py').textContent = wod.py;
-  document.getElementById('wod-es').textContent = wod.es;
+  const wod = stats.wod[dia % stats.wod.length];
+  document.getElementById('wod-hz').textContent = wod.h;
+  document.getElementById('wod-py').textContent = wod.p;
+  document.getElementById('wod-es').textContent = wod.e;
   document.getElementById('wod').style.display = '';
   document.getElementById('wod-play').onclick = (e) => {
     e.preventDefault(); e.stopPropagation();
-    const f = mapping[wod.hz];
-    if (f) new Audio('/audio/' + f).play();
+    if (wod.a) new Audio('/audio/' + wod.a).play();
   };
 
-  /* Búsqueda global en vivo: mismo motor que /buscador.html (sinónimos, género/plural, ranking) */
-  const engine = ChinoSearch.create().build({ clase: vocab, h1: vh1, h2: vh2, h3: vh3, rad, map: mapping, syn });
+  /* Repaso SRS pendiente (localStorage) — la línea "última/próxima clase" la maneja
+     el módulo de progreso más abajo, que sí conoce qué clases marcaste como hechas. */
+  try {
+    const srs = JSON.parse(localStorage.getItem('hsk1-srs') || '{}');
+    const now = Date.now();
+    const due = Object.values(srs).filter(e => e && e.due <= now).length;
+    if (due > 0) {
+      document.getElementById('resume-srs-label').textContent =
+        due + (due === 1 ? ' palabra por repasar' : ' palabras por repasar');
+      document.getElementById('resume-srs').style.display = '';
+      document.getElementById('resume').style.display = '';
+    }
+  } catch (e) { /* localStorage no disponible */ }
+}).catch(() => { /* sin red o file://, quedan los números estáticos */ });
+
+/* ── Buscador global: carga perezosa del corpus al primer focus/uso ── */
+(function () {
   const $in = document.getElementById('gsearch'), $res = document.getElementById('gresults');
-  $in.addEventListener('input', () => {
+  let engine = null, loadPromise = null;
+
+  function ensureLoaded() {
+    if (!loadPromise) {
+      loadPromise = Promise.all([
+        fetch('/vocab.json').then(r => r.json()),
+        fetch('/vocab_hsk1.json').then(r => r.json()).catch(() => []),
+        fetch('/vocab_hsk2.json').then(r => r.json()).catch(() => []),
+        fetch('/vocab_hsk3.json').then(r => r.json()).catch(() => []),
+        fetch('/radicales.json').then(r => r.json()).catch(() => null),
+        fetch('/audio/mapping.json').then(r => r.json()),
+        fetch('/sinonimos.json').then(r => r.json()).catch(() => []),
+      ]).then(([vocab, vh1, vh2, vh3, rad, mapping, syn]) => {
+        engine = ChinoSearch.create().build({ clase: vocab, h1: vh1, h2: vh2, h3: vh3, rad, map: mapping, syn });
+      });
+    }
+    return loadPromise;
+  }
+
+  function render() {
     const raw = $in.value.trim();
     if (!raw) { $res.classList.remove('open'); return; }
+    if (!engine) {
+      $res.innerHTML = '<div class="gr-item" style="color:var(--muted)">Cargando vocabulario…</div>';
+      $res.classList.add('open');
+      return;
+    }
     const { results } = engine.search(raw, { limit: 8 });
     $res.innerHTML = '';
     results.forEach(w => {
@@ -504,74 +495,86 @@ Promise.all([
     more.textContent = '↗ Búsqueda completa (clases · HSK · radicales)';
     $res.appendChild(more);
     $res.classList.add('open');
-  });
+  }
+
+  /* Prefetch al enfocar; render al escribir (espera a que el motor esté listo) */
+  $in.addEventListener('focus', () => { ensureLoaded().then(() => { if ($in.value.trim()) render(); }); });
+  $in.addEventListener('input', () => { ensureLoaded().then(render); });
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.search-wrap')) $res.classList.remove('open');
   });
+})();
 
-  /* Donut: distribución de tonos (marcas diacríticas del pinyin) */
-  const MARKS = {
-    1: 'āēīōūǖĀĒĪŌŪ', 2: 'áéíóúǘÁÉÍÓÚ', 3: 'ǎěǐǒǔǚǍĚǏǑǓ', 4: 'àèìòùǜÀÈÌÒÙ',
-  };
-  const tonos = { 1: 0, 2: 0, 3: 0, 4: 0, 0: 0 };
-  vocab.forEach(w => {
-    let marcadas = 0;
-    for (const ch of w.py) {
-      for (const t in MARKS) if (MARKS[t].includes(ch)) { tonos[t]++; marcadas++; }
-    }
-    const silabas = (w.hz.match(/[一-鿿]/g) || []).length;
-    tonos[0] += Math.max(0, silabas - marcadas);
-  });
-  const TONE_INFO = [
-    [1, '1er tono ˉ', '#e74c3c'], [2, '2º tono ˊ', '#27ae60'],
-    [3, '3er tono ˇ', '#2980b9'], [4, '4º tono ˋ', '#8e44ad'], [0, 'neutro', '#9a9a9e'],
-  ];
-  const total = Object.values(tonos).reduce((a, b) => a + b, 0) || 1;
-  const svg = document.getElementById('tone-donut');
-  const C = 2 * Math.PI * 42;
-  let offset = 0;
-  TONE_INFO.forEach(([t, lbl, color]) => {
-    const frac = tonos[t] / total;
-    const seg = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    seg.setAttribute('cx', 60); seg.setAttribute('cy', 60); seg.setAttribute('r', 42);
-    seg.setAttribute('fill', 'none'); seg.setAttribute('stroke', color); seg.setAttribute('stroke-width', 15);
-    seg.setAttribute('stroke-dasharray', `${frac * C} ${C}`);
-    seg.setAttribute('stroke-dashoffset', -offset * C);
-    seg.setAttribute('transform', 'rotate(-90 60 60)');
-    svg.appendChild(seg);
-    offset += frac;
-    const li = document.createElement('div');
-    li.innerHTML = `<span class="sw" style="background:${color}"></span>${lbl} · ${tonos[t]} (${Math.round(frac * 100)}%)`;
-    document.getElementById('tone-legend').appendChild(li);
-  });
-  const mid = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-  mid.setAttribute('x', 60); mid.setAttribute('y', 64); mid.setAttribute('text-anchor', 'middle');
-  mid.setAttribute('font-size', '13'); mid.setAttribute('fill', '#9a9a9e'); mid.setAttribute('font-family', 'inherit');
-  mid.textContent = total + ' síl.';
-  svg.appendChild(mid);
+/* ── Progreso: marcar clases como completadas (localStorage, por dispositivo) ── */
+(function () {
+  const KEY = 'clases-hechas';
+  const links = Array.from(document.querySelectorAll('.classes a[href]'));
+  if (!links.length) return;
 
-  /* Nube: top 20 hanzi más frecuentes en las frases con audio */
-  const freq = {};
-  frases.forEach(f => {
-    for (const ch of (f.hanzi || '')) if (/[一-鿿]/.test(ch)) freq[ch] = (freq[ch] || 0) + 1;
-  });
-  const top = Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, 20);
-  if (top.length) {
-    const $cloud = document.getElementById('hanzi-cloud');
-    $cloud.innerHTML = '';
-    const maxF = top[0][1];
-    top.forEach(([ch, n]) => {
-      const a = document.createElement('a');
-      a.href = 'https://www.dong-chinese.com/wiki/' + encodeURIComponent(ch);
-      a.target = '_blank';
-      a.textContent = ch;
-      a.title = `${ch} — aparece ${n} veces`;
-      a.style.fontSize = (0.95 + (n / maxF) * 1.25) + 'rem';
-      a.style.opacity = (0.55 + (n / maxF) * 0.45).toFixed(2);
-      $cloud.appendChild(a);
-    });
+  let done;
+  try { done = new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch (e) { done = new Set(); }
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify([...done])); } catch (e) {} };
+
+  function labelFor(href) {
+    const m = href.match(/\/(basico[123])\/(cap|clase)(\w+)\.html/);
+    if (!m) return 'Seguir estudiando';
+    const curso = { basico1: 'Básico 1', basico2: 'Básico 2', basico3: 'Básico 3' }[m[1]];
+    const tipo = m[2] === 'cap' ? 'Cap' : 'Clase';
+    const id = m[3] === 'apendice' ? 'Apéndice' : tipo + ' ' + m[3];
+    return curso + ' · ' + id;
   }
-}).catch(() => { /* sin red o file://, quedan los números estáticos */ });
+
+  const $prog = document.getElementById('done-progress');
+  function updateProgress() {
+    const n = links.filter(a => done.has(a.getAttribute('href'))).length;
+    if ($prog) $prog.textContent = n ? ` · ${n}/${links.length} hechas ✓` : '';
+  }
+
+  function updateResume() {
+    const a = document.getElementById('resume-last');
+    if (!a) return;
+    const last = links[links.length - 1];
+    const pend = links.find(l => !done.has(l.getAttribute('href')));
+    let target, tagTxt, labelTxt;
+    if (done.size === 0) {
+      // Sin nada marcado: mostrar la última clase (donde probablemente vas)
+      target = last; tagTxt = '▶ Seguir'; labelTxt = labelFor(last.getAttribute('href'));
+    } else if (pend) {
+      // Hay huecos: la primera clase sin completar
+      target = pend; tagTxt = '▶ Seguir'; labelTxt = labelFor(pend.getAttribute('href'));
+    } else {
+      // Todo completado
+      target = last; tagTxt = '✓ ¡Completo!'; labelTxt = 'Todas las clases marcadas';
+    }
+    a.href = target.getAttribute('href');
+    const tag = a.querySelector('.ri-tag');
+    if (tag) tag.textContent = tagTxt;
+    document.getElementById('resume-last-label').textContent = labelTxt;
+    document.getElementById('resume').style.display = '';
+  }
+
+  links.forEach(a => {
+    const href = a.getAttribute('href');
+    if (done.has(href)) a.classList.add('done');
+    const btn = document.createElement('span');
+    btn.className = 'done-btn';
+    btn.textContent = a.classList.contains('done') ? '✓' : '○';
+    btn.title = 'Marcar como completada';
+    btn.setAttribute('role', 'button');
+    btn.setAttribute('aria-label', 'Marcar clase como completada');
+    btn.addEventListener('click', (e) => {
+      e.preventDefault(); e.stopPropagation();
+      if (done.has(href)) { done.delete(href); a.classList.remove('done'); btn.textContent = '○'; }
+      else { done.add(href); a.classList.add('done'); btn.textContent = '✓'; }
+      save(); updateProgress(); updateResume();
+    });
+    a.appendChild(btn);
+  });
+
+  updateProgress();
+  updateResume();
+})();
 </script>
 </body>
 </html>
