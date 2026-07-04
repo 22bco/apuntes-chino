@@ -4,89 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Básico 3 — Clase 03 · Apuntes Chino</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
-  body { font-family: 'Noto Sans SC', -apple-system, Arial, sans-serif; max-width: 860px; margin: 0 auto; padding: 20px 24px 60px; color: #222; font-size: 15px; background: #fafafa; }
-  header { background: #1a1a2e; color: #fff; padding: 28px 28px 22px; border-radius: 12px; margin-bottom: 28px; }
-  header h1 { font-size: 1.6em; margin: 0 0 4px; color: #e74c3c; }
-  header p { margin: 0; color: #aaa; font-size: 0.88em; }
-  nav { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 16px 20px; margin-bottom: 28px; }
-  nav h3 { margin: 0 0 10px; font-size: 0.82em; text-transform: uppercase; letter-spacing: 1px; color: #999; }
-  nav li { margin: 3px 0; font-size: 0.9em; }
-  nav a { color: #c0392b; text-decoration: none; }
-  nav a:hover { text-decoration: underline; }
-  h2 { font-size: 1.1em; color: #fff; background: #c0392b; padding: 9px 16px; border-radius: 8px; margin-top: 36px; margin-bottom: 14px; }
-  h2.green { background: #27ae60; }
-  h2.blue { background: #2980b9; }
-  h2.gold { background: #d4820a; }
-  h2.gray { background: #555; }
-  h2.purple { background: #8e44ad; }
-  h3 { color: #444; font-size: 0.95em; margin: 16px 0 8px; border-left: 3px solid #e74c3c; padding-left: 10px; }
-  .box { border-radius: 8px; padding: 12px 16px; margin: 10px 0; font-size: 0.92em; }
-  .box.grammar { background: #fff3e0; border: 1.5px solid #ff9800; }
-  .box.structure { background: #fdecea; border: 1.5px solid #c0392b; }
-  .box.note { background: #e8f5e9; border-left: 4px solid #27ae60; border-radius: 0 8px 8px 0; }
-  .box.warn { background: #fce4ec; border-left: 4px solid #e91e63; border-radius: 0 8px 8px 0; }
-  .box.tip { background: #e3f2fd; border-left: 4px solid #1976d2; border-radius: 0 8px 8px 0; }
-  code { background: #f0f0f0; padding: 2px 7px; border-radius: 4px; font-size: 0.88em; font-family: monospace; }
-  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em; background: #fff; border-radius: 8px; overflow: hidden; }
-  th { background: #c0392b; color: #fff; padding: 8px 12px; text-align: left; font-size: 0.85em; }
-  tr:nth-child(even) { background: #fafafa; }
-  td { padding: 7px 12px; border-bottom: 1px solid #f0f0f0; }
-  .hz { font-size: 1.15em; font-weight: bold; color: #c0392b; }
-  .hz a { color: #c0392b; text-decoration: none; border-bottom: 1px dotted #c0392b; }
-  .hz a:hover { color: #e74c3c; border-bottom: 1px solid #e74c3c; }
-  .dialog { background: #fff; border-radius: 10px; border: 1px solid #e5e5e5; padding: 14px 16px; margin: 10px 0; }
-  .da { background: #e3f2fd; padding: 8px 14px; border-radius: 8px; margin: 5px 0; }
-  .db { background: #f3e5f5; padding: 8px 14px; border-radius: 8px; margin: 5px 0; margin-left: 40px; }
-  .ex { background: #fffde7; border: 1px solid #f9a825; border-radius: 8px; padding: 14px 18px; margin: 10px 0; }
-  .ex ol { margin: 8px 0 0; padding-left: 22px; }
-  .ex li { margin: 7px 0; }
-  .pinyin-toggle { position: fixed; bottom: 20px; right: 20px; background: #1a1a2e; color: #fff; border: none; padding: 10px 16px; border-radius: 30px; cursor: pointer; font-size: 0.85em; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,.25); transition: background .2s; }
-  .pinyin-toggle:hover { background: #c0392b; }
-  .hide-pinyin .pinyin-col { visibility: hidden; }
-  @media print {
-    .no-print, .pinyin-toggle { display: none !important; }
-    body { background: #fff !important; padding: 10px 20px; font-size: 12px; max-width: 100%; }
-    header { background: #1a1a2e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 16px 20px 12px; margin-bottom: 16px; }
-    header h1 { font-size: 1.3em; }
-    nav { padding: 10px 14px; margin-bottom: 16px; page-break-after: avoid; }
-    h2 { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-size: 1em; padding: 6px 12px; margin-top: 20px; margin-bottom: 8px; page-break-after: avoid; }
-    h3 { font-size: 0.85em; margin: 10px 0 6px; page-break-after: avoid; }
-    .box { padding: 8px 12px; margin: 6px 0; font-size: 0.85em; page-break-inside: avoid; }
-    table { font-size: 0.82em; page-break-inside: avoid; margin: 6px 0; }
-    th { padding: 5px 8px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    td { padding: 4px 8px; }
-    .hz { font-size: 1em; }
-    .hz a { border-bottom: none !important; color: #c0392b !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .dialog { padding: 8px 12px; margin: 6px 0; page-break-inside: avoid; }
-    .da, .db { padding: 5px 10px; }
-    .db { margin-left: 20px; }
-    footer { font-size: 0.7em; margin-top: 16px; }
-  }
-  .key { text-decoration: underline; text-decoration-color: #e74c3c; text-underline-offset: 3px; text-decoration-thickness: 2px; }
-  footer { text-align: center; color: #bbb; font-size: 0.8em; margin-top: 40px; }
-  .blank { display: inline-block; min-width: 64px; border-bottom: 2px solid #c0392b; text-align: center; color: #c0392b; font-weight: bold; }
-
-  /* Inter para pinyin: mejor renderizado de diacríticos (ī, ǐ, ǎ, ò...). */
-  .pinyin-col,
-  .ex em,
-  .dialog em,
-  .dialog .da em,
-  .dialog .db em,
-  .box em,
-  em {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'ss01' 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  /* responsive-tables */
-  @media (max-width: 600px) {
-    table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    body { padding-left: 14px; padding-right: 14px; }
-  }
-</style>
+<link rel="stylesheet" href="/assets/clase.css">
 </head>
 <body>
 
@@ -1093,9 +1011,7 @@
 
 <button class="pinyin-toggle" onclick="document.body.classList.toggle('hide-pinyin'); this.textContent = document.body.classList.contains('hide-pinyin') ? '👁 Mostrar pinyin' : '🙈 Ocultar pinyin';">🙈 Ocultar pinyin</button>
 
-<script>
-const AUDIO_BASE = '/audio/';
-const audioMap = {
+<script>window.audioMap = {
   "e": "zh_e1671797c5.mp3",
   "r": "zh_4b43b0aee3.mp3",
   "一": "zh_7941da94db.mp3",
@@ -1343,27 +1259,7 @@ const audioMap = {
   "高": "zh_4296d7d293.mp3",
   "鼻子": "zh_e6134a2993.mp3",
   "鼻子长。": "zh_8a80c8ba05.mp3"
-};
-
-function speak(text) {
-  const file = audioMap[text];
-  if (file) { new Audio(AUDIO_BASE + file).play(); return; }
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = 'zh-CN'; u.rate = 0.8;
-  speechSynthesis.speak(u);
-}
-
-document.querySelectorAll('td.hz, .dialog .hz').forEach(el => {
-  const text = el.textContent.trim();
-  if (!text) return;
-  const btn = document.createElement('button');
-  btn.textContent = '🔊';
-  btn.style.cssText = 'background:none;border:none;cursor:pointer;margin-left:6px;font-size:0.9em;opacity:0.5;';
-  btn.onmouseover = () => btn.style.opacity = '1';
-  btn.onmouseout = () => btn.style.opacity = '0.5';
-  btn.onclick = (e) => { e.preventDefault(); e.stopPropagation(); speak(text); };
-  el.appendChild(btn);
-});
-</script>
+};</script>
+<script src="/assets/clase.js"></script>
 </body>
 </html>
