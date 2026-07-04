@@ -40,6 +40,13 @@
   vivas y enlazadas (consolidar = decisión).
 - 📝 Clases NUEVAS (clase06, clase07 en adelante): si se copian de una plantilla
   con `<style>`/`<script>` inline, pasarles `scripts/migrate_clase.py` al cerrarlas.
+- ✅ **Fase 0.1 CERRADA** — Basti rotó la API key de ElevenLabs (4 jul 2026).
+  El frente de seguridad del repo queda completo.
+- 🆕 **FASE 4 agregada** (revisión post-refactor, 4 jul 2026): rendimiento del
+  dashboard (435 KB de JSON eager → lazy), "continuar donde quedaste" + favicon,
+  clases.json (mata el mantenimiento manual del árbol Niveles), validador v2
+  (deriva py/es), y la visita única al nginx del VPS (cache immutable de audio,
+  404, headers). Ver sección FASE 4 abajo.
 
 ## ⚠️ Reglas de ejecución (leer antes de empezar)
 
@@ -254,14 +261,105 @@ distintos y sincronía manual.
 
 ---
 
+## 🚀 FASE 4 — Rendimiento y UX del dashboard (diagnóstico 4 jul 2026, post-refactor)
+
+> Hallazgos de la revisión hecha tras completar las fases 1-3. Datos medidos, no
+> estimados. Orden recomendado: 4.1 → 4.2 → 4.3 → 4.4 (impacto/riesgo decreciente).
+
+### 4.1 Lazy-load del buscador del dashboard (el hallazgo principal)
+Contexto medido: `chino/index.html` hace `Promise.all` de **9 fetches = 435 KB de
+JSON** (~150 KB gzip) en CADA visita (línea ~420: vocab.json, vocab_hsk1/2/3,
+radicales, sinonimos, hsk1-data, mapping, vocab_listening). Solo alimentan:
+los stats del hero (countUp), la palabra del día y el buscador top-8.
+
+- [ ] Diferir la carga del corpus: mover el `Promise.all` a una función
+      `ensureLoaded()` que se dispare en el PRIMER `focus` (o primer `input`)
+      de la caja de búsqueda, con un flag para no cargar dos veces. Mientras
+      carga, placeholder "cargando…" en el desplegable.
+- [ ] Stats del hero: dejar los números estáticos del HTML como fuente (ya
+      existen: líneas 220-223) y eliminar el countUp dependiente de fetch, O
+      generar un `chino/stats.json` diminuto (~200 bytes) con
+      `scripts/check_site.py` (que ya cuenta todo) y hacer 1 solo fetch chico.
+- [ ] Palabra del día: solo necesita `vocab_hsk1.json` (41 KB) + `mapping.json`
+      para el 🔊. Opciones: (a) cargar solo esos 2 (83% de ahorro igual), o
+      (b) precalcular en `stats.json` la palabra del día (determinista por fecha:
+      `dayOfYear % 300`) y el nombre de su mp3 → 0 fetches extra.
+- [ ] Verificar con Playwright (patrón de la Fase 1): red de la página al cargar
+      SIN tocar el buscador = 0 fetches de JSON grandes; buscador funciona igual
+      tras el primer focus; palabra del día visible.
+- Resultado esperado: carga inicial del dashboard ~150 KB gzip → ~5 KB.
+
+### 4.2 "Continuar donde quedaste" + favicon (UX de estudio)
+- [ ] Bloque nuevo arriba del dashboard (bajo el hero): "→ Seguir estudiando":
+      * Última clase: link directo a la clase más reciente (leer de `clases.json`
+        si ya existe 4.3, o hardcodear el link y actualizarlo con cada clase).
+      * Repaso pendiente: leer `localStorage['hsk1-srs']` (formato del SRS Leitner
+        de `hsk1/repaso.html` — revisar su estructura antes) y mostrar "N palabras
+        vencidas" con link a /hsk1/repaso.html. Si no hay datos, ocultar la línea.
+      * Récords de typing/lluvia (`localStorage.typing_hsk1`, `.lluvia_hsk1`) como
+        detalle menor opcional.
+      OJO: localStorage es por-dispositivo; el bloque debe degradar elegante
+      (display:none) si está vacío. Sin cuentas ni sync — fuera de alcance.
+- [ ] Favicon: crear `chino/favicon.svg` (un 中 o 汉 rojo #c0392b sobre fondo
+      transparente, SVG de ~300 bytes) + `<link rel="icon" href="/favicon.svg">`
+      en dashboard, índices de curso y herramientas (script sed simple para
+      inyectarlo en los <head> que no lo tengan; las clases lo heredan si se
+      agrega también en ellas — opcional, empezar por dashboard y herramientas).
+
+### 4.3 `clases.json` — matar el mantenimiento manual del árbol "Niveles"
+Contexto: cada clase nueva exige editar a mano su entrada (id, conceptos,
+descripción) en `chino/index.html` (árbol Niveles, líneas ~283-340) Y en
+`basicoN/index.html`. Es el paso manual más caro del flujo de cierre de clase.
+
+- [ ] Crear `chino/clases.json`: lista de cursos → clases con
+      `{id, href, titulo, conceptos_html, descripcion_html, fecha}`. Poblarlo
+      extrayendo las entradas ACTUALES del dashboard con un script one-shot
+      (las descripciones ya escritas son la fuente; no reescribirlas).
+- [ ] `chino/index.html`: renderizar el árbol Niveles desde `clases.json`
+      (fetch pequeño ~15 KB, o inline en un <script> si se prefiere 0 fetches;
+      decidir según 4.1). Mantener el HTML actual como fallback <noscript> o
+      borrar tras verificar.
+- [ ] `basico1/2/3/index.html`: renderizar sus cards desde el mismo JSON
+      (filtrado por curso). OJO: sus cards tienen más detalle (fecha, secciones);
+      ampliar el esquema si hace falta en vez de perder información.
+- [ ] Actualizar CLAUDE.md (checklist de cierre de clase): "agregar la entrada
+      en chino/clases.json" reemplaza "editar 2 índices a mano".
+- [ ] Validador: chequear que todo `claseNN.html`/`capNN.html` en disco tenga
+      entrada en clases.json y viceversa (mata el problema de clases huérfanas).
+
+### 4.4 Validador v2 — atrapar la deriva de datos
+- [ ] `check_site.py`: nuevo chequeo (WARNING, no error, al principio) de
+      divergencia `py`/`es` para el mismo `hz` entre `hsk1-data.json` y
+      `vocab_hsk1.json` (144 palabras compartidas; divergencia real ya conocida:
+      爱 "amar / encantar" vs "amar, querer"). Reportar lista completa una vez
+      y decidir con Basti cuál es la glosa canónica antes de promoverlo a error.
+- [ ] Chequeo de huérfanas (si no se hizo en 4.3): toda clase en disco enlazada
+      desde su índice de curso.
+
+### 4.5 Config del VPS (una sola visita SSH, [REQUIERE A BASTI] o pedirle acceso)
+Juntar en una sola sesión de nginx todo lo que quedó pendiente del plan:
+- [ ] `location /audio/ { add_header Cache-Control "public, max-age=31536000, immutable"; }`
+      (los MP3 tienen nombre hasheado inmutable — nunca cambian de contenido).
+      Igual para `/assets/` pero con max-age menor (86400) porque clase.css/js
+      SÍ cambian sin cambiar de nombre.
+- [ ] `error_page 404 /404.html;` (la página ya está desplegada desde Fase 3.2).
+- [ ] Cabeceras: `add_header X-Content-Type-Options nosniff;` + CSP básica
+      (permitir 'self', dong-chinese.com para links no hace falta —es <a>—, sí
+      el CDN de HanziWriter que usa radicales.html: verificar cuál es antes).
+
+---
+
 ## Orden de ejecución sugerido y esfuerzo estimado
 
-| Sesión | Contenido | Tokens aprox. |
-|--------|-----------|---------------|
-| 1 | Fase 0 completa (0.1 y 0.4 requieren a Basti) + 2.3 | 50-100k |
-| 2 | 2.1 + 2.2 (script audio + validador + CI) | 60-100k |
-| 3 | 1.1 + 1.2 (CSS/JS compartido + audioMap por fetch) | 150-300k |
-| 4 | 1.3 + 1.4 + 1.5 + Fase 3 | 100-150k |
+| Sesión | Contenido | Tokens aprox. | Estado |
+|--------|-----------|---------------|--------|
+| 1 | Fase 0 completa (0.1 y 0.4 requieren a Basti) + 2.3 | 50-100k | ✅ hecha |
+| 2 | 2.1 + 2.2 (script audio + validador + CI) | 60-100k | ✅ hecha |
+| 3 | 1.1 + 1.2 (CSS/JS compartido + audioMap por fetch) | 150-300k | ✅ hecha |
+| 4 | 1.3 + 1.4 + 1.5 + Fase 3 | 100-150k | ✅ hecha (1.3 y parte de 1.5 pendientes) |
+| 5 | **4.1 + 4.2** (lazy-load buscador + continuar/favicon) | 60-100k | ⏳ |
+| 6 | **4.3 + 4.4** (clases.json + validador v2) | 80-120k | ⏳ |
+| 7 | **4.5** (nginx: cache/404/headers — sesión SSH con Basti) + 1.3 radicales | 40-80k | ⏳ |
 
 Notas para el modelo ejecutor:
 - Las fases 2.1/2.2 van ANTES del refactor 1.1/1.2 a propósito: el validador es
