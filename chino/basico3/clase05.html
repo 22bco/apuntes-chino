@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Básico 3 — Clase 05 · Apuntes Chino</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
+  body { font-family: 'Noto Sans SC', -apple-system, Arial, sans-serif; max-width: 860px; margin: 0 auto; padding: 20px 24px 60px; color: #222; font-size: 15px; background: #fafafa; }
+  header { background: #1a1a2e; color: #fff; padding: 28px 28px 22px; border-radius: 12px; margin-bottom: 28px; }
+  header h1 { font-size: 1.6em; margin: 0 0 4px; color: #e74c3c; }
+  header p { margin: 0; color: #aaa; font-size: 0.88em; }
+  nav { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 16px 20px; margin-bottom: 28px; }
+  nav h3 { margin: 0 0 10px; font-size: 0.82em; text-transform: uppercase; letter-spacing: 1px; color: #999; }
+  nav li { margin: 3px 0; font-size: 0.9em; }
+  nav a { color: #c0392b; text-decoration: none; }
+  nav a:hover { text-decoration: underline; }
+  h2 { font-size: 1.1em; color: #fff; background: #c0392b; padding: 9px 16px; border-radius: 8px; margin-top: 36px; margin-bottom: 14px; }
+  h2.green { background: #27ae60; }
+  h2.blue { background: #2980b9; }
+  h2.gold { background: #d4820a; }
+  h2.gray { background: #555; }
+  h2.purple { background: #8e44ad; }
+  h3 { color: #444; font-size: 0.95em; margin: 16px 0 8px; border-left: 3px solid #e74c3c; padding-left: 10px; }
+  .box { border-radius: 8px; padding: 12px 16px; margin: 10px 0; font-size: 0.92em; }
+  .box.grammar { background: #fff3e0; border: 1.5px solid #ff9800; }
+  .box.structure { background: #fdecea; border: 1.5px solid #c0392b; }
+  .box.note { background: #e8f5e9; border-left: 4px solid #27ae60; border-radius: 0 8px 8px 0; }
+  .box.warn { background: #fce4ec; border-left: 4px solid #e91e63; border-radius: 0 8px 8px 0; }
+  .box.tip { background: #e3f2fd; border-left: 4px solid #1976d2; border-radius: 0 8px 8px 0; }
+  code { background: #f0f0f0; padding: 2px 7px; border-radius: 4px; font-size: 0.88em; font-family: monospace; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em; background: #fff; border-radius: 8px; overflow: hidden; }
+  th { background: #c0392b; color: #fff; padding: 8px 12px; text-align: left; font-size: 0.85em; }
+  tr:nth-child(even) { background: #fafafa; }
+  td { padding: 7px 12px; border-bottom: 1px solid #f0f0f0; }
+  .hz { font-size: 1.15em; font-weight: bold; color: #c0392b; }
+  .hz a { color: #c0392b; text-decoration: none; border-bottom: 1px dotted #c0392b; }
+  .hz a:hover { color: #e74c3c; border-bottom: 1px solid #e74c3c; }
+  .dialog { background: #fff; border-radius: 10px; border: 1px solid #e5e5e5; padding: 14px 16px; margin: 10px 0; }
+  .da { background: #e3f2fd; padding: 8px 14px; border-radius: 8px; margin: 5px 0; }
+  .db { background: #f3e5f5; padding: 8px 14px; border-radius: 8px; margin: 5px 0; margin-left: 40px; }
+  .ex { background: #fffde7; border: 1px solid #f9a825; border-radius: 8px; padding: 14px 18px; margin: 10px 0; }
+  .ex ol { margin: 8px 0 0; padding-left: 22px; }
+  .ex li { margin: 7px 0; }
+  .pinyin-toggle { position: fixed; bottom: 20px; right: 20px; background: #1a1a2e; color: #fff; border: none; padding: 10px 16px; border-radius: 30px; cursor: pointer; font-size: 0.85em; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,.25); transition: background .2s; }
+  .pinyin-toggle:hover { background: #c0392b; }
+  .hide-pinyin .pinyin-col { visibility: hidden; }
+  @media print {
+    .no-print, .pinyin-toggle { display: none !important; }
+    body { background: #fff !important; padding: 10px 20px; font-size: 12px; max-width: 100%; }
+    header { background: #1a1a2e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 16px 20px 12px; margin-bottom: 16px; }
+    header h1 { font-size: 1.3em; }
+    nav { padding: 10px 14px; margin-bottom: 16px; page-break-after: avoid; }
+    h2 { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-size: 1em; padding: 6px 12px; margin-top: 20px; margin-bottom: 8px; page-break-after: avoid; }
+    h3 { font-size: 0.85em; margin: 10px 0 6px; page-break-after: avoid; }
+    .box { padding: 8px 12px; margin: 6px 0; font-size: 0.85em; page-break-inside: avoid; }
+    table { font-size: 0.82em; page-break-inside: avoid; margin: 6px 0; }
+    th { padding: 5px 8px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    td { padding: 4px 8px; }
+    .hz { font-size: 1em; }
+    .hz a { border-bottom: none !important; color: #c0392b !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .dialog { padding: 8px 12px; margin: 6px 0; page-break-inside: avoid; }
+    .da, .db { padding: 5px 10px; }
+    .db { margin-left: 20px; }
+    footer { font-size: 0.7em; margin-top: 16px; }
+  }
+  .key { text-decoration: underline; text-decoration-color: #e74c3c; text-underline-offset: 3px; text-decoration-thickness: 2px; }
+  footer { text-align: center; color: #bbb; font-size: 0.8em; margin-top: 40px; }
+  .blank { display: inline-block; min-width: 64px; border-bottom: 2px solid #c0392b; text-align: center; color: #c0392b; font-weight: bold; }
+
+  /* Inter para pinyin: mejor renderizado de diacríticos (ī, ǐ, ǎ, ò...). */
+  .pinyin-col,
+  .ex em,
+  .dialog em,
+  .dialog .da em,
+  .dialog .db em,
+  .box em,
+  em {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'ss01' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  /* responsive-tables */
+  @media (max-width: 600px) {
+    table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    body { padding-left: 14px; padding-right: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Básico 3 — Clase 05</h1>
+  <p>20 de junio, 2026 · Centro Cultural Chino · <a href="/" style="color:#e74c3c">← Volver al índice</a> · <a href="/pinyin.html" style="color:#e74c3c">🔤 Pizarra de Pinyin</a></p>
+</header>
+
+<div class="box tip" style="margin-bottom: 24px;">
+  🧭 <strong>En esta clase.</strong> Arrancamos con el contraste entre <strong>estar haciendo algo ahora</strong> y <strong>hacerlo en general</strong>: <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a></span> ("está estudiando chino") frente a <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a></span> ("estudia chino"). Es el progresivo <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></span> que viste al final de la Clase 04, ahora aplicado a estudiar el idioma. 📖
+</div>
+
+<nav>
+  <h3>Índice</h3>
+  <div style="margin:12px 0 4px; font-weight:700; color:#c0392b; font-size:0.88em;">📖 Estudiar chino: ahora vs siempre</div>
+  <ol>
+    <li><a href="#s1">他在学中文 / 他学中文 — "está estudiando" vs "estudia" (在) 📖</a></li>
+  </ol>
+  <div style="margin:12px 0 4px; font-weight:700; color:#c0392b; font-size:0.88em;">📞 El teléfono</div>
+  <ol start="2">
+    <li><a href="#s2">喂 — "¿aló?" para contestar el teléfono 📞</a></li>
+  </ol>
+  <div style="margin:12px 0 4px; font-weight:700; color:#c0392b; font-size:0.88em;">🏠 Estar en un lugar / irse</div>
+  <ol start="3">
+    <li><a href="#s3">他不在家，他去学校了 — los dos 在 + 去…了 🏠</a></li>
+  </ol>
+  <div style="margin:12px 0 4px; font-weight:700; color:#c0392b; font-size:0.88em;">❓ Las dos preguntas</div>
+  <ol start="4">
+    <li><a href="#s4">什么呢？ vs 吗？ — la pregunta amable (呢) frente al sí/no (吗) ❓</a></li>
+  </ol>
+  <div style="margin:12px 0 4px; font-weight:700; color:#c0392b; font-size:0.88em;">🚫 Negar con 在</div>
+  <ol start="5">
+    <li><a href="#s5">我没在 vs 我不在 — negar el progresivo (没) y la ubicación (不) 🚫</a></li>
+  </ol>
+  <div style="margin:12px 0 4px; font-weight:700; color:#c0392b; font-size:0.88em;">💬 Conversación</div>
+  <ol start="6">
+    <li><a href="#s6">昨天上午你在做什么呢？ — el progresivo en pasado + 电影 💬</a></li>
+  </ol>
+  <div style="margin:12px 0 4px; font-weight:700; color:#c0392b; font-size:0.88em;">🎁 Dar / a alguien</div>
+  <ol start="7">
+    <li><a href="#s7">给 — "dar" y "a / para alguien" (我给你打电话) 🎁</a></li>
+  </ol>
+  <div style="margin:12px 0 4px; font-weight:700; color:#c0392b; font-size:0.88em;">🔢 Números de teléfono</div>
+  <ol start="8">
+    <li><a href="#s8">这是李老师的电话吗？ — dar el teléfono, el 1 = 幺 🔢</a></li>
+  </ol>
+  <div style="margin:12px 0 4px; font-weight:700; color:#c0392b; font-size:0.88em;">🧮 Torpedo de números</div>
+  <ol start="9">
+    <li><a href="#s9">Los números 0–100+ — chuleta para el dictado 🧮</a></li>
+  </ol>
+  <div style="margin:12px 0 4px; font-weight:700; color:#c0392b; font-size:0.88em;">😊 Sugerir en buena onda</div>
+  <ol start="10">
+    <li><a href="#s10">吧 — la partícula de las propuestas (我们吃饭吧) 😊</a></li>
+  </ol>
+  <div style="margin:12px 0 4px; font-weight:700; color:#c0392b; font-size:0.88em;">📝 Práctica + acortar</div>
+  <ol start="11">
+    <li><a href="#s11">Banco de preguntas + 号码/多少 + acortar palabras (儿) 📝</a></li>
+  </ol>
+  <div style="margin:12px 0 4px; font-weight:700; color:#c0392b; font-size:0.88em;">🎬 Cierre</div>
+  <ol start="12">
+    <li><a href="#s12">Diálogo con todo — 我在上课呢 🎬</a></li>
+  </ol>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<h2 id="s1">📖 他在学中文 / 他学中文 — "está estudiando" vs "estudia"</h2>
+
+<div class="box tip">
+  🔁 <strong>Viene de la Clase 04.</strong> Al final viste el progresivo <a href="clase04.html#s14" style="color:#1976d2;">在…呢</a> (<span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/书" target="_blank">书</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a></span> = está leyendo). Hoy lo retomamos con el verbo <strong>estudiar</strong> y una palabra nueva para "idioma chino": <span class="hz"><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a></span>.
+</div>
+
+<p>Dos frases que se parecen muchísimo, pero dicen cosas distintas según lleven o no <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></span>:</p>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr>
+    <td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><span class="key"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></span><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a></td>
+    <td class="pinyin-col">tā <strong>zài</strong> xué zhōngwén</td>
+    <td>Él <strong>está estudiando</strong> chino 🕐 (ahora mismo, en proceso)</td>
+  </tr>
+  <tr>
+    <td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a></td>
+    <td class="pinyin-col">tā xué zhōngwén</td>
+    <td>Él <strong>estudia</strong> chino 📚 (en general, es lo que hace / aprende)</td>
+  </tr>
+</table>
+
+<div class="box structure">
+  🧩 <strong>Estructura:</strong> <code>Sujeto + 在 + Verbo + Objeto</code> = "está haciendo X (justo ahora)".<br>
+  Quita el <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></span> y la frase pasa a ser un <strong>hecho general</strong>, sin el matiz de "en este momento".
+</div>
+
+<div class="box grammar">
+  📝 <strong>中文 vs 汉语.</strong> Las dos significan <strong>"idioma chino"</strong> y casi siempre son intercambiables. Matiz: <span class="hz"><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a></span> (zhōngwén) pone el acento en la <strong>lengua escrita / cultura</strong> ("lo chino"), y <span class="hz"><a href="https://www.dong-chinese.com/wiki/汉" target="_blank">汉</a><a href="https://www.dong-chinese.com/wiki/语" target="_blank">语</a></span> (Hànyǔ) en la <strong>lengua hablada</strong> de la etnia han. Para "estudio chino" puedes decir <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a></span> o <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/汉" target="_blank">汉</a><a href="https://www.dong-chinese.com/wiki/语" target="_blank">语</a></span> sin problema. 🇨🇳
+</div>
+
+<h3>Más ejemplos</h3>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a>。</td><td class="pinyin-col">wǒ zài xué zhōngwén.</td><td>Estoy estudiando chino (ahora) 📖</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a>。</td><td class="pinyin-col">wǒ xué zhōngwén.</td><td>Estudio chino 📚</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</td><td class="pinyin-col">nǐ zài xué zhōngwén ma?</td><td>¿Estás estudiando chino (ahora)? 🤔</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/开" target="_blank">开</a><a href="https://www.dong-chinese.com/wiki/车" target="_blank">车</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</td><td class="pinyin-col">tā zài xué kāichē ne.</td><td>Él está aprendiendo a conducir 🚗</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/做" target="_blank">做</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/国" target="_blank">国</a><a href="https://www.dong-chinese.com/wiki/菜" target="_blank">菜</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</td><td class="pinyin-col">tā zài xué zuò zhōngguó cài ne.</td><td>Él está aprendiendo a hacer comida china 🍜</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/习" target="_blank">习</a>。</td><td class="pinyin-col">tā zài xuéxí.</td><td>Él está estudiando 📝</td></tr>
+</table>
+
+<div class="box grammar">
+  🚗 <strong>学 + acción = "aprender a".</strong> Cuando <span class="hz"><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a></span> va seguido de un <strong>verbo</strong>, significa <strong>aprender a hacerlo</strong>: <span class="hz"><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/开" target="_blank">开</a><a href="https://www.dong-chinese.com/wiki/车" target="_blank">车</a></span> (aprender a conducir), <span class="hz"><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/做" target="_blank">做</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/国" target="_blank">国</a><a href="https://www.dong-chinese.com/wiki/菜" target="_blank">菜</a></span> (aprender a cocinar comida china, <a href="clase04.html#s13" style="color:#a4650a;">Clase 04</a>). Cuando va seguido de una <strong>materia/idioma</strong>, significa <strong>estudiar</strong>: <span class="hz"><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a></span>, <span class="hz"><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/汉" target="_blank">汉</a><a href="https://www.dong-chinese.com/wiki/语" target="_blank">语</a></span>. Con <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></span> delante → "está aprendiendo a… / está estudiando…". 📖
+</div>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/做" target="_blank">做</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</span><br><em>tā zài zuò shénme ne? — ¿Qué está haciendo?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</span><br><em>tā zài xué zhōngwén ne. — Está estudiando chino. 📖</em></div>
+</div>
+
+<div class="box note">
+  ✅ <strong>Recuerda el <span class="hz"><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a></span> del progresivo</strong> (Clase 04): refuerza el "estar haciendo". <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a></span> y <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a></span> significan lo mismo; el <span class="hz"><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a></span> le da un tono más natural y conversacional.
+</div>
+
+<h3>🏀 Repaso: el progresivo con deportes</h3>
+
+<div class="box tip">
+  🔁 <strong>Viene de Básico 2.</strong> Los deportes y la pelota los viste en <a href="/basico2/clase05.html#s3" style="color:#1976d2;">Básico 2 · Clase 05 §3</a> (deportes y actividades) y en <a href="/basico2/clase04.html#s8" style="color:#1976d2;">Clase 04 §8</a> (ir a un lugar a hacer algo). El verbo de juego cambia según con qué juegues:
+  <ul style="margin:8px 0 0;">
+    <li><span class="hz"><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a></span> (dǎ) = jugar <strong>con la mano</strong> 🏀 → <span class="hz"><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a><a href="https://www.dong-chinese.com/wiki/篮" target="_blank">篮</a><a href="https://www.dong-chinese.com/wiki/球" target="_blank">球</a></span> (básquet)</li>
+    <li><span class="hz"><a href="https://www.dong-chinese.com/wiki/踢" target="_blank">踢</a></span> (tī) = jugar <strong>con el pie</strong> ⚽ → <span class="hz"><a href="https://www.dong-chinese.com/wiki/踢" target="_blank">踢</a><a href="https://www.dong-chinese.com/wiki/足" target="_blank">足</a><a href="https://www.dong-chinese.com/wiki/球" target="_blank">球</a></span> (fútbol)</li>
+  </ul>
+  Ahora les ponemos <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></span> delante para decir "está jugando…".
+</div>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a><a href="https://www.dong-chinese.com/wiki/篮" target="_blank">篮</a><a href="https://www.dong-chinese.com/wiki/球" target="_blank">球</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</td><td class="pinyin-col">tā zài dǎ lánqiú ne.</td><td>Está jugando básquet 🏀</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/踢" target="_blank">踢</a><a href="https://www.dong-chinese.com/wiki/足" target="_blank">足</a><a href="https://www.dong-chinese.com/wiki/球" target="_blank">球</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</td><td class="pinyin-col">tā zài tī zúqiú ne.</td><td>Está jugando fútbol ⚽</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/游" target="_blank">游</a><a href="https://www.dong-chinese.com/wiki/泳" target="_blank">泳</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</td><td class="pinyin-col">tā zài yóuyǒng ne.</td><td>Está nadando 🏊</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/球" target="_blank">球</a>。</td><td class="pinyin-col">tā zài kàn qiú.</td><td>Está viendo el partido 📺</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/睡" target="_blank">睡</a><a href="https://www.dong-chinese.com/wiki/觉" target="_blank">觉</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</td><td class="pinyin-col">tā zài shuìjiào ne.</td><td>Está durmiendo 😴</td></tr>
+</table>
+
+<div class="box note">
+  😴 <strong>Palabra nueva: 睡觉 (shuìjiào) = dormir.</strong> Ya la viste en la rutina del día de la <a href="clase02.html" style="color:#27ae60;">Clase 02</a> (<span class="hz"><a href="https://www.dong-chinese.com/wiki/醒" target="_blank">醒</a><a href="https://www.dong-chinese.com/wiki/来" target="_blank">来</a></span> despertar → <span class="hz"><a href="https://www.dong-chinese.com/wiki/睡" target="_blank">睡</a><a href="https://www.dong-chinese.com/wiki/觉" target="_blank">觉</a></span> dormir). Con el progresivo: <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/睡" target="_blank">睡</a><a href="https://www.dong-chinese.com/wiki/觉" target="_blank">觉</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a></span> = "está durmiendo" — perfecta para el teléfono: cuando llamas y alguien <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/睡" target="_blank">睡</a><a href="https://www.dong-chinese.com/wiki/觉" target="_blank">觉</a></span>. 📞
+</div>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/做" target="_blank">做</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</span><br><em>tā zài zuò shénme ne? — ¿Qué está haciendo?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/踢" target="_blank">踢</a><a href="https://www.dong-chinese.com/wiki/足" target="_blank">足</a><a href="https://www.dong-chinese.com/wiki/球" target="_blank">球</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</span><br><em>tā zài tī zúqiú ne. — Está jugando fútbol. ⚽</em></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<h2 id="s2" class="blue">📞 喂 — "¿aló?" para contestar el teléfono</h2>
+
+<div class="box tip">
+  🔁 <strong>Ya lo viste de pasada en la Clase 04.</strong> En el diálogo del progresivo apareció <a href="clase04.html#s14" style="color:#1976d2;">喂，你在做什么呢？</a> ("¿Aló, qué estás haciendo?"). Hoy lo vemos de frente: <span class="hz"><a href="https://www.dong-chinese.com/wiki/喂" target="_blank">喂</a></span> es lo que dices al <strong>levantar el teléfono</strong>. 📞
+</div>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/喂" target="_blank">喂</a></td><td class="pinyin-col">wéi</td><td>¿Aló? / ¿Hola? (al teléfono) 📞</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/喂" target="_blank">喂</a>，<a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/好" target="_blank">好</a>！</td><td class="pinyin-col">wéi, nǐ hǎo!</td><td>¿Aló, hola? 👋</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/喂" target="_blank">喂</a>，<a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a><a href="https://www.dong-chinese.com/wiki/谁" target="_blank">谁</a>？</td><td class="pinyin-col">wéi, nǐ shì shéi?</td><td>¿Aló, quién habla? 🤔</td></tr>
+</table>
+
+<div class="box warn">
+  🎵 <strong>El tono cambia.</strong> El carácter <span class="hz"><a href="https://www.dong-chinese.com/wiki/喂" target="_blank">喂</a></span> por sí solo es <strong>wèi</strong> (4º tono, ↘) — es un "¡eh!" o "¡oye!" para llamar la atención de alguien. Pero al <strong>contestar el teléfono</strong> casi todos lo dicen <strong>wéi</strong> (2º tono, ↗), que suena más suave y educado. Si lo dices en 4º tono al teléfono suena algo brusco. ☎️
+</div>
+
+<div class="box grammar">
+  📲 <strong>Bonus: 打电话 = llamar por teléfono.</strong> El mismo <span class="hz"><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a></span> (dǎ) de <span class="hz"><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a><a href="https://www.dong-chinese.com/wiki/篮" target="_blank">篮</a><a href="https://www.dong-chinese.com/wiki/球" target="_blank">球</a></span> (§1) sirve para "hacer una llamada": <span class="hz"><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/话" target="_blank">话</a></span> (dǎ diànhuà). <span class="hz"><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/话" target="_blank">话</a></span> (diànhuà) = teléfono (literalmente "habla eléctrica" ⚡🗣️).
+</div>
+
+<h3>Diálogo telefónico (junta todo lo de hoy)</h3>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/喂" target="_blank">喂</a>，<a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/好" target="_blank">好</a>！<a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/做" target="_blank">做</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</span><br><em>wéi, nǐ hǎo! nǐ zài zuò shénme ne? — ¿Aló, hola! Qué estás haciendo?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</span><br><em>wǒ zài xué zhōngwén ne. — Estoy estudiando chino. 📖</em></div>
+  <div class="da"><strong>A:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？<a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a><a href="https://www.dong-chinese.com/wiki/篮" target="_blank">篮</a><a href="https://www.dong-chinese.com/wiki/球" target="_blank">球</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</span><br><em>tā ne? tā zài dǎ lánqiú ma? — ¿Y él? ¿Está jugando básquet?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a>，<a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/开" target="_blank">开</a><a href="https://www.dong-chinese.com/wiki/车" target="_blank">车</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</span><br><em>bù, tā zài xué kāichē ne. — No, está aprendiendo a conducir. 🚗</em></div>
+</div>
+
+<h3>📇 Preguntar por alguien: 先生 / 小姐</h3>
+
+<p>Al llamar, muchas veces preguntas por una persona usando su <strong>apellido + título</strong>:</p>
+
+<div class="box structure">
+  <code>你是 + apellido + 先生 / 小姐 + 吗？</code><br>
+  <span class="hz"><a href="https://www.dong-chinese.com/wiki/喂" target="_blank">喂</a>，<a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a><a href="https://www.dong-chinese.com/wiki/张" target="_blank">张</a><a href="https://www.dong-chinese.com/wiki/小" target="_blank">小</a><a href="https://www.dong-chinese.com/wiki/姐" target="_blank">姐</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</span> — <em>wéi, nǐ shì Zhāng xiǎojiě ma? — ¿Aló, eres la señorita Zhang?</em>
+</div>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/先" target="_blank">先</a><a href="https://www.dong-chinese.com/wiki/生" target="_blank">生</a></td><td class="pinyin-col">xiānsheng</td><td>Señor / caballero 👨</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/小" target="_blank">小</a><a href="https://www.dong-chinese.com/wiki/姐" target="_blank">姐</a></td><td class="pinyin-col">xiǎojiě</td><td>Señorita 👩</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/喂" target="_blank">喂</a>，<a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a><a href="https://www.dong-chinese.com/wiki/张" target="_blank">张</a><a href="https://www.dong-chinese.com/wiki/小" target="_blank">小</a><a href="https://www.dong-chinese.com/wiki/姐" target="_blank">姐</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</td><td class="pinyin-col">wéi, nǐ shì Zhāng xiǎojiě ma?</td><td>¿Aló, eres la señorita Zhang? 📞</td></tr>
+</table>
+
+<div class="box tip">
+  🔁 <strong>De la Clase 04.</strong> Ya viste estos títulos con el apellido <span class="hz"><a href="https://www.dong-chinese.com/wiki/王" target="_blank">王</a></span> (Wáng): <a href="clase04.html" style="color:#1976d2;">王先生</a>, <a href="clase04.html" style="color:#1976d2;">王小姐</a>, <a href="clase04.html" style="color:#1976d2;">王老师</a>. El título va <strong>siempre después</strong> del apellido (al revés del español).
+</div>
+
+<div class="box note">
+  🙋 <strong>¡Con tu nombre!</strong> Tu nombre en chino (transliterado) es <span class="hz"><a href="https://www.dong-chinese.com/wiki/巴" target="_blank">巴</a><a href="https://www.dong-chinese.com/wiki/斯" target="_blank">斯</a><a href="https://www.dong-chinese.com/wiki/帝" target="_blank">帝</a></span> (Bāsīdì), así que al teléfono te preguntarían:<br>
+  <span class="hz"><a href="https://www.dong-chinese.com/wiki/喂" target="_blank">喂</a>，<a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a><a href="https://www.dong-chinese.com/wiki/巴" target="_blank">巴</a><a href="https://www.dong-chinese.com/wiki/斯" target="_blank">斯</a><a href="https://www.dong-chinese.com/wiki/帝" target="_blank">帝</a><a href="https://www.dong-chinese.com/wiki/先" target="_blank">先</a><a href="https://www.dong-chinese.com/wiki/生" target="_blank">生</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</span> — <em>wéi, nǐ shì Bāsīdì xiānsheng ma? — ¿Aló, es usted el señor Bastián? 😎</em>
+</div>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/喂" target="_blank">喂</a>，<a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a><a href="https://www.dong-chinese.com/wiki/巴" target="_blank">巴</a><a href="https://www.dong-chinese.com/wiki/斯" target="_blank">斯</a><a href="https://www.dong-chinese.com/wiki/帝" target="_blank">帝</a><a href="https://www.dong-chinese.com/wiki/先" target="_blank">先</a><a href="https://www.dong-chinese.com/wiki/生" target="_blank">生</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</span><br><em>wéi, nǐ shì Bāsīdì xiānsheng ma? — ¿Aló, es usted el señor Bastián?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a>，<a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a>。<a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a><a href="https://www.dong-chinese.com/wiki/谁" target="_blank">谁</a>？</span><br><em>shì, wǒ shì. nǐ shì shéi? — Sí, soy yo. ¿Quién habla?</em></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<h2 id="s3" class="green">🏠 他不在家，他去学校了 — los dos 在 + 去…了</h2>
+
+<div class="box structure">
+  📞 <strong>La situación:</strong> llamas por teléfono (§2) y la persona no está.<br>
+  <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/家" target="_blank">家</a>，<a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/校" target="_blank">校</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>。</span><br>
+  <em>tā bù zài jiā, tā qù xuéxiào le. — No está en casa, se fue a la escuela.</em>
+</div>
+
+<h3>① 在 = estar (en un lugar)</h3>
+
+<div class="box grammar">
+  ⚠️ <strong>¡Ojo! Hay DOS 在.</strong> Hasta ahora (§1) usaste <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></span> como el <strong>"estar haciendo"</strong> (progresivo). Pero <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></span> también es un <strong>verbo</strong> que significa <strong>estar / ubicarse en un lugar</strong>:
+  <table style="margin-top:10px;">
+    <tr><th>Después de 在 viene…</th><th>Significa</th><th>Ejemplo</th></tr>
+    <tr><td>un <strong>lugar</strong> 🏠</td><td>estar EN ese lugar</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/家" target="_blank">家</a></td></tr>
+    <tr><td>un <strong>verbo</strong> 🏃</td><td>estar HACIENDO eso</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/习" target="_blank">习</a></td></tr>
+  </table>
+</div>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/家" target="_blank">家</a>。</td><td class="pinyin-col">tā zài jiā.</td><td>Él está en casa 🏠</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/家" target="_blank">家</a>。</td><td class="pinyin-col">tā bù zài jiā.</td><td>Él no está en casa 🚪</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/家" target="_blank">家</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</td><td class="pinyin-col">nǐ zài jiā ma?</td><td>¿Estás en casa? 🤔</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/校" target="_blank">校</a>。</td><td class="pinyin-col">wǒ zài xuéxiào.</td><td>Estoy en la escuela 🏫</td></tr>
+</table>
+
+<div class="box note">
+  ➖ <strong>La negación es <span class="hz"><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></span></strong> (bù zài) = "no estar (en)". Igual que cualquier verbo, se niega con <span class="hz"><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a></span> delante.
+</div>
+
+<h3>② 去…了 = "(ya) se fue a…"</h3>
+
+<div class="box grammar">
+  🔁 <strong>El <span class="hz"><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a></span> del cambio</strong> (Clase 04). Ya lo viste en <a href="clase04.html" style="color:#a4650a;">下雨了</a> (empezó a llover) y <a href="clase04.html" style="color:#a4650a;">我生病了</a> (me enfermé). Aquí marca que la acción <strong>ya ocurrió</strong>: <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/校" target="_blank">校</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a></span> = "(ya) se fue a la escuela / fue a la escuela". 🏫
+</div>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/校" target="_blank">校</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>。</td><td class="pinyin-col">tā qù xuéxiào le.</td><td>Se fue a la escuela 🏫</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a><a href="https://www.dong-chinese.com/wiki/篮" target="_blank">篮</a><a href="https://www.dong-chinese.com/wiki/球" target="_blank">球</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>。</td><td class="pinyin-col">tā qù dǎ lánqiú le.</td><td>Se fue a jugar básquet 🏀</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/妈" target="_blank">妈</a><a href="https://www.dong-chinese.com/wiki/妈" target="_blank">妈</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/班" target="_blank">班</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>。</td><td class="pinyin-col">māma qù shàngbān le.</td><td>Mamá se fue a trabajar 💼</td></tr>
+</table>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/喂" target="_blank">喂</a>，<a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/家" target="_blank">家</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</span><br><em>wéi, tā zài jiā ma? — ¿Aló, está en casa?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/家" target="_blank">家</a>，<a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/校" target="_blank">校</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>。</span><br><em>tā bù zài jiā, tā qù xuéxiào le. — No está en casa, se fue a la escuela. 🏫</em></div>
+</div>
+
+<h3>🎯 Diálogo integrador: "¿Está Bastián?"</h3>
+
+<div class="box tip">
+  🧩 Este diálogo junta todo lo de hoy: <strong>喂</strong> (§2), <strong>preguntar por alguien</strong> (§2), <strong>不在</strong> (§3), <strong>去…了</strong> (§3) y el <strong>progresivo 在</strong> (§1). <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</span> = "¿está?" (sin decir el lugar, se sobreentiende "ahí / disponible").
+</div>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/喂" target="_blank">喂</a>，<a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/好" target="_blank">好</a>！<a href="https://www.dong-chinese.com/wiki/巴" target="_blank">巴</a><a href="https://www.dong-chinese.com/wiki/斯" target="_blank">斯</a><a href="https://www.dong-chinese.com/wiki/帝" target="_blank">帝</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</span><br><em>wéi, nǐ hǎo! Bāsīdì zài ma? — ¿Aló, hola! ¿Está Bastián?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a>，<a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a><a href="https://www.dong-chinese.com/wiki/课" target="_blank">课</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>。</span><br><em>tā bù zài, tā qù shàng zhōngwén kè le. — No está, se fue a clase de chino. 📖</em></div>
+  <div class="da"><strong>A:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</span><br><em>tā zài xué zhōngwén ma? — ¿Está estudiando chino?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a>，<a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</span><br><em>shì, tā zài xué zhōngwén ne. — Sí, está estudiando chino. 😄</em></div>
+</div>
+
+<div class="box grammar">
+  📚 <strong>上中文课 = tener / tomar clase de chino.</strong> El verbo <span class="hz"><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a></span> (shàng) + <span class="hz"><a href="https://www.dong-chinese.com/wiki/课" target="_blank">课</a></span> (kè, clase) = "ir a clase" (lo viste en <a href="clase02.html" style="color:#a4650a;">Clase 02</a> como <span class="hz"><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/课" target="_blank">课</a></span>). Si metes la materia en medio: <span class="hz"><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a><a href="https://www.dong-chinese.com/wiki/课" target="_blank">课</a></span> = "tener clase de chino". Y como <span class="hz"><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a></span> = <span class="hz"><a href="https://www.dong-chinese.com/wiki/汉" target="_blank">汉</a><a href="https://www.dong-chinese.com/wiki/语" target="_blank">语</a></span> (§1), también dices <span class="hz"><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/汉" target="_blank">汉</a><a href="https://www.dong-chinese.com/wiki/语" target="_blank">语</a><a href="https://www.dong-chinese.com/wiki/课" target="_blank">课</a></span>.
+</div>
+
+<h3>📖 在上课 vs 去上课了 — estar EN clase vs irse A clase</h3>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/汉" target="_blank">汉</a><a href="https://www.dong-chinese.com/wiki/语" target="_blank">语</a><a href="https://www.dong-chinese.com/wiki/课" target="_blank">课</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</td><td class="pinyin-col">wǒ zài shàng Hànyǔ kè ne.</td><td>Estoy en clase de chino (ahora) 📖 — progresivo <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></span></td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a><a href="https://www.dong-chinese.com/wiki/课" target="_blank">课</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>。</td><td class="pinyin-col">tā qù shàng zhōngwén kè le.</td><td>Se fue a clase de chino 🚶 — <span class="hz"><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a>…<a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a></span></td></tr>
+</table>
+
+<div class="box note">
+  💡 <strong>Misma actividad, distinto momento.</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/课" target="_blank">课</a></span> = la persona <strong>está ahí, en plena clase</strong> (en este instante). <span class="hz"><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/课" target="_blank">课</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a></span> = <strong>se fue</strong> hacia la clase (ya salió de casa). Es el mismo contraste de los dos <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></span> de arriba: ahora-en-proceso vs acción-ya-ocurrida.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<h2 id="s4" class="gold">❓ 什么呢？ vs 吗？ — la pregunta amable frente al sí/no</h2>
+
+<div class="box tip">
+  🔁 <strong>El 呢 que ya conoces.</strong> En la <a href="clase04.html#s14" style="color:#1976d2;">Clase 04</a> viste las dos primeras caras de <span class="hz"><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a></span>: la de <strong>rebote</strong> (<span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/很" target="_blank">很</a><a href="https://www.dong-chinese.com/wiki/好" target="_blank">好</a>，<a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</span> = ¿y tú?) y la del <strong>progresivo</strong> (<span class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/做" target="_blank">做</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</span> = ¿qué estás haciendo?). Hoy le ponemos nombre a su efecto general: <strong>suaviza la pregunta</strong>, la hace más amable y curiosa. 😊
+</div>
+
+<h3>La regla de oro: cada partícula a lo suyo</h3>
+
+<div class="box structure">
+  <span class="hz"><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a></span> (ma) → pregunta de <strong>SÍ / NO</strong>. Toma una afirmación y la vuelve pregunta cerrada.<br>
+  <span class="hz"><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a></span> (ne) → acompaña una pregunta que <strong>ya tiene palabra interrogativa</strong> (什么 qué · 谁 quién · 哪儿 dónde · 怎么样 cómo) y la <strong>suaviza</strong>.
+</div>
+
+<table>
+  <tr><th>Pregunta</th><th class="pinyin-col">Pinyin</th><th>Partícula · porqué</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/生" target="_blank">生</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</td><td class="pinyin-col">nǐ shì xuéshēng ma?</td><td>吗 → es sí/no (¿eres estudiante?) ✅</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</td><td class="pinyin-col">nǐ zài xué zhōngwén ma?</td><td>吗 → sí/no (¿estás estudiando chino?) ✅</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/开" target="_blank">开</a><a href="https://www.dong-chinese.com/wiki/车" target="_blank">车</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</td><td class="pinyin-col">nǐ zài kāichē ma?</td><td>吗 → sí/no (¿estás conduciendo?) ✅</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/做" target="_blank">做</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</td><td class="pinyin-col">nǐ zài zuò shénme ne?</td><td>呢 → ya hay 什么 (qué) 😊</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a><a href="https://www.dong-chinese.com/wiki/谁" target="_blank">谁</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</td><td class="pinyin-col">tā shì shéi ne?</td><td>呢 → ya hay 谁 (quién) 😊</td></tr>
+</table>
+
+<div class="box tip">
+  🔁 <strong>Un progresivo también se pregunta con 吗</strong> (si la respuesta es sí/no). Y para responder que <strong>no</strong>, recuerda la <a href="#s5" style="color:#1976d2;">§5</a>: va con <span class="hz"><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a></span>, no con <span class="hz"><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a></span>.<br>
+  — <span class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/开" target="_blank">开</a><a href="https://www.dong-chinese.com/wiki/车" target="_blank">车</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</span> <em>(¿estás conduciendo?)</em><br>
+  — ✓ <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a>，<a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/开" target="_blank">开</a><a href="https://www.dong-chinese.com/wiki/车" target="_blank">车</a>。</span> <em>(sí)</em> &nbsp;/&nbsp; ✓ <span class="hz"><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a>，<a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a><a href="https://www.dong-chinese.com/wiki/开" target="_blank">开</a><a href="https://www.dong-chinese.com/wiki/车" target="_blank">车</a>。</span> <em>(no)</em>
+</div>
+
+<div class="box warn">
+  ❌ <strong>El error clásico:</strong> mezclar <span class="hz"><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a></span> con una palabra interrogativa.<br>
+  <span style="color:#c0392b;">✗ <span class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/做" target="_blank">做</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</span></span> — suena mal: <span class="hz"><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a></span> ya pregunta "qué", el <span class="hz"><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a></span> sobra.<br>
+  <span style="color:#27ae60;">✓ <span class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/做" target="_blank">做</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a>？</span></span> (neutra) o <span style="color:#27ae60;">✓ <span class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/做" target="_blank">做</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</span></span> (más amable). Y <strong>nunca</strong> los dos juntos (<span class="hz"><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a></span> no existe). 🚫
+</div>
+
+<h3>El toque amable del 呢</h3>
+
+<p>Sin <span class="hz"><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a></span> la pregunta es correcta pero seca; con <span class="hz"><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a></span> suena interesada, cálida, como un "a ver, contame…":</p>
+
+<table>
+  <tr><th>Neutra</th><th>Amable (con 呢)</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/叫" target="_blank">叫</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a>？</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/叫" target="_blank">叫</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</td><td>¿Cómo te llamas? 😊</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/想" target="_blank">想</a><a href="https://www.dong-chinese.com/wiki/喝" target="_blank">喝</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a>？</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/想" target="_blank">想</a><a href="https://www.dong-chinese.com/wiki/喝" target="_blank">喝</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</td><td>¿Qué quieres tomar? 🍵</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a>？</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</td><td>¿Dónde está él? 🤔</td></tr>
+</table>
+
+<div class="box note">
+  💡 <strong>Truco para no equivocarte:</strong> ¿la respuesta es "sí / no"? → <span class="hz"><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a></span>. ¿La respuesta es una <strong>información</strong> (un qué, un quién, un dónde)? → la palabra interrogativa, y opcionalmente <span class="hz"><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a></span> para suavizar.
+</div>
+
+<h3>什么 + cosa = "¿qué [cosa]?"</h3>
+
+<p>Hasta ahora usaste <span class="hz"><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a></span> solo (= "qué"). Pero si le pones un <strong>sustantivo detrás</strong>, pregunta "<strong>qué / cuál [cosa]</strong>". Y se combina perfecto con el progresivo de la §1:</p>
+
+<div class="box structure">
+  <code>… + 在 + verbo + 什么 + sustantivo？</code><br>
+  <span class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/书" target="_blank">书</a>？</span> — <em>nǐ zài kàn shénme shū? — ¿Qué libro estás leyendo? 📖</em>
+</div>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/书" target="_blank">书</a>？</td><td class="pinyin-col">nǐ zài kàn shénme shū?</td><td>¿Qué libro estás leyendo? 📖</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/喝" target="_blank">喝</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/茶" target="_blank">茶</a>？</td><td class="pinyin-col">nǐ hē shénme chá?</td><td>¿Qué té tomas? 🍵</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a>？</td><td class="pinyin-col">nǐ xué shénme?</td><td>¿Qué estudias? 📚</td></tr>
+</table>
+
+<div class="box note">
+  📚 <strong>Misma regla del 呢/吗.</strong> Como ya hay <span class="hz"><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a></span>, la pregunta está completa sin <span class="hz"><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a></span>. Puedes suavizarla con <span class="hz"><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a></span>: <span class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/书" target="_blank">书</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</span> 😊
+</div>
+
+<h3>🗣️ Bonus coloquial: 哪 (na)</h3>
+
+<p>En la conversación relajada, a veces el <span class="hz"><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a></span> se reemplaza por <span class="hz"><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a></span> (na, átono). Suena aún más cálido y coloquial, como un "¿qué andas haciendo, a ver?":</p>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/做" target="_blank">做</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</td><td class="pinyin-col">nǐ zài zuò shénme ne?</td><td>¿Qué estás haciendo? (amable) 😊</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/做" target="_blank">做</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a>？</td><td class="pinyin-col">nǐ zài zuò shénme na?</td><td>¿Qué andas haciendo? (coloquial, cálido) 🥰</td></tr>
+</table>
+
+<div class="box warn">
+  🔠 <strong>¡Es el mismo carácter, pero otro sonido!</strong> Ya conoces <span class="hz"><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a></span> como <strong>nǎ</strong> (3.er tono) = "cuál" — y <span class="hz"><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a></span> (nǎr) = "dónde". Aquí <span class="hz"><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a></span> va al <strong>final</strong> como partícula, <strong>átona</strong> (na), y no significa "cuál": solo suaviza la pregunta, como un <span class="hz"><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a></span> más coloquial. El contexto (al final de la frase) te dice cuál es. 🎯
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<h2 id="s5" class="purple">🚫 我没在 vs 我不在 — cómo negar con 在</h2>
+
+<div class="box tip">
+  🔁 <strong>Recuerda los dos 在 de la §3.</strong> Como hay dos usos de <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></span> (estar EN un lugar / estar HACIENDO algo), también hay <strong>dos negaciones</strong> — y es facilísimo ponerlas al revés. 👇
+</div>
+
+<div class="box structure">
+  <span class="hz"><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a></span> (bù) → niega lo <strong>general / la ubicación</strong>: dónde estás, qué sueles hacer.<br>
+  <span class="hz"><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a></span> (méi) → niega una <strong>acción en curso</strong> (el progresivo) o que ya ocurrió.
+</div>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español · porqué</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/校" target="_blank">校</a>。</td><td class="pinyin-col">wǒ bù zài xuéxiào.</td><td>No estoy en la escuela 🏫 — 在 + <strong>lugar</strong> → <span class="hz"><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a></span></td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/习" target="_blank">习</a>。</td><td class="pinyin-col">wǒ méi zài xuéxí.</td><td>No estoy estudiando 📖 — 在 + <strong>verbo</strong> (progresivo) → <span class="hz"><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a></span></td></tr>
+</table>
+
+<div class="box warn">
+  🔄 <strong>El error "al revés".</strong> Como en español decimos "<strong>no</strong> estoy estudiando", la tentación es usar <span class="hz"><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a></span>. Pero el <strong>progresivo NUNCA se niega con 不</strong>:<br>
+  <span style="color:#c0392b;">✗ <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/习" target="_blank">习</a></span></span> &nbsp;→&nbsp; <span style="color:#27ae60;">✓ <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/习" target="_blank">习</a></span></span> (o simplemente <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/习" target="_blank">习</a></span>).<br>
+  En cambio, para <strong>la ubicación</strong> sí va <span class="hz"><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a></span>: <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/家" target="_blank">家</a></span> (no estoy en casa). 🎯
+</div>
+
+<h3>El progresivo: 没 puede comerse el 在</h3>
+
+<p>Al negar el progresivo, lo más común es dejar solo <span class="hz"><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a></span> + verbo (el <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></span> suele caerse):</p>
+
+<table>
+  <tr><th>Afirmativo</th><th>Negativo</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/习" target="_blank">习</a>。</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a>（<a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a>）<a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/习" target="_blank">习</a>。</td><td>Estudiando → No estoy estudiando 📖</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/书" target="_blank">书</a>。</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/书" target="_blank">书</a>。</td><td>Leyendo → No está leyendo 📕</td></tr>
+</table>
+
+<div class="box grammar">
+  🔁 <strong>Viene de la Clase 04.</strong> Allí ya viste el trío con <span class="hz"><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/书" target="_blank">书</a></span> (<a href="clase04.html#s14" style="color:#a4650a;">§14</a>):
+  <table style="margin-top:10px;">
+    <tr><th>Hanzi</th><th>Significa</th></tr>
+    <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/书" target="_blank">书</a></td><td>Está leyendo (ahora) 📖</td></tr>
+    <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/书" target="_blank">书</a></td><td>No está leyendo / no leyó 📕 — niega la acción (没)</td></tr>
+    <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/书" target="_blank">书</a></td><td>No lee (no quiere / no suele) 🙅 — niega el hábito (不)</td></tr>
+  </table>
+</div>
+
+<h3>Siempre con 不: gustos, deseos y poder</h3>
+
+<p>Hay un grupo que <strong>jamás usa 没</strong>: los verbos de <strong>estado mental</strong> (gustar, amar, querer), los <strong>modales</strong> (poder, saber) y <span class="hz"><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a></span> (ser). Como no son acciones puntuales sino disposiciones, van con <span class="hz"><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a></span>:</p>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a><a href="https://www.dong-chinese.com/wiki/喜" target="_blank">喜</a><a href="https://www.dong-chinese.com/wiki/欢" target="_blank">欢</a>。</td><td class="pinyin-col">wǒ bù xǐhuan.</td><td>No me gusta 🙅</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a><a href="https://www.dong-chinese.com/wiki/能" target="_blank">能</a>。</td><td class="pinyin-col">wǒ bù néng.</td><td>No puedo 🚫</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a><a href="https://www.dong-chinese.com/wiki/想" target="_blank">想</a>。</td><td class="pinyin-col">wǒ bù xiǎng.</td><td>No quiero 😕</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a><a href="https://www.dong-chinese.com/wiki/会" target="_blank">会</a>。</td><td class="pinyin-col">wǒ bú huì.</td><td>No sé (hacerlo) / no podré 🤷</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/生" target="_blank">生</a>。</td><td class="pinyin-col">wǒ bú shì xuéshēng.</td><td>No soy estudiante 🎓</td></tr>
+</table>
+
+<div class="box warn">
+  🚫 No existe <span class="hz"><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a><a href="https://www.dong-chinese.com/wiki/喜" target="_blank">喜</a><a href="https://www.dong-chinese.com/wiki/欢" target="_blank">欢</a></span> ni <span class="hz"><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a><a href="https://www.dong-chinese.com/wiki/能" target="_blank">能</a></span> para esto. Para "no me gusta / no puedo / no quiero" es <strong>siempre</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a></span>. (Estos verbos los viste en la <a href="clase04.html#s8" style="color:#1976d2;">Clase 04</a>: 能 vs 想, 会 vs 能.)
+</div>
+
+<div class="box note">
+  💡 <strong>En una frase:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a></span> es solo para <strong>acciones</strong> (en curso o ya ocurridas) → 没看书, 没在学习. Para todo lo demás — ubicación, hábitos, gustos, deseos, poder, ser — va <span class="hz"><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a></span>. Si dudas con un progresivo, es <span class="hz"><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a></span>.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<h2 id="s6" class="blue">💬 昨天上午你在做什么呢？ — una conversación</h2>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/昨" target="_blank">昨</a><a href="https://www.dong-chinese.com/wiki/天" target="_blank">天</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/做" target="_blank">做</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</span><br><em>zuótiān shàngwǔ nǐ zài zuò shénme ne? — Ayer por la mañana, ¿qué hacías?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/睡" target="_blank">睡</a><a href="https://www.dong-chinese.com/wiki/觉" target="_blank">觉</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。<a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</span><br><em>wǒ zài shuìjiào ne. nǐ ne? — Estaba durmiendo. ¿Y tú? 😴</em></div>
+  <div class="da"><strong>A:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/家" target="_blank">家</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/视" target="_blank">视</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。<a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/喜" target="_blank">喜</a><a href="https://www.dong-chinese.com/wiki/欢" target="_blank">欢</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/视" target="_blank">视</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</span><br><em>wǒ zàijiā kàn diànshì ne. nǐ xǐhuan kàn diànshì ma? — Estaba en casa viendo tele. ¿Te gusta ver tele? 📺</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a><a href="https://www.dong-chinese.com/wiki/喜" target="_blank">喜</a><a href="https://www.dong-chinese.com/wiki/欢" target="_blank">欢</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/视" target="_blank">视</a>，<a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/喜" target="_blank">喜</a><a href="https://www.dong-chinese.com/wiki/欢" target="_blank">欢</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/影" target="_blank">影</a>。</span><br><em>wǒ bù xǐhuan kàn diànshì, wǒ xǐhuan kàn diànyǐng. — No me gusta ver tele, me gustan las películas. 🎬</em></div>
+</div>
+
+<h3>① El progresivo 在 también sirve para el pasado</h3>
+
+<div class="box grammar">
+  ⏪ <strong>"Estaba haciendo".</strong> El mismo <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a> + verbo</span> de la §1 sirve para una acción en curso <strong>en el pasado</strong>, cuando el tiempo lo deja claro: <span class="hz"><a href="https://www.dong-chinese.com/wiki/昨" target="_blank">昨</a><a href="https://www.dong-chinese.com/wiki/天" target="_blank">天</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a></span> (ayer por la mañana). <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/睡" target="_blank">睡</a><a href="https://www.dong-chinese.com/wiki/觉" target="_blank">觉</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a></span> aquí es "<strong>estaba</strong> durmiendo". El chino no cambia el verbo; lo que cambia es la palabra de tiempo. 🕐
+</div>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a></td><td class="pinyin-col">shàngwǔ</td><td>(la) mañana 🌅 — parte del día (<a href="clase02.html" style="color:#27ae60;">Clase 02</a>)</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/昨" target="_blank">昨</a><a href="https://www.dong-chinese.com/wiki/天" target="_blank">天</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a></td><td class="pinyin-col">zuótiān shàngwǔ</td><td>Ayer por la mañana 📅</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/家" target="_blank">家</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/视" target="_blank">视</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</td><td class="pinyin-col">wǒ zàijiā kàn diànshì ne.</td><td>Estaba en casa viendo tele 📺 — 在 + lugar + verbo</td></tr>
+</table>
+
+<div class="box note">
+  🏠 <strong>在家看电视</strong> junta los dos 在 de la §3 en una sola frase: <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/家" target="_blank">家</a></span> dice <strong>dónde</strong> (en casa) y el conjunto <span class="hz"><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/视" target="_blank">视</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a></span> dice <strong>qué hace ahí</strong> (viendo tele). Orden: sujeto + <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></span> + lugar + verbo + objeto.
+</div>
+
+<h3>② 电影 — película/cine, y 看 para pantallas</h3>
+
+<div class="box grammar">
+  🎬 <strong>Cuarta de la familia de 电:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/影" target="_blank">影</a></span> (diànyǐng) = película / cine ("sombra eléctrica" 🌑⚡). Y el verbo para mirar pantallas es siempre <span class="hz"><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a></span> (kàn, ver): <span class="hz"><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/视" target="_blank">视</a></span> (ver tele), <span class="hz"><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/影" target="_blank">影</a></span> (ver una peli), <span class="hz"><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/书" target="_blank">书</a></span> (leer un libro).
+</div>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/影" target="_blank">影</a></td><td class="pinyin-col">diànyǐng</td><td>Película / cine 🎬</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/影" target="_blank">影</a></td><td class="pinyin-col">kàn diànyǐng</td><td>Ver una película 🍿</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/喜" target="_blank">喜</a><a href="https://www.dong-chinese.com/wiki/欢" target="_blank">欢</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/影" target="_blank">影</a>。</td><td class="pinyin-col">wǒ xǐhuan kàn diànyǐng.</td><td>Me gusta ver películas ❤️</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<h2 id="s7" class="green">🎁 给 — "dar" y "a / para alguien"</h2>
+
+<p>La palabra <span class="hz"><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a></span> (gěi) tiene dos trabajos muy útiles:</p>
+
+<h3>① Verbo: dar</h3>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a>。</td><td class="pinyin-col">gěi wǒ.</td><td>Dame 🤲</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a>。</td><td class="pinyin-col">wǒ gěi nǐ.</td><td>Te doy / toma 🎁</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/水" target="_blank">水</a>。</td><td class="pinyin-col">wǒ gěi nǐ shuǐ.</td><td>Te doy agua 💧</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/杯" target="_blank">杯</a><a href="https://www.dong-chinese.com/wiki/子" target="_blank">子</a>。</td><td class="pinyin-col">nǐ gěi wǒ bēizi.</td><td>Me das el vaso / dame el vaso 🥛</td></tr>
+</table>
+
+<div class="box structure">
+  <strong>Dar algo a alguien:</strong> <code>(quién da) + 给 + persona + cosa</code><br>
+  <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/水" target="_blank">水</a></span> = "te doy agua" &nbsp;·&nbsp; <span class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/杯" target="_blank">杯</a><a href="https://www.dong-chinese.com/wiki/子" target="_blank">子</a></span> = "me das el vaso".<br>
+  El que va <strong>después de 给</strong> es quien <strong>recibe</strong>. 🎁
+</div>
+
+<div class="box note">
+  🥛 <strong>杯子</strong> (bēizi) = vaso / taza — ya lo viste en <a href="/basico2/clase05.html" style="color:#27ae60;">Básico 2 · Clase 05</a>. Para pedirlo con cortesía: <span class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/杯" target="_blank">杯</a><a href="https://www.dong-chinese.com/wiki/子" target="_blank">子</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</span> (¿me das el vaso?).
+</div>
+
+<h3>② Preposición: "a / para alguien" antes de una acción</h3>
+
+<div class="box tip">
+  🔑 <strong>给 no siempre es el verbo "dar".</strong> Muchas veces es una <strong>preposición</strong> que significa "<strong>a / para / por</strong>" alguien: marca <em>a quién</em> beneficia o va dirigida la acción. El verbo de verdad viene <strong>después</strong> (打电话, 看, 做饭…), y <span class="hz"><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a> + persona</span> es solo el "para ti / a mí".
+</div>
+
+<div class="box grammar">
+  📲 <strong>Lo más frecuente:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a></span> introduce <strong>a quién</strong> va dirigida una acción, y va <strong>antes del verbo</strong>: <code>Sujeto + 给 + persona + verbo</code>. Enlaza justo con el teléfono de la <a href="#s2" style="color:#a4650a;">§2</a>:
+  <div style="margin-top:8px;"><span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/话" target="_blank">话</a>。</span> — <em>wǒ gěi nǐ dǎ diànhuà. — Te llamo por teléfono. 📞</em></div>
+</div>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/话" target="_blank">话</a>。</td><td class="pinyin-col">wǒ gěi nǐ dǎ diànhuà.</td><td>Te llamo por teléfono 📞</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/话" target="_blank">话</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>。</td><td class="pinyin-col">tā gěi wǒ dǎ diànhuà le.</td><td>Me llamó (por teléfono) ☎️ — con 了</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a>。</td><td class="pinyin-col">gěi wǒ kànkan.</td><td>Déjame ver / muéstrame 👀</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/做" target="_blank">做</a><a href="https://www.dong-chinese.com/wiki/饭" target="_blank">饭</a>。</td><td class="pinyin-col">wǒ gěi nǐ zuò fàn.</td><td>Te cocino 🍳</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/课" target="_blank">课</a>。</td><td class="pinyin-col">wǒ gěi nǐ shàng kè.</td><td>Te doy clase / te enseño 👩‍🏫</td></tr>
+</table>
+
+<div class="box note">
+  💡 <strong>El orden importa:</strong> el <span class="hz"><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a> + persona</span> va <strong>antes del verbo</strong>, igual que en "<strong>a ti</strong> te llamo". No digas el verbo primero. Y para el pasado, agrega <span class="hz"><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a></span> al final (como en la <a href="#s3" style="color:#1976d2;">§3</a>): <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/话" target="_blank">话</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a></span> = "me llamó".
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<h2 id="s8" class="gold">🔢 这是李老师的电话吗？ — dar números de teléfono</h2>
+
+<div class="box warn">
+  ⭐ <strong>El truco estrella: el 1 se dice 幺 (yāo).</strong> Al leer un número de teléfono dígito por dígito, el <span class="hz"><a href="https://www.dong-chinese.com/wiki/一" target="_blank">一</a></span> (yī, uno) se reemplaza por <span class="hz"><a href="https://www.dong-chinese.com/wiki/幺" target="_blank">幺</a></span> (yāo). ¿Por qué? Porque <span class="hz"><a href="https://www.dong-chinese.com/wiki/一" target="_blank">一</a></span> (yī) y <span class="hz"><a href="https://www.dong-chinese.com/wiki/七" target="_blank">七</a></span> (qī, siete) suenan parecido por teléfono, y <span class="hz"><a href="https://www.dong-chinese.com/wiki/幺" target="_blank">幺</a></span> evita la confusión. 📞
+</div>
+
+<table>
+  <tr><th>Dígito</th><th class="pinyin-col">Normal</th><th class="pinyin-col">Al teléfono</th></tr>
+  <tr><td class="hz">1</td><td class="pinyin-col">一 (yī)</td><td class="pinyin-col"><strong>幺 (yāo)</strong> ⭐</td></tr>
+  <tr><td class="hz">0</td><td class="pinyin-col">零 (líng)</td><td class="pinyin-col">零 (líng)</td></tr>
+  <tr><td class="hz">7</td><td class="pinyin-col">七 (qī)</td><td class="pinyin-col">七 (qī)</td></tr>
+</table>
+
+<div class="box note">
+  🔢 <strong>Los números se leen uno por uno.</strong> El teléfono <strong>823 0415 5</strong> se lee dígito a dígito: <span class="hz"><a href="https://www.dong-chinese.com/wiki/八" target="_blank">八</a><a href="https://www.dong-chinese.com/wiki/二" target="_blank">二</a><a href="https://www.dong-chinese.com/wiki/三" target="_blank">三</a><a href="https://www.dong-chinese.com/wiki/零" target="_blank">零</a><a href="https://www.dong-chinese.com/wiki/四" target="_blank">四</a><a href="https://www.dong-chinese.com/wiki/幺" target="_blank">幺</a><a href="https://www.dong-chinese.com/wiki/五" target="_blank">五</a><a href="https://www.dong-chinese.com/wiki/五" target="_blank">五</a></span> (bā èr sān líng sì <strong>yāo</strong> wǔ wǔ). El <span class="hz">4</span> (sì) lleva su <a href="clase04.html#s16" style="color:#27ae60;">变调</a> natural; el <span class="hz">1</span> es <span class="hz"><a href="https://www.dong-chinese.com/wiki/幺" target="_blank">幺</a></span>.
+</div>
+
+<h3>Preguntar y dar un teléfono</h3>
+
+<div class="box structure">
+  <strong>¿Es este el teléfono de…?</strong> <code>这是 + 人 + 的电话吗？</code><br>
+  <strong>Su teléfono es…</strong> <code>他的电话是 + número</code>
+</div>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/八" target="_blank">八</a><a href="https://www.dong-chinese.com/wiki/二" target="_blank">二</a><a href="https://www.dong-chinese.com/wiki/三" target="_blank">三</a><a href="https://www.dong-chinese.com/wiki/零" target="_blank">零</a><a href="https://www.dong-chinese.com/wiki/四" target="_blank">四</a><a href="https://www.dong-chinese.com/wiki/幺" target="_blank">幺</a><a href="https://www.dong-chinese.com/wiki/五" target="_blank">五</a><a href="https://www.dong-chinese.com/wiki/五" target="_blank">五</a>，<a href="https://www.dong-chinese.com/wiki/这" target="_blank">这</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a><a href="https://www.dong-chinese.com/wiki/李" target="_blank">李</a><a href="https://www.dong-chinese.com/wiki/老" target="_blank">老</a><a href="https://www.dong-chinese.com/wiki/师" target="_blank">师</a><a href="https://www.dong-chinese.com/wiki/的" target="_blank">的</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/话" target="_blank">话</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</span><br><em>bā èr sān líng sì yāo wǔ wǔ, zhè shì Lǐ lǎoshī de diànhuà ma? — 8230 4155, ¿es este el teléfono del profesor Li?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a>。<a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/的" target="_blank">的</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/话" target="_blank">话</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a><a href="https://www.dong-chinese.com/wiki/八" target="_blank">八</a><a href="https://www.dong-chinese.com/wiki/二" target="_blank">二</a><a href="https://www.dong-chinese.com/wiki/三" target="_blank">三</a><a href="https://www.dong-chinese.com/wiki/零" target="_blank">零</a><a href="https://www.dong-chinese.com/wiki/四" target="_blank">四</a><a href="https://www.dong-chinese.com/wiki/幺" target="_blank">幺</a><a href="https://www.dong-chinese.com/wiki/五" target="_blank">五</a><a href="https://www.dong-chinese.com/wiki/六" target="_blank">六</a>。</span><br><em>bù shì. tā de diànhuà shì bā èr sān líng sì yāo wǔ liù. — No. Su teléfono es 8230 4156.</em></div>
+  <div class="da"><strong>A:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/好" target="_blank">好</a>，<a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/现" target="_blank">现</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/话" target="_blank">话</a>。</span><br><em>hǎo, wǒ xiànzài gěi tā dǎ diànhuà. — Bien, ahora lo llamo. 📞</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/工" target="_blank">工</a><a href="https://www.dong-chinese.com/wiki/作" target="_blank">作</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>，<a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/下" target="_blank">下</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a><a href="https://www.dong-chinese.com/wiki/吧" target="_blank">吧</a>。</span><br><em>tā zài gōngzuò ne, nǐ xiàwǔ dǎ ba. — Está trabajando, llama por la tarde. 💼</em></div>
+</div>
+
+<h3>Lo que trae el diálogo</h3>
+
+<div class="box grammar">
+  📲 <strong>给他打电话</strong> (§7): el <span class="hz"><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a></span>-preposición + <span class="hz"><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/话" target="_blank">话</a></span>. <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/现" target="_blank">现</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/给" target="_blank">给</a><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/话" target="_blank">话</a></span> = "ahora lo llamo". <span class="hz"><a href="https://www.dong-chinese.com/wiki/现" target="_blank">现</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></span> (xiànzài) = ahora.<br>
+  💼 <strong>他在工作呢</strong>: el progresivo de la §1. <span class="hz"><a href="https://www.dong-chinese.com/wiki/工" target="_blank">工</a><a href="https://www.dong-chinese.com/wiki/作" target="_blank">作</a></span> (gōngzuò) = trabajar / trabajo (parecido a <span class="hz"><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/班" target="_blank">班</a></span> de la <a href="clase02.html" style="color:#a4650a;">Clase 02</a>).<br>
+  🕐 <strong>你下午打吧</strong>: aquí <span class="hz"><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a></span> solo = "llamar" (se sobreentiende 打电话). El <span class="hz"><a href="https://www.dong-chinese.com/wiki/吧" target="_blank">吧</a></span> (ba) suaviza, convierte la frase en <strong>sugerencia</strong> ("llama, dale").
+</div>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a></td><td class="pinyin-col">shàngwǔ</td><td>(la) mañana 🌅</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/下" target="_blank">下</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a></td><td class="pinyin-col">xiàwǔ</td><td>(la) tarde 🌇</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/工" target="_blank">工</a><a href="https://www.dong-chinese.com/wiki/作" target="_blank">作</a></td><td class="pinyin-col">gōngzuò</td><td>Trabajar / trabajo 💼</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/现" target="_blank">现</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></td><td class="pinyin-col">xiànzài</td><td>Ahora ⏱️</td></tr>
+</table>
+
+<div class="box note">
+  🌅🌇 <strong>上午 / 下午.</strong> Ya tenías <span class="hz"><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a></span> (mañana) de la §6; su pareja es <span class="hz"><a href="https://www.dong-chinese.com/wiki/下" target="_blank">下</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a></span> (tarde). Fíjate en <span class="hz"><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a></span> (arriba/antes) vs <span class="hz"><a href="https://www.dong-chinese.com/wiki/下" target="_blank">下</a></span> (abajo/después), el mismo par de <span class="hz"><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/课" target="_blank">课</a></span> / <span class="hz"><a href="https://www.dong-chinese.com/wiki/下" target="_blank">下</a><a href="https://www.dong-chinese.com/wiki/课" target="_blank">课</a></span> (entrar / salir de clase). ⬆️⬇️
+</div>
+
+<h3>Con 现在: ¡dos 在 seguidos!</h3>
+
+<div class="box warn">
+  👀 <strong>他现在在工作</strong> = "él ahora está trabajando". Aparecen <strong>dos 在 pegados</strong>, ¡pero son distintos!:
+  <ul style="margin:8px 0 0;">
+    <li>El primero es parte de <span class="hz"><a href="https://www.dong-chinese.com/wiki/现" target="_blank">现</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></span> (xiàn<strong>zài</strong>, "ahora") — una palabra de tiempo.</li>
+    <li>El segundo es el <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></span> <strong>progresivo</strong> (§1): <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/工" target="_blank">工</a><a href="https://www.dong-chinese.com/wiki/作" target="_blank">作</a></span> = "trabajando".</li>
+  </ul>
+  No te asustes al verlos juntos: <span class="hz"><a href="https://www.dong-chinese.com/wiki/现" target="_blank">现</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></span> dice <em>cuándo</em> y <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a> + verbo</span> dice <em>qué está haciendo</em>.
+</div>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/现" target="_blank">现</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/工" target="_blank">工</a><a href="https://www.dong-chinese.com/wiki/作" target="_blank">作</a>。</td><td class="pinyin-col">tā xiànzài zài gōngzuò.</td><td>Él ahora está trabajando 💼</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/现" target="_blank">现</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/工" target="_blank">工</a><a href="https://www.dong-chinese.com/wiki/作" target="_blank">作</a>，<a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/下" target="_blank">下</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a><a href="https://www.dong-chinese.com/wiki/吧" target="_blank">吧</a>。</td><td class="pinyin-col">tā xiànzài zài gōngzuò, nǐ xiàwǔ dǎ ba.</td><td>Ahora está trabajando, llama por la tarde 🕐</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<h2 id="s9" class="purple">🧮 Torpedo de números — para el dictado</h2>
+
+<div class="box tip">
+  🎧 <strong>Practica el dictado:</strong> dale al 🔊 de cada número, escúchalo y trata de escribirlo. Toca todos hasta que te salgan sin pensar. 💪
+</div>
+
+<h3>0 a 10 — la base</h3>
+
+<table>
+  <tr><th>N.º</th><th>Hanzi</th><th class="pinyin-col">Pinyin</th></tr>
+  <tr><td>0</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/零" target="_blank">零</a></td><td class="pinyin-col">líng</td></tr>
+  <tr><td>1</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/一" target="_blank">一</a></td><td class="pinyin-col">yī</td></tr>
+  <tr><td>2</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/二" target="_blank">二</a></td><td class="pinyin-col">èr</td></tr>
+  <tr><td>3</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/三" target="_blank">三</a></td><td class="pinyin-col">sān</td></tr>
+  <tr><td>4</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/四" target="_blank">四</a></td><td class="pinyin-col">sì</td></tr>
+  <tr><td>5</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/五" target="_blank">五</a></td><td class="pinyin-col">wǔ</td></tr>
+  <tr><td>6</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/六" target="_blank">六</a></td><td class="pinyin-col">liù</td></tr>
+  <tr><td>7</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/七" target="_blank">七</a></td><td class="pinyin-col">qī</td></tr>
+  <tr><td>8</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/八" target="_blank">八</a></td><td class="pinyin-col">bā</td></tr>
+  <tr><td>9</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/九" target="_blank">九</a></td><td class="pinyin-col">jiǔ</td></tr>
+  <tr><td>10</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/十" target="_blank">十</a></td><td class="pinyin-col">shí</td></tr>
+</table>
+
+<h3>11 a 99 — solo sumar y multiplicar con 十</h3>
+
+<div class="box structure">
+  <strong>11–19:</strong> <code>十 + dígito</code> → 十一 (11), 十二 (12)… 十九 (19)<br>
+  <strong>20, 30…90:</strong> <code>dígito + 十</code> → 二十 (20), 三十 (30)…<br>
+  <strong>21, 35, 99…:</strong> <code>dígito + 十 + dígito</code> → 二十一 (21), 三十五 (35), 九十九 (99)
+</div>
+
+<table>
+  <tr><th>N.º</th><th>Hanzi</th><th class="pinyin-col">Pinyin</th></tr>
+  <tr><td>11</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/十" target="_blank">十</a><a href="https://www.dong-chinese.com/wiki/一" target="_blank">一</a></td><td class="pinyin-col">shíyī</td></tr>
+  <tr><td>12</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/十" target="_blank">十</a><a href="https://www.dong-chinese.com/wiki/二" target="_blank">二</a></td><td class="pinyin-col">shí'èr</td></tr>
+  <tr><td>20</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/二" target="_blank">二</a><a href="https://www.dong-chinese.com/wiki/十" target="_blank">十</a></td><td class="pinyin-col">èrshí</td></tr>
+  <tr><td>21</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/二" target="_blank">二</a><a href="https://www.dong-chinese.com/wiki/十" target="_blank">十</a><a href="https://www.dong-chinese.com/wiki/一" target="_blank">一</a></td><td class="pinyin-col">èrshíyī</td></tr>
+  <tr><td>35</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/三" target="_blank">三</a><a href="https://www.dong-chinese.com/wiki/十" target="_blank">十</a><a href="https://www.dong-chinese.com/wiki/五" target="_blank">五</a></td><td class="pinyin-col">sānshíwǔ</td></tr>
+  <tr><td>99</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/九" target="_blank">九</a><a href="https://www.dong-chinese.com/wiki/十" target="_blank">十</a><a href="https://www.dong-chinese.com/wiki/九" target="_blank">九</a></td><td class="pinyin-col">jiǔshíjiǔ</td></tr>
+</table>
+
+<h3>100 en adelante</h3>
+
+<table>
+  <tr><th>N.º</th><th>Hanzi</th><th class="pinyin-col">Pinyin</th></tr>
+  <tr><td>100</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/一" target="_blank">一</a><a href="https://www.dong-chinese.com/wiki/百" target="_blank">百</a></td><td class="pinyin-col">yìbǎi</td></tr>
+  <tr><td>101</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/一" target="_blank">一</a><a href="https://www.dong-chinese.com/wiki/百" target="_blank">百</a><a href="https://www.dong-chinese.com/wiki/零" target="_blank">零</a><a href="https://www.dong-chinese.com/wiki/一" target="_blank">一</a></td><td class="pinyin-col">yìbǎi líng yī</td></tr>
+  <tr><td>110</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/一" target="_blank">一</a><a href="https://www.dong-chinese.com/wiki/百" target="_blank">百</a><a href="https://www.dong-chinese.com/wiki/一" target="_blank">一</a><a href="https://www.dong-chinese.com/wiki/十" target="_blank">十</a></td><td class="pinyin-col">yìbǎi yīshí</td></tr>
+  <tr><td>1000</td><td class="hz"><a href="https://www.dong-chinese.com/wiki/一" target="_blank">一</a><a href="https://www.dong-chinese.com/wiki/千" target="_blank">千</a></td><td class="pinyin-col">yìqiān</td></tr>
+</table>
+
+<div class="box note">
+  0️⃣ <strong>El 零 del medio.</strong> Si hay un hueco de ceros en medio, se dice <span class="hz"><a href="https://www.dong-chinese.com/wiki/零" target="_blank">零</a></span> una vez: <span class="hz"><a href="https://www.dong-chinese.com/wiki/一" target="_blank">一</a><a href="https://www.dong-chinese.com/wiki/百" target="_blank">百</a><a href="https://www.dong-chinese.com/wiki/零" target="_blank">零</a><a href="https://www.dong-chinese.com/wiki/一" target="_blank">一</a></span> (101). El <span class="hz"><a href="https://www.dong-chinese.com/wiki/百" target="_blank">百</a></span> = cien, <span class="hz"><a href="https://www.dong-chinese.com/wiki/千" target="_blank">千</a></span> = mil.
+</div>
+
+<div class="box warn">
+  ⚠️ <strong>Dos avisos clave.</strong><br>
+  ⭐ <strong>Teléfonos → el 1 es 幺 (yāo)</strong>, no 一 (yī). Ver la <a href="#s8" style="color:#c0392b;">§8</a>.<br>
+  ✌️ <strong>二 vs 两.</strong> Para <em>contar / leer números</em> es <span class="hz"><a href="https://www.dong-chinese.com/wiki/二" target="_blank">二</a></span> (èr): 二, 十二, 二十. Pero para <em>"dos de algo"</em> (con clasificador o la hora) es <span class="hz"><a href="https://www.dong-chinese.com/wiki/两" target="_blank">两</a></span> (liǎng): <span class="hz"><a href="https://www.dong-chinese.com/wiki/两" target="_blank">两</a><a href="https://www.dong-chinese.com/wiki/个" target="_blank">个</a></span> (dos unidades), <span class="hz"><a href="https://www.dong-chinese.com/wiki/两" target="_blank">两</a><a href="https://www.dong-chinese.com/wiki/点" target="_blank">点</a></span> (las 2:00, <a href="clase01.html" style="color:#c0392b;">Clase 01</a>).
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<h2 id="s10" class="blue">😊 吧 — la partícula de las propuestas</h2>
+
+<div class="box tip">
+  🔁 <strong>Ya la oíste.</strong> En la <a href="#s8" style="color:#1976d2;">§8</a> apareció <span class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/下" target="_blank">下</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a><a href="https://www.dong-chinese.com/wiki/吧" target="_blank">吧</a></span> ("llama por la tarde") y en la <a href="clase04.html" style="color:#1976d2;">Clase 04</a> <span class="hz"><a href="https://www.dong-chinese.com/wiki/可" target="_blank">可</a><a href="https://www.dong-chinese.com/wiki/以" target="_blank">以</a>，<a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/吧" target="_blank">吧</a></span> ("ok, ve"). <span class="hz"><a href="https://www.dong-chinese.com/wiki/吧" target="_blank">吧</a></span> (ba) va al final y <strong>suaviza</strong>: convierte una orden en una <strong>sugerencia amable</strong>. 😊
+</div>
+
+<h3>① Proponer: "vamos a… / hagamos…"</h3>
+
+<div class="box structure">
+  <code>我们 + verbo + 吧</code> = "vamos a (hacer) …" / "…, ¿dale?"<br>
+  <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/们" target="_blank">们</a><a href="https://www.dong-chinese.com/wiki/吃" target="_blank">吃</a><a href="https://www.dong-chinese.com/wiki/饭" target="_blank">饭</a><a href="https://www.dong-chinese.com/wiki/吧" target="_blank">吧</a>。</span> — <em>wǒmen chī fàn ba. — Comamos / vamos a comer. 🍚</em>
+</div>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/们" target="_blank">们</a><a href="https://www.dong-chinese.com/wiki/吃" target="_blank">吃</a><a href="https://www.dong-chinese.com/wiki/饭" target="_blank">饭</a><a href="https://www.dong-chinese.com/wiki/吧" target="_blank">吧</a>。</td><td class="pinyin-col">wǒmen chī fàn ba.</td><td>Comamos / vamos a comer 🍚</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/走" target="_blank">走</a><a href="https://www.dong-chinese.com/wiki/吧" target="_blank">吧</a>。</td><td class="pinyin-col">zǒu ba.</td><td>Vámonos / vamos 🚶</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/们" target="_blank">们</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/影" target="_blank">影</a><a href="https://www.dong-chinese.com/wiki/吧" target="_blank">吧</a>。</td><td class="pinyin-col">wǒmen kàn diànyǐng ba.</td><td>Veamos una película 🎬</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/下" target="_blank">下</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a><a href="https://www.dong-chinese.com/wiki/吧" target="_blank">吧</a>。</td><td class="pinyin-col">nǐ xiàwǔ dǎ ba.</td><td>Llama por la tarde 📞</td></tr>
+</table>
+
+<h3>② Suponer: "…, ¿no? / ¿verdad?"</h3>
+
+<div class="box grammar">
+  🤔 <strong>El otro 吧:</strong> cuando ya <strong>crees saber</strong> la respuesta y solo quieres confirmar, también va <span class="hz"><a href="https://www.dong-chinese.com/wiki/吧" target="_blank">吧</a></span> = "¿no? / ¿verdad?". <span class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/生" target="_blank">生</a><a href="https://www.dong-chinese.com/wiki/吧" target="_blank">吧</a>？</span> = "Eres estudiante, ¿no?" (lo supongo).
+</div>
+
+<div class="box warn">
+  ⚖️ <strong>吧 no es 吗.</strong> Con <span class="hz"><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a></span> (§4) <strong>no sabes</strong> la respuesta (pregunta de verdad): <span class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/生" target="_blank">生</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</span> (¿eres estudiante?). Con <span class="hz"><a href="https://www.dong-chinese.com/wiki/吧" target="_blank">吧</a></span> ya la <strong>supones</strong> o haces una <strong>propuesta</strong>: <span class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/生" target="_blank">生</a><a href="https://www.dong-chinese.com/wiki/吧" target="_blank">吧</a>？</span> (eres estudiante, ¿no?) · <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/们" target="_blank">们</a><a href="https://www.dong-chinese.com/wiki/吃" target="_blank">吃</a><a href="https://www.dong-chinese.com/wiki/饭" target="_blank">饭</a><a href="https://www.dong-chinese.com/wiki/吧" target="_blank">吧</a></span> (comamos). 🎯
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<h2 id="s11" class="gold">📝 Banco de preguntas + acortar palabras</h2>
+
+<h3>Preguntas de práctica</h3>
+
+<p>Frases que juntan lo de hoy. Léelas, escucha el 🔊 y tradúcelas de memoria:</p>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/大" target="_blank">大</a><a href="https://www.dong-chinese.com/wiki/卫" target="_blank">卫</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/做" target="_blank">做</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</td><td class="pinyin-col">Dàwèi zài zuò shénme ne?</td><td>¿Qué está haciendo David? 🤔</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/昨" target="_blank">昨</a><a href="https://www.dong-chinese.com/wiki/天" target="_blank">天</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/书" target="_blank">书</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</td><td class="pinyin-col">zuótiān shàngwǔ tā zài kàn shū ma?</td><td>¿Ayer por la mañana estaba leyendo? 📖</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/们" target="_blank">们</a><a href="https://www.dong-chinese.com/wiki/都" target="_blank">都</a><a href="https://www.dong-chinese.com/wiki/喜" target="_blank">喜</a><a href="https://www.dong-chinese.com/wiki/欢" target="_blank">欢</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/视" target="_blank">视</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</td><td class="pinyin-col">tāmen dōu xǐhuan kàn diànshì ma?</td><td>¿A todos ellos les gusta ver tele? 📺</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/李" target="_blank">李</a><a href="https://www.dong-chinese.com/wiki/老" target="_blank">老</a><a href="https://www.dong-chinese.com/wiki/师" target="_blank">师</a><a href="https://www.dong-chinese.com/wiki/的" target="_blank">的</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/话" target="_blank">话</a><a href="https://www.dong-chinese.com/wiki/号" target="_blank">号</a><a href="https://www.dong-chinese.com/wiki/码" target="_blank">码</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a><a href="https://www.dong-chinese.com/wiki/多" target="_blank">多</a><a href="https://www.dong-chinese.com/wiki/少" target="_blank">少</a>？</td><td class="pinyin-col">Lǐ lǎoshī de diànhuà hàomǎ shì duōshao?</td><td>¿Cuál es el número de teléfono del profe Li? ☎️</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/李" target="_blank">李</a><a href="https://www.dong-chinese.com/wiki/老" target="_blank">老</a><a href="https://www.dong-chinese.com/wiki/师" target="_blank">师</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/做" target="_blank">做</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</td><td class="pinyin-col">Lǐ lǎoshī zài zuò shénme ne?</td><td>¿Qué está haciendo el profe Li? 👨‍🏫</td></tr>
+</table>
+
+<div class="box grammar">
+  🧩 <strong>Palabras nuevas del banco:</strong><br>
+  👥 <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/们" target="_blank">们</a></span> (tāmen) = ellos · <span class="hz"><a href="https://www.dong-chinese.com/wiki/都" target="_blank">都</a></span> (dōu) = todos / ambos (adverbio, va <strong>antes del verbo</strong>): <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/们" target="_blank">们</a><a href="https://www.dong-chinese.com/wiki/都" target="_blank">都</a><a href="https://www.dong-chinese.com/wiki/喜" target="_blank">喜</a><a href="https://www.dong-chinese.com/wiki/欢" target="_blank">欢</a>…</span> = "a todos ellos les gusta…".<br>
+  ☎️ <span class="hz"><a href="https://www.dong-chinese.com/wiki/号" target="_blank">号</a><a href="https://www.dong-chinese.com/wiki/码" target="_blank">码</a></span> (hàomǎ) = número (de identificación). <span class="hz"><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/话" target="_blank">话</a><a href="https://www.dong-chinese.com/wiki/号" target="_blank">号</a><a href="https://www.dong-chinese.com/wiki/码" target="_blank">码</a></span> = número de teléfono.
+</div>
+
+<div class="box structure">
+  <strong>Preguntar un número de teléfono:</strong> <code>… 的电话号码是多少？</code><br>
+  <span class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/的" target="_blank">的</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/话" target="_blank">话</a><a href="https://www.dong-chinese.com/wiki/号" target="_blank">号</a><a href="https://www.dong-chinese.com/wiki/码" target="_blank">码</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a><a href="https://www.dong-chinese.com/wiki/多" target="_blank">多</a><a href="https://www.dong-chinese.com/wiki/少" target="_blank">少</a>？</span> — <em>nǐ de diànhuà hàomǎ shì duōshao? — ¿Cuál es tu número de teléfono?</em><br>
+  <span class="hz"><a href="https://www.dong-chinese.com/wiki/多" target="_blank">多</a><a href="https://www.dong-chinese.com/wiki/少" target="_blank">少</a></span> (duōshao, "cuánto") es el que usaste para precios en <a href="/basico2/clase06.html" style="color:#c0392b;">Básico 2 · Clase 06</a>; aquí pregunta el número. 🔢
+</div>
+
+<h3>✅ Las respuestas que practicamos</h3>
+
+<p>Y así las respondimos — fíjate cómo cada respuesta reusa algo de la clase:</p>
+
+<div class="dialog">
+  <div class="da"><strong>P:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/大" target="_blank">大</a><a href="https://www.dong-chinese.com/wiki/卫" target="_blank">卫</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/做" target="_blank">做</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</span><br><em>¿Qué está haciendo David?</em></div>
+  <div class="db"><strong>R:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/睡" target="_blank">睡</a><a href="https://www.dong-chinese.com/wiki/觉" target="_blank">觉</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</span><br><em>tā zài shuìjiào ne. — Está durmiendo. 😴</em></div>
+</div>
+
+<div class="dialog">
+  <div class="da"><strong>P:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/昨" target="_blank">昨</a><a href="https://www.dong-chinese.com/wiki/天" target="_blank">天</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/书" target="_blank">书</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</span><br><em>¿Ayer por la mañana estaba leyendo?</em></div>
+  <div class="db"><strong>R:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a>，<a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/书" target="_blank">书</a>，<a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/睡" target="_blank">睡</a><a href="https://www.dong-chinese.com/wiki/觉" target="_blank">觉</a>。</span><br><em>bù, tā méi zài kàn shū, tā zài shuìjiào. — No, no estaba leyendo, estaba durmiendo. (negación con 没, §5) 📖❌</em></div>
+</div>
+
+<div class="dialog">
+  <div class="da"><strong>P:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/们" target="_blank">们</a><a href="https://www.dong-chinese.com/wiki/都" target="_blank">都</a><a href="https://www.dong-chinese.com/wiki/喜" target="_blank">喜</a><a href="https://www.dong-chinese.com/wiki/欢" target="_blank">欢</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/视" target="_blank">视</a><a href="https://www.dong-chinese.com/wiki/吗" target="_blank">吗</a>？</span><br><em>¿A todos les gusta ver tele?</em></div>
+  <div class="db"><strong>R:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a>，<a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/们" target="_blank">们</a><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a><a href="https://www.dong-chinese.com/wiki/喜" target="_blank">喜</a><a href="https://www.dong-chinese.com/wiki/欢" target="_blank">欢</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/视" target="_blank">视</a>，<a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/们" target="_blank">们</a><a href="https://www.dong-chinese.com/wiki/喜" target="_blank">喜</a><a href="https://www.dong-chinese.com/wiki/欢" target="_blank">欢</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/影" target="_blank">影</a>。</span><br><em>bù, tāmen bù xǐhuan kàn diànshì, tāmen xǐhuan kàn diànyǐng. — No, no les gusta la tele, les gustan las películas. 🎬</em></div>
+</div>
+
+<div class="dialog">
+  <div class="da"><strong>P:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/李" target="_blank">李</a><a href="https://www.dong-chinese.com/wiki/老" target="_blank">老</a><a href="https://www.dong-chinese.com/wiki/师" target="_blank">师</a><a href="https://www.dong-chinese.com/wiki/的" target="_blank">的</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/话" target="_blank">话</a><a href="https://www.dong-chinese.com/wiki/号" target="_blank">号</a><a href="https://www.dong-chinese.com/wiki/码" target="_blank">码</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a><a href="https://www.dong-chinese.com/wiki/多" target="_blank">多</a><a href="https://www.dong-chinese.com/wiki/少" target="_blank">少</a>？</span><br><em>¿Cuál es el número del profe Li?</em></div>
+  <div class="db"><strong>R:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/的" target="_blank">的</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/话" target="_blank">话</a><a href="https://www.dong-chinese.com/wiki/号" target="_blank">号</a><a href="https://www.dong-chinese.com/wiki/码" target="_blank">码</a><a href="https://www.dong-chinese.com/wiki/是" target="_blank">是</a><a href="https://www.dong-chinese.com/wiki/八" target="_blank">八</a><a href="https://www.dong-chinese.com/wiki/二" target="_blank">二</a><a href="https://www.dong-chinese.com/wiki/三" target="_blank">三</a><a href="https://www.dong-chinese.com/wiki/零" target="_blank">零</a><a href="https://www.dong-chinese.com/wiki/四" target="_blank">四</a><a href="https://www.dong-chinese.com/wiki/幺" target="_blank">幺</a><a href="https://www.dong-chinese.com/wiki/五" target="_blank">五</a><a href="https://www.dong-chinese.com/wiki/六" target="_blank">六</a>。</span><br><em>tā de diànhuà hàomǎ shì bā èr sān líng sì yāo wǔ liù. — Su número es 8230 4156. (¡el 1 = 幺! §8) ☎️</em></div>
+</div>
+
+<div class="dialog">
+  <div class="da"><strong>P:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/李" target="_blank">李</a><a href="https://www.dong-chinese.com/wiki/老" target="_blank">老</a><a href="https://www.dong-chinese.com/wiki/师" target="_blank">师</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/做" target="_blank">做</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</span><br><em>¿Qué está haciendo el profe Li?</em></div>
+  <div class="db"><strong>R:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/工" target="_blank">工</a><a href="https://www.dong-chinese.com/wiki/作" target="_blank">作</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>，<a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/下" target="_blank">下</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a><a href="https://www.dong-chinese.com/wiki/有" target="_blank">有</a><a href="https://www.dong-chinese.com/wiki/课" target="_blank">课</a>。</span><br><em>tā zài gōngzuò ne, tā xiàwǔ yǒu kè. — Está trabajando, por la tarde tiene clase. 💼</em></div>
+</div>
+
+<h3>🗣️ En China se acortan las palabras</h3>
+
+<div class="box tip">
+  ✂️ Igual que en español decimos <strong>"profe"</strong> en vez de "profesor", en chino —sobre todo en Beijing y el norte— se <strong>relajan y acortan</strong> las palabras añadiendo el sonido <span class="hz"><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a></span> (-r). Es el <strong>儿化</strong> (érhuà):
+  <table style="margin-top:10px;">
+    <tr><th>Completo</th><th>Acortado (con 儿)</th><th class="pinyin-col">Suena</th></tr>
+    <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/里" target="_blank">里</a></td><td class="hz"><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a></td><td class="pinyin-col">nǎli → nǎr</td></tr>
+    <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/这" target="_blank">这</a><a href="https://www.dong-chinese.com/wiki/里" target="_blank">里</a></td><td class="hz"><a href="https://www.dong-chinese.com/wiki/这" target="_blank">这</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a></td><td class="pinyin-col">zhèli → zhèr</td></tr>
+    <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/那" target="_blank">那</a><a href="https://www.dong-chinese.com/wiki/里" target="_blank">里</a></td><td class="hz"><a href="https://www.dong-chinese.com/wiki/那" target="_blank">那</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a></td><td class="pinyin-col">nàli → nàr</td></tr>
+  </table>
+  Ya usaste <span class="hz"><a href="https://www.dong-chinese.com/wiki/这" target="_blank">这</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a> / <a href="https://www.dong-chinese.com/wiki/那" target="_blank">那</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a> / <a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a></span> en <a href="/basico2/clase07.html" style="color:#1976d2;">Básico 2</a>: son justamente esa versión "corta".
+</div>
+
+<div class="box note">
+  🙋 <strong>Confírmame el ejemplo del profe.</strong> Mencionaste algo de <span class="hz"><a href="https://www.dong-chinese.com/wiki/老" target="_blank">老</a><a href="https://www.dong-chinese.com/wiki/师" target="_blank">师</a></span> + "…r/…la" para lo de acortar. ¿Era el <strong>儿化</strong> de arriba, o el profe dijo otra cosa (por ejemplo un apodo o una contracción concreta)? Dímelo y lo ajusto exacto. 😊
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<h2 id="s12" class="gray">🎬 Diálogo con todo — 我在上课呢</h2>
+
+<div class="box tip">
+  🧩 Un diálogo telefónico que usa <strong>todo lo de la clase</strong>: <span class="hz"><a href="https://www.dong-chinese.com/wiki/喂" target="_blank">喂</a></span> (§2), la pregunta amable <span class="hz">…<a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</span> (§4), el progresivo <span class="hz"><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a></span> (§1) y el rebote <span class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</span> (Clase 04).
+</div>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/喂" target="_blank">喂</a>，<a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/好" target="_blank">好</a>！<a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/做" target="_blank">做</a><a href="https://www.dong-chinese.com/wiki/什" target="_blank">什</a><a href="https://www.dong-chinese.com/wiki/么" target="_blank">么</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</span><br><em>wéi, nǐ hǎo! nǐ zài zuò shénme ne? — ¿Aló, hola! ¿Qué estás haciendo?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/课" target="_blank">课</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。<a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</span><br><em>wǒ zài shàng kè ne. nǐ ne? — Estoy en clase. ¿Y tú?</em></div>
+  <div class="da"><strong>A:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/用" target="_blank">用</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/脑" target="_blank">脑</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</span><br><em>wǒ zài yòng diànnǎo ne. — Estoy en el computador. 💻</em></div>
+</div>
+
+<h3>Otras respuestas a 你在做什么呢？</h3>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/课" target="_blank">课</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</td><td class="pinyin-col">wǒ zài shàng kè ne.</td><td>Estoy en clase 📖</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/用" target="_blank">用</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/脑" target="_blank">脑</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</td><td class="pinyin-col">wǒ zài yòng diànnǎo ne.</td><td>Estoy en el computador 💻</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</td><td class="pinyin-col">wǒ zài xué zhōngwén ne.</td><td>Estoy estudiando chino 📚</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/打" target="_blank">打</a><a href="https://www.dong-chinese.com/wiki/篮" target="_blank">篮</a><a href="https://www.dong-chinese.com/wiki/球" target="_blank">球</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</td><td class="pinyin-col">wǒ zài dǎ lánqiú ne.</td><td>Estoy jugando básquet 🏀</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/视" target="_blank">视</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</td><td class="pinyin-col">wǒ zài kàn diànshì ne.</td><td>Estoy viendo tele 📺</td></tr>
+</table>
+
+<div class="box note">
+  🔌 <strong>Familia de 电 (diàn, "eléctrico").</strong> Ya tienes tres: <span class="hz"><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/话" target="_blank">话</a></span> (diànhuà, teléfono = "habla eléctrica" §2), <span class="hz"><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/脑" target="_blank">脑</a></span> (diànnǎo, computador = "cerebro eléctrico") y <span class="hz"><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/视" target="_blank">视</a></span> (diànshì, televisor = "visión eléctrica" 📺). El verbo <span class="hz"><a href="https://www.dong-chinese.com/wiki/用" target="_blank">用</a></span> (yòng) = usar; para la tele, <span class="hz"><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a></span> (kàn) = ver → <span class="hz"><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/视" target="_blank">视</a></span>. 💡
+</div>
+
+<div class="box grammar">
+  ❤️ <strong>喜欢 + verbo = "gustar hacer algo".</strong> Ya conoces <span class="hz"><a href="https://www.dong-chinese.com/wiki/喜" target="_blank">喜</a><a href="https://www.dong-chinese.com/wiki/欢" target="_blank">欢</a></span> (xǐhuan, gustar). Si le pones un verbo detrás, dices lo que te gusta hacer: <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/喜" target="_blank">喜</a><a href="https://www.dong-chinese.com/wiki/欢" target="_blank">欢</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/视" target="_blank">视</a></span> (me gusta ver tele 📺), <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/喜" target="_blank">喜</a><a href="https://www.dong-chinese.com/wiki/欢" target="_blank">欢</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/中" target="_blank">中</a><a href="https://www.dong-chinese.com/wiki/文" target="_blank">文</a></span> (me gusta estudiar chino 📖). Y su negación, como viste en la <a href="#s5" style="color:#a4650a;">§5</a>, siempre con <span class="hz"><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a></span>: <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/不" target="_blank">不</a><a href="https://www.dong-chinese.com/wiki/喜" target="_blank">喜</a><a href="https://www.dong-chinese.com/wiki/欢" target="_blank">欢</a><a href="https://www.dong-chinese.com/wiki/看" target="_blank">看</a><a href="https://www.dong-chinese.com/wiki/电" target="_blank">电</a><a href="https://www.dong-chinese.com/wiki/视" target="_blank">视</a></span>.
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- ↓↓↓ AQUÍ SE AGREGAN LAS SECCIONES SIGUIENTES ↓↓↓ -->
+<!-- ═══════════════════════════════════════ -->
+
+<div style="display: flex; justify-content: space-between; margin-top: 40px; padding: 16px; background: #fff; border-radius: 10px; border: 1px solid #e5e5e5;">
+  <a href="clase04.html" style="color: #c0392b; text-decoration: none;">← Clase 04</a>
+  <a href="/" style="color: #c0392b; text-decoration: none;">↑ Índice</a>
+  <span style="color: #ccc;">Clase 06 →</span>
+</div>
+
+<footer>Básico 3 · Clase 05 · 20 jun 2026 · <a href="https://basti.cl" style="color:inherit">basti.cl</a></footer>
+
+<button class="pinyin-toggle" onclick="document.body.classList.toggle('hide-pinyin'); this.textContent = document.body.classList.contains('hide-pinyin') ? '👁 Mostrar pinyin' : '🙈 Ocultar pinyin';">🙈 Ocultar pinyin</button>
+
+<script>
+const AUDIO_BASE = '/audio/';
+const audioMap = {
+  "0": "zh_cfcd208495.mp3",
+  "1": "zh_c4ca4238a0.mp3",
+  "4": "zh_a87ff679a2.mp3",
+  "7": "zh_8f14e45fce.mp3",
+  "…呢？": "zh_c38cbcdf7f.mp3",
+  "一": "zh_7941da94db.mp3",
+  "一千": "zh_edad80baf8.mp3",
+  "一百": "zh_61b0509932.mp3",
+  "一百一十": "zh_5fb8adb053.mp3",
+  "一百零一": "zh_7df25e9d7a.mp3",
+  "七": "zh_aad6914f8f.mp3",
+  "三": "zh_e662ff59a0.mp3",
+  "三十五": "zh_a64c64f699.mp3",
+  "上": "zh_af767b7e4a.mp3",
+  "上中文课": "zh_505936c644.mp3",
+  "上午": "zh_f8fbeae194.mp3",
+  "上汉语课": "zh_49a32586a9.mp3",
+  "上班": "zh_b4f0388f1e.mp3",
+  "上课": "zh_18b930ed1f.mp3",
+  "下": "zh_3850a186c3.mp3",
+  "下午": "zh_e2eb289cc3.mp3",
+  "下课": "zh_8ffca8155e.mp3",
+  "不": "zh_9eba1ab697.mp3",
+  "不在": "zh_d3a483537f.mp3",
+  "不是。他的电话是八二三零四幺五六。": "zh_6d1b23fcc1.mp3",
+  "不，他们不喜欢看电视，他们喜欢看电影。": "zh_fc77844d22.mp3",
+  "不，他在学开车呢。": "zh_44adc336b4.mp3",
+  "不，他没在看书，他在睡觉。": "zh_22e37d7810.mp3",
+  "两": "zh_0bff8e5ca6.mp3",
+  "两个": "zh_80cdce8e2e.mp3",
+  "两点": "zh_cc24831576.mp3",
+  "中文": "zh_a7bac2239f.mp3",
+  "九": "zh_9b4851f85d.mp3",
+  "九十九": "zh_e5c9bd0f16.mp3",
+  "了": "zh_163773fb21.mp3",
+  "二": "zh_2d8be272c9.mp3",
+  "二十": "zh_39f55a21eb.mp3",
+  "二十一": "zh_7261652b2f.mp3",
+  "五": "zh_1fcc29d077.mp3",
+  "什么": "zh_736ccbe560.mp3",
+  "他不在家。": "zh_b29a0e428a.mp3",
+  "他不在家，他去学校了。": "zh_40e1a52fe7.mp3",
+  "他不在，他去上中文课了。": "zh_fe2cabee44.mp3",
+  "他不看书": "zh_d7c3f3b16f.mp3",
+  "他们": "zh_d0a33aaeb3.mp3",
+  "他们都喜欢…": "zh_7232cc9079.mp3",
+  "他们都喜欢看电视吗？": "zh_2be936a795.mp3",
+  "他去上中文课了。": "zh_f96008bd0e.mp3",
+  "他去学校了": "zh_469d6a6665.mp3",
+  "他去学校了。": "zh_0ae9eb4316.mp3",
+  "他去打篮球了。": "zh_ba3fdcf557.mp3",
+  "他呢？他在打篮球吗？": "zh_7dc96ab5e1.mp3",
+  "他在做什么呢？": "zh_22bb135408.mp3",
+  "他在哪儿呢？": "zh_b1ae54ea67.mp3",
+  "他在哪儿？": "zh_2c68dbc0cc.mp3",
+  "他在学中文": "zh_0993bbe8a9.mp3",
+  "他在学中文吗？": "zh_6670e4a153.mp3",
+  "他在学中文呢": "zh_1bc8224b80.mp3",
+  "他在学中文呢。": "zh_2e04a5bb1c.mp3",
+  "他在学习": "zh_62b3cde4a8.mp3",
+  "他在学习。": "zh_ab8db43e07.mp3",
+  "他在学做中国菜呢。": "zh_a6947405c1.mp3",
+  "他在学开车呢。": "zh_f674dac46d.mp3",
+  "他在家": "zh_9b0bda7343.mp3",
+  "他在家。": "zh_f1ec595139.mp3",
+  "他在工作呢，他下午有课。": "zh_fd8127afce.mp3",
+  "他在工作呢，你下午打吧。": "zh_33501af013.mp3",
+  "他在打篮球呢。": "zh_71ac0164fe.mp3",
+  "他在游泳呢。": "zh_f338409fe0.mp3",
+  "他在看书": "zh_b1a3fff4a8.mp3",
+  "他在看书。": "zh_78150b71e9.mp3",
+  "他在看书呢": "zh_d716b9391d.mp3",
+  "他在看球。": "zh_6c79d8e878.mp3",
+  "他在睡觉呢": "zh_f6311fd325.mp3",
+  "他在睡觉呢。": "zh_3e34fa7cd0.mp3",
+  "他在踢足球呢。": "zh_c33cc1ed51.mp3",
+  "他学中文": "zh_812c10af43.mp3",
+  "他是谁呢？": "zh_02406af1be.mp3",
+  "他没看书": "zh_e9d55ed7ef.mp3",
+  "他没看书。": "zh_7b94232f81.mp3",
+  "他现在在工作。": "zh_3bf90a7f82.mp3",
+  "他现在在工作，你下午打吧。": "zh_1115b49e24.mp3",
+  "他的电话号码是八二三零四幺五六。": "zh_10030ae7e1.mp3",
+  "他给我打电话了": "zh_661bd8e270.mp3",
+  "他给我打电话了。": "zh_8ab69b965d.mp3",
+  "你下午打吧": "zh_f68843ba28.mp3",
+  "你下午打吧。": "zh_a80d73c811.mp3",
+  "你做什么吗？": "zh_f58af8ce1c.mp3",
+  "你做什么呢？": "zh_4ea46dfa7b.mp3",
+  "你做什么？": "zh_efe14fe153.mp3",
+  "你叫什么呢？": "zh_787dff33c6.mp3",
+  "你叫什么？": "zh_e45959654b.mp3",
+  "你呢？": "zh_913660afab.mp3",
+  "你喝什么茶？": "zh_cbc5fced02.mp3",
+  "你在做什么呢？": "zh_7f3dc18722.mp3",
+  "你在做什么哪？": "zh_856f21c73e.mp3",
+  "你在学中文吗？": "zh_59aad00cf9.mp3",
+  "你在家吗？": "zh_b601177049.mp3",
+  "你在开车吗？": "zh_cb84e81c47.mp3",
+  "你在看什么书呢？": "zh_ff05465d11.mp3",
+  "你在看什么书？": "zh_79a1369302.mp3",
+  "你学什么？": "zh_4512cf0ac8.mp3",
+  "你想喝什么呢？": "zh_645d56a45f.mp3",
+  "你想喝什么？": "zh_7b27b514a2.mp3",
+  "你是学生吗？": "zh_5f1cdcdfca.mp3",
+  "你是学生吧？": "zh_b8286b0644.mp3",
+  "你的电话号码是多少？": "zh_517e315b02.mp3",
+  "你给我杯子": "zh_761f724a5f.mp3",
+  "你给我杯子。": "zh_d5a57a0bf8.mp3",
+  "你给我杯子吗？": "zh_b2fef5e41b.mp3",
+  "儿": "zh_e90f3430e9.mp3",
+  "先生": "zh_1f9820d215.mp3",
+  "八": "zh_edf1acd5c6.mp3",
+  "八二三零四幺五五": "zh_77d30f16c7.mp3",
+  "八二三零四幺五五，这是李老师的电话吗？": "zh_d9a362a7d6.mp3",
+  "六": "zh_61b453523d.mp3",
+  "十": "zh_181245720b.mp3",
+  "十一": "zh_6863d827d8.mp3",
+  "十二": "zh_c04fc25ea7.mp3",
+  "千": "zh_c821e52231.mp3",
+  "去…了": "zh_b15a1576c8.mp3",
+  "去上课了": "zh_d2a447797a.mp3",
+  "可以，去吧": "zh_a98c58386c.mp3",
+  "号码": "zh_3eb7800dd4.mp3",
+  "吗": "zh_2988084a74.mp3",
+  "吗呢": "zh_26466a7826.mp3",
+  "吧": "zh_9ff279f541.mp3",
+  "呢": "呢_65ac5a7b15.mp3",
+  "哪": "zh_e0bcc1fa08.mp3",
+  "哪儿": "zh_92c5455654.mp3",
+  "哪里": "zh_f5189dc574.mp3",
+  "喂": "zh_367c9508e7.mp3",
+  "喂，他在家吗？": "zh_eacbc051c0.mp3",
+  "喂，你好！": "zh_04942f9be5.mp3",
+  "喂，你好！你在做什么呢？": "zh_e8137f3827.mp3",
+  "喂，你好！巴斯帝在吗？": "zh_25f6123706.mp3",
+  "喂，你是巴斯帝先生吗？": "zh_8b08cc36dc.mp3",
+  "喂，你是张小姐吗？": "zh_f7969e23b1.mp3",
+  "喂，你是谁？": "zh_6b33dae619.mp3",
+  "喜欢": "zh_3d6c396cf4.mp3",
+  "四": "zh_21716cf311.mp3",
+  "在": "zh_241d47a3ee.mp3",
+  "在 + verbo": "zh_442ee53fd7.mp3",
+  "在上课": "zh_927d6d2983.mp3",
+  "在吗？": "zh_59c5cfbca0.mp3",
+  "在家": "zh_e93b256274.mp3",
+  "在工作": "zh_7457511a1a.mp3",
+  "在睡觉": "zh_72ade77f91.mp3",
+  "在，我在开车。": "zh_6fb1f2aeb0.mp3",
+  "多少": "zh_22266fe1dd.mp3",
+  "大卫在做什么呢？": "zh_ce11291143.mp3",
+  "好，我现在给他打电话。": "zh_e611b58203.mp3",
+  "妈妈去上班了。": "zh_8f7a6c432d.mp3",
+  "学": "zh_65f27a2413.mp3",
+  "学中文": "zh_7934c519eb.mp3",
+  "学做中国菜": "zh_4068a361b4.mp3",
+  "学开车": "zh_e89a2d44e2.mp3",
+  "学汉语": "zh_d66c42d9d3.mp3",
+  "小姐": "zh_832c2de240.mp3",
+  "工作": "zh_9a018b21ab.mp3",
+  "巴斯帝": "zh_a569c8a35b.mp3",
+  "幺": "zh_0b85f51666.mp3",
+  "我不会。": "zh_224e0c09c4.mp3",
+  "我不喜欢。": "zh_ee6db9e566.mp3",
+  "我不喜欢看电视": "zh_af25d69287.mp3",
+  "我不喜欢看电视，我喜欢看电影。": "zh_c632a9e78b.mp3",
+  "我不在学习": "zh_d4014693e5.mp3",
+  "我不在学校。": "zh_083b3d22e8.mp3",
+  "我不在家": "zh_055c9188ea.mp3",
+  "我不想。": "zh_ab896e1aac.mp3",
+  "我不是学生。": "zh_d1e73af28e.mp3",
+  "我不能。": "zh_f9a322d221.mp3",
+  "我们吃饭吧": "zh_c6181e5ddf.mp3",
+  "我们吃饭吧。": "zh_e81f362d5a.mp3",
+  "我们看电影吧。": "zh_959bcf7fec.mp3",
+  "我喜欢学中文": "zh_35633efe80.mp3",
+  "我喜欢看电影。": "zh_e1b26f32b8.mp3",
+  "我喜欢看电视": "zh_9a240b7735.mp3",
+  "我在上汉语课呢。": "zh_59d71d2c2e.mp3",
+  "我在上课呢。": "zh_6594e7aa92.mp3",
+  "我在上课呢。你呢？": "zh_a43d9a3f0e.mp3",
+  "我在学中文。": "zh_4f9ea2b973.mp3",
+  "我在学中文呢。": "zh_bca7a6e93f.mp3",
+  "我在学习。": "zh_e1cc26f3e5.mp3",
+  "我在学校。": "zh_1ee63a1443.mp3",
+  "我在家看电视呢。": "zh_da42c1f38d.mp3",
+  "我在家看电视呢。你喜欢看电视吗？": "zh_9724210bc3.mp3",
+  "我在打篮球呢。": "zh_ae98f6f148.mp3",
+  "我在用电脑呢。": "zh_a38236ad92.mp3",
+  "我在看电视呢。": "zh_63e0de2ee5.mp3",
+  "我在睡觉呢": "zh_eb7eabcbc5.mp3",
+  "我在睡觉呢。你呢？": "zh_696d6204f6.mp3",
+  "我学中文": "zh_2ae5a38177.mp3",
+  "我学中文。": "zh_ceec4e34bc.mp3",
+  "我学汉语": "zh_a61dab2fc1.mp3",
+  "我很好，你呢？": "zh_7391618f22.mp3",
+  "我没在学习": "zh_1b101d5be2.mp3",
+  "我没在学习。": "zh_5905a66de0.mp3",
+  "我没学习": "zh_4ed266cf73.mp3",
+  "我没（在）学习。": "zh_21a25a34f4.mp3",
+  "我现在给他打电话": "zh_8ca741695d.mp3",
+  "我给你。": "zh_35097c84ba.mp3",
+  "我给你上课。": "zh_f3a570b3b8.mp3",
+  "我给你做饭。": "zh_4376caf06e.mp3",
+  "我给你打电话。": "zh_b00e9ac814.mp3",
+  "我给你水": "zh_c2cf0b6b29.mp3",
+  "我给你水。": "zh_3761e320e3.mp3",
+  "打": "zh_0e1ceeea46.mp3",
+  "打电话": "zh_575345386c.mp3",
+  "打篮球": "zh_1453844b56.mp3",
+  "昨天上午": "zh_06b968d609.mp3",
+  "昨天上午他在看书吗？": "zh_66902eb00d.mp3",
+  "昨天上午你在做什么呢？": "zh_a03a6e2e19.mp3",
+  "是": "是_0a60ac8f02.mp3",
+  "是，他在学中文呢。": "zh_5f69b85ca7.mp3",
+  "是，我是。你是谁？": "zh_5070c87856.mp3",
+  "李老师在做什么呢？": "zh_64f2bfbc8b.mp3",
+  "李老师的电话号码是多少？": "zh_1ffdceef1f.mp3",
+  "汉语": "zh_25cf96268e.mp3",
+  "没": "zh_3672c6af97.mp3",
+  "没喜欢": "zh_8123294310.mp3",
+  "没能": "zh_692971ca01.mp3",
+  "没，我没开车。": "zh_9012c297f8.mp3",
+  "王": "zh_891b65a1d1.mp3",
+  "现在": "zh_505ccfb0e8.mp3",
+  "用": "zh_2f7919916a.mp3",
+  "电影": "zh_51e9743451.mp3",
+  "电脑": "zh_e855972ea9.mp3",
+  "电视": "zh_3a2f904027.mp3",
+  "电话": "zh_5a93d3f72d.mp3",
+  "电话号码": "zh_193a8c42c1.mp3",
+  "百": "zh_81ec89a2a8.mp3",
+  "看": "zh_9302446f9b.mp3",
+  "看书": "zh_e3ccf0942c.mp3",
+  "看电影": "zh_2d41be02ec.mp3",
+  "看电视": "zh_6a779f4aa4.mp3",
+  "看电视呢": "zh_66cd2893b6.mp3",
+  "睡觉": "zh_60cffce1f6.mp3",
+  "给": "zh_37186b95f5.mp3",
+  "给 + persona": "zh_d71edd14c1.mp3",
+  "给我。": "zh_8c9db53e50.mp3",
+  "给我看看。": "zh_dce8a20b9e.mp3",
+  "老师": "zh_295af37e05.mp3",
+  "课": "zh_dbbd6d48db.mp3",
+  "走吧。": "zh_bfec10ea0a.mp3",
+  "踢": "zh_81309b8457.mp3",
+  "踢足球": "zh_1da081abeb.mp3",
+  "这儿": "zh_4146aab4b3.mp3",
+  "这儿 / 那儿 / 哪儿": "zh_7c108dc852.mp3",
+  "这里": "zh_535ca5a5d8.mp3",
+  "那儿": "zh_751af044c6.mp3",
+  "那里": "zh_a793c356f1.mp3",
+  "都": "zh_de44f194cf.mp3",
+  "醒来": "zh_a2ad8c93c7.mp3",
+  "零": "zh_777fda6c51.mp3"
+};
+
+function speak(text) {
+  const file = audioMap[text];
+  if (file) { new Audio(AUDIO_BASE + file).play(); return; }
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'zh-CN'; u.rate = 0.8;
+  speechSynthesis.speak(u);
+}
+
+document.querySelectorAll('td.hz, .dialog .hz').forEach(el => {
+  const text = el.textContent.trim();
+  if (!text) return;
+  const btn = document.createElement('button');
+  btn.textContent = '🔊';
+  btn.style.cssText = 'background:none;border:none;cursor:pointer;margin-left:6px;font-size:0.9em;opacity:0.5;';
+  btn.onmouseover = () => btn.style.opacity = '1';
+  btn.onmouseout = () => btn.style.opacity = '0.5';
+  btn.onclick = (e) => { e.preventDefault(); e.stopPropagation(); speak(text); };
+  el.appendChild(btn);
+});
+</script>
+</body>
+</html>

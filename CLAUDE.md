@@ -6,26 +6,30 @@ Tiene toda la info clave: estructura, convenciones HTML, sistema de audio (Eleve
 deploy, preferencias del usuario, etc. **Ahorra muchísimos tokens.**
 
 ## Estado actual
-Última clase: **Clase 04 — Básico 3** (13 de junio, 2026) ✅ COMPLETA (14 secciones).
-Próxima clase será la 05.
+Última clase: **Clase 05 — Básico 3** (20 de junio, 2026) ✅ COMPLETA (12 secciones).
 
-Archivo: `chino/basico3/clase04.html`. La clase se arma en vivo: Basti dicta
+**Clase 06 (sábado 27 de junio) NO existe y no debe crearse todavía**: Basti faltó
+por una prueba en la universidad. Va a conseguir el apunte con ayuda de la profe
+más adelante — no inventar contenido de esa clase mientras tanto.
+
+Hoy, sábado 4 de julio de 2026, toca la **Clase 07** (en vivo).
+
+Archivo: `chino/basico3/clase05.html`. La clase se arma en vivo: Basti dicta
 temas en pinyin y se agregan secciones una a una (patrón de audio: script
 reusable que extrae hz, filtra contra mapping.json, genera MP3 y reconstruye
 el `audioMap` del HTML).
 
-Clase 04 (14 secciones): salud (你身体怎么样, 舒服/不舒服, 生病, 你怎么了), la
-lluvia (会下雨吗, 会不会), 能 vs 想 + 会 vs 能 + 但是, 些 (这些/那些), clima en
-el tiempo (昨天北京天气很好, 的 vs sin 的, ayer/hoy/mañana), 5 preguntas de la
-profe, cuándo va 会, 爱+comida, vocabulario del clima (下雨/下雪/下冰雹/刮风/
-晴天/阴天/多云/有雾 + intensidad 大/小), banco de preguntas y respuestas, rincón
-de tonos (变调 de 不, 3+3), frases útiles (我能去上厕所吗, 课间/干吗), 学习, y
-el progresivo 在…呢. Cobertura HSK1 ahora 144/150.
+Clase 05 (12 secciones): el progresivo 在 presente/pasado (他在学中文 / 他学中文),
+el teléfono (喂, 打电话, 号码, el 1 = 幺), los dos 在 (estar en un lugar vs hacer
+algo) + 去…了, 什么呢 vs 吗, negar con 没 vs 不, una conversación completa, 给
+(dar / a alguien), dar números de teléfono, torpedo de números, 吧 (sugerencias),
+banco de preguntas y un diálogo final con todo.
 
 Básico 3 hasta ahora: Clase 01 (la hora: 点/分/半), Clase 02 (la rutina del día:
 醒来→睡觉, comidas, 上班/上课, partes del día, 两点, 轻声), Clase 03 (el clima:
 天气怎么样, 冷/热, 会 futuro, 主谓谓语句, 些, 变调), Clase 04 (salud + clima a
-fondo + 在…呢).
+fondo + 在…呢), Clase 05 (进行时 en presente/pasado, teléfono, 给, negación
+没/不). Clase 06 pendiente (falta el apunte). Clase 07 es la próxima a tomar.
 
 ## Flujo de trabajo
 - Basti dicta cada tema en pinyin → se arma la sección HTML siguiendo el formato.
