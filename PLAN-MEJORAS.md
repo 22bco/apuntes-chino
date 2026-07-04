@@ -15,7 +15,16 @@
 - ✅ **Fase 1.4** — `chino/DATA.md` creado (mapa del ecosistema de datos).
 - ✅ **Fase 3.1** — CONTEXT.md sincronizado con la realidad (Básico 2 = 9 clases,
   Básico 3 hasta clase07, herramientas y scripts/ agregados). CLAUDE.md ya estaba al día.
-- ⏳ **PENDIENTE de Basti**: 0.1 (rotar key — CRÍTICO), 0.3 (historial git).
+- ✅ **Fase 3.2** — `chino/404.html` on-brand creado. Falta solo activarlo en nginx
+  (`error_page 404 /404.html;`, config del VPS).
+- ⏳ **Fase 1.3 (radicales) — OJO, más complejo de lo pensado**: los datos SÍ están
+  en sync (CHAR_RADS=746 y GLOSS=323 idénticos inline vs json). PERO `radicales.html`
+  accede a `RADICALES` **posicionalmente** (`r[0]`=hz, `r[2]`=py, `r[3]`=es, `r[5]`=cat)
+  mientras `radicales.json` guarda **objetos con claves** (`{hz,py,es,cat,...}`). No es
+  un swap de fuente: hay que reescribir los accesos posicionales a claves + fetch +
+  verificar en navegador (HanziWriter). Tarea de código, no de datos.
+- ⏳ **PENDIENTE de Basti**: 0.1 (rotar key — CRÍTICO), 0.3 (historial git),
+  1.5 (borrar/mover portal raíz + pinyin-react v3 — decisiones).
 - ⏳ **PENDIENTE (espera cerrar Clase 07)**: Fase 1.1/1.2 (refactor de las 26 clases).
 - ⏳ Correcciones del análisis: `pinyin-react/dist` YA gitignoreado (sin acción);
   `basico1/index_completo.html` NO es huérfano (enlazado en index.html:248);
