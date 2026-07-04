@@ -15,3 +15,6 @@ chino/material/hsk1/simulacros/
 # Python (scripts/)
 __pycache__/
 *.pyc
+
+# pinyin-react (prototipo v3 eliminado del repo; quedan artefactos locales de build)
+pinyin-react/

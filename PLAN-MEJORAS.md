@@ -17,6 +17,16 @@
   Básico 3 hasta clase07, herramientas y scripts/ agregados). CLAUDE.md ya estaba al día.
 - ✅ **Fase 3.2** — `chino/404.html` on-brand creado. Falta solo activarlo en nginx
   (`error_page 404 /404.html;`, config del VPS).
+- ✅ **Fase 1.1/1.2 COMPLETA** — las 26 clases usan CSS/JS compartido:
+  `/assets/clase.css`+`clase.js` (basico2/3) y `/assets/clase-b1.css`+`clase-b1.js`
+  (basico1). Cada página conserva solo su `window.audioMap` + delta CSS específico.
+  clase.js añade fallback a mapping.json (1.2) y aria-label (3.3). Migrador
+  `scripts/migrate_clase.py`. **Cada archivo verificado con Playwright: estilos
+  computados idénticos al original, botones/toggle sin regresión, 0 errores.**
+  Special cases resueltos a mano: basico3/clase01 (reloj preservado), basico2/clase06
+  (5 <style>, migra solo la base), basico2/clase01,02 (solo-CSS, conservan su marcado
+  dinámico de pinyin-col).
+- ✅ **Fase 1.5 (parcial)** — pinyin-react (v3) eliminado del repo + gitignorado.
 - ⏳ **Fase 1.3 (radicales) — OJO, más complejo de lo pensado**: los datos SÍ están
   en sync (CHAR_RADS=746 y GLOSS=323 idénticos inline vs json). PERO `radicales.html`
   accede a `RADICALES` **posicionalmente** (`r[0]`=hz, `r[2]`=py, `r[3]`=es, `r[5]`=cat)
@@ -24,11 +34,12 @@
   un swap de fuente: hay que reescribir los accesos posicionales a claves + fetch +
   verificar en navegador (HanziWriter). Tarea de código, no de datos.
 - ⏳ **PENDIENTE de Basti**: 0.1 (rotar key — CRÍTICO), 0.3 (historial git),
-  1.5 (borrar/mover portal raíz + pinyin-react v3 — decisiones).
-- ⏳ **PENDIENTE (espera cerrar Clase 07)**: Fase 1.1/1.2 (refactor de las 26 clases).
-- ⏳ Correcciones del análisis: `pinyin-react/dist` YA gitignoreado (sin acción);
-  `basico1/index_completo.html` NO es huérfano (enlazado en index.html:248);
-  `pinyin.html`(v1) y `pinyinv2.html`(v2) ambas vivas y enlazadas (consolidar = decisión).
+  1.5 restante (portal raíz + otras materias; consolidar pinyin v1/v2 — decisiones).
+- ⏳ Correcciones del análisis: `basico1/index_completo.html` NO es huérfano
+  (enlazado en index.html:248); `pinyin.html`(v1) y `pinyinv2.html`(v2) ambas
+  vivas y enlazadas (consolidar = decisión).
+- 📝 Clases NUEVAS (clase06, clase07 en adelante): si se copian de una plantilla
+  con `<style>`/`<script>` inline, pasarles `scripts/migrate_clase.py` al cerrarlas.
 
 ## ⚠️ Reglas de ejecución (leer antes de empezar)
 
