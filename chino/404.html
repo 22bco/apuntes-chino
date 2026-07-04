@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Página no encontrada · chino.basti.cl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+  :root {
+    --red: #c0392b; --red-bright: #e74c3c; --navy: #1a1a2e;
+    --bg: #faf8f5; --ink: #2c2c2c;
+    --mono: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--mono); background: var(--bg); color: var(--ink);
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center; padding: 24px;
+  }
+  .zh { font-family: 'Noto Sans SC', var(--mono); }
+  .code {
+    font-family: 'Noto Sans SC', sans-serif; font-size: 7rem; font-weight: 700;
+    color: var(--red-bright); line-height: 1; letter-spacing: 2px;
+  }
+  .hz-big { font-size: 3.2rem; font-weight: 700; color: var(--navy); margin: 8px 0 4px; }
+  .py { color: var(--red); font-size: 1rem; letter-spacing: 1px; }
+  .msg { margin: 18px 0 6px; font-size: 1.05rem; }
+  .sub { color: #777; font-size: 0.9rem; margin-bottom: 30px; }
+  .links { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  a.btn {
+    display: inline-block; padding: 11px 20px; border-radius: 10px;
+    text-decoration: none; font-size: 0.92rem; font-weight: 600;
+    background: var(--red); color: #fff; transition: background .15s;
+  }
+  a.btn:hover { background: var(--red-bright); }
+  a.btn.ghost { background: transparent; color: var(--red); border: 1.5px solid var(--red-tint, #f0c9c2); }
+  a.btn.ghost:hover { background: #fdecea; }
+  footer { margin-top: 40px; color: #aaa; font-size: 0.78rem; }
+</style>
+</head>
+<body>
+  <div class="code">404</div>
+  <div class="hz-big zh">迷路了</div>
+  <div class="py">mílù le — te perdiste</div>
+  <p class="msg">Esta página no existe (o se mudó).</p>
+  <p class="sub">Puede que el enlace tenga el prefijo <code>/chino/</code> de más, o que la página ya no esté.</p>
+  <div class="links">
+    <a class="btn" href="/">🏠 Volver al inicio</a>
+    <a class="btn ghost" href="/buscador.html">🔍 Buscador</a>
+  </div>
+  <footer>chino.basti.cl · 加油 (jiāyóu, ¡ánimo!)</footer>
+</body>
+</html>
