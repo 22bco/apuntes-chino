@@ -15,25 +15,32 @@ Publicado en **chino.basti.cl** vía GitHub Actions.
 
 ```
 chino/
-├── index.html              # Dashboard principal (cards con todas las clases + herramientas)
+├── index.html              # Dashboard principal (cards con todas las clases + herramientas + buscador top-8)
 ├── flashcards.html         # Herramienta: flashcards interactivas
 ├── buscador.html           # Herramienta: buscador por hanzi/pinyin/español
+├── buscador-core.js        # Motor de búsqueda compartido (window.ChinoSearch): lo usan buscador.html e index.html
 ├── listening.html          # Herramienta: práctica de comprensión auditiva
+├── typing.html             # Juego: escribir en pinyin/hanzi la palabra en español (fuente vocab_hsk1.json)
+├── lluvia.html             # Arcade: reventar palabras que caen escribiendo su pinyin (fuente vocab_hsk1.json)
+├── pinyin.html             # Herramienta: pizarra de pinyin v1 (muy enlazada desde footers de clases)
+├── pinyinv2.html           # Herramienta: pizarra de pinyin v2 (ver PLAN-MEJORAS 1.5: consolidar v1/v2)
+├── vocab.json              # Corpus del buscador: {hz,py,es,src} por clase (~399)
+├── sinonimos.json          # ~95 grupos de sinónimos español para expandir consultas del buscador
 │
 ├── basico1/                # Básico 1 (diciembre 2025) — 10 capítulos + apéndice
 │   ├── index.html          # Índice con cards
-│   ├── index_completo.html # Versión monolítica original (backup)
+│   ├── index_completo.html # Versión monolítica original (backup, aún enlazada en index.html:248)
 │   ├── cap01.html .. cap10.html
 │   └── capapendice.html
 │
-├── basico2/                # Básico 2 (marzo-abril 2026)
+├── basico2/                # Básico 2 (marzo-mayo 2026) — 9 clases
 │   ├── index.html          # Índice con cards
 │   ├── clase01.html .. clase09.html
 │   └── clase**.pdf         # PDFs generados para imprimir/compartir
 │
-├── basico3/                # Básico 3 (mayo-junio 2026, en curso)
-│   ├── index.html
-│   └── clase01.html .. clase03.html
+├── basico3/                # Básico 3 (mayo-julio 2026, en curso)
+│   ├── index.html          # Índice (enlaza clase01–05; la 06 no existe, ver CLAUDE.md)
+│   └── clase01.html .. clase05.html + clase07.html
 │
 ├── hsk1/                   # ⭐ HSK 1 POR TEMAS (jun 2026) — contenido reorganizado por sílabo
 │   ├── index.html          # Hub con tracker de cobertura (150 chips) + "mi progreso" (SRS)
@@ -68,17 +75,28 @@ chino/
 ├── radicales.json          # ⭐ DATO COMPARTIDO: {radicales[], charRads, gloss, cats}
 │                           #   extraído de radicales.html. Lo consumen buscador.html e index.html.
 │                           #   ⚠️ radicales.html aún tiene su copia inline (regenerar el JSON si cambia).
-├── material/               # 📚 Material de estudio HSK 1 (~230 MB, se despliega)
-│   ├── index.html          # Página de material: libros + simulacros con audio
+├── material/               # 📚 Material de estudio HSK 1
+│   ├── index.html          # Página de material: libros + simulacros con audio (SÍ versionada)
 │   └── hsk1/
-│       ├── libros/         # 4 PDF (Textbook, Workbook, Course, Answers)
-│       └── simulacros/     # 4 mock-tests (exam.pdf + answer.pdf + audios MP3)
+│       ├── libros/         # 4 PDF (copyright) — GITIGNORADO, local, NO en el repo
+│       └── simulacros/     # 4 mock-tests — GITIGNORADO, local, NO en el repo
 │
-└── audio/                  # 2000+ archivos MP3 (voz Lily de ElevenLabs)
-    ├── mapping.json        # Mapa texto_chino → filename.mp3
-    ├── vocab_listening.json # Vocab con pinyin/español para listening tool
-    └── zh_XXXXXXXXXX.mp3   # Nombres hasheados MD5 de los textos
+└── audio/                  # 3000+ archivos MP3 (voz Lily de ElevenLabs)
+    ├── mapping.json        # ⭐ FUENTE DE VERDAD: texto_chino → filename.mp3 (la escribe gen_audio.py)
+    ├── vocab_listening.json # Frases con pinyin/español para la herramienta de listening
+    └── zh_XXXXXXXXXX.mp3   # Nombre = zh_{md5(texto)[:10]}.mp3
+
+scripts/                    # Utilidades versionadas (stdlib, sin dependencias)
+├── gen_audio.py            # Genera audio ElevenLabs + actualiza mapping.json y audioMap (usa $ELEVENLABS_API_KEY)
+└── check_site.py           # Validador de integridad (CI): links /chino/, audio, hsk1, json, secretos
+
+# Portal personal (NO lo despliega este repo — el deploy solo hace rsync de chino/):
+index.html, 4b/, usm/, programacion/, robotica/   # apuntes.basti.cl; ver PLAN-MEJORAS 1.5
+pinyin-react/               # Prototipo v3 de pizarra pinyin (no enlazado, no desplegado; dist/ y node_modules gitignorados)
 ```
+
+> **Datos JSON:** ver `chino/DATA.md` para el mapa completo del ecosistema de datos
+> (qué guarda cada JSON, quién lo consume y dónde se solapan).
 
 ---
 
@@ -99,7 +117,7 @@ chino/
 | 10 | Repaso | iniciales + vocabulario |
 | apéndice | Hoja de Trucos | estructuras, partículas, clasificadores |
 
-### Básico 2 (marzo-abril 2026) — 7 clases
+### Básico 2 (marzo-mayo 2026) — 9 clases
 | Clase | Fecha | Temas principales |
 |-------|-------|-------------------|
 | 01 | 7 mar 2026 | 会, 有, 的, 很 — familia, adjetivos |
@@ -109,6 +127,8 @@ chino/
 | 05 | 11 abr 2026 | 和, 想, 哪儿/做什么, 周 vs 星期, bebidas, 杯子 vs 杯 |
 | 06 | 18 abr 2026 | 想 vs 要, 这/那, 多少, 块/元/人民币, números |
 | 07 | 25 abr 2026 | 在+lugar+verbo, 这儿/那儿/哪儿, preposiciones (上下前后里外中旁), 正在, 的 (humanos vs cosas), profesiones, sistema educativo |
+| 08 | 9 may 2026 | especificar la persona (mi hermano/amigo/mamá en vez de solo 他) |
+| 09 | 16 may 2026 | 说话 y vocabulario de hablar/decir |
 
 ---
 
@@ -277,7 +297,7 @@ Al hacer push a `main`:
 
 - **Libro**: HSK Standard Course 1 (Principiante 2) — lecciones 6-7 ≈ Básico 2 clases 02-03
 - **dong-chinese.com**: para ver trazos de cada carácter
-- **ElevenLabs**: API key en `CONTEXT.md` (sección audio)
+- **ElevenLabs**: API key en la variable de entorno `ELEVENLABS_API_KEY` (NUNCA en el repo)
 
 ---
 

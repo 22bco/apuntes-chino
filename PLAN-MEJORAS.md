@@ -5,6 +5,22 @@
 > completa y estado de git. Ejecutar EN ORDEN: cada fase es independiente pero
 > P0 es urgente. Marcar `[x]` al completar cada ítem y commitear este archivo.
 
+## 📊 Progreso (actualizado 4 jul 2026)
+
+- ✅ **Fase 2 completa** — `scripts/gen_audio.py`, `scripts/check_site.py`,
+  `.github/workflows/check.yml`, `.gitignore` (.env, __pycache__). Commit `ed65dc5`.
+- ✅ **Fase 0.2** — key fuera de CONTEXT.md (→ `$ELEVENLABS_API_KEY`).
+- ✅ **Fase 0.4** — PDFs de `material/` ya gitignorados (fuera del repo). Falta solo
+  decidir el historial (0.3).
+- ✅ **Fase 1.4** — `chino/DATA.md` creado (mapa del ecosistema de datos).
+- ✅ **Fase 3.1** — CONTEXT.md sincronizado con la realidad (Básico 2 = 9 clases,
+  Básico 3 hasta clase07, herramientas y scripts/ agregados). CLAUDE.md ya estaba al día.
+- ⏳ **PENDIENTE de Basti**: 0.1 (rotar key — CRÍTICO), 0.3 (historial git).
+- ⏳ **PENDIENTE (espera cerrar Clase 07)**: Fase 1.1/1.2 (refactor de las 26 clases).
+- ⏳ Correcciones del análisis: `pinyin-react/dist` YA gitignoreado (sin acción);
+  `basico1/index_completo.html` NO es huérfano (enlazado en index.html:248);
+  `pinyin.html`(v1) y `pinyinv2.html`(v2) ambas vivas y enlazadas (consolidar = decisión).
+
 ## ⚠️ Reglas de ejecución (leer antes de empezar)
 
 1. **NUNCA leer los HTML de clases completos** (46-172 KB c/u, hay 31+). Toda
