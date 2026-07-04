@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Básico 3 — Clase 07 · Apuntes Chino</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
+  body { font-family: 'Noto Sans SC', -apple-system, Arial, sans-serif; max-width: 860px; margin: 0 auto; padding: 20px 24px 60px; color: #222; font-size: 15px; background: #fafafa; }
+  header { background: #1a1a2e; color: #fff; padding: 28px 28px 22px; border-radius: 12px; margin-bottom: 28px; }
+  header h1 { font-size: 1.6em; margin: 0 0 4px; color: #e74c3c; }
+  header p { margin: 0; color: #aaa; font-size: 0.88em; }
+  nav { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 16px 20px; margin-bottom: 28px; }
+  nav h3 { margin: 0 0 10px; font-size: 0.82em; text-transform: uppercase; letter-spacing: 1px; color: #999; }
+  nav li { margin: 3px 0; font-size: 0.9em; }
+  nav a { color: #c0392b; text-decoration: none; }
+  nav a:hover { text-decoration: underline; }
+  h2 { font-size: 1.1em; color: #fff; background: #c0392b; padding: 9px 16px; border-radius: 8px; margin-top: 36px; margin-bottom: 14px; }
+  h2.green { background: #27ae60; }
+  h2.blue { background: #2980b9; }
+  h2.gold { background: #d4820a; }
+  h2.gray { background: #555; }
+  h2.purple { background: #8e44ad; }
+  h3 { color: #444; font-size: 0.95em; margin: 16px 0 8px; border-left: 3px solid #e74c3c; padding-left: 10px; }
+  .box { border-radius: 8px; padding: 12px 16px; margin: 10px 0; font-size: 0.92em; }
+  .box.grammar { background: #fff3e0; border: 1.5px solid #ff9800; }
+  .box.structure { background: #fdecea; border: 1.5px solid #c0392b; }
+  .box.note { background: #e8f5e9; border-left: 4px solid #27ae60; border-radius: 0 8px 8px 0; }
+  .box.warn { background: #fce4ec; border-left: 4px solid #e91e63; border-radius: 0 8px 8px 0; }
+  .box.tip { background: #e3f2fd; border-left: 4px solid #1976d2; border-radius: 0 8px 8px 0; }
+  code { background: #f0f0f0; padding: 2px 7px; border-radius: 4px; font-size: 0.88em; font-family: monospace; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em; background: #fff; border-radius: 8px; overflow: hidden; }
+  th { background: #c0392b; color: #fff; padding: 8px 12px; text-align: left; font-size: 0.85em; }
+  tr:nth-child(even) { background: #fafafa; }
+  td { padding: 7px 12px; border-bottom: 1px solid #f0f0f0; }
+  .hz { font-size: 1.15em; font-weight: bold; color: #c0392b; }
+  .hz a { color: #c0392b; text-decoration: none; border-bottom: 1px dotted #c0392b; }
+  .hz a:hover { color: #e74c3c; border-bottom: 1px solid #e74c3c; }
+  .dialog { background: #fff; border-radius: 10px; border: 1px solid #e5e5e5; padding: 14px 16px; margin: 10px 0; }
+  .da { background: #e3f2fd; padding: 8px 14px; border-radius: 8px; margin: 5px 0; }
+  .db { background: #f3e5f5; padding: 8px 14px; border-radius: 8px; margin: 5px 0; margin-left: 40px; }
+  .ex { background: #fffde7; border: 1px solid #f9a825; border-radius: 8px; padding: 14px 18px; margin: 10px 0; }
+  .ex ol { margin: 8px 0 0; padding-left: 22px; }
+  .ex li { margin: 7px 0; }
+  .pinyin-toggle { position: fixed; bottom: 20px; right: 20px; background: #1a1a2e; color: #fff; border: none; padding: 10px 16px; border-radius: 30px; cursor: pointer; font-size: 0.85em; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,.25); transition: background .2s; }
+  .pinyin-toggle:hover { background: #c0392b; }
+  .hide-pinyin .pinyin-col { visibility: hidden; }
+  @media print {
+    .no-print, .pinyin-toggle { display: none !important; }
+    body { background: #fff !important; padding: 10px 20px; font-size: 12px; max-width: 100%; }
+    header { background: #1a1a2e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 16px 20px 12px; margin-bottom: 16px; }
+    header h1 { font-size: 1.3em; }
+    nav { padding: 10px 14px; margin-bottom: 16px; page-break-after: avoid; }
+    h2 { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-size: 1em; padding: 6px 12px; margin-top: 20px; margin-bottom: 8px; page-break-after: avoid; }
+    h3 { font-size: 0.85em; margin: 10px 0 6px; page-break-after: avoid; }
+    .box { padding: 8px 12px; margin: 6px 0; font-size: 0.85em; page-break-inside: avoid; }
+    table { font-size: 0.82em; page-break-inside: avoid; margin: 6px 0; }
+    th { padding: 5px 8px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    td { padding: 4px 8px; }
+    .hz { font-size: 1em; }
+    .hz a { border-bottom: none !important; color: #c0392b !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .dialog { padding: 8px 12px; margin: 6px 0; page-break-inside: avoid; }
+    .da, .db { padding: 5px 10px; }
+    .db { margin-left: 20px; }
+    footer { font-size: 0.7em; margin-top: 16px; }
+  }
+  .key { text-decoration: underline; text-decoration-color: #e74c3c; text-underline-offset: 3px; text-decoration-thickness: 2px; }
+  footer { text-align: center; color: #bbb; font-size: 0.8em; margin-top: 40px; }
+  .blank { display: inline-block; min-width: 64px; border-bottom: 2px solid #c0392b; text-align: center; color: #c0392b; font-weight: bold; }
+
+  /* Inter para pinyin: mejor renderizado de diacríticos (ī, ǐ, ǎ, ò...). */
+  .pinyin-col,
+  .ex em,
+  .dialog em,
+  .dialog .da em,
+  .dialog .db em,
+  .box em,
+  em {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'ss01' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  /* responsive-tables */
+  @media (max-width: 600px) {
+    table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    body { padding-left: 14px; padding-right: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Básico 3 — Clase 07</h1>
+  <p>4 de julio, 2026 · Centro Cultural Chino · <a href="/" style="color:#e74c3c">← Volver al índice</a> · <a href="/pinyin.html" style="color:#e74c3c">🔤 Pizarra de Pinyin</a></p>
+</header>
+
+<div class="box tip" style="margin-bottom: 24px;">
+  🧭 <strong>En esta clase.</strong> Arrancamos preguntando por dónde estuvo alguien en el pasado: <span class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a></span> ("¿adónde fuiste?"). Es la vuelta del patrón <span class="hz"><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a>…<a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a></span> que viste en la <a href="clase05.html#s3" style="color:#1976d2;">Clase 05</a>, ahora convertido en pregunta con <span class="hz"><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a></span>. 📍
+</div>
+
+<nav>
+  <h3>Índice</h3>
+  <div style="margin:12px 0 4px; font-weight:700; color:#c0392b; font-size:0.88em;">📍 Preguntar adónde fuiste</div>
+  <ol>
+    <li><a href="#s1">昨天上午你去哪儿了？ — preguntar adónde fuiste (去 + 哪儿 + 了) 📍</a></li>
+    <li><a href="#s2">昨天早上你去哪儿了？ — 早上 vs 上午 en la pregunta 🌄</a></li>
+  </ol>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<h2 id="s1">📍 昨天上午你去哪儿了？ — preguntar adónde fuiste</h2>
+
+<div class="box tip">
+  🔁 <strong>Viene de la Clase 05.</strong> Ahí viste <a href="clase05.html#s3" style="color:#1976d2;">他不在家，他去学校了</a> ("no está en casa, se fue a la escuela") — el patrón <span class="hz"><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a></span> + lugar + <span class="hz"><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a></span> para decir que alguien <strong>ya se fue</strong> a un lugar. Hoy lo convertimos en pregunta reemplazando el lugar por <span class="hz"><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a></span> (nǎr, "dónde") que ya conoces de Básico 2.
+</div>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr>
+    <td class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><span class="key"><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a></span><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>？</td>
+    <td class="pinyin-col">nǐ qù nǎr le?</td>
+    <td>¿Adónde fuiste? 📍</td>
+  </tr>
+  <tr>
+    <td class="hz"><a href="https://www.dong-chinese.com/wiki/昨" target="_blank">昨</a><a href="https://www.dong-chinese.com/wiki/天" target="_blank">天</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>？</td>
+    <td class="pinyin-col">zuótiān shàngwǔ nǐ qù nǎr le?</td>
+    <td>¿Adónde fuiste ayer en la mañana? 🕗</td>
+  </tr>
+</table>
+
+<div class="box structure">
+  🧩 <strong>Estructura:</strong> <code>(Tiempo) + Sujeto + 去 + 哪儿 + 了？</code> = "¿adónde fue/fuiste (ya)?".<br>
+  El <span class="hz"><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a></span> al final marca que la acción <strong>ya ocurrió</strong> — igual que en <span class="hz"><a href="https://www.dong-chinese.com/wiki/他" target="_blank">他</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/校" target="_blank">校</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a></span> de la Clase 05.
+</div>
+
+<div class="box grammar">
+  🕐 <strong>El tiempo se puede mover.</strong> Una expresión de tiempo como <span class="hz"><a href="https://www.dong-chinese.com/wiki/昨" target="_blank">昨</a><a href="https://www.dong-chinese.com/wiki/天" target="_blank">天</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a></span> puede ir <strong>antes del sujeto</strong> (al principio de la frase) o <strong>después del sujeto</strong>, pero siempre <strong>antes del verbo</strong>:
+  <table style="margin-top:8px;">
+    <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+    <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/昨" target="_blank">昨</a><a href="https://www.dong-chinese.com/wiki/天" target="_blank">天</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>？</td><td class="pinyin-col">zuótiān shàngwǔ nǐ qù nǎr le?</td><td>(tiempo primero) 🕗</td></tr>
+    <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/昨" target="_blank">昨</a><a href="https://www.dong-chinese.com/wiki/天" target="_blank">天</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>？</td><td class="pinyin-col">nǐ zuótiān shàngwǔ qù nǎr le?</td><td>(sujeto primero) — mismo significado 🕗</td></tr>
+  </table>
+  Las dos son correctas y se escuchan igual de naturales.
+</div>
+
+<h3>Respondiendo: 去 + lugar + 了 / 没去</h3>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/校" target="_blank">校</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>。</td><td class="pinyin-col">wǒ qù xuéxiào le.</td><td>Fui a la escuela 🏫</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/商" target="_blank">商</a><a href="https://www.dong-chinese.com/wiki/店" target="_blank">店</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>。</td><td class="pinyin-col">wǒ qù shāngdiàn le.</td><td>Fui a la tienda 🏪</td></tr>
+  <tr><td class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a>，<a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/家" target="_blank">家</a>。</td><td class="pinyin-col">wǒ méi qù, wǒ zài jiā.</td><td>No fui, me quedé en casa 🏠</td></tr>
+</table>
+
+<div class="box warn">
+  🚫 <strong>Negar con 没, no con 不.</strong> Como ya viste en la <a href="clase05.html#s5" style="color:#a4650a;">Clase 05 §5</a>, las acciones <strong>ya pasadas</strong> se niegan con <span class="hz"><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a></span>: <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a></span> (no fui), nunca <span style="text-decoration:line-through; opacity:.6;">我不去了</span> para este caso. Y ojo: cuando <span class="hz"><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a></span> entra, el <span class="hz"><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a></span> se cae — no se dice <span style="text-decoration:line-through; opacity:.6;">没去了</span>.
+</div>
+
+<div class="box note">
+  🏪 <strong>Palabra nueva: 商店 (shāngdiàn) = tienda.</strong> Se construye con <span class="hz"><a href="https://www.dong-chinese.com/wiki/商" target="_blank">商</a></span> (comercio) + <span class="hz"><a href="https://www.dong-chinese.com/wiki/店" target="_blank">店</a></span> (local/tienda). Otro lugar más para responder <span class="hz"><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a></span>, junto con <span class="hz"><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/校" target="_blank">校</a></span> (escuela) y <span class="hz"><a href="https://www.dong-chinese.com/wiki/家" target="_blank">家</a></span> (casa) que ya conocías. 🛍️
+</div>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/昨" target="_blank">昨</a><a href="https://www.dong-chinese.com/wiki/天" target="_blank">天</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>？</span><br><em>zuótiān shàngwǔ nǐ qù nǎr le? — ¿Adónde fuiste ayer en la mañana?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/商" target="_blank">商</a><a href="https://www.dong-chinese.com/wiki/店" target="_blank">店</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>。<a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>？</span><br><em>wǒ qù shāngdiàn le. nǐ ne? — Fui a la tienda. ¿Y tú?</em></div>
+  <div class="da"><strong>A:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/没" target="_blank">没</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a>，<a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/在" target="_blank">在</a><a href="https://www.dong-chinese.com/wiki/家" target="_blank">家</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/习" target="_blank">习</a><a href="https://www.dong-chinese.com/wiki/呢" target="_blank">呢</a>。</span><br><em>wǒ méi qù, wǒ zài jiā xuéxí ne. — No fui, estaba estudiando en casa.</em></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<h2 id="s2" class="blue">🌄 昨天早上你去哪儿了？ — 早上 vs 上午 en la pregunta</h2>
+
+<div class="box tip">
+  🔁 <strong>Viene de la Clase 02.</strong> Ahí viste la <a href="clase02.html#s6" style="color:#1976d2;">diferencia 早上 vs 上午</a>: <span class="hz"><a href="https://www.dong-chinese.com/wiki/早" target="_blank">早</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a></span> (zǎoshang) es <strong>temprano</strong> (al recién levantarse, ~6–9 h), y <span class="hz"><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a></span> (shàngwǔ) es la <strong>media mañana</strong> hasta el mediodía. El mismo patrón <span class="hz"><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a></span> de la §1 funciona igual con cualquiera de las dos. 🕘
+</div>
+
+<table>
+  <tr><th>Hanzi</th><th class="pinyin-col">Pinyin</th><th>Español</th></tr>
+  <tr>
+    <td class="hz"><a href="https://www.dong-chinese.com/wiki/昨" target="_blank">昨</a><a href="https://www.dong-chinese.com/wiki/天" target="_blank">天</a><span class="key"><a href="https://www.dong-chinese.com/wiki/早" target="_blank">早</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a></span><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>？</td>
+    <td class="pinyin-col">zuótiān zǎoshang nǐ qù nǎr le?</td>
+    <td>¿Adónde fuiste ayer temprano en la mañana? 🌄</td>
+  </tr>
+  <tr>
+    <td class="hz"><a href="https://www.dong-chinese.com/wiki/昨" target="_blank">昨</a><a href="https://www.dong-chinese.com/wiki/天" target="_blank">天</a><span class="key"><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a></span><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>？</td>
+    <td class="pinyin-col">zuótiān shàngwǔ nǐ qù nǎr le?</td>
+    <td>¿Adónde fuiste ayer en la mañana (media mañana)? 📍</td>
+  </tr>
+</table>
+
+<div class="box warn">
+  🕘 <strong>No son intercambiables.</strong> Si alguien salió a las 7 y volvió antes de las 9, se pregunta con <span class="hz"><a href="https://www.dong-chinese.com/wiki/早" target="_blank">早</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a></span>. Si fue entre las 9 y el mediodía, con <span class="hz"><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a></span>. En español decimos "en la mañana" para ambos casos, pero en chino el rango de horas importa. ⏰
+</div>
+
+<div class="dialog">
+  <div class="da"><strong>A:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/昨" target="_blank">昨</a><a href="https://www.dong-chinese.com/wiki/天" target="_blank">天</a><a href="https://www.dong-chinese.com/wiki/早" target="_blank">早</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/你" target="_blank">你</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>？</span><br><em>zuótiān zǎoshang nǐ qù nǎr le? — ¿Adónde fuiste ayer temprano en la mañana?</em></div>
+  <div class="db"><strong>B:</strong> <span class="hz"><a href="https://www.dong-chinese.com/wiki/我" target="_blank">我</a><a href="https://www.dong-chinese.com/wiki/早" target="_blank">早</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/学" target="_blank">学</a><a href="https://www.dong-chinese.com/wiki/校" target="_blank">校</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a>。</span><br><em>wǒ zǎoshang qù xuéxiào le. — Fui a la escuela temprano en la mañana.</em></div>
+</div>
+
+<div class="box note">
+  🧭 <strong>Vamos armando la serie completa.</strong> Ya tenemos <span class="hz"><a href="https://www.dong-chinese.com/wiki/早" target="_blank">早</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a></span> y <span class="hz"><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a></span>. Faltan <span class="hz"><a href="https://www.dong-chinese.com/wiki/下" target="_blank">下</a><a href="https://www.dong-chinese.com/wiki/午" target="_blank">午</a></span> (tarde) y <span class="hz"><a href="https://www.dong-chinese.com/wiki/晚" target="_blank">晚</a><a href="https://www.dong-chinese.com/wiki/上" target="_blank">上</a></span> (noche) — la misma pregunta <span class="hz"><a href="https://www.dong-chinese.com/wiki/去" target="_blank">去</a><a href="https://www.dong-chinese.com/wiki/哪" target="_blank">哪</a><a href="https://www.dong-chinese.com/wiki/儿" target="_blank">儿</a><a href="https://www.dong-chinese.com/wiki/了" target="_blank">了</a></span> funciona igual con cualquier franja del día. 🧩
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- ↓↓↓ AQUÍ SE AGREGAN LAS SECCIONES SIGUIENTES ↓↓↓ -->
+<!-- ═══════════════════════════════════════ -->
+
+<div style="display: flex; justify-content: space-between; margin-top: 40px; padding: 16px; background: #fff; border-radius: 10px; border: 1px solid #e5e5e5;">
+  <a href="clase05.html" style="color: #c0392b; text-decoration: none;">← Clase 05</a>
+  <a href="/" style="color: #c0392b; text-decoration: none;">↑ Índice</a>
+  <span style="color: #ccc;">Clase 08 →</span>
+</div>
+
+<footer>Básico 3 · Clase 07 · 4 jul 2026 · <a href="https://basti.cl" style="color:inherit">basti.cl</a></footer>
+
+<button class="pinyin-toggle" onclick="document.body.classList.toggle('hide-pinyin'); this.textContent = document.body.classList.contains('hide-pinyin') ? '👁 Mostrar pinyin' : '🙈 Ocultar pinyin';">🙈 Ocultar pinyin</button>
+
+<script>
+const AUDIO_BASE = '/audio/';
+const audioMap = {
+  "上午": "zh_f8fbeae194.mp3",
+  "下午": "zh_e2eb289cc3.mp3",
+  "了": "zh_163773fb21.mp3",
+  "他去学校了": "zh_469d6a6665.mp3",
+  "你去哪儿了": "zh_c1f611acb4.mp3",
+  "你去哪儿了？": "zh_37304381a1.mp3",
+  "你昨天上午去哪儿了？": "zh_6649ac88a5.mp3",
+  "去": "zh_dfb9366c91.mp3",
+  "去…了": "zh_b15a1576c8.mp3",
+  "去哪儿了": "zh_abff070542.mp3",
+  "哪儿": "zh_92c5455654.mp3",
+  "商": "zh_85f5c20bf3.mp3",
+  "学校": "zh_413b738061.mp3",
+  "家": "zh_a6cdd2a00b.mp3",
+  "店": "zh_e852c9a47d.mp3",
+  "我去商店了。": "zh_28db2fd6f6.mp3",
+  "我去商店了。你呢？": "zh_a588f63944.mp3",
+  "我去学校了。": "zh_ee7b5dbd0f.mp3",
+  "我早上去学校了。": "zh_fb6d8b20f4.mp3",
+  "我没去": "zh_4edda9cf3f.mp3",
+  "我没去，我在家。": "zh_e865aa1210.mp3",
+  "我没去，我在家学习呢。": "zh_12d65a55bc.mp3",
+  "早上": "zh_c8c0ba481d.mp3",
+  "昨天上午": "zh_06b968d609.mp3",
+  "昨天上午你去哪儿了？": "zh_99524c38ec.mp3",
+  "昨天早上你去哪儿了？": "zh_ca7706d13b.mp3",
+  "晚上": "zh_a80cc5027a.mp3",
+  "没": "zh_3672c6af97.mp3"
+};
+
+function speak(text) {
+  const file = audioMap[text];
+  if (file) { new Audio(AUDIO_BASE + file).play(); return; }
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'zh-CN'; u.rate = 0.8;
+  speechSynthesis.speak(u);
+}
+
+document.querySelectorAll('td.hz, .dialog .hz').forEach(el => {
+  const text = el.textContent.trim();
+  if (!text) return;
+  const btn = document.createElement('button');
+  btn.textContent = '🔊';
+  btn.style.cssText = 'background:none;border:none;cursor:pointer;margin-left:6px;font-size:0.9em;opacity:0.5;';
+  btn.onmouseover = () => btn.style.opacity = '1';
+  btn.onmouseout = () => btn.style.opacity = '0.5';
+  btn.onclick = (e) => { e.preventDefault(); e.stopPropagation(); speak(text); };
+  el.appendChild(btn);
+});
+</script>
+</body>
+</html>
