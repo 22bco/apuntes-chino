@@ -6,31 +6,44 @@ Tiene toda la info clave: estructura, convenciones HTML, sistema de audio (Eleve
 deploy, preferencias del usuario, etc. **Ahorra muchísimos tokens.**
 
 ## Estado actual
-Hoy, sábado 4 de julio de 2026, se está armando la **Clase 07 — Básico 3** EN VIVO
-(Basti dicta temas en pinyin y se agregan secciones una a una). Archivo:
-`chino/basico3/clase07.html`. Patrón de audio: script reusable que extrae hz,
-filtra contra mapping.json, genera MP3 y reconstruye el `audioMap` del HTML.
+**Clase 08 (sábado 11 de julio de 2026) ✅ COMPLETA** — armada en vivo (Basti
+dictó en pinyin, sección a sección). Archivo: `chino/basico3/clase08.html`.
+Cubre: §1 上个星期/这个星期/下个星期 (la lógica 上/下 del tiempo que "cae"),
+§2 上上个星期 (duplicar 上/下, escalera de 5 semanas, viaje a Curicó), §3
+你在商场买什么了/我买了一杯咖啡 (在+lugar en pasado, 了 pegado con cantidad),
+§4 我是坐飞机来的 (construcción 是…的 para enfatizar el cómo, 坐+vehículo),
+§5 认识 vs 了解 (y la doble lectura de 了: le/liǎo), §6 el año dígito por
+dígito con 年 (二零二六年, fecha completa 年→月→号→星期 con 星期六, nota 生日,
+y 满: 明年我满十八岁), §7 你和李小姐是什么时候认识的 (是…的 con cuándo/dónde,
+是 omitible en la pregunta, 小姐/什么时候/大学/同学, 这是在北京买的, negación
+不是…的 con corrección, más práctica: 昨天下午/坐地铁/高楼), §8 这个汉字怎么写/
+你会写吗 (会 de habilidad vs 会 futuro, escalera 认识→会读→会写). Al final hay
+un `<details>` escondido con una grosería que enseñaron en broma (sin .hz a
+propósito, para que no entre al pipeline de audio/buscador).
 
-**Clase 06 (sábado 27 de junio) ✅ COMPLETA** — Basti había faltado por una prueba
-en la universidad, pero consiguió las diapositivas de la profe (Centro Cultural
-Chino) y se reconstruyó el apunte desde ahí (avisar siempre que el origen es
-"diapositivas de la profe", no notas manuscritas de Basti). Cubre los tres usos
-de 了 (final de oración, pegado al verbo con cantidad, y su negación con 没),
-el sustantivo 后 ("después de"), y dos diálogos (看见张先生/开车/回来 · 去商店/
-买东西/苹果). Ojo: parte del diálogo de Clase 06 (去哪儿了/买东西/苹果) es
-**idéntico** al de Clase 07 §1 y §3 — la profe repasó ese contenido en vivo el
-mismo 4 de julio antes de seguir avanzando, por eso coincide a propósito.
+⚠️ **AUDIO PENDIENTE Clase 08**: Basti pidió "de momento sin audios". Hay ~84
+textos sin MP3 (el audioMap tiene ~74 existentes). La `ELEVENLABS_API_KEY` no
+estaba en el entorno de esa sesión (no existe `~/.zshenv`). Cuando haya key:
+`python3 scripts/gen_audio.py chino/basico3/clase08.html`. Ojo: el regex del
+script busca `const audioMap` pero las clases migradas usan `window.audioMap`
+— en la sesión del 11 jul se rellenó el audioMap con un snippet Python aparte
+(mismo patrón del script, apuntando a `window.audioMap`).
 
-Clase 07 hasta ahora (en progreso): §1 昨天上午你去哪儿了 (去+哪儿+了), §2 早上
-vs 上午 en la pregunta, §3 我去商店买东西了 (买 + dónde va 了 según haya o no
-cantidad en el objeto).
+**Clase 07 (4 de julio) ✅ COMPLETA** (去哪儿了, 早上/上午, 买东西 y dónde va 了
+con cantidad, 太…了, 啊 y sus 6 sonidos, 后 con hora exacta, 我饿了 de cambio de
+estado, 16 palabras con mapa de tonos). **Clase 06 (27 de junio) ✅ COMPLETA** —
+reconstruida de las diapositivas de la profe (Basti faltó; avisar siempre que el
+origen es "diapositivas de la profe"). Su diálogo coincide a propósito con
+Clase 07 §1/§3 (la profe repasó en vivo).
 
-Básico 3 hasta ahora: Clase 01 (la hora: 点/分/半), Clase 02 (la rutina del día:
-醒来→睡觉, comidas, 上班/上课, partes del día, 两点, 轻声), Clase 03 (el clima:
-天气怎么样, 冷/热, 会 futuro, 主谓谓语句, 些, 变调), Clase 04 (salud + clima a
-fondo + 在…呢), Clase 05 (进行时 en presente/pasado, teléfono, 给, negación
-没/不), Clase 06 (了 en sus tres formas, 后, 看见/回来/车/分钟, reconstruida de
-diapositivas), Clase 07 (去哪儿了, 早上/上午, 买东西 — en vivo, incompleta).
+Básico 3: Clase 01 (la hora), Clase 02 (rutina del día), Clase 03 (clima, 会
+futuro, 变调), Clase 04 (salud + 在…呢), Clase 05 (进行时, teléfono, 给, 没/不),
+Clase 06 (了 en 3 formas, 后), Clase 07 (去哪儿了, 买东西), Clase 08 (semanas
+上/下, 是…的, 认识/了解, 年, 满…岁). Próxima: Clase 09.
+
+**Pendiente menor**: `chino/vocab.json` (corpus del buscador) quedó sin entradas
+de B3 Clases 03-08 (la última src es "B3 Clase 02") — backfill pendiente si se
+quiere que el buscador indexe ese vocabulario por clase.
 
 **Nota de infraestructura**: hay un `PLAN-MEJORAS.md` en la raíz del repo con un
 refactor de arquitectura en curso (CSS/JS compartido en `chino/assets/clase.css`
