@@ -6,7 +6,17 @@ Tiene toda la info clave: estructura, convenciones HTML, sistema de audio (Eleve
 deploy, preferencias del usuario, etc. **Ahorra muchísimos tokens.**
 
 ## Estado actual
-**Clase 08 (sábado 11 de julio de 2026) ✅ COMPLETA** — armada en vivo (Basti
+**🆕 INTERMEDIO 1 (中级一) — arrancó el sábado 8 de agosto de 2026.**
+Nivel nuevo en `chino/intermedio1/` (índice + `clase01.html`). El andamiaje ya
+sigue el patrón migrado (`/assets/clase.css` + `/assets/clase.js`) y la Clase 01
+**no** define `window.audioMap` a propósito: `clase.js` hace fallback a
+`/audio/mapping.json`, así el 🔊 funciona mientras se arma la clase. Al cerrar:
+`python3 scripts/gen_audio.py chino/intermedio1/clase01.html` para inyectar el
+audioMap propio. `scripts/gen_stats.py` ya incluye `intermedio1/` (glob de
+clases, "última clase" y `words.i1` para vocab con `src` que empiece con `I1`).
+Básico 3 quedó cerrado (9/9) en el dashboard.
+
+**Básico 3 — Clase 08 (sábado 11 de julio de 2026) ✅ COMPLETA** — armada en vivo (Basti
 dictó en pinyin, sección a sección). Archivo: `chino/basico3/clase08.html`.
 Cubre: §1 上个星期/这个星期/下个星期 (la lógica 上/下 del tiempo que "cae"),
 §2 上上个星期 (duplicar 上/下, escalera de 5 semanas, viaje a Curicó), §3

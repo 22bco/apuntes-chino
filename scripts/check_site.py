@@ -153,6 +153,31 @@ def check_secrets(files):
             err(f"SECRET: {path}:{line}: posible API key expuesta ({m.group()[:8]}...)")
 
 
+def check_stats():
+    """stats.json (dashboard) debe estar al día con los datos fuente."""
+    path = os.path.join("chino", "stats.json")
+    gen = os.path.join("scripts", "gen_stats.py")
+    if not os.path.exists(path):
+        warn("chino/stats.json no existe — corré: python3 scripts/gen_stats.py")
+        return
+    if not os.path.exists(gen):
+        return
+    try:
+        import importlib.util
+
+        spec = importlib.util.spec_from_file_location("gen_stats", gen)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        fresh = json.dumps(mod.build_stats(), ensure_ascii=False, sort_keys=True)
+        on_disk = json.dumps(
+            json.load(open(path, encoding="utf-8")), ensure_ascii=False, sort_keys=True
+        )
+        if fresh != on_disk:
+            warn("chino/stats.json desactualizado — corré: python3 scripts/gen_stats.py")
+    except Exception as e:  # noqa: BLE001
+        warn(f"no se pudo verificar stats.json: {e}")
+
+
 def main():
     files = tracked_files()
     htmls = html_files(files)
@@ -169,6 +194,7 @@ def main():
     check_hsk1(files)
     check_json(files)
     check_secrets(files)
+    check_stats()
 
     print(f"Revisados {len(htmls)} HTML, {len(files)} archivos versionados.")
     for w in warnings:

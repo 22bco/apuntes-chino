@@ -25,6 +25,39 @@
     speechSynthesis.speak(u);
   };
 
+  /* Auto-link de hanzi → dong-chinese.com.
+     Evita tener que escribir un <a> por carácter en el HTML (ver CONTEXT.md).
+     Es idempotente: los caracteres que YA vienen dentro de un <a> (todas las clases
+     de basico2/basico3 escritas a mano) se dejan intactos. */
+  const HAN = /[一-鿿]/;
+  const WIKI = 'https://www.dong-chinese.com/wiki/';
+
+  document.querySelectorAll('.hz').forEach(root => {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const pending = [];
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      if (node.parentElement.closest('a')) continue;   // ya enlazado a mano
+      if (HAN.test(node.nodeValue)) pending.push(node);
+    }
+    pending.forEach(node => {
+      const frag = document.createDocumentFragment();
+      for (const ch of node.nodeValue) {
+        if (HAN.test(ch)) {
+          const a = document.createElement('a');
+          a.href = WIKI + ch;
+          a.target = '_blank';
+          a.rel = 'noopener';
+          a.textContent = ch;
+          frag.appendChild(a);
+        } else {
+          frag.appendChild(document.createTextNode(ch));
+        }
+      }
+      node.replaceWith(frag);
+    });
+  });
+
   // Botón 🔊 en cada celda/fragmento chino (td.hz en tablas, .hz dentro de diálogos).
   document.querySelectorAll('td.hz, .dialog .hz').forEach(el => {
     const text = el.textContent.trim();

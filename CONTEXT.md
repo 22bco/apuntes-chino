@@ -38,9 +38,13 @@ chino/
 │   ├── clase01.html .. clase09.html
 │   └── clase**.pdf         # PDFs generados para imprimir/compartir
 │
-├── basico3/                # Básico 3 (mayo-julio 2026, en curso)
-│   ├── index.html          # Índice (enlaza clase01–05; la 06 no existe, ver CLAUDE.md)
-│   └── clase01.html .. clase05.html + clase07.html
+├── basico3/                # Básico 3 (mayo-julio 2026) — 9 clases, nivel COMPLETO
+│   ├── index.html          # Índice con cards
+│   └── clase01.html .. clase09.html
+│
+├── intermedio1/            # ⭐ Intermedio 1 中级一 (agosto 2026, EN CURSO)
+│   ├── index.html          # Índice con cards
+│   └── clase01.html        # 8 ago 2026 — patrón migrado (/assets/clase.css + clase.js)
 │
 ├── hsk1/                   # ⭐ HSK 1 POR TEMAS (jun 2026) — contenido reorganizado por sílabo
 │   ├── index.html          # Hub con tracker de cobertura (150 chips) + "mi progreso" (SRS)
@@ -62,8 +66,13 @@ chino/
 │   │                       #   12 temas, filtro núcleo-150/ampliación, audio por palabra
 │   └── 01-*.html .. 14-*.html  # 14 páginas temáticas autocontenidas
 │
-├── hsk2/                   # HSK 2 (adelanto, jun 2026) — guía del examen + vocab nuevo
-│   └── index.html          # Estructura examen 2.0/3.0, gramática nueva, ~200 palabras (carga vocab_hsk2.json)
+├── hsk2/                   # ⭐ HSK 2 — OBJETIVO de Intermedio 1 (ago 2026 →)
+│   ├── index.html          # Estructura examen 2.0/3.0, gramática nueva, ~200 palabras
+│   │                       #   + tracker de cobertura (chips) y ✓ en las palabras ya vistas
+│   └── hsk2-data.json      # DATO MAESTRO: 199 palabras {hz,py,es,cat,clases} — mismo esquema
+│                           #   que hsk1-data.json. Regenerable cruzando vocab_hsk2.json con
+│                           #   los .hz de chino/intermedio1/clase*.html (1 carácter: solo si
+│                           #   se enseñó suelto; 2+: basta que aparezca en una frase).
 ├── hsk3/                   # HSK 3 (adelanto, jun 2026) — guía del examen + vocab nuevo
 │   └── index.html          # Estructura examen (con escritura), gramática nueva, 500 palabras (carga vocab_hsk3.json)
 │
@@ -180,8 +189,14 @@ Reorganización del contenido de TODAS las clases según el sílabo oficial HSK 
 - `.box.warn` (rosa) — advertencia o error común
 
 ### Elementos chinos
-- Cada hanzi DEBE ir envuelto en `<a href="https://www.dong-chinese.com/wiki/X" target="_blank">X</a>`
 - Usar `<td class="hz">` en tablas y `<span class="hz">` en prosa
+- **Los hanzi se enlazan solos**: `clase.js` recorre cada `.hz` y envuelve cada carácter chino en
+  `<a href="https://www.dong-chinese.com/wiki/X">`. En archivos NUEVOS escribir el chino plano
+  (`<td class="hz">旅游</td>`) — nada de `<a>` a mano. Es idempotente: los caracteres que ya vienen
+  dentro de un `<a>` (todas las clases de basico2/basico3, escritas antes) se dejan intactos, así que
+  no hace falta migrarlas. Redujo la Clase 01 de Intermedio 1 de 1258 a ~600 líneas.
+- Badges de nivel HSK en las tablas de vocabulario: `<span class="hsk2">HSK 2</span>`
+  (y `.hsk1`), definidos en `clase.css`
 - Las tablas típicas tienen columnas: **Hanzi | Pinyin | Español**
 - La columna Pinyin debe tener `class="pinyin-col"` para el toggle
 

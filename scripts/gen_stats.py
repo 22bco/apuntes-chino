@@ -33,24 +33,46 @@ def build_stats():
         glob.glob(os.path.join(CHINO, "basico1", "cap*.html"))
         + glob.glob(os.path.join(CHINO, "basico2", "clase*.html"))
         + glob.glob(os.path.join(CHINO, "basico3", "clase*.html"))
+        + glob.glob(os.path.join(CHINO, "intermedio1", "clase*.html"))
     )
 
-    # Última clase de básico 3 (curso en curso) para "seguir estudiando"
-    b3 = sorted(glob.glob(os.path.join(CHINO, "basico3", "clase*.html")))
+    # Última clase del curso en curso (el más avanzado que exista) para "seguir estudiando"
     ultima = None
-    if b3:
-        last = os.path.basename(b3[-1]).replace(".html", "")
-        num = re.sub(r"\D", "", last)
-        ultima = {"href": f"/basico3/{last}.html", "label": f"Básico 3 · Clase {num}"}
+    for carpeta, etiqueta in (("intermedio1", "Intermedio 1"), ("basico3", "Básico 3")):
+        archivos = sorted(glob.glob(os.path.join(CHINO, carpeta, "clase*.html")))
+        if archivos:
+            last = os.path.basename(archivos[-1]).replace(".html", "")
+            num = re.sub(r"\D", "", last)
+            ultima = {
+                "href": f"/{carpeta}/{last}.html",
+                "label": f"{etiqueta} · Clase {num}",
+            }
+            break
 
     vistas = sum(1 for w in hsk if w.get("clases"))
     total = len(hsk)
     pct = round(vistas / total * 100) if total else 0
 
+    # HSK 2: objetivo de Intermedio 1 (mismo esquema que hsk1-data.json)
+    hsk2_stats = None
+    try:
+        hsk2 = load("hsk2/hsk2-data.json")
+        v2, t2 = sum(1 for w in hsk2 if w.get("clases")), len(hsk2)
+        hsk2_stats = {"vistas": v2, "total": t2,
+                      "pct": round(v2 / t2 * 100) if t2 else 0}
+    except FileNotFoundError:
+        pass
+
     # Palabras de vocabulario por curso (para las tarjetas de Niveles)
-    words = {"b2": 0, "b3": 0}
+    words = {"b2": 0, "b3": 0, "i1": 0}
     for w in vocab:
-        words["b3" if str(w.get("src", "")).startswith("B3") else "b2"] += 1
+        src = str(w.get("src", ""))
+        if src.startswith("I1"):
+            words["i1"] += 1
+        elif src.startswith("B3"):
+            words["b3"] += 1
+        else:
+            words["b2"] += 1
 
     # Palabra del día: lista compacta con nombre de audio ya resuelto
     wod = [
@@ -63,6 +85,7 @@ def build_stats():
         "palabras": len(vocab),
         "audios": len(mapping),
         "hsk": {"vistas": vistas, "total": total, "pct": pct},
+        "hsk2": hsk2_stats,
         "ultima": ultima,
         "words": words,
         "wod": wod,

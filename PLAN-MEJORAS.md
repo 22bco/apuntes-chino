@@ -265,6 +265,17 @@ distintos y sincronía manual.
 
 > Hallazgos de la revisión hecha tras completar las fases 1-3. Datos medidos, no
 > estimados. Orden recomendado: 4.1 → 4.2 → 4.3 → 4.4 (impacto/riesgo decreciente).
+>
+> ✅ **4.1 y 4.2 HECHAS (4 jul 2026)** — sin commitear (working tree de Basti):
+>   - `scripts/gen_stats.py` → `chino/stats.json` (10.6 KB / 4.25 KB gz) precalcula
+>     todos los agregados del dashboard. Carga eager de index.html: 435 KB (9 JSON)
+>     → SOLO stats.json. El corpus del buscador se carga perezoso al primer focus.
+>   - Bloque "Seguir estudiando" (última clase de stats + palabras SRS vencidas de
+>     localStorage, degrada elegante si vacío) + `chino/favicon.svg` (中 rojo).
+>   - Verificado con Playwright: widgets idénticos a la versión vieja (gráfico,
+>     donut, nube), buscador OK tras focus, SRS OK con datos, favicon OK.
+>   - `check_site.py` ahora avisa si stats.json quedó desactualizado; CLAUDE.md
+>     documenta correr gen_stats.py al cerrar clase.
 
 ### 4.1 Lazy-load del buscador del dashboard (el hallazgo principal)
 Contexto medido: `chino/index.html` hace `Promise.all` de **9 fetches = 435 KB de

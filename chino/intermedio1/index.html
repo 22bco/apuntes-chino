@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intermedio 1 · Apuntes Chino — Basti</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #1a1a2e;
+    --red: #c0392b;
+    --red-bright: #e74c3c;
+    --bg: #f5f5f7;
+    --ink: #222;
+    --muted: #8a8a93;
+  }
+  body { font-family: 'Inter', 'Noto Sans SC', -apple-system, Arial, sans-serif; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+  /* ---------- HERO ---------- */
+  header {
+    background: radial-gradient(120% 120% at 0% 0%, #2a2a4a 0%, var(--navy) 55%, #131322 100%);
+    color: #fff; padding: 48px 24px 56px; position: relative; overflow: hidden;
+  }
+  header::after {
+    content: "中级"; position: absolute; right: -10px; bottom: -34px;
+    font-family: 'Noto Sans SC', sans-serif; font-size: 9rem; font-weight: 700;
+    color: rgba(231,76,60,.08); letter-spacing: -8px; line-height: 1; pointer-events: none;
+  }
+  .header-inner { max-width: 880px; margin: 0 auto; position: relative; z-index: 1; }
+  .crumb { display: inline-flex; align-items: center; gap: 6px; color: #c9c9d6; text-decoration: none; font-size: 0.82em; opacity: .85; transition: opacity .15s; }
+  .crumb:hover { opacity: 1; }
+  header h1 { font-size: 2.1em; font-weight: 700; margin-top: 14px; letter-spacing: -.5px; }
+  header h1 .zh { color: var(--red-bright); }
+  header .subtitle { color: #b9b9c8; margin-top: 8px; font-size: 0.92em; }
+  .hero-stats { display: flex; gap: 22px; margin-top: 22px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .num { font-size: 1.5em; font-weight: 700; color: #fff; line-height: 1; }
+  .stat .lbl { font-size: 0.72em; color: #9a9ab0; text-transform: uppercase; letter-spacing: .6px; margin-top: 4px; }
+
+  /* ---------- MAIN ---------- */
+  main { max-width: 880px; margin: -28px auto 0; padding: 0 20px 60px; position: relative; z-index: 2; }
+  .section-label { font-size: 0.78em; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; margin: 30px 4px 14px; }
+
+  /* ---------- BANNER NIVEL NUEVO ---------- */
+  .kickoff {
+    background: #fff; border: 1px solid #f1ddda; border-left: 5px solid var(--red-bright);
+    border-radius: 14px; padding: 18px 22px; margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  }
+  .kickoff h3 { font-size: 1em; color: var(--red); margin-bottom: 6px; font-weight: 600; }
+  .kickoff p { font-size: 0.88em; color: #6b6b73; line-height: 1.6; }
+  .kickoff .zh { font-family: 'Noto Sans SC', sans-serif; color: var(--red); font-weight: 700; }
+
+  /* ---------- CLASE CARDS ---------- */
+  .clase-card {
+    background: #fff; border: 1px solid #ececf0; border-radius: 16px;
+    padding: 0; margin-bottom: 16px; text-decoration: none; color: inherit;
+    display: block; overflow: hidden; position: relative;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+    transition: box-shadow .2s, transform .2s, border-color .2s;
+  }
+  .clase-card:hover { box-shadow: 0 12px 32px rgba(26,26,46,.14); transform: translateY(-3px); border-color: #e0d2cf; }
+  .clase-card .accent { position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(var(--red), var(--red-bright)); }
+  .clase-body { padding: 22px 24px 22px 28px; }
+  .clase-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .clase-num { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .9px; color: var(--red); }
+  .clase-date { font-size: 0.74rem; color: var(--muted); white-space: nowrap; }
+  .clase-card h3 { font-size: 1.18em; margin: 8px 0 6px; font-weight: 600; letter-spacing: -.2px; }
+  .clase-card h3 .zh { font-family: 'Noto Sans SC', sans-serif; color: var(--red); font-weight: 700; }
+  .clase-card p { font-size: 0.88em; color: #6b6b73; line-height: 1.55; }
+  .clase-meta { margin-top: 14px; display: flex; gap: 7px; flex-wrap: wrap; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: #faf3f2; color: var(--red); border: 1px solid #f1ddda;
+    border-radius: 20px; padding: 3px 11px; font-size: 0.76rem; font-weight: 500;
+  }
+  .badge .zh { font-family: 'Noto Sans SC', sans-serif; }
+  .badge-soft { background: #f3f3f6; color: #777; border-color: #eaeaef; }
+  .latest-flag {
+    display: inline-block; background: var(--red-bright); color: #fff;
+    font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: .6px;
+    padding: 2px 9px; border-radius: 6px; margin-left: 8px; vertical-align: middle;
+  }
+
+  /* ---------- TOOLS ---------- */
+  .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .tool-card {
+    background: #fff; border: 1px solid #ececf0; border-radius: 14px;
+    padding: 18px 18px; text-decoration: none; color: inherit; display: flex;
+    align-items: flex-start; gap: 13px; transition: box-shadow .2s, transform .2s, border-color .2s;
+  }
+  .tool-card:hover { box-shadow: 0 8px 22px rgba(192,57,43,.12); transform: translateY(-2px); border-color: #f1ddda; }
+  .tool-ico {
+    flex-shrink: 0; width: 40px; height: 40px; border-radius: 11px;
+    background: linear-gradient(135deg, #fbe9e7, #fdecea); display: grid; place-items: center;
+    font-size: 1.25em;
+  }
+  .tool-card h3 { color: var(--red); font-size: 0.98em; margin-bottom: 3px; font-weight: 600; }
+  .tool-card p { font-size: 0.8em; color: #888; line-height: 1.4; }
+
+  footer { text-align: center; color: #b3b3bb; font-size: 0.82em; padding: 28px 24px 40px; }
+  footer a { color: inherit; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 640px) {
+    header { padding: 38px 20px 48px; }
+    header::after { font-size: 6rem; bottom: -20px; }
+    header h1 { font-size: 1.7em; }
+    .hero-stats { gap: 18px; }
+    main { padding: 0 14px 48px; }
+    .clase-body { padding: 18px 18px 18px 22px; }
+    .clase-card h3 { font-size: 1.06em; }
+    .clase-top { flex-direction: column; align-items: flex-start; gap: 2px; }
+    .tools-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="crumb" href="/">← Todos los apuntes</a>
+    <h1>🀄 Intermedio <span class="zh">一</span></h1>
+    <p class="subtitle">Chino Mandarín · Centro Cultural Chino · Agosto 2026 – en curso</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="num">1</span><span class="lbl">Clases</span></div>
+      <div class="stat"><span class="num">🚀</span><span class="lbl">Nivel recién empezado</span></div>
+      <div class="stat"><span class="num">中级</span><span class="lbl">zhōngjí · intermedio</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="kickoff">
+    <h3>🎉 Empieza el <span class="zh">中级一</span> (zhōngjí yī)</h3>
+    <p>Después de cerrar Básico 3 el 25 de julio, arranca el nivel intermedio. Aquí se van
+    sumando las clases a medida que ocurren — cada una con su vocabulario, gramática, diálogos
+    y audio. Si vienes llegando, el <a href="/basico3/" style="color:#c0392b;">Básico 3</a> es
+    el punto de partida.</p>
+  </div>
+
+  <div class="section-label">📚 Clases</div>
+
+  <!-- CLASE 01 -->
+  <a class="clase-card" href="clase01.html">
+    <span class="accent"></span>
+    <div class="clase-body">
+      <div class="clase-top">
+        <span class="clase-num">Clase 01 <span class="latest-flag">Más reciente</span></span>
+        <span class="clase-date">8 de agosto, 2026</span>
+      </div>
+      <h3>Viajar y opinar — <span class="zh">九月去北京旅游最好</span></h3>
+      <p>Arranque del nivel con las preguntas de calentamiento de la profe: el viaje que hiciste
+      (去旅游了吗) y el que quieres hacer (想去哪儿旅游), el superlativo 最 con la acción entera como
+      sujeto, los 12 meses (y la trampa 一月 vs 一个月), opinar con 觉得, y una tanda de vocabulario
+      nuevo: deportes (踢 vs 打), el ojo 眼睛 con el clasificador del gato, los guantes 手套 con
+      戴 vs 穿, y la silla 椅子 con 把.</p>
+      <div class="clase-meta">
+        <span class="badge"><span class="zh">旅游 · 想去</span></span>
+        <span class="badge"><span class="zh">最 · 觉得</span></span>
+        <span class="badge"><span class="zh">一月 vs 一个月</span></span>
+        <span class="badge"><span class="zh">踢 vs 打</span></span>
+        <span class="badge"><span class="zh">只 · 双 · 把 · 张</span></span>
+        <span class="badge"><span class="zh">戴 vs 穿</span></span>
+        <span class="badge badge-soft">13 palabras HSK 2</span>
+      </div>
+    </div>
+  </a>
+
+  <div class="section-label">🛠️ Herramientas</div>
+  <div class="tools-grid">
+    <a class="tool-card" href="/flashcards.html">
+      <span class="tool-ico">🃏</span>
+      <div>
+        <h3>Flashcards</h3>
+        <p>Practica el vocabulario. Interactivo, con audio e imprimible.</p>
+      </div>
+    </a>
+    <a class="tool-card" href="/buscador.html">
+      <span class="tool-ico">🔍</span>
+      <div>
+        <h3>Buscador</h3>
+        <p>Busca cualquier carácter por hanzi, pinyin o español.</p>
+      </div>
+    </a>
+    <a class="tool-card" href="/listening.html">
+      <span class="tool-ico">🎧</span>
+      <div>
+        <h3>Listening</h3>
+        <p>Escucha audio en chino y escribe lo que oyes.</p>
+      </div>
+    </a>
+    <a class="tool-card" href="/pinyin.html">
+      <span class="tool-ico">🔤</span>
+      <div>
+        <h3>Pizarra de Pinyin</h3>
+        <p>Tipea chino y ve el pinyin alineado por carácter.</p>
+      </div>
+    </a>
+  </div>
+</main>
+
+<footer>Intermedio 1 · Apuntes Chino · <a href="https://basti.cl">basti.cl</a></footer>
+</body>
+</html>

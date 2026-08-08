@@ -29,7 +29,26 @@
 </header>
 
 <div class="box tip" style="margin-bottom: 24px;">
-  🚀 <strong>Adelantando terreno</strong> — el HSK 2 toma todo el HSK 1 y le suma <strong>~200 palabras</strong> (500 acumuladas) y un puñado de estructuras gramaticales nuevas. Aquí tienes la <strong>estructura del examen</strong> (versión 2.0 y la nueva 3.0), los <strong>conceptos de gramática</strong> que aparecen por primera vez, y todo el <strong>vocabulario nuevo</strong> por categoría con audio 🔊.
+  🎯 <strong>Este es el objetivo de <a href="/intermedio1/" style="color:#1976d2;">Intermedio 1</a></strong> (agosto 2026 →).
+  El HSK 2 toma todo el HSK 1 y le suma <strong>~200 palabras</strong> (500 acumuladas) y un puñado de
+  estructuras gramaticales nuevas. Aquí tienes la <strong>estructura del examen</strong> (2.0 y la nueva 3.0),
+  la <strong>gramática</strong> que aparece por primera vez, y todo el <strong>vocabulario nuevo</strong>
+  por categoría con audio 🔊 — marcando lo que ya se vio en clases.
+</div>
+
+<!-- ── Tracker de cobertura ─────────────────────────────── -->
+<div id="tracker" class="box" style="background:#fff; border:1px solid #e5e5e5; margin-bottom:24px;">
+  <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+    <strong style="font-size:1.02em;">📊 Cobertura en clases</strong>
+    <span style="color:#888; font-size:0.86em;"><b id="tk-vistas">…</b> / <span id="tk-total">…</span> palabras vistas</span>
+  </div>
+  <div style="background:#eee; border-radius:20px; height:9px; margin:10px 0 12px; overflow:hidden;">
+    <div id="tk-fill" style="height:100%; width:0; background:linear-gradient(90deg,#3f51b5,#5c6bc0); border-radius:20px; transition:width .8s ease;"></div>
+  </div>
+  <div id="tk-chips" style="display:flex; flex-wrap:wrap; gap:5px;"></div>
+  <p style="color:#999; font-size:0.8em; margin-top:10px;">
+    Cada chip es una palabra del HSK 2 ya trabajada en una clase. Toca para ir a la clase donde salió.
+  </p>
 </div>
 
 <nav>
@@ -196,7 +215,31 @@ function speak(text, file) {
   u.lang = 'zh-CN'; u.rate = 0.8; speechSynthesis.speak(u);
 }
 
-fetch('/vocab_hsk2.json').then(r => r.json()).then(data => {
+/* Cobertura en clases: hsk2-data.json trae el campo `clases` por palabra. */
+const coverage = fetch('/hsk2/hsk2-data.json').then(r => r.json()).catch(() => []);
+
+coverage.then(data => {
+  if (!data.length) { document.getElementById('tracker').style.display = 'none'; return; }
+  const vistas = data.filter(w => w.clases && w.clases.length);
+  document.getElementById('tk-total').textContent = data.length;
+  document.getElementById('tk-vistas').textContent = vistas.length;
+  requestAnimationFrame(() => {
+    document.getElementById('tk-fill').style.width = (vistas.length / data.length * 100) + '%';
+  });
+  const chips = document.getElementById('tk-chips');
+  vistas.forEach(w => {
+    const a = document.createElement('a');
+    a.href = '/' + w.clases[0] + '.html';
+    a.title = `${w.py} — ${w.es} (${w.clases.join(', ')})`;
+    a.style.cssText = 'background:#e8eaf6;color:#3f51b5;border:1px solid #c5cae9;border-radius:8px;' +
+      'padding:3px 9px;font-family:"Noto Sans SC",sans-serif;font-weight:700;font-size:0.92em;text-decoration:none;';
+    a.textContent = w.hz;
+    chips.appendChild(a);
+  });
+});
+
+Promise.all([fetch('/vocab_hsk2.json').then(r => r.json()), coverage]).then(([data, cov]) => {
+  const seen = new Set(cov.filter(w => w.clases && w.clases.length).map(w => w.hz));
   const byCat = {};
   data.forEach(w => { (byCat[w.cat] = byCat[w.cat] || []).push(w); });
   const cont = document.getElementById('voc-container');
@@ -212,7 +255,10 @@ fetch('/vocab_hsk2.json').then(r => r.json()).then(data => {
     words.forEach(w => {
       const it = document.createElement('div');
       it.className = 'voc-item';
-      it.innerHTML = `<div class="v-main"><span><a class="v-hz" href="https://www.dong-chinese.com/wiki/${encodeURIComponent(w.hz)}" target="_blank" rel="noopener">${w.hz}</a> <span class="v-py pinyin-col">${w.py}</span></span><span class="v-es">${w.es}</span></div><button class="v-audio" title="Escuchar">🔊</button>`;
+      const vista = seen.has(w.hz);
+      if (vista) it.style.cssText = 'border-color:#c5cae9; background:#f7f8fd;';
+      const check = vista ? ' <span title="ya visto en clases" style="color:#3f51b5;font-size:.8em;">✓</span>' : '';
+      it.innerHTML = `<div class="v-main"><span><a class="v-hz" href="https://www.dong-chinese.com/wiki/${encodeURIComponent(w.hz)}" target="_blank" rel="noopener">${w.hz}</a> <span class="v-py pinyin-col">${w.py}</span>${check}</span><span class="v-es">${w.es}</span></div><button class="v-audio" title="Escuchar">🔊</button>`;
       it.querySelector('.v-audio').addEventListener('click', () => speak(w.hz, w.audio));
       grid.appendChild(it);
     });
