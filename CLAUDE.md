@@ -7,12 +7,25 @@ deploy, preferencias del usuario, etc. **Ahorra muchísimos tokens.**
 
 ## Estado actual
 **🆕 INTERMEDIO 1 (中级一) — arrancó el sábado 8 de agosto de 2026.**
-Nivel nuevo en `chino/intermedio1/` (índice + `clase01.html`). El andamiaje ya
-sigue el patrón migrado (`/assets/clase.css` + `/assets/clase.js`) y la Clase 01
-**no** define `window.audioMap` a propósito: `clase.js` hace fallback a
-`/audio/mapping.json`, así el 🔊 funciona mientras se arma la clase. Al cerrar:
-`python3 scripts/gen_audio.py chino/intermedio1/clase01.html` para inyectar el
-audioMap propio. `scripts/gen_stats.py` ya incluye `intermedio1/` (glob de
+Nivel nuevo en `chino/intermedio1/`. **Clase 01 ✅ (12 secciones)**: §1 旅游 en
+pasado (了/没) y deseo (想去…旅游, cadena deseo→movimiento→propósito), §3 el
+superlativo 最 a fondo (es adverbio, no adjetivo; 最+adj / 最+verbo / 最…的+sust;
+最好 = «más vale que»), 觉得 para opinar, los 12 meses (一月 vs 一个月, 上/这/下
+个月) y el molde `[mes]去[lugar]旅游最好`, §7 la misma palabra como verbo y
+sustantivo (我在旅游 / 旅游很好玩儿), §2 你们什么时候要孩子 (要/生/有孩子,
+以后再说吧), §4 deportes con 踢 (pie) vs 打 (mano), §5 眼睛 con el clasificador
+只 (el del gato) y el par 眼睛/眼镜, §6 手套 con 双 y 戴 vs 穿, §8 椅子 con 把 y
+el resumen de clasificadores (只/双/把/张/件), §11 el 也 en sus dos usos
+(«también», y 也不…也不… «ni… ni…»), §10 为什么…？→ 因为…所以 (gramática HSK 2),
+§12 los radicales de cada carácter, §9 mapa de tonos + ejercicios. Lleva un
+`<details>` escondido con la anécdota de 一般 → *jība* (sin `.hz`, para que no
+entre al pipeline de audio/buscador).
+
+La Clase 01 **no** define `window.audioMap` a propósito: `clase.js` hace fallback
+a `/audio/mapping.json`, así el 🔊 funciona sin generar audio. Pendiente al
+cerrar el nivel: `python3 scripts/gen_audio.py chino/intermedio1/clase01.html`
+(faltan MP3 de ~15 palabras sueltas: 帽子 外套 眼镜 袜子 故宫 玩儿 戴 最贵
+乒乓球 马马虎虎 紫禁城 国球…; la `ELEVENLABS_API_KEY` no está en el entorno). `scripts/gen_stats.py` ya incluye `intermedio1/` (glob de
 clases, "última clase" y `words.i1` para vocab con `src` que empiece con `I1`).
 Básico 3 quedó cerrado (9/9) en el dashboard.
 

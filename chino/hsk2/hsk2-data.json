@@ -60,7 +60,9 @@
   "py": "bǐ",
   "es": "comparar; que (en comparaciones)",
   "cat": "particulas",
-  "clases": []
+  "clases": [
+   "intermedio1/clase01"
+  ]
  },
  {
   "hz": "笔",
@@ -81,7 +83,9 @@
   "py": "búcuò",
   "es": "bastante bien, no está mal",
   "cat": "adjetivos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase01"
+  ]
  },
  {
   "hz": "不好意思",
@@ -937,7 +941,9 @@
   "py": "shǒu",
   "es": "mano ✋",
   "cat": "cuerpo",
-  "clases": []
+  "clases": [
+   "intermedio1/clase01"
+  ]
  },
  {
   "hz": "手表",
@@ -958,7 +964,9 @@
   "py": "shūfu",
   "es": "cómodo; a gusto",
   "cat": "adjetivos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase01"
+  ]
  },
  {
   "hz": "送",
@@ -979,7 +987,9 @@
   "py": "suǒyǐ",
   "es": "por eso, por lo tanto",
   "cat": "conjunciones",
-  "clases": []
+  "clases": [
+   "intermedio1/clase01"
+  ]
  },
  {
   "hz": "疼",
@@ -1086,7 +1096,9 @@
   "py": "wèishénme",
   "es": "¿por qué?",
   "cat": "pronombres",
-  "clases": []
+  "clases": [
+   "intermedio1/clase01"
+  ]
  },
  {
   "hz": "希望",
@@ -1242,14 +1254,18 @@
   "py": "yīnwèi",
   "es": "porque",
   "cat": "conjunciones",
-  "clases": []
+  "clases": [
+   "intermedio1/clase01"
+  ]
  },
  {
   "hz": "游",
   "py": "yóu",
   "es": "nadar",
   "cat": "verbos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase01"
+  ]
  },
  {
   "hz": "游泳",
@@ -1270,7 +1286,9 @@
   "py": "yǒushí",
   "es": "a veces",
   "cat": "adverbios",
-  "clases": []
+  "clases": [
+   "intermedio1/clase01"
+  ]
  },
  {
   "hz": "右",
