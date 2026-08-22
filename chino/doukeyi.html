@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>我都可以 — sí a todo</title>
+</head>
+<body>
+
+<p id="pregunta">&nbsp;</p>
+
+<button onclick="siATodo()">我都可以 (wǒ dōu kěyǐ) — sí a todo</button>
+
+<p>Veces que dijiste que sí a todo: <span id="n">0</span></p>
+
+<script>
+var preguntas = [
+  '你要不要咖啡？ (¿quieres café o no?)',
+  '你要新的还是旧的？ (¿el nuevo o el viejo?)',
+  '我们星期六去还是星期日去？ (¿vamos sábado o domingo?)',
+  '我们要不要买一把椅子？ (¿compramos una silla o no?)',
+  '下午我们一起踢足球吧？ (¿jugamos fútbol por la tarde?)',
+  '你想去北京还是上海？ (¿Beijing o Shanghái?)',
+  '吃拉面还是吃面包？ (¿ramen o pan?)',
+  '我们一起看电视，好不好？ (¿vemos tele juntos?)',
+  '你要不要去聚会？ (¿vas a la junta o no?)',
+  '你想不想去攀岩？ (¿tienes ganas de ir a escalar?)'
+];
+var n = 0;
+function siATodo() {
+  var p = preguntas[Math.floor(Math.random() * preguntas.length)];
+  document.getElementById('pregunta').textContent = p + ' → 我都可以！';
+  n++;
+  document.getElementById('n').textContent = n;
+  try {
+    var u = new SpeechSynthesisUtterance('我都可以');
+    u.lang = 'zh-CN';
+    speechSynthesis.speak(u);
+  } catch (e) {}
+}
+</script>
+
+</body>
+</html>
