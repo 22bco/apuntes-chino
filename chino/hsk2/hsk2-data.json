@@ -46,7 +46,9 @@
   "py": "bāo",
   "es": "bolso; envolver",
   "cat": "objetos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase02"
+  ]
  },
  {
   "hz": "本子",
@@ -360,7 +362,9 @@
   "py": "háishi",
   "es": "todavía; o (en preguntas)",
   "cat": "conjunciones",
-  "clases": []
+  "clases": [
+   "intermedio1/clase02"
+  ]
  },
  {
   "hz": "黑色",
@@ -388,7 +392,9 @@
   "py": "hòumiàn",
   "es": "detrás, atrás",
   "cat": "direcciones",
-  "clases": []
+  "clases": [
+   "intermedio1/clase02"
+  ]
  },
  {
   "hz": "花",
@@ -430,7 +436,9 @@
   "py": "jīchǎng",
   "es": "aeropuerto 🛫",
   "cat": "lugares",
-  "clases": []
+  "clases": [
+   "intermedio1/clase02"
+  ]
  },
  {
   "hz": "机票",
@@ -466,7 +474,8 @@
   "es": "salón de clase, aula",
   "cat": "lugares",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase02"
   ]
  },
  {
@@ -531,7 +540,8 @@
   "es": "opinar, creer; sentir 💭",
   "cat": "verbos",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase02"
   ]
  },
  {
@@ -539,7 +549,9 @@
   "py": "kāfēi",
   "es": "café ☕",
   "cat": "comida",
-  "clases": []
+  "clases": [
+   "intermedio1/clase02"
+  ]
  },
  {
   "hz": "开始",
@@ -610,7 +622,8 @@
   "es": "básquetbol 🏀",
   "cat": "deportes",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase02"
   ]
  },
  {
@@ -632,7 +645,9 @@
   "py": "lǐmiàn",
   "es": "dentro, adentro",
   "cat": "direcciones",
-  "clases": []
+  "clases": [
+   "intermedio1/clase02"
+  ]
  },
  {
   "hz": "楼",
@@ -661,7 +676,8 @@
   "es": "viajar, hacer turismo ✈️",
   "cat": "verbos",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase02"
   ]
  },
  {
@@ -725,7 +741,9 @@
   "py": "miàn",
   "es": "lado, cara; sufijo de dirección",
   "cat": "direcciones",
-  "clases": []
+  "clases": [
+   "intermedio1/clase02"
+  ]
  },
  {
   "hz": "名",
@@ -795,7 +813,9 @@
   "py": "pángbiān",
   "es": "al lado de, junto a",
   "cat": "direcciones",
-  "clases": []
+  "clases": [
+   "intermedio1/clase02"
+  ]
  },
  {
   "hz": "跑",
@@ -809,7 +829,9 @@
   "py": "pǎobù",
   "es": "correr, trotar 🏃",
   "cat": "deportes",
-  "clases": []
+  "clases": [
+   "intermedio1/clase02"
+  ]
  },
  {
   "hz": "票",
@@ -837,7 +859,9 @@
   "py": "qiánmiàn",
   "es": "delante, al frente",
   "cat": "direcciones",
-  "clases": []
+  "clases": [
+   "intermedio1/clase02"
+  ]
  },
  {
   "hz": "晴",
@@ -890,7 +914,9 @@
   "py": "shàngmiàn",
   "es": "encima, arriba",
   "cat": "direcciones",
-  "clases": []
+  "clases": [
+   "intermedio1/clase02"
+  ]
  },
  {
   "hz": "上去",
@@ -942,7 +968,8 @@
   "es": "mano ✋",
   "cat": "cuerpo",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase02"
   ]
  },
  {
@@ -957,7 +984,9 @@
   "py": "shūbāo",
   "es": "mochila escolar 🎒",
   "cat": "objetos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase02"
+  ]
  },
  {
   "hz": "舒服",
@@ -988,7 +1017,8 @@
   "es": "por eso, por lo tanto",
   "cat": "conjunciones",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase02"
   ]
  },
  {
@@ -1004,7 +1034,8 @@
   "es": "patear, dar patadas",
   "cat": "verbos",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase02"
   ]
  },
  {
@@ -1019,7 +1050,9 @@
   "py": "tiáo",
   "es": "clasif. de cosas largas (calles, peces…)",
   "cat": "particulas",
-  "clases": []
+  "clases": [
+   "intermedio1/clase02"
+  ]
  },
  {
   "hz": "跳舞",
@@ -1047,7 +1080,9 @@
   "py": "wàimiàn",
   "es": "fuera, afuera",
   "cat": "direcciones",
-  "clases": []
+  "clases": [
+   "intermedio1/clase02"
+  ]
  },
  {
   "hz": "完",
@@ -1133,7 +1168,9 @@
   "py": "xiàmiàn",
   "es": "debajo, abajo",
   "cat": "direcciones",
-  "clases": []
+  "clases": [
+   "intermedio1/clase02"
+  ]
  },
  {
   "hz": "下去",
@@ -1182,7 +1219,9 @@
   "py": "yánsè",
   "es": "color 🎨",
   "cat": "colores",
-  "clases": []
+  "clases": [
+   "intermedio1/clase02"
+  ]
  },
  {
   "hz": "眼睛",
@@ -1190,7 +1229,8 @@
   "es": "ojo 👁️",
   "cat": "cuerpo",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase02"
   ]
  },
  {
@@ -1233,7 +1273,9 @@
   "py": "yìqǐ",
   "es": "juntos",
   "cat": "adverbios",
-  "clases": []
+  "clases": [
+   "intermedio1/clase02"
+  ]
  },
  {
   "hz": "意思",
@@ -1272,7 +1314,9 @@
   "py": "yóuyǒng",
   "es": "nadar, natación 🏊",
   "cat": "deportes",
-  "clases": []
+  "clases": [
+   "intermedio1/clase02"
+  ]
  },
  {
   "hz": "有意思",
@@ -1287,7 +1331,8 @@
   "es": "a veces",
   "cat": "adverbios",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase02"
   ]
  },
  {
@@ -1324,7 +1369,8 @@
   "es": "hacer deporte; ejercicio 🏅",
   "cat": "deportes",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase02"
   ]
  },
  {
@@ -1410,7 +1456,8 @@
   "es": "fútbol ⚽",
   "cat": "deportes",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase02"
   ]
  },
  {

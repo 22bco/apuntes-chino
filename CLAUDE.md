@@ -7,7 +7,22 @@ deploy, preferencias del usuario, etc. **Ahorra muchísimos tokens.**
 
 ## Estado actual
 **🆕 INTERMEDIO 1 (中级一) — arrancó el sábado 8 de agosto de 2026.**
-Nivel nuevo en `chino/intermedio1/`. **Clase 01 ✅ (12 secciones)**: §1 旅游 en
+Nivel nuevo en `chino/intermedio1/`. **Clase 02 ✅ (22 de agosto de 2026; el 15 no
+hubo clase) — 11 secciones en `chino/intermedio1/clase02.html`**, armada en vivo (Basti
+dictó en pinyin) y ordenada en dos partes a pedido suyo: **Parte 1 · Repaso de la Clase
+01** (§1 觉得 para opinar: 这件衣服好看 / 拉面很好吃 / 面包 / 九月去北京旅游最好, §2 想去北京
+y 想 vs 觉得, §4 什么运动 con 功夫/足球 踢 vs 看/攀岩 y la escala 最喜欢›很›不太喜欢, §9
+他叫什么名字 + 眼睛) y **Parte 2 · Lo nuevo** (§3 星期日有时间/没有/也没有, §5 一起 con
+读课文/看书/去学校/运动/看电视/聚会 y el diálogo 下午我们一起踢足球吧→好啦, §6 我在家里, §7
+要不要/不要, 要去旅游/上学 con 要 = «querer», 要不要买几把/一把新椅子 y el 几 de «unos
+cuantos», §8 新的/旧的/二手, 很新/不太新, 旧 vs 老, §10 课文 del gato 桌子下面有一只猫 con
+有 de existencia, 它, 漂亮, 多大了, 两个多月), §11 mapa de tonos + práctica. Los ids #s1-#s11
+no siguen el orden visual (se reordenó después). `hsk1-data.json` (+46) y `hsk2-data.json`
+(+29) ya tienen `intermedio1/clase02` en `clases`. **Audio pendiente** (sin
+`ELEVENLABS_API_KEY` en el entorno): `python3 scripts/gen_audio.py chino/intermedio1/clase02.html`
+— la clase no define `window.audioMap` (fallback a mapping.json). Próxima: Clase 03.
+
+**Clase 01 ✅ (12 secciones)**: §1 旅游 en
 pasado (了/没) y deseo (想去…旅游, cadena deseo→movimiento→propósito), §3 el
 superlativo 最 a fondo (es adverbio, no adjetivo; 最+adj / 最+verbo / 最…的+sust;
 最好 = «más vale que»), 觉得 para opinar, los 12 meses (一月 vs 一个月, 上/这/下
