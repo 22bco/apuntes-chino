@@ -77,6 +77,8 @@
   .gr-item .hz { font-family: 'Noto Sans SC', var(--mono); font-size: 1.25em; font-weight: 700; color: var(--red); }
   .gr-item .py { color: var(--muted); font-family: Inter, sans-serif; font-style: italic; }
   .gr-item .src { margin-left: auto; font-size: 0.7rem; color: var(--muted); white-space: nowrap; }
+  .gr-item .src a { color: var(--red); text-decoration: none; border-bottom: 1px dotted var(--red-tint); }
+  .gr-item .src a:hover { color: var(--red-bright); border-bottom-style: solid; }
   .gr-item button { background: none; border: none; cursor: pointer; opacity: .5; font-size: 0.95em; }
   .gr-item button:hover { opacity: 1; }
   .gr-more { display: block; text-align: center; padding: 9px; font-size: 0.76rem; color: var(--red); text-decoration: none; background: var(--red-soft); }
@@ -517,7 +519,12 @@ fetch('/stats.json').then(r => r.json()).then(stats => {
       const d = document.createElement('div');
       d.className = 'gr-item';
       const isRad = w.type === 'radical';
-      const origen = w.clase || (w.hsk ? 'HSK ' + w.hsk : '');
+      /* procedencia: nivel corto · clase · sección (link a la sección si hay URL) */
+      const c0 = w.clases && w.clases[0];
+      let origen = c0
+        ? [c0.abbr, 'C' + String(c0.num).padStart(2, '0'), c0.section].filter(Boolean).join(' · ')
+        : (w.clase || (w.hsk ? 'HSK ' + w.hsk : ''));
+      if (c0 && c0.url) origen = `<a href="${c0.url}" title="${c0.src}${c0.section ? ' — ' + c0.section : ''}" onclick="event.stopPropagation()">${origen}</a>`;
       const label = isRad ? '🧩 radical' : (w.radInfo ? (origen ? origen + ' · 🧩' : '🧩') : origen);
       const syn = w.__s === 7 ? ' <span style="color:#6c63b5">≈</span>' : '';
       d.innerHTML = `<span class="hz">${w.hz}</span><span class="py">${w.py}</span><span>${w.es}${syn}</span><span class="src">${label}</span>`;

@@ -32,14 +32,36 @@
   }
   const highlight = (escaped, re) => re ? escaped.replace(re, m => '<mark>' + m + '</mark>') : escaped;
 
-  /* URL a la clase de origen (Básico 2/3) */
-  function srcToUrl(src) {
+  /* ---------- procedencia: nivel + clase + sección ----------
+     src en vocab.json: "Clase 05" (Básico 2), "B3 Clase 08" (Básico 3), "I1 Clase 03" (Intermedio 1).
+     base/anchor/section son opcionales; si falta base se deriva del prefijo de src. */
+  const LEVELS = {
+    basico2:     { label: 'Básico 2',     abbr: 'B2', order: 0 },
+    basico3:     { label: 'Básico 3',     abbr: 'B3', order: 1 },
+    intermedio1: { label: 'Intermedio 1', abbr: 'I1', order: 2 },
+  };
+  const PREFIX_BASE = { '': 'basico2', B3: 'basico3', I1: 'intermedio1' };
+
+  /* parsea un src → { src, base, num, level, abbr, order, url, anchor, section } o null */
+  function srcInfo(src, base, anchor, section) {
     if (!src) return null;
-    const m = src.match(/Clase\s*(\d+)/i);
+    const m = String(src).match(/^\s*(?:(B3|I1)\s+)?Clase\s*(\d+)/i);
     if (!m) return null;
-    const dir = /B3/i.test(src) ? 'basico3' : 'basico2';
-    return `/${dir}/clase${m[1].padStart(2, '0')}.html`;
+    base = base || PREFIX_BASE[(m[1] || '').toUpperCase()] || 'basico2';
+    const lv = LEVELS[base] || { label: base, abbr: base, order: 9 };
+    const num = parseInt(m[2], 10);
+    const url = `/${base}/clase${String(num).padStart(2, '0')}.html` + (anchor ? '#' + anchor : '');
+    return { src, base, num, level: lv.label, abbr: lv.abbr, order: lv.order, url, anchor: anchor || null, section: section || null };
   }
+
+  /* URL a la clase de origen; opcionalmente con base explícita y ancla de sección */
+  function srcToUrl(src, base, anchor) {
+    const i = srcInfo(src, base, anchor);
+    return i ? i.url : null;
+  }
+
+  /* orden "más básico primero": nivel y luego número de clase */
+  const cmpClase = (a, b) => a.order - b.order || a.num - b.num;
 
   /* ---------- motor ---------- */
   function create() {
@@ -53,8 +75,12 @@
       const addWord = (w, src) => {
         if (!w || !w.hz) return;
         let e = byHz.get(w.hz);
-        if (!e) { e = { type:'word', hz:w.hz, py:w.py||'', es:w.es||'', clase:null, hsk:null, audio:null, esList:[] }; byHz.set(w.hz, e); }
-        if (src.clase && !e.clase) e.clase = src.clase;
+        if (!e) { e = { type:'word', hz:w.hz, py:w.py||'', es:w.es||'', clase:null, claseUrl:null, section:null, clases:[], hsk:null, audio:null, esList:[] }; byHz.set(w.hz, e); }
+        if (src.clase) {
+          const info = srcInfo(src.clase, w.base, w.anchor, w.section);
+          if (info && !e.clases.some(c => c.src === info.src)) e.clases.push(info);
+          else if (!info && !e.clase) e.clase = src.clase;   // src no reconocido: se conserva como texto
+        }
         if (src.hsk && !e.hsk) e.hsk = src.hsk;
         if (w.audio && !e.audio) e.audio = w.audio;
         if (!e.py && w.py) e.py = w.py;
@@ -77,6 +103,15 @@
         });
       }
       INDEX = [...byHz.values()];
+
+      // procedencias: ordenadas Básico 2 → Básico 3 → Intermedio 1 (y por nº de clase);
+      // e.clase / e.section / e.claseUrl = la primera (compatibilidad)
+      INDEX.forEach(e => {
+        if (!e.clases || !e.clases.length) return;
+        e.clases.sort(cmpClase);
+        const c0 = e.clases[0];
+        e.clase = c0.src; e.section = c0.section; e.claseUrl = c0.url;
+      });
 
       // precomputar glosas (texto normalizado, palabras enteras y raíces)
       INDEX.forEach(e => {
@@ -190,7 +225,7 @@
     }
 
     var engine = {
-      build, load, search, decompose, counts,
+      build, load, search, decompose, counts, srcInfo, srcToUrl,
       radInfo: hz => RAD_BY_HZ[hz],
       audioFile: (hz, audio) => audio || audioMap[hz],
       get index() { return INDEX; },
@@ -200,5 +235,5 @@
   }
 
   /* API global */
-  window.ChinoSearch = { create, normalize, stripDia, hasHan, buildRe, highlight, srcToUrl };
+  window.ChinoSearch = { create, normalize, stripDia, hasHan, buildRe, highlight, srcToUrl, srcInfo, LEVELS };
 })();
