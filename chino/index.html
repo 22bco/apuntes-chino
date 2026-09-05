@@ -536,7 +536,7 @@ fetch('/stats.json').then(r => r.json()).then(stats => {
     });
     if (!results.length) $res.innerHTML = '<div class="gr-item" style="color:var(--muted)">Sin resultados aquí…</div>';
     const more = document.createElement('a');
-    more.className = 'gr-more'; more.href = '/buscador.html';
+    more.className = 'gr-more'; more.href = '/buscador.html?q=' + encodeURIComponent($in.value.trim());
     more.textContent = '↗ Búsqueda completa (clases · HSK · radicales)';
     $res.appendChild(more);
     $res.classList.add('open');
@@ -545,6 +545,9 @@ fetch('/stats.json').then(r => r.json()).then(stats => {
   /* Prefetch al enfocar; render al escribir (espera a que el motor esté listo) */
   $in.addEventListener('focus', () => { ensureLoaded().then(() => { if ($in.value.trim()) render(); }); });
   $in.addEventListener('input', () => { ensureLoaded().then(render); });
+  $in.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && $in.value.trim()) location.href = '/buscador.html?q=' + encodeURIComponent($in.value.trim());
+  });
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.search-wrap')) $res.classList.remove('open');
   });

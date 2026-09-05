@@ -138,6 +138,10 @@
     ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 
   /* ---------- carga de datos (vía motor compartido) ---------- */
+  /* consulta que viene del dashboard (/buscador.html?q=...) */
+  const q0 = new URLSearchParams(location.search).get('q');
+  if (q0 && !elInput.value) elInput.value = q0;
+
   engine.load().then(() => {
     const c = engine.counts();
     const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
@@ -230,7 +234,11 @@
 
   /* ---------- eventos ---------- */
   let t = null;
-  elInput.addEventListener('input', () => { clearTimeout(t); t = setTimeout(doSearch, 60); });
+  elInput.addEventListener('input', () => {
+    clearTimeout(t); t = setTimeout(doSearch, 60);
+    const q = elInput.value.trim();
+    history.replaceState(null, '', q ? '?q=' + encodeURIComponent(q) : location.pathname);
+  });
   elResults.addEventListener('click', e => {
     const chip = e.target.closest('[data-rad]');
     if (chip) { e.stopPropagation(); speak(chip.dataset.rad); return; }
