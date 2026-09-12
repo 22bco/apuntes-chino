@@ -33,7 +33,8 @@
       "basico1/cap09",
       "basico2/clase07",
       "basico3/clase01",
-      "basico3/clase02"
+      "basico3/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -58,7 +59,8 @@
       "basico3/clase03",
       "basico3/clase04",
       "basico3/clase08",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -71,7 +73,8 @@
       "basico1/capapendice",
       "basico2/clase08",
       "basico2/clase09",
-      "basico3/clase04"
+      "basico3/clase04",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -139,7 +142,8 @@
       "basico3/clase02",
       "basico3/clase03",
       "basico3/clase04",
-      "basico3/clase05"
+      "basico3/clase05",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -226,7 +230,8 @@
       "basico2/clase07",
       "basico2/clase08",
       "basico3/clase05",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -251,7 +256,8 @@
       "basico3/clase02",
       "basico3/clase06",
       "basico3/clase07",
-      "basico3/clase08"
+      "basico3/clase08",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -275,7 +281,8 @@
     "clases": [
       "basico2/clase02",
       "basico3/clase08",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -299,7 +306,8 @@
       "basico2/clase06",
       "basico2/clase09",
       "basico3/clase05",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -363,7 +371,8 @@
     "es": "contento / feliz",
     "tema": "01",
     "clases": [
-      "basico2/clase03"
+      "basico2/clase03",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -381,7 +390,8 @@
       "basico3/clase04",
       "basico3/clase05",
       "basico3/clase08",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -416,7 +426,8 @@
       "basico3/clase04",
       "basico3/clase05",
       "basico3/clase08",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -455,7 +466,8 @@
       "basico2/clase09",
       "basico3/clase02",
       "basico3/clase04",
-      "basico3/clase05"
+      "basico3/clase05",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -526,7 +538,8 @@
       "basico3/clase04",
       "basico3/clase05",
       "basico3/clase07",
-      "basico3/clase08"
+      "basico3/clase08",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -550,7 +563,8 @@
       "basico2/clase06",
       "basico2/clase09",
       "basico3/clase08",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -566,7 +580,8 @@
       "basico3/clase04",
       "basico3/clase05",
       "basico3/clase07",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -595,7 +610,8 @@
       "basico2/clase06",
       "basico3/clase03",
       "basico3/clase04",
-      "basico3/clase08"
+      "basico3/clase08",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -659,7 +675,8 @@
     "es": "clasificador de dinero",
     "tema": "04",
     "clases": [
-      "basico2/clase06"
+      "basico2/clase06",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -690,7 +707,8 @@
       "basico2/clase07",
       "basico3/clase04",
       "basico3/clase05",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -708,7 +726,8 @@
       "basico3/clase06",
       "basico3/clase07",
       "basico3/clase08",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -730,7 +749,8 @@
     "clases": [
       "basico2/clase08",
       "basico3/clase05",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -743,7 +763,8 @@
       "basico1/cap08",
       "basico2/clase06",
       "basico3/clase05",
-      "basico3/clase08"
+      "basico3/clase08",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -758,7 +779,8 @@
       "basico3/clase02",
       "basico3/clase04",
       "basico3/clase05",
-      "basico3/clase07"
+      "basico3/clase07",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -791,7 +813,8 @@
       "basico3/clase06",
       "basico3/clase07",
       "basico3/clase08",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -821,7 +844,8 @@
     "clases": [
       "basico2/clase01",
       "basico2/clase08",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -895,7 +919,8 @@
       "basico3/clase05",
       "basico3/clase07",
       "basico3/clase08",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -987,7 +1012,8 @@
     "tema": "05",
     "clases": [
       "basico3/clase01",
-      "basico3/clase08"
+      "basico3/clase08",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1010,7 +1036,8 @@
       "basico2/clase09",
       "basico3/clase02",
       "basico3/clase04",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1023,7 +1050,8 @@
       "basico2/clase02",
       "basico3/clase06",
       "basico3/clase07",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1035,7 +1063,8 @@
       "basico2/clase05",
       "basico3/clase06",
       "basico3/clase07",
-      "basico3/clase08"
+      "basico3/clase08",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1105,7 +1134,8 @@
       "basico3/clase04",
       "basico3/clase05",
       "basico3/clase07",
-      "basico3/clase08"
+      "basico3/clase08",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1141,7 +1171,8 @@
     "clases": [
       "basico1/cap09",
       "basico3/clase03",
-      "basico3/clase08"
+      "basico3/clase08",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1152,7 +1183,8 @@
     "clases": [
       "basico1/cap08",
       "basico2/clase06",
-      "basico3/clase05"
+      "basico3/clase05",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1169,7 +1201,8 @@
       "basico3/clase02",
       "basico3/clase06",
       "basico3/clase07",
-      "basico3/clase08"
+      "basico3/clase08",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1186,7 +1219,8 @@
       "basico3/clase04",
       "basico3/clase05",
       "basico3/clase07",
-      "basico3/clase08"
+      "basico3/clase08",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1213,7 +1247,8 @@
       "basico1/cap08",
       "basico1/capapendice",
       "basico2/clase03",
-      "basico3/clase05"
+      "basico3/clase05",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1232,7 +1267,8 @@
       "basico3/clase05",
       "basico3/clase07",
       "basico3/clase08",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1285,7 +1321,8 @@
       "basico2/clase03",
       "basico3/clase04",
       "basico3/clase05",
-      "basico3/clase07"
+      "basico3/clase07",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1298,7 +1335,8 @@
       "basico3/clase03",
       "basico3/clase04",
       "basico3/clase05",
-      "basico3/clase07"
+      "basico3/clase07",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1312,7 +1350,8 @@
       "basico3/clase02",
       "basico3/clase03",
       "basico3/clase04",
-      "basico3/clase07"
+      "basico3/clase07",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1339,7 +1378,8 @@
       "basico1/cap08",
       "basico1/capapendice",
       "basico2/clase03",
-      "basico3/clase04"
+      "basico3/clase04",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1362,7 +1402,8 @@
     "clases": [
       "basico1/cap09",
       "basico1/cap10",
-      "basico3/clase08"
+      "basico3/clase08",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1379,7 +1420,8 @@
       "basico3/clase05",
       "basico3/clase07",
       "basico3/clase08",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1394,7 +1436,8 @@
       "basico3/clase04",
       "basico3/clase07",
       "basico3/clase08",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1442,7 +1485,8 @@
       "basico2/clase08",
       "basico2/clase09",
       "basico3/clase08",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1488,7 +1532,8 @@
       "basico2/clase09",
       "basico3/clase05",
       "basico3/clase08",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1500,7 +1545,8 @@
       "basico1/cap08",
       "basico2/clase06",
       "basico3/clase05",
-      "basico3/clase07"
+      "basico3/clase07",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1515,7 +1561,8 @@
       "basico3/clase03",
       "basico3/clase04",
       "basico3/clase05",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1547,7 +1594,8 @@
       "basico3/clase05",
       "basico3/clase07",
       "basico3/clase08",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1605,7 +1653,8 @@
       "basico3/clase04",
       "basico3/clase05",
       "basico3/clase08",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1632,7 +1681,8 @@
       "basico3/clase03",
       "basico3/clase04",
       "basico3/clase05",
-      "basico3/clase08"
+      "basico3/clase08",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1666,7 +1716,8 @@
     "clases": [
       "basico1/cap01",
       "basico3/clase02",
-      "basico3/clase04"
+      "basico3/clase04",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1680,7 +1731,8 @@
       "basico2/clase05",
       "basico3/clase01",
       "basico3/clase08",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1692,7 +1744,8 @@
       "basico1/cap03",
       "basico2/clase02",
       "basico3/clase04",
-      "basico3/clase05"
+      "basico3/clase05",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1706,7 +1759,8 @@
       "basico2/clase08",
       "basico3/clase04",
       "basico3/clase05",
-      "basico3/clase07"
+      "basico3/clase07",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1724,7 +1778,8 @@
       "basico3/clase05",
       "basico3/clase07",
       "basico3/clase08",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1766,7 +1821,8 @@
       "basico2/clase06",
       "basico3/clase06",
       "basico3/clase07",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1799,7 +1855,8 @@
     "clases": [
       "basico2/clase07",
       "basico2/clase09",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1827,7 +1884,8 @@
       "basico2/clase03",
       "basico2/clase04",
       "basico3/clase01",
-      "basico3/clase08"
+      "basico3/clase08",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1871,7 +1929,8 @@
       "basico3/clase03",
       "basico3/clase04",
       "basico3/clase08",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1908,7 +1967,8 @@
     "clases": [
       "basico1/cap04",
       "basico3/clase04",
-      "basico3/clase05"
+      "basico3/clase05",
+      "intermedio1/clase03"
     ]
   },
   {
@@ -1944,7 +2004,8 @@
       "basico2/clase07",
       "basico2/clase09",
       "basico3/clase07",
-      "intermedio1/clase02"
+      "intermedio1/clase02",
+      "intermedio1/clase03"
     ]
   },
   {

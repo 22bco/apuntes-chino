@@ -25,7 +25,9 @@
   "py": "bān",
   "es": "clase, grupo (de alumnos)",
   "cat": "personas",
-  "clases": []
+  "clases": [
+   "intermedio1/clase03"
+  ]
  },
  {
   "hz": "帮",
@@ -39,7 +41,9 @@
   "py": "bāngmáng",
   "es": "ayudar, echar una mano",
   "cat": "verbos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase03"
+  ]
  },
  {
   "hz": "包",
@@ -292,7 +296,9 @@
   "py": "gāo",
   "es": "alto",
   "cat": "adjetivos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase03"
+  ]
  },
  {
   "hz": "高中",
@@ -313,7 +319,9 @@
   "py": "gèzi",
   "es": "estatura, talla",
   "cat": "cuerpo",
-  "clases": []
+  "clases": [
+   "intermedio1/clase03"
+  ]
  },
  {
   "hz": "跟",
@@ -437,7 +445,8 @@
   "es": "aeropuerto 🛫",
   "cat": "lugares",
   "clases": [
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase03"
   ]
  },
  {
@@ -541,7 +550,8 @@
   "cat": "verbos",
   "clases": [
    "intermedio1/clase01",
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase03"
   ]
  },
  {
@@ -550,7 +560,8 @@
   "es": "café ☕",
   "cat": "comida",
   "clases": [
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase03"
   ]
  },
  {
@@ -558,7 +569,9 @@
   "py": "kāishǐ",
   "es": "empezar; comienzo",
   "cat": "verbos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase03"
+  ]
  },
  {
   "hz": "开学",
@@ -579,14 +592,18 @@
   "py": "kǎoshì",
   "es": "examen; dar un examen 📝",
   "cat": "objetos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase03"
+  ]
  },
  {
   "hz": "可能",
   "py": "kěnéng",
   "es": "posible; quizás; posibilidad",
   "cat": "adjetivos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase03"
+  ]
  },
  {
   "hz": "裤子",
@@ -677,7 +694,8 @@
   "cat": "verbos",
   "clases": [
    "intermedio1/clase01",
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase03"
   ]
  },
  {
@@ -830,7 +848,8 @@
   "es": "correr, trotar 🏃",
   "cat": "deportes",
   "clases": [
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase03"
   ]
  },
  {
@@ -899,7 +918,8 @@
   "es": "centro comercial 🛍️",
   "cat": "lugares",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase03"
   ]
  },
  {
@@ -1132,7 +1152,8 @@
   "es": "¿por qué?",
   "cat": "pronombres",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase03"
   ]
  },
  {
@@ -1169,7 +1190,8 @@
   "es": "debajo, abajo",
   "cat": "direcciones",
   "clases": [
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase03"
   ]
  },
  {
@@ -1230,7 +1252,8 @@
   "cat": "cuerpo",
   "clases": [
    "intermedio1/clase01",
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase03"
   ]
  },
  {
@@ -1238,7 +1261,9 @@
   "py": "yào",
   "es": "medicina, remedio 💊",
   "cat": "objetos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase03"
+  ]
  },
  {
   "hz": "药店",
@@ -1274,7 +1299,8 @@
   "es": "juntos",
   "cat": "adverbios",
   "clases": [
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase03"
   ]
  },
  {
@@ -1297,7 +1323,8 @@
   "es": "porque",
   "cat": "conjunciones",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase03"
   ]
  },
  {
@@ -1370,7 +1397,8 @@
   "cat": "deportes",
   "clases": [
    "intermedio1/clase01",
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase03"
   ]
  },
  {
@@ -1457,7 +1485,8 @@
   "cat": "deportes",
   "clases": [
    "intermedio1/clase01",
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase03"
   ]
  },
  {
@@ -1466,7 +1495,8 @@
   "es": "el más, -ísimo (superlativo)",
   "cat": "adverbios",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase03"
   ]
  },
  {
@@ -1482,5 +1512,32 @@
   "es": "lado izquierdo, a la izquierda",
   "cat": "direcciones",
   "clases": []
+ },
+ {
+  "hz": "生病",
+  "py": "shēngbìng",
+  "es": "enfermarse, estar enfermo",
+  "cat": "verbos",
+  "clases": [
+   "intermedio1/clase03"
+  ]
+ },
+ {
+  "hz": "休息",
+  "py": "xiūxi",
+  "es": "descansar; tener el día libre",
+  "cat": "verbos",
+  "clases": [
+   "intermedio1/clase03"
+  ]
+ },
+ {
+  "hz": "一下",
+  "py": "yíxià",
+  "es": "un poco, un momento (suaviza el verbo)",
+  "cat": "adverbios",
+  "clases": [
+   "intermedio1/clase03"
+  ]
  }
 ]

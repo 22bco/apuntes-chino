@@ -7,7 +7,35 @@ deploy, preferencias del usuario, etc. **Ahorra muchísimos tokens.**
 
 ## Estado actual
 **🆕 INTERMEDIO 1 (中级一) — arrancó el sábado 8 de agosto de 2026.**
-Nivel nuevo en `chino/intermedio1/`. **Clase 02 ✅ (22 de agosto de 2026; el 15 no
+Nivel nuevo en `chino/intermedio1/`. **Clase 03 ✅ CERRADA (5 de septiembre de 2026; el 29 de
+agosto no hubo clase, profe enferma) — 12 secciones en `chino/intermedio1/clase03.html`**,
+armada en vivo: §1 你要去哪儿 (要 vs 想, + 下午要去剪头发 y «me cortaron mal el pelo» 剪得不好/剪坏了,
+con un `<details>` del meme de 31 Minutos sin `.hz`), §2 加油 (echar aceite, 加油站, 我会加油的;
+salió porque Basti contó que su proyecto de título es este sitio), §3 我不想去 + 学校/商店/饭店/图书馆
+(+ ejercicio de diapositiva 我不想学习，我想和朋友去踢足球), §4 你们班谁最高 / 我最高 / 谁的汉语最好 /
+我的同学阿隆索 (Alonso = 阿隆索), §5 谁的衣服最贵 (李亮 128 · 钟鹏 110 · 王明 99 块, 一百一十), §6
+你最喜欢吃什么水果 (comunes + raras: 火龙果 榴莲 荔枝 龙眼 山竹 红毛丹 杨桃 芒果 木瓜 椰子 菠萝 猕猴桃
+百香果 柚子), §7 práctica de preguntas en 9 puntos (最想去哪儿, 十几个人 + 几 aproximado, 女生/男生谁最高,
+车上有几个人 con 上 de lugar, 买几本书, 要不要买几个新的椅子 (个 vs 把), 你想买什么 + 一些 vs 几, 十个苹果 /
+一斤, **posición de 多**: <10 → 三个多星期/五年多/六个多月, ≥10 → 十多个/二十多天 (diapositiva 语言点), 哥哥多大了
++ 二十多岁), §8 lista de palabras importantes (12 de las Clases 01-02 con link a su sección), §9 trazos
+横折提 (讠 en 话/说) y 横折折折钩 (乃 en 奶/场) con **HanziWriter** (CDN jsdelivr, como radicales.html),
+§10 acento 中重格式 (segunda sílaba fuerte: 冰箱 帮忙 打扰 高兴 旅游 可能 开始 考试; excepción tono neutro),
+§11 起床, 吃药 vs 喝药 (sólido/líquido), 跑步, §12 生病/休息/一下 (esta última la agregó otra sesión en paralelo).
+**La página lleva puerta con código** (`/assets/gate.js`, en el `<head>` con `data-hash` SHA-256; código
+actual «jiayou», solo el hash vive en el repo; recuerda en localStorage; es cortesía, no seguridad). Cerrada
+el 12 sep 2026: card en `intermedio1/index.html`, link desde Clase 02, `hsk1-data.json` (+61) y
+`hsk2-data.json` (+22, más 生病/休息/一下 nuevas) con `intermedio1/clase03`, `vocab.json` reextraído
+(116 entradas «I1 Clase 03» con `base/anchor/section`), stats regenerado. **Audio pendiente** (sin
+`ELEVENLABS_API_KEY`): `python3 scripts/gen_audio.py chino/intermedio1/clase03.html` (fallback a
+mapping.json; faltan MP3 de frases y de casi todas las frutas). Próxima: Clase 04.
+
+**Buscador (5 sep 2026)**: `vocab.json` tiene backfill de B3 Clases 03-09 e I1 01-03 con `base/anchor/section`;
+`buscador-core.js` expone `srcInfo/srcToUrl` (B2/B3/I1 + ancla) y `e.clases` con todas las procedencias;
+`buscador.html` e `index.html` (top-8) muestran «Nivel · Clase · sección →» con link a la sección, y la
+consulta del dashboard viaja a `/buscador.html?q=…`. `clase.css` tiene badge `.beyond` («más allá de HSK 2»).
+
+**Clase 02 ✅ (22 de agosto de 2026; el 15 no
 hubo clase) — 11 secciones en `chino/intermedio1/clase02.html`**, armada en vivo (Basti
 dictó en pinyin) y ordenada en dos partes a pedido suyo: **Parte 1 · Repaso de la Clase
 01** (§1 觉得 para opinar: 这件衣服好看 / 拉面很好吃 / 面包 / 九月去北京旅游最好, §2 想去北京
@@ -20,7 +48,7 @@ cuantos», §8 新的/旧的/二手, 很新/不太新, 旧 vs 老, §10 课文 d
 no siguen el orden visual (se reordenó después). `hsk1-data.json` (+46) y `hsk2-data.json`
 (+29) ya tienen `intermedio1/clase02` en `clases`. **Audio pendiente** (sin
 `ELEVENLABS_API_KEY` en el entorno): `python3 scripts/gen_audio.py chino/intermedio1/clase02.html`
-— la clase no define `window.audioMap` (fallback a mapping.json). Próxima: Clase 03.
+— la clase no define `window.audioMap` (fallback a mapping.json).
 
 **Clase 01 ✅ (12 secciones)**: §1 旅游 en
 pasado (了/没) y deseo (想去…旅游, cadena deseo→movimiento→propósito), §3 el
