@@ -22,8 +22,7 @@ salió porque Basti contó que su proyecto de título es este sitio), §3 我不
 横折提 (讠 en 话/说) y 横折折折钩 (乃 en 奶/场) con **HanziWriter** (CDN jsdelivr, como radicales.html),
 §10 acento 中重格式 (segunda sílaba fuerte: 冰箱 帮忙 打扰 高兴 旅游 可能 开始 考试; excepción tono neutro),
 §11 起床, 吃药 vs 喝药 (sólido/líquido), 跑步, §12 生病/休息/一下 (esta última la agregó otra sesión en paralelo).
-**La página lleva puerta con código** (`/assets/gate.js`, en el `<head>` con `data-hash` SHA-256; código
-actual «jiayou», solo el hash vive en el repo; recuerda en localStorage; es cortesía, no seguridad). Cerrada
+Cerrada
 el 12 sep 2026: card en `intermedio1/index.html`, link desde Clase 02, `hsk1-data.json` (+61) y
 `hsk2-data.json` (+22, más 生病/休息/一下 nuevas) con `intermedio1/clase03`, `vocab.json` reextraído
 (116 entradas «I1 Clase 03» con `base/anchor/section`), stats regenerado. **Audio pendiente** (sin
