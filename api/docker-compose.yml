@@ -1,0 +1,26 @@
+# API de pizarras por curso (chino.basti.cl/api). Corre en la red compartida del nginx
+# de TransportesMarDelSur, igual que robotica_backend, para que nginx la alcance por nombre.
+services:
+  api:
+    build: .
+    image: chino-api
+    container_name: chino_api
+    restart: unless-stopped
+    environment:
+      - DB_PATH=/data/pizarras.db
+      - TZ=America/Santiago
+    volumes:
+      - ./data:/data
+    networks:
+      - mardelsur_net
+    mem_limit: 256m
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:5020/api/health').status==200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+networks:
+  mardelsur_net:
+    external: true
+    name: transportesmardelsur_mardelsur_network

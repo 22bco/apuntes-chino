@@ -104,6 +104,14 @@ index.html, 4b/, usm/, programacion/, robotica/   # apuntes.basti.cl; ver PLAN-M
 pinyin-react/               # Prototipo v3 de pizarra pinyin (no enlazado, no desplegado; dist/ y node_modules gitignorados)
 ```
 
+> **API de pizarras por curso (`api/`, sept 2026):** FastAPI + SQLite en Docker
+> (`chino_api`, red compartida del nginx de TransportesMarDelSur, publicado en
+> `chino.basti.cl/api`). `pinyinv3.html` tiene **modo curso**: la profe entra con
+> cuenta + contraseña y cada cambio se guarda en el servidor; los alumnos escriben
+> el código del curso (ej. `CHINO-I1`) o abren `/pinyinv3.html?curso=CHINO-I1` y
+> ven la pizarra en solo lectura, actualizada en vivo. «Nueva clase» archiva, nunca
+> se borra contenido. Cuentas/cursos: `manage.py`. Setup del VPS: `api/README.md`.
+
 > **Datos JSON:** ver `chino/DATA.md` para el mapa completo del ecosistema de datos
 > (qué guarda cada JSON, quién lo consume y dónde se solapan).
 
