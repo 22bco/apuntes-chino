@@ -10,7 +10,8 @@
   let audioMap = window.audioMap || {};
 
   // Fallback Fase 1.2: si la página no trae audioMap inline, cargar el mapa completo.
-  if (!window.audioMap) {
+  // (un audioMap vacío {} también cuenta como «sin mapa»)
+  if (!window.audioMap || !Object.keys(window.audioMap).length) {
     fetch(AUDIO_BASE + 'mapping.json')
       .then(r => r.json())
       .then(m => { audioMap = m; })
