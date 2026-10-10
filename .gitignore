@@ -18,3 +18,12 @@ __pycache__/
 
 # pinyin-react (prototipo v3 eliminado del repo; quedan artefactos locales de build)
 pinyin-react/
+
+# Presentaciones motion: fotogramas de revisión y video intermedio sin audio
+chino/presentaciones/**/_check/
+chino/presentaciones/**/video.mp4
+# Audio y video final pesados (25-45 MB): se suben al VPS a mano, no al repo
+chino/presentaciones/**/audio.wav
+chino/presentaciones/**/*-motion.mp4
+# Respaldos locales de la versión anterior (DIRECCION.md los menciona)
+chino/presentaciones/**/*-v1.*

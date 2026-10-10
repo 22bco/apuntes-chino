@@ -1,0 +1,159 @@
+{
+  "title": {
+    "nivel": "Intermedio 1",
+    "clase": "Clase 04",
+    "hz": "中级一 · 第四课",
+    "py": "zhōngjí yī · dì sì kè",
+    "es": "Intermedio 1 · Clase 04",
+    "fecha": "12 de septiembre de 2026",
+    "subtitulo": "Rutina, salud, altura, saber y descansar"
+  },
+  "scenes": [
+    {
+      "id": "intro",
+      "tema": "Intermedio 1 · Clase 04",
+      "kind": "intro",
+      "items": [
+        { "hz": "中级一", "py": "zhōngjí yī", "es": "Intermedio 1" },
+        { "hz": "第四课", "py": "dì sì kè", "es": "Clase 04" }
+      ],
+      "nota": "Rutina, salud, altura, saber y descansar."
+    },
+    {
+      "id": "qichuang",
+      "tema": "¿A qué hora te levantas?",
+      "kind": "frase",
+      "items": [
+        { "hz": "每天", "py": "měitiān", "es": "cada día, todos los días" },
+        { "hz": "起床", "py": "qǐchuáng", "es": "levantarse" },
+        { "hz": "你每天早上几点起床？", "py": "nǐ měitiān zǎoshang jǐ diǎn qǐchuáng?", "es": "¿A qué hora te levantas cada mañana?" },
+        { "hz": "我每天早上七点起床。", "py": "wǒ měitiān zǎoshang qī diǎn qǐchuáng", "es": "Me levanto todos los días a las siete." }
+      ],
+      "nota": "El tiempo va antes del verbo: cada día → la mañana → la hora → levantarse."
+    },
+    {
+      "id": "shibushi",
+      "tema": "¿Es verdad que…? 是不是",
+      "kind": "frase",
+      "items": [
+        { "hz": "是不是", "py": "shì bu shì", "es": "¿es verdad que…?, ¿cierto?" },
+        { "hz": "跑步", "py": "pǎobù", "es": "correr, trotar" },
+        { "hz": "你是不是每天早上六点跑步？", "py": "nǐ shì bu shì měitiān zǎoshang liù diǎn pǎobù?", "es": "¿Es verdad que corres a las seis cada mañana?" },
+        { "hz": "不是，我七点跑步。", "py": "bú shì, wǒ qī diǎn pǎobù", "es": "No, corro a las siete." }
+      ],
+      "nota": "是不是 no pregunta desde cero: pide confirmar. Se responde con 是 / 不是."
+    },
+    {
+      "id": "henshao",
+      "tema": "Casi nunca: 很少 y la salud",
+      "kind": "gramatica",
+      "items": [
+        { "hz": "很少", "py": "hěn shǎo", "es": "rara vez, casi nunca" },
+        { "hz": "生病", "py": "shēngbìng", "es": "enfermarse" },
+        { "hz": "你很少生病，是不是喜欢运动？", "py": "nǐ hěn shǎo shēngbìng, shì bu shì xǐhuan yùndòng?", "es": "Casi nunca te enfermas, ¿es que te gusta el deporte?" },
+        { "hz": "我身体很好。", "py": "wǒ shēntǐ hěn hǎo", "es": "Tengo muy buena salud." }
+      ],
+      "nota": "Frecuencia: 每天 › 常常 › 有时候 › 很少 — siempre entre el sujeto y el verbo."
+    },
+    {
+      "id": "chuyuan",
+      "tema": "Entrar y salir del hospital",
+      "kind": "vocab",
+      "items": [
+        { "hz": "医院", "py": "yīyuàn", "es": "hospital" },
+        { "hz": "住院", "py": "zhùyuàn", "es": "hospitalizarse, quedar internado" },
+        { "hz": "出院", "py": "chūyuàn", "es": "salir del hospital, darse de alta" },
+        { "hz": "他今天出院了。", "py": "tā jīntiān chūyuàn le", "es": "Hoy le dieron el alta." }
+      ],
+      "nota": "住 zhù cae (te quedas adentro); 出 chū flota (sales)."
+    },
+    {
+      "id": "haoduole",
+      "tema": "Diálogo: ahora mucho mejor",
+      "kind": "dialogo",
+      "items": [
+        { "who": "A", "hz": "你吃药了吗？现在身体怎么样？", "py": "nǐ chī yào le ma? xiànzài shēntǐ zěnmeyàng?", "es": "¿Tomaste la medicina? ¿Cómo estás ahora?" },
+        { "who": "B", "hz": "吃了，现在好多了。", "py": "chī le, xiànzài hǎo duō le", "es": "Sí, ahora estoy mucho mejor." },
+        { "who": "A", "hz": "什么时候能出院？", "py": "shénme shíhou néng chūyuàn?", "es": "¿Cuándo te pueden dar el alta?" },
+        { "who": "B", "hz": "医生说下个星期。", "py": "yīshēng shuō xià ge xīngqī", "es": "El médico dice que la próxima semana." }
+      ],
+      "nota": "[adjetivo] + 多了 = «mucho más… que antes»; 能 = estar en condiciones de."
+    },
+    {
+      "id": "gao",
+      "tema": "¿Cuánto mides? 很高 / 不太高",
+      "kind": "gramatica",
+      "items": [
+        { "hz": "爸爸很高。", "py": "bàba hěn gāo", "es": "Papá es alto." },
+        { "hz": "我不太高。", "py": "wǒ bú tài gāo", "es": "No soy tan alto." },
+        { "hz": "你多高？", "py": "nǐ duō gāo?", "es": "¿Cuánto mides?" },
+        { "hz": "我一米七四。", "py": "wǒ yì mǐ qī sì", "es": "Mido 1,74." }
+      ],
+      "nota": "Sin 是: el adjetivo es el verbo. ❌ 不很高 → ✅ 不太高."
+    },
+    {
+      "id": "zhidao",
+      "tema": "Saber un dato: 知道",
+      "kind": "frase",
+      "items": [
+        { "hz": "知道", "py": "zhīdào", "es": "saber (un dato)" },
+        { "hz": "你知道这是什么球吗？", "py": "nǐ zhīdào zhè shì shénme qiú ma?", "es": "¿Sabes qué pelota es esta?" },
+        { "hz": "我知道，这是足球。", "py": "wǒ zhīdào, zhè shì zúqiú", "es": "Lo sé, es un balón de fútbol." },
+        { "hz": "我什么都不知道。", "py": "wǒ shénme dōu bù zhīdào", "es": "No sé nada." }
+      ],
+      "nota": "知道 un dato · 会 saber hacer · 认识 conocer a alguien."
+    },
+    {
+      "id": "dawei",
+      "tema": "Diálogo: ¿cuántos años tiene David?",
+      "kind": "dialogo",
+      "items": [
+        { "who": "A", "hz": "大卫今年多大？", "py": "Dàwèi jīnnián duō dà?", "es": "¿Cuántos años tiene David?" },
+        { "who": "B", "hz": "二十多岁。他一米八几。", "py": "èrshí duō suì. tā yì mǐ bā jǐ", "es": "Veintitantos. Mide uno ochenta y algo." },
+        { "who": "A", "hz": "你怎么知道这么多啊？", "py": "nǐ zěnme zhīdào zhème duō a?", "es": "¿Y cómo sabes tanto?" },
+        { "who": "B", "hz": "他是我同学。", "py": "tā shì wǒ tóngxué", "es": "Es mi compañero de clase." }
+      ],
+      "nota": "多 va detrás del número redondo (二十多); 几 llena la cifra que falta (一米八几)."
+    },
+    {
+      "id": "mang-xiuxi",
+      "tema": "Ocupado, pero… quiero descansar",
+      "kind": "frase",
+      "items": [
+        { "hz": "你的工作忙不忙？", "py": "nǐ de gōngzuò máng bu máng?", "es": "¿Tienes mucho trabajo?" },
+        { "hz": "我有工作，但是这几天我不忙。", "py": "wǒ yǒu gōngzuò, dànshì zhè jǐ tiān wǒ bù máng", "es": "Tengo trabajo, pero estos días no estoy ocupado." },
+        { "hz": "我太忙了，没有时间休息。", "py": "wǒ tài máng le, méiyǒu shíjiān xiūxi", "es": "Estoy demasiado ocupado, no tengo tiempo de descansar." },
+        { "hz": "我累了，我想休息一下。", "py": "wǒ lèi le, wǒ xiǎng xiūxi yíxià", "es": "Estoy cansado, quiero descansar un rato." }
+      ],
+      "nota": "很忙 › 太忙了 › 不太忙; 但是 abre el contraste al inicio de la segunda frase."
+    },
+    {
+      "id": "zhanglaoshi",
+      "tema": "Diálogo: la profesora Zhang",
+      "kind": "dialogo",
+      "items": [
+        { "who": "A", "hz": "张老师星期六也不休息啊？", "py": "Zhāng lǎoshī xīngqīliù yě bù xiūxi a?", "es": "¿La profesora Zhang tampoco descansa los sábados?" },
+        { "who": "B", "hz": "是啊，她这几天很忙。", "py": "shì a, tā zhè jǐ tiān hěn máng", "es": "Así es, estos días está muy ocupada." },
+        { "who": "A", "hz": "那会很累吧。", "py": "nà huì hěn lèi ba", "es": "Entonces debe de estar muy cansada, ¿no?" },
+        { "who": "B", "hz": "她每天回来都很累。", "py": "tā měitiān huílái dōu hěn lèi", "es": "Todos los días vuelve cansadísima." }
+      ],
+      "nota": "会…吧 = suposición: «debe de…, ¿no?»."
+    },
+    {
+      "id": "cierre",
+      "tema": "Repaso: palabras clave",
+      "kind": "cierre",
+      "items": [
+        { "hz": "起床", "py": "qǐchuáng", "es": "levantarse" },
+        { "hz": "很少", "py": "hěn shǎo", "es": "casi nunca" },
+        { "hz": "出院", "py": "chūyuàn", "es": "darse de alta" },
+        { "hz": "好多了", "py": "hǎo duō le", "es": "mucho mejor" },
+        { "hz": "多高", "py": "duō gāo", "es": "cuánto mide" },
+        { "hz": "知道", "py": "zhīdào", "es": "saber" },
+        { "hz": "但是", "py": "dànshì", "es": "pero" },
+        { "hz": "休息", "py": "xiūxi", "es": "descansar" }
+      ],
+      "nota": "再见！下次见。"
+    }
+  ]
+}

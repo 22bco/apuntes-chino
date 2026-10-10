@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memes · 梗图 · Apuntes Chino</title>
+<style>
+  @font-face { font-family: 'MaShan'; src: url('/assets/fonts/mashanzheng-sub.woff2') format('woff2'); font-display: swap; }
+  @font-face { font-family: 'KuaiLe'; src: url('/assets/fonts/zcoolkuaile-sub.woff2') format('woff2'); font-display: swap; }
+  :root { --red: #c0392b; --red-soft: #fdecea; --ink: #222; --muted: #777; --line: #e6e6e6; --bg: #fafafa; --card: #fff; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, 'PingFang SC', sans-serif; background: var(--bg); color: var(--ink); font-size: 15px; }
+  a { color: var(--red); }
+  header { max-width: 1180px; margin: 0 auto; padding: 22px 20px 6px; }
+  header h1 { font-size: 1.7rem; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  header h1 .zh { font-family: 'MaShan', 'KaiTi', 'STKaiti', serif; font-weight: 400; color: var(--red); font-size: 2.2rem; }
+  header p { color: var(--muted); margin-top: 4px; }
+  main { max-width: 1180px; margin: 0 auto; padding: 14px 20px 60px; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+  @media (max-width: 860px) { main { grid-template-columns: 1fr; } }
+  .stage { position: sticky; top: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px; }
+  @media (max-width: 860px) { .stage { position: static; } }
+  .stage canvas { width: 100%; height: auto; display: block; border-radius: 8px; background: #eee; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  button, .btn { font: inherit; border: 1px solid var(--line); background: #fff; color: var(--ink); border-radius: 9px; padding: 8px 13px; cursor: pointer; }
+  button:hover { border-color: var(--red); }
+  button.primary { background: var(--red); border-color: var(--red); color: #fff; font-weight: 600; }
+  .toast { color: #2e7d32; font-size: .85rem; margin-top: 8px; min-height: 1.2em; }
+  .panel { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin-bottom: 16px; }
+  .panel h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 10px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; background: #fff; cursor: pointer; font-size: .9rem; }
+  .chip.on { background: var(--red); color: #fff; border-color: var(--red); }
+  .chip .zh { font-family: 'KuaiLe', 'PingFang SC', sans-serif; }
+  .field { border: 1px solid var(--line); border-radius: 10px; padding: 10px; margin-bottom: 10px; background: #fcfcfc; }
+  .field-title { font-size: .78rem; color: var(--red); font-weight: 700; margin-bottom: 6px; }
+  .field label { display: block; font-size: .75rem; color: var(--muted); margin: 6px 0 2px; }
+  .field input[type=text], .field textarea { width: 100%; font: inherit; border: 1px solid var(--line); border-radius: 7px; padding: 7px 9px; background: #fff; }
+  .field textarea { resize: vertical; min-height: 44px; font-size: 1.1rem; }
+  .row { display: flex; gap: 8px; align-items: center; }
+  .row > * { flex: 1; }
+  .auto { font-size: .7rem; color: #2e7d32; margin-left: 6px; }
+  .toggles { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 10px; font-size: .9rem; }
+  .gallery { max-width: 1180px; margin: 0 auto; padding: 0 20px 70px; }
+  .gallery h2 { font-size: 1.1rem; margin-bottom: 4px; }
+  .gallery p { color: var(--muted); margin-bottom: 12px; font-size: .9rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; }
+  .thumb { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 6px; cursor: pointer; text-align: left; }
+  .thumb:hover { border-color: var(--red); transform: translateY(-2px); }
+  .thumb canvas { width: 100%; height: auto; display: block; border-radius: 6px; }
+  .thumb span { display: block; font-size: .72rem; color: var(--muted); margin-top: 5px; }
+  .sub { font-size: .75rem; font-weight: 700; color: var(--muted); margin: 4px 0 6px; }
+  .sub + .chips { margin-bottom: 12px; }
+  .classics { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 6px; max-height: 250px; margin-bottom: 12px; overflow-y: auto; padding: 2px; }
+  .cl { padding: 3px; border-radius: 8px; text-align: center; font-size: .66rem; line-height: 1.15; color: var(--muted); }
+  .cl img { width: 100%; height: 64px; object-fit: cover; border-radius: 5px; display: block; margin-bottom: 3px; }
+  .cl.on { border-color: var(--red); box-shadow: 0 0 0 2px var(--red); color: var(--red); }
+  .hint { font-size: .8rem; color: var(--muted); margin-top: 8px; line-height: 1.45; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📸 Memes <span class="zh">梗图</span></h1>
+  <p>gěngtú · Arma memes con lo que vemos en clase: hanzi con letra de pincel, pinyin abajo y (si quieres) el español. ·
+    <a href="/">← Inicio</a></p>
+</header>
+
+<main>
+  <section class="stage">
+    <canvas id="cv" width="1080" height="1080"></canvas>
+    <div class="actions">
+      <button class="primary" id="dl">⬇️ Descargar PNG</button>
+      <button id="copy">📋 Copiar imagen</button>
+      <button id="link">🔗 Copiar enlace</button>
+      <button id="rand">🎲 Meme al azar</button>
+    </div>
+    <div class="toast" id="toast"></div>
+  </section>
+
+  <section>
+    <div class="panel">
+      <h2>1 · Plantilla</h2>
+      <div id="tpls"></div>
+      <div id="tplExtra"></div>
+    </div>
+    <div class="panel">
+      <h2>2 · Texto</h2>
+      <div id="fields"></div>
+      <p class="hint">Escribe en hanzi y el pinyin se completa solo (puedes corregirlo; si lo editas, deja de actualizarse).
+        Usa un salto de línea para partir la frase donde quieras.</p>
+    </div>
+    <div class="panel">
+      <h2>3 · Estilo</h2>
+      <div class="chips" id="fonts"></div>
+      <div class="toggles">
+        <label><input type="checkbox" id="showPy" checked> Pinyin</label>
+        <label><input type="checkbox" id="showEs"> Español</label>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="gallery">
+  <h2>🗂️ Memes de las clases</h2>
+  <p>Hechos con el vocabulario de Intermedio 1. Haz clic en uno para editarlo.</p>
+  <div class="grid" id="gallery"></div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/pinyin-pro@3.29.5/dist/index.js"></script>
+<script>
+(() => {
+  const W = 1080;
+  const FONTS = {
+    brush: { label: '毛笔 pincel', css: "'MaShan', 'KaiTi', 'STKaiti', serif" },
+    cute:  { label: '可爱 caricatura', css: "'KuaiLe', 'PingFang SC', sans-serif" },
+    hei:   { label: '黑体 clásica', css: "'PingFang SC', 'Heiti SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif" },
+  };
+  const PY_FONT = "-apple-system, 'Helvetica Neue', Arial, sans-serif";
+
+  // ── Plantillas ────────────────────────────────────────────────
+  // slots: cada texto editable; extra: campos adicionales (emoji, ánimo del panda…)
+  const TEMPLATES = {
+    panda:  { name: '熊猫头 panda', h: 1080, slots: ['Texto'], extra: 'mood' },
+    nosi:   { name: '不要 / 要 no · sí', h: 1080, slots: ['No 🙅', 'Sí 😎'] },
+    brain:  { name: '大脑 cerebro', h: 1440, slots: ['Nivel 1', 'Nivel 2', 'Nivel 3', 'Nivel 4'] },
+    expect: { name: '期待 vs 现实', h: 960, slots: ['期待 · lo que esperaba', '现实 · la realidad'], emoji: ['🤩', '🥲'] },
+    nadie:  { name: '没有人：/ 我：', h: 1080, slots: ['Yo 我：'], emoji: ['🙋'] },
+    emoji:  { name: '表情 emoji', h: 1080, slots: ['Texto'], emoji: ['😭'] },
+    foto:   { name: '📷 tu imagen', h: 1080, slots: ['Arriba', 'Abajo'], extra: 'upload' },
+  };
+
+  // ── Plantillas clásicas (imágenes en /assets/memes/, zonas de texto en fracciones de la imagen) ──
+  // box: [x, y, w, h] · 'w' texto blanco con borde (sobre foto) · 'd' texto negro (sobre fondo claro) · 'b' banda negra (tapa texto de la plantilla) · rot en radianes
+  const CLASSICS = [
+    ['drake', 'Drake', 1000, 1000, [['No 🙅', [.52, .03, .45, .44], 'd'], ['Sí 👉', [.52, .53, .45, .44], 'd']]],
+    ['distracted', 'Distracted Boyfriend', 1000, 667, [['Lo nuevo (ella de rojo)', [.03, .52, .4, .3], 'w'], ['Yo (él)', [.43, .3, .3, .3], 'w'], ['Lo de siempre (ella)', [.72, .42, .27, .3], 'w']]],
+    ['two-buttons', 'Two Buttons', 600, 908, [['Botón 1', [.07, .09, .27, .1], 'd', -.2], ['Botón 2', [.41, .05, .25, .1], 'd', -.2], ['El que suda', [.03, .8, .94, .18], 'w']]],
+    ['expanding-brain', 'Expanding Brain', 857, 1202, [['Nivel 1', [.02, .01, .47, .23], 'd'], ['Nivel 2', [.02, .26, .47, .23], 'd'], ['Nivel 3', [.02, .51, .47, .23], 'd'], ['Nivel 4', [.02, .76, .47, .23], 'd']]],
+    ['gru', "Gru's Plan", 700, 449, [['Paso 1', [.285, .06, .2, .4], 'd'], ['Paso 2', [.785, .06, .2, .4], 'd'], ['Paso 3', [.285, .55, .2, .4], 'd'], ['Paso 4', [.785, .55, .2, .4], 'd']]],
+    ['uno', 'UNO Draw 25', 500, 494, [['Haz esto…', [.15, .28, .27, .2], 'd', -.05], ['El que prefiere robar 25', [.52, .66, .46, .3], 'w']]],
+    ['pigeon', 'Is This a Pigeon?', 1000, 898, [['La mariposa', [.62, .02, .37, .22], 'w'], ['El tipo', [.02, .5, .42, .22], 'w'], ['¿Esto es…?', [.03, .8, .94, .18], 'w']]],
+    ['spiderman', 'Spider-Man Pointing', 600, 551, [['Spider-Man 1', [.02, .66, .4, .22], 'w'], ['Spider-Man 2', [.38, .04, .4, .2], 'w'], ['Spider-Man 3', [.62, .66, .37, .22], 'w']]],
+    ['change-my-mind', 'Change My Mind', 482, 361, [['El cartel', [.43, .52, .44, .2], 'd', -.08]]],
+    ['woman-cat', 'Woman Yelling at Cat', 680, 438, [['La mujer', [.02, .16, .46, .3], 'w'], ['El gato', [.52, .16, .46, .24], 'w']]],
+    ['exit12', 'Left Exit 12', 804, 767, [['Seguir recto', [.3, .1, .22, .2], 'w'], ['La salida', [.53, .1, .2, .2], 'w'], ['Yo (el auto)', [.2, .6, .6, .2], 'w']]],
+    ['handshake', 'Epic Handshake', 900, 645, [['Brazo izquierdo', [.02, .6, .4, .3], 'w'], ['Brazo derecho', [.58, .6, .4, .3], 'w'], ['Lo que tienen en común', [.28, .04, .44, .26], 'w']]],
+    ['buff-doge', 'Buff Doge vs. Cheems', 937, 720, [['Doge fuerte', [.02, .76, .46, .23], 'd'], ['Cheems', [.52, .76, .46, .23], 'd']]],
+    ['pooh', 'Tuxedo Winnie the Pooh', 800, 582, [['Normal', [.46, .03, .52, .44], 'd'], ['Elegante 🎩', [.46, .53, .52, .44], 'd']]],
+    ['clown', 'Clown Applying Makeup', 750, 798, [['Paso 1', [.02, .01, .54, .23], 'd'], ['Paso 2', [.02, .26, .54, .23], 'd'], ['Paso 3', [.02, .51, .54, .23], 'd'], ['Paso 4 🤡', [.02, .76, .54, .23], 'd']]],
+    ['anakin-padme', 'Anakin y Padmé', 768, 768, [['Anakin', [.02, .3, .46, .18], 'w'], ['Padmé', [.52, .3, .46, .18], 'w'], ['Anakin (silencio)', [.02, .8, .46, .18], 'w'], ['Padmé (dudando)', [.52, .8, .46, .18], 'w']]],
+    ['always-has-been', 'Always Has Been', 960, 540, [['Astronauta 1', [.02, .04, .52, .3], 'w'], ['Astronauta 2', [.5, .03, .48, .22], 'w']]],
+    ['monkey-puppet', 'Monkey Puppet', 923, 768, [['Arriba', [.03, .02, .94, .26], 'd']]],
+    ['batman-robin', 'Batman Slapping Robin', 400, 387, [['Robin', [.04, .03, .42, .18], 'd'], ['Batman', [.53, .03, .43, .16], 'd']]],
+    ['same-picture', "They're the Same Picture", 1000, 1118, [['Foto 1', [.04, .05, .38, .2], 'd', -.08], ['Foto 2', [.5, .07, .4, .22], 'd', .06], ['Abajo', [0, .835, 1, .165], 'b']]],
+    ['pablo', 'Sad Pablo Escobar', 720, 709, [['Arriba', [.02, .02, .96, .18], 'w'], ['Abajo izquierda', [.02, .78, .47, .2], 'w'], ['Abajo derecha', [.51, .78, .47, .2], 'w']]],
+    ['squidward', 'Squidward Window', 598, 420, [['Calamardo', [.02, .6, .46, .36], 'w'], ['Afuera', [.52, .6, .46, .36], 'w']]],
+    ['bernie', 'Bernie Once Again Asking', 750, 750, [['Arriba', [.03, .02, .94, .2], 'w'], ['Abajo', [0, .76, 1, .24], 'b']]],
+    ['harold', 'Hide the Pain Harold', 480, 601, [['Arriba', [.03, .02, .94, .2], 'w'], ['Abajo', [.03, .8, .94, .18], 'w']]],
+    ['roll-safe', 'Roll Safe', 702, 395, [['Arriba', [.03, .02, .94, .26], 'w'], ['Abajo', [.03, .72, .94, .26], 'w']]],
+    ['mocking-spongebob', 'Mocking SpongeBob', 502, 353, [['Arriba', [.03, .02, .94, .26], 'w'], ['Abajo', [.03, .72, .94, .26], 'w']]],
+    ['one-does-not', 'One Does Not Simply', 568, 335, [['Arriba', [.03, .02, .94, .26], 'w'], ['Abajo', [.03, .72, .94, .26], 'w']]],
+    ['this-is-fine', 'This Is Fine', 580, 282, [['Arriba', [.03, .02, .6, .3], 'w'], ['Abajo', [.03, .7, .94, .28], 'w']]],
+    ['disaster-girl', 'Disaster Girl', 500, 375, [['Arriba', [.03, .02, .94, .26], 'w'], ['Abajo', [.03, .72, .94, .26], 'w']]],
+    ['waiting-skeleton', 'Waiting Skeleton', 298, 403, [['Arriba', [.03, .02, .94, .2], 'w'], ['Abajo', [.03, .8, .94, .18], 'w']]],
+    ['cl-tulio-trasnoche', '31 Minutos · Tulio y Juanín', 1000, 562, [['Tulio', [.02, .03, .46, .26], 'w'], ['Juanín', [.52, .03, .46, .26], 'w']]],
+    ['cl-tulio-grita', '31 Minutos · Tulio grita', 1000, 750, [['Arriba', [.03, .02, .94, .2], 'w'], ['Abajo', [.03, .78, .94, .2], 'w']]],
+    ['cl-tulio-bodoque', '31 Minutos · Tulio y Bodoque', 1000, 750, [['Tulio', [.02, .02, .46, .3], 'w'], ['Bodoque', [.52, .02, .46, .28], 'w']]],
+    ['cl-juanin', '31 Minutos · Juanín serio', 1000, 562, [['Arriba', [.03, .02, .94, .22], 'w'], ['Abajo', [.03, .76, .94, .22], 'w']]],
+    ['cl-tulio-desgracia', '31 Minutos · «Vivimos de la desgracia ajena»', 1000, 562, [['Arriba', [.03, .02, .94, .24], 'w'], ['Abajo', [.03, .78, .94, .2], 'w']]],
+    ['cl-todos-que', '31 Minutos · ¡¿QUÉ?!', 1000, 562, [['Arriba', [.03, .02, .94, .2], 'w'], ['Abajo', [.03, .78, .94, .2], 'w']]],
+    ['cl-mario-hugo-como-que-no', '31 Minutos · Mario Hugo «¿Cómo que no?»', 480, 360, [['Arriba', [.03, .02, .94, .24], 'w'], ['Abajo', [.03, .76, .94, .22], 'w']]],
+    ['cl-bodoque-telefono', '31 Minutos · Bodoque al teléfono', 962, 1125, [['Arriba', [.03, .02, .94, .18], 'w'], ['Abajo', [.03, .82, .94, .16], 'w']]],
+    ['cl-policarpo', '31 Minutos · Policarpo Avendaño', 778, 735, [['Arriba', [.03, .02, .94, .18], 'w'], ['Abajo', [.03, .8, .94, .18], 'w']]],
+    ['cl-calcetin-rombos', '31 Minutos · Calcetín con Rombos Man', 714, 953, [['Arriba', [.03, .01, .94, .12], 'w'], ['Abajo', [.03, .8, .94, .18], 'w']]],
+    ['cl-joe-pino-opina', '31 Minutos · Joe Pino «Yo opino»', 546, 544, [['Yo opino que…', [.02, .04, .46, .5], 'w'], ['Abajo', [.03, .8, .94, .18], 'w']]],
+    ['cl-condorito-blam', 'Condorito · ¡BLAM!', 708, 371, [['El globo', [.02, .04, .47, .3], 'd'], ['Viñeta 2', [.54, .8, .44, .18], 'w']]],
+    ['cl-don-francisco', 'Don Francisco · Sábado Gigante', 840, 664, [['Arriba', [.03, .02, .94, .2], 'w'], ['Abajo', [.03, .8, .94, .18], 'w']]],
+    ['cl-don-francisco-ok', 'Don Francisco aprueba 👍', 451, 451, [['Al lado', [.62, .03, .36, .4], 'd'], ['Abajo', [.03, .82, .94, .16], 'w']]],
+    ['cl-kike-morande-risa', 'Kike Morandé muerto de risa', 400, 285, [['Arriba', [.03, .02, .94, .24], 'w'], ['Abajo', [.03, .76, .94, .22], 'w']]],
+  ];
+  for (const [id, name, w, h, boxes] of CLASSICS) {
+    TEMPLATES[id] = { name, h: Math.round(W * h / w), slots: boxes.map(b => b[0]), classic: { file: `/assets/memes/${id}.jpg`, boxes } };
+  }
+  const IMGS = {};
+  function memeImg(tpl, onload) {
+    const f = tpl.classic.file;
+    if (!IMGS[f]) { IMGS[f] = new Image(); IMGS[f].src = f; }
+    const im = IMGS[f];
+    if (!im.complete && onload) im.addEventListener('load', onload, { once: true });
+    return im.complete && im.naturalWidth ? im : null;
+  }
+  // si la imagen ya falló (complete sin naturalWidth), el evento error ya pasó: resolver igual
+  const whenImg = tpl => new Promise(r => { if (memeImg(tpl, r) || IMGS[tpl.classic.file].complete) r(); else IMGS[tpl.classic.file].addEventListener('error', r, { once: true }); });
+
+  const MOODS = { smile: '😄 feliz', cry: '😭 llorando', huh: '😵‍💫 confundido', smug: '😏 presumido', angry: '😤 enojado' };
+
+  // ── Memes de las clases (pinyin revisado a mano) ──────────────
+  const PRESETS = [
+    {"src": "🇨🇱 31 Minutos · ¡¿QUÉ?!", "tpl": "cl-todos-que", "t": [{"hz": "老师：明天考试。", "py": "lǎoshī: míngtiān kǎoshì", "es": "Profe: mañana hay examen."}, {"hz": "我们：什么？！", "py": "wǒmen: shénme?!", "es": "Nosotros: ¡¿QUÉ?!"}]},
+    {"src": "🇨🇱 Tulio grita · 我！我！", "tpl": "cl-tulio-grita", "t": [{"hz": "谁的汉语最好？！", "py": "shéi de Hànyǔ zuì hǎo?!", "es": "¡¿Quién habla mejor chino?!"}, {"hz": "我！我！我！", "py": "wǒ! wǒ! wǒ!", "es": "¡Yo! ¡Yo! ¡Yo!"}]},
+    {"src": "🇨🇱 Mario Hugo · ¿cómo que no?", "tpl": "cl-mario-hugo-como-que-no", "t": [{"hz": "我们一起去看电影吧！\n她：不去。", "py": "wǒmen yìqǐ qù kàn diànyǐng ba! tā: bú qù.", "es": "¡Vamos juntos al cine! Ella: no."}, {"hz": "怎么不去？！", "py": "zěnme bú qù?!", "es": "¡¿Cómo que no?!"}]},
+    {"src": "🇨🇱 Bodoque · 三号马", "tpl": "cl-bodoque-telefono", "t": [{"hz": "喂？我买三号马！", "py": "wèi? wǒ mǎi sān hào mǎ!", "es": "¿Aló? ¡Le apuesto al caballo 3!"}, {"hz": "……我没有钱了。", "py": "…wǒ méiyǒu qián le", "es": "…ya no tengo dinero."}]},
+    {"src": "🇨🇱 Policarpo · pelambre", "tpl": "cl-policarpo", "t": [{"hz": "你知道吗？", "py": "nǐ zhīdào ma?", "es": "¿Sabías?"}, {"hz": "张老师有男朋友了！", "py": "Zhāng lǎoshī yǒu nán péngyou le!", "es": "¡La profe Zhang (la del libro) tiene novio!"}]},
+    {"src": "🇨🇱 Calcetín con Rombos Man · 汉字", "tpl": "cl-calcetin-rombos", "t": [{"hz": "谁会写这个汉字？", "py": "shéi huì xiě zhège hànzì?", "es": "¿Quién sabe escribir este carácter?"}, {"hz": "我来了！\n（我也不会）", "py": "wǒ lái le! (wǒ yě bú huì)", "es": "¡Aquí estoy! (yo tampoco sé)"}]},
+    {"src": "🇨🇱 Joe Pino · 我觉得", "tpl": "cl-joe-pino-opina", "t": [{"hz": "我觉得…", "py": "wǒ juéde…", "es": "Yo opino que…"}, {"hz": "汉语不难。", "py": "Hànyǔ bù nán", "es": "el chino no es difícil."}]},
+    {"src": "🇨🇱 Tulio y Bodoque · 最高", "tpl": "cl-tulio-bodoque", "t": [{"hz": "我最高！", "py": "wǒ zuì gāo!", "es": "¡Soy el más alto!"}, {"hz": "你不太高。", "py": "nǐ bú tài gāo", "es": "No eres muy alto."}]},
+    {"src": "🇨🇱 Tulio y Bodoque · 最老", "tpl": "cl-tulio-bodoque", "t": [{"hz": "我是这里\n最好的！", "py": "wǒ shì zhèlǐ zuì hǎo de!", "es": "¡Soy el mejor de aquí!"}, {"hz": "你是这里最老的。", "py": "nǐ shì zhèlǐ zuì lǎo de", "es": "Eres el más viejo de aquí."}]},
+    {"src": "🇨🇱 Juanín · 每天", "tpl": "cl-juanin", "t": [{"hz": "他：我每个天都学习。", "py": "tā: wǒ měi ge tiān dōu xuéxí", "es": "Él: estudio todos los días (con un 个 de más)."}, {"hz": "……是“每天”。", "py": "…shì “měitiān”", "es": "…es «每天», sin 个."}]},
+    {"src": "🇨🇱 Tulio · desgracia ajena", "tpl": "cl-tulio-desgracia", "t": [{"hz": "老师生病了，\n今天没课……", "py": "lǎoshī shēngbìng le, jīntiān méi kè…", "es": "La profe se enfermó, hoy no hay clase…"}, {"hz": "我们：太好了！", "py": "wǒmen: tài hǎo le!", "es": "Nosotros: ¡qué bueno!"}]},
+    {"src": "🇨🇱 Kike Morandé · 是", "tpl": "cl-kike-morande-risa", "t": [{"hz": "同学：我是二十四岁。", "py": "tóngxué: wǒ shì èrshísì suì", "es": "Compañero: yo soy 24 años."}, {"hz": "我们：哈哈哈哈！", "py": "wǒmen: hāhāhāhā!", "es": "Nosotros: ¡jajajaja!"}]},
+    {"src": "🇨🇱 Kike Morandé · 吃咖啡", "tpl": "cl-kike-morande-risa", "t": [{"hz": "同学：我吃咖啡。", "py": "tóngxué: wǒ chī kāfēi", "es": "Compañero: yo como café."}, {"hz": "我们：哈哈哈哈！", "py": "wǒmen: hāhāhāhā!", "es": "Nosotros: ¡jajajaja!"}]},
+    {"src": "🇨🇱 Don Francisco aprueba · 多大", "tpl": "cl-don-francisco-ok", "t": [{"hz": "你多大了？", "py": "nǐ duō dà le?", "es": "¿Cuántos años tienes?"}, {"hz": "（不说“你几岁”）", "py": "(bù shuō “nǐ jǐ suì”)", "es": "(y no «你几岁», que es para niños)"}]},
+    {"src": "🇨🇱 Don Francisco aprueba · 你好", "tpl": "cl-don-francisco-ok", "t": [{"hz": "学了\n三个多月汉语…", "py": "xuéle sān ge duō yuè Hànyǔ…", "es": "Más de tres meses estudiando chino…"}, {"hz": "我会说“你好”了！", "py": "wǒ huì shuō “nǐ hǎo” le!", "es": "¡Ya sé decir «你好»!"}]},
+    {"src": "🇨🇱 Don Francisco · 星期六", "tpl": "cl-don-francisco", "t": [{"hz": "星期六！", "py": "xīngqīliù!", "es": "¡Sábado!"}, {"hz": "汉语课！！", "py": "Hànyǔ kè!!", "es": "¡¡Clase de chino!!"}]},
+    {"src": "🇨🇱 Condorito · 作业", "tpl": "cl-condorito-blam", "t": [{"hz": "你为什么没做作业？！", "py": "nǐ wèishénme méi zuò zuòyè?!", "es": "¡¿Por qué no hiciste la tarea?!"}, {"hz": "我的狗吃了。", "py": "wǒ de gǒu chī le", "es": "Se la comió mi perro."}]},
+    {"src": "🇨🇱 Tulio y Juanín · 休息", "tpl": "cl-tulio-trasnoche", "t": [{"hz": "明天星期六，\n你想休息吗？", "py": "míngtiān xīngqīliù, nǐ xiǎng xiūxi ma?", "es": "Mañana es sábado, ¿quieres descansar?"}, {"hz": "我想。\n但是我不能。", "py": "wǒ xiǎng. dànshì wǒ bù néng", "es": "Quiero. Pero no puedo."}]},
+    {"src": "😂 Two Buttons · 问/吻", "tpl": "two-buttons", "t": [{"hz": "我想问你", "py": "wǒ xiǎng wèn nǐ", "es": "quiero preguntarte"}, {"hz": "我想吻你", "py": "wǒ xiǎng wěn nǐ", "es": "quiero besarte"}, {"hz": "只差一个声调", "py": "zhǐ chà yí ge shēngdiào", "es": "solo cambia un tono"}]},
+    {"src": "😂 Expectativa · 睡觉/水饺", "tpl": "expect", "t": [{"hz": "我想说：\n我要睡觉。", "py": "wǒ xiǎng shuō: wǒ yào shuìjiào", "es": "Quería decir: quiero dormir."}, {"hz": "服务员听到：\n我要水饺。", "py": "fúwùyuán tīngdào: wǒ yào shuǐjiǎo", "es": "El mesero escuchó: quiero jiaozi."}], "emoji": ["😴", "🥟"]},
+    {"src": "😂 Always Has Been · tā", "tpl": "always-has-been", "t": [{"hz": "等等，他、她、它\n都是 tā？", "py": "děngděng, tā, tā, tā dōu shì tā?", "es": "Espera, ¿él, ella y «eso» son todos tā?"}, {"hz": "一直都是。", "py": "yìzhí dōu shì", "es": "Siempre lo han sido."}]},
+    {"src": "😂 Monkey Puppet · 汉字", "tpl": "monkey-puppet", "t": [{"hz": "老师：谁会写这个汉字？", "py": "lǎoshī: shéi huì xiě zhège hànzì?", "es": "Profe: ¿quién sabe escribir este carácter?"}]},
+    {"src": "😂 Buff Doge · 会说汉语", "tpl": "buff-doge", "t": [{"hz": "三岁的中国孩子：\n我会说汉语。", "py": "sān suì de Zhōngguó háizi: wǒ huì shuō Hànyǔ", "es": "Niño chino de 3 años: sé hablar chino."}, {"hz": "学了一年的我：\n我…不知道。", "py": "xuéle yì nián de wǒ: wǒ… bù zhīdào", "es": "Yo, tras un año: yo… no sé."}]},
+    {"src": "😂 Roll Safe · 说错", "tpl": "roll-safe", "t": [{"hz": "不说汉语，", "py": "bù shuō Hànyǔ,", "es": "Si no hablas chino,"}, {"hz": "就不会说错。", "py": "jiù bú huì shuōcuò", "es": "no te vas a equivocar."}]},
+    {"src": "😂 Skeleton · 下课", "tpl": "waiting-skeleton", "t": [{"hz": "我", "py": "wǒ", "es": "yo"}, {"hz": "等老师说“下课”", "py": "děng lǎoshī shuō “xiàkè”", "es": "esperando que la profe diga «se acabó la clase»"}]},
+    {"src": "😂 Expectativa · 会说汉语", "tpl": "expect", "t": [{"hz": "我会说汉语。", "py": "wǒ huì shuō Hànyǔ", "es": "Sé hablar chino."}, {"hz": "你好，谢谢，\n再见。", "py": "nǐ hǎo, xièxie, zàijiàn", "es": "Hola, gracias, adiós."}], "emoji": ["🗣️", "🥲"]},
+    {"src": "😂 Two Buttons · 懂了吗", "tpl": "two-buttons", "t": [{"hz": "懂了", "py": "dǒng le", "es": "entendí"}, {"hz": "不懂", "py": "bù dǒng", "es": "no entendí"}, {"hz": "老师：懂了吗？", "py": "lǎoshī: dǒng le ma?", "es": "Profe: ¿entendieron?"}]},
+    {"src": "😂 Same Picture · 好吧 = ya po", "tpl": "same-picture", "t": [{"hz": "好吧", "py": "hǎo ba", "es": "ok, ya"}, {"hz": "ya po", "py": "", "es": "(Chile)"}, {"hz": "都一样。", "py": "dōu yíyàng", "es": "Son la misma foto."}]},
+    {"src": "😂 Woman & Cat · 因为所以", "tpl": "woman-cat", "t": [{"hz": "你为什么不学习？！", "py": "nǐ wèishénme bù xuéxí?!", "es": "¡¿Por qué no estudias?!"}, {"hz": "因为……所以。", "py": "yīnwèi… suǒyǐ", "es": "Porque sí."}]},
+    {"src": "😂 Disaster Girl · 作业", "tpl": "disaster-girl", "t": [{"hz": "老师忘了作业", "py": "lǎoshī wàngle zuòyè", "es": "La profe se olvidó de la tarea"}, {"hz": "我：老师，今天有没有作业？", "py": "wǒ: lǎoshī, jīntiān yǒu méiyǒu zuòyè?", "es": "Yo: profe, ¿hoy hay tarea?"}]},
+    {"src": "😂 SpongeBob · tonos mal", "tpl": "mocking-spongebob", "t": [{"hz": "老师：这个很容易。", "py": "lǎoshī: zhège hěn róngyì", "es": "Profe: esto es muy fácil."}, {"hz": "这个很容易～", "py": "zhégě hēn rǒngyí", "es": "(con todos los tonos mal)"}]},
+    {"src": "😂 Expanding Brain · sobrevivir", "tpl": "expanding-brain", "t": [{"hz": "我不知道。", "py": "wǒ bù zhīdào", "es": "No sé."}, {"hz": "老师，请再说一遍。", "py": "lǎoshī, qǐng zài shuō yí biàn", "es": "Profe, ¿lo repite, por favor?"}, {"hz": "嗯……这个……\n那个……", "py": "ng… zhège… nàge…", "es": "Eh… este… o sea…"}, {"hz": "对对对！😊", "py": "duì duì duì!", "es": "¡Sí, sí, sí! (asentir a todo)"}]},
+    {"src": "😂 Anakin y Padmé · 每天", "tpl": "anakin-padme", "t": [{"hz": "我每天学习汉语。", "py": "wǒ měitiān xuéxí Hànyǔ", "es": "Estudio chino cada día."}, {"hz": "每天都学习，对吧？", "py": "měitiān dōu xuéxí, duì ba?", "es": "Todos los días, ¿cierto?"}, {"hz": "……", "py": "", "es": "(silencio)"}, {"hz": "每天都学习，对吧？", "py": "měitiān dōu xuéxí, duì ba?", "es": "Todos los días, ¿¿cierto??"}]},
+    {"src": "😂 Bernie · 再说一遍", "tpl": "bernie", "t": [{"hz": "老师，", "py": "lǎoshī,", "es": "Profe,"}, {"hz": "请再说一遍。", "py": "qǐng zài shuō yí biàn", "es": "una vez más le pido: ¿lo puede repetir?"}]},
+    {"src": "😂 Batman · sin 是", "tpl": "batman-robin", "t": [{"hz": "我是二十四岁…", "py": "wǒ shì èrshísì suì…", "es": "Yo soy 24 años…"}, {"hz": "我二十四岁！", "py": "wǒ èrshísì suì!", "es": "¡Sin 是!"}]},
+    {"src": "😂 Same Picture · 我/找", "tpl": "same-picture", "t": [{"hz": "我", "py": "wǒ", "es": "yo"}, {"hz": "找", "py": "zhǎo", "es": "buscar"}, {"hz": "都一样。", "py": "dōu yíyàng", "es": "Son la misma foto."}]},
+    {"src": "😂 This Is Fine · 考试", "tpl": "this-is-fine", "t": [{"hz": "明天考试，我还没学习。", "py": "míngtiān kǎoshì, wǒ hái méi xuéxí", "es": "Mañana hay examen y no he estudiado."}, {"hz": "没事，没事。", "py": "méishì, méishì", "es": "No pasa nada."}]},
+    {"src": "😂 Expanding Brain · 马虎", "tpl": "expanding-brain", "t": [{"hz": "马", "py": "mǎ", "es": "caballo"}, {"hz": "虎", "py": "hǔ", "es": "tigre"}, {"hz": "马虎", "py": "mǎhu", "es": "descuidado"}, {"hz": "马马虎虎", "py": "mǎmǎhūhū", "es": "más o menos (caballo caballo tigre tigre)"}]},
+    {"src": "😂 Change My Mind · 声调", "tpl": "change-my-mind", "t": [{"hz": "声调不重要。", "py": "shēngdiào bú zhòngyào", "es": "Los tonos no son importantes."}]},
+    {"src": "😂 Pooh · 以后再说", "tpl": "pooh", "t": [{"hz": "我不知道。", "py": "wǒ bù zhīdào", "es": "No sé."}, {"hz": "这个……\n以后再说吧。", "py": "zhège… yǐhòu zài shuō ba", "es": "Eso… lo vemos después."}]},
+    {"src": "😂 UNO · 起床", "tpl": "uno", "t": [{"hz": "星期六早上\n八点起床", "py": "xīngqīliù zǎoshang bā diǎn qǐchuáng", "es": "levantarte el sábado a las 8"}, {"hz": "我", "py": "wǒ", "es": "yo"}]},
+    {"src": "😂 Squidward · 踢足球", "tpl": "squidward", "t": [{"hz": "我：\n学习汉语", "py": "wǒ: xuéxí Hànyǔ", "es": "yo: estudiando chino"}, {"hz": "朋友们：\n踢足球", "py": "péngyoumen: tī zúqiú", "es": "mis amigos: jugando fútbol"}]},
+    {"src": "😂 Pablo · 没有课", "tpl": "pablo", "t": [{"hz": "老师生病了", "py": "lǎoshī shēngbìng le", "es": "La profe se enfermó"}, {"hz": "今天没有课", "py": "jīntiān méiyǒu kè", "es": "Hoy no hay clase"}, {"hz": "我…在家里…", "py": "wǒ… zài jiā li…", "es": "Yo… en la casa…"}]},
+    {"src": "😂 Gru · 星期六", "tpl": "gru", "t": [{"hz": "每天学习汉语", "py": "měitiān xuéxí Hànyǔ", "es": "estudiar chino cada día"}, {"hz": "明年去中国旅游", "py": "míngnián qù Zhōngguó lǚyóu", "es": "el próximo año, viaje a China"}, {"hz": "我只在星期六学习", "py": "wǒ zhǐ zài xīngqīliù xuéxí", "es": "solo estudio los sábados"}, {"hz": "我只在星期六学习", "py": "wǒ zhǐ zài xīngqīliù xuéxí", "es": "solo estudio los sábados"}]},
+    {"src": "😂 Harold · 买/卖", "tpl": "harold", "t": [{"hz": "我想买你的车。", "py": "wǒ xiǎng mǎi nǐ de chē", "es": "Quiero comprar tu auto."}, {"hz": "我想卖你的车。", "py": "wǒ xiǎng mài nǐ de chē", "es": "Quiero vender tu auto. 🙃"}]},
+    {"src": "😂 Nadie · 一个人练习", "tpl": "nadie", "t": [{"hz": "你好！你好吗？\n我很好，谢谢！你呢？", "py": "nǐ hǎo! nǐ hǎo ma? wǒ hěn hǎo, xièxie! nǐ ne?", "es": "(practicando solo el diálogo del libro)"}], "emoji": ["🧍"]},
+    {"src": "😂 Expanding Brain · 智利", "tpl": "expanding-brain", "t": [{"hz": "智", "py": "zhì", "es": "sabio"}, {"hz": "利", "py": "lì", "es": "beneficio"}, {"hz": "智利", "py": "Zhìlì", "es": "Chile"}, {"hz": "我是智利人。", "py": "wǒ shì Zhìlìrén", "es": "Soy chileno (o sea, sabio)."}]},
+    {"src": "😂 Pigeon · 电脑", "tpl": "pigeon", "t": [{"hz": "电脑", "py": "diànnǎo", "es": "computadora"}, {"hz": "我", "py": "wǒ", "es": "yo"}, {"hz": "这是……电的脑吗？", "py": "zhè shì… diàn de nǎo ma?", "es": "¿Esto es… un cerebro eléctrico?"}]},
+    {"src": "😂 Handshake · 外套", "tpl": "handshake", "t": [{"hz": "中国妈妈", "py": "Zhōngguó māma", "es": "mamá china"}, {"hz": "智利妈妈", "py": "Zhìlì māma", "es": "mamá chilena"}, {"hz": "天冷了，穿外套！", "py": "tiān lěng le, chuān wàitào!", "es": "¡Hace frío, ponte chaqueta!"}]},
+    {"src": "😂 Clown · 北京", "tpl": "clown", "t": [{"hz": "我学了一年汉语", "py": "wǒ xuéle yì nián Hànyǔ", "es": "Estudié chino un año"}, {"hz": "我会说很多\n汉语了", "py": "wǒ huì shuō hěn duō Hànyǔ le", "es": "Ya sé hablar mucho chino"}, {"hz": "我去北京旅游", "py": "wǒ qù Běijīng lǚyóu", "es": "Viajo a Beijing"}, {"hz": "北京人：\n你说什么？", "py": "Běijīngrén: nǐ shuō shénme?", "es": "Pekinés: ¿qué dijiste? 🤡"}]},
+    { src: 'Drake · 吃药', tpl: 'drake', t: [
+      { hz: '喝药', py: 'hē yào', es: '«beber» la pastilla' },
+      { hz: '吃药', py: 'chī yào', es: 'tomar la medicina' }] },
+    { src: 'Spider-Man · 他她它', tpl: 'spiderman', t: [
+      { hz: '他', py: 'tā', es: 'él' }, { hz: '她', py: 'tā', es: 'ella' }, { hz: '它', py: 'tā', es: 'eso / el gato' }] },
+    { src: 'Two Buttons · 每天', tpl: 'two-buttons', t: [
+      { hz: '每天', py: 'měitiān', es: 'cada día' }, { hz: '每个天', py: 'měi ge tiān', es: 'cada día (?)' },
+      { hz: '汉语学生', py: 'Hànyǔ xuésheng', es: 'estudiante de chino' }] },
+    { src: 'Pigeon · 什么球', tpl: 'pigeon', t: [
+      { hz: '足球', py: 'zúqiú', es: 'pelota de fútbol' }, { hz: '我', py: 'wǒ', es: 'yo' },
+      { hz: '这是篮球吗？', py: 'zhè shì lánqiú ma?', es: '¿Esto es una pelota de básquetbol?' }] },
+    { src: 'Clown · 每…', tpl: 'clown', t: [
+      { hz: '我每天学习汉语。', py: 'wǒ měitiān xuéxí Hànyǔ', es: 'Estudio chino cada día.' },
+      { hz: '我每个星期学习汉语。', py: 'wǒ měi ge xīngqī xuéxí Hànyǔ', es: 'Cada semana.' },
+      { hz: '我每个月学习汉语。', py: 'wǒ měi ge yuè xuéxí Hànyǔ', es: 'Cada mes.' },
+      { hz: '我每年学习汉语。', py: 'wǒ měinián xuéxí Hànyǔ', es: 'Cada año. 🤡' }] },
+    { src: 'Gru · 你说什么', tpl: 'gru', t: [
+      { hz: '我每天学习汉语。', py: 'wǒ měitiān xuéxí Hànyǔ', es: 'Estudio chino cada día.' },
+      { hz: '我会说汉语了！', py: 'wǒ huì shuō Hànyǔ le!', es: '¡Ya sé hablar chino!' },
+      { hz: '老师：你说什么？', py: 'lǎoshī: nǐ shuō shénme?', es: 'Profe: ¿qué dijiste?' },
+      { hz: '老师：你说什么？', py: 'lǎoshī: nǐ shuō shénme?', es: 'Profe: ¿qué dijiste?' }] },
+    { src: 'Expanding Brain · 高', tpl: 'expanding-brain', t: [
+      { hz: '我不很高。', py: 'wǒ bù hěn gāo', es: '✗' }, { hz: '我不高。', py: 'wǒ bù gāo', es: 'No soy alto.' },
+      { hz: '我不太高。', py: 'wǒ bú tài gāo', es: 'No soy muy alto.' }, { hz: '我一米七四。', py: 'wǒ yì mǐ qī sì', es: 'Mido 1,74.' }] },
+    { src: 'Pooh · 每…都', tpl: 'pooh', t: [
+      { hz: '我每个月去看奶奶。', py: 'wǒ měi ge yuè qù kàn nǎinai', es: 'Voy a ver a mi abuela cada mes.' },
+      { hz: '我每个月都去看奶奶。', py: 'wǒ měi ge yuè dōu qù kàn nǎinai', es: 'Todos los meses, sin falta.' }] },
+    { src: 'Distracted · 学习', tpl: 'distracted', t: [
+      { hz: '睡觉', py: 'shuìjiào', es: 'dormir' }, { hz: '我', py: 'wǒ', es: 'yo' }, { hz: '学习汉语', py: 'xuéxí Hànyǔ', es: 'estudiar chino' }] },
+    { src: 'Woman & Cat · 起床', tpl: 'woman-cat', t: [
+      { hz: '你每天几点起床？！', py: 'nǐ měitiān jǐ diǎn qǐchuáng?!', es: '¡¿A qué hora te levantas?!' },
+      { hz: '十二点。', py: 'shí\'èr diǎn', es: 'A las doce.' }] },
+    { src: 'UNO · 学习', tpl: 'uno', t: [
+      { hz: '每天学习汉语', py: 'měitiān xuéxí Hànyǔ', es: 'estudiar chino cada día' }, { hz: '我', py: 'wǒ', es: 'yo' }] },
+    { src: 'Handshake · 水果', tpl: 'handshake', t: [
+      { hz: '中国人', py: 'Zhōngguó rén', es: 'chinos' }, { hz: '智利人', py: 'Zhìlì rén', es: 'chilenos' },
+      { hz: '都喜欢吃水果', py: 'dōu xǐhuan chī shuǐguǒ', es: 'a todos les gusta la fruta' }] },
+    { src: 'Change My Mind · 汉语', tpl: 'change-my-mind', t: [
+      { hz: '汉语不难。', py: 'Hànyǔ bù nán', es: 'El chino no es difícil.' }] },
+    { src: 'Left Exit 12 · 星期六', tpl: 'exit12', t: [
+      { hz: '学习汉语', py: 'xuéxí Hànyǔ', es: 'estudiar chino' }, { hz: '看电视', py: 'kàn diànshì', es: 'ver tele' },
+      { hz: '星期六的我', py: 'xīngqīliù de wǒ', es: 'yo, el sábado' }] },
+    { src: 'Harold · 知道', tpl: 'harold', t: [
+      { hz: '老师：你知道吗？', py: 'lǎoshī: nǐ zhīdào ma?', es: 'Profe: ¿lo sabes?' },
+      { hz: '我：知道知道。', py: 'wǒ: zhīdào zhīdào', es: 'Yo: sí, sí, claro.' }] },
+    { src: 'I1 · Clase 05 · 每天', tpl: 'panda', mood: 'smug', t: [
+      { hz: '我每天都学习汉语。', py: 'wǒ měitiān dōu xuéxí Hànyǔ', es: 'Estudio chino todos los días (claro que sí)' }] },
+    { src: 'I1 · Clase 05 · 每 sin 个', tpl: 'nosi', t: [
+      { hz: '每个天', py: 'měi ge tiān', es: '✗ cada día (mal)' },
+      { hz: '每天', py: 'měitiān', es: '✓ cada día' }] },
+    { src: 'I1 · Clase 05 · clasificadores', tpl: 'nosi', t: [
+      { hz: '每书', py: 'měi shū', es: '✗ cada libro (mal)' },
+      { hz: '每本书', py: 'měi běn shū', es: '✓ cada libro' }] },
+    { src: 'I1 · Clase 05 · 出去跑步', tpl: 'nadie', emoji: ['🏃‍♂️'], t: [
+      { hz: '我每天早上\n出去跑步。', py: 'wǒ měitiān zǎoshang chūqu pǎobù', es: 'Salgo a correr todas las mañanas (lo hice una vez)' }] },
+    { src: 'I1 · Clase 04 · 起床', tpl: 'expect', emoji: ['⏰', '😴'], t: [
+      { hz: '我每天早上\n六点起床。', py: 'wǒ měitiān zǎoshang liù diǎn qǐchuáng', es: 'Me levanto a las seis' },
+      { hz: '星期六\n我十二点起床。', py: 'xīngqīliù wǒ shí\'èr diǎn qǐchuáng', es: 'El sábado me levanto a las doce' }] },
+    { src: 'I1 · Clase 04 · 知道', tpl: 'panda', mood: 'huh', t: [
+      { hz: '我什么都不知道。', py: 'wǒ shénme dōu bù zhīdào', es: 'No sé nada.' }] },
+    { src: 'I1 · Clase 04 · 不太高', tpl: 'nosi', t: [
+      { hz: '不很高', py: 'bù hěn gāo', es: '✗ no muy alto (no existe)' },
+      { hz: '不太高', py: 'bú tài gāo', es: '✓ no muy alto' }] },
+    { src: 'I1 · Clase 04 · 好多了', tpl: 'brain', t: [
+      { hz: '我病了。', py: 'wǒ bìng le', es: 'Me enfermé.' },
+      { hz: '我吃药了。', py: 'wǒ chī yào le', es: 'Tomé la medicina.' },
+      { hz: '我休息一下。', py: 'wǒ xiūxi yíxià', es: 'Descanso un rato.' },
+      { hz: '现在好多了！', py: 'xiànzài hǎo duō le!', es: '¡Ahora estoy mucho mejor!' }] },
+    { src: 'I1 · Clase 04 · 张老师', tpl: 'panda', mood: 'cry', t: [
+      { hz: '老师，\n我们也想休息。', py: 'lǎoshī, wǒmen yě xiǎng xiūxi', es: 'Profe, nosotros también queremos descansar.' }] },
+    { src: 'I1 · Clase 03 · 多', tpl: 'brain', t: [
+      { hz: '三多个星期', py: 'sān duō ge xīngqī', es: '✗ (mal)' },
+      { hz: '三个多星期', py: 'sān ge duō xīngqī', es: 'tres semanas y algo' },
+      { hz: '二十多天', py: 'èrshí duō tiān', es: 'veintitantos días' },
+      { hz: '哥哥二十多岁了。', py: 'gēge èrshí duō suì le', es: 'Mi hermano tiene veintitantos.' }] },
+    { src: 'I1 · Clase 03 · 最高', tpl: 'nadie', emoji: ['📏'], t: [
+      { hz: '我一米七四，\n我最高！', py: 'wǒ yì mǐ qī sì, wǒ zuì gāo!', es: 'Mido 1,74: ¡soy el más alto!' }] },
+    { src: 'I1 · Clase 03 · 剪坏了', tpl: 'emoji', emoji: ['💇‍♂️'], t: [
+      { hz: '我的头发\n剪坏了。', py: 'wǒ de tóufa jiǎn huài le', es: 'Me cortaron mal el pelo.' }] },
+    { src: 'I1 · Clase 03 · 吃药', tpl: 'nosi', t: [
+      { hz: '吃咖啡', py: 'chī kāfēi', es: '✗ «comer» café' },
+      { hz: '吃药，喝咖啡', py: 'chī yào, hē kāfēi', es: '✓ tomar medicina, tomar café' }] },
+    { src: 'I1 · Clase 03 · 加油', tpl: 'panda', mood: 'smile', t: [
+      { hz: '加油！', py: 'jiāyóu!', es: '¡Ánimo!' }] },
+    { src: 'I1 · Clase 03 · 榴莲', tpl: 'emoji', emoji: ['🤢'], t: [
+      { hz: '我最不喜欢\n吃榴莲。', py: 'wǒ zuì bù xǐhuan chī liúlián', es: 'Lo que menos me gusta es el durián.' }] },
+    { src: 'I1 · Clase 02 · 要不要', tpl: 'expect', emoji: ['✈️', '🛋️'], t: [
+      { hz: '我要去\n北京旅游。', py: 'wǒ yào qù Běijīng lǚyóu', es: 'Voy a viajar a Beijing' },
+      { hz: '我在家里。', py: 'wǒ zài jiā li', es: 'Estoy en casa' }] },
+    { src: 'I1 · Clase 01 · 最好', tpl: 'panda', mood: 'smug', t: [
+      { hz: '九月去北京\n旅游最好。', py: 'jiǔyuè qù Běijīng lǚyóu zuì hǎo', es: 'Lo mejor es ir a Beijing en septiembre.' }] },
+    { src: 'I1 · Clase 04 · 几点起床', tpl: 'foto', t: [
+      { hz: '你每天早上\n几点起床？', py: 'nǐ měitiān zǎoshang jǐ diǎn qǐchuáng?', es: '¿A qué hora te levantas?' },
+      { hz: '十二点。', py: 'shí\'èr diǎn', es: 'A las doce.' }] },
+  ];
+
+  // ── Estado ────────────────────────────────────────────────────
+  let state = null, userImg = null;
+  const blankText = () => ({ hz: '', py: '', es: '', pyAuto: true });
+  function fromPreset(p) {
+    const tpl = TEMPLATES[p.tpl];
+    return {
+      tpl: p.tpl, font: state ? state.font : 'brush',
+      showPy: state ? state.showPy : true, showEs: state ? state.showEs : false,
+      mood: p.mood || 'smile',
+      emoji: (p.emoji || tpl.emoji || []).slice(),
+      t: tpl.slots.map((_, i) => Object.assign(blankText(), p.t[i] || {}, { pyAuto: !(p.t[i] && p.t[i].py) })),
+    };
+  }
+
+  // ── Pinyin automático ─────────────────────────────────────────
+  function autoPinyin(hz) {
+    if (!window.pinyinPro || !hz.trim()) return '';
+    try {
+      return pinyinPro.pinyin(hz.replace(/\n/g, ''), { nonZh: 'consecutive' })
+        .replace(/\s+([，。！？、：；,.!?:;])/g, '$1').replace(/([，、,])\s*/g, ', ')
+        .replace(/[。！？]/g, m => ({ '。': '.', '！': '!', '？': '?' })[m]).replace(/([.!?])(?=\S)/g, '$1 ').replace(/\.$/, '').trim();
+    } catch (e) { return ''; }
+  }
+
+  // ── Dibujo ────────────────────────────────────────────────────
+  function wrapChars(ctx, text, maxW) {
+    const out = [];
+    for (const para of text.split('\n')) {
+      let line = '';
+      for (const ch of Array.from(para)) {
+        if (line && ctx.measureText(line + ch).width > maxW && !/[，。！？、：；）」]/.test(ch)) { out.push(line); line = ch; }
+        else line += ch;
+      }
+      out.push(line);
+    }
+    return out;
+  }
+  function wrapWords(ctx, text, maxW) {
+    const out = []; let line = '';
+    for (const w of text.split(/\s+/).filter(Boolean)) {
+      const t = line ? line + ' ' + w : w;
+      if (line && ctx.measureText(t).width > maxW) { out.push(line); line = w; } else line = t;
+    }
+    if (line) out.push(line);
+    return out;
+  }
+
+  // Bloque de texto (hanzi + pinyin + español) ajustado a una caja.
+  function textBlock(ctx, item, box, o = {}) {
+    const f = FONTS[state.font].css, color = o.color || '#111', maxS = o.max || 150, minS = o.min || 34;
+    const hz = item.hz || '', py = state.showPy ? (item.py || '') : '', es = state.showEs ? (item.es || '') : '';
+    if (!hz && !py && !es) return;
+    let S = maxS, L;
+    for (; S >= minS; S -= 4) {
+      const pyS = Math.max(o.min ? 16 : 24, S * 0.34), esS = Math.max(o.min ? 15 : 22, S * 0.28);
+      ctx.font = `${S}px ${f}`; const hl = hz ? wrapChars(ctx, hz, box.w) : [];
+      const wide = hl.reduce((m, l) => Math.max(m, ctx.measureText(l).width), 0);
+      ctx.font = `500 ${pyS}px ${PY_FONT}`; const pl = py ? wrapWords(ctx, py, box.w) : [];
+      ctx.font = `italic ${esS}px ${PY_FONT}`; const el = es ? wrapWords(ctx, es, box.w) : [];
+      const hgt = hl.length * S * 1.12 + (pl.length ? S * 0.16 + pl.length * pyS * 1.25 : 0) + (el.length ? S * 0.1 + el.length * esS * 1.3 : 0);
+      L = { hl, pl, el, pyS, esS, hgt };
+      // Achica primero para que cada línea escrita quepa entera; solo si no alcanza, se permite partirla.
+      const paras = hz ? hz.split('\n').length : 0;
+      if (hgt <= box.h && wide <= box.w && (hl.length <= paras || S <= maxS * 0.5)) break;
+    }
+    const align = o.align || 'center';
+    const x = align === 'center' ? box.x + box.w / 2 : align === 'left' ? box.x : box.x + box.w;
+    let y = box.y + (o.valign === 'top' ? 0 : o.valign === 'bottom' ? box.h - L.hgt : (box.h - L.hgt) / 2);
+    ctx.textAlign = align; ctx.textBaseline = 'top';
+    const put = (txt, stroke) => {
+      if (o.stroke) { ctx.lineJoin = 'round'; ctx.lineWidth = stroke; ctx.strokeStyle = '#000'; ctx.strokeText(txt, x, y); }
+      ctx.fillText(txt, x, y);
+    };
+    ctx.fillStyle = color; ctx.font = `${S}px ${f}`;
+    for (const l of L.hl) { put(l, S * 0.14); y += S * 1.12; }
+    if (L.pl.length) {
+      y += S * 0.16; ctx.font = `500 ${L.pyS}px ${PY_FONT}`; ctx.fillStyle = o.pyColor || (o.stroke ? '#fff' : '#c0392b');
+      for (const l of L.pl) { put(l, L.pyS * 0.22); y += L.pyS * 1.25; }
+    }
+    if (L.el.length) {
+      y += S * 0.1; ctx.font = `italic ${L.esS}px ${PY_FONT}`; ctx.fillStyle = o.esColor || (o.stroke ? '#eee' : '#666');
+      for (const l of L.el) { put(l, L.esS * 0.2); y += L.esS * 1.3; }
+    }
+  }
+
+  function emojiAt(ctx, e, x, y, size) {
+    ctx.save(); ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.font = `${size}px 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif`;
+    ctx.fillText(e || '', x, y); ctx.restore();
+  }
+
+  // Cabeza de panda (el 熊猫头 de los 表情包), dibujada a mano con trazos gruesos.
+  function drawPanda(ctx, cx, cy, r, mood) {
+    ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.fillStyle = '#111';
+    for (const s of [-1, 1]) { ctx.beginPath(); ctx.arc(cx + s * r * 0.78, cy - r * 0.72, r * 0.34, 0, 7); ctx.fill(); }
+    ctx.beginPath(); ctx.ellipse(cx, cy, r * 1.05, r * 0.92, 0, 0, 7);
+    ctx.fillStyle = '#fff'; ctx.fill(); ctx.lineWidth = r * 0.05; ctx.strokeStyle = '#111'; ctx.stroke();
+    for (const s of [-1, 1]) {
+      ctx.save(); ctx.translate(cx + s * r * 0.42, cy - r * 0.08); ctx.rotate(s * -0.55);
+      ctx.beginPath(); ctx.ellipse(0, 0, r * 0.26, r * 0.36, 0, 0, 7); ctx.fillStyle = '#111'; ctx.fill(); ctx.restore();
+    }
+    const eye = (s) => [cx + s * r * 0.40, cy - r * 0.12];
+    ctx.fillStyle = '#fff'; ctx.strokeStyle = '#fff'; ctx.lineWidth = r * 0.06;
+    for (const s of [-1, 1]) {
+      const [ex, ey] = eye(s);
+      if (mood === 'smile' || mood === 'cry') { ctx.beginPath(); ctx.arc(ex, ey + r * 0.04, r * 0.1, Math.PI * 1.1, Math.PI * 1.9); ctx.stroke(); }
+      else if (mood === 'huh') { ctx.beginPath(); for (let a = 0; a < 12; a += 0.3) { const rr = r * 0.012 * a; ctx.lineTo(ex + Math.cos(a + s) * rr, ey + Math.sin(a + s) * rr); } ctx.lineWidth = r * 0.035; ctx.stroke(); ctx.lineWidth = r * 0.06; }
+      else if (mood === 'angry') { ctx.beginPath(); ctx.moveTo(ex - s * r * 0.14, ey - r * 0.1); ctx.lineTo(ex + s * r * 0.1, ey + r * 0.02); ctx.stroke(); ctx.beginPath(); ctx.arc(ex, ey + r * 0.06, r * 0.05, 0, 7); ctx.fill(); }
+      else { ctx.beginPath(); ctx.moveTo(ex - r * 0.12, ey + r * 0.02); ctx.lineTo(ex + r * 0.12, ey + r * 0.02); ctx.stroke(); ctx.beginPath(); ctx.arc(ex + r * 0.06, ey + r * 0.06, r * 0.045, 0, 7); ctx.fill(); }
+    }
+    // nariz
+    ctx.fillStyle = '#111'; ctx.beginPath(); ctx.ellipse(cx, cy + r * 0.2, r * 0.12, r * 0.08, 0, 0, 7); ctx.fill();
+    // boca
+    ctx.strokeStyle = '#111'; ctx.lineWidth = r * 0.045; ctx.beginPath();
+    const my = cy + r * 0.42;
+    if (mood === 'smile') { ctx.arc(cx, my - r * 0.1, r * 0.28, 0.15 * Math.PI, 0.85 * Math.PI); }
+    else if (mood === 'cry') { ctx.arc(cx, my + r * 0.2, r * 0.22, 1.15 * Math.PI, 1.85 * Math.PI); }
+    else if (mood === 'huh') { ctx.ellipse(cx, my, r * 0.08, r * 0.1, 0, 0, 7); }
+    else if (mood === 'angry') { ctx.moveTo(cx - r * 0.2, my + r * 0.06); ctx.quadraticCurveTo(cx, my - r * 0.08, cx + r * 0.2, my + r * 0.06); }
+    else { ctx.moveTo(cx - r * 0.18, my); ctx.quadraticCurveTo(cx + r * 0.1, my + r * 0.12, cx + r * 0.26, my - r * 0.1); }
+    ctx.stroke();
+    // mejillas / lágrimas / signos
+    ctx.fillStyle = 'rgba(255,120,140,.45)';
+    if (mood === 'smile' || mood === 'smug') for (const s of [-1, 1]) { ctx.beginPath(); ctx.ellipse(cx + s * r * 0.68, cy + r * 0.28, r * 0.13, r * 0.08, 0, 0, 7); ctx.fill(); }
+    if (mood === 'cry') {
+      ctx.fillStyle = '#4aa3ff';
+      for (const s of [-1, 1]) { const [ex, ey] = eye(s); ctx.beginPath(); ctx.moveTo(ex - r * 0.06, ey + r * 0.12); ctx.quadraticCurveTo(ex + s * r * 0.08, ey + r * 0.6, ex + r * 0.07, ey + r * 0.12); ctx.fill(); }
+    }
+    if (mood === 'huh') { ctx.fillStyle = '#c0392b'; ctx.font = `bold ${r * 0.5}px ${PY_FONT}`; ctx.textAlign = 'center'; ctx.fillText('?', cx + r * 1.05, cy - r * 0.75); ctx.fillText('?', cx + r * 1.3, cy - r * 0.45); }
+    if (mood === 'angry') { ctx.fillStyle = '#e74c3c'; ctx.font = `bold ${r * 0.45}px ${PY_FONT}`; ctx.textAlign = 'center'; ctx.fillText('💢', cx + r * 1.0, cy - r * 0.8); }
+    ctx.restore();
+  }
+
+  function watermark(ctx, h, light) {
+    ctx.save(); ctx.font = `600 22px ${PY_FONT}`; ctx.textAlign = 'right'; ctx.textBaseline = 'bottom';
+    ctx.fillStyle = light ? 'rgba(255,255,255,.7)' : 'rgba(0,0,0,.28)'; ctx.fillText('chino.basti.cl', W - 18, h - 12); ctx.restore();
+  }
+
+  function render(cv, st) {
+    const prev = state; state = st;
+    const tpl = TEMPLATES[st.tpl], ctx = cv.getContext('2d');
+    let H = tpl.h;
+    if (st.tpl === 'foto' && userImg) H = Math.round(Math.min(1600, Math.max(600, W * userImg.height / userImg.width)));
+    if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; }
+    ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
+    const t = st.t;
+    if (tpl.classic) {
+      const im = memeImg(tpl, () => { if (state && state.tpl === st.tpl) draw(); });
+      if (im) ctx.drawImage(im, 0, 0, W, H);
+      else { ctx.fillStyle = '#ddd'; ctx.fillRect(0, 0, W, H); ctx.fillStyle = '#888'; ctx.font = `40px ${PY_FONT}`; ctx.textAlign = 'center'; ctx.fillText('cargando…', W / 2, H / 2); }
+      tpl.classic.boxes.forEach(([, [bx, by, bw, bh], sty, rot], i) => {
+        const box = { x: -bw * W / 2, y: -bh * H / 2, w: bw * W, h: bh * H };
+        ctx.save(); ctx.translate((bx + bw / 2) * W, (by + bh / 2) * H); if (rot) ctx.rotate(rot);
+        if (sty === 'b') { ctx.fillStyle = 'rgba(0,0,0,.82)'; ctx.fillRect(box.x, box.y, box.w, box.h); box.x += 24; box.w -= 48; box.y += 8; box.h -= 16; }
+        const white = sty === 'w' || sty === 'b';
+        textBlock(ctx, t[i], box, { max: Math.min(150, box.h * 0.62), min: 20, stroke: white, color: white ? '#fff' : '#111' });
+        ctx.restore();
+      });
+      watermark(ctx, H, true);
+    } else if (st.tpl === 'panda') {
+      drawPanda(ctx, W / 2, 380, 270, st.mood);
+      textBlock(ctx, t[0], { x: 60, y: 700, w: W - 120, h: 340 }, { max: 130 });
+      watermark(ctx, H);
+    } else if (st.tpl === 'nosi') {
+      const cols = [['#f39c12', '🙅‍♂️'], ['#f1c40f', '😎']];
+      for (let i = 0; i < 2; i++) {
+        const y = i * H / 2;
+        ctx.fillStyle = cols[i][0]; ctx.fillRect(0, y, W * 0.42, H / 2);
+        emojiAt(ctx, cols[i][1], W * 0.21, y + H / 4, 250);
+        ctx.fillStyle = i ? '#fff' : '#f7f7f7'; ctx.fillRect(W * 0.42, y, W * 0.58, H / 2);
+        ctx.font = `bold 34px ${PY_FONT}`; ctx.fillStyle = i ? '#27ae60' : '#c0392b'; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+        ctx.fillText(i ? '要 ✓' : '不要 ✗', W * 0.42 + 26, y + 22);
+        textBlock(ctx, t[i], { x: W * 0.42 + 40, y: y + 70, w: W * 0.58 - 80, h: H / 2 - 110 }, { max: 140 });
+      }
+      ctx.fillStyle = '#111'; ctx.fillRect(0, H / 2 - 3, W, 6); ctx.fillRect(W * 0.42 - 3, 0, 6, H);
+      watermark(ctx, H);
+    } else if (st.tpl === 'brain') {
+      const rowH = H / 4;
+      for (let i = 0; i < 4; i++) {
+        const y = i * rowH;
+        ctx.fillStyle = '#fff'; ctx.fillRect(0, y, W * 0.55, rowH);
+        textBlock(ctx, t[i], { x: 30, y: y + 22, w: W * 0.55 - 60, h: rowH - 44 }, { max: 96 });
+        const g = ctx.createRadialGradient(W * 0.775, y + rowH / 2, 10, W * 0.775, y + rowH / 2, rowH * (0.4 + i * 0.35));
+        const glow = ['#2c3e50', '#2980b9', '#8e44ad', '#f1c40f'][i];
+        g.addColorStop(0, i === 3 ? '#fff' : glow); g.addColorStop(1, '#0b0b14');
+        ctx.fillStyle = g; ctx.fillRect(W * 0.55, y, W * 0.45, rowH);
+        ctx.save(); ctx.shadowColor = glow; ctx.shadowBlur = 20 + i * 30;
+        emojiAt(ctx, '🧠', W * 0.775, y + rowH / 2, 130 + i * 25); ctx.restore();
+        if (i === 3) { ctx.save(); ctx.globalAlpha = .6; ctx.strokeStyle = '#fff'; ctx.lineWidth = 3;
+          for (let k = 0; k < 16; k++) { const a = k / 16 * Math.PI * 2; ctx.beginPath(); ctx.moveTo(W * 0.775 + Math.cos(a) * 120, y + rowH / 2 + Math.sin(a) * 120); ctx.lineTo(W * 0.775 + Math.cos(a) * 220, y + rowH / 2 + Math.sin(a) * 220); ctx.stroke(); } ctx.restore(); }
+        ctx.fillStyle = '#111'; ctx.fillRect(0, y + rowH - 3, W, 6);
+      }
+      ctx.fillRect(W * 0.55 - 3, 0, 6, H);
+      watermark(ctx, H, true);
+    } else if (st.tpl === 'expect') {
+      const heads = [['期待', 'qīdài · expectativa', '#eaf6ff'], ['现实', 'xiànshí · realidad', '#fff1ec']];
+      for (let i = 0; i < 2; i++) {
+        const x = i * W / 2;
+        ctx.fillStyle = heads[i][2]; ctx.fillRect(x, 0, W / 2, H);
+        ctx.fillStyle = '#111'; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+        ctx.font = `92px ${FONTS[st.font].css}`; ctx.fillText(heads[i][0], x + W / 4, 34);
+        ctx.font = `500 28px ${PY_FONT}`; ctx.fillStyle = '#c0392b'; ctx.fillText(heads[i][1], x + W / 4, 140);
+        emojiAt(ctx, st.emoji[i], x + W / 4, 330, 190);
+        textBlock(ctx, t[i], { x: x + 36, y: 470, w: W / 2 - 72, h: H - 520 }, { max: 100 });
+      }
+      ctx.fillStyle = '#111'; ctx.fillRect(W / 2 - 3, 0, 6, H);
+      watermark(ctx, H);
+    } else if (st.tpl === 'nadie') {
+      ctx.fillStyle = '#111'; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+      ctx.font = `110px ${FONTS[st.font].css}`; ctx.fillText('没有人：', 70, 70);
+      ctx.font = `500 30px ${PY_FONT}`; ctx.fillStyle = '#c0392b'; ctx.fillText('méiyǒu rén · nadie:', 76, 196);
+      ctx.fillStyle = '#111'; ctx.font = `110px ${FONTS[st.font].css}`; ctx.fillText('我：', 70, 290);
+      ctx.font = `500 30px ${PY_FONT}`; ctx.fillStyle = '#c0392b'; ctx.fillText('wǒ · yo:', 76, 416);
+      emojiAt(ctx, st.emoji[0], W - 200, 250, 230);
+      textBlock(ctx, t[0], { x: 70, y: 480, w: W - 140, h: H - 540 }, { max: 130, align: 'left' });
+      watermark(ctx, H);
+    } else if (st.tpl === 'emoji') {
+      emojiAt(ctx, st.emoji[0], W / 2, 330, 420);
+      textBlock(ctx, t[0], { x: 60, y: 620, w: W - 120, h: 420 }, { max: 140 });
+      watermark(ctx, H);
+    } else if (st.tpl === 'foto') {
+      if (userImg) {
+        const s = Math.max(W / userImg.width, H / userImg.height);
+        ctx.drawImage(userImg, (W - userImg.width * s) / 2, (H - userImg.height * s) / 2, userImg.width * s, userImg.height * s);
+      } else {
+        const g = ctx.createLinearGradient(0, 0, W, H); g.addColorStop(0, '#34495e'); g.addColorStop(1, '#c0392b');
+        ctx.fillStyle = g; ctx.fillRect(0, 0, W, H); emojiAt(ctx, '🐼', W / 2, H / 2, 300);
+        ctx.fillStyle = 'rgba(255,255,255,.8)'; ctx.font = `500 30px ${PY_FONT}`; ctx.textAlign = 'center'; ctx.fillText('sube tu imagen ↑', W / 2, H / 2 + 190);
+      }
+      textBlock(ctx, t[0], { x: 40, y: 30, w: W - 80, h: H * 0.36 }, { max: 130, valign: 'top', stroke: true, color: '#fff' });
+      textBlock(ctx, t[1], { x: 40, y: H * 0.6, w: W - 80, h: H * 0.37 }, { max: 130, valign: 'bottom', stroke: true, color: '#fff' });
+      watermark(ctx, H, true);
+    }
+    state = prev || st;
+  }
+
+  // ── Editor ────────────────────────────────────────────────────
+  const $ = id => document.getElementById(id);
+  const cv = $('cv');
+  const draw = () => { render(cv, state); saveHash(); };
+
+  function buildTemplates() {
+    $('tpls').innerHTML = '<div class="sub">✏️ Originales</div>';
+    const chipsBox = document.createElement('div'); chipsBox.className = 'chips'; $('tpls').appendChild(chipsBox);
+    $('tpls').insertAdjacentHTML('beforeend', '<div class="sub">🔥 Clásicos</div>');
+    const clBox = document.createElement('div'); clBox.className = 'classics'; $('tpls').appendChild(clBox);
+    $('tpls').insertAdjacentHTML('beforeend', '<div class="sub">🇨🇱 Chilenos</div>');
+    const chBox = document.createElement('div'); chBox.className = 'classics'; $('tpls').appendChild(chBox);
+    for (const [k, t] of Object.entries(TEMPLATES)) {
+      const b = document.createElement('button');
+      if (t.classic) {
+        b.className = 'cl' + (state.tpl === k ? ' on' : ''); b.title = t.name;
+        b.innerHTML = `<img src="${t.classic.file}" alt="" loading="lazy"><span>${t.name}</span>`;
+      } else {
+        b.className = 'chip' + (state.tpl === k ? ' on' : '');
+        b.innerHTML = t.name.replace(/([一-鿿／/]+)/, '<span class="zh">$1</span>');
+      }
+      b.onclick = () => {
+        const old = state.t; const nt = TEMPLATES[k];
+        state.tpl = k; state.t = nt.slots.map((_, i) => old[i] || blankText());
+        state.emoji = (nt.emoji || []).map((e, i) => state.emoji[i] && k !== 'foto' ? state.emoji[i] : e);
+        buildAll(); draw();
+      };
+      (t.classic ? (k.startsWith('cl-') ? chBox : clBox) : chipsBox).appendChild(b);
+    }
+    const ex = $('tplExtra'); ex.innerHTML = '';
+    const tpl = TEMPLATES[state.tpl];
+    if (tpl.extra === 'mood') {
+      const d = document.createElement('div'); d.className = 'chips'; d.style.marginTop = '10px';
+      for (const [k, v] of Object.entries(MOODS)) {
+        const b = document.createElement('button'); b.className = 'chip' + (state.mood === k ? ' on' : ''); b.textContent = v;
+        b.onclick = () => { state.mood = k; buildTemplates(); draw(); }; d.appendChild(b);
+      }
+      ex.appendChild(d);
+    }
+    if (tpl.extra === 'upload') {
+      const l = document.createElement('label'); l.className = 'btn'; l.style.display = 'inline-block'; l.style.marginTop = '10px';
+      l.innerHTML = '🖼️ Subir imagen <input type="file" accept="image/*" hidden>';
+      l.querySelector('input').onchange = e => {
+        const f = e.target.files[0]; if (!f) return;
+        const img = new Image(); img.onload = () => { userImg = img; draw(); }; img.src = URL.createObjectURL(f);
+      };
+      ex.appendChild(l);
+      const p = document.createElement('p'); p.className = 'hint'; p.textContent = 'La imagen se queda en tu navegador: no se sube a ningún servidor (y no viaja en el enlace).';
+      ex.appendChild(p);
+    }
+    if (tpl.emoji) {
+      const d = document.createElement('div'); d.className = 'row'; d.style.marginTop = '10px';
+      state.emoji.forEach((e, i) => {
+        const inp = document.createElement('input'); inp.type = 'text'; inp.value = e; inp.maxLength = 12;
+        inp.style.cssText = 'font-size:1.6rem;text-align:center;border:1px solid #e6e6e6;border-radius:8px;padding:4px';
+        inp.title = 'Emoji'; inp.oninput = () => { state.emoji[i] = inp.value; draw(); }; d.appendChild(inp);
+      });
+      const lab = document.createElement('div'); lab.className = 'hint'; lab.textContent = 'Emoji(s) de la plantilla: cámbialos por el que quieras.';
+      ex.appendChild(d); ex.appendChild(lab);
+    }
+  }
+
+  function buildFields() {
+    const box = $('fields'); box.innerHTML = '';
+    TEMPLATES[state.tpl].slots.forEach((name, i) => {
+      const it = state.t[i];
+      const d = document.createElement('div'); d.className = 'field';
+      d.innerHTML = `<div class="field-title">${name}</div>
+        <label>汉字 hanzi</label><textarea rows="2"></textarea>
+        <label>Pinyin <span class="auto"></span></label><input type="text">
+        <label>Español</label><input type="text">`;
+      const [hz] = d.getElementsByTagName('textarea'); const [py, es] = d.getElementsByTagName('input');
+      const auto = d.querySelector('.auto');
+      const mark = () => auto.textContent = it.pyAuto ? '⚡ automático' : '✏️ a mano';
+      hz.value = it.hz; py.value = it.py; es.value = it.es; mark();
+      hz.oninput = () => { it.hz = hz.value; if (it.pyAuto) { it.py = autoPinyin(it.hz); py.value = it.py; } draw(); };
+      py.oninput = () => { it.py = py.value; it.pyAuto = py.value === ''; mark(); draw(); };
+      es.oninput = () => { it.es = es.value; draw(); };
+      box.appendChild(d);
+    });
+  }
+
+  function buildFonts() {
+    $('fonts').innerHTML = '';
+    for (const [k, f] of Object.entries(FONTS)) {
+      const b = document.createElement('button'); b.className = 'chip' + (state.font === k ? ' on' : '');
+      b.innerHTML = `<span style="font-family:${f.css.replace(/"/g, '')};font-size:1.05rem">${f.label.split(' ')[0]}</span> ${f.label.split(' ')[1]}`;
+      b.onclick = () => { state.font = k; buildFonts(); draw(); renderGallery(); }; $('fonts').appendChild(b);
+    }
+    $('showPy').checked = state.showPy; $('showEs').checked = state.showEs;
+  }
+  $('showPy').onchange = e => { state.showPy = e.target.checked; draw(); };
+  $('showEs').onchange = e => { state.showEs = e.target.checked; draw(); };
+
+  function buildAll() { buildTemplates(); buildFields(); buildFonts(); }
+
+  function load(p) { state = fromPreset(p); buildAll(); draw(); }
+
+  // ── Galería ───────────────────────────────────────────────────
+  function renderGallery() {
+    const pending = PRESETS.map(p => TEMPLATES[p.tpl]).filter(t => t.classic && !memeImg(t));
+    if (pending.length) { Promise.all(pending.map(whenImg)).then(renderGallery); return; }
+    const g = $('gallery'); g.innerHTML = '';
+    const off = document.createElement('canvas');
+    PRESETS.forEach(p => {
+      const st = fromPreset(p); st.showEs = false;
+      render(off, st);
+      const b = document.createElement('button'); b.className = 'thumb';
+      const c = document.createElement('canvas'); c.width = 340; c.height = Math.round(340 * off.height / off.width);
+      c.getContext('2d').drawImage(off, 0, 0, c.width, c.height);
+      b.appendChild(c); const s = document.createElement('span'); s.textContent = p.src; b.appendChild(s);
+      b.onclick = () => { load(p); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+      g.appendChild(b);
+    });
+  }
+
+  // ── Compartir / descargar ─────────────────────────────────────
+  function toast(msg) { $('toast').textContent = msg; clearTimeout(toast.t); toast.t = setTimeout(() => $('toast').textContent = '', 2600); }
+  function saveHash() {
+    try {
+      const data = { tpl: state.tpl, font: state.font, py: state.showPy ? 1 : 0, es: state.showEs ? 1 : 0, mood: state.mood, emoji: state.emoji,
+        t: state.t.map(x => [x.hz, x.py, x.es]) };
+      history.replaceState(null, '', '#m=' + encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(data))))));
+    } catch (e) {}
+  }
+  function readHash() {
+    const m = location.hash.match(/#m=(.+)/); if (!m) return null;
+    try {
+      const d = JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(m[1])))));
+      if (!TEMPLATES[d.tpl]) return null;
+      return { tpl: d.tpl, font: FONTS[d.font] ? d.font : 'brush', showPy: !!d.py, showEs: !!d.es, mood: MOODS[d.mood] ? d.mood : 'smile',
+        emoji: Array.isArray(d.emoji) ? d.emoji : (TEMPLATES[d.tpl].emoji || []).slice(),
+        t: TEMPLATES[d.tpl].slots.map((_, i) => { const x = (d.t || [])[i] || []; return { hz: x[0] || '', py: x[1] || '', es: x[2] || '', pyAuto: !x[1] }; }) };
+    } catch (e) { return null; }
+  }
+  const fileName = () => 'meme-' + (state.t[0].hz || 'chino').replace(/[\s\n，。！？]/g, '').slice(0, 12) + '.png';
+  $('dl').onclick = () => cv.toBlob(b => { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = fileName(); a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000); });
+  $('copy').onclick = () => cv.toBlob(async b => {
+    try { await navigator.clipboard.write([new ClipboardItem({ 'image/png': b })]); toast('✓ Imagen copiada: pégala en WhatsApp o donde quieras'); }
+    catch (e) { toast('Tu navegador no deja copiar imágenes: usa «Descargar PNG»'); }
+  });
+  $('link').onclick = async () => {
+    try { await navigator.clipboard.writeText(location.href); toast('✓ Enlace copiado (el meme viaja en el enlace)'); }
+    catch (e) { toast('No se pudo copiar el enlace'); }
+  };
+  $('rand').onclick = () => load(PRESETS[Math.floor(Math.random() * PRESETS.length)]);
+
+  // ── Arranque: esperar las fuentes para no dibujar con la de respaldo ──
+  state = readHash() || fromPreset(PRESETS[0]);
+  buildAll(); render(cv, state);
+  Promise.all(['MaShan', 'KuaiLe'].map(f => document.fonts.load(`80px ${f}`, '每天学习汉语'))).catch(() => {}).then(() => { draw(); renderGallery(); });
+})();
+</script>
+</body>
+</html>

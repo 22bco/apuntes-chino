@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clase 04 · Motion</title>
+<style>
+  @font-face { font-family:'I1Disp'; src:url(fonts/latin.woff2) format('woff2'); font-weight:300 700; font-display:swap; }
+  @font-face { font-family:'I1Body'; src:url(fonts/latin-body.woff2) format('woff2'); font-weight:100 900; font-display:swap; }
+  @font-face { font-family:'I1ZHS'; src:url(fonts/zh-sans.woff2) format('woff2'); font-weight:100 900; font-display:swap; }
+  :root { --red:#e74c3c; --ink:#1b1036; --glass:rgba(255,255,255,.12); --line:rgba(255,255,255,.22); --txt:#fff; --sub:rgba(255,255,255,.78); }
+  html, body { margin:0; height:100%; background:var(--ink); color:var(--txt); overflow:hidden; }
+  body { font-family:'I1Body','Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  #wrap { position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+          background:radial-gradient(60% 80% at 20% 20%, #4b2a8a 0%, transparent 60%), radial-gradient(60% 70% at 85% 80%, #7a2334 0%, transparent 60%), var(--ink); }
+  canvas#stage { display:block; background:var(--ink); border-radius:0; }
+  body.capture #wrap { position:static; display:block; background:none; }
+  body.capture canvas#stage { width:1920px; height:1080px; }
+  body.capture .ui { display:none !important; }
+
+  .ui { transition: opacity .4s ease, transform .4s cubic-bezier(.2,.8,.2,1); }
+  body.idle .ui.autohide { opacity:0; pointer-events:none; }
+  body.idle #bar { transform:translate(-50%, 16px); }
+  body.idle { cursor:none; }
+
+  .glass { background:var(--glass); border:1px solid var(--line); -webkit-backdrop-filter:blur(22px) saturate(1.5); backdrop-filter:blur(22px) saturate(1.5);
+           box-shadow:0 18px 50px rgba(8,4,24,.35), inset 0 1px 0 rgba(255,255,255,.25); }
+
+  #back { position:fixed; top:16px; left:16px; z-index:5; font-size:14px; font-weight:600; color:var(--txt); text-decoration:none;
+          padding:10px 16px; border-radius:999px; display:flex; align-items:center; gap:8px; }
+  #back:hover { background:rgba(255,255,255,.2); }
+
+  /* ---- pantalla de inicio ---- */
+  #start { position:fixed; inset:0; z-index:10; display:flex; align-items:center; justify-content:center; padding:16px; overflow:hidden;
+           background:#1b1036; }
+  #start::before, #start::after { content:''; position:absolute; width:70vmax; height:70vmax; border-radius:50%; filter:blur(60px); opacity:.85; }
+  #start::before { background:radial-gradient(circle, #e74c3c 0%, rgba(255,94,150,.6) 35%, transparent 70%); top:-25vmax; right:-15vmax; animation:drift 14s ease-in-out infinite alternate; }
+  #start::after  { background:radial-gradient(circle, #603ed6 0%, rgba(255,160,90,.35) 45%, transparent 70%); bottom:-30vmax; left:-20vmax; animation:drift 17s ease-in-out infinite alternate-reverse; }
+  @keyframes drift { to { transform:translate(-8vmax, 6vmax) scale(1.08); } }
+  #card { position:relative; z-index:1; width:min(640px, 100%); box-sizing:border-box; border-radius:40px; padding:44px 40px 34px; text-align:center;
+          display:flex; flex-direction:column; align-items:center; gap:18px; }
+  #card .eyebrow { font:600 14px 'I1Disp','Space Grotesk',sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--sub); }
+  #card .hz { font:900 clamp(56px, 11vw, 104px)/1.08 'I1ZHS','Noto Sans SC','PingFang SC',sans-serif; letter-spacing:.02em; margin:4px 0 0; }
+  #card .hz span { color:#ff7a66; }
+  #card .py { font:600 clamp(18px, 2.4vw, 24px) 'I1Disp','Space Grotesk',sans-serif; color:#ffb340; margin-top:-4px; }
+  #card h1 { margin:0; font:700 clamp(24px, 3.4vw, 34px) 'I1Disp','Space Grotesk',sans-serif; }
+  #card p { margin:0; color:var(--sub); font-size:clamp(15px, 1.8vw, 18px); line-height:1.45; max-width:460px; }
+  #play0 { margin-top:8px; font:700 20px 'I1Disp','Space Grotesk',sans-serif; color:#fff; border:0; border-radius:999px; padding:18px 34px 18px 28px; cursor:pointer;
+           background:linear-gradient(135deg, #ff7a59, #e74c3c 55%, #c2185b); display:inline-flex; align-items:center; gap:12px;
+           box-shadow:0 14px 40px rgba(231,76,60,.5), inset 0 1px 0 rgba(255,255,255,.35); transition:transform .2s cubic-bezier(.2,.8,.2,1), filter .2s; }
+  #play0:hover { transform:translateY(-2px) scale(1.03); filter:brightness(1.06); }
+  #play0:disabled { opacity:.7; cursor:progress; transform:none; }
+  #play0 svg { width:22px; height:22px; }
+  .keys { display:flex; flex-wrap:wrap; justify-content:center; gap:8px 14px; color:var(--sub); font-size:13px; margin-top:6px; }
+  kbd { font:600 12px 'I1Disp','Space Grotesk',sans-serif; color:#fff; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.25);
+        border-radius:8px; padding:3px 8px; margin-right:4px; }
+  .tones { display:flex; gap:8px; justify-content:center; }
+  .tones b { font:700 15px 'I1Disp','Space Grotesk',sans-serif; width:34px; height:34px; border-radius:50%; display:grid; place-items:center; color:#1b1036; }
+
+  /* ---- barra de control flotante ---- */
+  #bar { position:fixed; left:50%; bottom:18px; transform:translateX(-50%); z-index:6; width:min(920px, calc(100% - 32px)); box-sizing:border-box;
+         padding:8px 12px; border-radius:999px; display:flex; align-items:center; gap:10px; }
+  #bar button { background:none; border:0; color:#fff; width:42px; height:42px; border-radius:50%; cursor:pointer; flex:none; display:grid; place-items:center; padding:0; }
+  #bar button:hover { background:rgba(255,255,255,.16); }
+  #bar button svg { width:20px; height:20px; }
+  #pp { background:rgba(255,255,255,.95) !important; color:#1b1036 !important; }
+  #pp:hover { transform:scale(1.06); }
+  #btnPy { font:700 15px 'I1Disp','Space Grotesk',sans-serif; width:auto !important; padding:0 12px !important; border-radius:999px !important; }
+  #btnPy.off { opacity:.5; text-decoration:line-through; }
+  #time { font:600 13px 'I1Disp','Space Grotesk',monospace; color:var(--sub); min-width:86px; flex:none; font-variant-numeric:tabular-nums; text-align:center; }
+  #prog { position:relative; flex:1; height:30px; cursor:pointer; }
+  #prog .track { position:absolute; left:0; right:0; top:12px; height:6px; background:rgba(255,255,255,.2); border-radius:3px; }
+  #prog .fill { position:absolute; left:0; top:12px; height:6px; background:linear-gradient(90deg, #ff9a7a, #e74c3c); border-radius:3px; width:0; }
+  #prog .mark { position:absolute; top:13px; width:4px; height:4px; margin-left:-2px; border-radius:50%; background:rgba(255,255,255,.75); }
+  #prog .mark:hover::after { content:attr(data-t); position:absolute; bottom:18px; left:50%; transform:translateX(-50%); white-space:nowrap;
+                             font-size:12px; font-weight:600; color:#fff; background:rgba(27,16,54,.85); padding:5px 10px; border-radius:999px; }
+  @media (max-width: 720px) { #time { display:none; } #btnFs { display:none !important; } }
+</style>
+</head>
+<body>
+<div id="wrap"><canvas id="stage" width="1920" height="1080"></canvas></div>
+
+<a id="back" class="ui autohide glass" href="/intermedio1/clase04.html">← Volver a la clase</a>
+
+<div id="start" class="ui">
+  <div id="card" class="glass">
+    <div class="eyebrow">Intermedio 1 · motion</div>
+    <div class="hz">中级一<br><span>第四课</span></div>
+    <div class="py">zhōngjí yī · dì sì kè</div>
+    <h1>Clase 04</h1>
+    <p>Rutina, salud, altura, saber y descansar, en 2 minutos y medio de motion.</p>
+    <div class="tones" title="Colores de los tonos en el pinyin">
+      <b style="background:#ff6e60">ā</b><b style="background:#ffb240">á</b><b style="background:#56e28c">ǎ</b><b style="background:#78acff">à</b>
+    </div>
+    <button id="play0"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 8 5.2z"/></svg><span>Reproducir</span></button>
+    <div class="keys"><span><kbd>Espacio</kbd>pausa</span><span><kbd>←</kbd><kbd>→</kbd>escenas</span><span><kbd>F</kbd>pantalla completa</span><span><kbd>P</kbd>pinyin</span></div>
+  </div>
+</div>
+
+<div id="bar" class="ui autohide glass" hidden>
+  <button id="pp" title="Reproducir / pausa (espacio)"></button>
+  <button id="prev" title="Escena anterior (←)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h2v14H7zM20 6.2v11.6a.8.8 0 0 1-1.25.66L10.5 12.7a.8.8 0 0 1 0-1.4l8.25-5.76A.8.8 0 0 1 20 6.2z"/></svg></button>
+  <button id="next" title="Escena siguiente (→)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15 5h2v14h-2zM4 6.2v11.6a.8.8 0 0 0 1.25.66l8.25-5.76a.8.8 0 0 0 0-1.4L5.25 5.54A.8.8 0 0 0 4 6.2z"/></svg></button>
+  <div id="time">0:00 / 0:00</div>
+  <div id="prog"><div class="track"></div><div class="fill"></div></div>
+  <button id="btnPy" title="Mostrar / ocultar pinyin (P)">pīn</button>
+  <button id="btnFs" title="Pantalla completa (F)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V5a1 1 0 0 1 1-1h4M15 4h4a1 1 0 0 1 1 1v4M20 15v4a1 1 0 0 1-1 1h-4M9 20H5a1 1 0 0 1-1-1v-4"/></svg></button>
+</div>
+
+<audio id="aud" preload="auto"></audio>
+
+<script src="engine.js"></script>
+<script>
+(() => {
+  const CAPTURE = window.__CAPTURE;
+  const canvas = document.getElementById('stage');
+  if (CAPTURE) { document.body.classList.add('capture'); return; }   // modo captura: nada automático
+
+  const ICON_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 8 5.2z"/></svg>';
+  const ICON_PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4.2" height="14" rx="1.4"/><rect x="13.8" y="5" width="4.2" height="14" rx="1.4"/></svg>';
+
+  /* ---- ajuste 16:9 con letterbox y DPR ---- */
+  function fit() {
+    const vw = innerWidth, vh = innerHeight;
+    const w = Math.min(vw, vh * 16 / 9), h = w * 9 / 16;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const pw = Math.min(3840, Math.round(w * dpr)), ph = Math.round(pw * 9 / 16);
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    if (canvas.width !== pw || canvas.height !== ph) { canvas.width = pw; canvas.height = ph; }
+    window.__setBase(pw / 1920);
+  }
+  addEventListener('resize', fit); fit();
+
+  /* ---- reloj: audio.m4a (o audio.wav local) si existe; si no, reloj interno ---- */
+  const aud = document.getElementById('aud');
+  // El audio se carga como Blob: así se puede buscar (←/→, barra) aunque el servidor no acepte Range.
+  // audio.m4a (~2 MB) es lo publicado; audio.wav (~26 MB) solo existe en local, recién sintetizado.
+  let audioOK = false;
+  const getAudio = src => fetch(src).then(r => { if (!r.ok) throw new Error('sin audio'); return r.blob(); });
+  const audioP = getAudio('audio.m4a').catch(() => getAudio('audio.wav'))
+    .then(b => new Promise(res => { aud.oncanplay = () => res(true); aud.onerror = () => res(false); aud.src = URL.createObjectURL(b); }))
+    .catch(() => false).then(ok => { audioOK = ok; return ok; });
+  const clock = {
+    useAudio: false, playing: false, base: 0, t0: 0,
+    now() { const D = window.DURATION;
+      if (this.useAudio) return aud.currentTime;
+      let t = this.playing ? this.base + (performance.now() - this.t0) / 1000 : this.base;
+      if (t >= D) { this.base = 0; this.t0 = performance.now(); t = 0; }   // la pieza es un bucle
+      return t; },
+    play() {
+      this.useAudio = audioOK && aud.readyState >= 2;
+      if (this.useAudio) { aud.currentTime = this.base; aud.play().catch(() => { this.useAudio = false; this.t0 = performance.now(); }); }
+      this.t0 = performance.now(); this.playing = true;
+    },
+    pause() { this.base = this.now(); if (this.useAudio) aud.pause(); this.useAudio = false; this.playing = false; },
+    seek(x) { x = Math.max(0, Math.min(window.DURATION - 0.01, x)); this.base = x; this.t0 = performance.now(); if (this.useAudio) aud.currentTime = x; },
+  };
+  aud.addEventListener('ended', () => { clock.seek(0); aud.play().catch(() => {}); });
+
+  /* ---- UI ---- */
+  const start = document.getElementById('start'), bar = document.getElementById('bar'), pp = document.getElementById('pp');
+  const fill = bar.querySelector('.fill'), timeEl = document.getElementById('time'), progEl = document.getElementById('prog');
+  const btnPy = document.getElementById('btnPy');
+  const fmt = s => Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+  pp.innerHTML = ICON_PAUSE;
+  let idleT = 0;
+  function poke() { document.body.classList.remove('idle'); clearTimeout(idleT); idleT = setTimeout(() => { if (clock.playing) document.body.classList.add('idle'); }, 2500); }
+  addEventListener('mousemove', poke); addEventListener('touchstart', poke, { passive: true });
+
+  function toggle() { if (clock.playing) clock.pause(); else clock.play(); pp.innerHTML = clock.playing ? ICON_PAUSE : ICON_PLAY; poke(); }
+  function jump(dir) {
+    const t = clock.now(); const S = window.SCENES || [];
+    let i = S.findIndex((s, k) => t >= s.start && (k === S.length - 1 || t < S[k + 1].start)); if (i < 0) i = 0;
+    let j = dir > 0 ? i + 1 : (t - S[i].start > 1.0 ? i : i - 1);
+    j = Math.max(0, Math.min(S.length - 1, j)); clock.seek(S[j].start + 0.001); poke();
+  }
+  function fs() { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(() => {}); }
+  function togglePy() { window.SHOW_PY = !window.SHOW_PY; btnPy.classList.toggle('off', !window.SHOW_PY); poke(); }
+
+  window.ready.then(() => {
+    const D = window.DURATION;
+    for (const s of window.SCENES) {
+      if (s.start <= 0) continue;
+      const m = document.createElement('div'); m.className = 'mark'; m.style.left = (s.start / D * 100) + '%'; m.dataset.t = s.tema; progEl.appendChild(m);
+    }
+    const b0 = document.getElementById('play0'), lab = b0.querySelector('span');
+    b0.disabled = true; lab.textContent = 'Cargando…';
+    Promise.race([audioP, new Promise(r => setTimeout(r, 12000))]).then(() => { b0.disabled = false; lab.textContent = 'Reproducir'; });
+    b0.onclick = () => { start.hidden = true; start.style.display = 'none'; bar.hidden = false; clock.seek(0); toggle(); };
+    pp.onclick = toggle;
+    document.getElementById('prev').onclick = () => jump(-1);
+    document.getElementById('next').onclick = () => jump(1);
+    document.getElementById('btnFs').onclick = fs;
+    btnPy.onclick = togglePy;
+    progEl.addEventListener('click', e => { const r = progEl.getBoundingClientRect(); clock.seek((e.clientX - r.left) / r.width * D); poke(); });
+    addEventListener('keydown', e => {
+      if (e.code === 'Space') { e.preventDefault(); if (!start.hidden) { if (!b0.disabled) b0.click(); } else toggle(); }
+      else if (e.code === 'ArrowRight') jump(1);
+      else if (e.code === 'ArrowLeft') jump(-1);
+      else if (e.code === 'KeyF') fs();
+      else if (e.code === 'KeyP') togglePy();
+    });
+    (function loop() {
+      const t = clock.now();
+      window.render(t);
+      fill.style.width = (t / D * 100) + '%'; timeEl.textContent = fmt(t) + ' / ' + fmt(D);
+      requestAnimationFrame(loop);
+    })();
+  });
+})();
+</script>
+</body>
+</html>

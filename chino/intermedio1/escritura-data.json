@@ -1,0 +1,3719 @@
+{
+ "cats": [
+  [
+   "Clase 01",
+   "Clase 01 (81)"
+  ],
+  [
+   "Clase 02",
+   "Clase 02 (63)"
+  ],
+  [
+   "Clase 03",
+   "Clase 03 (96)"
+  ],
+  [
+   "Clase 04",
+   "Clase 04 (57)"
+  ],
+  [
+   "Clase 05",
+   "Clase 05 (22)"
+  ],
+  [
+   "Clase 06",
+   "Clase 06 (142)"
+  ]
+ ],
+ "slides": [
+  {
+   "cat": "Clase 01",
+   "w": "旅游",
+   "py": "lǚyóu",
+   "es": "viajar, hacer turismo",
+   "href": "/intermedio1/clase01.html#s1",
+   "sec": "Clase 01 · §1 你去旅游了吗？— ¿fuiste de viaje?"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "放假",
+   "py": "fàngjià",
+   "es": "estar de vacaciones",
+   "href": "/intermedio1/clase01.html#s1",
+   "sec": "Clase 01 · §1 你去旅游了吗？— ¿fuiste de viaje?"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "玩儿",
+   "py": "wánr",
+   "es": "jugar, pasarlo bien",
+   "href": "/intermedio1/clase01.html#s1",
+   "sec": "Clase 01 · §1 你去旅游了吗？— ¿fuiste de viaje?"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "好玩儿",
+   "py": "hǎowánr",
+   "es": "entretenido",
+   "href": "/intermedio1/clase01.html#s1",
+   "sec": "Clase 01 · §1 你去旅游了吗？— ¿fuiste de viaje?"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "最",
+   "py": "zuì",
+   "es": "el más… (superlativo)",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "秋天",
+   "py": "qiūtiān",
+   "es": "el otoño",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "故宫",
+   "py": "Gùgōng",
+   "es": "la Ciudad Prohibida",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "长城",
+   "py": "Chángchéng",
+   "es": "la Gran Muralla",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "好",
+   "py": "hǎo",
+   "es": "bueno",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "很好",
+   "py": "hěn hǎo",
+   "es": "muy bueno",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "太好了",
+   "py": "tài hǎo le",
+   "es": "¡buenísimo!",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "最好",
+   "py": "zuì hǎo",
+   "es": "el mejor de todos",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "最漂亮",
+   "py": "zuì piàoliang",
+   "es": "el/la más bonita",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "最喜欢",
+   "py": "zuì xǐhuan",
+   "es": "lo que más me gusta",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "最想说",
+   "py": "zuì xiǎng shuō",
+   "es": "lo que más quiero decir",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "面条",
+   "py": "miàntiáo",
+   "es": "fideos, tallarines",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "城市",
+   "py": "chéngshì",
+   "es": "ciudad",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "衣服",
+   "py": "yīfu",
+   "es": "ropa, prenda",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "件",
+   "py": "jiàn",
+   "es": "clasificador de ropa y de asuntos",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "觉得",
+   "py": "juéde",
+   "es": "opinar, creer, parecerle a uno",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "不错",
+   "py": "búcuò",
+   "es": "nada mal, bastante bueno",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "一般",
+   "py": "yìbān",
+   "es": "así así, normal, del montón",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "马马虎虎",
+   "py": "mǎmǎhūhū",
+   "es": "regular, ni fu ni fa",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "不太好",
+   "py": "bú tài hǎo",
+   "es": "no muy bien",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "一月",
+   "py": "yīyuè",
+   "es": "enero",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "二月",
+   "py": "èryuè",
+   "es": "febrero",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "三月",
+   "py": "sānyuè",
+   "es": "marzo",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "四月",
+   "py": "sìyuè",
+   "es": "abril (el cumple de Basti: 四月二十二号)",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "五月",
+   "py": "wǔyuè",
+   "es": "mayo",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "六月",
+   "py": "liùyuè",
+   "es": "junio",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "七月",
+   "py": "qīyuè",
+   "es": "julio",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "八月",
+   "py": "bāyuè",
+   "es": "agosto (este mes)",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "九月",
+   "py": "jiǔyuè",
+   "es": "septiembre",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "十月",
+   "py": "shíyuè",
+   "es": "octubre",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "十一月",
+   "py": "shíyīyuè",
+   "es": "noviembre",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "十二月",
+   "py": "shí'èryuè",
+   "es": "diciembre",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "上个月",
+   "py": "shàng ge yuè",
+   "es": "el mes pasado",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "这个月",
+   "py": "zhè ge yuè",
+   "es": "este mes",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "下个月",
+   "py": "xià ge yuè",
+   "es": "el próximo mes",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "几月",
+   "py": "jǐ yuè",
+   "es": "¿qué mes?",
+   "href": "/intermedio1/clase01.html#s3",
+   "sec": "Clase 01 · §3 九月去北京旅游最好 — el mejor mes, y los meses"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "运动",
+   "py": "yùndòng",
+   "es": "hacer deporte / el deporte",
+   "href": "/intermedio1/clase01.html#s7",
+   "sec": "Clase 01 · §7 我在旅游 / 旅游很好玩儿 — verbo y sustantivo a la vez"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "工作",
+   "py": "gōngzuò",
+   "es": "trabajar / el trabajo",
+   "href": "/intermedio1/clase01.html#s7",
+   "sec": "Clase 01 · §7 我在旅游 / 旅游很好玩儿 — verbo y sustantivo a la vez"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "学习",
+   "py": "xuéxí",
+   "es": "estudiar / el estudio",
+   "href": "/intermedio1/clase01.html#s7",
+   "sec": "Clase 01 · §7 我在旅游 / 旅游很好玩儿 — verbo y sustantivo a la vez"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "生活",
+   "py": "shēnghuó",
+   "es": "vivir / la vida",
+   "href": "/intermedio1/clase01.html#s7",
+   "sec": "Clase 01 · §7 我在旅游 / 旅游很好玩儿 — verbo y sustantivo a la vez"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "孩子",
+   "py": "háizi",
+   "es": "hijo/a, niño/a",
+   "href": "/intermedio1/clase01.html#s2",
+   "sec": "Clase 01 · §2 你们什么时候要孩子？— la pregunta de la profe"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "结婚",
+   "py": "jiéhūn",
+   "es": "casarse",
+   "href": "/intermedio1/clase01.html#s2",
+   "sec": "Clase 01 · §2 你们什么时候要孩子？— la pregunta de la profe"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "打算",
+   "py": "dǎsuàn",
+   "es": "planear, tener pensado",
+   "href": "/intermedio1/clase01.html#s2",
+   "sec": "Clase 01 · §2 你们什么时候要孩子？— la pregunta de la profe"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "以后",
+   "py": "yǐhòu",
+   "es": "después, más adelante ⏭",
+   "href": "/intermedio1/clase01.html#s2",
+   "sec": "Clase 01 · §2 你们什么时候要孩子？— la pregunta de la profe"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "球",
+   "py": "qiú",
+   "es": "pelota, balón",
+   "href": "/intermedio1/clase01.html#s4",
+   "sec": "Clase 01 · §4 足球 — los deportes de pelota"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "足球",
+   "py": "zúqiú",
+   "es": "fútbol",
+   "href": "/intermedio1/clase01.html#s4",
+   "sec": "Clase 01 · §4 足球 — los deportes de pelota"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "篮球",
+   "py": "lánqiú",
+   "es": "básquetbol",
+   "href": "/intermedio1/clase01.html#s4",
+   "sec": "Clase 01 · §4 足球 — los deportes de pelota"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "网球",
+   "py": "wǎngqiú",
+   "es": "tenis",
+   "href": "/intermedio1/clase01.html#s4",
+   "sec": "Clase 01 · §4 足球 — los deportes de pelota"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "乒乓球",
+   "py": "pīngpāngqiú",
+   "es": "ping-pong",
+   "href": "/intermedio1/clase01.html#s4",
+   "sec": "Clase 01 · §4 足球 — los deportes de pelota"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "比赛",
+   "py": "bǐsài",
+   "es": "partido, competencia",
+   "href": "/intermedio1/clase01.html#s4",
+   "sec": "Clase 01 · §4 足球 — los deportes de pelota"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "眼睛",
+   "py": "yǎnjing",
+   "es": "ojo",
+   "href": "/intermedio1/clase01.html#s5",
+   "sec": "Clase 01 · §5 眼睛 — el ojo y el clasificador del gato"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "只",
+   "py": "zhī",
+   "es": "clasificador (animales pequeños, medio par)",
+   "href": "/intermedio1/clase01.html#s5",
+   "sec": "Clase 01 · §5 眼睛 — el ojo y el clasificador del gato"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "猫",
+   "py": "māo",
+   "es": "gato",
+   "href": "/intermedio1/clase01.html#s5",
+   "sec": "Clase 01 · §5 眼睛 — el ojo y el clasificador del gato"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "耳朵",
+   "py": "ěrduo",
+   "es": "oreja",
+   "href": "/intermedio1/clase01.html#s5",
+   "sec": "Clase 01 · §5 眼睛 — el ojo y el clasificador del gato"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "手套",
+   "py": "shǒutào",
+   "es": "guantes (lit. \"funda de mano\")",
+   "href": "/intermedio1/clase01.html#s6",
+   "sec": "Clase 01 · §6 手套 — los guantes, y cómo se ponen"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "外套",
+   "py": "wàitào",
+   "es": "abrigo (lit. \"funda de afuera\")",
+   "href": "/intermedio1/clase01.html#s6",
+   "sec": "Clase 01 · §6 手套 — los guantes, y cómo se ponen"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "双",
+   "py": "shuāng",
+   "es": "par (clasificador)",
+   "href": "/intermedio1/clase01.html#s6",
+   "sec": "Clase 01 · §6 手套 — los guantes, y cómo se ponen"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "鞋",
+   "py": "xié",
+   "es": "zapatos",
+   "href": "/intermedio1/clase01.html#s6",
+   "sec": "Clase 01 · §6 手套 — los guantes, y cómo se ponen"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "袜子",
+   "py": "wàzi",
+   "es": "calcetines",
+   "href": "/intermedio1/clase01.html#s6",
+   "sec": "Clase 01 · §6 手套 — los guantes, y cómo se ponen"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "帽子",
+   "py": "màozi",
+   "es": "gorro, sombrero",
+   "href": "/intermedio1/clase01.html#s6",
+   "sec": "Clase 01 · §6 手套 — los guantes, y cómo se ponen"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "椅子",
+   "py": "yǐzi",
+   "es": "silla",
+   "href": "/intermedio1/clase01.html#s8",
+   "sec": "Clase 01 · §8 椅子 — la silla, y todos los clasificadores"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "桌子",
+   "py": "zhuōzi",
+   "es": "mesa, escritorio",
+   "href": "/intermedio1/clase01.html#s8",
+   "sec": "Clase 01 · §8 椅子 — la silla, y todos los clasificadores"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "一把椅子",
+   "py": "yì bǎ yǐzi",
+   "es": "una silla",
+   "href": "/intermedio1/clase01.html#s8",
+   "sec": "Clase 01 · §8 椅子 — la silla, y todos los clasificadores"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "一张桌子",
+   "py": "yì zhāng zhuōzi",
+   "es": "una mesa",
+   "href": "/intermedio1/clase01.html#s8",
+   "sec": "Clase 01 · §8 椅子 — la silla, y todos los clasificadores"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "把",
+   "py": "bǎ",
+   "es": "cosas que se agarran — 一把椅子 / 一把伞",
+   "href": "/intermedio1/clase01.html#s8",
+   "sec": "Clase 01 · §8 椅子 — la silla, y todos los clasificadores"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "张",
+   "py": "zhāng",
+   "es": "cosas planas — 一张桌子 / 一张票",
+   "href": "/intermedio1/clase01.html#s8",
+   "sec": "Clase 01 · §8 椅子 — la silla, y todos los clasificadores"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "个",
+   "py": "gè",
+   "es": "el comodín si no te acuerdas — 一个人",
+   "href": "/intermedio1/clase01.html#s8",
+   "sec": "Clase 01 · §8 椅子 — la silla, y todos los clasificadores"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "也要买",
+   "py": "yě yào mǎi",
+   "es": "también lo va a comprar",
+   "href": "/intermedio1/clase01.html#s11",
+   "sec": "Clase 01 · §11 也 — de «también» a «ni… ni…»"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "也有时间",
+   "py": "yě yǒu shíjiān",
+   "es": "también tiene tiempo ⏰",
+   "href": "/intermedio1/clase01.html#s11",
+   "sec": "Clase 01 · §11 也 — de «también» a «ni… ni…»"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "也想说",
+   "py": "yě xiǎng shuō",
+   "es": "también quiere decir",
+   "href": "/intermedio1/clase01.html#s11",
+   "sec": "Clase 01 · §11 也 — de «también» a «ni… ni…»"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "时间",
+   "py": "shíjiān",
+   "es": "tiempo (el que tienes disponible) ⏰",
+   "href": "/intermedio1/clase01.html#s11",
+   "sec": "Clase 01 · §11 也 — de «también» a «ni… ni…»"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "不冷不热",
+   "py": "bù lěng bú rè",
+   "es": "templado (la versión corta, hecha frase)",
+   "href": "/intermedio1/clase01.html#s11",
+   "sec": "Clase 01 · §11 也 — de «también» a «ni… ni…»"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "舒服",
+   "py": "shūfu",
+   "es": "cómodo, agradable",
+   "href": "/intermedio1/clase01.html#s11",
+   "sec": "Clase 01 · §11 也 — de «también» a «ni… ni…»"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "为什么",
+   "py": "wèishénme",
+   "es": "¿por qué?",
+   "href": "/intermedio1/clase01.html#s10",
+   "sec": "Clase 01 · §10 为什么…？→ 因为… — preguntar y dar la razón"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "因为",
+   "py": "yīnwèi",
+   "es": "porque",
+   "href": "/intermedio1/clase01.html#s10",
+   "sec": "Clase 01 · §10 为什么…？→ 因为… — preguntar y dar la razón"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "所以",
+   "py": "suǒyǐ",
+   "es": "por eso, así que",
+   "href": "/intermedio1/clase01.html#s10",
+   "sec": "Clase 01 · §10 为什么…？→ 因为… — preguntar y dar la razón"
+  },
+  {
+   "cat": "Clase 01",
+   "w": "眼镜",
+   "py": "yǎnjìng",
+   "es": "anteojos",
+   "href": "/intermedio1/clase01.html#s9",
+   "sec": "Clase 01 · §9 Las palabras de hoy — mapa de tonos"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "好看",
+   "py": "hǎokàn",
+   "es": "bonito, lindo (de ver)",
+   "href": "/intermedio1/clase02.html#s1",
+   "sec": "Clase 02 · §1 我觉得这件衣服好看 — «creo que esta ropa es bonita»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "这件衣服",
+   "py": "zhè jiàn yīfu",
+   "es": "esta prenda / esta ropa",
+   "href": "/intermedio1/clase02.html#s1",
+   "sec": "Clase 02 · §1 我觉得这件衣服好看 — «creo que esta ropa es bonita»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "拉面",
+   "py": "lāmiàn",
+   "es": "fideos estirados a mano, ramen",
+   "href": "/intermedio1/clase02.html#s1",
+   "sec": "Clase 02 · §1 我觉得这件衣服好看 — «creo que esta ropa es bonita»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "拉",
+   "py": "lā",
+   "es": "tirar, estirar",
+   "href": "/intermedio1/clase02.html#s1",
+   "sec": "Clase 02 · §1 我觉得这件衣服好看 — «creo que esta ropa es bonita»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "好吃",
+   "py": "hǎochī",
+   "es": "rico (de comer)",
+   "href": "/intermedio1/clase02.html#s1",
+   "sec": "Clase 02 · §1 我觉得这件衣服好看 — «creo que esta ropa es bonita»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "面包",
+   "py": "miànbāo",
+   "es": "pan",
+   "href": "/intermedio1/clase02.html#s1",
+   "sec": "Clase 02 · §1 我觉得这件衣服好看 — «creo que esta ropa es bonita»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "想",
+   "py": "xiǎng",
+   "es": "querer, tener ganas de (+ verbo)",
+   "href": "/intermedio1/clase02.html#s2",
+   "sec": "Clase 02 · §2 我想去北京 — «quiero ir a Beijing»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "北京",
+   "py": "Běijīng",
+   "es": "Beijing",
+   "href": "/intermedio1/clase02.html#s2",
+   "sec": "Clase 02 · §2 我想去北京 — «quiero ir a Beijing»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "功夫",
+   "py": "gōngfu",
+   "es": "kung-fu, artes marciales chinas",
+   "href": "/intermedio1/clase02.html#s4",
+   "sec": "Clase 02 · §4 你喜欢什么运动？— «¿qué deporte te gusta?»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "攀岩",
+   "py": "pānyán",
+   "es": "escalada (en roca o muro)",
+   "href": "/intermedio1/clase02.html#s4",
+   "sec": "Clase 02 · §4 你喜欢什么运动？— «¿qué deporte te gusta?»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "喜欢",
+   "py": "xǐhuan",
+   "es": "gustar",
+   "href": "/intermedio1/clase02.html#s4",
+   "sec": "Clase 02 · §4 你喜欢什么运动？— «¿qué deporte te gusta?»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "不太",
+   "py": "bú tài",
+   "es": "no muy, no mucho (suaviza la negación)",
+   "href": "/intermedio1/clase02.html#s4",
+   "sec": "Clase 02 · §4 你喜欢什么运动？— «¿qué deporte te gusta?»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "叫",
+   "py": "jiào",
+   "es": "llamarse; llamar",
+   "href": "/intermedio1/clase02.html#s9",
+   "sec": "Clase 02 · §9 他叫什么名字？— «¿cómo se llama?»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "名字",
+   "py": "míngzi",
+   "es": "nombre",
+   "href": "/intermedio1/clase02.html#s9",
+   "sec": "Clase 02 · §9 他叫什么名字？— «¿cómo se llama?»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "有时间",
+   "py": "yǒu shíjiān",
+   "es": "tener tiempo, estar libre",
+   "href": "/intermedio1/clase02.html#s3",
+   "sec": "Clase 02 · §3 你星期日有时间吗？— «¿tienes tiempo el domingo?»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "星期日",
+   "py": "xīngqīrì",
+   "es": "domingo (forma un poco más formal)",
+   "href": "/intermedio1/clase02.html#s3",
+   "sec": "Clase 02 · §3 你星期日有时间吗？— «¿tienes tiempo el domingo?»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "星期天",
+   "py": "xīngqītiān",
+   "es": "domingo (forma coloquial, la más usada)",
+   "href": "/intermedio1/clase02.html#s3",
+   "sec": "Clase 02 · §3 你星期日有时间吗？— «¿tienes tiempo el domingo?»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "也",
+   "py": "yě",
+   "es": "también; (con negación) tampoco",
+   "href": "/intermedio1/clase02.html#s3",
+   "sec": "Clase 02 · §3 你星期日有时间吗？— «¿tienes tiempo el domingo?»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "一起",
+   "py": "yìqǐ",
+   "es": "juntos, a la vez",
+   "href": "/intermedio1/clase02.html#s5",
+   "sec": "Clase 02 · §5 我们一起读 — 一起 «juntos»: de la frase de la sala a la propuesta"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "读",
+   "py": "dú",
+   "es": "leer (en voz alta), estudiar",
+   "href": "/intermedio1/clase02.html#s5",
+   "sec": "Clase 02 · §5 我们一起读 — 一起 «juntos»: de la frase de la sala a la propuesta"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "看书",
+   "py": "kàn shū",
+   "es": "leer (un libro), mirar el libro",
+   "href": "/intermedio1/clase02.html#s5",
+   "sec": "Clase 02 · §5 我们一起读 — 一起 «juntos»: de la frase de la sala a la propuesta"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "学校",
+   "py": "xuéxiào",
+   "es": "escuela, colegio",
+   "href": "/intermedio1/clase02.html#s5",
+   "sec": "Clase 02 · §5 我们一起读 — 一起 «juntos»: de la frase de la sala a la propuesta"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "电视",
+   "py": "diànshì",
+   "es": "televisión",
+   "href": "/intermedio1/clase02.html#s5",
+   "sec": "Clase 02 · §5 我们一起读 — 一起 «juntos»: de la frase de la sala a la propuesta"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "聚会",
+   "py": "jùhuì",
+   "es": "reunirse, juntarse; reunión, fiesta",
+   "href": "/intermedio1/clase02.html#s5",
+   "sec": "Clase 02 · §5 我们一起读 — 一起 «juntos»: de la frase de la sala a la propuesta"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "一个聚会",
+   "py": "yí ge jùhuì",
+   "es": "una reunión, una fiesta (junta)",
+   "href": "/intermedio1/clase02.html#s5",
+   "sec": "Clase 02 · §5 我们一起读 — 一起 «juntos»: de la frase de la sala a la propuesta"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "课文",
+   "py": "kèwén",
+   "es": "texto de la lección, lectura del libro",
+   "href": "/intermedio1/clase02.html#s5",
+   "sec": "Clase 02 · §5 我们一起读 — 一起 «juntos»: de la frase de la sala a la propuesta"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "下午",
+   "py": "xiàwǔ",
+   "es": "por la tarde",
+   "href": "/intermedio1/clase02.html#s5",
+   "sec": "Clase 02 · §5 我们一起读 — 一起 «juntos»: de la frase de la sala a la propuesta"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "吧",
+   "py": "ba",
+   "es": "partícula de propuesta: «…vamos, ¿ya?»",
+   "href": "/intermedio1/clase02.html#s5",
+   "sec": "Clase 02 · §5 我们一起读 — 一起 «juntos»: de la frase de la sala a la propuesta"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "好啦",
+   "py": "hǎo la",
+   "es": "¡bueno!, ¡ya, dale! (acepta y cierra)",
+   "href": "/intermedio1/clase02.html#s5",
+   "sec": "Clase 02 · §5 我们一起读 — 一起 «juntos»: de la frase de la sala a la propuesta"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "在",
+   "py": "zài",
+   "es": "estar en (lugar)",
+   "href": "/intermedio1/clase02.html#s6",
+   "sec": "Clase 02 · §6 我在家里 — «estoy en casa»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "家",
+   "py": "jiā",
+   "es": "casa, hogar; familia",
+   "href": "/intermedio1/clase02.html#s6",
+   "sec": "Clase 02 · §6 我在家里 — «estoy en casa»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "里",
+   "py": "lǐ (li)",
+   "es": "dentro de, en (sufijo de lugar)",
+   "href": "/intermedio1/clase02.html#s6",
+   "sec": "Clase 02 · §6 我在家里 — «estoy en casa»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "家里",
+   "py": "jiā li",
+   "es": "en casa, dentro de la casa",
+   "href": "/intermedio1/clase02.html#s6",
+   "sec": "Clase 02 · §6 我在家里 — «estoy en casa»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "要",
+   "py": "yào",
+   "es": "querer (con decisión) — también «ir a», «necesitar»",
+   "href": "/intermedio1/clase02.html#s7",
+   "sec": "Clase 02 · §7 要不要？— «¿quieres o no?»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "买",
+   "py": "mǎi",
+   "es": "comprar",
+   "href": "/intermedio1/clase02.html#s7",
+   "sec": "Clase 02 · §7 要不要？— «¿quieres o no?»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "几",
+   "py": "jǐ",
+   "es": "¿cuántos? · (sin pregunta) unos cuantos, algunos",
+   "href": "/intermedio1/clase02.html#s7",
+   "sec": "Clase 02 · §7 要不要？— «¿quieres o no?»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "几把椅子",
+   "py": "jǐ bǎ yǐzi",
+   "es": "unas cuantas sillas / ¿cuántas sillas?",
+   "href": "/intermedio1/clase02.html#s7",
+   "sec": "Clase 02 · §7 要不要？— «¿quieres o no?»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "都",
+   "py": "dōu",
+   "es": "todo, todos, ambos",
+   "href": "/intermedio1/clase02.html#s7",
+   "sec": "Clase 02 · §7 要不要？— «¿quieres o no?»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "可以",
+   "py": "kěyǐ",
+   "es": "poder, estar bien, valer",
+   "href": "/intermedio1/clase02.html#s7",
+   "sec": "Clase 02 · §7 要不要？— «¿quieres o no?»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "上学",
+   "py": "shàngxué",
+   "es": "ir a la escuela, asistir a clases",
+   "href": "/intermedio1/clase02.html#s7",
+   "sec": "Clase 02 · §7 要不要？— «¿quieres o no?»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "新",
+   "py": "xīn",
+   "es": "nuevo",
+   "href": "/intermedio1/clase02.html#s8",
+   "sec": "Clase 02 · §8 新的 / 旧的 — nuevo y viejo"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "新的",
+   "py": "xīn de",
+   "es": "el nuevo, la nueva (uno nuevo)",
+   "href": "/intermedio1/clase02.html#s8",
+   "sec": "Clase 02 · §8 新的 / 旧的 — nuevo y viejo"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "旧",
+   "py": "jiù",
+   "es": "viejo, usado (de cosas)",
+   "href": "/intermedio1/clase02.html#s8",
+   "sec": "Clase 02 · §8 新的 / 旧的 — nuevo y viejo"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "旧的",
+   "py": "jiù de",
+   "es": "el viejo, la vieja (uno usado)",
+   "href": "/intermedio1/clase02.html#s8",
+   "sec": "Clase 02 · §8 新的 / 旧的 — nuevo y viejo"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "新衣服",
+   "py": "xīn yīfu",
+   "es": "ropa nueva",
+   "href": "/intermedio1/clase02.html#s8",
+   "sec": "Clase 02 · §8 新的 / 旧的 — nuevo y viejo"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "新的书",
+   "py": "xīn de shū",
+   "es": "un libro nuevo",
+   "href": "/intermedio1/clase02.html#s8",
+   "sec": "Clase 02 · §8 新的 / 旧的 — nuevo y viejo"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "新的电视",
+   "py": "xīn de diànshì",
+   "es": "una tele nueva",
+   "href": "/intermedio1/clase02.html#s8",
+   "sec": "Clase 02 · §8 新的 / 旧的 — nuevo y viejo"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "新的椅子",
+   "py": "xīn de yǐzi",
+   "es": "una silla nueva",
+   "href": "/intermedio1/clase02.html#s8",
+   "sec": "Clase 02 · §8 新的 / 旧的 — nuevo y viejo"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "旧的椅子",
+   "py": "jiù de yǐzi",
+   "es": "una silla vieja",
+   "href": "/intermedio1/clase02.html#s8",
+   "sec": "Clase 02 · §8 新的 / 旧的 — nuevo y viejo"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "很新",
+   "py": "hěn xīn",
+   "es": "muy nuevo",
+   "href": "/intermedio1/clase02.html#s8",
+   "sec": "Clase 02 · §8 新的 / 旧的 — nuevo y viejo"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "二手",
+   "py": "èrshǒu",
+   "es": "de segunda mano, usado (comprado usado)",
+   "href": "/intermedio1/clase02.html#s8",
+   "sec": "Clase 02 · §8 新的 / 旧的 — nuevo y viejo"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "手机",
+   "py": "shǒujī",
+   "es": "celular, teléfono móvil",
+   "href": "/intermedio1/clase02.html#s8",
+   "sec": "Clase 02 · §8 新的 / 旧的 — nuevo y viejo"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "二手手机",
+   "py": "èrshǒu shǒujī",
+   "es": "celular de segunda mano",
+   "href": "/intermedio1/clase02.html#s8",
+   "sec": "Clase 02 · §8 新的 / 旧的 — nuevo y viejo"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "二手车",
+   "py": "èrshǒu chē",
+   "es": "auto usado",
+   "href": "/intermedio1/clase02.html#s8",
+   "sec": "Clase 02 · §8 新的 / 旧的 — nuevo y viejo"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "二手书",
+   "py": "èrshǒu shū",
+   "es": "libro de segunda mano",
+   "href": "/intermedio1/clase02.html#s8",
+   "sec": "Clase 02 · §8 新的 / 旧的 — nuevo y viejo"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "下面",
+   "py": "xiàmiàn",
+   "es": "debajo, abajo",
+   "href": "/intermedio1/clase02.html#s10",
+   "sec": "Clase 02 · §10 课文: 桌子下面有一只猫 — «debajo de la mesa hay un gato»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "有",
+   "py": "yǒu",
+   "es": "haber, hay (y «tener»)",
+   "href": "/intermedio1/clase02.html#s10",
+   "sec": "Clase 02 · §10 课文: 桌子下面有一只猫 — «debajo de la mesa hay un gato»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "它",
+   "py": "tā",
+   "es": "él/ella/eso para animales y cosas",
+   "href": "/intermedio1/clase02.html#s10",
+   "sec": "Clase 02 · §10 课文: 桌子下面有一只猫 — «debajo de la mesa hay un gato»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "花花",
+   "py": "Huāhua",
+   "es": "«Florcita», nombre de mascota",
+   "href": "/intermedio1/clase02.html#s10",
+   "sec": "Clase 02 · §10 课文: 桌子下面有一只猫 — «debajo de la mesa hay un gato»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "漂亮",
+   "py": "piàoliang",
+   "es": "lindo, bonito, guapo",
+   "href": "/intermedio1/clase02.html#s10",
+   "sec": "Clase 02 · §10 课文: 桌子下面有一只猫 — «debajo de la mesa hay un gato»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "是啊",
+   "py": "shì a",
+   "es": "sí, claro; así es",
+   "href": "/intermedio1/clase02.html#s10",
+   "sec": "Clase 02 · §10 课文: 桌子下面有一只猫 — «debajo de la mesa hay un gato»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "多大",
+   "py": "duō dà",
+   "es": "¿qué edad?, ¿cuán grande?",
+   "href": "/intermedio1/clase02.html#s10",
+   "sec": "Clase 02 · §10 课文: 桌子下面有一只猫 — «debajo de la mesa hay un gato»"
+  },
+  {
+   "cat": "Clase 02",
+   "w": "两个多月",
+   "py": "liǎng ge duō yuè",
+   "es": "dos meses y algo, más de dos meses",
+   "href": "/intermedio1/clase02.html#s10",
+   "sec": "Clase 02 · §10 课文: 桌子下面有一只猫 — «debajo de la mesa hay un gato»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "去",
+   "py": "qù",
+   "es": "ir",
+   "href": "/intermedio1/clase03.html#s1",
+   "sec": "Clase 03 · §1 你要去哪儿？— «¿adónde quieres ir?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "哪儿",
+   "py": "nǎr",
+   "es": "dónde, adónde",
+   "href": "/intermedio1/clase03.html#s1",
+   "sec": "Clase 03 · §1 你要去哪儿？— «¿adónde quieres ir?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "剪头发",
+   "py": "jiǎn tóufa",
+   "es": "cortarse el pelo",
+   "href": "/intermedio1/clase03.html#s1",
+   "sec": "Clase 03 · §1 你要去哪儿？— «¿adónde quieres ir?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "头发",
+   "py": "tóufa",
+   "es": "pelo, cabello",
+   "href": "/intermedio1/clase03.html#s1",
+   "sec": "Clase 03 · §1 你要去哪儿？— «¿adónde quieres ir?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "剪",
+   "py": "jiǎn",
+   "es": "cortar (con tijera)",
+   "href": "/intermedio1/clase03.html#s1",
+   "sec": "Clase 03 · §1 你要去哪儿？— «¿adónde quieres ir?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "理发",
+   "py": "lǐfà",
+   "es": "cortarse el pelo (la forma más formal; 理发店 es la peluquería)",
+   "href": "/intermedio1/clase03.html#s1",
+   "sec": "Clase 03 · §1 你要去哪儿？— «¿adónde quieres ir?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "加油",
+   "py": "jiāyóu",
+   "es": "¡ánimo!, ¡dale!, ¡tú puedes!",
+   "href": "/intermedio1/clase03.html#s2",
+   "sec": "Clase 03 · §2 加油！— «¡ánimo, dale!»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "加",
+   "py": "jiā",
+   "es": "añadir, sumar",
+   "href": "/intermedio1/clase03.html#s2",
+   "sec": "Clase 03 · §2 加油！— «¡ánimo, dale!»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "油",
+   "py": "yóu",
+   "es": "aceite, combustible",
+   "href": "/intermedio1/clase03.html#s2",
+   "sec": "Clase 03 · §2 加油！— «¡ánimo, dale!»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "加油站",
+   "py": "jiāyóuzhàn",
+   "es": "gasolinera (lit. «estación de echar bencina»)",
+   "href": "/intermedio1/clase03.html#s2",
+   "sec": "Clase 03 · §2 加油！— «¡ánimo, dale!»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "项目",
+   "py": "xiàngmù",
+   "es": "proyecto",
+   "href": "/intermedio1/clase03.html#s2",
+   "sec": "Clase 03 · §2 加油！— «¡ánimo, dale!»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "网站",
+   "py": "wǎngzhàn",
+   "es": "sitio web",
+   "href": "/intermedio1/clase03.html#s2",
+   "sec": "Clase 03 · §2 加油！— «¡ánimo, dale!»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "中文",
+   "py": "Zhōngwén",
+   "es": "idioma chino (escrito)",
+   "href": "/intermedio1/clase03.html#s2",
+   "sec": "Clase 03 · §2 加油！— «¡ánimo, dale!»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "不想",
+   "py": "bù xiǎng",
+   "es": "no querer, no tener ganas de",
+   "href": "/intermedio1/clase03.html#s3",
+   "sec": "Clase 03 · §3 我不想去学校 — «no quiero ir a la escuela»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "商店",
+   "py": "shāngdiàn",
+   "es": "tienda",
+   "href": "/intermedio1/clase03.html#s3",
+   "sec": "Clase 03 · §3 我不想去学校 — «no quiero ir a la escuela»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "饭店",
+   "py": "fàndiàn",
+   "es": "restaurante; hotel",
+   "href": "/intermedio1/clase03.html#s3",
+   "sec": "Clase 03 · §3 我不想去学校 — «no quiero ir a la escuela»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "图书馆",
+   "py": "túshūguǎn",
+   "es": "biblioteca",
+   "href": "/intermedio1/clase03.html#s3",
+   "sec": "Clase 03 · §3 我不想去学校 — «no quiero ir a la escuela»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "朋友",
+   "py": "péngyou",
+   "es": "amigo",
+   "href": "/intermedio1/clase03.html#s3",
+   "sec": "Clase 03 · §3 我不想去学校 — «no quiero ir a la escuela»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "和朋友去",
+   "py": "hé péngyou qù",
+   "es": "ir con amigos",
+   "href": "/intermedio1/clase03.html#s3",
+   "sec": "Clase 03 · §3 我不想去学校 — «no quiero ir a la escuela»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "班",
+   "py": "bān",
+   "es": "clase, curso (el grupo de alumnos)",
+   "href": "/intermedio1/clase03.html#s4",
+   "sec": "Clase 03 · §4 你们班谁最高？— «¿quién es el más alto de tu clase?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "你们班",
+   "py": "nǐmen bān",
+   "es": "tu clase, tu curso («la clase de ustedes»)",
+   "href": "/intermedio1/clase03.html#s4",
+   "sec": "Clase 03 · §4 你们班谁最高？— «¿quién es el más alto de tu clase?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "谁",
+   "py": "shéi",
+   "es": "quién",
+   "href": "/intermedio1/clase03.html#s4",
+   "sec": "Clase 03 · §4 你们班谁最高？— «¿quién es el más alto de tu clase?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "高",
+   "py": "gāo",
+   "es": "alto",
+   "href": "/intermedio1/clase03.html#s4",
+   "sec": "Clase 03 · §4 你们班谁最高？— «¿quién es el más alto de tu clase?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "矮",
+   "py": "ǎi",
+   "es": "bajo (de estatura)",
+   "href": "/intermedio1/clase03.html#s4",
+   "sec": "Clase 03 · §4 你们班谁最高？— «¿quién es el más alto de tu clase?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "忙",
+   "py": "máng",
+   "es": "ocupado",
+   "href": "/intermedio1/clase03.html#s4",
+   "sec": "Clase 03 · §4 你们班谁最高？— «¿quién es el más alto de tu clase?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "年轻",
+   "py": "niánqīng",
+   "es": "joven",
+   "href": "/intermedio1/clase03.html#s4",
+   "sec": "Clase 03 · §4 你们班谁最高？— «¿quién es el más alto de tu clase?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "聪明",
+   "py": "cōngming",
+   "es": "inteligente",
+   "href": "/intermedio1/clase03.html#s4",
+   "sec": "Clase 03 · §4 你们班谁最高？— «¿quién es el más alto de tu clase?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "汉语",
+   "py": "Hànyǔ",
+   "es": "chino (el idioma)",
+   "href": "/intermedio1/clase03.html#s4",
+   "sec": "Clase 03 · §4 你们班谁最高？— «¿quién es el más alto de tu clase?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "谁的",
+   "py": "shéi de",
+   "es": "de quién",
+   "href": "/intermedio1/clase03.html#s4",
+   "sec": "Clase 03 · §4 你们班谁最高？— «¿quién es el más alto de tu clase?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "同学",
+   "py": "tóngxué",
+   "es": "compañero de clase",
+   "href": "/intermedio1/clase03.html#s4",
+   "sec": "Clase 03 · §4 你们班谁最高？— «¿quién es el más alto de tu clase?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "阿隆索",
+   "py": "Ālóngsuǒ",
+   "es": "Alonso",
+   "href": "/intermedio1/clase03.html#s4",
+   "sec": "Clase 03 · §4 你们班谁最高？— «¿quién es el más alto de tu clase?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "贵",
+   "py": "guì",
+   "es": "caro",
+   "href": "/intermedio1/clase03.html#s5",
+   "sec": "Clase 03 · §5 谁的衣服最贵？— «¿la ropa de quién es la más cara?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "便宜",
+   "py": "piányi",
+   "es": "barato",
+   "href": "/intermedio1/clase03.html#s5",
+   "sec": "Clase 03 · §5 谁的衣服最贵？— «¿la ropa de quién es la más cara?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "块",
+   "py": "kuài",
+   "es": "yuan (unidad de dinero, coloquial)",
+   "href": "/intermedio1/clase03.html#s5",
+   "sec": "Clase 03 · §5 谁的衣服最贵？— «¿la ropa de quién es la más cara?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "多少钱",
+   "py": "duōshao qián",
+   "es": "¿cuánto cuesta?",
+   "href": "/intermedio1/clase03.html#s5",
+   "sec": "Clase 03 · §5 谁的衣服最贵？— «¿la ropa de quién es la más cara?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "水果",
+   "py": "shuǐguǒ",
+   "es": "fruta",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "吃",
+   "py": "chī",
+   "es": "comer",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "苹果",
+   "py": "píngguǒ",
+   "es": "manzana",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "西瓜",
+   "py": "xīguā",
+   "es": "sandía",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "香蕉",
+   "py": "xiāngjiāo",
+   "es": "plátano",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "葡萄",
+   "py": "pútao",
+   "es": "uva",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "橙子",
+   "py": "chéngzi",
+   "es": "naranja",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "草莓",
+   "py": "cǎoméi",
+   "es": "frutilla",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "桃子",
+   "py": "táozi",
+   "es": "durazno",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "梨",
+   "py": "lí",
+   "es": "pera",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "柠檬",
+   "py": "níngméng",
+   "es": "limón",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "樱桃",
+   "py": "yīngtáo",
+   "es": "cereza (la que Chile le exporta a China)",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "牛油果",
+   "py": "niúyóuguǒ",
+   "es": "palta (lit. «fruta de mantequilla»)",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "火龙果",
+   "py": "huǒlóngguǒ",
+   "es": "pitahaya (lit. «fruta del dragón de fuego»)",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "榴莲",
+   "py": "liúlián",
+   "es": "durián (la fruta que huele tan fuerte que la prohíben en el metro)",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "荔枝",
+   "py": "lìzhī",
+   "es": "lichi (la favorita de la emperatriz Yang Guifei)",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "龙眼",
+   "py": "lóngyǎn",
+   "es": "longan (lit. «ojo de dragón»: el 眼 de 眼睛)",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "山竹",
+   "py": "shānzhú",
+   "es": "mangostán (lit. «bambú de montaña»)",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "红毛丹",
+   "py": "hóngmáodān",
+   "es": "rambután (lit. «pelo rojo»)",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "杨桃",
+   "py": "yángtáo",
+   "es": "carambola (la fruta estrella)",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "芒果",
+   "py": "mángguǒ",
+   "es": "mango",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "木瓜",
+   "py": "mùguā",
+   "es": "papaya (lit. «melón de árbol»)",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "椰子",
+   "py": "yēzi",
+   "es": "coco",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "菠萝",
+   "py": "bōluó",
+   "es": "piña",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "猕猴桃",
+   "py": "míhóutáo",
+   "es": "kiwi (lit. «durazno del macaco»: es originario de China, no de Nueva Zelanda)",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "百香果",
+   "py": "bǎixiāngguǒ",
+   "es": "maracuyá (lit. «fruta de cien aromas»)",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "柚子",
+   "py": "yòuzi",
+   "es": "pomelo chino (enorme, se come en el Festival de Medio Otoño)",
+   "href": "/intermedio1/clase03.html#s6",
+   "sec": "Clase 03 · §6 你最喜欢吃什么水果？— «¿qué fruta te gusta más?»"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "十几个",
+   "py": "shí jǐ ge",
+   "es": "diez y tantos, más de diez (11-19)",
+   "href": "/intermedio1/clase03.html#s7",
+   "sec": "Clase 03 · §7 Práctica de preguntas — todo lo de hoy junto"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "二十几个",
+   "py": "èrshí jǐ ge",
+   "es": "veinte y tantos (21-29) 20",
+   "href": "/intermedio1/clase03.html#s7",
+   "sec": "Clase 03 · §7 Práctica de preguntas — todo lo de hoy junto"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "女生",
+   "py": "nǚshēng",
+   "es": "alumna, chica (estudiante mujer)",
+   "href": "/intermedio1/clase03.html#s7",
+   "sec": "Clase 03 · §7 Práctica de preguntas — todo lo de hoy junto"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "男生",
+   "py": "nánshēng",
+   "es": "alumno, chico (estudiante hombre)",
+   "href": "/intermedio1/clase03.html#s7",
+   "sec": "Clase 03 · §7 Práctica de preguntas — todo lo de hoy junto"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "车",
+   "py": "chē",
+   "es": "vehículo, auto",
+   "href": "/intermedio1/clase03.html#s7",
+   "sec": "Clase 03 · §7 Práctica de preguntas — todo lo de hoy junto"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "上",
+   "py": "shàng",
+   "es": "encima, arriba; «en» (a bordo de)",
+   "href": "/intermedio1/clase03.html#s7",
+   "sec": "Clase 03 · §7 Práctica de preguntas — todo lo de hoy junto"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "车上",
+   "py": "chē shang",
+   "es": "en el auto, a bordo (lit. «sobre el vehículo»)",
+   "href": "/intermedio1/clase03.html#s7",
+   "sec": "Clase 03 · §7 Práctica de preguntas — todo lo de hoy junto"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "本",
+   "py": "běn",
+   "es": "clasificador de libros y cuadernos",
+   "href": "/intermedio1/clase03.html#s7",
+   "sec": "Clase 03 · §7 Práctica de preguntas — todo lo de hoy junto"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "书",
+   "py": "shū",
+   "es": "libro",
+   "href": "/intermedio1/clase03.html#s7",
+   "sec": "Clase 03 · §7 Práctica de preguntas — todo lo de hoy junto"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "一些",
+   "py": "yìxiē",
+   "es": "algunos, algunas, unos cuantos (cantidad indefinida)",
+   "href": "/intermedio1/clase03.html#s7",
+   "sec": "Clase 03 · §7 Práctica de preguntas — todo lo de hoy junto"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "斤",
+   "py": "jīn",
+   "es": "medio kilo (500 g), la medida de la feria",
+   "href": "/intermedio1/clase03.html#s7",
+   "sec": "Clase 03 · §7 Práctica de preguntas — todo lo de hoy junto"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "三天多",
+   "py": "sān tiān duō",
+   "es": "tres días y algo (menor que 10: 多 al final)",
+   "href": "/intermedio1/clase03.html#s7",
+   "sec": "Clase 03 · §7 Práctica de preguntas — todo lo de hoy junto"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "哥哥",
+   "py": "gēge",
+   "es": "hermano mayor",
+   "href": "/intermedio1/clase03.html#s7",
+   "sec": "Clase 03 · §7 Práctica de preguntas — todo lo de hoy junto"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "岁",
+   "py": "suì",
+   "es": "año de edad",
+   "href": "/intermedio1/clase03.html#s7",
+   "sec": "Clase 03 · §7 Práctica de preguntas — todo lo de hoy junto"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "话",
+   "py": "huà",
+   "es": "palabra, habla",
+   "href": "/intermedio1/clase03.html#s9",
+   "sec": "Clase 03 · §9 汉字: dos trazos nuevos — 横折提 y 横折折折钩"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "说",
+   "py": "shuō",
+   "es": "decir, hablar",
+   "href": "/intermedio1/clase03.html#s9",
+   "sec": "Clase 03 · §9 汉字: dos trazos nuevos — 横折提 y 横折折折钩"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "奶",
+   "py": "nǎi",
+   "es": "leche (牛奶 niúnǎi, leche de vaca)",
+   "href": "/intermedio1/clase03.html#s9",
+   "sec": "Clase 03 · §9 汉字: dos trazos nuevos — 横折提 y 横折折折钩"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "场",
+   "py": "chǎng",
+   "es": "lugar, campo, recinto (商场, 机场)",
+   "href": "/intermedio1/clase03.html#s9",
+   "sec": "Clase 03 · §9 汉字: dos trazos nuevos — 横折提 y 横折折折钩"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "冰箱",
+   "py": "bīngxiāng",
+   "es": "refrigerador",
+   "href": "/intermedio1/clase03.html#s10",
+   "sec": "Clase 03 · §10 Pronunciación: el acento en palabras de dos sílabas — 中重格式"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "帮忙",
+   "py": "bāngmáng",
+   "es": "ayudar, echar una mano",
+   "href": "/intermedio1/clase03.html#s10",
+   "sec": "Clase 03 · §10 Pronunciación: el acento en palabras de dos sílabas — 中重格式"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "打扰",
+   "py": "dǎrǎo",
+   "es": "molestar, interrumpir",
+   "href": "/intermedio1/clase03.html#s10",
+   "sec": "Clase 03 · §10 Pronunciación: el acento en palabras de dos sílabas — 中重格式"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "高兴",
+   "py": "gāoxìng",
+   "es": "contento",
+   "href": "/intermedio1/clase03.html#s10",
+   "sec": "Clase 03 · §10 Pronunciación: el acento en palabras de dos sílabas — 中重格式"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "可能",
+   "py": "kěnéng",
+   "es": "quizás, posible",
+   "href": "/intermedio1/clase03.html#s10",
+   "sec": "Clase 03 · §10 Pronunciación: el acento en palabras de dos sílabas — 中重格式"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "开始",
+   "py": "kāishǐ",
+   "es": "empezar ▶",
+   "href": "/intermedio1/clase03.html#s10",
+   "sec": "Clase 03 · §10 Pronunciación: el acento en palabras de dos sílabas — 中重格式"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "考试",
+   "py": "kǎoshì",
+   "es": "examen",
+   "href": "/intermedio1/clase03.html#s10",
+   "sec": "Clase 03 · §10 Pronunciación: el acento en palabras de dos sílabas — 中重格式"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "起床",
+   "py": "qǐchuáng",
+   "es": "levantarse (de la cama)",
+   "href": "/intermedio1/clase03.html#s11",
+   "sec": "Clase 03 · §11 起床, 吃药 y 跑步 — levantarse, «comer» la medicina y correr"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "吃药",
+   "py": "chī yào",
+   "es": "tomar medicina (lit. «comer medicina»)",
+   "href": "/intermedio1/clase03.html#s11",
+   "sec": "Clase 03 · §11 起床, 吃药 y 跑步 — levantarse, «comer» la medicina y correr"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "喝药",
+   "py": "hē yào",
+   "es": "tomar un remedio líquido (jarabe)",
+   "href": "/intermedio1/clase03.html#s11",
+   "sec": "Clase 03 · §11 起床, 吃药 y 跑步 — levantarse, «comer» la medicina y correr"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "药",
+   "py": "yào",
+   "es": "medicina, remedio",
+   "href": "/intermedio1/clase03.html#s11",
+   "sec": "Clase 03 · §11 起床, 吃药 y 跑步 — levantarse, «comer» la medicina y correr"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "跑步",
+   "py": "pǎobù",
+   "es": "correr, trotar (跑 correr + 步 paso)",
+   "href": "/intermedio1/clase03.html#s11",
+   "sec": "Clase 03 · §11 起床, 吃药 y 跑步 — levantarse, «comer» la medicina y correr"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "生病",
+   "py": "shēngbìng",
+   "es": "enfermarse, estar enfermo",
+   "href": "/intermedio1/clase03.html#s12",
+   "sec": "Clase 03 · §12 生病 y 休息 — enfermarse y descansar"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "病",
+   "py": "bìng",
+   "es": "enfermedad; estar enfermo",
+   "href": "/intermedio1/clase03.html#s12",
+   "sec": "Clase 03 · §12 生病 y 休息 — enfermarse y descansar"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "休息",
+   "py": "xiūxi",
+   "es": "descansar; tener el día libre",
+   "href": "/intermedio1/clase03.html#s12",
+   "sec": "Clase 03 · §12 生病 y 休息 — enfermarse y descansar"
+  },
+  {
+   "cat": "Clase 03",
+   "w": "一下",
+   "py": "yíxià",
+   "es": "un poco, un momento (suaviza el verbo) ⏱",
+   "href": "/intermedio1/clase03.html#s12",
+   "sec": "Clase 03 · §12 生病 y 休息 — enfermarse y descansar"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "每天",
+   "py": "měitiān",
+   "es": "cada día, todos los días",
+   "href": "/intermedio1/clase04.html#s1",
+   "sec": "Clase 04 · §1 ⏰ 你每天早上几点起床？— «¿a qué hora te levantas cada mañana?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "每",
+   "py": "měi",
+   "es": "cada",
+   "href": "/intermedio1/clase04.html#s1",
+   "sec": "Clase 04 · §1 ⏰ 你每天早上几点起床？— «¿a qué hora te levantas cada mañana?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "早上",
+   "py": "zǎoshang",
+   "es": "la mañana (temprano)",
+   "href": "/intermedio1/clase04.html#s1",
+   "sec": "Clase 04 · §1 ⏰ 你每天早上几点起床？— «¿a qué hora te levantas cada mañana?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "几点",
+   "py": "jǐ diǎn",
+   "es": "a qué hora",
+   "href": "/intermedio1/clase04.html#s1",
+   "sec": "Clase 04 · §1 ⏰ 你每天早上几点起床？— «¿a qué hora te levantas cada mañana?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "是不是",
+   "py": "shì bu shì",
+   "es": "¿es o no es?, ¿verdad que…?, ¿cierto?",
+   "href": "/intermedio1/clase04.html#s2",
+   "sec": "Clase 04 · §2 你是不是每天早上六点跑步？— «¿es verdad que corres a las seis cada mañana?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "早饭",
+   "py": "zǎofàn",
+   "es": "desayuno (早 temprano + 饭 comida)",
+   "href": "/intermedio1/clase04.html#s2",
+   "sec": "Clase 04 · §2 你是不是每天早上六点跑步？— «¿es verdad que corres a las seis cada mañana?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "上班",
+   "py": "shàngbān",
+   "es": "ir al trabajo, entrar a trabajar",
+   "href": "/intermedio1/clase04.html#s2",
+   "sec": "Clase 04 · §2 你是不是每天早上六点跑步？— «¿es verdad que corres a las seis cada mañana?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "对",
+   "py": "duì",
+   "es": "correcto, así es",
+   "href": "/intermedio1/clase04.html#s2",
+   "sec": "Clase 04 · §2 你是不是每天早上六点跑步？— «¿es verdad que corres a las seis cada mañana?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "很少",
+   "py": "hěn shǎo",
+   "es": "rara vez, casi nunca (lit. «muy poco»)",
+   "href": "/intermedio1/clase04.html#s3",
+   "sec": "Clase 04 · §3 你很少生病，是不是喜欢运动？— «casi nunca te enfermas, ¿es que te gusta el deporte?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "少",
+   "py": "shǎo",
+   "es": "poco, escaso",
+   "href": "/intermedio1/clase04.html#s3",
+   "sec": "Clase 04 · §3 你很少生病，是不是喜欢运动？— «casi nunca te enfermas, ¿es que te gusta el deporte?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "常常",
+   "py": "chángcháng",
+   "es": "a menudo, con frecuencia",
+   "href": "/intermedio1/clase04.html#s3",
+   "sec": "Clase 04 · §3 你很少生病，是不是喜欢运动？— «casi nunca te enfermas, ¿es que te gusta el deporte?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "经常",
+   "py": "jīngcháng",
+   "es": "a menudo, habitualmente",
+   "href": "/intermedio1/clase04.html#s3",
+   "sec": "Clase 04 · §3 你很少生病，是不是喜欢运动？— «casi nunca te enfermas, ¿es que te gusta el deporte?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "有时候",
+   "py": "yǒu shíhou",
+   "es": "a veces",
+   "href": "/intermedio1/clase04.html#s3",
+   "sec": "Clase 04 · §3 你很少生病，是不是喜欢运动？— «casi nunca te enfermas, ¿es que te gusta el deporte?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "总是",
+   "py": "zǒngshì",
+   "es": "siempre",
+   "href": "/intermedio1/clase04.html#s3",
+   "sec": "Clase 04 · §3 你很少生病，是不是喜欢运动？— «casi nunca te enfermas, ¿es que te gusta el deporte?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "身体",
+   "py": "shēntǐ",
+   "es": "cuerpo; salud",
+   "href": "/intermedio1/clase04.html#s3",
+   "sec": "Clase 04 · §3 你很少生病，是不是喜欢运动？— «casi nunca te enfermas, ¿es que te gusta el deporte?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "出院",
+   "py": "chūyuàn",
+   "es": "salir del hospital, darse de alta",
+   "href": "/intermedio1/clase04.html#s4",
+   "sec": "Clase 04 · §4 出院 — «darse de alta»: entrar y salir del hospital"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "住院",
+   "py": "zhùyuàn",
+   "es": "hospitalizarse, quedar internado",
+   "href": "/intermedio1/clase04.html#s4",
+   "sec": "Clase 04 · §4 出院 — «darse de alta»: entrar y salir del hospital"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "医院",
+   "py": "yīyuàn",
+   "es": "hospital",
+   "href": "/intermedio1/clase04.html#s4",
+   "sec": "Clase 04 · §4 出院 — «darse de alta»: entrar y salir del hospital"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "出",
+   "py": "chū",
+   "es": "salir",
+   "href": "/intermedio1/clase04.html#s4",
+   "sec": "Clase 04 · §4 出院 — «darse de alta»: entrar y salir del hospital"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "住",
+   "py": "zhù",
+   "es": "vivir, quedarse, alojarse",
+   "href": "/intermedio1/clase04.html#s4",
+   "sec": "Clase 04 · §4 出院 — «darse de alta»: entrar y salir del hospital"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "医生",
+   "py": "yīshēng",
+   "es": "médico",
+   "href": "/intermedio1/clase04.html#s4",
+   "sec": "Clase 04 · §4 出院 — «darse de alta»: entrar y salir del hospital"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "现在",
+   "py": "xiànzài",
+   "es": "ahora",
+   "href": "/intermedio1/clase04.html#s5",
+   "sec": "Clase 04 · §5 课文: 你吃药了吗？现在好多了 — el diálogo del hospital"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "好多了",
+   "py": "hǎo duō le",
+   "es": "mucho mejor (que antes)",
+   "href": "/intermedio1/clase04.html#s5",
+   "sec": "Clase 04 · §5 课文: 你吃药了吗？现在好多了 — el diálogo del hospital"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "能",
+   "py": "néng",
+   "es": "poder (tener la posibilidad, estar en condiciones)",
+   "href": "/intermedio1/clase04.html#s5",
+   "sec": "Clase 04 · §5 课文: 你吃药了吗？现在好多了 — el diálogo del hospital"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "什么时候",
+   "py": "shénme shíhou",
+   "es": "cuándo",
+   "href": "/intermedio1/clase04.html#s5",
+   "sec": "Clase 04 · §5 课文: 你吃药了吗？现在好多了 — el diálogo del hospital"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "下个星期",
+   "py": "xià ge xīngqī",
+   "es": "la próxima semana ⏭",
+   "href": "/intermedio1/clase04.html#s5",
+   "sec": "Clase 04 · §5 课文: 你吃药了吗？现在好多了 — el diálogo del hospital"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "医生说",
+   "py": "yīshēng shuō",
+   "es": "el médico dice que…",
+   "href": "/intermedio1/clase04.html#s5",
+   "sec": "Clase 04 · §5 课文: 你吃药了吗？现在好多了 — el diálogo del hospital"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "很高",
+   "py": "hěn gāo",
+   "es": "(es) alto, muy alto",
+   "href": "/intermedio1/clase04.html#s6",
+   "sec": "Clase 04 · §6 很高 / 不高 — «muy alto» / «no es alto»: el adjetivo hace de verbo"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "不高",
+   "py": "bù gāo",
+   "es": "no es alto",
+   "href": "/intermedio1/clase04.html#s6",
+   "sec": "Clase 04 · §6 很高 / 不高 — «muy alto» / «no es alto»: el adjetivo hace de verbo"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "非常",
+   "py": "fēicháng",
+   "es": "muy, extremadamente",
+   "href": "/intermedio1/clase04.html#s6",
+   "sec": "Clase 04 · §6 很高 / 不高 — «muy alto» / «no es alto»: el adjetivo hace de verbo"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "有点儿",
+   "py": "yǒudiǎnr",
+   "es": "un poco (con matiz de queja)",
+   "href": "/intermedio1/clase04.html#s6",
+   "sec": "Clase 04 · §6 很高 / 不高 — «muy alto» / «no es alto»: el adjetivo hace de verbo"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "这几天",
+   "py": "zhè jǐ tiān",
+   "es": "estos días (lit. «estos unos-cuantos días»)",
+   "href": "/intermedio1/clase04.html#s6",
+   "sec": "Clase 04 · §6 很高 / 不高 — «muy alto» / «no es alto»: el adjetivo hace de verbo"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "但是",
+   "py": "dànshì",
+   "es": "pero",
+   "href": "/intermedio1/clase04.html#s6",
+   "sec": "Clase 04 · §6 很高 / 不高 — «muy alto» / «no es alto»: el adjetivo hace de verbo"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "没有时间",
+   "py": "méiyǒu shíjiān",
+   "es": "no tener tiempo ⏳",
+   "href": "/intermedio1/clase04.html#s6",
+   "sec": "Clase 04 · §6 很高 / 不高 — «muy alto» / «no es alto»: el adjetivo hace de verbo"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "多高",
+   "py": "duō gāo",
+   "es": "cuán alto, cuánto mide",
+   "href": "/intermedio1/clase04.html#s6",
+   "sec": "Clase 04 · §6 很高 / 不高 — «muy alto» / «no es alto»: el adjetivo hace de verbo"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "这么",
+   "py": "zhème",
+   "es": "así de, tan (esto de…)",
+   "href": "/intermedio1/clase04.html#s6",
+   "sec": "Clase 04 · §6 很高 / 不高 — «muy alto» / «no es alto»: el adjetivo hace de verbo"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "那么",
+   "py": "nàme",
+   "es": "tan, así de (aquello de…)",
+   "href": "/intermedio1/clase04.html#s6",
+   "sec": "Clase 04 · §6 很高 / 不高 — «muy alto» / «no es alto»: el adjetivo hace de verbo"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "米",
+   "py": "mǐ",
+   "es": "metro",
+   "href": "/intermedio1/clase04.html#s6",
+   "sec": "Clase 04 · §6 很高 / 不高 — «muy alto» / «no es alto»: el adjetivo hace de verbo"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "一米",
+   "py": "yì mǐ",
+   "es": "un metro",
+   "href": "/intermedio1/clase04.html#s6",
+   "sec": "Clase 04 · §6 很高 / 不高 — «muy alto» / «no es alto»: el adjetivo hace de verbo"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "十米",
+   "py": "shí mǐ",
+   "es": "diez metros",
+   "href": "/intermedio1/clase04.html#s6",
+   "sec": "Clase 04 · §6 很高 / 不高 — «muy alto» / «no es alto»: el adjetivo hace de verbo"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "一百米",
+   "py": "yìbǎi mǐ",
+   "es": "cien metros",
+   "href": "/intermedio1/clase04.html#s6",
+   "sec": "Clase 04 · §6 很高 / 不高 — «muy alto» / «no es alto»: el adjetivo hace de verbo"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "一公里",
+   "py": "yì gōnglǐ",
+   "es": "un kilómetro (= 一千米)",
+   "href": "/intermedio1/clase04.html#s6",
+   "sec": "Clase 04 · §6 很高 / 不高 — «muy alto» / «no es alto»: el adjetivo hace de verbo"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "身高",
+   "py": "shēngāo",
+   "es": "estatura (身 cuerpo + 高 alto)",
+   "href": "/intermedio1/clase04.html#s6",
+   "sec": "Clase 04 · §6 很高 / 不高 — «muy alto» / «no es alto»: el adjetivo hace de verbo"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "厘米",
+   "py": "límǐ",
+   "es": "centímetro",
+   "href": "/intermedio1/clase04.html#s6",
+   "sec": "Clase 04 · §6 很高 / 不高 — «muy alto» / «no es alto»: el adjetivo hace de verbo"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "知道",
+   "py": "zhīdào",
+   "es": "saber (un dato, una información)",
+   "href": "/intermedio1/clase04.html#s7",
+   "sec": "Clase 04 · §7 知道 / 不知道 — «sé» / «no sé»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "大卫",
+   "py": "Dàwèi",
+   "es": "David (el nombre de los libros de texto)",
+   "href": "/intermedio1/clase04.html#s8",
+   "sec": "Clase 04 · §8 课文: 大卫今年多大？— «¿cuántos años tiene David?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "今年",
+   "py": "jīnnián",
+   "es": "este año",
+   "href": "/intermedio1/clase04.html#s8",
+   "sec": "Clase 04 · §8 课文: 大卫今年多大？— «¿cuántos años tiene David?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "二十多岁",
+   "py": "èrshí duō suì",
+   "es": "veintitantos años",
+   "href": "/intermedio1/clase04.html#s8",
+   "sec": "Clase 04 · §8 课文: 大卫今年多大？— «¿cuántos años tiene David?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "一米八几",
+   "py": "yì mǐ bā jǐ",
+   "es": "uno ochenta y algo (1,81 a 1,89)",
+   "href": "/intermedio1/clase04.html#s8",
+   "sec": "Clase 04 · §8 课文: 大卫今年多大？— «¿cuántos años tiene David?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "怎么知道",
+   "py": "zěnme zhīdào",
+   "es": "cómo (es que) sabes",
+   "href": "/intermedio1/clase04.html#s8",
+   "sec": "Clase 04 · §8 课文: 大卫今年多大？— «¿cuántos años tiene David?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "这么多",
+   "py": "zhème duō",
+   "es": "tanto, tantas cosas",
+   "href": "/intermedio1/clase04.html#s8",
+   "sec": "Clase 04 · §8 课文: 大卫今年多大？— «¿cuántos años tiene David?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "啊",
+   "py": "a",
+   "es": "partícula final de sorpresa / énfasis",
+   "href": "/intermedio1/clase04.html#s8",
+   "sec": "Clase 04 · §8 课文: 大卫今年多大？— «¿cuántos años tiene David?»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "休息一下",
+   "py": "xiūxi yíxià",
+   "es": "descansar un rato",
+   "href": "/intermedio1/clase04.html#s9",
+   "sec": "Clase 04 · §9 想休息 / 不休息 — «quiero descansar» / «no descanso»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "累",
+   "py": "lèi",
+   "es": "cansado",
+   "href": "/intermedio1/clase04.html#s9",
+   "sec": "Clase 04 · §9 想休息 / 不休息 — «quiero descansar» / «no descanso»"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "张老师",
+   "py": "Zhāng lǎoshī",
+   "es": "la profesora Zhang (apellido + 老师)",
+   "href": "/intermedio1/clase04.html#s10",
+   "sec": "Clase 04 · §10 课文: 张老师星期六也不休息啊？— la profe que no descansa"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "也不",
+   "py": "yě bù",
+   "es": "tampoco",
+   "href": "/intermedio1/clase04.html#s10",
+   "sec": "Clase 04 · §10 课文: 张老师星期六也不休息啊？— la profe que no descansa"
+  },
+  {
+   "cat": "Clase 04",
+   "w": "回来",
+   "py": "huílái",
+   "es": "volver, regresar (hacia aquí)",
+   "href": "/intermedio1/clase04.html#s10",
+   "sec": "Clase 04 · §10 课文: 张老师星期六也不休息啊？— la profe que no descansa"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "每个星期",
+   "py": "měi ge xīngqī",
+   "es": "cada semana",
+   "href": "/intermedio1/clase05.html#s1",
+   "sec": "Clase 05 · §1 每天 · 每个月 · 每年 — «cada día, cada mes, cada año»"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "每个月",
+   "py": "měi ge yuè",
+   "es": "cada mes",
+   "href": "/intermedio1/clase05.html#s1",
+   "sec": "Clase 05 · §1 每天 · 每个月 · 每年 — «cada día, cada mes, cada año»"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "每月",
+   "py": "měi yuè",
+   "es": "cada mes (forma corta, más escrita)",
+   "href": "/intermedio1/clase05.html#s1",
+   "sec": "Clase 05 · §1 每天 · 每个月 · 每年 — «cada día, cada mes, cada año»"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "每年",
+   "py": "měinián",
+   "es": "cada año, todos los años",
+   "href": "/intermedio1/clase05.html#s1",
+   "sec": "Clase 05 · §1 每天 · 每个月 · 每年 — «cada día, cada mes, cada año»"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "每个人",
+   "py": "měi ge rén",
+   "es": "cada persona, todos",
+   "href": "/intermedio1/clase05.html#s1",
+   "sec": "Clase 05 · §1 每天 · 每个月 · 每年 — «cada día, cada mes, cada año»"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "每本书",
+   "py": "měi běn shū",
+   "es": "cada libro",
+   "href": "/intermedio1/clase05.html#s2",
+   "sec": "Clase 05 · §2 每 + clasificador — «cada libro, cada minuto, cada tienda…»"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "分钟",
+   "py": "fēnzhōng",
+   "es": "minuto (su propio clasificador, sin 个) ⏱",
+   "href": "/intermedio1/clase05.html#s2",
+   "sec": "Clase 05 · §2 每 + clasificador — «cada libro, cada minuto, cada tienda…»"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "每分钟",
+   "py": "měi fēnzhōng",
+   "es": "cada minuto",
+   "href": "/intermedio1/clase05.html#s2",
+   "sec": "Clase 05 · §2 每 + clasificador — «cada libro, cada minuto, cada tienda…»"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "每家商店",
+   "py": "měi jiā shāngdiàn",
+   "es": "cada tienda",
+   "href": "/intermedio1/clase05.html#s2",
+   "sec": "Clase 05 · §2 每 + clasificador — «cada libro, cada minuto, cada tienda…»"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "每家",
+   "py": "měi jiā",
+   "es": "cada familia, cada casa",
+   "href": "/intermedio1/clase05.html#s2",
+   "sec": "Clase 05 · §2 每 + clasificador — «cada libro, cada minuto, cada tienda…»"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "每块面包",
+   "py": "měi kuài miànbāo",
+   "es": "cada pedazo de pan",
+   "href": "/intermedio1/clase05.html#s2",
+   "sec": "Clase 05 · §2 每 + clasificador — «cada libro, cada minuto, cada tienda…»"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "年",
+   "py": "nián",
+   "es": "año (su propio clasificador, sin 个)",
+   "href": "/intermedio1/clase05.html#s2",
+   "sec": "Clase 05 · §2 每 + clasificador — «cada libro, cada minuto, cada tienda…»"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "月",
+   "py": "yuè",
+   "es": "mes (normalmente con 个)",
+   "href": "/intermedio1/clase05.html#s2",
+   "sec": "Clase 05 · §2 每 + clasificador — «cada libro, cada minuto, cada tienda…»"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "出去",
+   "py": "chūqu",
+   "es": "salir (hacia afuera, alejándose de donde está quien habla)",
+   "href": "/intermedio1/clase05.html#s3",
+   "sec": "Clase 05 · §3 他每天早上出去跑步，现在身体好多了 — «sale a correr cada mañana y ahora está mucho mejor»"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "队",
+   "py": "duì",
+   "es": "equipo, fila (排队 páiduì, hacer la fila)",
+   "href": "/intermedio1/clase05.html#s4",
+   "sec": "Clase 05 · §4 汉字: dos trazos nuevos — 横撇弯钩 y 横折折撇"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "阵",
+   "py": "zhèn",
+   "es": "formación de batalla; un rato, una ráfaga",
+   "href": "/intermedio1/clase05.html#s4",
+   "sec": "Clase 05 · §4 汉字: dos trazos nuevos — 横撇弯钩 y 横折折撇"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "及",
+   "py": "jí",
+   "es": "alcanzar, llegar a; y (formal)",
+   "href": "/intermedio1/clase05.html#s4",
+   "sec": "Clase 05 · §4 汉字: dos trazos nuevos — 横撇弯钩 y 横折折撇"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "级",
+   "py": "jí",
+   "es": "nivel, grado (中级 = intermedio, 年级 = curso)",
+   "href": "/intermedio1/clase05.html#s4",
+   "sec": "Clase 05 · §4 汉字: dos trazos nuevos — 横撇弯钩 y 横折折撇"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "生",
+   "py": "shēng",
+   "es": "crecer, nacer; vida",
+   "href": "/intermedio1/clase05.html#s5",
+   "sec": "Clase 05 · §5 生 y 高 — el brote que crece y el pabellón alto"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "学生",
+   "py": "xuésheng",
+   "es": "estudiante (el que «crece» aprendiendo)",
+   "href": "/intermedio1/clase05.html#s5",
+   "sec": "Clase 05 · §5 生 y 高 — el brote que crece y el pabellón alto"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "生日",
+   "py": "shēngrì",
+   "es": "cumpleaños (el día en que naciste)",
+   "href": "/intermedio1/clase05.html#s5",
+   "sec": "Clase 05 · §5 生 y 高 — el brote que crece y el pabellón alto"
+  },
+  {
+   "cat": "Clase 05",
+   "w": "高楼",
+   "py": "gāolóu",
+   "es": "edificio alto (Básico 3 · Clase 08)",
+   "href": "/intermedio1/clase05.html#s5",
+   "sec": "Clase 05 · §5 生 y 高 — el brote que crece y el pabellón alto"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "图书",
+   "py": "túshū",
+   "es": "libros (palabra formal, colectiva)",
+   "href": "/intermedio1/clase06.html#s1",
+   "sec": "Clase 06 · §1 图书馆 — «la biblioteca»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "图",
+   "py": "tú",
+   "es": "imagen, dibujo, mapa",
+   "href": "/intermedio1/clase06.html#s1",
+   "sec": "Clase 06 · §1 图书馆 — «la biblioteca»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "馆",
+   "py": "guǎn",
+   "es": "edificio o local público (para un servicio o una actividad)",
+   "href": "/intermedio1/clase06.html#s1",
+   "sec": "Clase 06 · §1 图书馆 — «la biblioteca»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "囗",
+   "py": "wéi",
+   "es": "recinto, cercado (radical; no se usa como palabra)",
+   "href": "/intermedio1/clase06.html#s2",
+   "sec": "Clase 06 · §2 El radical 囗 — «recinto cercado»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "国",
+   "py": "guó",
+   "es": "país: 囗 (frontera) + 玉 (jade, el tesoro) → el tesoro protegido por la muralla",
+   "href": "/intermedio1/clase06.html#s2",
+   "sec": "Clase 06 · §2 El radical 囗 — «recinto cercado»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "园",
+   "py": "yuán",
+   "es": "jardín, parque: un terreno cercado (公园 parque)",
+   "href": "/intermedio1/clase06.html#s2",
+   "sec": "Clase 06 · §2 El radical 囗 — «recinto cercado»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "四",
+   "py": "sì",
+   "es": "cuatro 4",
+   "href": "/intermedio1/clase06.html#s2",
+   "sec": "Clase 06 · §2 El radical 囗 — «recinto cercado»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "回",
+   "py": "huí",
+   "es": "volver: un recinto dentro de otro, el remolino que da la vuelta",
+   "href": "/intermedio1/clase06.html#s2",
+   "sec": "Clase 06 · §2 El radical 囗 — «recinto cercado»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "因",
+   "py": "yīn",
+   "es": "causa (el de 因为): 大 (persona) acostada sobre una estera",
+   "href": "/intermedio1/clase06.html#s2",
+   "sec": "Clase 06 · §2 El radical 囗 — «recinto cercado»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "美国",
+   "py": "Měiguó",
+   "es": "Estados Unidos («el país bonito»)",
+   "href": "/intermedio1/clase06.html#s2",
+   "sec": "Clase 06 · §2 El radical 囗 — «recinto cercado»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "中国",
+   "py": "Zhōngguó",
+   "es": "China («el país del centro»)",
+   "href": "/intermedio1/clase06.html#s2",
+   "sec": "Clase 06 · §2 El radical 囗 — «recinto cercado»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "外国",
+   "py": "wàiguó",
+   "es": "el extranjero, país extranjero",
+   "href": "/intermedio1/clase06.html#s2",
+   "sec": "Clase 06 · §2 El radical 囗 — «recinto cercado»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "地图",
+   "py": "dìtú",
+   "es": "mapa",
+   "href": "/intermedio1/clase06.html#s2",
+   "sec": "Clase 06 · §2 El radical 囗 — «recinto cercado»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "公园",
+   "py": "gōngyuán",
+   "es": "parque",
+   "href": "/intermedio1/clase06.html#s2",
+   "sec": "Clase 06 · §2 El radical 囗 — «recinto cercado»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "体育馆",
+   "py": "tǐyùguǎn",
+   "es": "gimnasio, polideportivo (techado)",
+   "href": "/intermedio1/clase06.html#s3",
+   "sec": "Clase 06 · §3 Recintos: 体育馆, 操场, 医务室, 教学楼 y los «sufijos de lugar»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "体育",
+   "py": "tǐyù",
+   "es": "deporte, educación física (体 cuerpo + 育 educar)",
+   "href": "/intermedio1/clase06.html#s3",
+   "sec": "Clase 06 · §3 Recintos: 体育馆, 操场, 医务室, 教学楼 y los «sufijos de lugar»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "体育场",
+   "py": "tǐyùchǎng",
+   "es": "estadio (al aire libre)",
+   "href": "/intermedio1/clase06.html#s3",
+   "sec": "Clase 06 · §3 Recintos: 体育馆, 操场, 医务室, 教学楼 y los «sufijos de lugar»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "操场",
+   "py": "cāochǎng",
+   "es": "patio, cancha del colegio (donde se hace educación física y se forma)",
+   "href": "/intermedio1/clase06.html#s3",
+   "sec": "Clase 06 · §3 Recintos: 体育馆, 操场, 医务室, 教学楼 y los «sufijos de lugar»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "操",
+   "py": "cāo",
+   "es": "ejercitar, hacer ejercicios (体操 gimnasia, 做操 hacer los ejercicios)",
+   "href": "/intermedio1/clase06.html#s3",
+   "sec": "Clase 06 · §3 Recintos: 体育馆, 操场, 医务室, 教学楼 y los «sufijos de lugar»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "医务室",
+   "py": "yīwùshì",
+   "es": "enfermería (del colegio, de la oficina)",
+   "href": "/intermedio1/clase06.html#s3",
+   "sec": "Clase 06 · §3 Recintos: 体育馆, 操场, 医务室, 教学楼 y los «sufijos de lugar»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "医务",
+   "py": "yīwù",
+   "es": "asuntos médicos: 医 (medicina, el de 医院, 医生) + 务 (asunto, tarea, el de 服务)",
+   "href": "/intermedio1/clase06.html#s3",
+   "sec": "Clase 06 · §3 Recintos: 体育馆, 操场, 医务室, 教学楼 y los «sufijos de lugar»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "室",
+   "py": "shì",
+   "es": "sala, habitación (dentro de un edificio)",
+   "href": "/intermedio1/clase06.html#s3",
+   "sec": "Clase 06 · §3 Recintos: 体育馆, 操场, 医务室, 教学楼 y los «sufijos de lugar»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "教学楼",
+   "py": "jiàoxuélóu",
+   "es": "edificio de clases (donde están las salas en que los alumnos tienen clase)",
+   "href": "/intermedio1/clase06.html#s3",
+   "sec": "Clase 06 · §3 Recintos: 体育馆, 操场, 医务室, 教学楼 y los «sufijos de lugar»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "教学",
+   "py": "jiàoxué",
+   "es": "enseñanza: 教 (enseñar) + 学 (aprender)",
+   "href": "/intermedio1/clase06.html#s3",
+   "sec": "Clase 06 · §3 Recintos: 体育馆, 操场, 医务室, 教学楼 y los «sufijos de lugar»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "楼",
+   "py": "lóu",
+   "es": "edificio de varios pisos; piso (高楼, Clase 08 de Básico 3)",
+   "href": "/intermedio1/clase06.html#s3",
+   "sec": "Clase 06 · §3 Recintos: 体育馆, 操场, 医务室, 教学楼 y los «sufijos de lugar»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "食堂",
+   "py": "shítáng",
+   "es": "comedor, casino (del colegio o de la empresa)",
+   "href": "/intermedio1/clase06.html#s4",
+   "sec": "Clase 06 · §4 Diapositivas de lugares — cada carácter, trazo a trazo"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "宿舍",
+   "py": "sùshè",
+   "es": "residencia, dormitorio de estudiantes",
+   "href": "/intermedio1/clase06.html#s4",
+   "sec": "Clase 06 · §4 Diapositivas de lugares — cada carácter, trazo a trazo"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "超市",
+   "py": "chāoshì",
+   "es": "supermercado",
+   "href": "/intermedio1/clase06.html#s4",
+   "sec": "Clase 06 · §4 Diapositivas de lugares — cada carácter, trazo a trazo"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "银行",
+   "py": "yínháng",
+   "es": "banco",
+   "href": "/intermedio1/clase06.html#s4",
+   "sec": "Clase 06 · §4 Diapositivas de lugares — cada carácter, trazo a trazo"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "洗手间",
+   "py": "xǐshǒujiān",
+   "es": "baño («el cuarto para lavarse las manos»)",
+   "href": "/intermedio1/clase06.html#s4",
+   "sec": "Clase 06 · §4 Diapositivas de lugares — cada carácter, trazo a trazo"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "旁边",
+   "py": "pángbiān",
+   "es": "al lado ↔",
+   "href": "/intermedio1/clase06.html#s4",
+   "sec": "Clase 06 · §4 Diapositivas de lugares — cada carácter, trazo a trazo"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "对面",
+   "py": "duìmiàn",
+   "es": "enfrente, al frente (cruzando) ↕",
+   "href": "/intermedio1/clase06.html#s4",
+   "sec": "Clase 06 · §4 Diapositivas de lugares — cada carácter, trazo a trazo"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "附近",
+   "py": "fùjìn",
+   "es": "cerca, por aquí, en los alrededores",
+   "href": "/intermedio1/clase06.html#s4",
+   "sec": "Clase 06 · §4 Diapositivas de lugares — cada carácter, trazo a trazo"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "中间",
+   "py": "zhōngjiān",
+   "es": "en medio, entre ⏺",
+   "href": "/intermedio1/clase06.html#s4",
+   "sec": "Clase 06 · §4 Diapositivas de lugares — cada carácter, trazo a trazo"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "房间",
+   "py": "fángjiān",
+   "es": "pieza, habitación, cuarto",
+   "href": "/intermedio1/clase06.html#s5",
+   "sec": "Clase 06 · §5 在房间 — «en la pieza»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "房",
+   "py": "fáng",
+   "es": "casa, cuarto: 户 (puerta de una hoja) + 方 (da el sonido)",
+   "href": "/intermedio1/clase06.html#s5",
+   "sec": "Clase 06 · §5 在房间 — «en la pieza»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "间",
+   "py": "jiān",
+   "es": "espacio, cuarto: 门 (puerta) + 日 (sol) → la luz que entra entre las puertas",
+   "href": "/intermedio1/clase06.html#s5",
+   "sec": "Clase 06 · §5 在房间 — «en la pieza»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "在房间",
+   "py": "zài fángjiān",
+   "es": "en la pieza",
+   "href": "/intermedio1/clase06.html#s5",
+   "sec": "Clase 06 · §5 在房间 — «en la pieza»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "买鼠标",
+   "py": "mǎi shǔbiāo",
+   "es": "comprar un mouse",
+   "href": "/intermedio1/clase06.html#s6",
+   "sec": "Clase 06 · §6 买鼠标 — «comprar un mouse»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "鼠标",
+   "py": "shǔbiāo",
+   "es": "mouse (del computador)",
+   "href": "/intermedio1/clase06.html#s6",
+   "sec": "Clase 06 · §6 买鼠标 — «comprar un mouse»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "鼠",
+   "py": "shǔ",
+   "es": "ratón, rata (también el primer animal del horóscopo chino, 鼠年)",
+   "href": "/intermedio1/clase06.html#s6",
+   "sec": "Clase 06 · §6 买鼠标 — «comprar un mouse»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "标",
+   "py": "biāo",
+   "es": "marca, señal, indicador (木 madera + 示 mostrar)",
+   "href": "/intermedio1/clase06.html#s6",
+   "sec": "Clase 06 · §6 买鼠标 — «comprar un mouse»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "老鼠",
+   "py": "lǎoshǔ",
+   "es": "ratón, rata (el animal; 老 aquí no significa «viejo»)",
+   "href": "/intermedio1/clase06.html#s6",
+   "sec": "Clase 06 · §6 买鼠标 — «comprar un mouse»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "电脑",
+   "py": "diànnǎo",
+   "es": "computador («cerebro eléctrico»)",
+   "href": "/intermedio1/clase06.html#s6",
+   "sec": "Clase 06 · §6 买鼠标 — «comprar un mouse»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "水",
+   "py": "shuǐ",
+   "es": "agua",
+   "href": "/intermedio1/clase06.html#s7",
+   "sec": "Clase 06 · §7 这是谁的鼠标？— «¿de quién es este mouse?»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "热水",
+   "py": "rèshuǐ",
+   "es": "agua caliente (热 caliente + 水)",
+   "href": "/intermedio1/clase06.html#s7",
+   "sec": "Clase 06 · §7 这是谁的鼠标？— «¿de quién es este mouse?»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "冷水",
+   "py": "lěngshuǐ",
+   "es": "agua fría",
+   "href": "/intermedio1/clase06.html#s7",
+   "sec": "Clase 06 · §7 这是谁的鼠标？— «¿de quién es este mouse?»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "千",
+   "py": "qiān",
+   "es": "mil",
+   "href": "/intermedio1/clase06.html#s8",
+   "sec": "Clase 06 · §8 几千 · 一千 · 两千 · 三千 — los miles"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "几千",
+   "py": "jǐ qiān",
+   "es": "¿cuántos miles? / unos cuantos miles",
+   "href": "/intermedio1/clase06.html#s8",
+   "sec": "Clase 06 · §8 几千 · 一千 · 两千 · 三千 — los miles"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "一千",
+   "py": "yì qiān",
+   "es": "mil (1.000) 1",
+   "href": "/intermedio1/clase06.html#s8",
+   "sec": "Clase 06 · §8 几千 · 一千 · 两千 · 三千 — los miles"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "两千",
+   "py": "liǎng qiān",
+   "es": "dos mil (2.000) 2",
+   "href": "/intermedio1/clase06.html#s8",
+   "sec": "Clase 06 · §8 几千 · 一千 · 两千 · 三千 — los miles"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "三千",
+   "py": "sān qiān",
+   "es": "tres mil (3.000) 3",
+   "href": "/intermedio1/clase06.html#s8",
+   "sec": "Clase 06 · §8 几千 · 一千 · 两千 · 三千 — los miles"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "五千",
+   "py": "wǔ qiān",
+   "es": "cinco mil (5.000)",
+   "href": "/intermedio1/clase06.html#s8",
+   "sec": "Clase 06 · §8 几千 · 一千 · 两千 · 三千 — los miles"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "一千二百",
+   "py": "yì qiān èr bǎi",
+   "es": "mil doscientos (1.200)",
+   "href": "/intermedio1/clase06.html#s8",
+   "sec": "Clase 06 · §8 几千 · 一千 · 两千 · 三千 — los miles"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "两千五",
+   "py": "liǎng qiān wǔ",
+   "es": "dos mil quinientos (2.500, forma corta)",
+   "href": "/intermedio1/clase06.html#s8",
+   "sec": "Clase 06 · §8 几千 · 一千 · 两千 · 三千 — los miles"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "花",
+   "py": "huā",
+   "es": "gastar (dinero, tiempo) · también «flor»",
+   "href": "/intermedio1/clase06.html#s10",
+   "sec": "Clase 06 · §10 这是我在集市花一千块买的 — «esto lo compré en la feria por mil»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "花钱",
+   "py": "huā qián",
+   "es": "gastar plata",
+   "href": "/intermedio1/clase06.html#s10",
+   "sec": "Clase 06 · §10 这是我在集市花一千块买的 — «esto lo compré en la feria por mil»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "集市",
+   "py": "jíshì",
+   "es": "feria, mercado al aire libre",
+   "href": "/intermedio1/clase06.html#s10",
+   "sec": "Clase 06 · §10 这是我在集市花一千块买的 — «esto lo compré en la feria por mil»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "手表",
+   "py": "shǒubiǎo",
+   "es": "reloj de pulsera ⌚ (手 mano + 表 reloj, indicador)",
+   "href": "/intermedio1/clase06.html#s11",
+   "sec": "Clase 06 · §11 这块手表是你的吗？— diálogo: «¿este reloj es tuyo?» → «no, es de mi papá»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "一块手表",
+   "py": "yí kuài shǒubiǎo",
+   "es": "un reloj (clasificador 块) ⌚",
+   "href": "/intermedio1/clase06.html#s11",
+   "sec": "Clase 06 · §11 这块手表是你的吗？— diálogo: «¿este reloj es tuyo?» → «no, es de mi papá»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "在家里",
+   "py": "zài jiā li",
+   "es": "en (la) casa",
+   "href": "/intermedio1/clase06.html#s12",
+   "sec": "Clase 06 · §12 在家里 — «en la casa»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "报纸",
+   "py": "bàozhǐ",
+   "es": "diario, periódico",
+   "href": "/intermedio1/clase06.html#s12",
+   "sec": "Clase 06 · §12 在家里 — «en la casa»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "一份报纸",
+   "py": "yí fèn bàozhǐ",
+   "es": "un diario (un ejemplar)",
+   "href": "/intermedio1/clase06.html#s12",
+   "sec": "Clase 06 · §12 在家里 — «en la casa»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "份",
+   "py": "fèn",
+   "es": "clasificador de diarios, documentos y porciones (亻 persona + 分 dividir: «la parte de cada uno»)",
+   "href": "/intermedio1/clase06.html#s12",
+   "sec": "Clase 06 · §12 在家里 — «en la casa»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "看报纸",
+   "py": "kàn bàozhǐ",
+   "es": "leer el diario",
+   "href": "/intermedio1/clase06.html#s12",
+   "sec": "Clase 06 · §12 在家里 — «en la casa»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "读报纸",
+   "py": "dú bàozhǐ",
+   "es": "leer el diario (con atención, o en voz alta)",
+   "href": "/intermedio1/clase06.html#s12",
+   "sec": "Clase 06 · §12 在家里 — «en la casa»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "买报纸",
+   "py": "mǎi bàozhǐ",
+   "es": "comprar el diario",
+   "href": "/intermedio1/clase06.html#s12",
+   "sec": "Clase 06 · §12 在家里 — «en la casa»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "送报纸",
+   "py": "sòng bàozhǐ",
+   "es": "repartir el diario (a domicilio)",
+   "href": "/intermedio1/clase06.html#s12",
+   "sec": "Clase 06 · §12 在家里 — «en la casa»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "送",
+   "py": "sòng",
+   "es": "llevar, entregar; regalar; ir a dejar a alguien",
+   "href": "/intermedio1/clase06.html#s12",
+   "sec": "Clase 06 · §12 在家里 — «en la casa»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "送给",
+   "py": "sòng gěi",
+   "es": "regalar a, dar a",
+   "href": "/intermedio1/clase06.html#s13",
+   "sec": "Clase 06 · §13 这本书送给我吧？— «¿me regalas este libro?» → 好的"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "好的",
+   "py": "hǎo de",
+   "es": "ok, de acuerdo (respuesta a un pedido)",
+   "href": "/intermedio1/clase06.html#s13",
+   "sec": "Clase 06 · §13 这本书送给我吧？— «¿me regalas este libro?» → 好的"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "送报纸的",
+   "py": "sòng bàozhǐ de",
+   "es": "el repartidor de diarios («el que reparte el diario»)",
+   "href": "/intermedio1/clase06.html#s14",
+   "sec": "Clase 06 · §14 你知道什么时候送报纸吗？— «¿sabes cuándo traen el diario?»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "你看",
+   "py": "nǐ kàn",
+   "es": "¡mira! (para llamar la atención)",
+   "href": "/intermedio1/clase06.html#s14",
+   "sec": "Clase 06 · §14 你知道什么时候送报纸吗？— «¿sabes cuándo traen el diario?»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "来了",
+   "py": "lái le",
+   "es": "ya viene / llegó",
+   "href": "/intermedio1/clase06.html#s14",
+   "sec": "Clase 06 · §14 你知道什么时候送报纸吗？— «¿sabes cuándo traen el diario?»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "卖东西的",
+   "py": "mài dōngxi de",
+   "es": "el vendedor («el que vende cosas»)",
+   "href": "/intermedio1/clase06.html#s14",
+   "sec": "Clase 06 · §14 你知道什么时候送报纸吗？— «¿sabes cuándo traen el diario?»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "开车的",
+   "py": "kāi chē de",
+   "es": "el chofer («el que maneja»)",
+   "href": "/intermedio1/clase06.html#s14",
+   "sec": "Clase 06 · §14 你知道什么时候送报纸吗？— «¿sabes cuándo traen el diario?»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "外面",
+   "py": "wàimiàn",
+   "es": "afuera (el opuesto de 里面, §4)",
+   "href": "/intermedio1/clase06.html#s15",
+   "sec": "Clase 06 · §15 外面下雨了，我送送你吧 — «está lloviendo, te voy a dejar» → 不用了，谢谢"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "下雨",
+   "py": "xià yǔ",
+   "es": "llover («cae lluvia»)",
+   "href": "/intermedio1/clase06.html#s15",
+   "sec": "Clase 06 · §15 外面下雨了，我送送你吧 — «está lloviendo, te voy a dejar» → 不用了，谢谢"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "送送",
+   "py": "sòngsong",
+   "es": "acompañar un ratito, ir a dejar (verbo duplicado, más suave)",
+   "href": "/intermedio1/clase06.html#s15",
+   "sec": "Clase 06 · §15 外面下雨了，我送送你吧 — «está lloviendo, te voy a dejar» → 不用了，谢谢"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "不用",
+   "py": "bú yòng",
+   "es": "no hace falta, no es necesario",
+   "href": "/intermedio1/clase06.html#s15",
+   "sec": "Clase 06 · §15 外面下雨了，我送送你吧 — «está lloviendo, te voy a dejar» → 不用了，谢谢"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "等一下",
+   "py": "děng yíxià",
+   "es": "espera un momento ⏳ (= 等等)",
+   "href": "/intermedio1/clase06.html#s15",
+   "sec": "Clase 06 · §15 外面下雨了，我送送你吧 — «está lloviendo, te voy a dejar» → 不用了，谢谢"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "看一下",
+   "py": "kàn yíxià",
+   "es": "echar un vistazo (= 看看)",
+   "href": "/intermedio1/clase06.html#s15",
+   "sec": "Clase 06 · §15 外面下雨了，我送送你吧 — «está lloviendo, te voy a dejar» → 不用了，谢谢"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "牛奶",
+   "py": "niúnǎi",
+   "es": "leche (de vaca)",
+   "href": "/intermedio1/clase06.html#s17",
+   "sec": "Clase 06 · §17 牛奶 — «la leche»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "牛",
+   "py": "niú",
+   "es": "vaca, buey (pictograma: la cabeza con los cuernos)",
+   "href": "/intermedio1/clase06.html#s17",
+   "sec": "Clase 06 · §17 牛奶 — «la leche»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "喝牛奶",
+   "py": "hē niúnǎi",
+   "es": "tomar leche",
+   "href": "/intermedio1/clase06.html#s17",
+   "sec": "Clase 06 · §17 牛奶 — «la leche»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "一杯牛奶",
+   "py": "yì bēi niúnǎi",
+   "es": "un vaso de leche",
+   "href": "/intermedio1/clase06.html#s17",
+   "sec": "Clase 06 · §17 牛奶 — «la leche»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "一盒牛奶",
+   "py": "yì hé niúnǎi",
+   "es": "una caja de leche",
+   "href": "/intermedio1/clase06.html#s17",
+   "sec": "Clase 06 · §17 牛奶 — «la leche»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "今天早上",
+   "py": "jīntiān zǎoshang",
+   "es": "esta mañana",
+   "href": "/intermedio1/clase06.html#s18",
+   "sec": "Clase 06 · §18 课文: 这是今天早上的报纸吗？— el diario, el repartidor… y la leche"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "昨天",
+   "py": "zuótiān",
+   "es": "ayer",
+   "href": "/intermedio1/clase06.html#s18",
+   "sec": "Clase 06 · §18 课文: 这是今天早上的报纸吗？— el diario, el repartidor… y la leche"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "你听",
+   "py": "nǐ tīng",
+   "es": "¡escucha!",
+   "href": "/intermedio1/clase06.html#s18",
+   "sec": "Clase 06 · §18 课文: 这是今天早上的报纸吗？— el diario, el repartidor… y la leche"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "送牛奶的",
+   "py": "sòng niúnǎi de",
+   "es": "el lechero, el repartidor de leche",
+   "href": "/intermedio1/clase06.html#s18",
+   "sec": "Clase 06 · §18 课文: 这是今天早上的报纸吗？— el diario, el repartidor… y la leche"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "也许",
+   "py": "yěxǔ",
+   "es": "tal vez, quizás",
+   "href": "/intermedio1/clase06.html#s18",
+   "sec": "Clase 06 · §18 课文: 这是今天早上的报纸吗？— el diario, el repartidor… y la leche"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "收废品的",
+   "py": "shōu fèipǐn de",
+   "es": "el que recoge reciclables, el «cachurero» (收 recoger + 废品 desechos)",
+   "href": "/intermedio1/clase06.html#s18",
+   "sec": "Clase 06 · §18 课文: 这是今天早上的报纸吗？— el diario, el repartidor… y la leche"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "确定",
+   "py": "quèdìng",
+   "es": "estar seguro",
+   "href": "/intermedio1/clase06.html#s18",
+   "sec": "Clase 06 · §18 课文: 这是今天早上的报纸吗？— el diario, el repartidor… y la leche"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "听到",
+   "py": "tīngdào",
+   "es": "oír, alcanzar a escuchar",
+   "href": "/intermedio1/clase06.html#s18",
+   "sec": "Clase 06 · §18 课文: 这是今天早上的报纸吗？— el diario, el repartidor… y la leche"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "丈夫",
+   "py": "zhàngfu",
+   "es": "esposo, marido",
+   "href": "/intermedio1/clase06.html#s19",
+   "sec": "Clase 06 · §19 我的丈夫 · 她的丈夫 — «mi esposo», «su esposo»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "妻子",
+   "py": "qīzi",
+   "es": "esposa",
+   "href": "/intermedio1/clase06.html#s19",
+   "sec": "Clase 06 · §19 我的丈夫 · 她的丈夫 — «mi esposo», «su esposo»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "我的丈夫",
+   "py": "wǒ de zhàngfu",
+   "es": "mi esposo",
+   "href": "/intermedio1/clase06.html#s19",
+   "sec": "Clase 06 · §19 我的丈夫 · 她的丈夫 — «mi esposo», «su esposo»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "她的丈夫",
+   "py": "tā de zhàngfu",
+   "es": "su esposo (de ella)",
+   "href": "/intermedio1/clase06.html#s19",
+   "sec": "Clase 06 · §19 我的丈夫 · 她的丈夫 — «mi esposo», «su esposo»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "他的妻子",
+   "py": "tā de qīzi",
+   "es": "su esposa (de él)",
+   "href": "/intermedio1/clase06.html#s19",
+   "sec": "Clase 06 · §19 我的丈夫 · 她的丈夫 — «mi esposo», «su esposo»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "我的妻子",
+   "py": "wǒ de qīzi",
+   "es": "mi esposa",
+   "href": "/intermedio1/clase06.html#s19",
+   "sec": "Clase 06 · §19 我的丈夫 · 她的丈夫 — «mi esposo», «su esposo»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "我丈夫",
+   "py": "wǒ zhàngfu",
+   "es": "mi esposo (sin 的, lo más común)",
+   "href": "/intermedio1/clase06.html#s19",
+   "sec": "Clase 06 · §19 我的丈夫 · 她的丈夫 — «mi esposo», «su esposo»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "夫妻",
+   "py": "fūqī",
+   "es": "matrimonio, pareja casada (夫 esposo + 妻 esposa)",
+   "href": "/intermedio1/clase06.html#s19",
+   "sec": "Clase 06 · §19 我的丈夫 · 她的丈夫 — «mi esposo», «su esposo»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "老公",
+   "py": "lǎogōng",
+   "es": "marido (coloquial, cariñoso)",
+   "href": "/intermedio1/clase06.html#s19",
+   "sec": "Clase 06 · §19 我的丈夫 · 她的丈夫 — «mi esposo», «su esposo»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "老婆",
+   "py": "lǎopo",
+   "es": "señora, mujer (coloquial, cariñoso)",
+   "href": "/intermedio1/clase06.html#s19",
+   "sec": "Clase 06 · §19 我的丈夫 · 她的丈夫 — «mi esposo», «su esposo»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "商店旁边",
+   "py": "shāngdiàn pángbiān",
+   "es": "al lado de la tienda ↔",
+   "href": "/intermedio1/clase06.html#s20",
+   "sec": "Clase 06 · §20 医院在那个小商店旁边 — «el hospital está al lado de esa tiendita»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "小商店",
+   "py": "xiǎo shāngdiàn",
+   "es": "tiendita, almacén de barrio",
+   "href": "/intermedio1/clase06.html#s20",
+   "sec": "Clase 06 · §20 医院在那个小商店旁边 — «el hospital está al lado de esa tiendita»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "大学时候",
+   "py": "dàxué shíhou",
+   "es": "en la época de la universidad",
+   "href": "/intermedio1/clase06.html#s20",
+   "sec": "Clase 06 · §20 医院在那个小商店旁边 — «el hospital está al lado de esa tiendita»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "时候",
+   "py": "shíhou",
+   "es": "momento, época, cuando ⏳",
+   "href": "/intermedio1/clase06.html#s20",
+   "sec": "Clase 06 · §20 医院在那个小商店旁边 — «el hospital está al lado de esa tiendita»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "女儿",
+   "py": "nǚ'ér",
+   "es": "hija",
+   "href": "/intermedio1/clase06.html#s20",
+   "sec": "Clase 06 · §20 医院在那个小商店旁边 — «el hospital está al lado de esa tiendita»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "儿子",
+   "py": "érzi",
+   "es": "hijo",
+   "href": "/intermedio1/clase06.html#s20",
+   "sec": "Clase 06 · §20 医院在那个小商店旁边 — «el hospital está al lado de esa tiendita»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "左边",
+   "py": "zuǒbian",
+   "es": "(a la) izquierda",
+   "href": "/intermedio1/clase06.html#s20",
+   "sec": "Clase 06 · §20 医院在那个小商店旁边 — «el hospital está al lado de esa tiendita»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "右边",
+   "py": "yòubian",
+   "es": "(a la) derecha",
+   "href": "/intermedio1/clase06.html#s20",
+   "sec": "Clase 06 · §20 医院在那个小商店旁边 — «el hospital está al lado de esa tiendita»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "真",
+   "py": "zhēn",
+   "es": "realmente, de verdad; verdadero",
+   "href": "/intermedio1/clase06.html#s21",
+   "sec": "Clase 06 · §21 真 — «realmente, de verdad, ¡qué…!»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "真好",
+   "py": "zhēn hǎo",
+   "es": "¡qué bueno!",
+   "href": "/intermedio1/clase06.html#s21",
+   "sec": "Clase 06 · §21 真 — «realmente, de verdad, ¡qué…!»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "真漂亮",
+   "py": "zhēn piàoliang",
+   "es": "¡qué lindo!",
+   "href": "/intermedio1/clase06.html#s21",
+   "sec": "Clase 06 · §21 真 — «realmente, de verdad, ¡qué…!»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "真贵",
+   "py": "zhēn guì",
+   "es": "¡qué caro!",
+   "href": "/intermedio1/clase06.html#s21",
+   "sec": "Clase 06 · §21 真 — «realmente, de verdad, ¡qué…!»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "这里",
+   "py": "zhèlǐ",
+   "es": "aquí, acá (= 这儿 zhèr)",
+   "href": "/intermedio1/clase06.html#s21",
+   "sec": "Clase 06 · §21 真 — «realmente, de verdad, ¡qué…!»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "那里",
+   "py": "nàlǐ",
+   "es": "allá, ahí (= 那儿 nàr)",
+   "href": "/intermedio1/clase06.html#s21",
+   "sec": "Clase 06 · §21 真 — «realmente, de verdad, ¡qué…!»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "哪里",
+   "py": "nǎlǐ",
+   "es": "¿dónde? (= 哪儿 nǎr)",
+   "href": "/intermedio1/clase06.html#s21",
+   "sec": "Clase 06 · §21 真 — «realmente, de verdad, ¡qué…!»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "真好吃",
+   "py": "zhēn hǎochī",
+   "es": "¡qué rico! (comida)",
+   "href": "/intermedio1/clase06.html#s21",
+   "sec": "Clase 06 · §21 真 — «realmente, de verdad, ¡qué…!»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "真好喝",
+   "py": "zhēn hǎohē",
+   "es": "¡qué rico! (bebida)",
+   "href": "/intermedio1/clase06.html#s21",
+   "sec": "Clase 06 · §21 真 — «realmente, de verdad, ¡qué…!»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "真的",
+   "py": "zhēn de",
+   "es": "de verdad; ¿en serio?",
+   "href": "/intermedio1/clase06.html#s21",
+   "sec": "Clase 06 · §21 真 — «realmente, de verdad, ¡qué…!»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "粉色",
+   "py": "fěnsè",
+   "es": "rosado, color rosa",
+   "href": "/intermedio1/clase06.html#s22",
+   "sec": "Clase 06 · §22 颜色 — los colores: 粉色, 红色, 绿色… ¿de qué color es?"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "粉红色",
+   "py": "fěnhóngsè",
+   "es": "rosado (forma larga)",
+   "href": "/intermedio1/clase06.html#s22",
+   "sec": "Clase 06 · §22 颜色 — los colores: 粉色, 红色, 绿色… ¿de qué color es?"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "颜色",
+   "py": "yánsè",
+   "es": "color",
+   "href": "/intermedio1/clase06.html#s22",
+   "sec": "Clase 06 · §22 颜色 — los colores: 粉色, 红色, 绿色… ¿de qué color es?"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "红色",
+   "py": "hóngsè",
+   "es": "rojo",
+   "href": "/intermedio1/clase06.html#s22",
+   "sec": "Clase 06 · §22 颜色 — los colores: 粉色, 红色, 绿色… ¿de qué color es?"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "红",
+   "py": "hóng",
+   "es": "rojo (纟 seda + 工: la seda teñida)",
+   "href": "/intermedio1/clase06.html#s22",
+   "sec": "Clase 06 · §22 颜色 — los colores: 粉色, 红色, 绿色… ¿de qué color es?"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "绿色",
+   "py": "lǜsè",
+   "es": "verde",
+   "href": "/intermedio1/clase06.html#s22",
+   "sec": "Clase 06 · §22 颜色 — los colores: 粉色, 红色, 绿色… ¿de qué color es?"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "绿",
+   "py": "lǜ",
+   "es": "verde (纟 seda + 录: otra seda teñida, como 红)",
+   "href": "/intermedio1/clase06.html#s22",
+   "sec": "Clase 06 · §22 颜色 — los colores: 粉色, 红色, 绿色… ¿de qué color es?"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "绿茶",
+   "py": "lǜchá",
+   "es": "té verde",
+   "href": "/intermedio1/clase06.html#s22",
+   "sec": "Clase 06 · §22 颜色 — los colores: 粉色, 红色, 绿色… ¿de qué color es?"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "黑色",
+   "py": "hēisè",
+   "es": "negro",
+   "href": "/intermedio1/clase06.html#s22",
+   "sec": "Clase 06 · §22 颜色 — los colores: 粉色, 红色, 绿色… ¿de qué color es?"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "白色",
+   "py": "báisè",
+   "es": "blanco",
+   "href": "/intermedio1/clase06.html#s22",
+   "sec": "Clase 06 · §22 颜色 — los colores: 粉色, 红色, 绿色… ¿de qué color es?"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "蓝色",
+   "py": "lánsè",
+   "es": "azul",
+   "href": "/intermedio1/clase06.html#s22",
+   "sec": "Clase 06 · §22 颜色 — los colores: 粉色, 红色, 绿色… ¿de qué color es?"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "紫色",
+   "py": "zǐsè",
+   "es": "morado",
+   "href": "/intermedio1/clase06.html#s22",
+   "sec": "Clase 06 · §22 颜色 — los colores: 粉色, 红色, 绿色… ¿de qué color es?"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "黄色",
+   "py": "huángsè",
+   "es": "amarillo",
+   "href": "/intermedio1/clase06.html#s22",
+   "sec": "Clase 06 · §22 颜色 — los colores: 粉色, 红色, 绿色… ¿de qué color es?"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "橙色",
+   "py": "chéngsè",
+   "es": "naranjo",
+   "href": "/intermedio1/clase06.html#s22",
+   "sec": "Clase 06 · §22 颜色 — los colores: 粉色, 红色, 绿色… ¿de qué color es?"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "灰色",
+   "py": "huīsè",
+   "es": "gris",
+   "href": "/intermedio1/clase06.html#s22",
+   "sec": "Clase 06 · §22 颜色 — los colores: 粉色, 红色, 绿色… ¿de qué color es?"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "咖啡色",
+   "py": "kāfēisè",
+   "es": "café (color)",
+   "href": "/intermedio1/clase06.html#s22",
+   "sec": "Clase 06 · §22 颜色 — los colores: 粉色, 红色, 绿色… ¿de qué color es?"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "在办公室",
+   "py": "zài bàngōngshì",
+   "es": "en la oficina",
+   "href": "/intermedio1/clase06.html#s24",
+   "sec": "Clase 06 · §24 在办公室 — «en la oficina»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "办公室",
+   "py": "bàngōngshì",
+   "es": "oficina",
+   "href": "/intermedio1/clase06.html#s24",
+   "sec": "Clase 06 · §24 在办公室 — «en la oficina»"
+  },
+  {
+   "cat": "Clase 06",
+   "w": "办公",
+   "py": "bàngōng",
+   "es": "trabajar en oficina, despachar asuntos (办 gestionar + 公 lo público)",
+   "href": "/intermedio1/clase06.html#s24",
+   "sec": "Clase 06 · §24 在办公室 — «en la oficina»"
+  }
+ ],
+ "chars": "旅游放假玩儿好最秋天故宫长城很太了漂亮喜欢想说面条市衣服件觉得不错一般马虎月二三四五六七八九十上个这下几运动工作学习生活孩子结婚打算以后球足篮网乒乓比赛眼睛只猫耳朵手套外双鞋袜帽椅桌把张也要买有时间冷热舒为什么因所镜看拉吃包北京功夫攀岩叫名字星期日起读书校电视聚会课文午吧啦在家里都可新的旧机车它花是啊多大两去哪剪头发理加油站项目中商店饭图馆朋友和班你们谁高矮忙年轻聪明汉语同阿隆索贵便宜块少钱水果苹西瓜香蕉葡萄橙草莓桃梨柠檬樱牛火龙榴莲荔枝山竹红毛丹杨芒木椰菠萝猕猴百柚女男本些斤哥岁话奶场冰箱帮扰兴能开始考试床药喝跑步病休息每早点对常经候总身体出院住医现非但没那米公厘知道卫今怎累老师回来人分钟队阵及级楼囗国园美地育操务室教食堂宿舍超银行洗旁边附近房鼠标脑千集表报纸份送给卖东雨用等杯盒昨听许收废品确定到丈妻我她他婆小左右真粉色颜绿茶黑白蓝紫黄灰咖啡办"
+}

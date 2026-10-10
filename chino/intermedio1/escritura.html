@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intermedio 1 — Escritura · Apuntes Chino</title>
+<link rel="stylesheet" href="/assets/clase.css">
+<link rel="stylesheet" href="/assets/trazos.css">
+<style>
+  .char-grid { display:flex; flex-wrap:wrap; gap:4px; margin:12px 0 24px; }
+  .char-grid button { width:40px; height:40px; font-size:1.3em; border:1px solid #e5e5e5; background:#fff; border-radius:6px; cursor:pointer; font-family:inherit; }
+  .char-grid button:hover { border-color:#c0392b; color:#c0392b; }
+  .char-grid h4 { width:100%; margin:10px 0 2px; color:#888; font-size:.85em; font-weight:600; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Intermedio 1 — Escritura ✍️</h1>
+  <p>Todos los caracteres del nivel, trazo a trazo · <a href="/intermedio1/" style="color:#e74c3c">← Volver al índice</a> · <a href="/radicales.html" style="color:#e74c3c">🧩 Radicales</a></p>
+</header>
+
+<div class="box tip" style="margin-bottom: 24px;">
+  📚 <strong>Una diapositiva por palabra</strong>, con todo el vocabulario de las clases de Intermedio 1 en orden de aparición
+  (<span id="stat">…</span>). Cada carácter trae:<br>
+  • la <strong>tira de trazos paso a paso</strong>: el trazo nuevo en <span style="color:#c0392b">rojo</span>, el <span style="color:#7fa7d6">radical en azul</span>;<br>
+  • <strong>▶ Ver</strong> (animación) y <strong>✍️ Practicar</strong> (trazarlo con el dedo o el mouse; tras dos errores aparece la pista);<br>
+  • su radical y un link a la sección de la clase donde salió la palabra.<br>
+  🖨️ imprime una <strong>hoja de práctica</strong> de la diapositiva actual: el carácter para calcar y cuadros 米字格 vacíos para copiar.
+  🔍 El buscador de arriba filtra mientras escribes (hanzi, pinyin sin tonos o español); con ↑ ↓ y Enter eliges. Las flechas ◀ ▶ del teclado pasan de diapositiva.
+</div>
+
+<div id="deck"></div>
+
+<h2 class="blue">🔤 Todos los caracteres</h2>
+<p>Cada carácter distinto del nivel, agrupado por la clase en que apareció por primera vez. Tócalo para ir a su primera palabra.</p>
+<div class="char-grid" id="char-grid"></div>
+
+<footer>Intermedio 1 · Escritura · se regenera con <code>python3 scripts/gen_escritura.py</code> · <a href="https://basti.cl" style="color:inherit">basti.cl</a></footer>
+
+<button class="pinyin-toggle" onclick="document.body.classList.toggle('hide-pinyin'); this.textContent = document.body.classList.contains('hide-pinyin') ? '👁 Mostrar pinyin' : '🙈 Ocultar pinyin';">🙈 Ocultar pinyin</button>
+
+<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5.0/dist/hanzi-writer.min.js"></script>
+<script src="/assets/trazos.js"></script>
+<script>
+fetch('/intermedio1/escritura-data.json').then(r => r.json()).then(d => {
+  const deckEl = document.getElementById('deck');
+  const deck = TrazosDeck(deckEl, { key: 'i1-escritura', cats: d.cats, slides: d.slides });
+  document.getElementById('stat').textContent = d.slides.length + ' palabras, ' + [...d.chars].length + ' caracteres distintos';
+  const grid = document.getElementById('char-grid');
+  let lastCat = null;
+  [...d.chars].forEach(ch => {
+    const i = d.slides.findIndex(s => s.w.includes(ch));
+    if (d.slides[i].cat !== lastCat) {
+      lastCat = d.slides[i].cat;
+      const h = document.createElement('h4'); h.textContent = lastCat; grid.appendChild(h);
+    }
+    const b = document.createElement('button');
+    b.type = 'button'; b.textContent = ch; b.title = d.slides[i].w + ' · ' + d.slides[i].py;
+    b.onclick = () => { if (!deck) return; deck.go(i); deckEl.scrollIntoView({ behavior: 'smooth' }); };
+    grid.appendChild(b);
+  });
+});
+</script>
+<script src="/assets/clase.js"></script>
+</body>
+</html>

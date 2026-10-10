@@ -1,0 +1,70 @@
+/* trazos.css — diapositivas de escritura (ver trazos.js) */
+.deck { background:#fff; border:1px solid #e5e5e5; border-radius:14px; padding:14px; margin:16px 0; box-shadow:0 2px 8px rgba(0,0,0,.05); outline:none; }
+.deck:fullscreen { overflow:auto; padding:24px 32px; border-radius:0; }
+.deck-bar { display:flex; gap:10px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; }
+.deck-chips { display:flex; flex-wrap:wrap; gap:6px; flex:1 1 300px; }
+.deck-tools { display:flex; gap:6px; align-items:center; }
+.deck-find { position:relative; margin-bottom:12px; }
+.deck-find-ico { position:absolute; left:12px; top:50%; transform:translateY(-50%); opacity:.5; pointer-events:none; }
+.deck-search { width:100%; box-sizing:border-box; border:1.5px solid #ddd; border-radius:10px; padding:10px 12px 10px 36px; font-family:inherit; font-size:1em; }
+.deck-search:focus { outline:none; border-color:#c0392b; box-shadow:0 0 0 3px rgba(192,57,43,.12); }
+.deck-results { position:absolute; z-index:20; left:0; right:0; top:calc(100% + 4px); max-height:340px; overflow:auto; background:#fff; border:1px solid #e5e5e5; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,.12); }
+.deck-results button { display:flex; gap:10px; align-items:baseline; width:100%; text-align:left; border:none; border-bottom:1px solid #f3f3f3; background:#fff; padding:8px 12px; cursor:pointer; font-family:inherit; font-size:.92em; }
+.deck-results button.sel, .deck-results button:hover { background:#fdf2f0; }
+.deck-results .r-w { font-size:1.3em; min-width:4.2em; }
+.deck-results .r-es { flex:1; color:#555; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.deck-results .r-cat { color:#aaa; font-size:.8em; white-space:nowrap; }
+.deck-results .r-more { padding:8px 12px; color:#999; font-size:.88em; }
+.deck-chip { border:1px solid #ddd; background:#fafafa; border-radius:14px; padding:2px 10px; font-size:.85em; cursor:pointer; font-family:inherit; }
+.deck-chip.on { background:#c0392b; color:#fff; border-color:#c0392b; }
+.deck-btn { border:1px solid #ddd; background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; font-family:inherit; font-size:.9em; }
+.deck-btn:hover { border-color:#c0392b; color:#c0392b; }
+.deck-btn:disabled { opacity:.4; cursor:default; }
+.deck-nav { display:flex; justify-content:space-between; align-items:center; margin-top:14px; }
+.deck-count { color:#888; font-size:.9em; }
+.deck-slide { min-height:420px; }
+.dk-head { text-align:center; margin:16px 0 8px; }
+.dk-tag { display:inline-block; background:#fdf2e9; color:#b9770e; border:1px solid #f5cba7; border-radius:10px; padding:0 8px; font-size:.8em; font-weight:600; }
+.dk-word { font-size:3.4em; letter-spacing:.08em; margin:6px 0 0; line-height:1.15; }
+.dk-word button { font-size:.35em; vertical-align:middle; background:none; border:none; cursor:pointer; opacity:.6; }
+.dk-py { font-size:1.2em; color:#c0392b; }
+.hide-pinyin .dk-py, .hide-pinyin .dk-cpy { visibility:hidden; }
+.dk-es { font-size:1.05em; margin-top:2px; }
+.dk-how { color:#555; font-size:.92em; margin:8px auto 0; max-width:620px; }
+.dk-ex { margin:8px auto 0; max-width:620px; background:#f7f9fc; border-left:3px solid #1976d2; padding:6px 10px; border-radius:6px; font-size:.95em; text-align:left; }
+.dk-src { margin-top:6px; font-size:.85em; }
+.dk-src a { color:#1976d2; }
+.dk-chars { display:flex; flex-wrap:wrap; gap:16px; justify-content:center; margin-top:16px; }
+.dk-card { border:1px solid #eee; border-radius:12px; padding:12px; width:min(100%, 340px); box-sizing:border-box; background:#fff; }
+.dk-card-top { display:flex; gap:12px; align-items:center; }
+.dk-sw, .dk-grid { flex:none; border:1px solid #e0b4ae; border-radius:6px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg stroke='%23e8c9c4' stroke-width='.6' stroke-dasharray='3 3' fill='none'%3E%3Cpath d='M0 0L100 100M100 0L0 100M50 0V100M0 50H100'/%3E%3C/g%3E%3C/svg%3E"); background-size:100% 100%; }
+.dk-sw { width:150px; height:150px; cursor:pointer; }
+.dk-info { font-size:.88em; color:#444; line-height:1.5; }
+.dk-info .dk-big { font-size:1.6em; }
+.dk-cpy { color:#c0392b; }
+.dk-acts { display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; align-items:center; }
+.dk-acts button { border:1px solid #ddd; background:#fafafa; border-radius:6px; padding:3px 8px; cursor:pointer; font-size:.82em; font-family:inherit; }
+.dk-acts button.on { background:#c0392b; color:#fff; border-color:#c0392b; }
+.dk-acts a { font-size:.78em; color:#999; }
+.dk-strip { display:flex; flex-wrap:wrap; gap:4px; margin-top:10px; }
+.dk-step { position:relative; width:44px; height:44px; border:1px solid #eee; border-radius:4px; }
+.dk-step span { position:absolute; top:1px; left:3px; font-size:9px; color:#aaa; }
+.dk-paper { display:none; }
+.dk-grid { width:64px; height:64px; border-radius:0; }
+.dk-notes { display:block; width:100%; box-sizing:border-box; margin-top:16px; min-height:60px; border:1px dashed #ccc; border-radius:8px; padding:8px; font-family:inherit; font-size:.92em; resize:vertical; }
+@media (max-width:560px) { .dk-word { font-size:2.6em; } .dk-sw { width:120px; height:120px; } .deck-slide { min-height:0; } }
+
+/* 🖨️ hoja de práctica: solo la diapositiva actual, con cuadrículas para copiar */
+@media print {
+  body.dk-printing * { visibility:hidden; }
+  body.dk-printing .dk-print-me, body.dk-printing .dk-print-me * { visibility:visible; }
+  body.dk-printing .dk-print-me { position:absolute; top:0; left:0; right:0; border:none; box-shadow:none; }
+  .dk-print-me .deck-find, .dk-print-me .deck-bar, .dk-print-me .deck-nav, .dk-print-me .dk-acts, .dk-print-me .dk-notes, .dk-print-me .dk-word button,
+  .dk-print-me .dk-sw, .dk-print-me .dk-src { display:none !important; }
+  .dk-print-me .deck-slide { min-height:0; }
+  .dk-print-me .dk-chars { display:block; }
+  .dk-print-me .dk-card { width:100%; border:none; padding:6px 0; break-inside:avoid; }
+  .dk-print-me .dk-paper { display:flex; gap:0; margin-top:6px; }
+  .dk-print-me .dk-grid { border-color:#c99; margin-right:-1px; }
+}
