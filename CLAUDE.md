@@ -7,7 +7,21 @@ deploy, preferencias del usuario, etc. **Ahorra muchísimos tokens.**
 
 ## Estado actual
 **🆕 INTERMEDIO 1 (中级一) — arrancó el sábado 8 de agosto de 2026.**
-Nivel nuevo en `chino/intermedio1/`. **Clase 03 ✅ CERRADA (5 de septiembre de 2026; el 29 de
+Nivel nuevo en `chino/intermedio1/`. **Clase 07 ✅ CERRADA (10 de octubre de 2026) — 14 secciones en
+`chino/intermedio1/clase07.html`**: §1 左边的那本新书是谁的 (orden antes del sustantivo; respuesta con el
+nombre 左边是巴斯帝的书 — **el nombre chino de Basti es 巴斯帝**), §2 那个/那两个是我的, §3 diálogo de la taza
+(看见…了吗, 哪个 vs 那个, 给你), §4 的 a fondo (6 usos + cuándo no va + 的/得/地), §5 铅笔 y 支, §6 什么颜色的手机,
+§7 我看一下 / 我问一下老师吧 / 问问, §8 verbo + 一下 con 9 verbos, §9 你真好 / 今天天气真好, §10 repaso C06 §11,
+§11 palabras de 4 caracteres + 成语 爱不释手, §12 trazos 横折斜钩 (飞 风) y 弯钩 (狗 猫), §13 手/扌, §14 杯/别/刀(刂).
+Al cerrarla: cards de C05-07 en `intermedio1/index.html`, árbol en `index.html`, `vocab.json` con I1 04-07
+(nuevo `scripts/gen_vocab.py`, reutilizable), `hsk1/hsk2-data.json` con I1 04-07 (criterio: palabra de >1
+carácter dentro de algún `.hz`, o `.hz` exacto, o entrada de vocab), tarjetas nuevas en `radicales.html`
+«Visto en clase» (`#visto-en-clase`). Ese día también: `pinyinv3.html` tiene traducción al español con clic
+derecho sobre la tarjeta (`card.tr`; Translator API de Chrome o glosa del diccionario), y el modal de
+`radicales.html` mantiene la fila de relacionados + «Ver todos animados». **Audio pendiente** de C04-07
+(sin `ELEVENLABS_API_KEY`). Próxima: Clase 08.
+
+**Clase 03 ✅ CERRADA (5 de septiembre de 2026; el 29 de
 agosto no hubo clase, profe enferma) — 12 secciones en `chino/intermedio1/clase03.html`**,
 armada en vivo: §1 你要去哪儿 (要 vs 想, + 下午要去剪头发 y «me cortaron mal el pelo» 剪得不好/剪坏了,
 con un `<details>` del meme de 31 Minutos sin `.hz`), §2 加油 (echar aceite, 加油站, 我会加油的;

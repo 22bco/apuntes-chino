@@ -4,7 +4,10 @@
   "py": "a",
   "es": "partícula exclamativa (¡ah!, ¿eh?)",
   "cat": "particulas",
-  "clases": []
+  "clases": [
+   "intermedio1/clase04",
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "爱好",
@@ -18,7 +21,9 @@
   "py": "báisè",
   "es": "blanco (color) ⚪",
   "cat": "colores",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "班",
@@ -75,14 +80,18 @@
   "py": "bǐ",
   "es": "lápiz, bolígrafo ✏️",
   "cat": "objetos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase07"
+  ]
  },
  {
   "hz": "别",
   "py": "bié",
   "es": "no (prohibición: ¡no lo hagas!)",
   "cat": "particulas",
-  "clases": []
+  "clases": [
+   "intermedio1/clase07"
+  ]
  },
  {
   "hz": "不错",
@@ -90,7 +99,8 @@
   "es": "bastante bien, no está mal",
   "cat": "adjetivos",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase04"
   ]
  },
  {
@@ -112,14 +122,18 @@
   "py": "chēzhàn",
   "es": "estación, parada",
   "cat": "lugares",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "出",
   "py": "chū",
   "es": "salir",
   "cat": "verbos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase04"
+  ]
  },
  {
   "hz": "出国",
@@ -133,7 +147,10 @@
   "py": "chūlái",
   "es": "salir (hacia acá)",
   "cat": "verbos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase04",
+   "intermedio1/clase05"
+  ]
  },
  {
   "hz": "出门",
@@ -147,7 +164,11 @@
   "py": "chūqù",
   "es": "salir (hacia allá)",
   "cat": "verbos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase04",
+   "intermedio1/clase05",
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "床",
@@ -197,7 +218,9 @@
   "es": "golpear; jugar (a); hacer (llamada)",
   "cat": "verbos",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase04",
+   "intermedio1/clase07"
   ]
  },
  {
@@ -226,21 +249,28 @@
   "py": "dànshì",
   "es": "pero, sin embargo",
   "cat": "conjunciones",
-  "clases": []
+  "clases": [
+   "intermedio1/clase04",
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "得",
   "py": "de",
   "es": "partícula de grado/modo (después del verbo)",
   "cat": "particulas",
-  "clases": []
+  "clases": [
+   "intermedio1/clase07"
+  ]
  },
  {
   "hz": "地",
   "py": "de",
   "es": "partícula que forma adverbios (+ verbo)",
   "cat": "particulas",
-  "clases": []
+  "clases": [
+   "intermedio1/clase07"
+  ]
  },
  {
   "hz": "等",
@@ -254,14 +284,18 @@
   "py": "dìtiě",
   "es": "metro, subterráneo 🚇",
   "cat": "transporte",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "点",
   "py": "diǎn",
   "es": "encender; pedir (comida)",
   "cat": "verbos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase04"
+  ]
  },
  {
   "hz": "懂",
@@ -282,14 +316,18 @@
   "py": "fànguǎn",
   "es": "restaurante",
   "cat": "lugares",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "飞",
   "py": "fēi",
   "es": "volar",
   "cat": "verbos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase07"
+  ]
  },
  {
   "hz": "高",
@@ -297,7 +335,8 @@
   "es": "alto",
   "cat": "adjetivos",
   "clases": [
-   "intermedio1/clase03"
+   "intermedio1/clase03",
+   "intermedio1/clase05"
   ]
  },
  {
@@ -320,7 +359,8 @@
   "es": "estatura, talla",
   "cat": "cuerpo",
   "clases": [
-   "intermedio1/clase03"
+   "intermedio1/clase03",
+   "intermedio1/clase04"
   ]
  },
  {
@@ -335,7 +375,9 @@
   "py": "gōngjiāochē",
   "es": "autobús 🚌",
   "cat": "transporte",
-  "clases": []
+  "clases": [
+   "intermedio1/clase07"
+  ]
  },
  {
   "hz": "过",
@@ -371,7 +413,9 @@
   "es": "todavía; o (en preguntas)",
   "cat": "conjunciones",
   "clases": [
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase06",
+   "intermedio1/clase07"
   ]
  },
  {
@@ -379,7 +423,10 @@
   "py": "hēisè",
   "es": "negro (color) ⚫",
   "cat": "colores",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06",
+   "intermedio1/clase07"
+  ]
  },
  {
   "hz": "红茶",
@@ -393,7 +440,10 @@
   "py": "hóngsè",
   "es": "rojo (color) 🔴",
   "cat": "colores",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06",
+   "intermedio1/clase07"
+  ]
  },
  {
   "hz": "后面",
@@ -409,7 +459,9 @@
   "py": "huā",
   "es": "gastar (dinero/tiempo); flor 🌸",
   "cat": "verbos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "画",
@@ -430,14 +482,20 @@
   "py": "huílái",
   "es": "volver (hacia acá)",
   "cat": "verbos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase04",
+   "intermedio1/clase05"
+  ]
  },
  {
   "hz": "回去",
   "py": "huíqù",
   "es": "volver (hacia allá)",
   "cat": "verbos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase04",
+   "intermedio1/clase05"
+  ]
  },
  {
   "hz": "机场",
@@ -446,7 +504,9 @@
   "cat": "lugares",
   "clases": [
    "intermedio1/clase02",
-   "intermedio1/clase03"
+   "intermedio1/clase03",
+   "intermedio1/clase06",
+   "intermedio1/clase07"
   ]
  },
  {
@@ -468,14 +528,18 @@
   "py": "jiān",
   "es": "clasificador de habitaciones; entre",
   "cat": "particulas",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "教",
   "py": "jiāo",
   "es": "enseñar",
   "cat": "verbos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "教室",
@@ -484,7 +548,8 @@
   "cat": "lugares",
   "clases": [
    "intermedio1/clase01",
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase06"
   ]
  },
  {
@@ -492,7 +557,10 @@
   "py": "jièshào",
   "es": "presentar, introducir",
   "cat": "verbos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06",
+   "intermedio1/clase07"
+  ]
  },
  {
   "hz": "进",
@@ -527,7 +595,9 @@
   "py": "jīngcháng",
   "es": "a menudo, frecuentemente",
   "cat": "adverbios",
-  "clases": []
+  "clases": [
+   "intermedio1/clase04"
+  ]
  },
  {
   "hz": "酒店",
@@ -551,7 +621,8 @@
   "clases": [
    "intermedio1/clase01",
    "intermedio1/clase02",
-   "intermedio1/clase03"
+   "intermedio1/clase03",
+   "intermedio1/clase04"
   ]
  },
  {
@@ -561,7 +632,11 @@
   "cat": "comida",
   "clases": [
    "intermedio1/clase02",
-   "intermedio1/clase03"
+   "intermedio1/clase03",
+   "intermedio1/clase04",
+   "intermedio1/clase05",
+   "intermedio1/clase06",
+   "intermedio1/clase07"
   ]
  },
  {
@@ -593,7 +668,8 @@
   "es": "examen; dar un examen 📝",
   "cat": "objetos",
   "clases": [
-   "intermedio1/clase03"
+   "intermedio1/clase03",
+   "intermedio1/clase07"
   ]
  },
  {
@@ -602,7 +678,8 @@
   "es": "posible; quizás; posibilidad",
   "cat": "adjetivos",
   "clases": [
-   "intermedio1/clase03"
+   "intermedio1/clase03",
+   "intermedio1/clase06"
   ]
  },
  {
@@ -610,7 +687,9 @@
   "py": "kùzi",
   "es": "pantalones 👖",
   "cat": "ropa",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "快",
@@ -640,7 +719,9 @@
   "cat": "deportes",
   "clases": [
    "intermedio1/clase01",
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase04",
+   "intermedio1/clase06"
   ]
  },
  {
@@ -648,7 +729,9 @@
   "py": "lèi",
   "es": "cansado 😩",
   "cat": "adjetivos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase04"
+  ]
  },
  {
   "hz": "离",
@@ -663,7 +746,8 @@
   "es": "dentro, adentro",
   "cat": "direcciones",
   "clases": [
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase06"
   ]
  },
  {
@@ -671,21 +755,27 @@
   "py": "lóu",
   "es": "edificio; piso (planta)",
   "cat": "lugares",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "路",
   "py": "lù",
   "es": "camino, calle",
   "cat": "lugares",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "路上",
   "py": "lùshang",
   "es": "en el camino",
   "cat": "lugares",
-  "clases": []
+  "clases": [
+   "intermedio1/clase07"
+  ]
  },
  {
   "hz": "旅游",
@@ -695,7 +785,8 @@
   "clases": [
    "intermedio1/clase01",
    "intermedio1/clase02",
-   "intermedio1/clase03"
+   "intermedio1/clase03",
+   "intermedio1/clase05"
   ]
  },
  {
@@ -703,14 +794,18 @@
   "py": "lǜchá",
   "es": "té verde 🍵",
   "cat": "comida",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "绿色",
   "py": "lǜsè",
   "es": "verde (color) 🟢",
   "cat": "colores",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "慢",
@@ -731,7 +826,10 @@
   "py": "měi",
   "es": "cada, todos (los…)",
   "cat": "pronombres",
-  "clases": []
+  "clases": [
+   "intermedio1/clase04",
+   "intermedio1/clase05"
+  ]
  },
  {
   "hz": "门",
@@ -775,14 +873,18 @@
   "py": "ná",
   "es": "tomar, coger (con la mano)",
   "cat": "verbos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase07"
+  ]
  },
  {
   "hz": "那么",
   "py": "nàme",
   "es": "tan, así; entonces",
   "cat": "adverbios",
-  "clases": []
+  "clases": [
+   "intermedio1/clase04"
+  ]
  },
  {
   "hz": "那样",
@@ -796,14 +898,19 @@
   "py": "nǎichá",
   "es": "té con leche (bubble tea) 🧋",
   "cat": "comida",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "奶奶",
   "py": "nǎinai",
   "es": "abuela (paterna)",
   "cat": "familia",
-  "clases": []
+  "clases": [
+   "intermedio1/clase05",
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "男孩儿",
@@ -832,7 +939,9 @@
   "es": "al lado de, junto a",
   "cat": "direcciones",
   "clases": [
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase06",
+   "intermedio1/clase07"
   ]
  },
  {
@@ -849,7 +958,10 @@
   "cat": "deportes",
   "clases": [
    "intermedio1/clase02",
-   "intermedio1/clase03"
+   "intermedio1/clase03",
+   "intermedio1/clase04",
+   "intermedio1/clase05",
+   "intermedio1/clase06"
   ]
  },
  {
@@ -864,7 +976,9 @@
   "py": "qīzi",
   "es": "esposa",
   "cat": "familia",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "起来",
@@ -895,7 +1009,8 @@
   "es": "pelota, balón",
   "cat": "objetos",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase04"
   ]
  },
  {
@@ -919,7 +1034,8 @@
   "cat": "lugares",
   "clases": [
    "intermedio1/clase01",
-   "intermedio1/clase03"
+   "intermedio1/clase03",
+   "intermedio1/clase06"
   ]
  },
  {
@@ -957,7 +1073,10 @@
   "py": "shēntǐ",
   "es": "cuerpo; salud",
   "cat": "cuerpo",
-  "clases": []
+  "clases": [
+   "intermedio1/clase04",
+   "intermedio1/clase05"
+  ]
  },
  {
   "hz": "生日",
@@ -965,7 +1084,8 @@
   "es": "cumpleaños 🎂",
   "cat": "tiempo",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase05"
   ]
  },
  {
@@ -989,7 +1109,8 @@
   "cat": "cuerpo",
   "clases": [
    "intermedio1/clase01",
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase07"
   ]
  },
  {
@@ -997,7 +1118,10 @@
   "py": "shǒubiǎo",
   "es": "reloj de pulsera ⌚",
   "cat": "objetos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06",
+   "intermedio1/clase07"
+  ]
  },
  {
   "hz": "书包",
@@ -1014,7 +1138,8 @@
   "es": "cómodo; a gusto",
   "cat": "adjetivos",
   "clases": [
-   "intermedio1/clase01"
+   "intermedio1/clase01",
+   "intermedio1/clase06"
   ]
  },
  {
@@ -1022,7 +1147,9 @@
   "py": "sòng",
   "es": "regalar; enviar; acompañar",
   "cat": "verbos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "虽然",
@@ -1038,7 +1165,9 @@
   "cat": "conjunciones",
   "clases": [
    "intermedio1/clase01",
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase04",
+   "intermedio1/clase05"
   ]
  },
  {
@@ -1055,7 +1184,8 @@
   "cat": "verbos",
   "clases": [
    "intermedio1/clase01",
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase04"
   ]
  },
  {
@@ -1071,7 +1201,8 @@
   "es": "clasif. de cosas largas (calles, peces…)",
   "cat": "particulas",
   "clases": [
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase06"
   ]
  },
  {
@@ -1093,7 +1224,9 @@
   "py": "wàiguó",
   "es": "extranjero (país)",
   "cat": "lugares",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "外面",
@@ -1101,7 +1234,8 @@
   "es": "fuera, afuera",
   "cat": "direcciones",
   "clases": [
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase06"
   ]
  },
  {
@@ -1116,7 +1250,9 @@
   "py": "wàn",
   "es": "diez mil",
   "cat": "numeros",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "往",
@@ -1175,7 +1311,10 @@
   "py": "xǐshǒujiān",
   "es": "baño, servicios 🚻",
   "cat": "lugares",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06",
+   "intermedio1/clase07"
+  ]
  },
  {
   "hz": "下来",
@@ -1213,7 +1352,9 @@
   "py": "xiǎoshíhou",
   "es": "la infancia, de niño",
   "cat": "tiempo",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "笑",
@@ -1242,7 +1383,9 @@
   "es": "color 🎨",
   "cat": "colores",
   "clases": [
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase06",
+   "intermedio1/clase07"
   ]
  },
  {
@@ -1253,7 +1396,8 @@
   "clases": [
    "intermedio1/clase01",
    "intermedio1/clase02",
-   "intermedio1/clase03"
+   "intermedio1/clase03",
+   "intermedio1/clase04"
   ]
  },
  {
@@ -1300,7 +1444,9 @@
   "cat": "adverbios",
   "clases": [
    "intermedio1/clase02",
-   "intermedio1/clase03"
+   "intermedio1/clase03",
+   "intermedio1/clase04",
+   "intermedio1/clase06"
   ]
  },
  {
@@ -1324,7 +1470,10 @@
   "cat": "conjunciones",
   "clases": [
    "intermedio1/clase01",
-   "intermedio1/clase03"
+   "intermedio1/clase03",
+   "intermedio1/clase04",
+   "intermedio1/clase05",
+   "intermedio1/clase06"
   ]
  },
  {
@@ -1359,7 +1508,8 @@
   "cat": "adverbios",
   "clases": [
    "intermedio1/clase01",
-   "intermedio1/clase02"
+   "intermedio1/clase02",
+   "intermedio1/clase04"
   ]
  },
  {
@@ -1367,14 +1517,19 @@
   "py": "yòu",
   "es": "derecha",
   "cat": "direcciones",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "右边",
   "py": "yòubian",
   "es": "lado derecho, a la derecha",
   "cat": "direcciones",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06",
+   "intermedio1/clase07"
+  ]
  },
  {
   "hz": "鱼",
@@ -1398,7 +1553,10 @@
   "clases": [
    "intermedio1/clase01",
    "intermedio1/clase02",
-   "intermedio1/clase03"
+   "intermedio1/clase03",
+   "intermedio1/clase04",
+   "intermedio1/clase06",
+   "intermedio1/clase07"
   ]
  },
  {
@@ -1413,14 +1571,19 @@
   "py": "zhàngfu",
   "es": "esposo, marido",
   "cat": "familia",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06",
+   "intermedio1/clase07"
+  ]
  },
  {
   "hz": "这么",
   "py": "zhème",
   "es": "tan, así (de)",
   "cat": "pronombres",
-  "clases": []
+  "clases": [
+   "intermedio1/clase04"
+  ]
  },
  {
   "hz": "这样",
@@ -1455,7 +1618,9 @@
   "py": "zhǔnbèi",
   "es": "preparar(se)",
   "cat": "verbos",
-  "clases": []
+  "clases": [
+   "intermedio1/clase07"
+  ]
  },
  {
   "hz": "自己",
@@ -1486,7 +1651,9 @@
   "clases": [
    "intermedio1/clase01",
    "intermedio1/clase02",
-   "intermedio1/clase03"
+   "intermedio1/clase03",
+   "intermedio1/clase04",
+   "intermedio1/clase06"
   ]
  },
  {
@@ -1504,14 +1671,19 @@
   "py": "zuǒ",
   "es": "izquierda",
   "cat": "direcciones",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06"
+  ]
  },
  {
   "hz": "左边",
   "py": "zuǒbian",
   "es": "lado izquierdo, a la izquierda",
   "cat": "direcciones",
-  "clases": []
+  "clases": [
+   "intermedio1/clase06",
+   "intermedio1/clase07"
+  ]
  },
  {
   "hz": "生病",
@@ -1519,7 +1691,9 @@
   "es": "enfermarse, estar enfermo",
   "cat": "verbos",
   "clases": [
-   "intermedio1/clase03"
+   "intermedio1/clase03",
+   "intermedio1/clase04",
+   "intermedio1/clase05"
   ]
  },
  {
@@ -1528,7 +1702,10 @@
   "es": "descansar; tener el día libre",
   "cat": "verbos",
   "clases": [
-   "intermedio1/clase03"
+   "intermedio1/clase03",
+   "intermedio1/clase04",
+   "intermedio1/clase06",
+   "intermedio1/clase07"
   ]
  },
  {
@@ -1537,7 +1714,10 @@
   "es": "un poco, un momento (suaviza el verbo)",
   "cat": "adverbios",
   "clases": [
-   "intermedio1/clase03"
+   "intermedio1/clase03",
+   "intermedio1/clase04",
+   "intermedio1/clase06",
+   "intermedio1/clase07"
   ]
  }
 ]

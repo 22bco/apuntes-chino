@@ -119,6 +119,16 @@
   .m-ej .row { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; }
   .m-ej a { font-family:'Noto Sans SC',sans-serif; text-decoration:none; color:#333; background:#f6f6f9; border:1px solid #ececf2; border-radius:8px; padding:5px 10px; font-size:1.15em; cursor:pointer; transition:all .12s; }
   .m-ej a:hover { background:#fdecea; border-color:#f1ddda; color:var(--red); }
+  .m-ej a.on { background:var(--red); border-color:var(--red); color:#fff; }
+  .m-ej a.rad { border-style:dashed; }
+  .m-ej .all-btn { margin-top:10px; font:inherit; font-size:.8em; background:#fff; color:var(--red); border:1.5px solid #f1ddda; border-radius:20px; padding:6px 14px; cursor:pointer; }
+  .m-ej .all-btn:hover { background:#fdecea; }
+  .m-all { display:none; grid-template-columns:repeat(auto-fill, minmax(88px, 1fr)); gap:8px; margin-top:10px; }
+  .m-all.on { display:grid; }
+  .m-all .cell { background:#fffdfc; border:1px solid #f1ddda; border-radius:10px; padding:4px 2px 2px; cursor:pointer; }
+  .m-all .cell:hover { border-color:var(--red); }
+  .m-all .cell .w { width:80px; height:80px; margin:0 auto; }
+  .m-all .cell .l { font-size:.72em; color:#555; }
   .mbtns { display:flex; gap:8px; justify-content:center; margin-top:16px; flex-wrap:wrap; }
   .mbtns button, .mbtns a { font-family:inherit; font-size:.84em; border-radius:20px; padding:8px 16px; cursor:pointer; text-decoration:none; }
   .mbtns .replay { background:var(--navy); color:#fff; border:none; }
@@ -153,7 +163,7 @@
     <button class="hf-btn" data-hsk="3">HSK 3</button>
     <button class="hf-btn" data-hsk="0">HSK 3+</button>
   </div>
-  <section class="clase-box">
+  <section class="clase-box" id="visto-en-clase">
     <h2>📚 Visto en clase · Intermedio 1</h2>
     <p class="cb-sub">Los trazos compuestos y las formas de carácter que salieron en clase. Toca uno para ver la animación.</p>
     <div class="cb-t">✍️ Trazos compuestos <span>(笔画, bǐhuà)</span></div>
@@ -162,6 +172,8 @@
       <button class="cb-card" data-hz="乃"><span class="cb-st zh">㇎</span><b class="zh">横折折折钩</b><i>héngzhézhézhégōu</i><em>horizontal · triple giro · gancho</em><span class="cb-ej zh">乃 奶 场</span><a href="/intermedio1/clase03.html#s9">Clase 03 →</a></button>
       <button class="cb-card" data-hz="队"><span class="cb-st zh">㇌</span><b class="zh">横撇弯钩</b><i>héngpiěwāngōu</i><em>horizontal · caída izq. · curva con gancho (la «oreja» de 阝)</em><span class="cb-ej zh">队 阵 院</span><a href="/intermedio1/clase05.html#s4">Clase 05 →</a></button>
       <button class="cb-card" data-hz="及"><span class="cb-st zh">㇋</span><b class="zh">横折折撇</b><i>héngzhézhépiě</i><em>horizontal · giro · giro · caída izq. (un «3» anguloso)</em><span class="cb-ej zh">及 级 建</span><a href="/intermedio1/clase05.html#s4">Clase 05 →</a></button>
+      <button class="cb-card" data-hz="飞"><span class="cb-st zh">㇠</span><b class="zh">横折斜钩</b><i>héngzhéxiégōu</i><em>horizontal · giro · diagonal larga · gancho (el ala de 飞)</em><span class="cb-ej zh">飞 风</span><a href="/intermedio1/clase07.html#s12">Clase 07 →</a></button>
+      <button class="cb-card" data-hz="狗"><span class="cb-st zh">㇁</span><b class="zh">弯钩</b><i>wāngōu</i><em>curva suave · gancho (el lomo de 犭)</em><span class="cb-ej zh">狗 猫</span><a href="/intermedio1/clase07.html#s12">Clase 07 →</a></button>
     </div>
     <div class="cb-t">🌱 Formas de los caracteres <span>(字源, zìyuán)</span></div>
     <div class="cb-grid">
@@ -169,6 +181,10 @@
       <button class="cb-card" data-hz="高"><span class="cb-st zh">高</span><b>gāo · alto</b><em>un pabellón alto de varios pisos</em><span class="cb-ej zh">很高 高兴 高楼</span><a href="/intermedio1/clase05.html#s5">Clase 05 →</a></button>
       <button class="cb-card" data-hz="阜"><span class="cb-st zh">阝</span><b>colina / ciudad</b><em>a la izquierda colina (队, 院), a la derecha ciudad (那, 都)</em><span class="cb-ej zh">队 阿 那 都</span><a href="/intermedio1/clase05.html#s4">Clase 05 →</a></button>
       <button class="cb-card" data-hz="言"><span class="cb-st zh">讠</span><b>yán · hablar</b><em>todo lo que se dice con la boca</em><span class="cb-ej zh">说 话 课</span><a href="/intermedio1/clase03.html#s9">Clase 03 →</a></button>
+      <button class="cb-card" data-hz="犬"><span class="cb-st zh">犭</span><b>quǎn · perro (animales)</b><em>«perro de lado»: el radical de los animales</em><span class="cb-ej zh">狗 猫</span><a href="/intermedio1/clase07.html#s12">Clase 07 →</a></button>
+      <button class="cb-card" data-hz="飞"><span class="cb-st zh">飞</span><b>fēi · volar</b><em>un pájaro que despliega las alas</em><span class="cb-ej zh">飞机 飞</span><a href="/intermedio1/clase07.html#s12">Clase 07 →</a></button>
+      <button class="cb-card" data-hz="手"><span class="cb-st zh">扌</span><b>shǒu · mano</b><em>a la izquierda es 扌: acciones con la mano (ojo, cierra con 提)</em><span class="cb-ej zh">打 找 拿 把</span><a href="/intermedio1/clase07.html#s13">Clase 07 →</a></button>
+      <button class="cb-card" data-hz="刀"><span class="cb-st zh">刂</span><b>dāo · cuchillo</b><em>a la derecha 刀 se para y es 刂: cortar, separar</em><span class="cb-ej zh">别 到 前 分</span><a href="/intermedio1/clase07.html#s14">Clase 07 →</a></button>
     </div>
   </section>
   <nav class="toc" id="toc"></nav>
@@ -187,7 +203,9 @@
     </div>
     <div class="sub" id="m-sub">orden de trazos</div>
     <div id="writer"></div>
-    <div class="m-ej" id="m-ej" style="display:none"><span class="t">caracteres que lo usan</span><div class="row" id="m-ej-row"></div></div>
+    <div class="m-ej" id="m-ej" style="display:none"><span class="t" id="m-ej-t">caracteres que lo usan</span><div class="row" id="m-ej-row"></div>
+      <button class="all-btn" id="m-all-btn">🎞️ Ver todos animados</button>
+      <div class="m-all" id="m-all"></div></div>
     <div class="mbtns">
       <button class="replay" id="m-replay">▶️ Repetir</button>
       <a class="dong" id="m-dong" target="_blank" href="#">dong-chinese ↗</a>
@@ -522,10 +540,52 @@ function speak(hz) {
 const $modal = document.getElementById('modal');
 let writer = null;
 
-document.addEventListener('click', e => {
-  const c = e.target.closest('.cb-card'); if (!c || e.target.closest('a')) return;
-  openWriter(c.dataset.hz);
-});
+/* Grupo de caracteres relacionados que se muestra abajo del modal y NO desaparece al
+   navegar entre ellos: {items:[hz…], rad?, title}. Lo arma el radical (radical + ejemplos)
+   o una tarjeta de «Visto en clase» (sus ejemplos). */
+let curGroup = null;
+let allWriters = [];
+function groupFromRad(rad) {
+  const d = BY_HZ[rad]; if (!d) return null;
+  return { rad, items: [rad, ...d[7].filter(Boolean)], title: `radical ${d[1] || d[0]} y caracteres que lo usan` };
+}
+function groupFromCard(card) {
+  const chars = [card.dataset.hz, ...[...(card.querySelector('.cb-ej')?.textContent || '')].filter(c => /[㐀-鿿]/.test(c))];
+  return { rad: BY_HZ[card.dataset.hz] ? card.dataset.hz : null, items: [...new Set(chars)], title: 'caracteres relacionados' };
+}
+function stopAll() { allWriters.forEach(w => { try { w.pauseAnimation(); } catch (e) {} }); allWriters = []; }
+function renderGroup(hz) {
+  const box = document.getElementById('m-ej'), all = document.getElementById('m-all');
+  stopAll(); all.classList.remove('on'); all.innerHTML = '';
+  document.getElementById('m-all-btn').textContent = '🎞️ Ver todos animados';
+  if (!curGroup || curGroup.items.length < 2) { box.style.display = 'none'; return; }
+  document.getElementById('m-ej-t').textContent = curGroup.title;
+  document.getElementById('m-ej-row').innerHTML = curGroup.items.map(e =>
+    `<a data-hz="${e}" data-rad="${curGroup.rad || ''}" data-grp="1" class="${e === hz ? 'on' : ''} ${e === curGroup.rad ? 'rad' : ''}">${e}</a>`).join('');
+  box.style.display = '';
+}
+document.getElementById('m-all-btn').onclick = () => {
+  const all = document.getElementById('m-all');
+  if (all.classList.contains('on')) {
+    stopAll(); all.classList.remove('on'); all.innerHTML = '';
+    document.getElementById('m-all-btn').textContent = '🎞️ Ver todos animados';
+    return;
+  }
+  all.innerHTML = curGroup.items.map((e, i) => {
+    const g = GLOSS[e] || (BY_HZ[e] ? [BY_HZ[e][2], BY_HZ[e][3]] : null);
+    return `<div class="cell" data-hz="${e}" data-rad="${curGroup.rad || ''}" data-grp="1"><div class="w" id="mw-${i}"></div><div class="l">${g ? g[0] + ' · ' + g[1] : e}</div></div>`;
+  }).join('');
+  all.classList.add('on');
+  document.getElementById('m-all-btn').textContent = '✖ Cerrar animaciones';
+  curGroup.items.forEach((e, i) => {
+    try {
+      const w = HanziWriter.create('mw-' + i, e, { width: 80, height: 80, padding: 4, showOutline: true,
+        strokeColor: '#c0392b', radicalColor: '#d4820a', strokeAnimationSpeed: 1.2, delayBetweenStrokes: 180 });
+      w.loopCharacterAnimation(); allWriters.push(w);
+    } catch (err) {}
+  });
+};
+
 function openWriter(hz, ctxRad) {
   const info = document.getElementById('m-info');
   const $nota = document.getElementById('m-nota');
@@ -547,12 +607,8 @@ function openWriter(hz, ctxRad) {
     $nota.textContent = nota;
     info.classList.add('on');
     document.getElementById('m-audio').onclick = () => speak(rad);
-    const ejs = ej.filter(Boolean);
-    const ejBox = document.getElementById('m-ej');
-    if (ejs.length) {
-      document.getElementById('m-ej-row').innerHTML = ejs.map(e => `<a data-hz="${e}" data-rad="${rad}">${e}</a>`).join('');
-      ejBox.style.display = '';
-    } else { ejBox.style.display = 'none'; }
+    if (!curGroup || !curGroup.items.includes(hz)) curGroup = groupFromRad(rad);
+    renderGroup(hz);
     document.getElementById('m-sub').textContent = 'orden de trazos';
   } else if (GLOSS[hz]) {
     // ── ficha de un CARÁCTER DE EJEMPLO ──
@@ -568,12 +624,14 @@ function openWriter(hz, ctxRad) {
     } else { $nota.style.display = 'none'; }
     info.classList.add('on');
     document.getElementById('m-audio').onclick = () => speak(hz);
-    document.getElementById('m-ej').style.display = 'none';
+    if (!curGroup || !curGroup.items.includes(hz)) curGroup = ctxRad ? groupFromRad(ctxRad) : null;
+    renderGroup(hz);
     document.getElementById('m-sub').textContent = 'orden de trazos';
   } else {
     // ── sin datos ──
     info.classList.remove('on');
-    document.getElementById('m-ej').style.display = 'none';
+    if (!curGroup || !curGroup.items.includes(hz)) curGroup = null;
+    renderGroup(hz);
     document.getElementById('m-sub').textContent = 'carácter de ejemplo · orden de trazos';
   }
 
@@ -594,13 +652,18 @@ function openWriter(hz, ctxRad) {
 }
 
 document.addEventListener('click', (e) => {
+  if (e.target.closest('a[href]:not([data-hz])')) return;   // link normal: que navegue
   const t = e.target.closest('[data-hz]');
-  if (t) { e.preventDefault(); openWriter(t.dataset.hz, t.dataset.rad); }
+  if (!t) return;
+  e.preventDefault();
+  if (!t.dataset.grp) curGroup = t.classList.contains('cb-card') ? groupFromCard(t) : null;
+  openWriter(t.dataset.hz, t.dataset.rad || undefined);
 });
 document.getElementById('m-replay').onclick = () => { if (writer) writer.animateCharacter(); };
-document.getElementById('m-close').onclick = () => $modal.classList.remove('open');
-$modal.addEventListener('click', (e) => { if (e.target === $modal) $modal.classList.remove('open'); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') $modal.classList.remove('open'); });
+function closeModal() { stopAll(); $modal.classList.remove('open'); }
+document.getElementById('m-close').onclick = closeModal;
+$modal.addEventListener('click', (e) => { if (e.target === $modal) closeModal(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 </script>
 </body>
 </html>

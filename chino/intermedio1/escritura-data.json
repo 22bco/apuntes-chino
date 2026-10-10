@@ -23,6 +23,10 @@
   [
    "Clase 06",
    "Clase 06 (142)"
+  ],
+  [
+   "Clase 07",
+   "Clase 07 (62)"
   ]
  ],
  "slides": [
@@ -3713,7 +3717,503 @@
    "es": "trabajar en oficina, despachar asuntos (办 gestionar + 公 lo público)",
    "href": "/intermedio1/clase06.html#s24",
    "sec": "Clase 06 · §24 在办公室 — «en la oficina»"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "左边的",
+   "py": "zuǒbian de",
+   "es": "el / la de la izquierda",
+   "href": "/intermedio1/clase07.html#s1",
+   "sec": "Clase 07 · §1 左边的那本新书是谁的？— «¿de quién es ese libro nuevo de la izquierda?»"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "那本",
+   "py": "nà běn",
+   "es": "ese (libro): 那 + clasificador 本",
+   "href": "/intermedio1/clase07.html#s1",
+   "sec": "Clase 07 · §1 左边的那本新书是谁的？— «¿de quién es ese libro nuevo de la izquierda?»"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "新书",
+   "py": "xīn shū",
+   "es": "libro nuevo",
+   "href": "/intermedio1/clase07.html#s1",
+   "sec": "Clase 07 · §1 左边的那本新书是谁的？— «¿de quién es ese libro nuevo de la izquierda?»"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "巴斯帝",
+   "py": "Bāsīdì",
+   "es": "Basti, mi nombre en chino (transliterado, de la Básico 2 · Clase 03)",
+   "href": "/intermedio1/clase07.html#s1",
+   "sec": "Clase 07 · §1 左边的那本新书是谁的？— «¿de quién es ese libro nuevo de la izquierda?»"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "两",
+   "py": "liǎng",
+   "es": "dos (para contar cosas, delante de clasificador)",
+   "href": "/intermedio1/clase07.html#s2",
+   "sec": "Clase 07 · §2 那个是我的 · 那两个是我的 — apuntar y decir «es mío»"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "那些",
+   "py": "nàxiē",
+   "es": "esos, esas (varios, sin contar)",
+   "href": "/intermedio1/clase07.html#s2",
+   "sec": "Clase 07 · §2 那个是我的 · 那两个是我的 — apuntar y decir «es mío»"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "哪个",
+   "py": "nǎge",
+   "es": "¿cuál?",
+   "href": "/intermedio1/clase07.html#s2",
+   "sec": "Clase 07 · §2 那个是我的 · 那两个是我的 — apuntar y decir «es mío»"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "看见",
+   "py": "kànjiàn",
+   "es": "ver (y percibir: lo que llega a los ojos)",
+   "href": "/intermedio1/clase07.html#s3",
+   "sec": "Clase 07 · §3 你看见我的杯子了吗？— «¿viste mi taza?» → 给你"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "杯子",
+   "py": "bēizi",
+   "es": "taza, vaso",
+   "href": "/intermedio1/clase07.html#s3",
+   "sec": "Clase 07 · §3 你看见我的杯子了吗？— «¿viste mi taza?» → 给你"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "几个",
+   "py": "jǐ ge",
+   "es": "unos cuantos, varios (en una afirmación)",
+   "href": "/intermedio1/clase07.html#s3",
+   "sec": "Clase 07 · §3 你看见我的杯子了吗？— «¿viste mi taza?» → 给你"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "红色的",
+   "py": "hóngsè de",
+   "es": "la roja, el rojo (sin decir la cosa)",
+   "href": "/intermedio1/clase07.html#s3",
+   "sec": "Clase 07 · §3 你看见我的杯子了吗？— «¿viste mi taza?» → 给你"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "我的书",
+   "py": "wǒ de shū",
+   "es": "mi libro",
+   "href": "/intermedio1/clase07.html#s4",
+   "sec": "Clase 07 · §4 的 a fondo — para qué sirve"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "老师的水",
+   "py": "lǎoshī de shuǐ",
+   "es": "el agua de la profe",
+   "href": "/intermedio1/clase07.html#s4",
+   "sec": "Clase 07 · §4 的 a fondo — para qué sirve"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "我买的书",
+   "py": "wǒ mǎi de shū",
+   "es": "el libro que (yo) compré",
+   "href": "/intermedio1/clase07.html#s4",
+   "sec": "Clase 07 · §4 的 a fondo — para qué sirve"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "卖水果的",
+   "py": "mài shuǐguǒ de",
+   "es": "el que vende fruta, el frutero",
+   "href": "/intermedio1/clase07.html#s4",
+   "sec": "Clase 07 · §4 的 a fondo — para qué sirve"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "铅笔",
+   "py": "qiānbǐ",
+   "es": "lápiz (de grafito)",
+   "href": "/intermedio1/clase07.html#s5",
+   "sec": "Clase 07 · §5 铅笔 · 这支铅笔 — el lápiz y el clasificador 支"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "这支铅笔",
+   "py": "zhè zhī qiānbǐ",
+   "es": "este lápiz",
+   "href": "/intermedio1/clase07.html#s5",
+   "sec": "Clase 07 · §5 铅笔 · 这支铅笔 — el lápiz y el clasificador 支"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "一支铅笔",
+   "py": "yì zhī qiānbǐ",
+   "es": "un lápiz",
+   "href": "/intermedio1/clase07.html#s5",
+   "sec": "Clase 07 · §5 铅笔 · 这支铅笔 — el lápiz y el clasificador 支"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "两支铅笔",
+   "py": "liǎng zhī qiānbǐ",
+   "es": "dos lápices",
+   "href": "/intermedio1/clase07.html#s5",
+   "sec": "Clase 07 · §5 铅笔 · 这支铅笔 — el lápiz y el clasificador 支"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "支",
+   "py": "zhī",
+   "es": "clasificador de objetos largos y delgados: lápices, lápices pasta, flores con tallo",
+   "href": "/intermedio1/clase07.html#s5",
+   "sec": "Clase 07 · §5 铅笔 · 这支铅笔 — el lápiz y el clasificador 支"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "笔",
+   "py": "bǐ",
+   "es": "instrumento para escribir (cualquiera)",
+   "href": "/intermedio1/clase07.html#s5",
+   "sec": "Clase 07 · §5 铅笔 · 这支铅笔 — el lápiz y el clasificador 支"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "铅",
+   "py": "qiān",
+   "es": "plomo",
+   "href": "/intermedio1/clase07.html#s5",
+   "sec": "Clase 07 · §5 铅笔 · 这支铅笔 — el lápiz y el clasificador 支"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "毛笔",
+   "py": "máobǐ",
+   "es": "pincel de caligrafía (毛 pelo)",
+   "href": "/intermedio1/clase07.html#s5",
+   "sec": "Clase 07 · §5 铅笔 · 这支铅笔 — el lápiz y el clasificador 支"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "钢笔",
+   "py": "gāngbǐ",
+   "es": "pluma fuente (钢 acero)",
+   "href": "/intermedio1/clase07.html#s5",
+   "sec": "Clase 07 · §5 铅笔 · 这支铅笔 — el lápiz y el clasificador 支"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "圆珠笔",
+   "py": "yuánzhūbǐ",
+   "es": "lápiz pasta (圆珠 «bolita redonda»)",
+   "href": "/intermedio1/clase07.html#s5",
+   "sec": "Clase 07 · §5 铅笔 · 这支铅笔 — el lápiz y el clasificador 支"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "一支笔",
+   "py": "yì zhī bǐ",
+   "es": "un lápiz / una lapicera (cualquiera)",
+   "href": "/intermedio1/clase07.html#s5",
+   "sec": "Clase 07 · §5 铅笔 · 这支铅笔 — el lápiz y el clasificador 支"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "用",
+   "py": "yòng",
+   "es": "usar",
+   "href": "/intermedio1/clase07.html#s7",
+   "sec": "Clase 07 · §7 我看一下 — «déjame ver un poquito»"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "找",
+   "py": "zhǎo",
+   "es": "buscar",
+   "href": "/intermedio1/clase07.html#s7",
+   "sec": "Clase 07 · §7 我看一下 — «déjame ver un poquito»"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "问",
+   "py": "wèn",
+   "es": "preguntar",
+   "href": "/intermedio1/clase07.html#s7",
+   "sec": "Clase 07 · §7 我看一下 — «déjame ver un poquito»"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "写一下",
+   "py": "xiě yíxià",
+   "es": "escribir un momento · = 写写",
+   "href": "/intermedio1/clase07.html#s8",
+   "sec": "Clase 07 · §8 Verbo + 一下 — práctica con 9 verbos"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "来一下",
+   "py": "lái yíxià",
+   "es": "venir un momento · no se duplica",
+   "href": "/intermedio1/clase07.html#s8",
+   "sec": "Clase 07 · §8 Verbo + 一下 — práctica con 9 verbos"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "学习一下",
+   "py": "xuéxí yíxià",
+   "es": "estudiar un poco · = 学习学习",
+   "href": "/intermedio1/clase07.html#s8",
+   "sec": "Clase 07 · §8 Verbo + 一下 — práctica con 9 verbos"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "运动一下",
+   "py": "yùndòng yíxià",
+   "es": "hacer un poco de ejercicio · = 运动运动",
+   "href": "/intermedio1/clase07.html#s8",
+   "sec": "Clase 07 · §8 Verbo + 一下 — práctica con 9 verbos"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "问一下",
+   "py": "wèn yíxià",
+   "es": "preguntar rápido · = 问问",
+   "href": "/intermedio1/clase07.html#s8",
+   "sec": "Clase 07 · §8 Verbo + 一下 — práctica con 9 verbos"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "读一下",
+   "py": "dú yíxià",
+   "es": "leer (en voz alta) un momento · = 读读",
+   "href": "/intermedio1/clase07.html#s8",
+   "sec": "Clase 07 · §8 Verbo + 一下 — práctica con 9 verbos"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "说一下",
+   "py": "shuō yíxià",
+   "es": "decir, contar brevemente · = 说说",
+   "href": "/intermedio1/clase07.html#s8",
+   "sec": "Clase 07 · §8 Verbo + 一下 — práctica con 9 verbos"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "听一下",
+   "py": "tīng yíxià",
+   "es": "escuchar un momento · = 听听",
+   "href": "/intermedio1/clase07.html#s8",
+   "sec": "Clase 07 · §8 Verbo + 一下 — práctica con 9 verbos"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "想一下",
+   "py": "xiǎng yíxià",
+   "es": "pensarlo un momento · = 想想",
+   "href": "/intermedio1/clase07.html#s8",
+   "sec": "Clase 07 · §8 Verbo + 一下 — práctica con 9 verbos"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "找一下",
+   "py": "zhǎo yíxià",
+   "es": "buscar un momento · = 找找",
+   "href": "/intermedio1/clase07.html#s8",
+   "sec": "Clase 07 · §8 Verbo + 一下 — práctica con 9 verbos"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "用一下",
+   "py": "yòng yíxià",
+   "es": "usar un momento (pedir prestado) · = 用用",
+   "href": "/intermedio1/clase07.html#s8",
+   "sec": "Clase 07 · §8 Verbo + 一下 — práctica con 9 verbos"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "试一下",
+   "py": "shì yíxià",
+   "es": "probar, intentar · = 试试",
+   "href": "/intermedio1/clase07.html#s8",
+   "sec": "Clase 07 · §8 Verbo + 一下 — práctica con 9 verbos"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "介绍一下",
+   "py": "jièshào yíxià",
+   "es": "presentar (a alguien) · = 介绍介绍",
+   "href": "/intermedio1/clase07.html#s8",
+   "sec": "Clase 07 · §8 Verbo + 一下 — práctica con 9 verbos"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "准备一下",
+   "py": "zhǔnbèi yíxià",
+   "es": "prepararse un poco · = 准备准备",
+   "href": "/intermedio1/clase07.html#s8",
+   "sec": "Clase 07 · §8 Verbo + 一下 — práctica con 9 verbos"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "天气",
+   "py": "tiānqì",
+   "es": "el tiempo, el clima",
+   "href": "/intermedio1/clase07.html#s9",
+   "sec": "Clase 07 · §9 你真好！· 今天天气真好！— «¡qué amable eres!», «¡qué buen día!»"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "公共汽车",
+   "py": "gōnggòng qìchē",
+   "es": "bus, micro (transporte público)",
+   "href": "/intermedio1/clase07.html#s11",
+   "sec": "Clase 07 · §11 Palabras de 4 caracteres — 公共汽车 · 高速公路 · 名胜古迹 · 爱不释手"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "高速公路",
+   "py": "gāosù gōnglù",
+   "es": "autopista",
+   "href": "/intermedio1/clase07.html#s11",
+   "sec": "Clase 07 · §11 Palabras de 4 caracteres — 公共汽车 · 高速公路 · 名胜古迹 · 爱不释手"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "名胜古迹",
+   "py": "míngshèng gǔjì",
+   "es": "lugares turísticos y sitios históricos",
+   "href": "/intermedio1/clase07.html#s11",
+   "sec": "Clase 07 · §11 Palabras de 4 caracteres — 公共汽车 · 高速公路 · 名胜古迹 · 爱不释手"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "爱不释手",
+   "py": "ài bú shì shǒu",
+   "es": "no poder soltar algo de tanto que te gusta (成语)",
+   "href": "/intermedio1/clase07.html#s11",
+   "sec": "Clase 07 · §11 Palabras de 4 caracteres — 公共汽车 · 高速公路 · 名胜古迹 · 爱不释手"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "飞",
+   "py": "fēi",
+   "es": "volar (飞机, avión, «máquina que vuela», §6)",
+   "href": "/intermedio1/clase07.html#s12",
+   "sec": "Clase 07 · §12 Trazos 横折斜钩 y 弯钩 — 飞 · 风 · 狗 · 猫"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "风",
+   "py": "fēng",
+   "es": "viento (刮风 guā fēng, «corre viento»)",
+   "href": "/intermedio1/clase07.html#s12",
+   "sec": "Clase 07 · §12 Trazos 横折斜钩 y 弯钩 — 飞 · 风 · 狗 · 猫"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "狗",
+   "py": "gǒu",
+   "es": "perro",
+   "href": "/intermedio1/clase07.html#s12",
+   "sec": "Clase 07 · §12 Trazos 横折斜钩 y 弯钩 — 飞 · 风 · 狗 · 猫"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "手",
+   "py": "shǒu",
+   "es": "mano",
+   "href": "/intermedio1/clase07.html#s13",
+   "sec": "Clase 07 · §13 手 — la mano, y su forma de radical 扌"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "扌",
+   "py": "tíshǒupáng",
+   "es": "radical «mano» a la izquierda (提手旁, «la mano que sube»)",
+   "href": "/intermedio1/clase07.html#s13",
+   "sec": "Clase 07 · §13 手 — la mano, y su forma de radical 扌"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "打",
+   "py": "dǎ",
+   "es": "golpear; jugar con la mano (打篮球, Clase 01 §4)",
+   "href": "/intermedio1/clase07.html#s13",
+   "sec": "Clase 07 · §13 手 — la mano, y su forma de radical 扌"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "拿",
+   "py": "ná",
+   "es": "tomar, agarrar (aquí 手 va abajo: 合 + 手)",
+   "href": "/intermedio1/clase07.html#s13",
+   "sec": "Clase 07 · §13 手 — la mano, y su forma de radical 扌"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "打电话",
+   "py": "dǎ diànhuà",
+   "es": "llamar por teléfono",
+   "href": "/intermedio1/clase07.html#s13",
+   "sec": "Clase 07 · §13 手 — la mano, y su forma de radical 扌"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "杯",
+   "py": "bēi",
+   "es": "taza, vaso («cup»); clasificador de bebidas",
+   "href": "/intermedio1/clase07.html#s14",
+   "sec": "Clase 07 · §14 杯 · 别 · 刀 — la taza, «no / otro» y el cuchillo (刂)"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "别",
+   "py": "bié",
+   "es": "¡no…! (para prohibir); otro",
+   "href": "/intermedio1/clase07.html#s14",
+   "sec": "Clase 07 · §14 杯 · 别 · 刀 — la taza, «no / otro» y el cuchillo (刂)"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "刀",
+   "py": "dāo",
+   "es": "cuchillo",
+   "href": "/intermedio1/clase07.html#s14",
+   "sec": "Clase 07 · §14 杯 · 别 · 刀 — la taza, «no / otro» y el cuchillo (刂)"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "刂",
+   "py": "lìdāopáng",
+   "es": "radical «cuchillo» a la derecha (立刀旁, «cuchillo de pie»)",
+   "href": "/intermedio1/clase07.html#s14",
+   "sec": "Clase 07 · §14 杯 · 别 · 刀 — la taza, «no / otro» y el cuchillo (刂)"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "别的",
+   "py": "biéde",
+   "es": "otro, otra cosa",
+   "href": "/intermedio1/clase07.html#s14",
+   "sec": "Clase 07 · §14 杯 · 别 · 刀 — la taza, «no / otro» y el cuchillo (刂)"
+  },
+  {
+   "cat": "Clase 07",
+   "w": "别人",
+   "py": "biérén",
+   "es": "los demás, otra gente",
+   "href": "/intermedio1/clase07.html#s14",
+   "sec": "Clase 07 · §14 杯 · 别 · 刀 — la taza, «no / otro» y el cuchillo (刂)"
   }
  ],
- "chars": "旅游放假玩儿好最秋天故宫长城很太了漂亮喜欢想说面条市衣服件觉得不错一般马虎月二三四五六七八九十上个这下几运动工作学习生活孩子结婚打算以后球足篮网乒乓比赛眼睛只猫耳朵手套外双鞋袜帽椅桌把张也要买有时间冷热舒为什么因所镜看拉吃包北京功夫攀岩叫名字星期日起读书校电视聚会课文午吧啦在家里都可新的旧机车它花是啊多大两去哪剪头发理加油站项目中商店饭图馆朋友和班你们谁高矮忙年轻聪明汉语同阿隆索贵便宜块少钱水果苹西瓜香蕉葡萄橙草莓桃梨柠檬樱牛火龙榴莲荔枝山竹红毛丹杨芒木椰菠萝猕猴百柚女男本些斤哥岁话奶场冰箱帮扰兴能开始考试床药喝跑步病休息每早点对常经候总身体出院住医现非但没那米公厘知道卫今怎累老师回来人分钟队阵及级楼囗国园美地育操务室教食堂宿舍超银行洗旁边附近房鼠标脑千集表报纸份送给卖东雨用等杯盒昨听许收废品确定到丈妻我她他婆小左右真粉色颜绿茶黑白蓝紫黄灰咖啡办"
+ "chars": "旅游放假玩儿好最秋天故宫长城很太了漂亮喜欢想说面条市衣服件觉得不错一般马虎月二三四五六七八九十上个这下几运动工作学习生活孩子结婚打算以后球足篮网乒乓比赛眼睛只猫耳朵手套外双鞋袜帽椅桌把张也要买有时间冷热舒为什么因所镜看拉吃包北京功夫攀岩叫名字星期日起读书校电视聚会课文午吧啦在家里都可新的旧机车它花是啊多大两去哪剪头发理加油站项目中商店饭图馆朋友和班你们谁高矮忙年轻聪明汉语同阿隆索贵便宜块少钱水果苹西瓜香蕉葡萄橙草莓桃梨柠檬樱牛火龙榴莲荔枝山竹红毛丹杨芒木椰菠萝猕猴百柚女男本些斤哥岁话奶场冰箱帮扰兴能开始考试床药喝跑步病休息每早点对常经候总身体出院住医现非但没那米公厘知道卫今怎累老师回来人分钟队阵及级楼囗国园美地育操务室教食堂宿舍超银行洗旁边附近房鼠标脑千集表报纸份送给卖东雨用等杯盒昨听许收废品确定到丈妻我她他婆小左右真粉色颜绿茶黑白蓝紫黄灰咖啡办巴斯帝见铅笔支钢圆珠找问写介绍准备气共汽速路胜古迹爱释飞风狗扌拿别刀刂"
 }

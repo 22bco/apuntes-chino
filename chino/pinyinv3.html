@@ -85,6 +85,31 @@
     white-space: pre-wrap; word-break: break-word;
   }
 
+  /* traducción al español (la pone la profe con clic derecho → «Agregar traducción») */
+  .card .tr-line {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: calc(var(--py) * 1.05); font-style: italic;
+    color: #5d6d7e; line-height: 1.35; max-width: 520px;
+    border-top: 1px dashed #e3e3df; padding-top: 8px;
+    white-space: pre-wrap; word-break: break-word;
+  }
+  .card .tr-edit {
+    display: block; width: 100%; min-width: 260px; margin-top: 10px; box-sizing: border-box;
+    font: italic 15px 'Inter', -apple-system, sans-serif; color: #2c3e50;
+    border: 1px solid #c0392b; border-radius: 8px; padding: 6px 8px; resize: none; outline: none;
+  }
+  .card .tr-hint { font: 11px 'Inter', sans-serif; color: #999; margin-top: 4px; }
+  #ctx-menu {
+    position: fixed; z-index: 200; min-width: 210px; padding: 6px;
+    background: #fff; border: 1px solid #e0e0e0; border-radius: 10px;
+    box-shadow: 0 8px 28px rgba(0,0,0,.16); font: 14px 'Inter', -apple-system, sans-serif;
+  }
+  #ctx-menu button {
+    display: block; width: 100%; text-align: left; padding: 8px 10px; border: 0;
+    background: none; border-radius: 6px; cursor: pointer; font: inherit; color: #1a1a2e;
+  }
+  #ctx-menu button:hover { background: #fdf0ee; color: #c0392b; }
+
   /* ─── imágenes ─── */
   .image-el { position: absolute; z-index: 10; cursor: grab; }
   .image-el.dragging { cursor: grabbing; z-index: 50; }
@@ -379,7 +404,7 @@
 <div class="toast" id="toast"></div>
 <div class="hint">Arrastra el fondo para moverte · arrastra imágenes al lienzo · doble clic en una tarjeta para editar · escribe en pinyin y pulsa ⇥</div>
 
-<script src="https://unpkg.com/pinyin-pro"></script>
+<script src="https://unpkg.com/pinyin-pro@3.29.5/dist/index.js"></script>
 
 <!-- ═══════════════════════════════════════════════════════════════
      v3 · Motor de escritura asistida (IME pinyin→hanzi + ghost text)
@@ -480,9 +505,30 @@ window.ChinoIME = (function () {
     return out.slice(0, limit || 8).map(o => o.e);
   }
 
+  /* Glosa palabra por palabra: «左边的书» → [{hz:'左边', es:'izquierda'}, {hz:'的', es:'de'}, …].
+     Segmenta tomando la palabra más larga que exista en el diccionario (máx. 4 caracteres). */
+  let byHz = null;
+  function gloss(text) {
+    if (!loaded) return [];
+    if (!byHz) {
+      byHz = new Map();
+      index.forEach(e => { const o = byHz.get(e.hz); if (e.es && (!o || e.rank < o.rank)) byHz.set(e.hz, e); });
+    }
+    const out = [], chars = [...String(text || '')];
+    for (let i = 0; i < chars.length;) {
+      if (!/[㐀-鿿]/.test(chars[i])) { i++; continue; }
+      let hit = null;
+      for (let n = Math.min(4, chars.length - i); n >= 1 && !hit; n--) hit = byHz.get(chars.slice(i, i + n).join(''));
+      if (hit) { out.push({ hz: hit.hz, es: hit.es }); i += [...hit.hz].length; }
+      else { out.push({ hz: chars[i], es: '' }); i++; }
+    }
+    return out;
+  }
+
   return {
     ready,
     candidates,
+    gloss,
     get size() { return index.length; },
     get loaded() { return loaded; },
   };
@@ -503,7 +549,7 @@ window.ChinoIME = (function () {
 
   let state = {
     cam: { x: 0, y: 0, zoom: 1 },
-    cards: [],          // {id, x, y, text, plain?}
+    cards: [],          // {id, x, y, text, plain?, scale?, tr? (traducción)}
     images: [],         // {id, x, y, w, h, src}
     strokes: [],        // {points:[[x,y]...], color, width}
     tone: 'symbol',     // symbol | num | hidden
@@ -593,6 +639,7 @@ window.ChinoIME = (function () {
         d.textContent = line;
         wrap.appendChild(d);
       });
+      appendTr(card, wrap);
       el.querySelector('.lines')?.remove();
       el.insertBefore(wrap, el.firstChild);
       return;
@@ -625,8 +672,120 @@ window.ChinoIME = (function () {
       }
       wrap.appendChild(lineEl);
     });
+    appendTr(card, wrap);
     el.querySelector('.lines')?.remove();
     el.insertBefore(wrap, el.firstChild);
+  }
+
+  function appendTr(card, wrap) {
+    if (!card.tr) return;
+    const d = document.createElement('div');
+    d.className = 'tr-line';
+    d.textContent = card.tr;
+    wrap.appendChild(d);
+  }
+
+  /* ───────── traducción: menú de clic derecho ─────────
+     La traducción vive en la tarjeta (card.tr): se guarda, se sincroniza con los
+     alumnos en modo curso y sale en el PNG. Sugerencia automática: el traductor
+     integrado de Chrome (Translator API, en el equipo, sin key) si existe; si no,
+     el significado palabra por palabra del diccionario de la pizarra. */
+  let ctxMenu = null;
+  function closeCtxMenu() { ctxMenu?.remove(); ctxMenu = null; }
+  addEventListener('pointerdown', e => { if (ctxMenu && !ctxMenu.contains(e.target)) closeCtxMenu(); }, true);
+  addEventListener('keydown', e => { if (e.key === 'Escape') closeCtxMenu(); });
+  addEventListener('blur', closeCtxMenu);
+
+  function openCardMenu(card, el, x, y) {
+    closeCtxMenu();
+    ctxMenu = document.createElement('div');
+    ctxMenu.id = 'ctx-menu';
+    const item = (label, fn) => {
+      const b = document.createElement('button'); b.textContent = label;
+      b.addEventListener('click', () => { closeCtxMenu(); fn(); });
+      ctxMenu.appendChild(b);
+    };
+    if (!card.tr) item('🇪🇸 Agregar traducción', () => editTranslation(card, el, true));
+    else {
+      item('✏️ Editar traducción', () => editTranslation(card, el, false));
+      item('🔄 Volver a traducir', () => editTranslation(card, el, true));
+      item('🗑️ Quitar traducción', () => { delete card.tr; buildCardContent(card, el); record(); save(); });
+    }
+    item('🔊 Escuchar', () => speak(card.text));
+    document.body.appendChild(ctxMenu);
+    const r = ctxMenu.getBoundingClientRect();
+    ctxMenu.style.left = Math.min(x, innerWidth - r.width - 8) + 'px';
+    ctxMenu.style.top  = Math.min(y, innerHeight - r.height - 8) + 'px';
+  }
+
+  let translatorP = null;   // un solo traductor zh→es por sesión
+  const withTimeout = (p, ms) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), ms))]);
+  async function suggestTranslation(text) {
+    const han = text.split('\n').filter(l => /[㐀-鿿]/.test(l)).join('\n');
+    if (!han) return '';
+    try {
+      if ('Translator' in self) {
+        const opts = { sourceLanguage: 'zh', targetLanguage: 'es' };
+        const av = await withTimeout(Translator.availability(opts), 3000);
+        if (av === 'available') {
+          translatorP = translatorP || Translator.create(opts);
+          return (await withTimeout(translatorP.then(t => t.translate(han)), 5000)).trim();
+        }
+        // 'downloadable' / 'downloading': se baja el modelo en segundo plano (queda para la
+        // próxima vez) y por ahora se sugiere el significado palabra por palabra
+        if (av !== 'unavailable' && !translatorP) {
+          translatorP = Translator.create(opts);
+          translatorP.then(() => toast('Traductor de Chrome listo 🇪🇸'), () => { translatorP = null; });
+          toast('Descargando el traductor de Chrome… por ahora, significado por palabra');
+        }
+      }
+    } catch (e) { if (e.message !== 'timeout') translatorP = null; }
+    await window.ChinoIME.ready;
+    return han.split('\n').map(l => window.ChinoIME.gloss(l).map(glossWord).join(' · ')).join('\n');
+  }
+  // significado corto y limpio para la sugerencia: sin emojis, primera acepción, minúscula
+  const GLOSS_FIJO = { '的': 'de', '是': 'ser', '吗': '¿?', '呢': '¿y…?', '吧': '(sugerencia)', '了': '(了)', '得': '(得)', '地': '(地)' };
+  function glossWord(g) {
+    if (GLOSS_FIJO[g.hz]) return GLOSS_FIJO[g.hz];
+    if (!g.es) return g.hz;
+    if (/^clasificador/i.test(g.es)) return '(clasif.)';
+    let t = g.es.replace(/\p{Extended_Pictographic}|\uFE0F|\u200D/gu, '').split(/[;；,，(/]/)[0].trim();
+    t = t.replace(/^(el|la|los|las)\s+/i, '') || g.hz;
+    return t.charAt(0).toLowerCase() + t.slice(1);
+  }
+
+  async function editTranslation(card, el, auto) {
+    if (sync.ro || el.classList.contains('editing')) return;
+    el.classList.add('editing');
+    el.querySelector('.tr-line')?.remove();
+    const ta = document.createElement('textarea');
+    ta.className = 'tr-edit'; ta.rows = 2;
+    const hint = document.createElement('div');
+    hint.className = 'tr-hint';
+    hint.textContent = 'Enter guarda · Esc cancela · Shift+Enter nueva línea';
+    el.appendChild(ta); el.appendChild(hint);
+    ['pointerdown', 'dblclick', 'wheel'].forEach(t => ta.addEventListener(t, e => e.stopPropagation()));
+    let done = false;
+    const finish = keep => {
+      if (done) return; done = true;
+      const v = ta.value.trim();
+      ta.remove(); hint.remove(); el.classList.remove('editing');
+      if (keep && v !== (card.tr || '')) { if (v) card.tr = v; else delete card.tr; record(); save(); }
+      buildCardContent(card, el);
+    };
+    ta.addEventListener('keydown', e => {
+      e.stopPropagation();
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); finish(true); }
+      if (e.key === 'Escape') { e.preventDefault(); finish(false); }
+    });
+    ta.addEventListener('blur', () => finish(true));
+    if (auto) {
+      ta.value = '⏳ traduciendo…'; ta.disabled = true;
+      const sug = await suggestTranslation(card.text || '');
+      if (done) return;
+      ta.disabled = false; ta.value = sug;
+    } else ta.value = card.tr || '';
+    ta.focus(); ta.select();
   }
 
   function makeCardEl(card) {
@@ -666,6 +825,13 @@ window.ChinoIME = (function () {
 
     // editar con doble clic
     el.addEventListener('dblclick', e => { e.stopPropagation(); if (!sync.ro) editCard(card, el); });
+
+    // clic derecho → menú de traducción (solo quien puede editar)
+    el.addEventListener('contextmenu', e => {
+      if (sync.ro || el.classList.contains('editing') || !(card.text || '').trim()) return;
+      e.preventDefault(); e.stopPropagation();
+      selectCard(el); openCardMenu(card, el, e.clientX, e.clientY);
+    });
 
     // arrastrar (modo seleccionar)
     el.addEventListener('pointerdown', e => {
@@ -1373,6 +1539,24 @@ window.ChinoIME = (function () {
       layout.push({ type: 'cn', cols, y: totalH, lineH, hzPx, pyPx, pyGap });
       totalH += lineH + (li < lines.length - 1 ? lineGap : 0);
     });
+    if (card.tr) { // traducción: cursiva gris, partida en líneas como en el DOM (máx. 520 px)
+      const trPx = bp * s * 1.05, trGap = 8;
+      tmp.font = `italic 500 ${trPx}px Inter, sans-serif`;
+      const limit = Math.max(maxW, 520);
+      const rows = [];
+      card.tr.split('\n').forEach(par => {
+        let row = '';
+        par.split(' ').forEach(w => {
+          const t = row ? row + ' ' + w : w;
+          if (row && tmp.measureText(t).width > limit) { rows.push(row); row = w; } else row = t;
+        });
+        rows.push(row);
+      });
+      rows.forEach(r => { maxW = Math.max(maxW, tmp.measureText(r).width); });
+      if (lines.length) totalH += lineGap;
+      layout.push({ type: 'tr', rows, y: totalH + trGap, trPx, lineH: trPx * 1.35 });
+      totalH += trGap + rows.length * trPx * 1.35;
+    }
     totalH += pad;
     return { layout, w: maxW + pad * 2, h: totalH, pad };
   }
@@ -1442,6 +1626,16 @@ window.ChinoIME = (function () {
             c.font = `500 ${line.plainPx}px 'Noto Sans SC', Inter, sans-serif`;
             c.textAlign = 'left'; c.textBaseline = 'top';
             c.fillText(line.text, x0 + L.pad, y0 + line.y);
+            return;
+          }
+          if (line.type === 'tr') {
+            c.strokeStyle = '#e3e3df'; c.setLineDash([4, 4]);
+            c.beginPath(); c.moveTo(x0 + L.pad, y0 + line.y - 8); c.lineTo(x0 + L.w - L.pad, y0 + line.y - 8); c.stroke();
+            c.setLineDash([]);
+            c.fillStyle = '#5d6d7e';
+            c.font = `italic 500 ${line.trPx}px Inter, sans-serif`;
+            c.textAlign = 'left'; c.textBaseline = 'top';
+            line.rows.forEach((r, i) => c.fillText(r, x0 + L.pad, y0 + line.y + i * line.lineH));
             return;
           }
           if (line.type === 'es') {
