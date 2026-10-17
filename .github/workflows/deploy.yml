@@ -20,7 +20,21 @@ jobs:
             git pull origin main
             rsync -a --delete /opt/apuntes-chino/chino/ /opt/TransportesMarDelSur/static/chino/
             cd /opt/apuntes-chino/api && docker compose up -d --build --remove-orphans
+      # Se verifica desde el propio VPS (nginx local, sin pasar por Cloudflare,
+      # que le responde 403 a los runners de GitHub). La API tarda unos segundos
+      # en quedar sana tras recrear el contenedor: se reintenta hasta ~60 s.
       - name: Verificar sitio y API
-        run: |
-          curl -fsS -A "Mozilla/5.0 (deploy-check)" https://chino.basti.cl/ -o /dev/null
-          curl -fsS -A "Mozilla/5.0 (deploy-check)" https://chino.basti.cl/api/health
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            R="--resolve chino.basti.cl:443:127.0.0.1"
+            curl -fsS $R https://chino.basti.cl/ -o /dev/null || exit 1
+            for i in $(seq 1 20); do
+              curl -fsS $R https://chino.basti.cl/api/health && exit 0
+              sleep 3
+            done
+            docker ps -a --filter name=chino_api
+            exit 1
