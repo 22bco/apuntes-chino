@@ -20,3 +20,7 @@ jobs:
             git pull origin main
             rsync -a --delete /opt/apuntes-chino/chino/ /opt/TransportesMarDelSur/static/chino/
             cd /opt/apuntes-chino/api && docker compose up -d --build --remove-orphans
+      - name: Verificar sitio y API
+        run: |
+          curl -fsS -A "Mozilla/5.0 (deploy-check)" https://chino.basti.cl/ -o /dev/null
+          curl -fsS -A "Mozilla/5.0 (deploy-check)" https://chino.basti.cl/api/health
