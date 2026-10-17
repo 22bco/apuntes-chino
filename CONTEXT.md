@@ -24,6 +24,8 @@ chino/
 ├── lluvia.html             # Arcade: reventar palabras que caen escribiendo su pinyin (fuente vocab_hsk1.json)
 ├── pinyin.html             # Herramienta: pizarra de pinyin v1 (muy enlazada desde footers de clases)
 ├── pinyinv2.html           # Herramienta: pizarra de pinyin v2 (ver PLAN-MEJORAS 1.5: consolidar v1/v2)
+├── pinyinv3.html           # Pizarra v3: escritura asistida pinyin→hanzi, modo curso (API), traducción con clic derecho
+├── pinyinv4.html           # Pizarra v4 = v3 + panel «✍️ Trazos y radicales» (HanziWriter + radicales.json, modo práctica); comparte localStorage con v3
 ├── vocab.json              # Corpus del buscador: {hz,py,es,src} por clase (~399)
 ├── sinonimos.json          # ~95 grupos de sinónimos español para expandir consultas del buscador
 │
