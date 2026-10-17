@@ -1155,6 +1155,7 @@ window.ChinoIME = (function () {
     if (e.target.closest('.image-el') && !sync.ro) return;
 
     if (tool === 'text' || tool === 'textplain') {
+      e.preventDefault();   // si no, el mousedown mueve el foco y el editor recién abierto se cierra vacío
       const w = screenToWorld(e.clientX, e.clientY);
       const { card, el } = addCard(w.x, w.y, '', tool === 'textplain');
       setTool('select');

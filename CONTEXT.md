@@ -25,7 +25,8 @@ chino/
 ├── pinyin.html             # Herramienta: pizarra de pinyin v1 (muy enlazada desde footers de clases)
 ├── pinyinv2.html           # Herramienta: pizarra de pinyin v2 (ver PLAN-MEJORAS 1.5: consolidar v1/v2)
 ├── pinyinv3.html           # Pizarra v3: escritura asistida pinyin→hanzi, modo curso (API), traducción con clic derecho
-├── pinyinv4.html           # Pizarra v4 = v3 + panel «✍️ Trazos y radicales» (HanziWriter + radicales.json, modo práctica); comparte localStorage con v3
+├── pinyinv4.html           # Retirada: redirige a /pinyinv5.html (conserva ?curso= y #hash)
+├── pinyinv5.html           # Pizarra v5 (la vigente) = v3 + panel de trazos y radicales, rediseñada (iconos SVG inline) + paso a paso (mapa de trazos numerado), «En la tarjeta» (anima sobre la tarjeta, para proyectar), práctica con progreso, componentes, velocidad ½×/1×/2×, ←/→ entre caracteres; mismo localStorage que v3/v4 (prefs del panel en 'pinyinv5-trazos')
 ├── vocab.json              # Corpus del buscador: {hz,py,es,src} por clase (~399)
 ├── sinonimos.json          # ~95 grupos de sinónimos español para expandir consultas del buscador
 │
