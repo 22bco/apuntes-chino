@@ -110,9 +110,9 @@
   /* traducción (clic derecho → «Agregar traducción») */
   .card .tr-line {
     font-family: var(--ui);
-    font-size: calc(var(--py) * 1.05); font-style: italic;
-    color: #5d6d7e; line-height: 1.35; max-width: 520px;
-    border-top: 1px dashed var(--line); padding-top: 8px;
+    font-size: calc(var(--py) * .8); font-style: italic;
+    color: #7f8c8d; line-height: 1.35; max-width: 440px;
+    border-top: 1px dashed var(--line); padding-top: 6px;
     white-space: pre-wrap; word-break: break-word;
   }
   .card .tr-edit {
@@ -850,11 +850,16 @@ window.ChinoIME = (function () {
   const saveUser = () => { try { localStorage.setItem(LS_USER, JSON.stringify(user)); } catch (e) {} };
   user.p.forEach(p => put({ hz: p.hz, sy: p.sy, py: p.py, f: 2000, es: '', en: '', tag: 'tuya', rank: 0, site: false, user: true, own: true }));
 
+  // v6: frase de clase (solo hanzi) → su traducción hecha a mano en los apuntes
+  const classEs = new Map();
+  const cleanEs = t => String(t || '').replace(/\p{Extended_Pictographic}|\uFE0F|\u200D/gu, '').replace(/\s+/g, ' ').trim();
+
   const ready = Promise.all(
     SOURCES.map(s => fetch(s.url).then(r => r.ok ? r.json() : []).catch(() => []).then(data => ({ data, s })))
   ).then(results => {
     results.forEach(({ data, s }) => (Array.isArray(data) ? data : []).forEach(w => {
       const hz = [...String(w.hz || '')].filter(isHan).join('');
+      if (hz && w.es && !classEs.has(hz)) classEs.set(hz, cleanEs(w.es));
       if (!hz || [...hz].length > 8) return;
       const sy = syllablesOf(w.py, [...hz].length);
       if (!sy) return;
@@ -862,6 +867,11 @@ window.ChinoIME = (function () {
     }));
     siteLoaded = true;
     return index.length;
+  });
+  // v6: todas las frases traducidas de las clases (scripts/gen_frases.py); mandan sobre vocab.json
+  const notesReady = fetch('/frases.json').then(r => r.ok ? r.json() : {}).catch(() => ({})).then(d => {
+    Object.entries(d).forEach(([k, es]) => classEs.set(k, cleanEs(es)));
+    return classEs.size;
   });
 
   // el diccionario grande, detrás del corpus del sitio (para que las palabras del curso conserven su español)
@@ -1076,7 +1086,9 @@ window.ChinoIME = (function () {
   }
 
   return {
-    ready, full, candidates, learn, forget, gloss, wordsWith, segmentations,
+    ready, full, notesReady, candidates, learn, forget, gloss, wordsWith, segmentations,
+    // traducción de los apuntes para una línea (ignora puntuación y espacios); null si no está
+    fromNotes: line => classEs.get([...String(line || '')].filter(isHan).join('')) || null,
     get size() { return index.length; },
     get loaded() { return siteLoaded; },
     get dictLoaded() { return dictLoaded; },
@@ -1746,28 +1758,42 @@ window.ChinoIME = (function () {
 
   let translatorP = null;   // un solo traductor zh→es por sesión
   const withTimeout = (p, ms) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), ms))]);
-  async function suggestTranslation(text) {
-    const han = text.split('\n').filter(l => /[㐀-鿿]/.test(l)).join('\n');
-    if (!han) return '';
+  /* v6: traducción línea por línea, de la fuente más confiable a la menos:
+       1. los apuntes (la traducción hecha a mano de esa misma frase en alguna clase),
+       2. el traductor integrado de Chrome (en el equipo, sin key),
+       3. el significado palabra por palabra del diccionario del sitio. */
+  async function chromeTranslate(line) {
+    if (!('Translator' in self)) return null;
     try {
-      if ('Translator' in self) {
-        const opts = { sourceLanguage: 'zh', targetLanguage: 'es' };
-        const av = await withTimeout(Translator.availability(opts), 3000);
-        if (av === 'available') {
-          translatorP = translatorP || Translator.create(opts);
-          return (await withTimeout(translatorP.then(t => t.translate(han)), 5000)).trim();
-        }
-        // 'downloadable' / 'downloading': se baja el modelo en segundo plano (queda para la
-        // próxima vez) y por ahora se sugiere el significado palabra por palabra
-        if (av !== 'unavailable' && !translatorP) {
-          translatorP = Translator.create(opts);
-          translatorP.then(() => toast('Traductor de Chrome listo'), () => { translatorP = null; });
-          toast('Descargando el traductor de Chrome… por ahora, significado por palabra');
-        }
+      const opts = { sourceLanguage: 'zh', targetLanguage: 'es' };
+      const av = await withTimeout(Translator.availability(opts), 3000);
+      if (av === 'available') {
+        translatorP = translatorP || Translator.create(opts);
+        return (await withTimeout(translatorP.then(t => t.translate(line)), 5000)).trim();
+      }
+      // 'downloadable' / 'downloading': se baja el modelo en segundo plano (queda para la próxima vez)
+      if (av !== 'unavailable' && !translatorP) {
+        translatorP = Translator.create(opts);
+        translatorP.then(() => toast('Traductor de Chrome listo'), () => { translatorP = null; });
+        toast('Descargando el traductor de Chrome… por ahora, significado por palabra');
       }
     } catch (e) { if (e.message !== 'timeout') translatorP = null; }
+    return null;
+  }
+  async function suggestTranslation(text) {
+    const lines = text.split('\n').filter(l => /[㐀-鿿]/.test(l));
+    if (!lines.length) return '';
     await window.ChinoIME.ready;
-    return han.split('\n').map(l => window.ChinoIME.gloss(l).map(glossWord).join(' · ')).join('\n');
+    await window.ChinoIME.notesReady;
+    const out = [];
+    for (const line of lines) {
+      const mine = window.ChinoIME.fromNotes(line);
+      if (mine) { out.push(mine); continue; }
+      const chrome = await chromeTranslate(line);
+      if (chrome) { out.push(chrome); continue; }
+      out.push(window.ChinoIME.gloss(line).map(glossWord).join(' · '));
+    }
+    return out.join('\n');
   }
   // significado corto y limpio para la sugerencia: sin emojis, primera acepción, minúscula
   const GLOSS_FIJO = { '的': 'de', '是': 'ser', '吗': '¿?', '呢': '¿y…?', '吧': '(sugerencia)', '了': '(了)', '得': '(得)', '地': '(地)' };
@@ -2651,9 +2677,9 @@ window.ChinoIME = (function () {
       totalH += lineH + (li < lines.length - 1 ? lineGap : 0);
     });
     if (card.tr) { // traducción: cursiva gris, partida en líneas como en el DOM (máx. 520 px)
-      const trPx = bp * s * 1.05, trGap = 8;
+      const trPx = bp * s * .8, trGap = 6;
       tmp.font = `italic 500 ${trPx}px Inter, sans-serif`;
-      const limit = Math.max(maxW, 520);
+      const limit = Math.max(maxW, 440);
       const rows = [];
       card.tr.split('\n').forEach(par => {
         let row = '';
