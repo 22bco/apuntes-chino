@@ -26,7 +26,9 @@ chino/
 ├── pinyinv2.html           # Herramienta: pizarra de pinyin v2 (ver PLAN-MEJORAS 1.5: consolidar v1/v2)
 ├── pinyinv3.html           # Pizarra v3: escritura asistida pinyin→hanzi, modo curso (API), traducción con clic derecho
 ├── pinyinv4.html           # Retirada: redirige a /pinyinv5.html (conserva ?curso= y #hash)
-├── pinyinv5.html           # Pizarra v5 (la vigente) = v3 + panel de trazos y radicales, rediseñada (iconos SVG inline) + paso a paso (mapa de trazos numerado), «En la tarjeta» (anima sobre la tarjeta, para proyectar), práctica con progreso, componentes, velocidad ½×/1×/2×, ←/→ entre caracteres; mismo localStorage que v3/v4 (prefs del panel en 'pinyinv5-trazos')
+├── pinyinv5.html           # Pizarra v5 = v3 + panel de trazos y radicales, rediseñada (iconos SVG inline) + paso a paso (mapa de trazos numerado), «En la tarjeta» (anima sobre la tarjeta, para proyectar), práctica con progreso, componentes, velocidad ½×/1×/2×, ←/→ entre caracteres; mismo localStorage que v3/v4 (prefs del panel en 'pinyinv5-trazos')
+├── pinyinv6.html           # Pizarra v6 (la vigente) = v5 + predictor nuevo: diccionario /ime-dict.txt (~40k palabras CC-CEDICT + frecuencias jieba, se carga detrás del corpus del sitio), segmenta sílabas y arma frases (woxiangqu → 我想去, Viterbi), iniciales (nh → 你好), elegir por partes, aprende lo elegido (localStorage 'pinyinv6-ime'); Menú → «Traducción al español: Automática» (prefs en 'pinyinv6-prefs', marca card.trAuto, no pisa traducciones a mano)
+├── ime-dict.txt            # Diccionario del predictor v6 — regenerar con scripts/gen_ime_dict.py (lista EXTRA de frases de clase que jieba no trae)
 ├── vocab.json              # Corpus del buscador: {hz,py,es,src} por clase (~399)
 ├── sinonimos.json          # ~95 grupos de sinónimos español para expandir consultas del buscador
 │
